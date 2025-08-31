@@ -10,6 +10,7 @@
     ./applications
     ./cli
     ./desktop
+    ./git.nix
     ./home.nix
   ];
 }

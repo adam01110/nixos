@@ -13,6 +13,7 @@
     ./onlyoffice.nix
     ./other.nix
     ./sober.nix
+    ./prism.nix
     ./zed.nix
     ./zen.nix
   ];

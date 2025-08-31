@@ -17,10 +17,12 @@
         scale = 1;
       };
       "Unknown-1" = {
-        disabled = 1
+        disabled = 1;
       };
     };
   };
 
-    nvtop.types = [ "intel" ];
+  nvtop.types = [ "intel" ];
+
+  config.zen-browser.travel.enable = true;
 }

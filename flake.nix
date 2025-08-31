@@ -29,11 +29,6 @@
 
     ghostty.url = "github:ghostty-org/ghostty";
 
-    adams-nix-additons = {
-      url = "github:adam01110/adams-nix-additons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +40,11 @@
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -61,9 +61,9 @@
       hyprland-plugins,
       split-monitor-workspaces,
       ghostty,
-      adams-nix-additons,
       lanzaboote,
       nix-flatpak,
+      nur,
       ...
     }@inputs:
     let
@@ -77,6 +77,7 @@
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
         lanzaboote.nixosModules.lanzaboote
+        nur.modules.nixos.default
         ./system
       ];
 

@@ -15,7 +15,7 @@
 
     cursor = {
       name = "Bibata-Modern-Classic";
-      package = inputs.adams-nix-additons.packages.${system}.bibata-cursors-classic;
+      package = ;
       size = 24;
     };
 
