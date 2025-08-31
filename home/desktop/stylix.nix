@@ -11,7 +11,7 @@
   stylix = {
     cursor = {
       name = "Bibata-Modern-RosePine";
-      package = inputs.adams-nix-additons.packages.${system}.bibata-cursors-rose-pine;
+      package = ;
     };
 
     icons = {
@@ -36,7 +36,7 @@
     };
   };
 
-  programs.eza.heme = {
+  programs.eza.theme = {
     colourful = true;
 
     filekinds = {

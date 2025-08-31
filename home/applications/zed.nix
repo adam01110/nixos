@@ -11,21 +11,25 @@
     enable = true;
 
     extensions = [
-      "html"
-      "nix"
-      "toml"
       "biome"
       "discord-presence"
+      "html"
+      "nix"
       "qml"
+      "ruff"
+      "toml"
     ];
 
-    extraPackages = [
+    extraPackages = with pkgs; [
       # packages for nix
-      pkgs.nixd
-      pkgs.nixfmt
+      nixd
+      nixfmt
 
       # packages for rust
-      pkgs.rust-analyzer
+      rust-analyzer
+
+      # packages for qml
+      kdePackages.qtdeclarative
     ];
 
     userSettings = {
@@ -58,6 +62,17 @@
           ];
           # use nixfmt formatter for nix
           formatter.external.command = "nixfmt";
+        };
+
+        Python = {
+          language_servers = [
+            "pyright"
+            "ruff"
+          ];
+          formatter.code_actions = {
+            "source.fixAll.ruff" = true;
+            "source.organizeImports.ruff" = true;
+          };
         };
 
         # enable biome formatter and linter for supported languages
