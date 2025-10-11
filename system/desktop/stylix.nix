@@ -15,19 +15,19 @@
 
     cursor = {
       name = "Bibata-Modern-Classic";
-      package = ;
+      package = pkgs.nur.repos.adam01110.bibata-cursors-classic;
       size = 24;
     };
 
     fonts = {
       serif = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+        name = "JetBrainsMono Nerd Font Propo";
       };
 
       sansSerif = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+        name = "JetBrainsMono Nerd Font Propo";
       };
 
       monospace = {

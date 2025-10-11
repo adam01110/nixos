@@ -19,21 +19,15 @@ in
       description = "${username}";
       extraGroups = [
         "wheel"
-        "docker"
-        "libvirtd"
+        "audio"
+        "networkmanager"
       ];
     };
-
-    # TODO make this false in future?
-    mutableUsers = true;
   };
 
   nix.settings.allowed-users = [ "${username}" ];
-  # dont know to put this in xdg.nix or user.nix
-  security.pam.services.${username}.kwallet.enable = true;
 
   home-manager = {
-    # some reasonable home manager settings
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
@@ -52,6 +46,7 @@ in
         [
           nix-flatpak.nixosModules.nix-flatpak
           zen-browser.homeModules.beta
+          inputs.noctalia.homeModules.default
         ]
         ++ [ ./../home ];
       home = {

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  timezone,
   ...
 }:
 
@@ -10,10 +9,9 @@
   imports = [
     ./applications
     ./desktop
+    ./services
     ./disk.nix
-    ./network.nix
     ./nix.nix
-    ./services.nix
     ./tweaks.nix
     ./user.nix
   ];
@@ -38,10 +36,15 @@
     initrd.services.udev.packages = with pkgs; [ numworks-udev-rules ];
   };
 
+  programs.nix-ld.enable = true;
+
   # enable realtimekit for pipewire
   security.rtkit.enable = true;
 
-  time.timeZone = timezone;
+  # enable mesa-git
+  chaotic.mesa-git.enable = true;
+
+  hardware.enableAllFirmware = true;
 
   # locale.
   i18n = {
@@ -56,16 +59,6 @@
       LC_PAPER = "en_US.UTF-8";
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
-    };
-  };
-
-  # enable sudo-rs in the future.
-  # breaks starship.
-  security = {
-    sudo.enable = true;
-    sudo-rs = {
-      enable = false;
-      execWheelOnly = true;
     };
   };
 

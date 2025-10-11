@@ -10,7 +10,6 @@
 {
   programs.ghostty = {
     enable = true;
-    package = inputs.ghostty.packages.${system}.default;
     clearDefaultKeybinds = true;
 
     settings = {

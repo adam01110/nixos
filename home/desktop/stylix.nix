@@ -1,24 +1,33 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   ...
 }:
 
+let
+  color = config.lib.stylix.colors.withHashtag;
+  colorRgb = config.lib.stylix.colors;
+
+  sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
+  monospaceFont = osConfig.stylix.fonts.monospace.name;
+in
 {
-  home.pointerCursor.hyprcursor.enable = true;
+
+  qt.style.package = pkgs.nur.repos.shadowrz.klassy;
 
   stylix = {
     cursor = {
-      name = "Bibata-Modern-RosePine";
-      package = ;
+      name = "Bibata-Modern-Gruvbox";
+      package = pkgs.nur.repos.adam01110.bibata-cursors-gruvbox;
     };
 
     icons = {
       enable = true;
-      light = "Colloid-Teal-Light";
-      dark = "Colloid-Teal-Dark";
-      package = pkgs.colloid-icon-theme;
+      light = "Gruvbox Plus Dark";
+      dark = "Gruvbox Plus Dark";
+      package = pkgs.gruvbox-plus-icons;
     };
 
     opacity = {
@@ -34,117 +43,162 @@
       popups = 10;
       terminal = 10;
     };
+
+    targets = {
+      nixcord.enable = false;
+      vencord.enable = false;
+      obsidian.enable = false;
+      hyprland.enable = false;
+    };
   };
+
+  home.packages = with pkgs; [ nur.repos.adam01110.bibata-cursors-gruvbox-hyprcursor ];
+  home.sessionVariables.HYPRCURSOR_THEME = config.stylix.cursor.name;
 
   programs.eza.theme = {
     colourful = true;
 
     filekinds = {
-      normal.foreground = "#e0def4";
-      directory.foreground = "#9ccfd8";
-      symlink.foreground = "#524f67";
-      pipe.foreground = "#908caa";
-      block_device.foreground = "#ebbcba";
-      char_device.foreground = "#f6c177";
-      socket.foreground = "#21202e";
-      special.foreground = "#c4a7e7";
-      executable.foreground = "#c4a7e7";
-      mount_point.foreground = "#403d52";
+      normal = color.base05;
+      directory = color.base0D;
+      symlink = color.base0C;
+      pipe = color.base04;
+      block_device = color.base08;
+      char_device = color.base08;
+      socket = color.base03;
+      special = color.base0E;
+      executable = color.base0B;
+      mount_point = color.base09;
     };
 
     perms = {
-      user_read.foreground = "#908caa";
-      user_write.foreground = "#403d52";
-      user_execute_file.foreground = "#c4a7e7";
-      user_execute_other.foreground = "#c4a7e7";
-      group_read.foreground = "#908caa";
-      group_write.foreground = "#403d52";
-      group_execute.foreground = "#c4a7e7";
-      other_read.foreground = "#908caa";
-      other_write.foreground = "#403d52";
-      other_execute.foreground = "#c4a7e7";
-      special_user_file.foreground = "#c4a7e7";
-      special_other.foreground = "#403d52";
-      attribute.foreground = "#908caa";
+      user_read = color.base05;
+      user_write = color.base0A;
+      user_execute_file = color.base0B;
+      user_execute_other = color.base0B;
+      group_read = color.base05;
+      group_write = color.base0A;
+      group_execute = color.base0B;
+      other_read = color.base04;
+      other_write = color.base0A;
+      other_execute = color.base0B;
+      special_user_file = color.base0E;
+      special_other = color.base04;
+      attribute = color.base04;
     };
 
     size = {
-      major.foreground = "#908caa";
-      minor.foreground = "#9ccfd8";
-      number_byte.foreground = "#908caa";
-      number_kilo.foreground = "#524f67";
-      number_mega.foreground = "#31748f";
-      number_giga.foreground = "#c4a7e7";
-      number_huge.foreground = "#c4a7e7";
-      unit_byte.foreground = "#908caa";
-      unit_kilo.foreground = "#31748f";
-      unit_mega.foreground = "#c4a7e7";
-      unit_giga.foreground = "#c4a7e7";
-      unit_huge.foreground = "#9ccfd8";
+      major = color.base04;
+      minor = color.base0C;
+      number_byte = color.base05;
+      number_kilo = color.base05;
+      number_mega = color.base0D;
+      number_giga = color.base0E;
+      number_huge = color.base0E;
+      unit_byte = color.base04;
+      unit_kilo = color.base0D;
+      unit_mega = color.base0E;
+      unit_giga = color.base0E;
+      unit_huge = color.base09;
     };
 
     users = {
-      user_you.foreground = "#f6c177";
-      user_root.foreground = "#eb6f92";
-      user_other.foreground = "#c4a7e7";
-      group_yours.foreground = "#524f67";
-      group_other.foreground = "#6e6a86";
-      group_root.foreground = "#eb6f92";
+      user_you = color.base05;
+      user_root = color.base08;
+      user_other = color.base0E;
+      group_yours = color.base05;
+      group_other = color.base04;
+      group_root = color.base08;
     };
 
     links = {
-      normal.foreground = "#9ccfd8";
-      multi_link_file.foreground = "#31748f";
+      normal = color.base0C;
+      multi_link_file = color.base09;
     };
 
     git = {
-      new.foreground = "#9ccfd8";
-      modified.foreground = "#f6c177";
-      deleted.foreground = "#eb6f92";
-      renamed.foreground = "#31748f";
-      typechange.foreground = "#c4a7e7";
-      ignored.foreground = "#6e6a86";
-      conflicted.foreground = "#ebbcba";
+      new = color.base0B;
+      modified = color.base0A;
+      deleted = color.base08;
+      renamed = color.base0C;
+      typechange = color.base0E;
+      ignored = color.base04;
+      conflicted = color.base08;
     };
 
     git_repo = {
-      branch_main.foreground = "#908caa";
-      branch_other.foreground = "#c4a7e7";
-      git_clean.foreground = "#9ccfd8";
-      git_dirty.foreground = "#eb6f92";
+      branch_main = color.base05;
+      branch_other = color.base0E;
+      git_clean = color.base0B;
+      git_dirty = color.base08;
     };
 
     security_context = {
-      colon.foreground = "#908caa";
-      user.foreground = "#9ccfd8";
-      role.foreground = "#c4a7e7";
-      typ.foreground = "#6e6a86";
-      range.foreground = "#c4a7e7";
+      colon = color.base04;
+      user = color.base05;
+      role = color.base0E;
+      typ = color.base03;
+      range = color.base0E;
     };
 
     file_type = {
-      image.foreground = "#f6c177";
-      video.foreground = "#eb6f92";
-      music.foreground = "#9ccfd8";
-      lossless.foreground = "#6e6a86";
-      crypto.foreground = "#403d52";
-      document.foreground = "#908caa";
-      compressed.foreground = "#c4a7e7";
-      temp.foreground = "#ebbcba";
-      compiled.foreground = "#31748f";
-      build.foreground = "#6e6a86";
-      source.foreground = "#ebbcba";
-      punctuation.foreground = "#524f67";
-      date.foreground = "#31748f";
-      inode.foreground = "#908caa";
-      blocks.foreground = "#6e6a86";
-      header.foreground = "#908caa";
-      octal.foreground = "#9ccfd8";
-      flags.foreground = "#c4a7e7";
-      symlink_path.foreground = "#9ccfd8";
-      control_char.foreground = "#31748f";
-      broken_symlink.foreground = "#eb6f92";
-      broken_path_overlay.foreground = "#524f67";
+      image = color.base0A;
+      video = color.base08;
+      music = color.base0B;
+      lossless = color.base0C;
+      crypto = color.base04;
+      document = color.base05;
+      compressed = color.base0E;
+      temp = color.base08;
+      compiled = color.base0D;
+      build = color.base04;
+      source = color.base0D;
+    };
+
+    punctuation = color.base04;
+    date = color.base0A;
+    inode = color.base04;
+    blocks = color.base03;
+    header = color.base05;
+    octal = color.base0C;
+    flags = color.base0E;
+
+    symlink_path = color.base0C;
+    control_char = color.base0D;
+    broken_symlink = color.base08;
+    broken_path_overlay = color.base04;
+  };
+
+  programs.zathura.options.font = sansSerifFont;
+
+  wayland.windowManager.hyprland.settings = {
+    general."col.inactive_border" = lib.mkForce "rgb(${colorRgb.base0B})";
+    group."col.border_active" = lib.mkForce "rgb(${colorRgb.base03})";
+
+    plugin.hyprexpo.bg_col = "rgb(${colorRgb.base00})";
+  };
+
+  programs.noctalia-shell.settings = {
+    colors = {
+      mError = color.base08;
+      mOnError = color.base07;
+      mOnPrimary = color.base05;
+      mOnSecondary = color.base05;
+      mOnSurface = color.base05;
+      mOnSurfaceVariant = color.base04;
+      mOnTertiary = color.base05;
+      mOutline = color.base03;
+      mPrimary = color.base0D;
+      mSecondary = color.base0E;
+      mShadow = color.base00;
+      mSurface = color.base00;
+      mSurfaceVariant = color.base01;
+      mTertiary = color.base0B;
+    };
+
+    ui = {
+      fontDefault = sansSerifFont;
+      fontFixed = monospaceFont;
     };
   };
 }

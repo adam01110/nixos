@@ -12,7 +12,7 @@ let
 in
 {
   options.sober.fps = mkOption {
-    type = lib.types.int;
+    type = types.int;
     default = 60;
     description = "Target frames per second.";
   };

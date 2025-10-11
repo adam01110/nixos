@@ -10,7 +10,8 @@
     enable = true;
 
     daemon = {
-      enable = true;
+      # TODO
+      #enable = true;
       logLevel = "error";
     };
 
@@ -25,7 +26,7 @@
       show_tabs = false;
 
       # TODO
-      sync_address = "";
+      #sync_address = "";
       sync_frequency = 600;
     };
   };

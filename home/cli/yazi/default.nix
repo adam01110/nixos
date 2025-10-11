@@ -9,6 +9,8 @@ let
   imageAllocMB = 1024;
 in
 {
+  imports = [ ./init.lua ];
+
   programs.yazi = {
     enable = true;
 
@@ -100,42 +102,38 @@ in
       which.sort_translit = true;
     };
 
-    keymap = {
-      mgr.prepend_keymap = [
-        {
-          on = "y";
-          run = "plugin wl-clipboard";
-          desc = "Copy selected characters";
-        }
-        {
-          on = "p";
-          run = "plugin smart-paste";
-          desc = "Paste into the hovered directory or CWD";
-        }
-        {
-          on = "<Enter>";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
-        }
-        {
-          on = "l";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
-        }
-        {
-          on = "<Left>";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
-        }
-        {
-          on = "L";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
-        }
-      ];
-    };
-
-    initLua = "./init.lua";
+    keymap.mgr.prepend_keymap = [
+      {
+        on = "y";
+        run = "plugin wl-clipboard";
+        desc = "Copy selected characters";
+      }
+      {
+        on = "p";
+        run = "plugin smart-paste";
+        desc = "Paste into the hovered directory or CWD";
+      }
+      {
+        on = "<Enter>";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
+      {
+        on = "l";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
+      {
+        on = "<Left>";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
+      {
+        on = "L";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
+    ];
   };
 
   home.packages = with pkgs; [

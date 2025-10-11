@@ -6,5 +6,8 @@
 }:
 
 {
-  imports = [ ./steam.nix ];
+  imports = [
+    ./other.nix
+    ./steam.nix
+  ];
 }

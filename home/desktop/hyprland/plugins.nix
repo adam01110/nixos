@@ -8,16 +8,14 @@
 {
   wayland.windowManager.hyprland.settings = {
     plugin = {
-      split-monitor-workspaces = {
-        count = 5;
-        keep_focused = 1;
-        enable_wrapping = 0;
-      };
+      hyprsplit.num_workspaces = 9;
 
       hyprfocus = {
         mode = "bounce";
         bounce_strength = 0.98;
       };
+
+      hyprexpo.gap_size = 8;
     };
   };
 }

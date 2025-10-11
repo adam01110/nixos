@@ -12,13 +12,10 @@
 
   disko.selectedDisk = "/dev/vda";
 
-  networking = {
-    type = "networkd";
-    interface = "enp1s0";
-    hostName = "vm";
+  optServices = {
+    ssh.enable = true;
+    timezone = "automatic-timezoned";
   };
-
-  optServices.ssh.enable = true;
 
   tmp.type = "zram";
 }

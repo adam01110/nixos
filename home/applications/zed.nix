@@ -52,14 +52,12 @@
       };
 
       inlay_hints.enabled = true;
+      show_edit_predictions = false;
 
       languages = {
         Nix = {
           # use nixd lsp for nix
-          language_servers = [
-            "nixd"
-            "!nil"
-          ];
+          language_servers = [ "nixd" ];
           # use nixfmt formatter for nix
           formatter.external.command = "nixfmt";
         };
