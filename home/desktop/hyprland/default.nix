@@ -10,6 +10,7 @@
 {
   imports = [
     ./appearance.nix
+    ./hypridle.nix
     ./keybinds.nix
     ./general.nix
     ./plugins.nix
@@ -23,9 +24,17 @@
     package = null;
     portalPackage = null;
 
-    plugins = with inputs; [
-      hyprland-plugins.packages.${system}.hyprfocus
-      split-monitor-workspaces.packages.${system}.split-monitor-workspaces
+    plugins = [
+      inputs.hyprland-plugins.packages.${system}.hyprfocus
+      inputs.hyprland-plugins.packages.${system}.hyprexpo
+      pkgs.hyprlandPlugins.hyprsplit
     ];
   };
+
+  home.packages = with pkgs; [
+    hyprpicker
+    brightnessctl
+  ];
+
+  home.pointerCursor.hyprcursor.enable = true;
 }

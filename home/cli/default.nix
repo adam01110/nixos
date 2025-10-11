@@ -11,6 +11,7 @@
     ./yazi
     ./atuin.nix
     ./btop.nix
+    ./cava.nix
     ./eza.nix
     ./fd.nix
     ./fish.nix

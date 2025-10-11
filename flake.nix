@@ -22,12 +22,6 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    ghostty.url = "github:ghostty-org/ghostty";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
@@ -47,6 +41,28 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
+
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -59,17 +75,17 @@
       stylix,
       hyprland,
       hyprland-plugins,
-      split-monitor-workspaces,
-      ghostty,
+      hyprsplit,
       lanzaboote,
       nix-flatpak,
       nur,
+      determinate,
+      sops-nix,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       username = "adam";
-      timezone = "Europe/Amsterdam";
 
       commonModules = [
         disko.nixosModules.disko
@@ -78,6 +94,8 @@
         stylix.nixosModules.stylix
         lanzaboote.nixosModules.lanzaboote
         nur.modules.nixos.default
+        determinate.nixosModules.default
+        sops-nix.nixosModules.sops
         ./system
       ];
 
@@ -87,7 +105,6 @@
           inputs
           system
           username
-          timezone
           ;
       };
     in

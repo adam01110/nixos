@@ -5,10 +5,15 @@
   ...
 }:
 
+let
+  gitPackage = pkgs.gitFull;
+in
 {
   programs.git = {
     enable = true;
     lfs.enable = true;
+
+    package = gitPackage;
 
     delta = {
       enable = true;
@@ -22,5 +27,8 @@
         hyperlinks-file-link-format = "zed://file{path}:{line}";
       };
     };
+
+    extraConfig.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
+    # TODO
   };
 }

@@ -22,15 +22,6 @@
         name = "fifc";
         src = pkgs.fishPlugins.fifc;
       }
-      {
-        name = "fish-ssh-agent";
-        src = pkgs.fetchFromGitHub {
-          owner = "danhper";
-          repo = "fish-ssh-agent";
-          rev = "f10d95775352931796fd17f54e6bf2f910163d1b";
-          sha256 = "sha256-cFroQ7PSBZ5BhXzZEKTKHnEAuEu8W9rFrGZAb8vTgIE=";
-        };
-      }
     ];
 
     interactiveShellInit = ''
@@ -60,5 +51,14 @@
       "......" = "cd ../../../../..";
       "......." = "cd ../../../../../..";
     };
+
+    functions = {
+      # TODO: greet
+    };
+
+    home.packages = with pkgs; [
+      fortune-kind
+      boxes
+    ];
   };
 }

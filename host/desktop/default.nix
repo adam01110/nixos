@@ -12,9 +12,5 @@
 
   disko.selectedDisk = "/dev/nvme0n1";
 
-  networking = {
-    type = "networkd";
-    interface = "";
-    hostName = "desktop";
-  };
+  optServices.timezone = "Europe/Amsterdam";
 }
