@@ -8,10 +8,10 @@
 {
   imports = [
     ./hyprland
-    ./hyprshot.nix
+    ./stylix
     ./noctalia.nix
-    ./stylix.nix
   ];
 
   services.cliphist.enable = true;
+  programs.hyprshot.enable = true;
 }

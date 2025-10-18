@@ -10,10 +10,17 @@
 
 let
   systemStateVersion = config.system.stateVersion;
+
+  UserPassword = config.sops.secrets.user-password.path;
 in
 {
+  sops.secrets.user-password.neededForUsers = true;
+
   users = {
+    mutableUsers = false;
+
     users.${username} = {
+      hashedPasswordFile = UserPassword;
       isNormalUser = true;
       ignoreShellProgramCheck = true;
       description = "${username}";
@@ -46,7 +53,8 @@ in
         [
           nix-flatpak.nixosModules.nix-flatpak
           zen-browser.homeModules.beta
-          inputs.noctalia.homeModules.default
+          noctalia.homeModules.default
+          sops-nix.homeManagerModules.sops
         ]
         ++ [ ./../home ];
       home = {

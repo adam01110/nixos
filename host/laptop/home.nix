@@ -29,8 +29,5 @@
     commit-space = 13107;
   };
 
-  noctalia = {
-    bluetooth.enable = true;
-    battery.enable = true;
-  };
+  noctalia.battery.enable = true;
 }

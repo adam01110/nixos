@@ -5,7 +5,12 @@
   ...
 }:
 
+let
+  steamFriends = config.sops.secrets.steam_friends;
+in
 {
+  sops.secrets.steam_friends = { };
+
   wayland.windowManager.hyprland.settings = {
     permission = [
       "${lib.getExe pkgs.xdg-desktop-portal-hyprland}, screencopy, allow"
@@ -14,8 +19,8 @@
     ];
 
     layerrule = [
-      "noanim, hyprpicker"
-      "noanim, selection"
+      "noanim, ^hyprpicker$"
+      "noanim, ^selection$"
       "noanim, ^noctalia.*$"
 
       "ignorealpha 0.9, ^noctalia.*$"
@@ -39,8 +44,7 @@
       "float, class:^(BeeperTexts)$, title:^(Settings)$"
       "float, class:^(steam)$, title:^(Friends List)$"
       "float, class:^(steam)$, title:^(Steam Settings)$"
-      # TODO
-      "float, class:^(steam)$, title:^(Merlijn|PistAshio|poypoyman|AngelKick|akaracemonster)( [0-9]+ Chats)?$"
+      "float, class:^(steam)$, title:^(${steamFriends})( [0-9]+ Chats)?$"
       "float, class:^(zen)$, title:^(Picture-in-Picture)$"
       "float, class:^(zen)$, title:^(Bitwarden)$"
       "float, class:^(me.iepure.devtoolbox)$"

@@ -11,7 +11,7 @@ let
       { };
 in
 {
-  imports = lib.attrValues nur-no-pkgs.repos.adam.hmModules.yams;
+  imports = lib.attrValues nur-no-pkgs.repos.adam0.hmModules.yams;
 
   services = {
     mpd = {

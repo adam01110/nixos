@@ -11,24 +11,18 @@ with lib;
 let
   ghostty = "${getExe pkgs.ghostty}";
 
-  enableWifi = osConfig.optServices.wifi.enable;
-  enableBluetooth = config.noctalia.bluetooth.enable;
-  enableBattery = config.noctalia.battery.enable;
+  cfgWifi = osConfig.optServices.wifi.enable;
+  cfgBluetooth = osConfig.optServices.bluetooth.enable;
+  cfgBattery = config.noctalia.battery.enable;
 
-  hyprMonitors = config.hyprland.monitors;
-  monitorNames = builtins.attrNames hyprMonitors;
+  monitorNames = builtins.attrNames config.hyprland.monitors;
 
-  monitorsScaling = map (n: {
-    name = n;
-    scale = if (hyprMonitors.${n} ? scale) then hyprMonitors.${n}.scale else 1.0;
-  }) monitorNames;
+  weatherLocation = config.sops.secrets.weather_location;
 in
 {
-  options.noctalia = {
-    bluetooth.enable = mkEnableOption "Enable the bluetooth service & widgets.";
-    wifi.enable = mkEnableOption "Enable the wifi service & widgets.";
-    battery.enable = mkEnableOption "Enable the battery service & widgets.";
-  };
+  options.noctalia.battery.enable = mkEnableOption "Enable the battery service & widgets.";
+
+  sops.secrets.weather_location = { };
 
   programs.noctalia-shell = {
     enable = true;
@@ -80,12 +74,10 @@ in
               displayMode = "onhover";
             }
           ]
-          ++ (optionals enableWifi [ { id = "WiFi"; } ])
-          ++ (optionals enableBluetooth [ { id = "Bluetooth"; } ])
           ++ [
             { id = "KeepAwake"; }
           ]
-          ++ (optionals enableBattery [ { id = "Battery"; } ])
+          ++ (optionals cfgBattery [ { id = "Battery"; } ])
           ++ [
             {
               id = "NotificationHistory";
@@ -103,7 +95,8 @@ in
             {
               id = "ControlCenter";
               customIconPath = "";
-              icon = "";
+              # Todo: icon
+              # icon = "";
               useDistroLogo = false;
             }
           ];
@@ -111,6 +104,24 @@ in
       };
 
       colorschemes.generateTemplatesForPredefined = false;
+
+      controlCenter = {
+        position = "close_to_bar_button";
+        shortcuts = {
+          left =
+            (optionals cfgWifi [ { id = "WiFi"; } ])
+            ++ (optionals cfgBluetooth [ { id = "Bluetooth"; } ])
+            ++ [
+              { id = "ScreenRecorder"; }
+              { id = "WallpaperSelector"; }
+            ];
+          right = [
+            { id = "Notifications"; }
+            { id = "PowerProfile"; }
+            { id = "KeepAwake"; }
+          ];
+        };
+      };
 
       dock = {
         displayMode = "auto_hide";
@@ -123,23 +134,22 @@ in
         animationSpeed = 2;
         dimDesktop = false;
         radiusRatio = 0.50;
+        scaleRatio = 0.8;
         screenRadiusRatio = 0.5;
         showScreenCorners = true;
       };
 
       location = {
-        # TODO: name = "location";
+        name = weatherLocation;
         showWeekNumberInCalendar = true;
       };
 
       network = {
-        wifiEnabled = enableWifi;
-        bluetoothEnabled = enableBluetooth;
+        wifiEnabled = cfgWifi;
+        bluetoothEnabled = cfgBluetooth;
       };
 
       screenRecorder.videoCodec = "hevc";
     };
-
-    ui.monitorsScaling = monitorsScaling;
   };
 }

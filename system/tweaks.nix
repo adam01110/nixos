@@ -11,7 +11,6 @@
       options snd_hda_intel power_save=0
 
       blacklist iTCO_wdt
-      #blacklist sp5100_tco
     '';
 
     kernelModules.ntsync = true;
@@ -80,15 +79,24 @@
     DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
   '';
 
-  systemd.tmpfiles.rules = [
-    "d /var/lib/systemd/coredump 0755 root root 3d"
+  systemd = {
+    tmpfiles.rules = [
+      "d /var/lib/systemd/coredump 0755 root root 3d"
 
-    "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
-    "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"
-  ];
+      "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
+      "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"
+    ];
 
-  services.journald.extraConfig = ''
-    [Journal]
-    SystemMaxUse=50M
-  '';
+    user.extraConfig = ''
+      [Manager]
+      DefaultLimitNOFILE=1024:1048576
+    '';
+
+    extraConfig = ''
+      [Manager]
+      DefaultLimitNOFILE=2048:2097152
+      DefaultTimeoutStartSec=15s
+      DefaultTimeoutStopSec=10s
+    '';
+  };
 }

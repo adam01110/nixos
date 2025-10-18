@@ -10,11 +10,6 @@ let
   sddm-theme = inputs.silentSDDM.packages.${pkgs.system}.default.override {
     theme = "default";
   };
-
-  background = pkgs.fetchurl {
-    url = "";
-    hash = "";
-  };
 in
 {
   environment.systemPackages = [

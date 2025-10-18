@@ -1,5 +1,5 @@
 {
-  description = "Adam's nixos configuration.";
+  description = "Adam0's nixos configuration.";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -85,7 +85,7 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      username = "adam";
+      username = "adam0";
 
       commonModules = [
         disko.nixosModules.disko

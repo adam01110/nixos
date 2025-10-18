@@ -1,13 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-
-let
-  initFile = pkgs.writers.writeLuaBin "init" { } ''
-    function Linemode:size_mtime()
+function Linemode:size_mtime()
         local mtime_num = math.floor(self._file.cha.mtime or 0)
         local mtime_str
         if mtime_num == 0 then
@@ -87,9 +78,3 @@ let
             end
         end,
     }
-
-  '';
-in
-{
-  programs.yazi.initLua = initFile;
-}

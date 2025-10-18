@@ -1,0 +1,18 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+with lib;
+let
+  colors = osConfig.lib.stylix.colors;
+  rgb = color: "rgb(${color})";
+in
+{
+  wayland.windowManager.hyprland.settings = {
+    general."col.inactive_border" = mkForce rgb colors.base03;
+    group."col.border_active" = mkForce rgb colors.base03;
+  };
+}

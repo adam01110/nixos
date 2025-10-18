@@ -15,7 +15,7 @@
 
     cursor = {
       name = "Bibata-Modern-Classic";
-      package = pkgs.nur.repos.adam01110.bibata-cursors-classic;
+      package = pkgs.nur.repos.adam0.bibata-cursors-classic;
       size = 24;
     };
 
