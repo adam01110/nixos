@@ -8,8 +8,10 @@
 {
   imports = [
     ./fastfetch
+    ./starship
     ./yazi
     ./atuin.nix
+    ./bat.nix
     ./btop.nix
     ./cava.nix
     ./eza.nix
@@ -19,7 +21,7 @@
     ./nh.nix
     ./nvtop.nix
     ./other.nix
-    ./starship.nix
+    ./wikiman.nix
     ./zoxide.nix
   ];
 }

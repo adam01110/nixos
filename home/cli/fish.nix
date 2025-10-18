@@ -28,8 +28,7 @@
       set -U fifc_fd_opts --hidden
       set -U __done_min_cmd_duration 10000
 
-      set -x MANROFFOPT "-c"
-      set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+      batman --export-env | source
     '';
 
     shellAbbrs.ff = "fastfetch";
@@ -52,8 +51,8 @@
       "......." = "cd ../../../../../..";
     };
 
-    functions = {
-      # TODO: greet
+    functions.fish_greeting = {
+      body = "fortune -s | boxes -d ansi-rounded";
     };
 
     home.packages = with pkgs; [

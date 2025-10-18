@@ -9,16 +9,21 @@
 
 with lib;
 let
-  notify-send = "${getExe' pkgs.libnotify "notify-send"}";
-  hyprctl = "${getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl"}";
-  awk = "${getExe pkgs.gawk}";
-  print = "${getExe' pkgs.bash "print"}";
-  ghostty = "${getExe pkgs.ghostty}";
   dolphin = "${getExe pkgs.kdePackages.dolphin}";
   equibop = "${getExe pkgs.equibop}";
+  gawk = "${getExe pkgs.gawk}";
+  ghostty = "${getExe pkgs.ghostty}";
+  hyprctl = "${getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl"}";
+  hyprpicker = "${getExe pkgs.hyprpicker}";
+  hyprshot = "${getExe pkgs.hyprshot}";
+  notify-send = "${getExe' pkgs.libnotify "notify-send"}";
+  print = "${getExe' pkgs.bash "print"}";
+  qs = "${getExe pkgs.quickshell}";
   steam = "${getExe pkgs.steam}";
   zen-browser = "${getExe inputs.zen-browser.packages."${system}".default}";
-  noctaliaIpc = "${getExe pkgs.quickshell} -c noctalia-shell ipc call";
+
+  app2unit = "${getExe pkgs.app2unit} -- ";
+  noctalia = "${qs} -c noctalia-shell ipc call";
 
   cfgFunc = config.hyprland.func.enable;
 
@@ -32,7 +37,7 @@ let
       bash
     ];
     text = ''
-      HYPRGAMEMODE=$(${hyprctl} getoption animations:enabled | ${awk} 'NR==1{${print} $2}')
+      HYPRGAMEMODE=$(${hyprctl} getoption animations:enabled | ${gawk} 'NR==1{${print} $2}')
       if [ "$HYPRGAMEMODE" = 1 ]; then
         ${hyprctl} --batch "\
           keyword animations:enabled 0;\
@@ -58,8 +63,6 @@ in
 {
   options.hyprland.func.enable = mkEnableOption "Enable function-row (F-keys) and media keybindings.";
 
-  programs.hyprshot.enable = true;
-
   wayland.windowManager.hyprland.settings = {
     binds.movefocus_cycles_fullscreen = true;
 
@@ -83,7 +86,6 @@ in
       "SUPER SHIFT, 6, split:movetoworkspace, 6"
       "SUPER SHIFT, 7, split:movetoworkspace, 7"
       "SUPER SHIFT, 8, split:movetoworkspace, 8"
-      "SUPER SHIFT, 9, split:movetoworkspace, 9"
 
       "SUPER CTRL, 1, split:movetoworkspacesilent, 1"
       "SUPER CTRL, 2, split:movetoworkspacesilent, 2"
@@ -93,7 +95,6 @@ in
       "SUPER CTRL, 6, split:movetoworkspacesilent, 6"
       "SUPER CTRL, 7, split:movetoworkspacesilent, 7"
       "SUPER CTRL, 8, split:movetoworkspacesilent, 8"
-      "SUPER CTRL, 9, split:movetoworkspacesilent, 9"
 
       "SUPER SHIFT, O, split:grabroguewindows"
 
@@ -136,7 +137,6 @@ in
 
       # miscellaneous
       "SUPER, F1, exec, ${getExe performantMode}"
-      "SUPER SHIFT, TAB, hyprexpo:expo, toggle"
 
       # zoom
       "SUPER, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${awk} '/^float.*/ {${print} $2 * 1.1}')"
@@ -146,28 +146,29 @@ in
       "SUPER SHIFT, minus, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
 
       # shell
-      "SUPER, tab, exec, ${noctaliaIpc} launcher toggle"
-      "SUPER, P, exec, ${noctaliaIpc} sessionMenu toggle"
-      "SUPER, C, exec, ${noctaliaIpc} wallpaper toggle"
-      "SUPER, O, exec, ${noctaliaIpc} notifications toggleHistory"
-      "SUPER, I, exec, ${noctaliaIpc} controlCenter toggle"
-      "SUPER, G, exec, ${noctaliaIpc} launcher calculator"
-      "SUPER, H, exec, ${noctaliaIpc} launcher clipboard"
-      "SUPER, L, exec, ${noctaliaIpc} idleInhibitor toggle"
+      "SUPER, tab, exec, ${noctalia} launcher toggle"
+      "SUPER, P, exec, ${noctalia} sessionMenu toggle"
+      "SUPER, C, exec, ${noctalia} wallpaper toggle"
+      "SUPER, O, exec, ${noctalia} notifications toggleHistory"
+      "SUPER, I, exec, ${noctalia} controlCenter toggle"
+      "SUPER, G, exec, ${noctalia} launcher calculator"
+      "SUPER, H, exec, ${noctalia} launcher clipboard"
+      "SUPER, L, exec, ${noctalia} idleInhibitor toggle"
+      "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle"
 
       # screenshots
-      "SUPER SHIFT, S, exec, hyprshot -m region -z -o ${screenshotDir}/region"
-      "SUPER, Print, exec, hyprshot -m output -c -o ${screenshotDir}/output"
+      "SUPER SHIFT, S, exec, ${hyprshot} -m region -z -o ${screenshotDir}/region"
+      "SUPER, Print, exec, ${hyprshot} -m output -c -o ${screenshotDir}/output"
 
       # picker
-      "SUPER SHIFT, S, exec, hyprpicker -n -a -r -q -l; notify-send 'Hyprland' 'copied to clipboard'"
+      "SUPER SHIFT, S, exec, ${hyprpicker} -n -a -r -q -l; notify-send 'Hyprland' 'copied to clipboard'"
 
       # applications
-      "SUPER, Return, exec, app2unit -- ${ghostty}"
-      "SUPER, E, exec, app2unit -- ${dolphin}"
-      "SUPER, N, exec, app2unit -- ${equibop}"
-      "SUPER, B, exec, app2unit -- ${zen-browser}"
-      "SUPER, M, exec, app2unit -- ${steam}"
+      "SUPER, Return, exec, ${app2unit} ${ghostty}"
+      "SUPER, E, exec, ${app2unit} ${dolphin}"
+      "SUPER, N, exec, ${app2unit} ${equibop}"
+      "SUPER, B, exec, ${app2unit} ${zen-browser}"
+      "SUPER, M, exec, ${app2unit} ${steam}"
     ];
 
     bindm = [
@@ -189,9 +190,9 @@ in
       "XF86MonBrightnessUp, exec, brightnessctl set 1%+"
       "XF86MonBrightnessDown, exec, brightnessctl set 1%-"
       # brightness
-      "XF86AudioMute, exec, ${noctaliaIpc} volume muteOutput"
-      "XF86AudioRaiseVolume, exec, ${noctaliaIpc} volume increase"
-      "XF86AudioLowerVolume, exec, ${noctaliaIpc} volume decrease"
+      "XF86AudioMute, exec, ${noctalia} volume muteOutput"
+      "XF86AudioRaiseVolume, exec, ${noctalia} volume increase"
+      "XF86AudioLowerVolume, exec, ${noctalia} volume decrease"
     ];
   };
 }

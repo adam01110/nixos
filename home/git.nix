@@ -2,16 +2,27 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 
 let
   gitPackage = pkgs.gitFull;
+
+  gitUsername = config.sops.secrets."git/username".path;
+  gitEmail = config.sops.secrets."git/email".path;
 in
 {
+  sops.secrets = {
+    "git/username" = { };
+    "git/email" = { };
+
+    "git/private_ssh_key".path = "/home/${username}/.ssh/git";
+    "git/public_ssh_key".path = "/home/${username}/.ssh/git.pub";
+  };
+
   programs.git = {
     enable = true;
-    lfs.enable = true;
 
     package = gitPackage;
 
@@ -29,6 +40,8 @@ in
     };
 
     extraConfig.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
-    # TODO
+
+    userName = gitUsername;
+    userEmail = gitEmail;
   };
 }

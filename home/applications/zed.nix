@@ -18,6 +18,7 @@
       "qml"
       "ruff"
       "toml"
+      "git-firefly"
     ];
 
     extraPackages = with pkgs; [

@@ -26,7 +26,6 @@
 
     plugins = [
       inputs.hyprland-plugins.packages.${system}.hyprfocus
-      inputs.hyprland-plugins.packages.${system}.hyprexpo
       pkgs.hyprlandPlugins.hyprsplit
     ];
   };
@@ -37,4 +36,12 @@
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
+
+  programs.quickshell = {
+    enable = true;
+    systemd.enable = true;
+
+    activeConfig = "overview";
+    configs.overview = ./overview;
+  };
 }

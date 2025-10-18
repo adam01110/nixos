@@ -8,8 +8,5 @@
 {
   home.packages = with pkgs; [ speedtest-go ];
 
-  programs = {
-    bat.enable = true;
-    ripgrep.enable = true;
-  };
+  programs.ripgrep.enable = true;
 }

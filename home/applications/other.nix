@@ -9,31 +9,40 @@
   home.packages =
     with pkgs;
     [
+      (bottles.overrideAttrs (old: {
+        removeWarningPopup = true;
+      }))
       bleachbit
+      decibels
       devtoolbox
       euphonica
+      gnome-calculator
       helvum
+      komikku
+      loupe
       mangojuice
       mcpelauncher-ui-qt
+      newsflash
       obsidian
+      onthespot
       picard
+      protonplus
+      showtime
       upscayl
       warehouse
+      wootility
       youtube-music
-      komikku
     ]
     ++ (with kdePackages; [
-      kcalc
       ark
       dolphin
-      koko
     ])
     ++ (with nur.repos.Ev357; [
       helium
     ]);
 
   services.flatpak.packages = [
-    "com.github.tchx84.Flatseal"
     "com.github.marhkb.Pods"
+    "com.github.tchx84.Flatseal"
   ];
 }

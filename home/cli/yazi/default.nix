@@ -9,10 +9,10 @@ let
   imageAllocMB = 1024;
 in
 {
-  imports = [ ./init.lua ];
-
   programs.yazi = {
     enable = true;
+
+    initLua = "~/init.lua";
 
     shellWrapperName = "y";
 
