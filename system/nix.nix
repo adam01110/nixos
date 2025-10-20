@@ -3,7 +3,6 @@
   lib,
   pkgs,
   inputs,
-
   ...
 }:
 {
@@ -23,8 +22,9 @@
   nixpkgs = {
     config.allowUnfree = true;
 
-    overlays = [
-      inputs.millennium.overlays.default
+    overlays = with inputs; [
+      millennium.overlays.default
+      dolphin-overlay.overlays.default
     ];
   };
 }

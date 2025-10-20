@@ -13,7 +13,6 @@
     ./git.nix
     ./gpg.nix
     ./home.nix
-    ./mpd.nix
     ./ssh.nix
     ./sops.nix
   ];
