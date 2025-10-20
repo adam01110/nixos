@@ -15,7 +15,6 @@
       bleachbit
       decibels
       devtoolbox
-      euphonica
       gnome-calculator
       helvum
       komikku

@@ -63,6 +63,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dolphin-overlay = {
+      url = "github:rumboon/dolphin-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -81,6 +86,7 @@
       nur,
       determinate,
       sops-nix,
+      dolphin-overlay,
       ...
     }@inputs:
     let
