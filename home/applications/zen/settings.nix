@@ -153,7 +153,6 @@ in
       "extensions.webextensions.restrictedDomains" = " ";
       "general.autoScroll" = false;
       "general.useragent.compatMode.firefox" = true;
-      "geo.provider.use_geoclue" = true;
       "gfx.canvas.accelerated.cache-items" = 32768;
       "gfx.canvas.accelerated.cache-size" = 4096;
       "gfx.content.skia-font-cache-size" = 80;
