@@ -8,23 +8,29 @@
 {
   # TODO
   xdg = {
+    # home manager xdg settings
+    terminal-exec.enable = true;
+
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
 
       config = {
         common.default = [
-          "kde"
+          "gtk"
         ];
         hyprland.default = [
           "hyprland"
-          "kde"
+          "gtk"
         ];
       };
-      extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
+
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
 
     # Cursor theme Bibata cursor theme fallback
     icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
   };
+
+  environment.systemPackages = with pkgs.nur.repos.adam0; [ bibata-modern-cursors-classic ];
 }

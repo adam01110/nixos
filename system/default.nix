@@ -18,7 +18,7 @@ in
     ./disk.nix
     ./locale.nix
     ./nix.nix
-    ./security.nix
+    ./oxidize.nix
     ./sops.nix
     ./tweaks.nix
     ./user.nix
@@ -45,8 +45,10 @@ in
 
   programs.nix-ld.enable = true;
 
-  # enable realtimekit for pipewire
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
 
   hardware = {
     enableAllFirmware = true;

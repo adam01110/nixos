@@ -13,15 +13,18 @@
         removeWarningPopup = true;
       }))
       bleachbit
+      bitwarden-desktop
       decibels
       devtoolbox
       gnome-calculator
       helvum
       komikku
+      krita
       loupe
       mangojuice
       mcpelauncher-ui-qt
       newsflash
+      nucleus
       obsidian
       onthespot
       picard
@@ -36,8 +39,9 @@
       ark
       dolphin
     ])
-    ++ (with nur.repos.Ev357; [
-      helium
+    ++ (with nur.repos; [
+      Ev357.helium
+      ymstnt.beeper
     ]);
 
   services.flatpak.packages = [

@@ -9,6 +9,7 @@
   imports = [
     ./hyprland
     ./stylix
+    ./xdg
     ./noctalia.nix
   ];
 
