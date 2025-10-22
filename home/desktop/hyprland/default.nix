@@ -7,7 +7,20 @@
   ...
 }:
 
+with lib;
+let
+  cfgOverview = config.hyprland.overview;
+in
 {
+  options.hyprland.overview = mkOption {
+    type = types.enum [
+      "quickshell"
+      "hyprexpo"
+    ];
+    default = "hyprexpo";
+    description = "Which overview to use for Hyprland.";
+  };
+
   imports = [
     ./appearance.nix
     ./hypridle.nix
@@ -24,10 +37,12 @@
     package = null;
     portalPackage = null;
 
-    plugins = [
-      inputs.hyprland-plugins.packages.${system}.hyprfocus
-      pkgs.hyprlandPlugins.hyprsplit
-    ];
+    plugins =
+      (
+        with inputs.hyprland-plugins.packages.${system};
+        [ hyprfocus ] ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ]
+      )
+      ++ (with pkgs.hyprlandPlugins; [ hyprsplit ]);
   };
 
   home.packages = with pkgs; [
@@ -37,7 +52,7 @@
 
   home.pointerCursor.hyprcursor.enable = true;
 
-  programs.quickshell = {
+  programs.quickshell = mkIf (cfgOverview == "quickshell") {
     enable = true;
     systemd.enable = true;
 

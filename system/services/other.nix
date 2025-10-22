@@ -7,6 +7,7 @@
 
 {
   services = {
+    blueman.enable = true;
     bpftune.enable = true;
     envfs.enable = true;
     flatpak.enable = true;

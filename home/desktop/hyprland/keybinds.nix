@@ -26,6 +26,7 @@ let
   noctalia = "${qs} -c noctalia-shell ipc call";
 
   cfgFunc = config.hyprland.func.enable;
+  cfgOverview = config.hyprland.overview;
 
   screenshotDir = "${xdg.userDirs.pictures}/screenshot";
 
@@ -154,7 +155,6 @@ in
       "SUPER, G, exec, ${noctalia} launcher calculator"
       "SUPER, H, exec, ${noctalia} launcher clipboard"
       "SUPER, L, exec, ${noctalia} idleInhibitor toggle"
-      "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle"
 
       # screenshots
       "SUPER SHIFT, S, exec, ${hyprshot} -m region -z -o ${screenshotDir}/region"
@@ -169,6 +169,12 @@ in
       "SUPER, N, exec, ${app2unit} ${equibop}"
       "SUPER, B, exec, ${app2unit} ${zen-browser}"
       "SUPER, M, exec, ${app2unit} ${steam}"
+    ]
+    ++ optionals (cfgOverview == quickshell) [
+      "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle"
+    ]
+    ++ optionals (cfgOverview == hyprexpo) [
+      "SUPER SHIFT, TAB, hyprexpo:expo, toggle"
     ];
 
     bindm = [

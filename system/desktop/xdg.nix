@@ -6,9 +6,7 @@
 }:
 
 {
-  # TODO
   xdg = {
-    # home manager xdg settings
     terminal-exec.enable = true;
 
     portal = {
@@ -16,9 +14,14 @@
       xdgOpenUsePortal = true;
 
       config = {
-        common.default = [
-          "gtk"
-        ];
+        common = {
+          default = [
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [
+            "gnome-keyring"
+          ];
+        };
         hyprland.default = [
           "hyprland"
           "gtk"
