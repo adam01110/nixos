@@ -30,11 +30,13 @@ in
     settings = {
       appLauncher = {
         backgroundOpacity = 0.95;
+        enableClipboardHistory = true;
         terminalCommand = "${ghostty} -e";
         useApp2Unit = true;
       };
 
       bar = {
+        density = "compact";
         widgets = {
           left = [
             {
@@ -128,10 +130,12 @@ in
         floatingRatio = 0.5;
         onlySameOutput = true;
         monitors = monitorNames;
+        size = 0.5;
       };
 
       general = {
         animationSpeed = 2;
+        compactLockScreen = true;
         dimDesktop = false;
         radiusRatio = 0.50;
         scaleRatio = 0.8;
