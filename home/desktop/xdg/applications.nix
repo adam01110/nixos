@@ -234,20 +234,22 @@
     "image/x-nikon-nef" = "org.gnome.Loupe.desktop";
 
     # image editing
-    "image/vnd.adobe.photoshop" = "krita_psd.desktop";
-    "image/x-panasonic-rw" = "krita_raw.desktop";
-    "image/openraster" = "krita_ora.desktop";
-    "image/x-canon-crw" = "krita_raw.desktop";
-    "image/jp2" = "krita_jp2.desktop";
-    "image/x-minolta-mrw" = "krita_raw.desktop";
-    "image/x-fuji-raf" = "krita_raw.desktop";
-    "image/x-sigma-x3f" = "krita_raw.desktop";
-    "image/x-olympus-orf" = "krita_raw.desktop";
-    "image/x-xbitmap" = "krita_qimageio.desktop";
-    "image/x-xcf" = "krita_xcf.desktop";
-    "application/x-krita" = "krita_kra.desktop";
-    "image/jpx" = "krita_jp2.desktop";
-    "image/x-xpixmap" = "krita_qimageio.desktop";
-    "image/x-panasonic-rw2" = "krita_raw.desktop";
+    "image/vnd.adobe.photoshop" = "org.gimp.GIMP.desktop";
+    "image/openraster" = "org.gimp.GIMP.desktop";
+    "image/jp2" = "org.gimp.GIMP.desktop";
+    "image/x-xbitmap" = "org.gimp.GIMP.desktop";
+    "image/x-xcf" = "org.gimp.GIMP.desktop";
+    "image/x-eps" = "org.gimp.GIMP.desktop";
+    "image/x-sgi" = "org.gimp.GIMP.desktop";
+    "image/x-ilbm" = "org.gimp.GIMP.desktop";
+    "application/x-navi-animation" = "org.gimp.GIMP.desktop";
+    "image/x-xwindowdump" = "org.gimp.GIMP.desktop";
+    "image/x-icns" = "org.gimp.GIMP.desktop";
+    "image/wmf" = "org.gimp.GIMP.desktop";
+    "image/x-sun-raster" = "org.gimp.GIMP.desktop";
+    "application/fits" = "org.gimp.GIMP.desktop";
+    "image/vnd.zbrush.pcx" = "org.gimp.GIMP.desktop";
+    "image/vnd.wap.wbmp" = "org.gimp.GIMP.desktop";
+    "image/x-jp2-codestream" = "org.gimp.GIMP.desktop";
   };
 }

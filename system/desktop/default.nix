@@ -11,6 +11,7 @@
   imports = [
     ./hyprland.nix
     ./noctalia.nix
+    ./plymouth.nix
     ./stylix.nix
     ./xdg.nix
   ];

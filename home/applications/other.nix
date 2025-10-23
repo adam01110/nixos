@@ -16,10 +16,10 @@
       bitwarden-desktop
       decibels
       devtoolbox
+      gimp
       gnome-calculator
       helvum
       komikku
-      krita
       loupe
       mangojuice
       mcpelauncher-ui-qt
@@ -47,5 +47,6 @@
   services.flatpak.packages = [
     "com.github.marhkb.Pods"
     "com.github.tchx84.Flatseal"
+    "net.pixieditor.PixiEditor"
   ];
 }
