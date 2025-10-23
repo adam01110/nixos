@@ -18,7 +18,6 @@
     ./other.nix
     ./pipewire.nix
     ./printing.nix
-    ./sddm.nix
     ./ssh.nix
     ./timesyncd.nix
     ./timezone.nix
