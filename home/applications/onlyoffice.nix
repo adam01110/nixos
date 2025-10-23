@@ -15,6 +15,7 @@
       uitheme = "theme-night";
       uiscaling = 100;
       usegpu = true;
+      titlebar = "system";
     };
   };
 }
