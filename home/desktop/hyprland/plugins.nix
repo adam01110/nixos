@@ -5,6 +5,10 @@
   ...
 }:
 
+with lib;
+let
+  cfgOverview = config.hyprland.overview;
+in
 {
   wayland.windowManager.hyprland.settings = {
     plugin = {
@@ -17,5 +21,7 @@
 
       hyprexpo.gap_size = 8;
     };
+
+    hyprexpo-gesture = mkIf (cfgOverview == "hyprexpo") [ "3, vertical, expo" ];
   };
 }

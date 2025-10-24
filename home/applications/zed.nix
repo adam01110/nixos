@@ -2,10 +2,13 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 
+let
+  configHome = config.xdg.configHome;
+  cacheHome = config.xdg.stateHome;
+in
 {
   programs.zed-editor = {
     enable = true;
@@ -16,7 +19,6 @@
       "html"
       "nix"
       "qml"
-      "ruff"
       "toml"
       "git-firefly"
     ];
@@ -65,7 +67,7 @@
 
         Python = {
           language_servers = [
-            "pyright"
+            "ty"
             "ruff"
           ];
           formatter.code_actions = {
@@ -90,5 +92,8 @@
   home.sessionVariables = {
     EDITOR = "zeditor";
     VISUAL = "zeditor";
+
+    BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
+    RUFF_CACHE_DIR = "${cacheHome}/ruff";
   };
 }
