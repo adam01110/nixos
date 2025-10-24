@@ -15,6 +15,7 @@ in
 
     extensions = [
       "biome"
+      "color-highlight"
       "discord-presence"
       "html"
       "nix"
@@ -48,6 +49,7 @@ in
 
       # minimap scrollbar
       scrollbar.axes.vertical = false;
+      lsp_document_colors = "background";
       minimap = {
         show = "always";
         thumb_border = "none";
