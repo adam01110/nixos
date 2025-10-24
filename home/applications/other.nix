@@ -47,6 +47,5 @@
   services.flatpak.packages = [
     "com.github.marhkb.Pods"
     "com.github.tchx84.Flatseal"
-    "net.pixieditor.PixiEditor"
   ];
 }

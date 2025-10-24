@@ -94,10 +94,7 @@ in
       wayland.windowManager.hyprland.settings = {
         input.touchpad.natural_scroll = true;
 
-        gesture = [
-          "3, horizontal, workspace"
-          "3, vertical, hyprexpo:expo, toggle"
-        ];
+        gesture = [ "3, horizontal, workspace" ];
       };
     })
 
