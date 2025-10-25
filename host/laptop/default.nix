@@ -20,8 +20,6 @@
     wifi.enable = true;
   };
 
-  tmp.type = "zram";
-
   services.tlp = {
     enable = true;
 

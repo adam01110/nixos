@@ -161,7 +161,7 @@ in
       "SUPER, Print, exec, ${hyprshot} -m output -c -o ${screenshotDir}/output"
 
       # picker
-      "SUPER SHIFT, S, exec, ${hyprpicker} -n -a -r -q -l; notify-send 'Hyprland' 'copied to clipboard'"
+      "SUPER SHIFT, S, exec, ${hyprpicker} -n -a -r -q -l"
 
       # applications
       "SUPER, Return, exec, ${app2unit} ${ghostty}"
