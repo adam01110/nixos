@@ -16,6 +16,4 @@
     ssh.enable = true;
     timezone = "automatic-timezoned";
   };
-
-  tmp.type = "zram";
 }

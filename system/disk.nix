@@ -8,23 +8,12 @@
 with lib;
 let
   cfgDisk = config.disko.selectedDisk;
-  cfgZramTmp = config.tmp.type;
 in
 {
-  options = {
-    disko.selectedDisk = lib.mkOption {
-      type = types.str;
-      example = "/dev/vda";
-      description = "The disk device used by the system.";
-    };
-    tmp.type = mkOption {
-      type = types.enum [
-        "tmpfs"
-        "zram"
-      ];
-      default = "tmpfs";
-      description = "Choose which temporary filesystem type to use for /tmp.";
-    };
+  options.disko.selectedDisk = lib.mkOption {
+    type = types.str;
+    example = "/dev/vda";
+    description = "The disk device used by the system.";
   };
 
   disko.devices = {
@@ -128,7 +117,7 @@ in
       };
     };
 
-    nodev = mkIf (cfgZramTmp == "tmpfs") {
+    nodev = {
       "/tmp" = {
         fsType = "tmpfs";
         mountOptions = [

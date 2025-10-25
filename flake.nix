@@ -80,7 +80,6 @@
       stylix,
       hyprland,
       hyprland-plugins,
-      hyprsplit,
       lanzaboote,
       nix-flatpak,
       nur,
