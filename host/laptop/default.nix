@@ -55,4 +55,6 @@
   };
 
   home.packages = with pkgs; [ powertop ];
+
+  roccat.enable = true;
 }

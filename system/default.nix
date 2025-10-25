@@ -5,11 +5,16 @@
   ...
 }:
 
+with lib;
 let
   cfgWooting = config.wooting.enable;
+  cfgRoccat = config.roccat.enable;
 in
 {
-  options.wooting.enable = lib.mkEnableOption "Enable the wooting udev rules";
+  options = {
+    wooting.enable = mkEnableOption "Enable the wooting udev rules";
+    roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
+  };
 
   imports = [
     ./applications
@@ -55,8 +60,21 @@ in
     wooting.enable = cfgWooting;
   };
 
-  environment.systemPackages = with pkgs; [
-    sbctl
-    tpm2-tss
-  ];
+  environment = mkif cfgRoccat {
+    etc."libinput/local-overrides.quirks" = {
+      text = ''
+        [ROCCAT ROCCAT Kain 100]
+        MatchName=ROCCAT ROCCAT Kain 100
+        ModelBouncingKeys=1
+      '';
+      mode = "0644";
+      user = "root";
+      group = "root";
+    };
+
+    systemPackages = with pkgs; [
+      sbctl
+      tpm2-tss
+    ];
+  };
 }
