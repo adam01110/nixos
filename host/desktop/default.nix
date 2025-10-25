@@ -35,4 +35,5 @@ in
   };
 
   wooting.enable = true;
+  roccat.enable = true;
 }
