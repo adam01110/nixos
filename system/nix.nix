@@ -23,7 +23,7 @@
     config.allowUnfree = true;
 
     overlays = with inputs; [
-      millennium.overlays.default
+      #millennium.overlays.default
       dolphin-overlay.overlays.default
     ];
   };
