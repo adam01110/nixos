@@ -37,7 +37,7 @@ in
 
     services.resolved = {
       enable = true;
-      dnsovertls = true;
+      dnsovertls = "true";
 
       fallbackDns = [
         "1.1.1.1#cloudflare-dns.com"

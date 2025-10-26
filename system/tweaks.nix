@@ -24,12 +24,7 @@
       "vm.dirty_writeback_centisecs" = 1500;
       "kernel.nmi_watchdog" = 0;
       "kernel.unprivileged_userns_clone" = 1;
-      "kernel.printk" = [
-        3
-        3
-        3
-        3
-      ];
+      "kernel.printk" = "3 3 3 3";
       "kernel.kptr_restrict" = 2;
 
       "kernel.kexec_load_disabled" = 1;
