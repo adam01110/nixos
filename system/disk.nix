@@ -5,18 +5,22 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkOption
+    types
+    ;
+
   cfgDisk = config.disko.selectedDisk;
 in
 {
-  options.disko.selectedDisk = lib.mkOption {
+  options.disko.selectedDisk = mkOption {
     type = types.str;
     example = "/dev/vda";
     description = "The disk device used by the system.";
   };
 
-  disko.devices = {
+  config.disko.devices = {
     disk = {
       main = {
         type = "disk";

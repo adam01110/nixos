@@ -5,17 +5,17 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkEnableOption
+    mkForce
+    mkIf
+    ;
+
   cfgWooting = config.wooting.enable;
   cfgRoccat = config.roccat.enable;
 in
 {
-  options = {
-    wooting.enable = mkEnableOption "Enable the wooting udev rules";
-    roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
-  };
-
   imports = [
     ./applications
     ./desktop
@@ -29,52 +29,61 @@ in
     ./user.nix
   ];
 
-  system.stateVersion = "25.05";
-
-  boot = {
-    kernelPackages = pkgs.linuxPackages_cachyos;
-
-    # bootloader with secure boot
-    loader = {
-      systemd-boot.enable = lib.mkForce false;
-      efi.canTouchEfiVariables = true;
-    };
-
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
-    };
-
-    initrd.services.udev.packages = with pkgs; [ numworks-udev-rules ];
+  options = {
+    wooting.enable = mkEnableOption "Enable the wooting udev rules";
+    roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
   };
 
-  programs.nix-ld.enable = true;
+  config = {
+    system.stateVersion = "25.05";
 
-  security = {
-    rtkit.enable = true;
-    polkit.enable = true;
-  };
+    boot = {
+      kernelPackages = pkgs.linuxPackages_cachyos;
 
-  hardware = {
-    enableAllFirmware = true;
-    wooting.enable = cfgWooting;
-  };
+      # bootloader with secure boot
+      loader = {
+        systemd-boot.enable = mkForce false;
+        efi.canTouchEfiVariables = true;
+      };
 
-  environment = mkif cfgRoccat {
-    etc."libinput/local-overrides.quirks" = {
-      text = ''
-        [ROCCAT ROCCAT Kain 100]
-        MatchName=ROCCAT ROCCAT Kain 100
-        ModelBouncingKeys=1
-      '';
-      mode = "0644";
-      user = "root";
-      group = "root";
+      lanzaboote = {
+        enable = true;
+        pkiBundle = "/var/lib/sbctl";
+      };
+
+      initrd.services.udev.packages = [ pkgs.numworks-udev-rules ];
     };
 
-    systemPackages = with pkgs; [
-      sbctl
-      tpm2-tss
-    ];
+    programs.nix-ld.enable = true;
+
+    security = {
+      rtkit.enable = true;
+      polkit.enable = true;
+    };
+
+    hardware = {
+      enableAllFirmware = true;
+      wooting.enable = cfgWooting;
+    };
+
+    environment = mkIf cfgRoccat {
+      etc."libinput/local-overrides.quirks" = {
+        text = ''
+          [ROCCAT ROCCAT Kain 100]
+          MatchName=ROCCAT ROCCAT Kain 100
+          ModelBouncingKeys=1
+        '';
+        mode = "0644";
+        user = "root";
+        group = "root";
+      };
+
+      systemPackages = builtins.attrValues {
+        inherit (pkgs)
+          sbctl
+          tpm2-tss
+          ;
+      };
+    };
   };
 }

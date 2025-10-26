@@ -92,11 +92,10 @@
       DefaultLimitNOFILE=1024:1048576
     '';
 
-    extraConfig = ''
-      [Manager]
-      DefaultLimitNOFILE=2048:2097152
-      DefaultTimeoutStartSec=15s
-      DefaultTimeoutStopSec=10s
-    '';
+    settings.Manager = {
+      DefaultLimitNOFILE = "2048:2097152";
+      DefaultTimeoutStartSec = "15s";
+      DefaultTimeoutStopSec = "10s";
+    };
   };
 }

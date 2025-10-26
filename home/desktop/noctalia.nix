@@ -3,28 +3,28 @@
   osConfig,
   lib,
   pkgs,
-  username,
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    getExe
+    mkEnableOption
+    optionals
+    ;
+
   ghostty = "${getExe pkgs.ghostty}";
 
-  cfgWifi = osConfig.optServices.wifi.enable;
-  cfgBluetooth = osConfig.optServices.bluetooth.enable;
   cfgBattery = config.noctalia.battery.enable;
+  cfgBluetooth = osConfig.optServices.bluetooth.enable;
+  cfgWifi = osConfig.optServices.wifi.enable;
 
   monitorNames = builtins.attrNames config.hyprland.monitors;
-
-  weatherLocation = config.sops.secrets.weather_location;
 in
 {
   options.noctalia.battery.enable = mkEnableOption "Enable the battery service & widgets.";
 
-  sops.secrets.weather_location = { };
-
-  programs.noctalia-shell = {
+  config.programs.noctalia-shell = {
     enable = true;
 
     settings = {
@@ -143,10 +143,7 @@ in
         showScreenCorners = true;
       };
 
-      location = {
-        name = weatherLocation;
-        showWeekNumberInCalendar = true;
-      };
+      location.showWeekNumberInCalendar = true;
 
       network = {
         wifiEnabled = cfgWifi;

@@ -54,10 +54,12 @@
     functions.fish_greeting = {
       body = "fortune -s | boxes -d ansi-rounded";
     };
+  };
 
-    home.packages = with pkgs; [
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
       fortune-kind
       boxes
-    ];
+      ;
   };
 }

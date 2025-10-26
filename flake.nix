@@ -84,6 +84,7 @@
       nix-flatpak,
       nur,
       determinate,
+      noctalia,
       sops-nix,
       dolphin-overlay,
       ...
@@ -101,6 +102,7 @@
         nur.modules.nixos.default
         determinate.nixosModules.default
         sops-nix.nixosModules.sops
+        noctalia.nixosModules.default
         ./system
       ];
 

@@ -5,8 +5,9 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib) mkIf;
+
   cfgOverview = config.hyprland.overview;
 in
 {

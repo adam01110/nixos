@@ -5,8 +5,11 @@
   ...
 }:
 
+let
+  inherit (lib) concatStrings;
+in
 {
-  programs.starship.settings.format = lib.concatStrings [
+  programs.starship.settings.format = concatStrings [
     "[](fg:base01)"
     "$hostname"
     "[/](fg:text bg:base01)"

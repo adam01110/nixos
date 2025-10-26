@@ -5,8 +5,12 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
+
   cfgFwupd = config.optServices.fwupd.enable;
 in
 {

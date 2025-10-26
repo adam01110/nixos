@@ -12,7 +12,7 @@ in
   programs.bat = {
     enable = true;
 
-    extraPackages = with pkgs.bat-extras; [ batman ];
+    extraPackages = [ pkgs.bat-extras.batman ];
   };
 
   home.sessionVariables.BAT_CACHE_PATH = "${dataHome}/bat";

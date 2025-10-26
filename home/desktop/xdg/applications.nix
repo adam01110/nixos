@@ -50,7 +50,6 @@
     # video
     "video/x-nsv" = "org.gnome.Showtime.desktop";
     "video/webm" = "org.gnome.Showtime.desktop";
-    "video/x-mjpeg" = "org.gnome.Showtime.desktop";
     "video/mp2t" = "org.gnome.Showtime.desktop";
     "video/quicktime" = "org.gnome.Showtime.desktop";
     "video/x-anim" = "org.gnome.Showtime.desktop";
@@ -239,7 +238,6 @@
     "image/jp2" = "org.gimp.GIMP.desktop";
     "image/x-xbitmap" = "org.gimp.GIMP.desktop";
     "image/x-xcf" = "org.gimp.GIMP.desktop";
-    "image/x-eps" = "org.gimp.GIMP.desktop";
     "image/x-sgi" = "org.gimp.GIMP.desktop";
     "image/x-ilbm" = "org.gimp.GIMP.desktop";
     "application/x-navi-animation" = "org.gimp.GIMP.desktop";

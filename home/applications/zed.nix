@@ -17,11 +17,12 @@ in
       "biome"
       "color-highlight"
       "discord-presence"
+      "git-firefly"
       "html"
+      "lua"
       "nix"
       "qml"
       "toml"
-      "git-firefly"
     ];
 
     extraPackages = with pkgs; [
@@ -29,11 +30,14 @@ in
       nixd
       nixfmt
 
+      # packages for qml
+      kdePackages.qtdeclarative
+
       # packages for rust
       rust-analyzer
 
-      # packages for qml
-      kdePackages.qtdeclarative
+      # packages for lua
+      stylua
     ];
 
     userSettings = {
@@ -85,10 +89,21 @@ in
         JSON.formatter.language_server.name = "biome";
         JSONC.formatter.language_server.name = "biome";
         CSS.formatter.language_server.name = "biome";
-      };
-    };
 
-    lsp.discord_presence.initialization_options.git_integration = true;
+        Lua.formatter.external = {
+          command = "stylua";
+          arguments = [
+            "--syntax=Lua54"
+            "--respect-ignores"
+            "--stdin-filepath"
+            "{buffer_path}"
+            "-"
+          ];
+        };
+      };
+
+      lsp.discord_presence.initialization_options.git_integration = true;
+    };
   };
 
   home.sessionVariables = {

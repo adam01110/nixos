@@ -5,9 +5,12 @@
   ...
 }:
 
+let
+  inherit (lib) mkForce;
+in
 {
   xdg.portal = {
-    enable = true;
+    enable = mkForce true;
 
     config.hyprland = {
       default = [
@@ -20,11 +23,6 @@
       ];
     };
 
-    extraPortals = with pkgs; [ xdg-desktop-portal-kde ];
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
   };
-
-  environment.pathsToLink = [
-    "/share/xdg-desktop-portal"
-    "/share/applications"
-  ];
 }

@@ -3,6 +3,7 @@
   osConfig,
   lib,
   pkgs,
+  username,
   ...
 }:
 
@@ -20,7 +21,8 @@ in
   stylix = {
     cursor = {
       name = "Bibata-Modern-Gruvbox";
-      package = pkgs.nur.repos.adam0.bibata-cursors-gruvbox;
+      package = pkgs.nur.repos.adam0.bibata-modern-cursors-gruvbox-dark;
+      size = 24;
     };
 
     icons = {
@@ -44,9 +46,15 @@ in
       terminal = 10;
     };
 
-    targets.obsidian.enable = false;
+    targets = {
+      obsidian.enable = false;
+      zen-browser.profileNames = [
+        "${username}"
+        "school"
+      ];
+    };
   };
 
   programs.zathura.options.font = sansSerifFont;
-  qt.style.package = pkgs.nur.repos.shadowrz.klassy;
+  qt.style.package = pkgs.nur.repos.shadowrz.klassy-qt6;
 }

@@ -6,8 +6,13 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    ;
+
   cfgTravel = config.zen-browser.travel.enable;
   cfgCommitSpace = config.zen-browser.commit-space;
 
@@ -35,7 +40,7 @@ in
     };
   };
 
-  programs.zen-browser.policies = {
+  config.programs.zen-browser.policies = {
     AutofillAddressEnabled = false;
     AutofillCreditCardEnabled = false;
     DisableAppUpdate = true;
@@ -244,14 +249,16 @@ in
       "zen.workspaces.separate-essentials" = false;
     };
 
-    ExtensionSettings = mkExtensionSettings {
-      "{76ef94a4-e3d0-4c6f-961a-d38a429a332b}" = "ttv-lol-pro";
-      "{3507f56d-2ef5-45c1-b6d7-5297a0ba7642}" = "cookie-remover";
-
-      "magnolia@12.34" = {
-        install_url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi&inline=false";
-        installation_mode = "force_installed";
+    ExtensionSettings =
+      (mkExtensionSettings {
+        "{76ef94a4-e3d0-4c6f-961a-d38a429a332b}" = "ttv-lol-pro";
+        "{3507f56d-2ef5-45c1-b6d7-5297a0ba7642}" = "cookie-remover";
+      })
+      // {
+        "magnolia@12.34" = {
+          install_url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi&inline=false";
+          installation_mode = "force_installed";
+        };
       };
-    };
   };
 }
