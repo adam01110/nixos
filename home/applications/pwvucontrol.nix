@@ -6,7 +6,7 @@
 }:
 
 {
-  home.packages = with pkgs; [ pwvucontrol ];
+  home.packages = [ pkgs.pwvucontrol ];
 
   dconf.settings."/com/saivert/pwvucontrol".enable-overamplification = true;
 }

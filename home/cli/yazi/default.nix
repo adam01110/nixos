@@ -12,7 +12,7 @@ in
   programs.yazi = {
     enable = true;
 
-    initLua = "~/init.lua";
+    initLua = ./init.lua;
 
     shellWrapperName = "y";
 
@@ -20,9 +20,10 @@ in
       full-border = pkgs.yaziPlugins.full-border;
       git = pkgs.yaziPlugins.git;
       mediainfo = pkgs.yaziPlugins.mediainfo;
-      starship = pkgs.yaziPlugins.starship;
-      smart-paste = pkgs.yaziPlugins.smart-paste;
       smart-enter = pkgs.yaziPlugins.smart-enter;
+      smart-paste = pkgs.yaziPlugins.smart-paste;
+      starship = pkgs.yaziPlugins.starship;
+      wl-clipboard = ./wl-clipboard;
     };
 
     settings = {
@@ -136,8 +137,10 @@ in
     ];
   };
 
-  home.packages = with pkgs; [
-    mediainfo
-    wl-clipboard
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
+      mediainfo
+      wl-clipboard
+      ;
+  };
 }

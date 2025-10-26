@@ -6,7 +6,6 @@
   ...
 }:
 
-with lib;
 let
   nix-icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
@@ -315,6 +314,8 @@ in
       };
 
       school = {
+        id = 1;
+        isDefault = false;
         extensions = {
           force = true;
           packages = commonExtensions;

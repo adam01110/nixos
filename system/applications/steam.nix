@@ -15,11 +15,13 @@
 
     protontricks.enable = true;
 
-    extraCompatPackages = with pkgs; [
-      proton-cachyos_x86_64_v3
-      proton-ge-bin
-    ];
+    extraCompatPackages = builtins.attrValues {
+      inherit (pkgs)
+        proton-cachyos_x86_64_v3
+        proton-ge-bin
+        ;
+    };
 
-    fontPackages = with pkgs; [ noto-fonts-cjk-sans ];
+    fontPackages = [ pkgs.noto-fonts-cjk-sans ];
   };
 }

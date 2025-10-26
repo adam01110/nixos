@@ -6,8 +6,8 @@
 }:
 
 {
-  home.packages = with pkgs; [
-    (prismlauncher.override {
+  home.packages = [
+    (pkgs.prismlauncher.override {
       controllerSupport = false;
       gamemodeSupport = false;
       textToSpeechSupport = false;

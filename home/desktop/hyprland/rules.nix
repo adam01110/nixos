@@ -5,27 +5,27 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    getExe
+    optionals
+    ;
+
   xdg-desktop-portal-hyprland = "${getExe pkgs.xdg-desktop-portal-hyprland}";
   hyprpicker = "${getExe pkgs.hyprpicker}";
   equibop = "${getExe pkgs.equibop}";
   quickshell = "${getExe pkgs.quickshell}";
 
   cfgOverview = config.hyprland.overview;
-
-  steamFriends = config.sops.secrets.steam_friends;
 in
 {
-  sops.secrets.steam_friends = { };
-
   wayland.windowManager.hyprland.settings = {
     permission = [
       "${xdg-desktop-portal-hyprland}, screencopy, allow"
       "${hyprpicker}, screencopy, allow"
       "${equibop}, screencopy, allow"
     ]
-    ++ optionals (cfgOverview == quickshell) [ "${quickshell}, screencopy, allow" ];
+    ++ optionals (cfgOverview == "quickshell") [ "${quickshell}, screencopy, allow" ];
 
     layerrule = [
       "noanim, ^hyprpicker$"
@@ -53,7 +53,6 @@ in
       "float, class:^(BeeperTexts)$, title:^(Settings)$"
       "float, class:^(steam)$, title:^(Friends List)$"
       "float, class:^(steam)$, title:^(Steam Settings)$"
-      "float, class:^(steam)$, title:^(${steamFriends})( [0-9]+ Chats)?$"
       "float, class:^(zen)$, title:^(Picture-in-Picture)$"
       "float, class:^(zen)$, title:^(Bitwarden)$"
       "float, class:^(me.iepure.devtoolbox)$"

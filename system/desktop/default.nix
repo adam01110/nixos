@@ -2,8 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
-  system,
   ...
 }:
 
@@ -16,6 +14,4 @@
     ./stylix.nix
     ./xdg.nix
   ];
-
-  environment.systemPackages = with pkgs; [ inputs.noctalia.packages.${system}.default ];
 }

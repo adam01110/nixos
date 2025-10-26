@@ -5,8 +5,12 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
+
   cfgSsh = config.optServices.ssh.enable;
 in
 {

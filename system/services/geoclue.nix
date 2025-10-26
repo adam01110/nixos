@@ -2,48 +2,61 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 
-with lib;
 let
-  cfgWifi = config.optServices.wifi.enable;
-  cfgStatic = config.optServices.geoclue2.static.enable;
+  inherit (lib)
+    mkEnableOption
+    mkForce
+    mkIf
+    mkMerge
+    ;
 
-  cfgLongitude = config.optServices.geoclue2.static.longitude;
-  cfgLatitude = config.optServices.geoclue2.static.latitude;
-  cfgAltitude = config.optServices.geoclue2.static.altitude;
+  cfgWifi = config.optServices.wifi.enable;
+  cfg = config.optServices.geoclue2.static;
+  hostname = config.networking.hostName;
 in
 {
   options.optServices.geoclue2.static = {
-    enable = mkEnableOption "Enable geoclue2 static location services.";
-
-    longitude = mkOption {
-      type = types.float;
-      description = "Static longitude coordinate";
-    };
-
-    latitude = mkOption {
-      type = types.float;
-      description = "Static latitude coordinate";
-    };
-
-    altitude = mkOption {
-      type = types.either types.float types.int;
-      description = "Static altitude coordinate";
-    };
+    enable = mkEnableOption "Enable geoclue2 static location services";
   };
 
-  services.geoclue2 = {
-    enable = !cfgStatic;
-    enableWifi = cfgWifi;
-    enableCDMA = false;
-    enableModemGPS = false;
-    enable3G = false;
+  config = mkMerge [
+    {
+      services.geoclue2 = {
+        enable = true;
+        enableWifi = cfgWifi;
+        enableCDMA = false;
+        enableModemGPS = false;
+        enable3G = false;
+        enableNmea = false;
+        enableStatic = cfg.enable;
+      };
+    }
 
-    enableStatic = cfgStatic;
-    staticLongitude = cfgLongitude;
-    staticLatitude = cfgLatitude;
-    staticAltitude = cfgAltitude;
-  };
+    (mkIf cfg.enable {
+      sops = {
+        secrets = {
+          "geoclue2_static/${hostname}/longitude" = { };
+          "geoclue2_static/${hostname}/latitude" = { };
+          "geoclue2_static/${hostname}/altitude" = { };
+        };
+
+        templates."geoclue-static".content = ''
+          ${config.sops.placeholder."geoclue2_static/${hostname}/latitude"}
+          ${config.sops.placeholder."geoclue2_static/${hostname}/longitude"}
+          ${config.sops.placeholder."geoclue2_static/${hostname}/altitude"}
+          0
+        '';
+      };
+
+      environment.etc.geolocation = mkForce {
+        source = config.sops.templates."geoclue-static".path;
+        mode = "0440";
+        group = "geoclue";
+      };
+    })
+  ];
 }

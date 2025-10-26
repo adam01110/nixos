@@ -8,26 +8,37 @@
 
 let
   gitPackage = pkgs.gitFull;
-
-  gitUsername = config.sops.secrets."git/username".path;
-  gitEmail = config.sops.secrets."git/email".path;
 in
 {
-  sops.secrets = {
-    "git/username" = { };
-    "git/email" = { };
+  sops = {
+    secrets = {
+      "git/username" = { };
+      "git/email" = { };
 
-    "git/private_ssh_key".path = "/home/${username}/.ssh/git";
-    "git/public_ssh_key".path = "/home/${username}/.ssh/git.pub";
+      "git/private_ssh_key".path = "/home/${username}/.ssh/git";
+      "git/public_ssh_key".path = "/home/${username}/.ssh/git.pub";
+    };
+
+    templates."git-config".content = ''
+      [user]
+        name = ${config.sops.placeholder."git/username"}
+        email = ${config.sops.placeholder."git/email"}
+    '';
   };
 
-  programs.git = {
-    enable = true;
+  programs = {
+    git = {
+      enable = true;
 
-    package = gitPackage;
+      package = gitPackage;
+
+      settings.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
+      includes = [ { path = config.sops.templates."git-config".path; } ];
+    };
 
     delta = {
       enable = true;
+      enableGitIntegration = true;
 
       options = {
         true-color = "always";
@@ -38,10 +49,5 @@ in
         hyperlinks-file-link-format = "zed://file{path}:{line}";
       };
     };
-
-    extraConfig.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
-
-    userName = gitUsername;
-    userEmail = gitEmail;
   };
 }

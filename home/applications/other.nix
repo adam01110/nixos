@@ -26,7 +26,6 @@
       newsflash
       nucleus
       obsidian
-      onthespot
       picard
       protonplus
       showtime

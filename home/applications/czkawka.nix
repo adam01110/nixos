@@ -7,7 +7,7 @@
 }:
 
 {
-  home.packages = with pkgs; [ czkawka ];
+  home.packages = [ pkgs.czkawka ];
 
   xdg.configFile."czkawka/czkawka_gui_config_4.txt".text = ''
     --confirm_deletion_all_files_in_group

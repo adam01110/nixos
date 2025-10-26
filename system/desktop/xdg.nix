@@ -28,12 +28,19 @@
         ];
       };
 
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
     # Cursor theme Bibata cursor theme fallback
     icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
   };
 
-  environment.systemPackages = with pkgs.nur.repos.adam0; [ bibata-modern-cursors-classic ];
+  environment = {
+    systemPackages = [ pkgs.nur.repos.adam0.bibata-modern-cursors-classic ];
+
+    pathsToLink = [
+      "/share/xdg-desktop-portal"
+      "/share/applications"
+    ];
+  };
 }

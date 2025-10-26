@@ -5,8 +5,12 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
+
   cfgPrinting = config.optServices.printing.enable;
 in
 {

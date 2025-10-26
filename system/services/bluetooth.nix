@@ -5,8 +5,12 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
+
   cfgBluetooth = config.optServices.bluetooth.enable;
 in
 {

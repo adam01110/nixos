@@ -5,8 +5,14 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib)
+    mkIf
+    mkMerge
+    mkOption
+    types
+    ;
+
   cfgTimezone = config.optServices.timezone;
 in
 {

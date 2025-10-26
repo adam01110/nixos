@@ -11,7 +11,7 @@ let
   monospaceFont = osConfig.stylix.fonts.monospace.name;
 in
 {
-  home.packages = with pkgs; [ equibop ];
+  home.packages = [ pkgs.equibop ];
 
   xdg.configFile."equibop/themes/midnight.css".text = ''
     /* import theme modules */

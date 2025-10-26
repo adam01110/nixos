@@ -51,7 +51,7 @@ in
       imports =
         with inputs;
         [
-          nix-flatpak.nixosModules.nix-flatpak
+          nix-flatpak.homeManagerModules.nix-flatpak
           zen-browser.homeModules.beta
           noctalia.homeModules.default
           sops-nix.homeManagerModules.sops

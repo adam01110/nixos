@@ -7,9 +7,16 @@
   ...
 }:
 
-with lib;
 let
-  dolphin = "${getExe pkgs.kdePackages.dolphin}";
+  inherit (lib)
+    getExe
+    getExe'
+    mkEnableOption
+    mkIf
+    optionals
+    ;
+
+  dolphin = "${getExe' pkgs.kdePackages.dolphin "dolphin"}";
   equibop = "${getExe pkgs.equibop}";
   gawk = "${getExe pkgs.gawk}";
   ghostty = "${getExe pkgs.ghostty}";
@@ -28,15 +35,18 @@ let
   cfgFunc = config.hyprland.func.enable;
   cfgOverview = config.hyprland.overview;
 
-  screenshotDir = "${xdg.userDirs.pictures}/screenshot";
+  screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
 
   performantMode = pkgs.writeShellApplication {
     name = "performantMode";
-    runtimeInputs = with pkgs; [
-      libnotify
-      gawk
-      bash
-    ];
+    runtimeInputs = builtins.attrValues {
+      inherit (pkgs)
+        bash
+        gawk
+        libnotify
+        ;
+    };
+
     text = ''
       HYPRGAMEMODE=$(${hyprctl} getoption animations:enabled | ${gawk} 'NR==1{${print} $2}')
       if [ "$HYPRGAMEMODE" = 1 ]; then
@@ -64,7 +74,7 @@ in
 {
   options.hyprland.func.enable = mkEnableOption "Enable function-row (F-keys) and media keybindings.";
 
-  wayland.windowManager.hyprland.settings = {
+  config.wayland.windowManager.hyprland.settings = {
     binds.movefocus_cycles_fullscreen = true;
 
     bind = [
@@ -140,8 +150,8 @@ in
       "SUPER, F1, exec, ${getExe performantMode}"
 
       # zoom
-      "SUPER, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${awk} '/^float.*/ {${print} $2 * 1.1}')"
-      "SUPER, mouse_up, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${awk} '/^float.*/ {${print} $2 * 0.9}')"
+      "SUPER, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 1.1}')"
+      "SUPER, mouse_up, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 0.9}')"
 
       "SUPER SHIFT, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
       "SUPER SHIFT, minus, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
@@ -170,10 +180,10 @@ in
       "SUPER, B, exec, ${app2unit} ${zen-browser}"
       "SUPER, M, exec, ${app2unit} ${steam}"
     ]
-    ++ optionals (cfgOverview == quickshell) [
+    ++ optionals (cfgOverview == "quickshell") [
       "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle"
     ]
-    ++ optionals (cfgOverview == hyprexpo) [
+    ++ optionals (cfgOverview == "hyprexpo") [
       "SUPER SHIFT, TAB, hyprexpo:expo, toggle"
     ];
 
@@ -185,13 +195,11 @@ in
 
     binde = [
       # zoom
-      "SUPER, equal, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${awk} '/^float.*/ {${print} $2 * 1.1}')"
-      "minus, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${awk} '/^float.*/ {${print} $2 * 0.9}')"
+      "SUPER, equal, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 1.1}')"
+      "minus, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 0.9}')"
     ];
-  };
 
-  config = mkIf cfgFunc {
-    wayland.windowManager.hyprland.settings.bindel = [
+    bindel = mkIf cfgFunc [
       # audio
       "XF86MonBrightnessUp, exec, brightnessctl set 1%+"
       "XF86MonBrightnessDown, exec, brightnessctl set 1%-"

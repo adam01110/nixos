@@ -5,16 +5,26 @@
   ...
 }:
 
+let
+  protonCachyos =
+    if pkgs.stdenv.hostPlatform.avx512Support or false then
+      pkgs.proton-cachyos_x86_64_v4
+    else if pkgs.stdenv.hostPlatform.avx2Support or false then
+      pkgs.proton-cachyos_x86_64_v3
+    else
+      pkgs.proton-cachyos_x86_64_v2;
+in
 {
-  programs.lutris = {
+  config.programs.lutris = {
     enable = true;
 
     steamPackage = pkgs.steam-millennium;
 
-    extraPackages = with pkgs; [ umu-launcher ];
-    protonPackages = with pkgs; [
-      proton-cachyos_x86_64_v3
-      proton-ge-bin
+    extraPackages = [
+      pkgs.umu-launcher
+      protonCachyos
     ];
+
+    protonPackages = [ pkgs.proton-ge-bin ];
   };
 }
