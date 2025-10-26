@@ -26,7 +26,6 @@
       newsflash
       nucleus
       obsidian
-      picard
       protonplus
       showtime
       upscayl

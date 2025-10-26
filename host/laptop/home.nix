@@ -7,7 +7,7 @@
 
 {
   hyprland = {
-    func.enable = true;
+    brightness.enable = true;
     touch.enable = true;
 
     monitors = {

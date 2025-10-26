@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
+    #millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/";
 

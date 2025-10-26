@@ -12,7 +12,6 @@ let
     getExe
     getExe'
     mkEnableOption
-    mkIf
     optionals
     ;
 
@@ -32,7 +31,7 @@ let
   app2unit = "${getExe pkgs.app2unit} -- ";
   noctalia = "${qs} -c noctalia-shell ipc call";
 
-  cfgFunc = config.hyprland.func.enable;
+  cfgBrightness = config.hyprland.brightness.enable;
   cfgOverview = config.hyprland.overview;
 
   screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
@@ -46,6 +45,7 @@ let
         libnotify
         ;
     };
+    excludeShellChecks = [ "SC2276" ];
 
     text = ''
       HYPRGAMEMODE=$(${hyprctl} getoption animations:enabled | ${gawk} 'NR==1{print $2}')
@@ -72,7 +72,7 @@ let
   };
 in
 {
-  options.hyprland.func.enable = mkEnableOption "Enable function-row (F-keys) and media keybindings.";
+  options.hyprland.brightness.enable = mkEnableOption "Enable function-row (F-keys) for brightness keybindings.";
 
   config.wayland.windowManager.hyprland.settings = {
     binds.movefocus_cycles_fullscreen = true;
@@ -180,12 +180,12 @@ in
       "SUPER, B, exec, ${app2unit} ${zen-browser}"
       "SUPER, M, exec, ${app2unit} ${steam}"
     ]
-    ++ optionals (cfgOverview == "quickshell") [
-      "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle"
-    ]
-    ++ optionals (cfgOverview == "hyprexpo") [
-      "SUPER SHIFT, TAB, hyprexpo:expo, toggle"
-    ];
+    ++ (
+      if cfgOverview == "quickshell" then
+        [ "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle" ]
+      else
+        [ "SUPER SHIFT, TAB, hyprexpo:expo, toggle" ]
+    );
 
     bindm = [
       # window manipulation
@@ -199,14 +199,14 @@ in
       "minus, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
     ];
 
-    bindel = mkIf cfgFunc [
-      # audio
-      "XF86MonBrightnessUp, exec, brightnessctl set 1%+"
-      "XF86MonBrightnessDown, exec, brightnessctl set 1%-"
-      # brightness
+    bindel = [
       "XF86AudioMute, exec, ${noctalia} volume muteOutput"
       "XF86AudioRaiseVolume, exec, ${noctalia} volume increase"
       "XF86AudioLowerVolume, exec, ${noctalia} volume decrease"
+    ]
+    ++ optionals cfgBrightness [
+      "XF86MonBrightnessUp, exec, brightnessctl set 1%+"
+      "XF86MonBrightnessDown, exec, brightnessctl set 1%-"
     ];
   };
 }

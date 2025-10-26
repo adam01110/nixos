@@ -36,7 +36,6 @@ in
       };
 
       bar = {
-        density = "compact";
         widgets = {
           left = [
             {
