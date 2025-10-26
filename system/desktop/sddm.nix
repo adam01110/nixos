@@ -9,7 +9,7 @@
 let
   inherit (lib)
     concatStringsSep
-    GetExe'
+    getExe'
     ;
 
   sddm-theme = inputs.silentSDDM.packages.${pkgs.system}.default.override {
@@ -36,7 +36,7 @@ in
       enable = true;
       compositor = "kwin";
       compositorCommand = concatStringsSep " " [
-        "${GetExe' pkgs.kdePackages.kwin "kwin_wayland"}"
+        "${getExe' pkgs.kdePackages.kwin "kwin_wayland"}"
         "--drm"
         "--no-global-shortcuts"
         "--no-kactivities"

@@ -24,7 +24,7 @@ let
   hyprpicker = "${getExe pkgs.hyprpicker}";
   hyprshot = "${getExe pkgs.hyprshot}";
   notify-send = "${getExe' pkgs.libnotify "notify-send"}";
-  print = "${getExe' pkgs.bash "print"}";
+
   qs = "${getExe pkgs.quickshell}";
   steam = "${getExe pkgs.steam}";
   zen-browser = "${getExe inputs.zen-browser.packages."${system}".default}";
@@ -48,7 +48,7 @@ let
     };
 
     text = ''
-      HYPRGAMEMODE=$(${hyprctl} getoption animations:enabled | ${gawk} 'NR==1{${print} $2}')
+      HYPRGAMEMODE=$(${hyprctl} getoption animations:enabled | ${gawk} 'NR==1{print $2}')
       if [ "$HYPRGAMEMODE" = 1 ]; then
         ${hyprctl} --batch "\
           keyword animations:enabled 0;\
@@ -150,8 +150,8 @@ in
       "SUPER, F1, exec, ${getExe performantMode}"
 
       # zoom
-      "SUPER, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 1.1}')"
-      "SUPER, mouse_up, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 0.9}')"
+      "SUPER, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
+      "SUPER, mouse_up, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
 
       "SUPER SHIFT, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
       "SUPER SHIFT, minus, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
@@ -195,8 +195,8 @@ in
 
     binde = [
       # zoom
-      "SUPER, equal, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 1.1}')"
-      "minus, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {${print} $2 * 0.9}')"
+      "SUPER, equal, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
+      "minus, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
     ];
 
     bindel = mkIf cfgFunc [

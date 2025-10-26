@@ -929,16 +929,16 @@
       "locked": {
         "lastModified": 1761102558,
         "narHash": "sha256-UUHl0KqjoAPHB+Sk3hp8gtIZM6fQeDDXpWc8XCAqniI=",
-        "owner": "SteamClientHomebrew",
-        "repo": "Millennium",
+        "ref": "refs/heads/main",
         "rev": "00418518da713f292dac23be62d0803cfe9d56c1",
+        "revCount": 2097,
         "submodules": true,
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/SteamClientHomebrew/Millennium"
       },
       "original": {
-        "owner": "SteamClientHomebrew",
-        "repo": "Millennium",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/SteamClientHomebrew/Millennium"
       }
     },
     "nix": {
