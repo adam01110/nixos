@@ -5,11 +5,6 @@
   ...
 }:
 
-let
-  inherit (lib) mkIf;
-
-  cfgOverview = config.hyprland.overview;
-in
 {
   wayland.windowManager.hyprland.settings = {
     plugin = {
@@ -23,6 +18,11 @@ in
       hyprexpo.gap_size = 8;
     };
 
-    hyprexpo-gesture = mkIf (cfgOverview == "hyprexpo") [ "3, vertical, expo" ];
+    hyprexpo-gesture =
+      let
+        inherit (lib) mkIf;
+        cfgOverview = config.hyprland.overview;
+      in
+      mkIf (cfgOverview == "hyprexpo") [ "3, vertical, expo" ];
   };
 }

@@ -17,6 +17,8 @@
     timezone = "Europe/Amsterdam";
   };
 
-  wooting.enable = true;
-  roccat.enable = true;
+  hardware = {
+    wooting.enable = true;
+    roccat.enable = true;
+  };
 }
