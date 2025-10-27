@@ -7,15 +7,13 @@
 
 let
   inherit (lib)
+    mapAttrsToList
     mkEnableOption
+    mkIf
+    mkMerge
     mkOption
     types
-    mkMerge
-    mkIf
     ;
-
-  cfgTouch = config.hyprland.touch.enable;
-  cfgMonitors = config.hyprland.monitors;
 in
 {
   options.hyprland = {
@@ -27,90 +25,130 @@ in
       type = types.attrsOf (types.attrsOf types.anything);
       default = { };
       description = ''
-        Monitor configuration using monitorv2 format.
         Example:
         monitors = {
           "DP-1" = {
             resolution = "2560x1440@170";
             position = "0x0";
             scale = 1;
+            transform = 0;  # optional: 0-7 for rotation
+            mirror = "DP-2";  # optional: mirror another display
+            bitdepth = 10;  # optional: 10-bit color
+            cm = "wide";  # optional: color management preset
+            sdrbrightness = 1.2;  # optional: SDR brightness in HDR mode
+            sdrsaturation = 0.98;  # optional: SDR saturation in HDR mode
+            vrr = 1;  # optional: variable refresh rate mode
           };
         };
       '';
     };
   };
 
-  config = mkMerge [
-    {
-      wayland.windowManager.hyprland.settings = {
-        # don't show a cursor icon when hovering over borders
-        general.hover_icon_on_border = false;
+  config =
+    let
+      cfgTouch = config.hyprland.touch.enable;
+      cfgMonitors = config.hyprland.monitors;
+    in
+    mkMerge [
+      {
+        wayland.windowManager.hyprland.settings = {
+          # don't show a cursor icon when hovering over borders
+          general.hover_icon_on_border = false;
 
-        input = {
-          mouse_refocus = false;
-          accel_profile = "flat";
+          input = {
+            mouse_refocus = false;
+            accel_profile = "flat";
 
-          touchdevice.enable = false;
+            touchdevice.enable = false;
+          };
+
+          render = {
+            direct_scanout = 0;
+            ctm_animation = 0;
+          };
+
+          xwayland.force_zero_scaling = true;
+
+          ecosystem = {
+            # no popups
+            no_update_news = true;
+            no_donation_nag = true;
+
+            enforce_permissions = true;
+          };
+
+          debug = {
+            suppress_errors = true;
+            watchdog_timeout = 0;
+          };
+
+          misc = {
+            # disable Hyprland branding visuals
+            disable_hyprland_logo = true;
+            disable_splash_rendering = true;
+            force_default_wallpaper = 0;
+
+            vrr = 1;
+            middle_click_paste = false;
+            render_unfocused_fps = 1;
+
+            # lockscreen monitor wakeup
+            mouse_move_enables_dpms = true;
+            key_press_enables_dpms = true;
+
+            enable_swallow = true;
+            swallow_regex = "^(ghostty)$";
+
+            # open windows on the workspace they were invoked on
+            initial_workspace_tracking = 2;
+
+            # wait longer until app not responding popup
+            anr_missed_pings = 8;
+          };
         };
+      }
 
-        render = {
-          direct_scanout = 0;
-          ctm_animation = 0;
+      (mkIf cfgTouch {
+        wayland.windowManager.hyprland.settings = {
+          input.touchpad.natural_scroll = true;
+
+          gesture = [ "3, horizontal, workspace" ];
         };
+      })
 
-        xwayland.force_zero_scaling = true;
+      (mkIf (cfgMonitors != { }) {
+        wayland.windowManager.hyprland.settings = {
+          monitor =
+            let
+              formatMonitor =
+                name: cfg:
+                let
+                  base = "${name}, ${cfg.resolution}, ${cfg.position}, ${toString cfg.scale}";
 
-        ecosystem = {
-          # no popups
-          no_update_news = true;
-          no_donation_nag = true;
+                  # Optional parameters
+                  transform =
+                    if (cfg.transform or null) != null then ", transform, ${toString cfg.transform}" else "";
+                  mirror = if (cfg.mirror or null) != null then ", mirror, ${cfg.mirror}" else "";
+                  bitdepth = if (cfg.bitdepth or null) != null then ", bitdepth, ${toString cfg.bitdepth}" else "";
+                  cm = if (cfg.cm or null) != null then ", cm, ${cfg.cm}" else "";
+                  sdrbrightness =
+                    if (cfg.sdrbrightness or null) != null then
+                      ", sdrbrightness, ${toString cfg.sdrbrightness}"
+                    else
+                      "";
+                  sdrsaturation =
+                    if (cfg.sdrsaturation or null) != null then
+                      ", sdrsaturation, ${toString cfg.sdrsaturation}"
+                    else
+                      "";
+                  vrr = if (cfg.vrr or null) != null then ", vrr, ${toString cfg.vrr}" else "";
+                in
+                base + transform + mirror + bitdepth + cm + sdrbrightness + sdrsaturation + vrr;
 
-          enforce_permissions = true;
+              formattedMonitors = mapAttrsToList formatMonitor cfgMonitors;
+            in
+            formattedMonitors;
         };
-
-        debug = {
-          suppress_errors = true;
-          watchdog_timeout = 0;
-        };
-
-        misc = {
-          # disable Hyprland branding visuals
-          disable_hyprland_logo = true;
-          disable_splash_rendering = true;
-          force_default_wallpaper = 0;
-
-          vrr = 1;
-          middle_click_paste = false;
-          render_unfocused_fps = 1;
-
-          # lockscreen monitor wakeup
-          mouse_move_enables_dpms = true;
-          key_press_enables_dpms = true;
-
-          enable_swallow = true;
-          swallow_regex = "^(ghostty)$";
-
-          # open windows on the workspace they were invoked on
-          initial_workspace_tracking = 2;
-
-          # wait longer until app not responding popup
-          anr_missed_pings = 8;
-        };
-      };
-    }
-
-    (mkIf cfgTouch {
-      wayland.windowManager.hyprland.settings = {
-        input.touchpad.natural_scroll = true;
-
-        gesture = [ "3, horizontal, workspace" ];
-      };
-    })
-
-    (mkIf (cfgMonitors != { }) {
-      wayland.windowManager.hyprland.settings = {
-        monitor = cfgMonitors;
-      };
-    })
-  ];
+      })
+    ];
 }

@@ -12,8 +12,7 @@ let
     mkIf
     ;
 
-  cfgWooting = config.wooting.enable;
-  cfgRoccat = config.roccat.enable;
+  cfgRoccat = config.hardware.roccat.enable;
 in
 {
   imports = [
@@ -29,16 +28,15 @@ in
     ./user.nix
   ];
 
-  options = {
-    wooting.enable = mkEnableOption "Enable the wooting udev rules";
-    roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
-  };
+  options.hardware.roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
 
   config = {
     system.stateVersion = "25.05";
 
     boot = {
       kernelPackages = pkgs.linuxPackages_cachyos;
+
+      initrd.services.udev.packages = [ pkgs.numworks-udev-rules ];
 
       # bootloader with secure boot
       loader = {
@@ -50,20 +48,14 @@ in
         enable = true;
         pkiBundle = "/var/lib/sbctl";
       };
-
-      initrd.services.udev.packages = [ pkgs.numworks-udev-rules ];
     };
 
     programs.nix-ld.enable = true;
+    hardware.enableAllFirmware = true;
 
     security = {
       rtkit.enable = true;
       polkit.enable = true;
-    };
-
-    hardware = {
-      enableAllFirmware = true;
-      wooting.enable = cfgWooting;
     };
 
     environment = mkIf cfgRoccat {
@@ -78,6 +70,7 @@ in
         group = "root";
       };
 
+      # extra packages for secure boot and tpm luks
       systemPackages = builtins.attrValues {
         inherit (pkgs)
           sbctl

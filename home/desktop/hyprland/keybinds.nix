@@ -15,18 +15,18 @@ let
     optionals
     ;
 
-  dolphin = "${getExe' pkgs.kdePackages.dolphin "dolphin"}";
-  equibop = "${getExe pkgs.equibop}";
-  gawk = "${getExe pkgs.gawk}";
-  ghostty = "${getExe pkgs.ghostty}";
-  hyprctl = "${getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl"}";
-  hyprpicker = "${getExe pkgs.hyprpicker}";
-  hyprshot = "${getExe pkgs.hyprshot}";
-  notify-send = "${getExe' pkgs.libnotify "notify-send"}";
+  gawk = getExe pkgs.gawk;
+  hyprctl = getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl";
+  notify-send = getExe' pkgs.libnotify "notify-send";
 
-  qs = "${getExe pkgs.quickshell}";
-  steam = "${getExe pkgs.steam}";
-  zen-browser = "${getExe inputs.zen-browser.packages."${system}".default}";
+  dolphin = getExe' pkgs.kdePackages.dolphin "dolphin";
+  equibop = getExe pkgs.equibop;
+  ghostty = getExe pkgs.ghostty;
+  hyprpicker = getExe pkgs.hyprpicker;
+  hyprshot = getExe pkgs.hyprshot;
+  qs = getExe pkgs.quickshell;
+  steam = getExe pkgs.steam;
+  zen-browser = getExe inputs.zen-browser.packages."${system}".default;
 
   app2unit = "${getExe pkgs.app2unit} -- ";
   noctalia = "${qs} -c noctalia-shell ipc call";

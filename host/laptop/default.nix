@@ -13,10 +13,10 @@
   disko.selectedDisk = "/dev/nvme0n1";
 
   optServices = {
-    printing.enable = true;
     bluetooth.enable = true;
-    timezone = "automatic-timezoned";
     fwupd.enable = true;
+    printing.enable = true;
+    timezone = "automatic-timezoned";
     wifi.enable = true;
   };
 
@@ -54,5 +54,5 @@
 
   home.packages = [ pkgs.powertop ];
 
-  roccat.enable = true;
+  hardware.roccat.enable = true;
 }

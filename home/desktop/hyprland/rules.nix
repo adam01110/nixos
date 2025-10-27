@@ -11,10 +11,10 @@ let
     optionals
     ;
 
-  xdg-desktop-portal-hyprland = "${getExe pkgs.xdg-desktop-portal-hyprland}";
-  hyprpicker = "${getExe pkgs.hyprpicker}";
-  equibop = "${getExe pkgs.equibop}";
-  quickshell = "${getExe pkgs.quickshell}";
+  xdg-desktop-portal-hyprland = getExe pkgs.xdg-desktop-portal-hyprland;
+  hyprpicker = getExe pkgs.hyprpicker;
+  equibop = getExe pkgs.equibop;
+  quickshell = getExe pkgs.quickshell;
 
   cfgOverview = config.hyprland.overview;
 in

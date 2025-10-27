@@ -14,8 +14,6 @@ let
     optionals
     types
     ;
-
-  cfgOverview = config.hyprland.overview;
 in
 {
   imports = [
@@ -36,38 +34,42 @@ in
     description = "Which overview to use for Hyprland.";
   };
 
-  config = {
-    wayland.windowManager.hyprland = {
-      enable = true;
+  config =
+    let
+      cfgOverview = config.hyprland.overview;
+    in
+    {
+      wayland.windowManager.hyprland = {
+        enable = true;
 
-      package = null;
-      portalPackage = null;
+        package = null;
+        portalPackage = null;
 
-      plugins =
-        (
-          with inputs.hyprland-plugins.packages.${system};
-          [ hyprfocus ] ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ]
-        )
-        ++ [ pkgs.hyprlandPlugins.hyprsplit ];
-    };
+        plugins =
+          (
+            with inputs.hyprland-plugins.packages.${system};
+            [ hyprfocus ] ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ]
+          )
+          ++ [ pkgs.hyprlandPlugins.hyprsplit ];
+      };
 
-    home.packages = builtins.attrValues {
-      inherit (pkgs)
-        hyprpicker
-        brightnessctl
-        ;
-    };
+      home.packages = builtins.attrValues {
+        inherit (pkgs)
+          hyprpicker
+          brightnessctl
+          ;
+      };
 
-    home.pointerCursor.hyprcursor.enable = true;
+      home.pointerCursor.hyprcursor.enable = true;
 
-    programs.quickshell = mkIf (cfgOverview == "quickshell") {
-      enable = true;
-      systemd.enable = true;
+      programs.quickshell = mkIf (cfgOverview == "quickshell") {
+        enable = true;
+        systemd.enable = true;
 
-      activeConfig = "overview";
-      configs.overview = {
-        source = ./overview;
+        activeConfig = "overview";
+        configs.overview = {
+          source = ./overview;
+        };
       };
     };
-  };
 }

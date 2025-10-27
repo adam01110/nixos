@@ -13,7 +13,7 @@ let
     optionals
     ;
 
-  ghostty = "${getExe pkgs.ghostty}";
+  ghostty = getExe pkgs.ghostty;
 
   cfgBattery = config.noctalia.battery.enable;
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
@@ -70,6 +70,8 @@ in
           ];
           right = [
             { id = "Tray"; }
+            { id = "Microphone"; }
+            { id = "Volume"; }
             {
               id = "Brightness";
               displayMode = "onhover";

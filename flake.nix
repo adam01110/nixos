@@ -4,16 +4,34 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    disko.url = "github:nix-community/disko/latest";
-
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/";
+
+    disko.url = "github:nix-community/disko/latest";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     stylix = {
       url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,70 +41,43 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    #millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
-
-    nix-flatpak.url = "github:gmodena/nix-flatpak/";
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-
     quickshell = {
-      url = "github:outfoxxed/quickshell";
+      url = "github:outfoxxed/quickshell?ref=v0.2.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
-    };
-
-    silentSDDM = {
-      url = "github:uiriansan/SilentSDDM";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        quickshell.follows = "quickshell";
+      };
     };
 
     dolphin-overlay = {
       url = "github:rumboon/dolphin-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    #millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      disko,
       chaotic,
+      nur,
+      disko,
       home-manager,
       stylix,
-      hyprland,
-      hyprland-plugins,
       lanzaboote,
-      nix-flatpak,
-      nur,
-      determinate,
-      noctalia,
       sops-nix,
-      dolphin-overlay,
+      noctalia,
       ...
     }@inputs:
     let
@@ -94,13 +85,12 @@
       username = "adam0";
 
       commonModules = [
-        disko.nixosModules.disko
         chaotic.nixosModules.default
+        nur.modules.nixos.default
+        disko.nixosModules.disko
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
         lanzaboote.nixosModules.lanzaboote
-        nur.modules.nixos.default
-        determinate.nixosModules.default
         sops-nix.nixosModules.sops
         noctalia.nixosModules.default
         ./system
