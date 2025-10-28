@@ -7,9 +7,6 @@
 
 let
   inherit (lib) mkOption types;
-
-  pkgName = "org.vinegarhq.Sober";
-  targetFps = config.sober.fps;
 in
 {
   options.sober.fps = mkOption {
@@ -18,21 +15,26 @@ in
     description = "Target frames per second.";
   };
 
-  config = {
-    services.flatpak.packages = [ pkgName ];
+  config =
+    let
+      pkgName = "org.vinegarhq.Sober";
+      targetFps = config.sober.fps;
+    in
+    {
+      services.flatpak.packages = [ pkgName ];
 
-    home.file.".var/app/${pkgName}/config/sober/config.json".text = builtins.toJSON {
-      allow_gamepad_permission = false;
-      bring_back_oof = false;
-      close_on_leave = false;
-      discord_rpc_enabled = true;
-      enable_gamemode = false;
-      enable_hidpi = false;
-      fflags.DFIntTaskSchedulerTargetFps = targetFps;
-      server_location_indicator_enabled = false;
-      touch_mode = "off";
-      use_libsecret = false;
-      use_opengl = false;
+      home.file.".var/app/${pkgName}/config/sober/config.json".text = builtins.toJSON {
+        allow_gamepad_permission = false;
+        bring_back_oof = false;
+        close_on_leave = false;
+        discord_rpc_enabled = true;
+        enable_gamemode = false;
+        enable_hidpi = false;
+        fflags.DFIntTaskSchedulerTargetFps = targetFps;
+        server_location_indicator_enabled = false;
+        touch_mode = "off";
+        use_libsecret = false;
+        use_opengl = false;
+      };
     };
-  };
 }

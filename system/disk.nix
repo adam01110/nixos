@@ -10,8 +10,6 @@ let
     mkOption
     types
     ;
-
-  cfgDisk = config.disko.selectedDisk;
 in
 {
   options.disko.selectedDisk = mkOption {
@@ -24,7 +22,11 @@ in
     disk = {
       main = {
         type = "disk";
-        device = cfgDisk;
+        device =
+          let
+            cfgDisk = config.disko.selectedDisk;
+          in
+          cfgDisk;
         content = {
           type = "gpt";
           partitions = {

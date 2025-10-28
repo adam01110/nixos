@@ -12,8 +12,6 @@ let
     mkOption
     types
     ;
-
-  cfgTimezone = config.optServices.timezone;
 in
 {
   options.optServices.timezone = mkOption {
@@ -27,12 +25,16 @@ in
     '';
   };
 
-  config = mkMerge [
-    (mkIf (cfgTimezone != null && cfgTimezone != "automatic-timezoned") {
-      time.timeZone = cfgTimezone;
-    })
-    (mkIf (cfgTimezone == "automatic-timezoned") {
-      services.automatic-timezoned.enable = true;
-    })
-  ];
+  config =
+    let
+      cfgTimezone = config.optServices.timezone;
+    in
+    mkMerge [
+      (mkIf (cfgTimezone != null && cfgTimezone != "automatic-timezoned") {
+        time.timeZone = cfgTimezone;
+      })
+      (mkIf (cfgTimezone == "automatic-timezoned") {
+        services.automatic-timezoned.enable = true;
+      })
+    ];
 }

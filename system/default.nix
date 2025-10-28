@@ -11,8 +11,6 @@ let
     mkForce
     mkIf
     ;
-
-  cfgRoccat = config.hardware.roccat.enable;
 in
 {
   imports = [
@@ -58,17 +56,21 @@ in
       polkit.enable = true;
     };
 
-    environment = mkIf cfgRoccat {
-      etc."libinput/local-overrides.quirks" = {
-        text = ''
-          [ROCCAT ROCCAT Kain 100]
-          MatchName=ROCCAT ROCCAT Kain 100
-          ModelBouncingKeys=1
-        '';
-        mode = "0644";
-        user = "root";
-        group = "root";
-      };
+    environment = {
+      etc."libinput/local-overrides.quirks" =
+        let
+          cfgRoccat = config.hardware.roccat.enable;
+        in
+        mkIf cfgRoccat {
+          text = ''
+            [ROCCAT ROCCAT Kain 100]
+            MatchName=ROCCAT ROCCAT Kain 100
+            ModelBouncingKeys=1
+          '';
+          mode = "0644";
+          user = "root";
+          group = "root";
+        };
 
       # extra packages for secure boot and tpm luks
       systemPackages = builtins.attrValues {

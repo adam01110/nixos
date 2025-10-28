@@ -42,7 +42,7 @@
     };
 
     quickshell = {
-      url = "github:outfoxxed/quickshell?ref=v0.2.1";
+      url = "github:outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {

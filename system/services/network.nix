@@ -10,30 +10,31 @@ let
     mkEnableOption
     mkIf
     ;
-
-  cfgWifi = config.optServices.wifi.enable;
-  hostname = config.networking.hostName;
 in
 {
   options.optServices.wifi.enable = mkEnableOption "Enable wifi services.";
 
   config = {
-    sops = {
-      secrets = {
-        "dns/${hostname}/dns_1" = { };
-        "dns/${hostname}/dns_2" = { };
-        "dns/${hostname}/dns_3" = { };
-        "dns/${hostname}/dns_4" = { };
-      };
+    sops =
+      let
+        hostname = config.networking.hostName;
+      in
+      {
+        secrets = {
+          "dns/${hostname}/dns_1" = { };
+          "dns/${hostname}/dns_2" = { };
+          "dns/${hostname}/dns_3" = { };
+          "dns/${hostname}/dns_4" = { };
+        };
 
-      templates."resolved-dns.conf".content = ''
-        [Resolve]
-        DNS=${config.sops.placeholder."dns/${hostname}/dns_1"}
-        DNS=${config.sops.placeholder."dns/${hostname}/dns_2"}
-        DNS=${config.sops.placeholder."dns/${hostname}/dns_3"}
-        DNS=${config.sops.placeholder."dns/${hostname}/dns_4"}
-      '';
-    };
+        templates."resolved-dns.conf".content = ''
+          [Resolve]
+          DNS=${config.sops.placeholder."dns/${hostname}/dns_1"}
+          DNS=${config.sops.placeholder."dns/${hostname}/dns_2"}
+          DNS=${config.sops.placeholder."dns/${hostname}/dns_3"}
+          DNS=${config.sops.placeholder."dns/${hostname}/dns_4"}
+        '';
+      };
 
     services.resolved = {
       enable = true;
@@ -59,20 +60,24 @@ in
     environment.etc."systemd/resolved.conf.d/00-dns.conf".source =
       config.sops.templates."resolved-dns.conf".path;
 
-    networking = {
-      useDHCP = false;
-      dhcpcd.enable = false;
+    networking =
+      let
+        cfgWifi = config.optServices.wifi.enable;
+      in
+      {
+        useDHCP = false;
+        dhcpcd.enable = false;
 
-      wireless.iwd.enable = cfgWifi;
+        wireless.iwd.enable = cfgWifi;
 
-      networkmanager = {
-        enable = true;
-        dns = "systemd-resolved";
-        wifi = mkIf cfgWifi {
-          backend = "iwd";
-          scanRandMacAddress = true;
+        networkmanager = {
+          enable = true;
+          dns = "systemd-resolved";
+          wifi = mkIf cfgWifi {
+            backend = "iwd";
+            scanRandMacAddress = true;
+          };
         };
       };
-    };
   };
 }
