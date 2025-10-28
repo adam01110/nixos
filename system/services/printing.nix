@@ -10,16 +10,18 @@ let
     mkEnableOption
     mkIf
     ;
-
-  cfgPrinting = config.optServices.printing.enable;
 in
 {
   options.optServices.printing.enable = mkEnableOption "Enable printing services.";
 
-  config = mkIf cfgPrinting {
-    services.printing = {
-      enable = true;
-      openFirewall = true;
+  config =
+    let
+      cfgPrinting = config.optServices.printing.enable;
+    in
+    mkIf cfgPrinting {
+      services.printing = {
+        enable = true;
+        openFirewall = true;
+      };
     };
-  };
 }

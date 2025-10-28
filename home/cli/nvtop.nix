@@ -7,8 +7,6 @@
 
 let
   inherit (lib) mkOption types;
-
-  cfg = config.nvtop.types;
 in
 {
   options.nvtop.types = mkOption {
@@ -22,5 +20,9 @@ in
     description = "Choose which GPU types to monitor with nvtop.";
   };
 
-  config.home.packages = map (t: pkgs.nvtopPackages.${t}) cfg;
+  config.home.packages =
+    let
+      cfgNvtop = config.nvtop.types;
+    in
+    map (t: pkgs.nvtopPackages.${t}) cfgNvtop;
 }

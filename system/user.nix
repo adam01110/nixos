@@ -8,11 +8,6 @@
   ...
 }:
 
-let
-  systemStateVersion = config.system.stateVersion;
-
-  UserPassword = config.sops.secrets.user-password.path;
-in
 {
   sops.secrets.user-password.neededForUsers = true;
 
@@ -20,7 +15,11 @@ in
     mutableUsers = false;
 
     users.${username} = {
-      hashedPasswordFile = UserPassword;
+      hashedPasswordFile =
+        let
+          UserPassword = config.sops.secrets.user-password.path;
+        in
+        UserPassword;
       isNormalUser = true;
       ignoreShellProgramCheck = true;
       description = "${username}";
@@ -60,7 +59,11 @@ in
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
-        stateVersion = systemStateVersion;
+        stateVersion =
+          let
+            systemStateVersion = config.system.stateVersion;
+          in
+          systemStateVersion;
       };
     };
   };

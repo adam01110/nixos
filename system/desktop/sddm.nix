@@ -11,8 +11,6 @@ let
     concatStringsSep
     getExe'
     ;
-
-  kwin = getExe' pkgs.kdePackages.kwin "kwin_wayland";
 in
 {
   environment.systemPackages = [
@@ -28,14 +26,18 @@ in
     wayland = {
       enable = true;
       compositor = "kwin";
-      compositorCommand = concatStringsSep " " [
-        "${kwin}"
-        "--drm"
-        "--no-global-shortcuts"
-        "--no-kactivities"
-        "--no-lockscreen"
-        "--locale1"
-      ];
+      compositorCommand =
+        let
+          kwin = getExe' pkgs.kdePackages.kwin "kwin_wayland";
+        in
+        concatStringsSep " " [
+          "${kwin}"
+          "--drm"
+          "--no-global-shortcuts"
+          "--no-kactivities"
+          "--no-lockscreen"
+          "--locale1"
+        ];
     };
   };
 }

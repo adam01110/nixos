@@ -6,9 +6,6 @@
   ...
 }:
 
-let
-  gitPackage = pkgs.gitFull;
-in
 {
   sops = {
     secrets = {
@@ -27,14 +24,18 @@ in
   };
 
   programs = {
-    git = {
-      enable = true;
+    git =
+      let
+        gitPackage = pkgs.gitFull;
+      in
+      {
+        enable = true;
 
-      package = gitPackage;
+        package = gitPackage;
 
-      settings.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
-      includes = [ { path = config.sops.templates."git-config".path; } ];
-    };
+        settings.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
+        includes = [ { path = config.sops.templates."git-config".path; } ];
+      };
 
     delta = {
       enable = true;

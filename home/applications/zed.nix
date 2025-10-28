@@ -5,6 +5,10 @@
   ...
 }:
 
+let
+  configHome = config.xdg.configHome;
+  cacheHome = config.xdg.stateHome;
+in
 {
   programs.zed-editor = {
     enable = true;
@@ -102,16 +106,11 @@
     };
   };
 
-  home.sessionVariables =
-    let
-      configHome = config.xdg.configHome;
-      cacheHome = config.xdg.stateHome;
-    in
-    {
-      EDITOR = "zeditor";
-      VISUAL = "zeditor";
+  home.sessionVariables = {
+    EDITOR = "zeditor";
+    VISUAL = "zeditor";
 
-      BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
-      RUFF_CACHE_DIR = "${cacheHome}/ruff";
-    };
+    BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
+    RUFF_CACHE_DIR = "${cacheHome}/ruff";
+  };
 }

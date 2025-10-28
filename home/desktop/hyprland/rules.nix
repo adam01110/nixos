@@ -10,22 +10,24 @@ let
     getExe
     optionals
     ;
-
-  xdg-desktop-portal-hyprland = getExe pkgs.xdg-desktop-portal-hyprland;
-  hyprpicker = getExe pkgs.hyprpicker;
-  equibop = getExe pkgs.equibop;
-  quickshell = getExe pkgs.quickshell;
-
-  cfgOverview = config.hyprland.overview;
 in
 {
   wayland.windowManager.hyprland.settings = {
-    permission = [
-      "${xdg-desktop-portal-hyprland}, screencopy, allow"
-      "${hyprpicker}, screencopy, allow"
-      "${equibop}, screencopy, allow"
-    ]
-    ++ optionals (cfgOverview == "quickshell") [ "${quickshell}, screencopy, allow" ];
+    permission =
+      let
+        xdg-desktop-portal-hyprland = getExe pkgs.xdg-desktop-portal-hyprland;
+        hyprpicker = getExe pkgs.hyprpicker;
+        equibop = getExe pkgs.equibop;
+        quickshell = getExe pkgs.quickshell;
+
+        cfgOverview = config.hyprland.overview;
+      in
+      [
+        "${xdg-desktop-portal-hyprland}, screencopy, allow"
+        "${hyprpicker}, screencopy, allow"
+        "${equibop}, screencopy, allow"
+      ]
+      ++ optionals (cfgOverview == "quickshell") [ "${quickshell}, screencopy, allow" ];
 
     layerrule = [
       "noanim, ^hyprpicker$"
