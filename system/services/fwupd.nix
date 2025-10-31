@@ -14,11 +14,7 @@ in
 {
   options.optServices.fwupd.enable = mkEnableOption "Enable firmware update services.";
 
-  config =
-    let
-      cfgFwupd = config.optServices.fwupd.enable;
-    in
-    mkIf cfgFwupd {
-      services.fwupd.enable = true;
-    };
+  config = mkIf config.optServices.fwupd.enable {
+    services.fwupd.enable = true;
+  };
 }

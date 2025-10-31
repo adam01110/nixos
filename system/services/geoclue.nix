@@ -27,11 +27,7 @@ in
       {
         services.geoclue2 = {
           enable = true;
-          enableWifi =
-            let
-              cfgWifi = config.optServices.wifi.enable;
-            in
-            cfgWifi;
+          enableWifi = config.optServices.wifi.enable;
           enableCDMA = false;
           enableModemGPS = false;
           enable3G = false;

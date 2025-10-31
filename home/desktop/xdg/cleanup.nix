@@ -20,6 +20,7 @@ in
 
     CARGO_HOME = "${dataHome}/cargo";
     RUSTUP_HOME = "${dataHome}/rustup";
+    BUN_INSTALL = "${dataHome}/bun";
 
     RENPY_PATH_TO_SAVES = "${dataHome}/renpy";
     RENPY_MULTIPERSISTENT = "${dataHome}/renpy_shared";

@@ -1,0 +1,42 @@
+{
+  config,
+  osConfig,
+  lib,
+  pkgs,
+  ...
+}:
+
+{
+  programs.equinix = {
+    enable = true;
+
+    equibop.enable = true;
+    discord.enable = false;
+
+    autoUpdate = true;
+
+    config = {
+      frameless = true;
+      transparent = true;
+
+      enabledThemes = [
+        "midnight.css"
+        "snippets.css"
+      ];
+
+      themeLinks = [
+        "https://raw.githubusercontent.com/Augenbl1ck/Discord-Styles/refs/heads/main/expProfile.css"
+      ];
+
+      plugins = { };
+    };
+  };
+
+  xdg.configFile."equibop/themes/midnight.css".source = pkgs.substituteAll {
+    src = ./themes/midnight.css;
+    sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
+    monospaceFont = osConfig.stylix.fonts.monospace.name;
+  };
+
+  xdg.configFile."equibop/themes/snippets.css".source = ./themes/snippets.css;
+}

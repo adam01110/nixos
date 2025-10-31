@@ -22,11 +22,7 @@ in
     disk = {
       main = {
         type = "disk";
-        device =
-          let
-            cfgDisk = config.disko.selectedDisk;
-          in
-          cfgDisk;
+        device = config.disko.selectedDisk;
         content = {
           type = "gpt";
           partitions = {
