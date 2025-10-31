@@ -2,14 +2,15 @@ keys:
   - &users:
     - &adam0 3666B440B0E872931B8E78596CFFE3FBA5DD84B9
   - &hosts:
-    - &desktop 958816F8CF4390CDA1CFAEE09FBAD8EA3902A697
-    - &laptop A4EE8DC2E315A209749C6D2253F92A2B429AF563
-    - &vm 4DE10B882FB44FCF77D1391CEC777553360631F9
+    - &desktop
+    - &laptop
+    - &vm
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - pgp:
           - *adam0
+      - age:
           - *desktop
           - *laptop
           - *vm

@@ -9,7 +9,7 @@
   imports = [
     ./zen
     ./czkawka.nix
-    ./equibop.nix
+    ./equibop
     ./ghostty.nix
     ./lutris.nix
     ./onlyoffice.nix

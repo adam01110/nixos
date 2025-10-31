@@ -13,6 +13,9 @@ let
     optionals
     ;
 
+  sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
+  monospaceFont = osConfig.stylix.fonts.monospace.name;
+
   monitorNames = builtins.attrNames config.hyprland.monitors;
 in
 {
@@ -30,11 +33,7 @@ in
         appLauncher = {
           backgroundOpacity = 0.95;
           enableClipboardHistory = true;
-          terminalCommand =
-            let
-              ghostty = getExe pkgs.ghostty;
-            in
-            "${ghostty} -e";
+          terminalCommand = "${getExe pkgs.ghostty} -e";
           useApp2Unit = true;
         };
 
@@ -71,45 +70,41 @@ in
                 labelMode = "none";
               }
             ];
-            right =
-              let
-                cfgBattery = config.noctalia.battery.enable;
-              in
-              [
-                { id = "Tray"; }
-                { id = "Microphone"; }
-                { id = "Volume"; }
-                {
-                  id = "Brightness";
-                  displayMode = "onhover";
-                }
-              ]
-              ++ [
-                { id = "KeepAwake"; }
-              ]
-              ++ (optionals cfgBattery [ { id = "Battery"; } ])
-              ++ [
-                {
-                  id = "NotificationHistory";
-                  hideWhenZero = true;
-                  showUnreadBadge = true;
-                }
-                {
-                  id = "Clock";
-                  customFont = "";
-                  formatHorizontal = "HH:mm yyyy-MM-dd";
-                  formatVertical = "HH mm - dd MM";
-                  useCustomFont = false;
-                  usePrimaryColor = true;
-                }
-                {
-                  id = "ControlCenter";
-                  customIconPath = "";
-                  # Todo: icon
-                  # icon = "";
-                  useDistroLogo = false;
-                }
-              ];
+            right = [
+              { id = "Tray"; }
+              { id = "Microphone"; }
+              { id = "Volume"; }
+              {
+                id = "Brightness";
+                displayMode = "onhover";
+              }
+            ]
+            ++ [
+              { id = "KeepAwake"; }
+            ]
+            ++ (optionals config.noctalia.battery.enable [ { id = "Battery"; } ])
+            ++ [
+              {
+                id = "NotificationHistory";
+                hideWhenZero = true;
+                showUnreadBadge = true;
+              }
+              {
+                id = "Clock";
+                customFont = "";
+                formatHorizontal = "HH:mm yyyy-MM-dd";
+                formatVertical = "HH mm - dd MM";
+                useCustomFont = false;
+                usePrimaryColor = true;
+              }
+              {
+                id = "ControlCenter";
+                customIconPath = "";
+                # Todo: icon
+                # icon = "";
+                useDistroLogo = false;
+              }
+            ];
           };
         };
 
@@ -159,6 +154,14 @@ in
         };
 
         screenRecorder.videoCodec = "hevc";
+
+        ui = {
+          fontDefault = sansSerifFont;
+          fontDefaultScale = 0.9;
+          fontFixed = monospaceFont;
+          fontFixedScale = 0.9;
+          panelsAttachedToBar = false;
+        };
       };
     };
 }

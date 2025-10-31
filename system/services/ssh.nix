@@ -14,17 +14,13 @@ in
 {
   options.optServices.ssh.enable = mkEnableOption "Enable Ssh services.";
 
-  config =
-    let
-      cfgSsh = config.optServices.ssh.enable;
-    in
-    mkIf cfgSsh {
-      services.openssh = {
-        enable = true;
-        settings = {
-          PermitRootLogin = "no";
-          PasswordAuthentication = true;
-        };
+  config = mkIf config.optServices.ssh.enable {
+    services.openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = true;
       };
     };
+  };
 }

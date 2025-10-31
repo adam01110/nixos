@@ -1,0 +1,33 @@
+/* readd timestamp tooltips */
+time[datetime]:hover::after {
+	content: "(" attr(datetime) ")";
+	width: max-content;
+	position: absolute;
+	z-index: 9999;
+	backdrop-filter: blur(4px);
+	padding: 0 4px;
+	border-radius: 6px;
+}
+
+/* swap clan tag and role icons */
+[class^="headerText"] {
+	display: inline-flex;
+	& > span:has([class^="roleicon"]) {
+		order: 2;
+	}
+	& > span:has([class^="chipletContainerInner"]) {
+		order: 3;
+	}
+	& > span[style="display: none;"] {
+		order: 4;
+	}
+	& > .vc-message-decorations-wrapper {
+		order: 5;
+	}
+	& > span:has(> [class^="newMemberBadge"]) {
+		order: 6;
+	}
+	& > span:is([class^="botTag"]) {
+		order: 7;
+	}
+}

@@ -24,7 +24,7 @@ in
       smart-enter = pkgs.yaziPlugins.smart-enter;
       smart-paste = pkgs.yaziPlugins.smart-paste;
       starship = pkgs.yaziPlugins.starship;
-      wl-clipboard = ./wl-clipboard;
+      wl-clipboard = ./plugins/wl-clipboard;
     };
 
     settings = {

@@ -20,9 +20,5 @@ in
     description = "Choose which GPU types to monitor with nvtop.";
   };
 
-  config.home.packages =
-    let
-      cfgNvtop = config.nvtop.types;
-    in
-    map (t: pkgs.nvtopPackages.${t}) cfgNvtop;
+  config.home.packages = map (t: pkgs.nvtopPackages.${t}) config.nvtop.types;
 }

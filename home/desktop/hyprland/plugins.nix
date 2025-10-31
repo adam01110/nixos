@@ -21,10 +21,6 @@ in
       hyprexpo.gap_size = 8;
     };
 
-    hyprexpo-gesture =
-      let
-        cfgOverview = config.hyprland.overview;
-      in
-      mkIf (cfgOverview == "hyprexpo") [ "3, vertical, expo" ];
+    hyprexpo-gesture = mkIf (config.hyprland.overview == "hyprexpo") [ "3, vertical, expo" ];
   };
 }

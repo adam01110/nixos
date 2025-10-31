@@ -15,11 +15,7 @@
     mutableUsers = false;
 
     users.${username} = {
-      hashedPasswordFile =
-        let
-          UserPassword = config.sops.secrets.user-password.path;
-        in
-        UserPassword;
+      hashedPasswordFile = config.sops.secrets.user-password.path;
       isNormalUser = true;
       ignoreShellProgramCheck = true;
       description = "${username}";
@@ -50,20 +46,17 @@
       imports =
         with inputs;
         [
+          equinix.homeModules.equinix
           nix-flatpak.homeManagerModules.nix-flatpak
-          zen-browser.homeModules.beta
           noctalia.homeModules.default
           sops-nix.homeManagerModules.sops
+          zen-browser.homeModules.beta
         ]
         ++ [ ./../home ];
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
-        stateVersion =
-          let
-            systemStateVersion = config.system.stateVersion;
-          in
-          systemStateVersion;
+        stateVersion = config.system.stateVersion;
       };
     };
   };
