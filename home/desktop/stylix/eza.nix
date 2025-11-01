@@ -1,8 +1,5 @@
 {
-  config,
   osConfig,
-  lib,
-  pkgs,
   ...
 }:
 
@@ -10,7 +7,7 @@ let
   colors = osConfig.lib.stylix.colors;
 in
 {
-  programs.eza.theme = {
+  _module.args.ezaStylix = {
     colourful = true;
 
     filekinds = {

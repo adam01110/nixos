@@ -1,4 +1,8 @@
-{ cfgCamera, ... }:
+{
+  cfgCamera,
+  ...
+}:
+
 {
   AllCallTimers.enabled = true;
   BiggerStreamPreview.enabled = true;

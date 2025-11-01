@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -9,7 +7,7 @@ let
   inherit (lib) concatStrings;
 in
 {
-  programs.starship.settings.format = concatStrings [
+  format = concatStrings [
     "[](fg:base01)"
     "$hostname"
     "[/](fg:text bg:base01)"

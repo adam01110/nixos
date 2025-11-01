@@ -8,13 +8,14 @@
 
 let
   inherit (lib) foldl' mkEnableOption;
-  inherit (vars) userCountry;
+  inherit (vars) countryCode;
 
   cfgCamera = config.equibop.camera.enable;
 
   pluginArgs = {
-    inherit cfgCamera userCountry;
+    inherit cfgCamera;
     stylix = equibopStylix;
+    userCountry = countryCode;
   };
 
   pluginFiles = [
@@ -31,5 +32,5 @@ in
 {
   options.equibop.camera.enable = mkEnableOption "Enable camera functionality for Equibop plugins.";
 
-  programs.equinix.config.plugins = mergedPlugins;
+  config.programs.equinix.extraConfig.plugins = mergedPlugins;
 }

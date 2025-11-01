@@ -67,9 +67,7 @@ in
         systemd.enable = true;
 
         activeConfig = "overview";
-        configs.overview = {
-          source = ./overview;
-        };
+        configs.overview = ./overview;
       };
     };
 }

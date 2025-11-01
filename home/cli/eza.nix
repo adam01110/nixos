@@ -1,7 +1,5 @@
 {
-  config,
-  lib,
-  pkgs,
+  ezaStylix,
   ...
 }:
 
@@ -11,13 +9,14 @@
 
     colors = "always";
     icons = "always";
+    theme = ezaStylix;
     extraOptions = [
       "--all"
       "--long"
       "--group-directories-first"
       "--mounts"
       "--context"
-      "--time-style +%Y-%m-%d %H:%M"
+      "--time-style=long-iso"
     ];
   };
 }

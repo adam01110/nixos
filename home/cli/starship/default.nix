@@ -5,8 +5,14 @@
   ...
 }:
 
-{
-  imports = [
+let
+  inherit (lib) foldl' recursiveUpdate;
+
+  segmentArgs = {
+    inherit config lib pkgs;
+  };
+
+  segmentFiles = [
     ./build.nix
     ./container.nix
     ./disabled.nix
@@ -17,5 +23,15 @@
     ./runtimes.nix
   ];
 
-  programs.starship.enable = true;
+  starshipSettings =
+    foldl'
+      (acc: file: recursiveUpdate acc (import file segmentArgs))
+      { }
+      segmentFiles;
+in
+{
+  programs.starship = {
+    enable = true;
+    settings = starshipSettings;
+  };
 }

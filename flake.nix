@@ -27,6 +27,13 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -42,12 +49,11 @@
     };
 
     quickshell = {
-      url = "github:outfoxxed/quickshell";
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v2.20.0";
+      url = "github:noctalia-dev/noctalia-shell?ref=v2.21.1";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         quickshell.follows = "quickshell";

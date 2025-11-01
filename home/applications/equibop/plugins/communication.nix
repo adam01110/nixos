@@ -1,4 +1,9 @@
-{ stylix, userCountry, ... }:
+{
+  stylix,
+  userCountry,
+  ...
+}:
+
 {
   AutoZipper.enabled = true;
   BetterCommands.enabled = true;

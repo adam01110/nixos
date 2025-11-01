@@ -1,4 +1,5 @@
 { ... }:
+
 {
   BetterBlockedUsers.enabled = true;
   BetterInvites.enabled = true;
