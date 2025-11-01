@@ -3,15 +3,18 @@
   osConfig,
   lib,
   pkgs,
-  username,
+  vars,
   ...
 }:
 
 let
+  inherit (vars) username;
+
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
 in
 {
   imports = [
+    ./equibop.nix
     ./eza.nix
     ./hyprcursor.nix
     ./hyprland.nix
@@ -47,7 +50,13 @@ in
     };
 
     targets = {
+      gnome.enable = false;
+      kde.enable = false;
       obsidian.enable = false;
+      vencord.enable = false;
+      vesktop.enable = false;
+      nixcord.enable = false;
+
       zen-browser.profileNames = [
         "${username}"
         "school"

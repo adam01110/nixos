@@ -12,9 +12,10 @@
     defaultSopsFormat = osConfig.sops.defaultSopsFormat;
     validateSopsFiles = osConfig.sops.validateSopsFiles;
 
-    gnupg = {
-      home = osConfig.sops.gnupg.home;
-      sshKeyPaths = osConfig.sops.gnupg.sshKeyPaths;
+    age = {
+      sshKeyPaths = osConfig.sops.age.sshKeyPaths;
+      keyFile = osConfig.sops.age.keyFile;
+      generateKey = osConfig.sops.age.generateKey;
     };
   };
 }

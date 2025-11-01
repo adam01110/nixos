@@ -7,6 +7,8 @@
 }:
 
 {
+  import = [ ./plugins.nix ];
+
   programs.equinix = {
     enable = true;
 
@@ -26,9 +28,9 @@
 
       themeLinks = [
         "https://raw.githubusercontent.com/Augenbl1ck/Discord-Styles/refs/heads/main/expProfile.css"
+        "https://raw.githubusercontent.com/yiruzu/vencord-snippets/refs/heads/main/snippets/BubbleUsernames/import.css"
+        "https://raw.githubusercontent.com/mudrhiod/discord-iconpacks/refs/heads/master/vencord/solar/solar.css"
       ];
-
-      plugins = { };
     };
   };
 

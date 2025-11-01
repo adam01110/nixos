@@ -2,26 +2,27 @@
   config,
   lib,
   pkgs,
-  username,
+  vars,
   ...
 }:
 
+let
+  inherit (vars) username gitUsername gitPublicSshkey;
+in
 {
   sops = {
     secrets = {
-      "git/username" = { };
       "git/email" = { };
-
       "git/private_ssh_key".path = "/home/${username}/.ssh/git";
-      "git/public_ssh_key".path = "/home/${username}/.ssh/git.pub";
     };
 
     templates."git-config".content = ''
       [user]
-        name = ${config.sops.placeholder."git/username"}
         email = ${config.sops.placeholder."git/email"}
     '';
   };
+
+  home.file.".ssh/git.pub".text = gitPublicSshkey;
 
   programs = {
     git =
@@ -32,6 +33,8 @@
         enable = true;
 
         package = gitPackage;
+
+        userName = gitUsername;
 
         settings.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
         includes = [ { path = config.sops.templates."git-config".path; } ];
