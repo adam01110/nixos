@@ -4,18 +4,21 @@
   pkgs,
   inputs,
   system,
-  username,
+  vars,
   ...
 }:
 
+let
+  inherit (vars) username;
+in
 {
-  sops.secrets.user-password.neededForUsers = true;
+  sops.secrets.user_password.neededForUsers = true;
 
   users = {
     mutableUsers = false;
 
     users.${username} = {
-      hashedPasswordFile = config.sops.secrets.user-password.path;
+      hashedPasswordFile = config.sops.secrets.user_password.path;
       isNormalUser = true;
       ignoreShellProgramCheck = true;
       description = "${username}";
@@ -37,7 +40,7 @@
       inherit
         inputs
         system
-        username
+        vars
         ;
     };
 
@@ -46,11 +49,12 @@
       imports =
         with inputs;
         [
-          equinix.homeModules.equinix
           nix-flatpak.homeManagerModules.nix-flatpak
-          noctalia.homeModules.default
           sops-nix.homeManagerModules.sops
+          noctalia.homeModules.default
+          nix-index-database.homeModules.nix-index
           zen-browser.homeModules.beta
+          equinix.homeModules.equinix
         ]
         ++ [ ./../home ];
       home = {

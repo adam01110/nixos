@@ -41,8 +41,21 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell?ref=v2.20.0";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        quickshell.follows = "quickshell";
+      };
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -76,11 +89,12 @@
       lanzaboote,
       sops-nix,
       noctalia,
+      nix-index-database,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      username = "adam0";
+      vars = import ./vars.nix;
 
       commonModules = [
         chaotic.nixosModules.default
@@ -91,6 +105,7 @@
         lanzaboote.nixosModules.lanzaboote
         sops-nix.nixosModules.sops
         noctalia.nixosModules.default
+        nix-index-database.nixosModules.nix-index
         ./system
       ];
 
@@ -99,7 +114,7 @@
           self
           inputs
           system
-          username
+          vars
           ;
       };
     in

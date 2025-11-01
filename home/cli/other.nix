@@ -13,5 +13,8 @@
       ;
   };
 
-  programs.ripgrep.enable = true;
+  programs = {
+    ripgrep.enable = true;
+    nix-index.enable = true;
+  };
 }

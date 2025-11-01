@@ -22,17 +22,17 @@
     fonts = {
       serif = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font Propo";
+        name = "JetBrainsMonoNL Nerd Font Propo";
       };
 
       sansSerif = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font Propo";
+        name = "JetBrainsMonoNL Nerd Font Propo";
       };
 
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font Mono";
+        name = "JetBrainsMonoNL Nerd Font Mono";
       };
     };
   };

@@ -30,4 +30,5 @@
   };
 
   noctalia.battery.enable = true;
+  equibop.camera.enable = true;
 }

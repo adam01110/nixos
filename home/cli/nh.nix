@@ -2,10 +2,13 @@
   config,
   lib,
   pkgs,
-  username,
+  vars,
   ...
 }:
 
+let
+  inherit (vars) username;
+in
 {
   programs.nh = {
     enable = true;

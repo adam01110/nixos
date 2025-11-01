@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./applications
+    ./cli
     ./desktop
     ./services
     ./disk.nix
