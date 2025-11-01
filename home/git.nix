@@ -31,12 +31,13 @@ in
       in
       {
         enable = true;
-
         package = gitPackage;
 
-        userName = gitUsername;
+        settings = {
+          user.name = gitUsername;
 
-        settings.credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
+          credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
+        };
         includes = [ { path = config.sops.templates."git-config".path; } ];
       };
 

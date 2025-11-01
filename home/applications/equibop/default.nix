@@ -7,7 +7,7 @@
 }:
 
 {
-  import = [ ./plugins.nix ];
+  imports = [ ./plugins.nix ];
 
   programs.equinix = {
     enable = true;
@@ -15,9 +15,8 @@
     equibop.enable = true;
     discord.enable = false;
 
-    autoUpdate = true;
-
     config = {
+      autoUpdate = true;
       frameless = true;
       transparent = true;
 
@@ -33,9 +32,7 @@
       ];
     };
   };
-
-  xdg.configFile."equibop/themes/midnight.css".source = pkgs.substituteAll {
-    src = ./themes/midnight.css;
+  xdg.configFile."equibop/themes/midnight.css".source = pkgs.replaceVars ./themes/midnight.css {
     sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
     monospaceFont = osConfig.stylix.fonts.monospace.name;
   };

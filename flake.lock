@@ -816,7 +816,9 @@
           "nixpkgs"
         ],
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
-        "rust-overlay": "rust-overlay_2"
+        "rust-overlay": [
+          "rust-overlay"
+        ]
       },
       "locked": {
         "lastModified": 1737639419,
@@ -997,16 +999,16 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1761763857,
-        "narHash": "sha256-MlHqadnFz9yxrO5BuZoXULjVdg/p3EAobrOgFp2TH98=",
+        "lastModified": 1761945599,
+        "narHash": "sha256-GRB1AZD76QsLfLetskAbvPYBLy08pot2PoZLPzbsSnw=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "83910cc2653767c3523f17dad5755c88e225d8f0",
+        "rev": "53d885a8ae6ee6e5e746f287588aed567a94e570",
         "type": "github"
       },
       "original": {
         "owner": "noctalia-dev",
-        "ref": "v2.20.0",
+        "ref": "v2.21.1",
         "repo": "noctalia-shell",
         "type": "github"
       }
@@ -1019,11 +1021,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762025387,
-        "narHash": "sha256-Mwjot2Xnqr/pmL0eUv5HVUnYA5Jg1FZnRjnarTZC5cI=",
+        "lastModified": 1762033460,
+        "narHash": "sha256-RXBIqO8fcw/kiveRGxFVA+j6hPJkB6ikg0I1/pueud0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "7af3a4853445b2d94dfb9442abb16f835f20b12b",
+        "rev": "c5403cdf368174b0792dd0a155f8e5bc8f0bade7",
         "type": "github"
       },
       "original": {
@@ -1116,15 +1118,15 @@
       "locked": {
         "lastModified": 1761897390,
         "narHash": "sha256-er4gYrIoThYLjlsOMTysoRfn67d1Gci+ZpqDrtQxrA0=",
-        "owner": "outfoxxed",
-        "repo": "quickshell",
+        "ref": "refs/heads/master",
         "rev": "fc704e6b5d445899a1565955268c91942a4f263f",
-        "type": "github"
+        "revCount": 700,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
       "original": {
-        "owner": "outfoxxed",
-        "repo": "quickshell",
-        "type": "github"
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       }
     },
     "root": {
@@ -1143,6 +1145,7 @@
         "noctalia": "noctalia",
         "nur": "nur",
         "quickshell": "quickshell",
+        "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
@@ -1172,16 +1175,15 @@
     "rust-overlay_2": {
       "inputs": {
         "nixpkgs": [
-          "lanzaboote",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1731897198,
-        "narHash": "sha256-Ou7vLETSKwmE/HRQz4cImXXJBr/k9gp4J4z/PF8LzTE=",
+        "lastModified": 1761964689,
+        "narHash": "sha256-Zo3LQQDz+64EQ9zor/WmeNTFLoZkjmhp0UY3G0D3seE=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "0be641045af6d8666c11c2c40e45ffc9667839b5",
+        "rev": "63d22578600f70d293aede6bc737efef60ebd97f",
         "type": "github"
       },
       "original": {

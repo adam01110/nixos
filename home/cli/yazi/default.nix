@@ -18,7 +18,6 @@ in
 
     plugins = {
       full-border = pkgs.yaziPlugins.full-border;
-      git = pkgs.yaziPlugins.git;
       mediainfo = pkgs.yaziPlugins.mediainfo;
       smart-enter = pkgs.yaziPlugins.smart-enter;
       smart-paste = pkgs.yaziPlugins.smart-paste;

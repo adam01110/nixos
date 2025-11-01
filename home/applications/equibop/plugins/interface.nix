@@ -1,4 +1,8 @@
-{ stylix, ... }:
+{
+  stylix,
+  ...
+}:
+
 {
   AccountPanelServerProfile = {
     enabled = true;

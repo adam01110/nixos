@@ -14,7 +14,7 @@
 
     settings = {
       # font settings
-      font-feature = "calt, case, liga, dlig";
+      font-feature = "-calt, -liga, -dlig";
       freetype-load-flags = "hinting";
 
       # cursor settings
@@ -34,7 +34,8 @@
       resize-overlay = "never";
 
       copy-on-select = false;
-      auto-update = false;
+      auto-update = "off";
+      confirm-close-surface = false;
 
       keybind = [
         "super+ctrl+equal=unbind"

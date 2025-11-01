@@ -1,4 +1,5 @@
 { ... }:
+
 {
   GitHubRepos.enabled = true;
   OpenInApp = {

@@ -1,8 +1,5 @@
 {
-  config,
   osConfig,
-  lib,
-  pkgs,
   ...
 }:
 
@@ -13,7 +10,7 @@ let
   monospaceFont = osConfig.stylix.fonts.monospace.name;
 in
 {
-  programs.noctalia-shell.settings = {
+  _module.args.noctaliaStylix = {
     colors = {
       mError = colors.base08;
       mOnError = colors.base07;
@@ -31,9 +28,9 @@ in
       mTertiary = colors.base0B;
     };
 
-    ui = {
-      fontDefault = sansSerifFont;
-      fontFixed = monospaceFont;
+    fonts = {
+      default = sansSerifFont;
+      fixed = monospaceFont;
     };
   };
 }

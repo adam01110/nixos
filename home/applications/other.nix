@@ -26,6 +26,7 @@
       newsflash
       nucleus
       obsidian
+      prismlauncher
       protonplus
       showtime
       upscayl

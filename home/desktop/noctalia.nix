@@ -5,6 +5,7 @@
   pkgs,
   inputs,
   system,
+  noctaliaStylix,
   ...
 }:
 
@@ -15,8 +16,8 @@ let
     optionals
     ;
 
-  sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
-  monospaceFont = osConfig.stylix.fonts.monospace.name;
+  stylixColors = noctaliaStylix.colors;
+  stylixFonts = noctaliaStylix.fonts;
 
   monitorNames = builtins.attrNames config.hyprland.monitors;
   cfg = osConfig.services.noctalia-shell;
@@ -37,6 +38,8 @@ in
         app2unit.package = pkgs.app2unit;
 
         settings = {
+          colors = stylixColors;
+
           appLauncher = {
             backgroundOpacity = 0.95;
             enableClipboardHistory = true;
@@ -165,9 +168,9 @@ in
           screenRecorder.videoCodec = "hevc";
 
           ui = {
-            fontDefault = sansSerifFont;
+            fontDefault = stylixFonts.default;
             fontDefaultScale = 0.9;
-            fontFixed = monospaceFont;
+            fontFixed = stylixFonts.fixed;
             fontFixedScale = 0.9;
             panelsAttachedToBar = false;
           };
