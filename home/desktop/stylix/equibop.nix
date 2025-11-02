@@ -1,20 +1,27 @@
 {
+  lib,
   osConfig,
   ...
 }:
 
 let
-  stylixColors = osConfig.lib.stylix.colors;
+  colors =
+    let
+      stylixColors = osConfig.lib.stylix.colors;
+      hashPrefix =
+        value: if lib.isString value && !(lib.strings.hasPrefix "#" value) then "#${value}" else value;
+    in
+    builtins.mapAttrs (_: hashPrefix) stylixColors;
 in
 {
   _module.args.equibopStylix = {
-    messageFetchTimerIcon = stylixColors.base0B;
+    messageFetchTimerIcon = colors.base0B;
 
     questify = {
-      claimed = stylixColors.base0E;
-      expired = stylixColors.base00;
-      ignored = stylixColors.base08;
-      unclaimed = stylixColors.base0D;
+      claimed = colors.base0E;
+      expired = colors.base00;
+      ignored = colors.base08;
+      unclaimed = colors.base0D;
     };
   };
 }

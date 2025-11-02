@@ -13,7 +13,6 @@ in
     LESSHISTFILE = "${stateHome}/less/history";
     HISTFILE = "${stateHome}/bash/history";
 
-    RIPGREP_CONFIG_PATH = "${configHome}/ripgrep/config";
     FFMPEG_DATADIR = "${configHome}/ffmpeg";
 
     CARGO_HOME = "${dataHome}/cargo";

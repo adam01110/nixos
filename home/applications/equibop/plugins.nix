@@ -31,6 +31,5 @@ let
 in
 {
   options.equibop.camera.enable = mkEnableOption "Enable camera functionality for Equibop plugins.";
-
   config.programs.equinix.extraConfig.plugins = mergedPlugins;
 }

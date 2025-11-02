@@ -12,14 +12,13 @@
 let
   inherit (lib)
     getExe
+    getExe'
     mkEnableOption
     optionals
     ;
 
-  stylixColors = noctaliaStylix.colors;
   stylixFonts = noctaliaStylix.fonts;
 
-  monitorNames = builtins.attrNames config.hyprland.monitors;
   cfg = osConfig.services.noctalia-shell;
 in
 {
@@ -38,8 +37,6 @@ in
         app2unit.package = pkgs.app2unit;
 
         settings = {
-          colors = stylixColors;
-
           appLauncher = {
             backgroundOpacity = 0.95;
             enableClipboardHistory = true;
@@ -88,8 +85,8 @@ in
               ];
               right = [
                 { id = "Tray"; }
-                { id = "Microphone"; }
                 { id = "Volume"; }
+                { id = "Microphone"; }
                 {
                   id = "Brightness";
                   displayMode = "onhover";
@@ -145,7 +142,6 @@ in
             displayMode = "auto_hide";
             floatingRatio = 0.5;
             onlySameOutput = true;
-            monitors = monitorNames;
             size = 0.5;
           };
 
@@ -188,15 +184,16 @@ in
       };
 
       Service = {
-        ExecStart = "${cfg.package}/bin/noctalia-shell";
+        ExecStart =
+          let
+            noctalia = getExe' inputs.noctalia.packages.${pkgs.system}.default "noctalia-shell";
+          in
+          noctalia;
         Restart = "on-failure";
         RestartSec = 3;
         TimeoutStartSec = 10;
         TimeoutStopSec = 5;
-        Environment = [
-          "PATH="
-          "NOCTALIA_SETTINGS_FALLBACK=%h/.config/noctalia/gui-settings.json"
-        ];
+        Environment = [ "NOCTALIA_SETTINGS_FALLBACK=%h/.config/noctalia/gui-settings.json" ];
       };
 
       Install = {

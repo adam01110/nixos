@@ -47,6 +47,10 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit/main";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

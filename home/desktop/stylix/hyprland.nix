@@ -9,8 +9,9 @@ let
 in
 {
   _module.args.hyprlandStylix = {
-    inactiveBorder = rgb colors.base03;
+    activeBorder = rgb colors.base03;
     activeGroupBorder = rgb colors.base03;
+    activeGroupBarBorder = rgb colors.base03;
     hyprexpoBackground = rgb colors.base03;
   };
 }

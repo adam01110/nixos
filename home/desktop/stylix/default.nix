@@ -57,11 +57,10 @@ in
 
       zen-browser.profileNames = [
         "${username}"
-        "school"
+        "academia"
       ];
     };
   };
 
   programs.zathura.options.font = sansSerifFont;
-  qt.style.package = pkgs.nur.repos.shadowrz.klassy-qt6;
 }

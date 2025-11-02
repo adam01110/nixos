@@ -95,8 +95,9 @@ in
     ]
     ++ [
       {
-        general."col.inactive_border" = mkForce hyprlandStylix.inactiveBorder;
+        general."col.active_border" = mkForce hyprlandStylix.activeBorder;
         group."col.border_active" = mkForce hyprlandStylix.activeGroupBorder;
+        groupbar."col.active" = mkForce hyprlandStylix.activeGroupBarBorder;
       }
       (mkIf (config.hyprland.overview == "hyprexpo") {
         plugin.hyprexpo.bg_col = hyprlandStylix.hyprexpoBackground;

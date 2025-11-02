@@ -1,8 +1,12 @@
 {
+  lib,
   pkgs,
   ...
 }:
 
+let
+  inherit (lib) getExe;
+in
 {
   programs.fish = {
     enable = true;
@@ -50,7 +54,12 @@
     };
 
     functions.fish_greeting = {
-      body = "fortune -s | boxes -d ansi-rounded";
+      body =
+        let
+          fortune-kind = getExe pkgs.fortune-kind;
+          boxes = getExe pkgs.boxes;
+        in
+        "${fortune-kind} -s | ${boxes} -d ansi-rounded";
     };
   };
 
