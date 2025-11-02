@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   inputs,
   system,
@@ -27,6 +26,7 @@ in
         "audio"
         "networkmanager"
       ];
+      shell = pkgs.fish;
     };
   };
 

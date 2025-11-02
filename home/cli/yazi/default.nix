@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -124,7 +122,7 @@ in
         desc = "Enter the child directory, or open the file";
       }
       {
-        on = "<Left>";
+        on = "<right>";
         run = "plugin smart-enter";
         desc = "Enter the child directory, or open the file";
       }

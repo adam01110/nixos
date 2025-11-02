@@ -25,7 +25,7 @@ in
       notify-send = getExe' pkgs.libnotify "notify-send";
 
       qs = getExe pkgs.quickshell;
-      noctalia = "${qs} -c noctalia-shell ipc call";
+      noctalia = "${inputs.noctalia.packages.${pkgs.system}.default}/bin/noctalia-shell ipc call";
     in
     {
       binds.movefocus_cycles_fullscreen = true;

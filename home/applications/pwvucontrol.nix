@@ -8,9 +8,5 @@
 {
   home.packages = [ pkgs.pwvucontrol ];
 
-  dconf.settings = {
-    "com/saivert/pwvucontrol" = {
-      enable-overamplification = true;
-    };
-  };
+  dconf.settings."com/saivert/pwvucontrol".enable-overamplification = true;
 }
