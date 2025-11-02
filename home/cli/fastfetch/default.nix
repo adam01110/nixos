@@ -147,29 +147,6 @@ in
           type = "btrfs";
           key = "│ ├ DISKS ";
           keyColor = "red";
-          format = "{5} / {7} ({8}, {9} allocated) - {1}";
-          folders = "/:/home";
-        }
-        {
-          type = "disk";
-          key = "│ ├ DISKS ";
-          keyColor = "red";
-          format = "{1} / {2} ({3}) - {10}";
-          folders = "/run/media/dragonx/6b650fa5-44d8-430d-8960-71b48e25e15c";
-        }
-        {
-          type = "disk";
-          key = "│ ╰ EFI ";
-          keyColor = "red";
-          format = "{13} {1} / {2} ({3})";
-          folders = "/boot/efi";
-        }
-        {
-          type = "disk";
-          key = "│ ├ BOOT";
-          keyColor = "red";
-          format = "{13} {1} / {2} ({3})";
-          folders = "/boot";
         }
         {
           type = "custom";
@@ -197,7 +174,6 @@ in
           type = "custom";
           format = "{#1}\u001b[37m╰─────────────────────────────────────────────────────────────";
         }
-        "break"
       ];
     };
   };

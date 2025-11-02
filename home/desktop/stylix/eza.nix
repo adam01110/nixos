@@ -1,10 +1,17 @@
 {
+  lib,
   osConfig,
   ...
 }:
 
 let
-  colors = osConfig.lib.stylix.colors;
+  colors =
+    let
+      stylixColors = osConfig.lib.stylix.colors;
+      hashPrefix =
+        value: if lib.isString value && !(lib.strings.hasPrefix "#" value) then "#${value}" else value;
+    in
+    builtins.mapAttrs (_: hashPrefix) stylixColors;
 in
 {
   _module.args.ezaStylix = {

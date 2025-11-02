@@ -46,11 +46,12 @@ in
         portalPackage = null;
 
         plugins =
-          (
-            with inputs.hyprland-plugins.packages.${system};
-            [ hyprfocus ] ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ]
-          )
-          ++ [ pkgs.hyprlandPlugins.hyprsplit ];
+          with inputs;
+          [
+            hyprland-plugins.packages.${system}.hyprfocus
+            hyprsplit.packages.${system}.hyprsplit
+          ]
+          ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ];
       };
 
       home.packages = builtins.attrValues {
@@ -65,6 +66,10 @@ in
       programs.quickshell = mkIf (cfgOverview == "quickshell") {
         enable = true;
         systemd.enable = true;
+
+        package = pkgs.quickshell.overrideAttrs (prev: {
+          buildInputs = (prev.buildInputs or [ ]) ++ [ pkgs.qt6Packages.qt5compat ];
+        });
 
         activeConfig = "overview";
         configs.overview = ./overview;

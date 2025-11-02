@@ -10,7 +10,7 @@ in
   format = concatStrings [
     "[](fg:base01)"
     "$hostname"
-    "[/](fg:text bg:base01)"
+    "[/](fg:base05 bg:base01)"
     "$username"
     "[](fg:base01)"
 
@@ -68,6 +68,7 @@ in
     "$swift"
     "$zig"
 
+    "$line_break"
     "$character"
   ];
 }

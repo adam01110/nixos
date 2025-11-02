@@ -4,18 +4,18 @@
   fossil_branch = {
     format = "[$symbol$branch]($style) ";
     symbol = " ";
-    style = "bold base0E";
+    style = "fg:magenta bold";
   };
 
   git_branch = {
     format = "[$symbol$branch(:$remote_branch)]($style)";
     symbol = " ";
-    style = "bg:base01 fg:bold base0E";
+    style = "bg:base01 fg:magenta bold";
   };
 
   git_commit = {
     format = "[\\($hash$tag\\)]($style)";
-    style = "bg:base01 fg:bold base0B";
+    style = "bg:base01 fg:green bold";
     tag_disabled = false;
     only_detached = false;
     tag_symbol = "  ";
@@ -23,7 +23,7 @@
 
   git_state = {
     format = "[ $state( $progress_current/$progress_total)]($style)";
-    style = "bg:base01 fg:bold base0A";
+    style = "bg:base01 fg:yellow bold";
     rebase = "rebasing";
     merge = "merging";
     revert = "reverting";
@@ -35,7 +35,7 @@
 
   git_status = {
     format = "([ \\[$all_status$ahead_behind\\]]($style))";
-    style = "bg:base01 fg:bold base08";
+    style = "bg:base01 fg:base08 bold";
     deleted = "";
   };
 }

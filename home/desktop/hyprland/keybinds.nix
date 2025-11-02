@@ -20,12 +20,13 @@ in
 
   config.wayland.windowManager.hyprland.settings =
     let
+      bash = getExe pkgs.bash;
       gawk = getExe pkgs.gawk;
       hyprctl = getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl";
       notify-send = getExe' pkgs.libnotify "notify-send";
 
-      qs = getExe pkgs.quickshell;
-      noctalia = "${inputs.noctalia.packages.${pkgs.system}.default}/bin/noctalia-shell ipc call";
+      qs = getExe' pkgs.quickshell ".quickshell-wrapped";
+      noctalia = "${getExe' inputs.noctalia.packages.${pkgs.system}.default "noctalia-shell"} ipc call";
     in
     {
       binds.movefocus_cycles_fullscreen = true;
@@ -54,29 +55,11 @@ in
                 ;
             };
             excludeShellChecks = [ "SC2276" ];
-
-            text = ''
-              HYPRGAMEMODE=$(${hyprctl} getoption animations:enabled | ${gawk} 'NR==1{print $2}')
-              if [ "$HYPRGAMEMODE" = 1 ]; then
-                ${hyprctl} --batch "\
-                  keyword animations:enabled 0;\
-                  keyword decoration:shadow:enabled 0;\
-                  keyword decoration:blur:enabled 0;\
-                  keyword general:gaps_in 0;\
-                  keyword general:gaps_out 0;\
-                  keyword general:border_size 1;\
-                  keyword decoration:rounding 0;\
-                  keyword decoration:active_opacity 1;\
-                  keyword decoration:inactive_opacity 1"
-
-                ${hyprctl} keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
-                ${notify-send} -u low -a "hyprland" " performant mode" "enabled"
-                exit
-              else
-                ${notify-send} -u low -a "hyprland" " performant mode" "disabled"
-                ${hyprctl} reload
-              fi
-            '';
+            text =
+              builtins.replaceStrings
+                [ "@bash@" "@hyprctl@" "@gawk@" "@notifySend@" ]
+                [ bash hyprctl gawk notify-send ]
+                (builtins.readFile ./scripts/performant-mode.sh);
           };
         in
         [

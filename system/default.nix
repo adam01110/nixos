@@ -34,11 +34,12 @@ in
 
     boot = {
       kernelPackages = pkgs.linuxPackages_cachyos;
-
       initrd.services.udev.packages = [ pkgs.numworks-udev-rules ];
 
-      # bootloader with secure boot
       loader = {
+        timeout = 0;
+
+        # bootloader with secure boot
         systemd-boot.enable = mkForce false;
         efi.canTouchEfiVariables = true;
       };
