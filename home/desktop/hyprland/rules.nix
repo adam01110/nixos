@@ -8,6 +8,7 @@
 let
   inherit (lib)
     getExe
+    getExe'
     optionals
     ;
 in
@@ -15,7 +16,10 @@ in
   wayland.windowManager.hyprland.settings = {
     permission =
       let
+        hyprctl = getExe' pkgs.hyprland "hyprctl";
+
         xdg-desktop-portal-hyprland = getExe pkgs.xdg-desktop-portal-hyprland;
+        grim = getExe pkgs.grim;
         hyprpicker = getExe pkgs.hyprpicker;
         equibop = getExe pkgs.equibop;
         quickshell = getExe pkgs.quickshell;
@@ -23,7 +27,10 @@ in
         cfgOverview = config.hyprland.overview;
       in
       [
+        "${hyprctl}, plugin, allow"
+
         "${xdg-desktop-portal-hyprland}, screencopy, allow"
+        "${grim}, screencopy, allow"
         "${hyprpicker}, screencopy, allow"
         "${equibop}, screencopy, allow"
       ]
