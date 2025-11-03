@@ -154,7 +154,10 @@ in
             showScreenCorners = true;
           };
 
-          location.showWeekNumberInCalendar = true;
+          location = {
+            showCalendarWeather = false;
+            showWeekNumberInCalendar = true;
+          };
 
           network = {
             wifiEnabled = cfgWifi;

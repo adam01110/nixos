@@ -105,11 +105,15 @@ in
     };
   };
 
-  home.sessionVariables = {
-    EDITOR = "zeditor";
-    VISUAL = "zeditor";
+  home.sessionVariables =
+    let
+      name = "zeditor";
+    in
+    {
+      EDITOR = name;
+      VISUAL = name;
 
-    BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
-    RUFF_CACHE_DIR = "${cacheHome}/ruff";
-  };
+      BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
+      RUFF_CACHE_DIR = "${cacheHome}/ruff";
+    };
 }

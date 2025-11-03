@@ -8,10 +8,7 @@ let
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
   monospaceFont = osConfig.stylix.fonts.monospace.name;
 
-  stylixColors = osConfig.lib.stylix.colors;
-  hashPrefix =
-    value: if lib.isString value && !(lib.strings.hasPrefix "#" value) then "#${value}" else value;
-  colors = builtins.mapAttrs (_: hashPrefix) stylixColors;
+  colors = builtins.mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
   _module.args.noctaliaStylix.fonts = {

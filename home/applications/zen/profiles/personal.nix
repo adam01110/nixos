@@ -15,10 +15,12 @@ in
       force = true;
       packages =
         commonExtensions
-        ++ (with pkgs.nur.repos.rycee.firefox-addons; [
-          modrinthify
-          proton-vpn
-        ]);
+        ++ builtins.attrValues {
+          inherit (pkgs.nur.repos.rycee.firefox-addons)
+            modrinthify
+            proton-vpn
+            ;
+        };
     };
 
     search = {

@@ -5,13 +5,7 @@
 }:
 
 let
-  colors =
-    let
-      stylixColors = osConfig.lib.stylix.colors;
-      hashPrefix =
-        value: if lib.isString value && !(lib.strings.hasPrefix "#" value) then "#${value}" else value;
-    in
-    builtins.mapAttrs (_: hashPrefix) stylixColors;
+  colors = builtins.mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
   _module.args.equibopStylix = {

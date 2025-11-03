@@ -7,9 +7,6 @@
   home.packages =
     with pkgs;
     [
-      (bottles.overrideAttrs (old: {
-        removeWarningPopup = true;
-      }))
       bleachbit
       bitwarden-desktop
       decibels
@@ -25,7 +22,6 @@
       nucleus
       obsidian
       prismlauncher
-      protonplus
       showtime
       upscayl
       warehouse
