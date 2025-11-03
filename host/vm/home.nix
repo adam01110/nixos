@@ -7,7 +7,6 @@
     scale = 1;
     vrr = 0;
   };
-  hyprland.overview = "quickshell";
 
   zen-browser.commit-space = 6683;
 }

@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -11,27 +12,31 @@ in
   programs.fish = {
     enable = true;
 
-    plugins = [
-      {
-        name = "done";
-        src = pkgs.fishPlugins.done;
-      }
-      {
-        name = "bang-bang";
-        src = pkgs.fishPlugins.bang-bang;
-      }
-      {
-        name = "fifc";
-        src = pkgs.fishPlugins.fifc;
-      }
-    ];
+    plugins =
+      let
+        mkPlugin = pkg: {
+          name = "${pkg}";
+          inherit (pkgs.fishPlugins.${pkg}) src;
+        };
+      in
+      map mkPlugin [
+        "autopair"
+        "done"
+        "fishbang"
+        "fifc"
+      ];
 
-    interactiveShellInit = ''
-      set -U fifc_fd_opts --hidden
-      set -U __done_min_cmd_duration 10000
+    interactiveShellInit =
+      let
+        editorName = config.home.sessionVariables.EDITOR;
+      in
+      ''
+        set -U fifc_fd_opts --hidden
+        set -U __done_min_cmd_duration 10000
+        set -Ux fifc_editor ${editorName}
 
-      batman --export-env | source
-    '';
+        batman --export-env | source
+      '';
 
     shellAbbrs.ff = "fastfetch";
 

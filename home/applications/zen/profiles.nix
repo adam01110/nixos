@@ -9,29 +9,31 @@ let
   inherit (lib) foldl';
   inherit (vars) username;
 
-  commonExtensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    # content blocking
-    ublock-origin
-    localcdn
-    sponsorblock
-    fastforwardteam
-    istilldontcareaboutcookies
-    consent-o-matic
-    don-t-fuck-with-paste
+  commonExtensions = builtins.attrValues {
+    inherit (pkgs.nur.repos.rycee.firefox-addons)
+      # content blocking
+      ublock-origin
+      localcdn
+      sponsorblock
+      fastforwardteam
+      istilldontcareaboutcookies
+      consent-o-matic
+      don-t-fuck-with-paste
 
-    # annoyances
-    shinigami-eyes
-    translate-web-pages
-    return-youtube-dislikes
-    dearrow
+      # annoyances
+      shinigami-eyes
+      translate-web-pages
+      return-youtube-dislikes
+      dearrow
 
-    darkreader
-    stylus
-    bitwarden
-    wikiwand-wikipedia-modernized
-    violentmonkey
-    pronoundb
-  ];
+      darkreader
+      stylus
+      bitwarden
+      wikiwand-wikipedia-modernized
+      violentmonkey
+      pronoundb
+      ;
+  };
 
   commonSearchEngines = {
     # general search

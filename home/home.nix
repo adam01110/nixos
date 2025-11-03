@@ -32,5 +32,8 @@
     APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
   };
 
-  dconf.settings."org/gnome/desktop/wm/preferences".button-layout = "";
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences".button-layout = "";
+    "org/gnome/desktop/interface".gtk-enable-primary-paste = false;
+  };
 }

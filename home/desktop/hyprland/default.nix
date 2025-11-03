@@ -46,12 +46,12 @@ in
         portalPackage = null;
 
         plugins =
-          with inputs;
+          with inputs.hyprland-plugins.packages.${system};
           [
-            hyprland-plugins.packages.${system}.hyprfocus
-            hyprsplit.packages.${system}.hyprsplit
+            hyprfocus
           ]
-          ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ];
+          ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ]
+          ++ [ inputs.hyprsplit.packages.${system}.hyprsplit ];
       };
 
       home.packages = builtins.attrValues {

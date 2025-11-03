@@ -55,6 +55,8 @@ in
       vesktop.enable = false;
       nixcord.enable = false;
 
+      cava.rainbow.enable = true;
+
       zen-browser.profileNames = [
         "${username}"
         "academia"

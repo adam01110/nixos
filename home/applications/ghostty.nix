@@ -3,7 +3,6 @@
 {
   programs.ghostty = {
     enable = true;
-    clearDefaultKeybinds = true;
 
     settings = {
       # font settings
@@ -29,6 +28,7 @@
       copy-on-select = false;
       auto-update = "off";
       confirm-close-surface = false;
+      right-click-action = "ignore";
 
       keybind = [
         "super+ctrl+equal=unbind"
