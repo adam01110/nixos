@@ -5,6 +5,7 @@
     ./applications
     ./cli
     ./desktop
+    ./services
     ./git.nix
     ./gpg.nix
     ./home.nix

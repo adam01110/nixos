@@ -6,6 +6,7 @@
 }:
 
 let
+  inherit (builtins) attrValues;
   inherit (lib)
     mkEnableOption
     mkForce
@@ -22,6 +23,7 @@ in
     ./locale.nix
     ./nix.nix
     ./oxidize.nix
+    ./slim.nix
     ./sops.nix
     ./tweaks.nix
     ./user.nix
@@ -50,13 +52,14 @@ in
       };
     };
 
-    programs.nix-ld.enable = true;
     hardware.enableAllFirmware = true;
 
     security = {
       rtkit.enable = true;
       polkit.enable = true;
     };
+
+    networking.nftables.enable = true;
 
     environment = {
       etc."libinput/local-overrides.quirks" = mkIf config.hardware.roccat.enable {
@@ -71,7 +74,7 @@ in
       };
 
       # extra packages for secure boot and tpm luks
-      systemPackages = builtins.attrValues {
+      systemPackages = attrValues {
         inherit (pkgs)
           sbctl
           tpm2-tss

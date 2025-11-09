@@ -3,8 +3,11 @@
   ...
 }:
 
+let
+  inherit (builtins) attrValues;
+in
 {
-  home.packages = builtins.attrValues {
+  home.packages = attrValues {
     inherit (pkgs)
       speedtest-go
       tokei

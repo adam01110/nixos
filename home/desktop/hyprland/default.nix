@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   system,
@@ -8,12 +6,7 @@
 }:
 
 let
-  inherit (lib)
-    mkOption
-    mkIf
-    optionals
-    types
-    ;
+  inherit (builtins) attrValues;
 in
 {
   imports = [
@@ -25,54 +18,36 @@ in
     ./rules.nix
   ];
 
-  options.hyprland.overview = mkOption {
-    type = types.enum [
-      "quickshell"
-      "hyprexpo"
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    package = null;
+    portalPackage = null;
+
+    plugins = with inputs; [
+      hyprland-plugins.packages.${system}.hyprfocus
+      hyprsplit.packages.${system}.hyprsplit
     ];
-    default = "hyprexpo";
-    description = "Which overview to use for Hyprland.";
   };
 
-  config =
-    let
-      cfgOverview = config.hyprland.overview;
-    in
-    {
-      wayland.windowManager.hyprland = {
-        enable = true;
+  home.packages = attrValues {
+    inherit (pkgs)
+      hyprpicker
+      brightnessctl
+      ;
+  };
 
-        package = null;
-        portalPackage = null;
+  home.pointerCursor.hyprcursor.enable = true;
 
-        plugins =
-          with inputs.hyprland-plugins.packages.${system};
-          [
-            hyprfocus
-          ]
-          ++ optionals (cfgOverview == "hyprexpo") [ hyprexpo ]
-          ++ [ inputs.hyprsplit.packages.${system}.hyprsplit ];
-      };
+  programs.quickshell = {
+    enable = true;
+    systemd.enable = true;
 
-      home.packages = builtins.attrValues {
-        inherit (pkgs)
-          hyprpicker
-          brightnessctl
-          ;
-      };
+    package = pkgs.quickshell.overrideAttrs (prev: {
+      buildInputs = (prev.buildInputs or [ ]) ++ [ pkgs.qt6Packages.qt5compat ];
+    });
 
-      home.pointerCursor.hyprcursor.enable = true;
-
-      programs.quickshell = mkIf (cfgOverview == "quickshell") {
-        enable = true;
-        systemd.enable = true;
-
-        package = pkgs.quickshell.overrideAttrs (prev: {
-          buildInputs = (prev.buildInputs or [ ]) ++ [ pkgs.qt6Packages.qt5compat ];
-        });
-
-        activeConfig = "overview";
-        configs.overview = ./overview;
-      };
-    };
+    activeConfig = "overview";
+    configs.overview = ./overview;
+  };
 }

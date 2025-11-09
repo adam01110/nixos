@@ -9,4 +9,5 @@
   };
 
   zen-browser.commit-space = 6683;
+  zed.isVm = true;
 }

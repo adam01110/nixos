@@ -1,14 +1,18 @@
 {
-  lib,
   osConfig,
   ...
 }:
 
 let
+  inherit (builtins)
+    mapAttrs
+    toJSON
+    ;
+
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
   monospaceFont = osConfig.stylix.fonts.monospace.name;
 
-  colors = builtins.mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
+  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
   _module.args.noctaliaStylix.fonts = {
@@ -16,20 +20,24 @@ in
     fixed = monospaceFont;
   };
 
-  home.file.".config/noctalia/colors.json".text = builtins.toJSON {
-    mError = colors.base08;
-    mOnError = colors.base00;
-    mOnPrimary = colors.base00;
-    mOnSecondary = colors.base00;
-    mOnSurface = colors.base06;
-    mOnSurfaceVariant = colors.base05;
-    mOnTertiary = colors.base00;
-    mOutline = colors.base03;
-    mPrimary = colors.base0B;
-    mSecondary = colors.base0A;
-    mShadow = colors.base00;
-    mSurface = colors.base00;
-    mSurfaceVariant = colors.base01;
-    mTertiary = colors.base0B;
-  };
+  xdg.configFile."noctalia/colors.json".text =
+    with colors;
+    toJSON {
+      mError = base08;
+      mHover = base0D;
+      mOnHover = base00;
+      mOnError = base00;
+      mOnPrimary = base00;
+      mOnSecondary = base00;
+      mOnSurface = base06;
+      mOnSurfaceVariant = base05;
+      mOnTertiary = base00;
+      mOutline = base03;
+      mPrimary = base0B;
+      mSecondary = base0A;
+      mShadow = base00;
+      mSurface = base00;
+      mSurfaceVariant = base01;
+      mTertiary = base0B;
+    };
 }

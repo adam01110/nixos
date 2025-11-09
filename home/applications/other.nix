@@ -9,19 +9,9 @@
     [
       bleachbit
       bitwarden-desktop
-      decibels
-      devtoolbox
-      gimp
-      gnome-calculator
       helvum
-      komikku
-      loupe
-      mangojuice
       mcpelauncher-ui-qt
       newsflash
-      nucleus
-      obsidian
-      prismlauncher
       showtime
       upscayl
       warehouse
@@ -33,12 +23,21 @@
       dolphin
     ])
     ++ (with nur.repos; [
-      Ev357.helium
+      forkprince.helium-nightly
       ymstnt.beeper
     ]);
 
   services.flatpak.packages = [
-    "com.github.marhkb.Pods"
     "com.github.tchx84.Flatseal"
+    "io.github.plrigaux.sysd-manager"
+    "io.github.radiolamp.mangojuice"
+    "info.febvre.Komikku"
+    "me.iepure.devtoolbox"
+    "md.obsidian.Obsidian"
+    "org.gimp.GIMP"
+    "org.gnome.Calculator"
+    "org.gnome.Decibels"
+    "org.gnome.Loupe"
+    "page.codeberg.lo_vely.Nucleus"
   ];
 }

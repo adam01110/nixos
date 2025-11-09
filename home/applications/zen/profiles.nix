@@ -6,10 +6,11 @@
 }:
 
 let
+  inherit (builtins) attrValues;
   inherit (lib) foldl';
   inherit (vars) username;
 
-  commonExtensions = builtins.attrValues {
+  commonExtensions = attrValues {
     inherit (pkgs.nur.repos.rycee.firefox-addons)
       # content blocking
       ublock-origin

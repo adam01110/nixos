@@ -13,11 +13,9 @@
       cursor-style = "block";
       cursor-style-blink = true;
 
-      shell-integration = "none";
-
       # appearance settings
       title = "ghostty";
-      background-blur = true;
+      background-opacity = 0.9;
       window-theme = "system";
       window-decoration = "none";
       gtk-titlebar = false;

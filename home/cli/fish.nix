@@ -6,6 +6,7 @@
 }:
 
 let
+  inherit (builtins) attrValues;
   inherit (lib) getExe;
 in
 {
@@ -42,7 +43,6 @@ in
 
     shellAliases = {
       wget = "wcurl";
-      find = "fd";
       cat = "bat";
       grep = "rg";
       egrep = "rg";
@@ -68,7 +68,7 @@ in
     };
   };
 
-  home.packages = builtins.attrValues {
+  home.packages = attrValues {
     inherit (pkgs)
       fortune-kind
       boxes

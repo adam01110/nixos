@@ -17,5 +17,4 @@
   StartupTimings.enabled = true;
   UnlimitedAccounts.enabled = true;
   ValidUser.enabled = true;
-  WebpackTarball.enabled = true;
 }

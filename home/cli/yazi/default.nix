@@ -4,6 +4,8 @@
 }:
 
 let
+  inherit (builtins) attrValues listToAttrs;
+  inherit (pkgs.lib.attrsets) nameValuePair;
   imageAllocMB = 1024;
 in
 {
@@ -14,14 +16,27 @@ in
 
     shellWrapperName = "y";
 
-    plugins = {
-      full-border = pkgs.yaziPlugins.full-border;
-      mediainfo = pkgs.yaziPlugins.mediainfo;
-      smart-enter = pkgs.yaziPlugins.smart-enter;
-      smart-paste = pkgs.yaziPlugins.smart-paste;
-      starship = pkgs.yaziPlugins.starship;
-      wl-clipboard = ./plugins/wl-clipboard;
-    };
+    plugins =
+      let
+        mkPlugin = name: nameValuePair name pkgs.yaziPlugins.${name};
+      in
+      listToAttrs (
+        (map mkPlugin [
+          "full-border"
+          "git"
+          "mediainfo"
+          "smart-enter"
+          "smart-paste"
+          "starship"
+          "piper"
+        ])
+        ++ [
+          {
+            name = "ucp";
+            value = ./plugins/ucp.yazi;
+          }
+        ]
+      );
 
     settings = {
       mgr = {
@@ -47,19 +62,6 @@ in
       };
 
       plugin = {
-        prepend_fetchers = [
-          {
-            id = "git";
-            name = "*";
-            run = "git";
-          }
-          {
-            id = "git";
-            name = "*/";
-            run = "git";
-          }
-        ];
-
         prepend_previewers = [
           # Replace magick, image, video with mediainfo
           {
@@ -74,6 +76,10 @@ in
           {
             mime = "application/postscript";
             run = "mediainfo";
+          }
+          {
+            url = "*.md";
+            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark '$1'";
           }
         ];
 
@@ -102,9 +108,24 @@ in
 
     keymap.mgr.prepend_keymap = [
       {
+        on = "p";
+        run = "plugin ucp paste";
+        desc = "Paste";
+      }
+      {
         on = "y";
-        run = "plugin wl-clipboard";
-        desc = "Copy selected characters";
+        run = "plugin ucp copy";
+        desc = "Copy";
+      }
+      {
+        on = "p";
+        run = "plugin ucp paste notify";
+        desc = "Paste";
+      }
+      {
+        on = "y";
+        run = "plugin ucp copy notify";
+        desc = "Copy";
       }
       {
         on = "p";
@@ -134,10 +155,11 @@ in
     ];
   };
 
-  home.packages = builtins.attrValues {
+  home.packages = attrValues {
     inherit (pkgs)
       mediainfo
       wl-clipboard
+      glow
       ;
   };
 }
