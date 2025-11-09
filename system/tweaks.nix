@@ -5,13 +5,14 @@
 }:
 
 let
+  inherit (builtins) attrValues;
   inherit (lib)
     getExe
     getExe'
     ;
 in
 {
-  environment.systemPackages = builtins.attrValues {
+  environment.systemPackages = attrValues {
     inherit (pkgs)
       bash
       hdparm

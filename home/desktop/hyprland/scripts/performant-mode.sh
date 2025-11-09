@@ -14,9 +14,9 @@ if [ "$HYPRPERFORMANTMODE" = 1 ]; then
     keyword decoration:inactive_opacity 1"
 
   @hyprctl@ keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
-  @notifySend@ -u low -a "hyprland" " performant mode" "enabled"
+  @notifySend@ -u low -a "hyprland" "Performant mode" "Enabled"
   exit
 else
-  @notifySend@ -u low -a "hyprland" " performant mode" "disabled"
+  @notifySend@ -u low -a "hyprland" "Performant mode" "Disabled"
   @hyprctl@ reload
 fi

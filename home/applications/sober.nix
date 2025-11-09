@@ -5,6 +5,7 @@
 }:
 
 let
+  inherit (builtins) toJSON;
   inherit (lib) mkOption types;
 in
 {
@@ -22,7 +23,7 @@ in
     {
       services.flatpak.packages = [ pkgName ];
 
-      home.file.".var/app/${pkgName}/config/sober/config.json".text = builtins.toJSON {
+      home.file.".var/app/${pkgName}/config/sober/config.json".text = toJSON {
         allow_gamepad_permission = false;
         bring_back_oof = false;
         close_on_leave = false;

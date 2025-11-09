@@ -30,7 +30,10 @@ in
     };
   };
 
-  nix.settings.allowed-users = [ "${username}" ];
+  nix.settings = {
+    allowed-users = [ "${username}" ];
+    trusted-users = [ "${username}" ];
+  };
 
   home-manager = {
     useUserPackages = true;

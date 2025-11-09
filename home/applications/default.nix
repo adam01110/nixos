@@ -9,6 +9,7 @@
     ./lutris.nix
     ./onlyoffice.nix
     ./other.nix
+    ./prism.nix
     ./pwvucontrol.nix
     ./sober.nix
     ./zathura.nix

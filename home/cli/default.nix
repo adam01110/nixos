@@ -9,6 +9,7 @@
     ./bat.nix
     ./btop.nix
     ./cava.nix
+    ./codex.nix
     ./eza.nix
     ./fd.nix
     ./fish.nix

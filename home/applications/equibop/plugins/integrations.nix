@@ -13,7 +13,6 @@
     replacementEngine = "Brave";
   };
   ReverseImageSearch.enabled = true;
-  SteamStatusSync.enabled = true;
   UnitConverter = {
     enabled = true;
     myUnits = "metric";

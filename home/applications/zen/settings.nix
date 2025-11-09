@@ -5,6 +5,7 @@
 }:
 
 let
+  inherit (builtins) mapAttrs;
   inherit (lib)
     mkEnableOption
     mkOption
@@ -22,7 +23,7 @@ in
 
   config.programs.zen-browser.policies =
     let
-      mkLockedAttrs = builtins.mapAttrs (
+      mkLockedAttrs = mapAttrs (
         _: value: {
           Value = value;
           default = 3276;
@@ -30,7 +31,7 @@ in
         }
       );
 
-      mkExtensionSettings = builtins.mapAttrs (
+      mkExtensionSettings = mapAttrs (
         _: pluginId: {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
           installation_mode = "force_installed";

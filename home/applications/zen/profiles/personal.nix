@@ -7,6 +7,7 @@
 }:
 
 let
+  inherit (builtins) attrValues;
   nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 in
 {
@@ -15,7 +16,7 @@ in
       force = true;
       packages =
         commonExtensions
-        ++ builtins.attrValues {
+        ++ attrValues {
           inherit (pkgs.nur.repos.rycee.firefox-addons)
             modrinthify
             proton-vpn

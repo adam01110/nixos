@@ -7,6 +7,7 @@
 
 let
   inherit (vars) username;
+  disabledTargets = import ./disabled.nix { };
 
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
 in
@@ -47,14 +48,7 @@ in
       terminal = 10;
     };
 
-    targets = {
-      gnome.enable = false;
-      kde.enable = false;
-      obsidian.enable = false;
-      vencord.enable = false;
-      vesktop.enable = false;
-      nixcord.enable = false;
-
+    targets = disabledTargets // {
       cava.rainbow.enable = true;
 
       zen-browser.profileNames = [

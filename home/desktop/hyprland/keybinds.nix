@@ -8,6 +8,11 @@
 }:
 
 let
+  inherit (builtins)
+    attrValues
+    readFile
+    replaceStrings
+    ;
   inherit (lib)
     getExe
     getExe'
@@ -26,7 +31,7 @@ in
       notify-send = getExe' pkgs.libnotify "notify-send";
 
       qs = getExe' pkgs.quickshell ".quickshell-wrapped";
-      noctalia = "${getExe' inputs.noctalia.packages.${pkgs.system}.default "noctalia-shell"} ipc call";
+      noctalia = "${getExe' inputs.noctalia.packages.${system}.default "noctalia-shell"} ipc call";
     in
     {
       binds.movefocus_cycles_fullscreen = true;
@@ -42,12 +47,11 @@ in
           zen-browser = getExe inputs.zen-browser.packages."${system}".default;
           app2unit = "${getExe pkgs.app2unit} -- ";
 
-          cfgOverview = config.hyprland.overview;
           screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
 
           performantMode = pkgs.writeShellApplication {
             name = "performantMode";
-            runtimeInputs = builtins.attrValues {
+            runtimeInputs = attrValues {
               inherit (pkgs)
                 bash
                 gawk
@@ -56,10 +60,8 @@ in
             };
             excludeShellChecks = [ "SC2276" ];
             text =
-              builtins.replaceStrings
-                [ "@bash@" "@hyprctl@" "@gawk@" "@notifySend@" ]
-                [ bash hyprctl gawk notify-send ]
-                (builtins.readFile ./scripts/performant-mode.sh);
+              replaceStrings [ "@bash@" "@hyprctl@" "@gawk@" "@notifySend@" ] [ bash hyprctl gawk notify-send ]
+                (readFile ./scripts/performant-mode.sh);
           };
         in
         [
@@ -72,7 +74,6 @@ in
           "SUPER, 6, split:workspace, 6"
           "SUPER, 7, split:workspace, 7"
           "SUPER, 8, split:workspace, 8"
-          "SUPER, 9, split:workspace, 9"
 
           "SUPER SHIFT, 1, split:movetoworkspace, 1"
           "SUPER SHIFT, 2, split:movetoworkspace, 2"
@@ -132,6 +133,7 @@ in
           "SUPER, J, movefocus, d"
 
           # miscellaneous
+          "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle"
           "SUPER, F1, exec, ${getExe performantMode}"
 
           # zoom
@@ -164,13 +166,7 @@ in
           "SUPER, N, exec, ${app2unit} ${equibop}"
           "SUPER, B, exec, ${app2unit} ${zen-browser}"
           "SUPER, M, exec, ${app2unit} ${steam}"
-        ]
-        ++ (
-          if cfgOverview == "quickshell" then
-            [ "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle" ]
-          else
-            [ "SUPER SHIFT, TAB, hyprexpo:expo, toggle" ]
-        );
+        ];
 
       bindm = [
         # window manipulation

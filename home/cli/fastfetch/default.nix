@@ -96,7 +96,7 @@ in
           keyColor = "cyan";
         }
         {
-          type = "wmtheme";
+          type = "theme";
           key = "│ ├󰉼 THEME";
           keyColor = "cyan";
         }

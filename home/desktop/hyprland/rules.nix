@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   inputs,
@@ -9,9 +8,9 @@
 
 let
   inherit (lib)
+    escapeRegex
     getExe
     getExe'
-    optionals
     ;
 in
 {
@@ -20,37 +19,35 @@ in
       let
         hyprctl = getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl";
 
-        xdg-desktop-portal-hyprland = getExe pkgs.xdg-desktop-portal-hyprland;
+        xdg-desktop-portal-hyprland =
+          getExe' inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland
+            ".xdg-desktop-portal-hyprland-wrapped";
         grim = getExe pkgs.grim;
         hyprpicker = getExe pkgs.hyprpicker;
         equibop = getExe pkgs.equibop;
-        quickshell = getExe pkgs.quickshell;
-
-        cfgOverview = config.hyprland.overview;
+        quickshell = getExe' pkgs.quickshell ".quickshell-wrapped";
       in
       [
-        "${hyprctl}, plugin, allow"
+        "${escapeRegex hyprctl}, plugin, allow"
 
-        "${xdg-desktop-portal-hyprland}, screencopy, allow"
-        "${grim}, screencopy, allow"
-        "${hyprpicker}, screencopy, allow"
-        "${equibop}, screencopy, allow"
-      ]
-      ++ optionals (cfgOverview == "quickshell") [ "${quickshell}, screencopy, allow" ];
+        "${escapeRegex xdg-desktop-portal-hyprland}, screencopy, allow"
+        "${escapeRegex grim}, screencopy, allow"
+        "${escapeRegex hyprpicker}, screencopy, allow"
+        "${escapeRegex quickshell}, screencopy, allow"
+        "${escapeRegex equibop}, screencopy, allow"
+      ];
 
     layerrule = [
       "noanim, ^hyprpicker$"
       "noanim, ^selection$"
       "noanim, ^noctalia.*$"
 
-      "ignorealpha 0.9, ^noctalia.*$"
-
-      "blur, noctalia-dock-main"
-      "blur, noctalia-dock-peek"
+      "ignorealpha 0.9, ^noctalia-dock.*$"
+      "blur, noctalia-dock.*"
     ];
 
     windowrule = [
-      "opacity 1 override 1 override, class:^(ghostty)$"
+      "opacity 1 override 1 override, class:^(com.mitchellh.ghostty)$"
       "opacity 1 override 1 override, class:^(equibop)$"
       "opacity 1 override 1 override, class:^(steam_app_.*)$"
 

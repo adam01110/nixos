@@ -1,11 +1,11 @@
 {
-  lib,
   osConfig,
   ...
 }:
 
 let
-  colors = builtins.mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
+  inherit (builtins) mapAttrs;
+  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
   _module.args.equibopStylix = {

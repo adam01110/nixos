@@ -14,3 +14,5 @@ end
 
 -- starship.yazi
 require("starship"):setup()
+-- full-border.yazi
+require("full-border"):setup()
