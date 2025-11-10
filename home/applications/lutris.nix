@@ -7,7 +7,7 @@
   config.programs.lutris = {
     enable = true;
 
-    #steamPackage = pkgs.steam-millennium;
+    steamPackage = pkgs.steam-millennium;
 
     extraPackages = [ pkgs.umu-launcher ];
 

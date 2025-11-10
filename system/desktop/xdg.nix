@@ -20,13 +20,24 @@
             "gnome-keyring"
           ];
         };
-        hyprland.default = [
-          "hyprland"
-          "gtk"
-        ];
+        hyprland = {
+          default = [
+            "hyprland"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.FileChooser" = [
+            "kde"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [
+            "gnome-keyring"
+          ];
+        };
       };
 
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        kdePackages.xdg-desktop-portal-kde
+      ];
     };
 
     # Cursor theme Bibata cursor theme fallback

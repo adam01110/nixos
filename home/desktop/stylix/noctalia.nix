@@ -38,6 +38,6 @@ in
       mShadow = base00;
       mSurface = base00;
       mSurfaceVariant = base01;
-      mTertiary = base0B;
+      mTertiary = base0D;
     };
 }

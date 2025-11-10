@@ -40,7 +40,7 @@ in
         let
           dolphin = getExe' pkgs.kdePackages.dolphin "dolphin";
           equibop = getExe pkgs.equibop;
-          ghostty = getExe pkgs.ghostty;
+          ghostty = "${getExe pkgs.ghostty} +new-window";
           hyprpicker = getExe pkgs.hyprpicker;
           hyprshot = getExe pkgs.hyprshot;
           steam = getExe pkgs.steam;
