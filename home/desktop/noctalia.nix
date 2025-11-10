@@ -13,6 +13,7 @@
 let
   inherit (lib)
     getExe
+    mkAfter
     mkEnableOption
     optionals
     ;
@@ -49,6 +50,7 @@ in
         audio.visualizerType = "mirrored";
 
         bar = {
+          density = "compact";
           widgets = {
             left = [
               {
@@ -57,6 +59,7 @@ in
                 showCpuUsage = true;
                 showMemoryAsPercent = false;
                 showMemoryUsage = true;
+                usePrimaryColor = true;
               }
               {
                 id = "LockKeys";
@@ -87,7 +90,13 @@ in
               }
             ];
             right = [
-              { id = "Tray"; }
+              {
+                id = "Tray";
+                favorites = [
+                  "Equibop"
+                  "Beeper"
+                ];
+              }
               { id = "Volume"; }
               { id = "Microphone"; }
               {

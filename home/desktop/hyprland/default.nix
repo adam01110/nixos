@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   system,
@@ -17,6 +18,9 @@ in
     ./plugins.nix
     ./rules.nix
   ];
+
+  xdg.configFile."uwsm/env".source =
+    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   wayland.windowManager.hyprland = {
     enable = true;

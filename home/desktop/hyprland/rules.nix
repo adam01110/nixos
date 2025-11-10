@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   inputs,
@@ -25,7 +26,7 @@ in
         grim = getExe pkgs.grim;
         hyprpicker = getExe pkgs.hyprpicker;
         equibop = getExe pkgs.equibop;
-        quickshell = getExe' pkgs.quickshell ".quickshell-wrapped";
+        quickshell = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       in
       [
         "${escapeRegex hyprctl}, plugin, allow"
