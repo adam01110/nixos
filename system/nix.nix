@@ -5,6 +5,7 @@
 
 {
   nix.settings = {
+    # core nix substituters.
     substituters = [
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
@@ -22,13 +23,14 @@
       "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
     ];
 
-    # enable nix flakes
+    # enable modern commands and flakes.
     experimental-features = [
       "nix-command"
       "flakes"
     ];
   };
 
+  # nixpkgs settings and overlays.
   nixpkgs = {
     config.allowUnfree = true;
 

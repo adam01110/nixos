@@ -3,11 +3,14 @@
   ...
 }:
 
+# system stylix theme: colors, fonts, and cursor.
 {
   stylix = {
     enable = true;
 
     polarity = "dark";
+
+    # tweaked default tinted gruvbox-dark colorscheme to use the lighter colors.
     base16Scheme = {
       base00 = "#282828";
       base01 = "#3c3836";
@@ -33,6 +36,7 @@
       size = 24;
     };
 
+    # configure the use of the JetBrainsMono fonts without ligatures
     fonts = {
       serif = {
         package = pkgs.nerd-fonts.jetbrains-mono;

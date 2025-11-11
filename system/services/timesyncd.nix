@@ -1,5 +1,6 @@
 { ... }:
 
+# ntp servers for systemd-timesyncd.
 {
   services.timesyncd.servers = [
     "server 0.pool.ntp.org"

@@ -3,11 +3,13 @@
   ...
 }:
 
+# xdg default application associations consolidated from submodules.
 let
   inherit (lib) foldl';
 
   moduleArgs = { };
 
+  # split application categories into separate small files.
   applicationFiles = [
     ./applications/protocols.nix
     ./applications/misc.nix
@@ -22,6 +24,7 @@ let
     ./applications/image-editors.nix
   ];
 
+  # merge all category maps left-to-right.
   defaultApplications = foldl' (acc: file: acc // (import file moduleArgs)) { } applicationFiles;
 in
 {

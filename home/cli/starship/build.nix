@@ -1,5 +1,6 @@
 { ... }:
 
+# build-system modules for starship prompt.
 {
   cmake = {
     format = "[ ](#00000000)[](fg:base01)[$symbol($version)]($style)[](fg:base01)";

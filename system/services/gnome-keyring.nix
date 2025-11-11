@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # disable the gnome keyring ssh agent integration.
   nixpkgs.overlays = [
     (final: prev: {
       gnome = prev.gnome.overrideScope (
@@ -15,6 +16,7 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  # hook keyring into login and greetd sessions.
   security.pam.services = {
     login.enableGnomeKeyring = true;
     greetd.enableGnomeKeyring = true;

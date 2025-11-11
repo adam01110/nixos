@@ -1,4 +1,5 @@
 {
+  # home manager hyprland configuration: plugins, quickshell, and extras.
   config,
   pkgs,
   inputs,
@@ -19,6 +20,7 @@ in
     ./rules.nix
   ];
 
+  # make hm's session variables available to uwsm.
   xdg.configFile."uwsm/env".source =
     "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
@@ -34,6 +36,7 @@ in
     ];
   };
 
+  # useful desktop utilities.
   home.packages = attrValues {
     inherit (pkgs)
       hyprpicker
@@ -43,6 +46,7 @@ in
 
   home.pointerCursor.hyprcursor.enable = true;
 
+  # enable quickshell and add qt5compat for compatibility.
   programs.quickshell = {
     enable = true;
     systemd.enable = true;

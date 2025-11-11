@@ -3,6 +3,7 @@
   ...
 }:
 
+# reuse the system’s sops settings in home manager.
 {
   sops = {
     defaultSopsFile = osConfig.sops.defaultSopsFile;

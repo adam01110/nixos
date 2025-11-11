@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   inputs,
@@ -18,7 +19,7 @@ in
   wayland.windowManager.hyprland.settings = {
     permission =
       let
-        hyprctl = getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl";
+        hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
 
         xdg-desktop-portal-hyprland =
           getExe' inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland

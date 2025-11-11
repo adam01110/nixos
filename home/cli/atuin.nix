@@ -6,7 +6,7 @@
 
     daemon = {
       # TODO
-      #enable = true;
+      # enable = true;
       logLevel = "error";
     };
 

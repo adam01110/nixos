@@ -124,7 +124,7 @@ in
                 let
                   base = "${name}, ${cfg.resolution}, ${cfg.position}, ${toString cfg.scale}";
 
-                  # Optional parameters
+                  # optional parameters
                   transform =
                     if (cfg.transform or null) != null then ", transform, ${toString cfg.transform}" else "";
                   mirror = if (cfg.mirror or null) != null then ", mirror, ${cfg.mirror}" else "";

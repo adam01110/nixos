@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # mdns/dns-sd discovery for local network.
   services.avahi = {
     enable = true;
 

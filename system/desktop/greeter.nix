@@ -1,11 +1,11 @@
 {
+  config,
   pkgs,
   lib,
-  inputs,
-  system,
   ...
 }:
 
+# text-based greeter (greetd + tuigreet).
 let
   inherit (lib)
     concatStringsSep
@@ -15,6 +15,8 @@ in
 {
   services.greetd = {
     enable = true;
+
+    # extra required tweaks for tty greeters with greetd, do not touch.
     useTextGreeter = true;
 
     settings = {
@@ -22,7 +24,7 @@ in
         command =
           let
             tuigreet = getExe pkgs.tuigreet;
-            hyprland = getExe inputs.hyprland.packages.${system}.hyprland;
+            hyprland = getExe config.programs.hyprland.package;
           in
           concatStringsSep " " [
             "${tuigreet}"
@@ -37,4 +39,7 @@ in
       };
     };
   };
+
+  # ensure tuigreet is present system-wide.
+  systemPackages = [ pkgs.tuigreet ];
 }

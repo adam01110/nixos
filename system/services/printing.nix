@@ -4,6 +4,7 @@
   ...
 }:
 
+# optional printing service, toggled per host.
 let
   inherit (lib)
     mkEnableOption

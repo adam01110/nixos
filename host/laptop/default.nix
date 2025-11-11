@@ -1,28 +1,31 @@
 {
-  pkgs,
   vars,
   ...
 }:
 
+# laptop host profile: hardware, home manager imports, battery-friendly defaults, and optional services.
 let
   inherit (vars) username;
 in
 {
   networking.hostName = "laptop";
 
+  # import host-specific hardware configuration.
   imports = [ ./hardware.nix ];
   home-manager.users.${username}.imports = [ ./home.nix ];
 
+  # primary install disk for disko partitioning.
   disko.selectedDisk = "/dev/nvme0n1";
 
+  # per-host optional services and settings.
   optServices = {
     bluetooth.enable = true;
-    fwupd.enable = true;
     printing.enable = true;
     timezone = "automatic-timezoned";
     wifi.enable = true;
   };
 
+  # tlp tuning for power management on battery.
   services.tlp = {
     enable = true;
 
@@ -55,7 +58,6 @@ in
     };
   };
 
-  home.packages = [ pkgs.powertop ];
-
+  # extra hardware toggles.
   hardware.roccat.enable = true;
 }

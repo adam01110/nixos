@@ -4,6 +4,7 @@
   ...
 }:
 
+# networking: resolved + networkmanager, optional wi‑fi via iwd.
 let
   inherit (lib)
     mkEnableOption
@@ -26,6 +27,7 @@ in
           "dns/${hostname}/dns_4" = { };
         };
 
+        # template for resolved.conf carrying dns servers from sops.
         templates."resolved-dns.conf".content = ''
           [Resolve]
           DNS=${config.sops.placeholder."dns/${hostname}/dns_1"}
@@ -59,6 +61,7 @@ in
     environment.etc."systemd/resolved.conf.d/00-dns.conf".source =
       config.sops.templates."resolved-dns.conf".path;
 
+    # networkmanager with iwd wi‑fi backend when enabled.
     networking =
       let
         cfgWifi = config.optServices.wifi.enable;

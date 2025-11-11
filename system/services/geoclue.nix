@@ -4,6 +4,7 @@
   ...
 }:
 
+# geoclue2 service with optional "static" location provider.
 let
   inherit (lib)
     mkEnableOption
@@ -25,11 +26,17 @@ in
       {
         services.geoclue2 = {
           enable = true;
+
+          # use wi‑fi positioning only when wi‑fi is enabled in the system.
           enableWifi = config.optServices.wifi.enable;
+
+          # disable radio/serial backends to avoid unnecessary hardware usage.
           enableCDMA = false;
           enableModemGPS = false;
           enable3G = false;
           enableNmea = false;
+
+          # optionally turn on the staa
           enableStatic = cfg.enable;
         };
       }
@@ -41,11 +48,14 @@ in
           in
           {
             secrets = {
+              # per‑host secret values holding the coordinates.
               "geoclue2_static/${hostname}/longitude" = { };
               "geoclue2_static/${hostname}/latitude" = { };
               "geoclue2_static/${hostname}/altitude" = { };
             };
 
+            # build the /etc/geolocation content expected by geoclue’s static
+            # provider: latitude, longitude, altitude, accuracy (meters).
             templates."geoclue-static".content = ''
               ${config.sops.placeholder."geoclue2_static/${hostname}/latitude"}
               ${config.sops.placeholder."geoclue2_static/${hostname}/longitude"}
@@ -54,6 +64,7 @@ in
             '';
           };
 
+        # install the generated file.
         environment.etc.geolocation = mkForce {
           source = config.sops.templates."geoclue-static".path;
           mode = "0440";
