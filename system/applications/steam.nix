@@ -1,4 +1,5 @@
 {
+  # steam with millennium, proton ge, and sensible defaults.
   pkgs,
   ...
 }:
@@ -13,6 +14,7 @@
 
     protontricks.enable = true;
 
+    # include custom proton builds.
     extraCompatPackages = [ pkgs.proton-ge-custom ];
 
     fontPackages = [ pkgs.noto-fonts-cjk-sans ];

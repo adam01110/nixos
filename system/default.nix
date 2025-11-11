@@ -29,11 +29,14 @@ in
     ./user.nix
   ];
 
+  # custom option gate for roccat kain 100 mouse hardware quirks.
   options.hardware.roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
 
   config = {
+    # dont change.
     system.stateVersion = "25.05";
 
+    # bootloader, kernel, and initrd configuration.
     boot = {
       kernelPackages = pkgs.linuxPackages_cachyos;
       initrd.services.udev.packages = [ pkgs.numworks-udev-rules ];
@@ -41,7 +44,7 @@ in
       loader = {
         timeout = 0;
 
-        # bootloader with secure boot
+        # secure boot is handled via lanzaboote below.
         systemd-boot.enable = mkForce false;
         efi.canTouchEfiVariables = true;
       };
@@ -52,6 +55,7 @@ in
       };
     };
 
+    # firmware, polkit, rtkit and other core security niceties.
     hardware.enableAllFirmware = true;
 
     security = {
@@ -59,9 +63,11 @@ in
       polkit.enable = true;
     };
 
+    # use nftables; individual services will add rules if needed.
     networking.nftables.enable = true;
 
     environment = {
+      # optional libinput quirk for specific roccat mouse.
       etc."libinput/local-overrides.quirks" = mkIf config.hardware.roccat.enable {
         text = ''
           [ROCCAT ROCCAT Kain 100]
@@ -73,7 +79,7 @@ in
         group = "root";
       };
 
-      # extra packages for secure boot and tpm luks
+      # extra packages for lanzaboote.
       systemPackages = attrValues {
         inherit (pkgs)
           sbctl

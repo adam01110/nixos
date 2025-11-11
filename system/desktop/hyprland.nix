@@ -4,6 +4,7 @@
   ...
 }:
 
+# system-wide hyprland setup using packages from the hyprland flake.
 {
   programs.hyprland = {
     enable = true;

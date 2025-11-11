@@ -1,11 +1,14 @@
 { ... }:
 
 {
+  # user-level files and session environment.
   home = {
+    # copy user avatar to ~/.face for display managers.
     file.".face".source = ../face.png;
 
     preferXdgDirectories = true;
 
+    # wayland-first environment, renderers, and toolkit hints.
     sessionVariables = {
       MAGICK_OPENCL_DEVICE = "gpu";
       RUSTICL_ENABLE = "radeonsi";
@@ -32,6 +35,7 @@
     };
   };
 
+  # minimal dconf tweaks used by some apps.
   dconf.settings = {
     "org/gnome/desktop/wm/preferences".button-layout = "";
     "org/gnome/desktop/interface".gtk-enable-primary-paste = false;

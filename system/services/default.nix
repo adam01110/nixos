@@ -5,7 +5,6 @@
     ./ananicy.nix
     ./avahi.nix
     ./bluetooth.nix
-    ./fwupd.nix
     ./geoclue.nix
     ./gnome-keyring.nix
     ./locate.nix

@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # per-user flatpak overrides to improve wayland integration.
   services.flatpak.overrides.global = {
     Context.filesystems = [ "xdg-config/dconf:ro" ];
 

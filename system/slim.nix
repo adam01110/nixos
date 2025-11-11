@@ -3,6 +3,7 @@
   ...
 }:
 
+# trim down default packages and documentation to keep install small.
 let
   inherit (lib) mkForce;
 in

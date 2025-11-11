@@ -7,38 +7,55 @@
   ...
 }:
 
+# user account and home manager setup.
 let
   inherit (vars) username;
 in
 {
+  # ensure the user account can be created with a password managed by sops-nix.
   sops.secrets.user_password.neededForUsers = true;
 
   users = {
+    # manage users declaratively, disables imperative changes via passwd/useradd.
     mutableUsers = false;
 
     users.${username} = {
+      # hashed password file provided by sops-nix.
       hashedPasswordFile = config.sops.secrets.user_password.path;
-      isNormalUser = true;
-      ignoreShellProgramCheck = true;
-      description = "${username}";
+
+      # group memberships:
+      # - wheel: administrative access via sudo-rs.
+      # - audio: access to sound devices.
+      # - networkmanager: control network connections.
       extraGroups = [
         "wheel"
         "audio"
         "networkmanager"
       ];
+
+      isNormalUser = true;
+      ignoreShellProgramCheck = true;
+      description = "${username}";
       shell = pkgs.fish;
     };
   };
 
+  # allow the user to perform privileged nix operations.
   nix.settings = {
     allowed-users = [ "${username}" ];
     trusted-users = [ "${username}" ];
   };
 
+  # home manager setup.
   home-manager = {
+    # install home manager packages into the user's profile instead of the system profile.
     useUserPackages = true;
+    # reuse the system's nixpkgs for consistency and caching.
     useGlobalPkgs = true;
+    # suffix used when home manager backs up existing files it will manage.
     backupFileExtension = "backup";
+
+    # pass shared context (flake inputs, system, and vars) to home manager modules.
     extraSpecialArgs = {
       inherit
         inputs
@@ -48,7 +65,10 @@ in
     };
 
     users.${username} = {
+      # enable the `home-manager` command for this user.
       programs.home-manager.enable = true;
+
+      # home manager module sources from flake inputs.
       imports =
         with inputs;
         [
@@ -59,10 +79,15 @@ in
           zen-browser.homeModules.beta
           equinix.homeModules.equinix
         ]
+        # and the repo's own home manager modules.
         ++ [ ./../home ];
+
       home = {
+        # home-manager account identity.
         username = "${username}";
         homeDirectory = "/home/${username}";
+
+        # align home manager state version with the system.
         stateVersion = config.system.stateVersion;
       };
     };

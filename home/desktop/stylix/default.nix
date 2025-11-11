@@ -5,6 +5,7 @@
   ...
 }:
 
+# per-user stylix customization layered on top of system stylix.
 let
   inherit (vars) username;
   disabledTargets = import ./disabled.nix { };
@@ -48,6 +49,7 @@ in
       terminal = 10;
     };
 
+    # enable/disable specific stylix targets.
     targets = disabledTargets // {
       cava.rainbow.enable = true;
 
@@ -58,5 +60,6 @@ in
     };
   };
 
+  # keep zathura fonts consistent with the desktop.
   programs.zathura.options.font = sansSerifFont;
 }

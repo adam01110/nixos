@@ -3,9 +3,11 @@
   ...
 }:
 
+# yazi tui file manager.
 let
   inherit (builtins) attrValues listToAttrs;
   inherit (pkgs.lib.attrsets) nameValuePair;
+
   imageAllocMB = 1024;
 in
 {
@@ -16,6 +18,7 @@ in
 
     shellWrapperName = "y";
 
+    # enable plugins.
     plugins =
       let
         mkPlugin = name: nameValuePair name pkgs.yaziPlugins.${name};
@@ -30,6 +33,7 @@ in
           "starship"
           "piper"
         ])
+        # ucp is not in nixpkgs yet.
         ++ [
           {
             name = "ucp";
@@ -61,9 +65,10 @@ in
         max_height = 1200;
       };
 
+      # use mediainfo for rich previews and piper with glow for markdown.
       plugin = {
         prepend_previewers = [
-          # Replace magick, image, video with mediainfo
+          # replace magick, image, video with mediainfo
           {
             mime = "{audio,video,image}/*";
             run = "mediainfo";
@@ -72,7 +77,7 @@ in
             mime = "application/subrip";
             run = "mediainfo";
           }
-          # Adobe Illustrator, Adobe Photoshop is image/adobe.photoshop, already handled above
+          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above
           {
             mime = "application/postscript";
             run = "mediainfo";
@@ -84,7 +89,7 @@ in
         ];
 
         prepend_preloaders = [
-          # Replace magick, image, video with mediainfo
+          # replace magick, image, video with mediainfo
           {
             mime = "{audio,video,image}/*";
             run = "mediainfo";
@@ -93,7 +98,7 @@ in
             mime = "application/subrip";
             run = "mediainfo";
           }
-          # Adobe Illustrator, Adobe Photoshop is image/adobe.photoshop, already handled above
+          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above
           {
             mime = "application/postscript";
             run = "mediainfo";
@@ -101,7 +106,9 @@ in
         ];
       };
 
+      # control memory used by image previews.
       tasks.image_alloc = imageAllocMB * 1024 * 1024;
+
       input.cursor_blink = false;
       which.sort_translit = true;
     };

@@ -1,4 +1,5 @@
 {
+  osConfig,
   lib,
   pkgs,
   inputs,
@@ -18,7 +19,7 @@ in
 
     settings =
       let
-        hyprctl = getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl";
+        hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
       in
       {
         general = {

@@ -4,6 +4,7 @@
   ...
 }:
 
+# optional openssh server, toggled per host.
 let
   inherit (lib)
     mkEnableOption

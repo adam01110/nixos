@@ -4,6 +4,7 @@
   ...
 }:
 
+# time zone configuration with optional automatic mode.
 let
   inherit (lib)
     mkIf
@@ -18,12 +19,13 @@ in
     default = null;
     example = "Europe/Amsterdam";
     description = ''
-      Configure the system time zone or enable automatic adjustment.
-      Set to a time zone string (for example "Europe/Amsterdam") to use a fixed time zone,
+      configure the system time zone or enable automatic adjustment.
+      set to a time zone string (for example "europe/amsterdam") to use a fixed time zone,
       or to "automatic-timezoned" to enable the automatic-timezoned service.
     '';
   };
 
+  # choose between a fixed time zone or automatic-timezoned service.
   config =
     let
       cfgTimezone = config.optServices.timezone;

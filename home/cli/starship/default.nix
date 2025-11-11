@@ -5,6 +5,7 @@
   ...
 }:
 
+# build starship config by merging smaller segment files.
 let
   inherit (lib) foldl' recursiveUpdate;
 
@@ -12,6 +13,7 @@ let
     inherit config lib pkgs;
   };
 
+  # segment files grouped by feature area.
   segmentFiles = [
     ./build.nix
     ./container.nix
@@ -23,11 +25,10 @@ let
     ./runtimes.nix
   ];
 
-  starshipSettings =
-    foldl'
-      (acc: file: recursiveUpdate acc (import file segmentArgs))
-      { }
-      segmentFiles;
+  # fold all segments into a single attribute set.
+  starshipSettings = foldl' (
+    acc: file: recursiveUpdate acc (import file segmentArgs)
+  ) { } segmentFiles;
 in
 {
   programs.starship = {

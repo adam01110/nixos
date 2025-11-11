@@ -28,7 +28,7 @@ in
     let
       bash = getExe pkgs.bash;
       gawk = getExe pkgs.gawk;
-      hyprctl = getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl";
+      hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
       notify-send = getExe' pkgs.libnotify "notify-send";
 
       qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
