@@ -1,4 +1,5 @@
 {
+  osConfig,
   pkgs,
   ...
 }:
@@ -7,10 +8,9 @@
   config.programs.lutris = {
     enable = true;
 
-    steamPackage = pkgs.steam-millennium;
-
     extraPackages = [ pkgs.umu-launcher ];
 
-    protonPackages = [ pkgs.proton-ge-bin ];
+    steamPackage = osConfig.programs.steam.package;
+    protonPackages = osConfig.programs.steam.extraCompatPackages;
   };
 }

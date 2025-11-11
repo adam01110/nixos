@@ -13,7 +13,6 @@
 let
   inherit (lib)
     getExe
-    mkAfter
     mkEnableOption
     optionals
     ;
@@ -43,11 +42,14 @@ in
         appLauncher = {
           backgroundOpacity = 0.95;
           enableClipboardHistory = true;
-          terminalCommand = "${getExe pkgs.ghostty} -e";
+          terminalCommand = "${getExe config.programs.ghostty.package} -e";
           useApp2Unit = true;
         };
 
-        audio.visualizerType = "mirrored";
+        audio = {
+          visualizerQuality = "low";
+          visualizerType = "mirrored";
+        };
 
         bar = {
           density = "compact";
@@ -124,7 +126,8 @@ in
               }
               {
                 id = "ControlCenter";
-                icon = "atom-2-filled";
+                colorizeDistroLogo = true;
+                useDistroLogo = true;
               }
             ];
           };

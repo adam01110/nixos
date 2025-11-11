@@ -22,7 +22,7 @@ in
 
   stylix = {
     cursor = {
-      name = "Bibata-Modern-Gruvbox";
+      name = "Bibata-Modern-Gruvbox-Dark";
       package = pkgs.nur.repos.adam0.bibata-modern-cursors-gruvbox-dark;
       size = 24;
     };
@@ -35,10 +35,10 @@ in
     };
 
     opacity = {
-      applications = 0.95;
-      desktop = 0.95;
-      popups = 0.95;
-      terminal = 0.95;
+      applications = 0.9;
+      desktop = 0.9;
+      popups = 0.9;
+      terminal = 0.9;
     };
 
     fonts.sizes = {

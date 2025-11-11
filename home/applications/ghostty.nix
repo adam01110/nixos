@@ -15,7 +15,6 @@
 
       # appearance settings
       title = "ghostty";
-      background-opacity = 0.9;
       window-theme = "system";
       window-decoration = "none";
       gtk-titlebar = false;
