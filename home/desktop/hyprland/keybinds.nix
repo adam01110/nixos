@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   inputs,
@@ -30,20 +31,20 @@ in
       hyprctl = getExe' inputs.hyprland.packages.${system}.hyprland "hyprctl";
       notify-send = getExe' pkgs.libnotify "notify-send";
 
-      qs = getExe' pkgs.quickshell ".quickshell-wrapped";
+      qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       noctalia = "${getExe' inputs.noctalia.packages.${system}.default "noctalia-shell"} ipc call";
     in
     {
       binds.movefocus_cycles_fullscreen = true;
 
-      bind =
+      bindd =
         let
           dolphin = getExe' pkgs.kdePackages.dolphin "dolphin";
-          equibop = getExe pkgs.equibop;
-          ghostty = "${getExe pkgs.ghostty} +new-window";
-          hyprpicker = getExe pkgs.hyprpicker;
+          equibop = getExe config.programs.equinix.equibop.package;
+          ghostty = "${getExe config.programs.ghostty.package} +new-window";
+          hyprpicker = getExe config.programs.hyprshot.package;
           hyprshot = getExe pkgs.hyprshot;
-          steam = getExe pkgs.steam;
+          steam = getExe osConfig.programs.steam.package;
           zen-browser = getExe inputs.zen-browser.packages."${system}".default;
           app2unit = "${getExe pkgs.app2unit} -- ";
 
@@ -66,132 +67,165 @@ in
         in
         [
           # workspaces
-          "SUPER, 1, split:workspace, 1"
-          "SUPER, 2, split:workspace, 2"
-          "SUPER, 3, split:workspace, 3"
-          "SUPER, 4, split:workspace, 4"
-          "SUPER, 5, split:workspace, 5"
-          "SUPER, 6, split:workspace, 6"
-          "SUPER, 7, split:workspace, 7"
-          "SUPER, 8, split:workspace, 8"
+          "SUPER, 1, Switch to workspace 1, split:workspace, 1"
+          "SUPER, 2, Switch to workspace 2, split:workspace, 2"
+          "SUPER, 3, Switch to workspace 3, split:workspace, 3"
+          "SUPER, 4, Switch to workspace 4, split:workspace, 4"
+          "SUPER, 5, Switch to workspace 5, split:workspace, 5"
+          "SUPER, 6, Switch to workspace 6, split:workspace, 6"
+          "SUPER, 7, Switch to workspace 7, split:workspace, 7"
+          "SUPER, 8, Switch to workspace 8, split:workspace, 8"
 
-          "SUPER SHIFT, 1, split:movetoworkspace, 1"
-          "SUPER SHIFT, 2, split:movetoworkspace, 2"
-          "SUPER SHIFT, 3, split:movetoworkspace, 3"
-          "SUPER SHIFT, 4, split:movetoworkspace, 4"
-          "SUPER SHIFT, 5, split:movetoworkspace, 5"
-          "SUPER SHIFT, 6, split:movetoworkspace, 6"
-          "SUPER SHIFT, 7, split:movetoworkspace, 7"
-          "SUPER SHIFT, 8, split:movetoworkspace, 8"
+          # move active window to a workspace
+          "SUPER SHIFT, 1, Move window to workspace 1, split:movetoworkspace, 1"
+          "SUPER SHIFT, 2, Move window to workspace 2, split:movetoworkspace, 2"
+          "SUPER SHIFT, 3, Move window to workspace 3, split:movetoworkspace, 3"
+          "SUPER SHIFT, 4, Move window to workspace 4, split:movetoworkspace, 4"
+          "SUPER SHIFT, 5, Move window to workspace 5, split:movetoworkspace, 5"
+          "SUPER SHIFT, 6, Move window to workspace 6, split:movetoworkspace, 6"
+          "SUPER SHIFT, 7, Move window to workspace 7, split:movetoworkspace, 7"
+          "SUPER SHIFT, 8, Move window to workspace 8, split:movetoworkspace, 8"
 
-          "SUPER CTRL, 1, split:movetoworkspacesilent, 1"
-          "SUPER CTRL, 2, split:movetoworkspacesilent, 2"
-          "SUPER CTRL, 3, split:movetoworkspacesilent, 3"
-          "SUPER CTRL, 4, split:movetoworkspacesilent, 4"
-          "SUPER CTRL, 5, split:movetoworkspacesilent, 5"
-          "SUPER CTRL, 6, split:movetoworkspacesilent, 6"
-          "SUPER CTRL, 7, split:movetoworkspacesilent, 7"
-          "SUPER CTRL, 8, split:movetoworkspacesilent, 8"
+          # silenty move active window to a workspace
+          "SUPER CTRL, 1, Silently move window to workspace 1, split:movetoworkspacesilent, 1"
+          "SUPER CTRL, 2, Silently move window to workspace 2, split:movetoworkspacesilent, 2"
+          "SUPER CTRL, 3, Silently move window to workspace 3, split:movetoworkspacesilent, 3"
+          "SUPER CTRL, 4, Silently move window to workspace 4, split:movetoworkspacesilent, 4"
+          "SUPER CTRL, 5, Silently move window to workspace 5, split:movetoworkspacesilent, 5"
+          "SUPER CTRL, 6, Silently move window to workspace 6, split:movetoworkspacesilent, 6"
+          "SUPER CTRL, 7, Silently move window to workspace 7, split:movetoworkspacesilent, 7"
+          "SUPER CTRL, 8, Silently move window to workspace 8, split:movetoworkspacesilent, 8"
 
-          "SUPER SHIFT, O, split:grabroguewindows"
+          # swap windows
+          "SUPER SHIFT, LEFT, Swap window to the left, movewindow, l"
+          "SUPER SHIFT, RIGHT, Swap window to the right, movewindow, r"
+          "SUPER SHIFT, UP, Swap window up, movewindow, u"
+          "SUPER SHIFT, DOWN, Swap window down, movewindow, d"
 
-          # window manipulation
-          "SUPER SHIFT, LEFT, movewindow, l"
-          "SUPER SHIFT, RIGHT, movewindow, r"
-          "SUPER SHIFT, UP, movewindow, u"
-          "SUPER SHIFT, DOWN, movewindow, d"
+          "SUPER SHIFT, H, Swap window to the left, movewindow, l"
+          "SUPER SHIFT, L, Swap window to the right, movewindow, r"
+          "SUPER SHIFT, K, Swap window up, movewindow, u"
+          "SUPER SHIFT, J, Swap window down, movewindow, d"
 
-          "SUPER SHIFT, H, movewindow, l"
-          "SUPER SHIFT, L, movewindow, r"
-          "SUPER SHIFT, K, movewindow, u"
-          "SUPER SHIFT, J, movewindow, d"
+          # expand/shrink windows
+          "SUPER CTRL, LEFT, Expand/shrink window left, resizeactive, -20 0"
+          "SUPER CTRL, RIGHT, Expand/shrink window left, 20 0"
+          "SUPER CTRL, UP, Expand/shrink window up, resizeactive, 0 -20"
+          "SUPER CTRL, DOWN, Expand/shrink window down, resizeactive, 0 20"
 
-          "SUPER CTRL, LEFT, resizeactive, -20 0"
-          "SUPER CTRL, RIGHT, resizeactive, 20 0"
-          "SUPER CTRL, UP, resizeactive, 0 -20"
-          "SUPER CTRL, DOWN, resizeactive, 0 20"
+          "SUPER CTRL, H, Expand/shrink window left, resizeactive, -20 0"
+          "SUPER CTRL, L, Expand/shrink window left, resizeactive, 20 0"
+          "SUPER CTRL, K, Expand/shrink window up, resizeactive, 0 -20"
+          "SUPER CTRL, J, Expand/shrink window down, resizeactive, 0 20"
 
-          "SUPER CTRL, H, resizeactive, -20 0"
-          "SUPER CTRL, L, resizeactive, 20 0"
-          "SUPER CTRL, K, resizeactive, 0 -20"
-          "SUPER CTRL, J, resizeactive, 0 20"
-
-          "SUPER, F, fullscreen"
-          "SUPER, V, togglefloating"
-          "SUPER, S, togglesplit"
-          "SUPER, Q, killactive"
+          # window control
+          "SUPER, F, Fullscreen window, fullscreen"
+          "SUPER, V, Toggle window floating/tiling, togglefloating"
+          "SUPER, S, Toggle window split, togglesplit"
+          "SUPER, Q, Close window, killactive"
+          "SUPER SHIFT, O, Grab all windows in invalid workspaces, split:grabroguewindows"
 
           # window focus
-          "SUPER, LEFT, movefocus, l"
-          "SUPER, RIGHT, movefocus, r"
-          "SUPER, UP, movefocus, u"
-          "SUPER, DOWN, movefocus, d"
+          "SUPER, LEFT, Move window focus to the left, movefocus, l"
+          "SUPER, RIGHT, Move window focus to the right, movefocus, r"
+          "SUPER, UP, Move window focus up, movefocus, u"
+          "SUPER, DOWN, Move window focus down, movefocus, d"
 
-          "SUPER, H, movefocus, l"
-          "SUPER, L, movefocus, r"
-          "SUPER, K, movefocus, u"
-          "SUPER, J, movefocus, d"
+          "SUPER, H, Move window focus to the left, movefocus, l"
+          "SUPER, L, Move window focus to the right, movefocus, r"
+          "SUPER, K, Move window focus up, movefocus, u"
+          "SUPER, J, Move window focus down, movefocus, d"
 
           # miscellaneous
-          "SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle"
-          "SUPER, F1, exec, ${getExe performantMode}"
+          "SUPER SHIFT, TAB, Toggle overview, exec, ${qs} ipc -c overview call overview toggle"
+          "SUPER, F1, Toggle performant mode, exec, ${getExe performantMode}"
 
           # zoom
-          "SUPER, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
-          "SUPER, mouse_up, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
+          "SUPER, mouse_down, Zoom in with mouse, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
+          "SUPER, mouse_up, Zoom out with mouse, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
 
-          "SUPER SHIFT, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
-          "SUPER SHIFT, minus, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
+          "SUPER SHIFT, mouse_down, Reset zoom, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
+          "SUPER SHIFT, minus, Reset zoom, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
 
           # shell
-          "SUPER, tab, exec, ${noctalia} launcher toggle"
-          "SUPER, P, exec, ${noctalia} sessionMenu toggle"
-          "SUPER, C, exec, ${noctalia} wallpaper toggle"
-          "SUPER, O, exec, ${noctalia} notifications toggleHistory"
-          "SUPER, I, exec, ${noctalia} controlCenter toggle"
-          "SUPER, G, exec, ${noctalia} launcher calculator"
-          "SUPER, H, exec, ${noctalia} launcher clipboard"
-          "SUPER, L, exec, ${noctalia} idleInhibitor toggle"
+          "SUPER, tab, exec, Open the launcher, ${noctalia} launcher toggle"
+          "SUPER, P, exec, Open the session menu, ${noctalia} sessionMenu toggle"
+          "SUPER, C, exec, Open the wallpaper menu, ${noctalia} wallpaper toggle"
+          "SUPER, O, exec, Open the notification history, ${noctalia} notifications toggleHistory"
+          "SUPER, I, exec, Open the control center, ${noctalia} controlCenter toggle"
+          "SUPER, G, exec, Open the calculator in the launcher, ${noctalia} launcher calculator"
+          "SUPER, H, exec, Open the clipboard in the launcher, ${noctalia} launcher clipboard"
+          "SUPER, L, exec, Inhibit idle, ${noctalia} idleInhibitor toggle"
 
           # screenshots
-          "SUPER SHIFT, S, exec, ${hyprshot} -m region -z -o ${screenshotDir}/region"
-          "SUPER, Print, exec, ${hyprshot} -m output -c -o ${screenshotDir}/output"
+          "SUPER SHIFT, S, exec, Screenshot selected region, ${hyprshot} -m region -z -o ${screenshotDir}/region"
+          "SUPER, Print, exec, Screenshot entire monitor, ${hyprshot} -m output -c -o ${screenshotDir}/output"
 
-          # picker
-          "SUPER SHIFT, S, exec, ${hyprpicker} -n -a -r -q -l"
+          # colorpicker
+          "SUPER SHIFT, S, exec, Color picker, ${hyprpicker} -n -a -r -q -l"
 
           # applications
-          "SUPER, Return, exec, ${app2unit} ${ghostty}"
-          "SUPER, E, exec, ${app2unit} ${dolphin}"
-          "SUPER, N, exec, ${app2unit} ${equibop}"
-          "SUPER, B, exec, ${app2unit} ${zen-browser}"
-          "SUPER, M, exec, ${app2unit} ${steam}"
+          "SUPER, Return, exec, Open the terminal, ${app2unit} ${ghostty}"
+          "SUPER, E, exec, Open the file manager, ${app2unit} ${dolphin}"
+          "SUPER, N, exec, Open discord, ${app2unit} ${equibop}"
+          "SUPER, B, exec, Open the browser, ${app2unit} ${zen-browser}"
+          "SUPER, M, exec, Open steam, ${app2unit} ${steam}"
+
+          # toggle groups
+          "SUPER, X, Toggle window grouping, togglegroup"
+          "SUPER ALT, X, Move active window out of group, moveoutofgroup"
+
+          # join groups
+          "SUPER ALT, LEFT, Move window to group on left, moveintogroup, l"
+          "SUPER ALT, RIGHT, Move window to group on right, moveintogroup, r"
+          "SUPER ALT, UP, Move window to group on top, moveintogroup, u"
+          "SUPER ALT, DOWN, Move window to group on bottom, moveintogroup, d"
+
+          "SUPER ALT, H, Move window to group on left, moveintogroup, l"
+          "SUPER ALT, L, Move window to group on right, moveintogroup, r"
+          "SUPER ALT, K, Move window to group on top, moveintogroup, u"
+          "SUPER ALT, J, Move window to group on bottom, moveintogroup, d"
+
+          # navigate a single set of grouped windows
+          "SUPER ALT, TAB, Next window in group, changegroupactive, f"
+          "SUPER ALT SHIFT, TAB, Previous window in group, changegroupactive, b"
+
+          # scroll through a set of grouped windows with super + alt + scroll
+          "SUPER ALT, mouse_down, Next window in group, changegroupactive, f"
+          "SUPER ALT, mouse_up, Previous window in group, changegroupactive, b"
+
+          # activate window in a group by number
+          "SUPER ALT, 1, Switch to group window 1, changegroupactive, 1"
+          "SUPER ALT, 2, Switch to group window 2, changegroupactive, 2"
+          "SUPER ALT, 3, Switch to group window 3, changegroupactive, 3"
+          "SUPER ALT, 4, Switch to group window 4, changegroupactive, 4"
+          "SUPER ALT, 5, Switch to group window 5, changegroupactive, 5"
         ];
 
-      bindm = [
+      binddm = [
         # window manipulation
-        "SUPER, mouse:272, movewindow"
-        "SUPER, mouse:273, resizewindow"
+        "SUPER, mouse:272, Move window with mouse, movewindow"
+        "SUPER, mouse:273, Resize window with mouse, resizewindow"
       ];
 
-      binde = [
+      bindde = [
         # zoom
-        "SUPER, equal, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
-        "minus, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
+        "SUPER, equal, Zoom in, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
+        "minus, Zoom out, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
       ];
 
-      bindel =
+      binddel =
         let
           cfgBrightness = config.hyprland.brightness.enable;
         in
         [
           "XF86AudioMute, exec, ${noctalia} volume muteOutput"
-          "XF86AudioRaiseVolume, exec, ${noctalia} volume increase"
-          "XF86AudioLowerVolume, exec, ${noctalia} volume decrease"
+          "XF86AudioRaiseVolume, exec, Volume up, ${noctalia} volume increase"
+          "XF86AudioLowerVolume, exec, Volume down, ${noctalia} volume decrease"
         ]
         ++ optionals cfgBrightness [
-          "XF86MonBrightnessUp, exec, brightnessctl set 1%+"
-          "XF86MonBrightnessDown, exec, brightnessctl set 1%-"
+          "XF86MonBrightnessUp, exec, Brightness up, brightnessctl set 1%+"
+          "XF86MonBrightnessDown, exec, Brightness down, brightnessctl set 1%-"
         ];
     };
 }
