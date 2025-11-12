@@ -3,6 +3,7 @@
   ...
 }:
 
+# enable and export xdg user directory paths.
 let
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;

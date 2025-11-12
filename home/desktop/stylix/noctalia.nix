@@ -3,6 +3,7 @@
   ...
 }:
 
+# helpers for mapping stylix fonts and colors to noctalia.
 let
   inherit (builtins)
     mapAttrs
@@ -15,11 +16,13 @@ let
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
+  # expose default and fixed font names for noctalia ui.
   _module.args.noctaliaStylix.fonts = {
     default = sansSerifFont;
     fixed = monospaceFont;
   };
 
+  # write the noctalia color palette to a json file.
   xdg.configFile."noctalia/colors.json".text =
     with colors;
     toJSON {

@@ -1,5 +1,6 @@
 { ... }:
 
+# git-related starship segments.
 {
   fossil_branch = {
     format = "[$symbol$branch]($style) ";

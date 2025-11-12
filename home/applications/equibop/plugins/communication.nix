@@ -4,6 +4,7 @@
   ...
 }:
 
+# plugins affecting chat, messages, and sharing.
 {
   AutoZipper.enabled = true;
   BetterCommands.enabled = true;

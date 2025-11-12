@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for archive and compressed formats.
 {
   "application/x-tar" = "org.kde.ark.desktop";
   "application/x-lrzip-compressed-tar" = "org.kde.ark.desktop";

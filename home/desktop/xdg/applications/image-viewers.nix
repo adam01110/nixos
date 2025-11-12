@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for image viewing formats including raws.
 {
   "image/png" = "org.gnome.Loupe.desktop";
   "image/x-kodak-dcr" = "org.gnome.Loupe.desktop";

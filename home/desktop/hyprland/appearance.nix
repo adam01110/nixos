@@ -4,12 +4,17 @@
   ...
 }:
 
+# set hyprland appearance, gaps, decoration, and animations.
 let
-  inherit (lib) mkForce mkMerge;
+  inherit (lib)
+    mkForce
+    mkMerge
+    ;
 in
 {
   wayland.windowManager.hyprland.settings = mkMerge [
     {
+      # general outer and inner gaps and active border color.
       general = {
         gaps_in = 4;
         gaps_out = 4;
@@ -17,6 +22,7 @@ in
         "col.active_border" = mkForce hyprlandStylix.activeBorder;
       };
 
+      # window decoration options including blur and shadow.
       decoration = {
         rounding = 4;
 
@@ -38,13 +44,15 @@ in
         };
       };
 
+      # enable smooth resize and window dragging animations.
       misc = {
         animate_manual_resizes = true;
         animate_mouse_windowdragging = true;
       };
 
+      # animation curves used by plugins and window transitions.
       bezier = [
-        # hyprfocus beziers
+        # hyprfocus beziers.
         "focusIn 0.25, 0.46, 0.45, 0.94"
         "focusOut, 0.0, 0.5, 0.5, 1.0"
 
@@ -58,12 +66,13 @@ in
         "smoothSlide, 0.5, 1.15, 0.4, 1"
       ];
 
+      # map animation groups to specific curves and speeds.
       animations.animation = [
-        # hyprfocus
+        # hyprfocus.
         "hyprfocusIn, 1, 0.75, focusIn"
         "hyprfocusOut, 1, 3, focusOut"
 
-        # window
+        # window.
         "windows, 1, 4, objIn, popin"
         "windowsIn, 1, 3, objIn, popin"
         "windowsOut, 1, 1, objOut, popin"
@@ -72,7 +81,7 @@ in
         "fadeIn, 1, 1.73, fadeObjIn"
         "fadeOut, 1, 1, fadeObjOut"
 
-        # layer
+        # layer.
         "layers, 1, 4, objIn, popin"
         "layersIn, 1, 3, objIn, popin"
         "layersOut, 1, 1, objOut, popin"
@@ -80,23 +89,21 @@ in
         "fadeLayersIn, 1, 1.73, fadeObjIn"
         "fadeLayersOut, 1, 1, fadeObjOut"
 
-        # popups
+        # popups.
         "fadePopupsIn, 1, 1.73, fadeObjIn"
         "fadePopupsOut, 1, 1, fadeObjOut"
 
-        # workspaces
+        # workspaces.
         "workspaces, 1, 3.5, smoothSlide, slide"
 
-        # disable
+        # disable.
         "border, 0"
         "borderangle, 0"
       ];
-
-      group."col.border_active" = mkForce hyprlandStylix.activeGroupBorder;
-      groupbar."col.active" = mkForce hyprlandStylix.activeGroupBarBorder;
     }
   ];
 
+  # style hints for applications that read hypr conf snippets.
   xdg.configFile."hypr/application-style.conf".text = ''
     roundness=2
   '';

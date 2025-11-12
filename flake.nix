@@ -57,7 +57,7 @@
       url = "github:shezdy/hyprsplit/main";
       inputs.hyprland.follows = "hyprland";
     };
-
+    
     # noctalia shell.
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -160,12 +160,14 @@
           specialArgs = commonArgs;
           modules = commonModules ++ [ ./host/desktop ];
         };
+
         # laptop profile with mobile-specific options.
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = commonArgs;
           modules = commonModules ++ [ ./host/laptop ];
         };
+
         # lightweight vm target for testing.
         vm = nixpkgs.lib.nixosSystem {
           inherit system;

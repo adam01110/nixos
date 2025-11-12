@@ -4,12 +4,15 @@
   ...
 }:
 
+# install and configure czkawka duplicate finder.
 let
   inherit (vars) username;
 in
 {
+  # install the czkawka package.
   home.packages = [ pkgs.czkawka ];
 
+  # write czkawka config.
   xdg.configFile."czkawka/czkawka_gui_config_4.txt".text = ''
     --confirm_deletion_all_files_in_group
     true

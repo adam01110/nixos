@@ -3,6 +3,7 @@
   ...
 }:
 
+# install additional utilities.
 let
   inherit (builtins) attrValues;
 in

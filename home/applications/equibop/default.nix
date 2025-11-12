@@ -4,6 +4,7 @@
   ...
 }:
 
+# configure equibop with themes and options.
 {
   imports = [ ./plugins.nix ];
 
@@ -13,6 +14,7 @@
     equibop.enable = true;
     discord.enable = false;
 
+    # write main equibop configuration.
     config = {
       autoUpdate = true;
       frameless = true;
@@ -30,10 +32,13 @@
       ];
     };
   };
+
+  # install themed css with fonts from stylix.
   xdg.configFile."equibop/themes/midnight.css".source = pkgs.replaceVars ./themes/midnight.css {
     sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
     monospaceFont = osConfig.stylix.fonts.monospace.name;
   };
 
+  # add snippets stylesheet.
   xdg.configFile."equibop/themes/snippets.css".source = ./themes/snippets.css;
 }

@@ -5,6 +5,7 @@
   ...
 }:
 
+# configure fish shell.
 let
   inherit (builtins) attrValues;
   inherit (lib) getExe;
@@ -13,6 +14,7 @@ in
   programs.fish = {
     enable = true;
 
+    # enable plugins.
     plugins =
       let
         mkPlugin = pkg: {
@@ -27,6 +29,7 @@ in
         "fifc"
       ];
 
+    # initialize interactive shell settings.
     interactiveShellInit =
       let
         editorName = config.home.sessionVariables.EDITOR;
@@ -39,8 +42,10 @@ in
         batman --export-env | source
       '';
 
+    # add shorthand fastfetch abbreviation.
     shellAbbrs.ff = "fastfetch";
 
+    # override commands with preferred tools.
     shellAliases = {
       wget = "wcurl";
       cat = "bat";
@@ -58,6 +63,7 @@ in
       "......." = "cd ../../../../../..";
     };
 
+    # display a fortune in a box on shell start.
     functions.fish_greeting = {
       body =
         let
@@ -68,6 +74,7 @@ in
     };
   };
 
+  # tools needed by the fish greeting.
   home.packages = attrValues {
     inherit (pkgs)
       fortune-kind

@@ -3,6 +3,7 @@
   ...
 }:
 
+# ensure polkit agent runs in the user session for auth prompts.
 {
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit = {

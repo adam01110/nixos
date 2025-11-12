@@ -1,5 +1,6 @@
 { ... }:
 
+# container and docker context segments.
 {
   container = {
     format = "[ ](#00000000)[](fg:base01)[$symbol \\[$name\\]]($style)[](fg:base01)";

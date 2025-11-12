@@ -11,6 +11,7 @@ let
   inherit (builtins) attrValues;
 in
 {
+  # compose hyprland configuration from module segments.
   imports = [
     ./appearance.nix
     ./hypridle.nix
@@ -20,42 +21,47 @@ in
     ./rules.nix
   ];
 
-  # make hm's session variables available to uwsm.
+  # make home manager session variables available to uwsm.
   xdg.configFile."uwsm/env".source =
     "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
+  # enable hyprland.
   wayland.windowManager.hyprland = {
     enable = true;
 
+    # packages are null because its installed sytem wide.
     package = null;
     portalPackage = null;
 
+    # add hyprfocus and hyprsplit plugins.
     plugins = with inputs; [
       hyprland-plugins.packages.${system}.hyprfocus
       hyprsplit.packages.${system}.hyprsplit
     ];
   };
 
-  # useful desktop utilities.
-  home.packages = attrValues {
-    inherit (pkgs)
-      hyprpicker
-      brightnessctl
-      ;
-  };
+  # add hyprpicker to packages.
+  home.packages = [ pkgs.hyprpicker ];
 
+  # enable hyprcursor theme support.
   home.pointerCursor.hyprcursor.enable = true;
 
-  # enable quickshell and add qt5compat for compatibility.
-  programs.quickshell = {
-    enable = true;
-    systemd.enable = true;
+  programs = {
+    # enable quickshell.
+    quickshell = {
+      enable = true;
+      systemd.enable = true;
 
-    package = pkgs.quickshell.overrideAttrs (prev: {
-      buildInputs = (prev.buildInputs or [ ]) ++ [ pkgs.qt6Packages.qt5compat ];
-    });
+      # add qt5compat the overview.
+      package = pkgs.quickshell.overrideAttrs (prev: {
+        buildInputs = (prev.buildInputs or [ ]) ++ [ pkgs.qt6Packages.qt5compat ];
+      });
 
-    activeConfig = "overview";
-    configs.overview = ./overview;
+      activeConfig = "overview";
+      configs.overview = ./overview;
+    };
+
+    # enable hyprshot for screenshotting with hyprland.
+    hyprshot.enable = true;
   };
 }

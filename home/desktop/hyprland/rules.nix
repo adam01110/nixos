@@ -8,6 +8,7 @@
   ...
 }:
 
+# define permissions, layer rules, and window rules.
 let
   inherit (lib)
     escapeRegex
@@ -17,6 +18,7 @@ let
 in
 {
   wayland.windowManager.hyprland.settings = {
+    # permission settings.
     permission =
       let
         hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
@@ -30,8 +32,10 @@ in
         quickshell = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       in
       [
+        # allow plugin loading
         "${escapeRegex hyprctl}, plugin, allow"
 
+        # allow screencopy.
         "${escapeRegex xdg-desktop-portal-hyprland}, screencopy, allow"
         "${escapeRegex grim}, screencopy, allow"
         "${escapeRegex hyprpicker}, screencopy, allow"
@@ -39,25 +43,35 @@ in
         "${escapeRegex equibop}, screencopy, allow"
       ];
 
+    # rules for layers and overlays.
     layerrule = [
+      # noanim.
       "noanim, ^hyprpicker$"
       "noanim, ^selection$"
       "noanim, ^noctalia.*$"
 
+      # TODO: launcher?
+      # ingoreaplha.
       "ignorealpha 0.9, ^noctalia-dock.*$"
+
+      # blur
       "blur, noctalia-dock.*"
     ];
 
     windowrule = [
+      # force opacity.
       "opacity 1 override 1 override, class:^(com.mitchellh.ghostty)$"
       "opacity 1 override 1 override, class:^(equibop)$"
       "opacity 1 override 1 override, class:^(steam_app_.*)$"
 
+      # noblur.
       "noblur, class:^(equibop)$"
       "noblur, class:^(steam_app_.*)$"
 
+      # tile.
       "tile, class:^(io.mrarm.mcpelauncher-ui-qt)$"
 
+      # float.
       "float, class:^(org.kde.kcalc)$"
       "float, title:^(Task Manager - Helium)$"
       "float, class:^(BeeperTexts)$, title:^(Settings)$"
@@ -68,6 +82,7 @@ in
       "float, class:^(me.iepure.devtoolbox)$"
       "float, class:^(org.freedesktop.impl.portal.desktop.kde)$"
 
+      # set zie.
       "size 380 520, class:^(org.kde.kcalc)$"
       "size 800 600, title:^(Task Manager - Helium)$"
       "size 380 540, steam:^(steam)$, title:^(Friends List)$"
@@ -77,6 +92,7 @@ in
       "size 568 720, class:^(org.gnome.seahorse.Application)$, title:^(.+ — Private key)$"
       "size 400 520, class:^(org.gnome.seahorse.Application)$, title:^(Item Properties)$"
 
+      # pin.
       "pin, class:^(zen)$, title:^(Picture-in-Picture)$"
     ];
   };

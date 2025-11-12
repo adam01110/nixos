@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for document and ebook viewing.
 {
   "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
   "application/epub+zip" = "org.pwmt.zathura-pdf-mupdf.desktop";

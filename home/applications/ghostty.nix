@@ -1,19 +1,20 @@
 { ... }:
 
+# configure ghostty settings.
 {
   programs.ghostty = {
     enable = true;
 
     settings = {
-      # font settings
+      # font settings.
       font-feature = "-calt, -liga, -dlig";
       freetype-load-flags = "hinting";
 
-      # cursor settings
+      # cursor settings.
       cursor-style = "block";
       cursor-style-blink = true;
 
-      # appearance settings
+      # appearance settings.
       title = "ghostty";
       window-theme = "system";
       window-decoration = "none";
@@ -22,11 +23,13 @@
       window-padding-y = 2;
       resize-overlay = "never";
 
+      # misc settings.
       copy-on-select = false;
       auto-update = "off";
       confirm-close-surface = false;
       right-click-action = "ignore";
 
+      # unbind the splitting keybinds.
       keybind = [
         "super+ctrl+equal=unbind"
         "super+alt+right=unbind"

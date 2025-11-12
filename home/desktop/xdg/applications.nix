@@ -3,8 +3,9 @@
   ...
 }:
 
-# xdg default application associations consolidated from submodules.
+# xdg default application associations consolidated from segments.
 let
+  # helpers for composing application maps.
   inherit (lib) foldl';
 
   moduleArgs = { };
@@ -12,7 +13,6 @@ let
   # split application categories into separate small files.
   applicationFiles = [
     ./applications/protocols.nix
-    ./applications/misc.nix
     ./applications/files.nix
     ./applications/audio.nix
     ./applications/video.nix
@@ -28,5 +28,6 @@ let
   defaultApplications = foldl' (acc: file: acc // (import file moduleArgs)) { } applicationFiles;
 in
 {
+  # apply merged associations to xdg mime defaults.
   xdg.mimeApps.defaultApplications = defaultApplications;
 }

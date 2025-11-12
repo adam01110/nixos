@@ -4,6 +4,7 @@
   ...
 }:
 
+# configure fastfetch.
 let
   inherit (builtins) fromJSON;
   inherit (lib) getExe';

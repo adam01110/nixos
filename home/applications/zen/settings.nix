@@ -4,6 +4,7 @@
   ...
 }:
 
+# define zen browser policies, options, and locked preferences.
 let
   inherit (builtins) mapAttrs;
   inherit (lib)
@@ -39,6 +40,7 @@ in
       );
     in
     {
+      # set policies.S
       AutofillAddressEnabled = false;
       AutofillCreditCardEnabled = false;
       DisableAppUpdate = true;
@@ -71,6 +73,7 @@ in
         Fingerprinting = true;
       };
 
+      # set preferences.
       Preferences =
         let
           cfgTravel = config.zen-browser.travel.enable;
@@ -252,6 +255,7 @@ in
           "zen.workspaces.separate-essentials" = false;
         };
 
+      # add extensions not in nur.
       ExtensionSettings =
         (mkExtensionSettings {
           "{76ef94a4-e3d0-4c6f-961a-d38a429a332b}" = "ttv-lol-pro";

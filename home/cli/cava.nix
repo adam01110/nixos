@@ -1,5 +1,6 @@
 { ... }:
 
+# configure cava audio visualizer.
 {
   programs.cava = {
     enable = true;
@@ -10,6 +11,7 @@
         bar_spacing = 2;
       };
 
+      # set pipewire input.
       input = {
         method = "pipewire";
         source = "auto";
