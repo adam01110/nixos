@@ -1,5 +1,6 @@
 { ... }:
 
+# general starship segment configuration.
 {
   character = {
     format = "$symbol ";

@@ -3,6 +3,7 @@
   ...
 }:
 
+# define the prompt layout as a sequence of segments.
 let
   inherit (lib) concatStrings;
 in

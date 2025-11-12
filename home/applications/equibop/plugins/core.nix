@@ -1,5 +1,6 @@
 { ... }:
 
+# core equibop plugins and global toggles.
 {
   AlwaysTrust.enabled = true;
   Anammox.enabled = true;

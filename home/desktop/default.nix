@@ -1,4 +1,7 @@
-{ ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -6,8 +9,11 @@
     ./stylix
     ./xdg
     ./noctalia.nix
+    ./stasis.nix
   ];
 
+  home.packages = [ pkgs.brightnessctl ];
+
+  # enable cliphist for clipboard history.
   services.cliphist.enable = true;
-  programs.hyprshot.enable = true;
 }

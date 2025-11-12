@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for audio mime types.
 {
   "audio/x-ape" = "org.gnome.Decibels.desktop";
   "audio/flac" = "org.gnome.Decibels.desktop";

@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for source code and text formats.
 {
   "application/x-zerosize" = "dev.zed.Zed.desktop";
   "application/x-php" = "dev.zed.Zed.desktop";

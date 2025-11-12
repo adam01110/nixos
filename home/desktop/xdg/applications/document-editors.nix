@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for office document editing.
 {
   "application/vnd.oasis.opendocument.text" = "onlyoffice-desktopeditors.desktop";
   "application/vnd.apple.pages" = "onlyoffice-desktopeditors.desktop";

@@ -3,7 +3,9 @@
   ...
 }:
 
+# desktop application and flatpak packages.
 {
+  # install applications from nixpkgs and nur.
   home.packages =
     with pkgs;
     [
@@ -27,6 +29,7 @@
       ymstnt.beeper
     ]);
 
+  # install applications via flatpak.
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
     "io.github.plrigaux.sysd-manager"

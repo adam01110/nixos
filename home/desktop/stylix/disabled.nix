@@ -1,5 +1,6 @@
 { ... }:
 
+# disable stylix integrations for selected applications.
 {
   gnome.enable = false;
   kde.enable = false;

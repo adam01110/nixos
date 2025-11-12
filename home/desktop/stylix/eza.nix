@@ -3,6 +3,7 @@
   ...
 }:
 
+# expose a theme for eza via module args.
 let
   inherit (builtins) mapAttrs;
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
@@ -11,6 +12,7 @@ in
   _module.args.ezaStylix = {
     colourful = true;
 
+    # file kind colors.
     filekinds = {
       normal = colors.base05;
       directory = colors.base0D;
@@ -24,6 +26,7 @@ in
       mount_point = colors.base09;
     };
 
+    # permission bit colors.
     perms = {
       user_read = colors.base05;
       user_write = colors.base0A;
@@ -40,6 +43,7 @@ in
       attribute = colors.base04;
     };
 
+    # size column colors by unit and magnitude.
     size = {
       major = colors.base04;
       minor = colors.base0C;
@@ -55,6 +59,7 @@ in
       unit_huge = colors.base09;
     };
 
+    # user and group colors.
     users = {
       user_you = colors.base05;
       user_root = colors.base08;
@@ -64,11 +69,13 @@ in
       group_root = colors.base08;
     };
 
+    # link count and hardlink colors.
     links = {
       normal = colors.base0C;
       multi_link_file = colors.base09;
     };
 
+    # git status colors.
     git = {
       new = colors.base0B;
       modified = colors.base0A;
@@ -79,6 +86,7 @@ in
       conflicted = colors.base08;
     };
 
+    # git repo metadata colors.
     git_repo = {
       branch_main = colors.base05;
       branch_other = colors.base0E;
@@ -86,6 +94,7 @@ in
       git_dirty = colors.base08;
     };
 
+    # selinux security context colors.
     security_context = {
       colon = colors.base04;
       user = colors.base05;
@@ -94,6 +103,7 @@ in
       range = colors.base0E;
     };
 
+    # colors by file extension category.
     file_type = {
       image = colors.base0A;
       video = colors.base08;
@@ -108,6 +118,7 @@ in
       source = colors.base0D;
     };
 
+    # misc token colors.
     punctuation = colors.base04;
     date = colors.base0A;
     inode = colors.base04;
@@ -116,6 +127,7 @@ in
     octal = colors.base0C;
     flags = colors.base0E;
 
+    # symlink visuals.
     symlink_path = colors.base0C;
     control_char = colors.base0D;
     broken_symlink = colors.base08;

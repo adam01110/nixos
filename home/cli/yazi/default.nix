@@ -68,7 +68,7 @@ in
       # use mediainfo for rich previews and piper with glow for markdown.
       plugin = {
         prepend_previewers = [
-          # replace magick, image, video with mediainfo
+          # replace magick, image, video with mediainfo.
           {
             mime = "{audio,video,image}/*";
             run = "mediainfo";
@@ -77,7 +77,7 @@ in
             mime = "application/subrip";
             run = "mediainfo";
           }
-          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above
+          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above.
           {
             mime = "application/postscript";
             run = "mediainfo";
@@ -89,7 +89,7 @@ in
         ];
 
         prepend_preloaders = [
-          # replace magick, image, video with mediainfo
+          # replace magick, image, video with mediainfo.
           {
             mime = "{audio,video,image}/*";
             run = "mediainfo";
@@ -98,7 +98,7 @@ in
             mime = "application/subrip";
             run = "mediainfo";
           }
-          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above
+          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above.
           {
             mime = "application/postscript";
             run = "mediainfo";
@@ -113,6 +113,7 @@ in
       which.sort_translit = true;
     };
 
+    # define keybindings for copy, paste, and smart actions.
     keymap.mgr.prepend_keymap = [
       {
         on = "p";
@@ -162,6 +163,7 @@ in
     ];
   };
 
+  # add packages required by the yazi plugins.
   home.packages = attrValues {
     inherit (pkgs)
       mediainfo

@@ -1,5 +1,6 @@
 { ... }:
 
+# disable unused starship modules for a clean prompt.
 {
   aws.disabled = true;
   battery.disabled = true;

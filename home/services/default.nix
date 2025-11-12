@@ -1,10 +1,12 @@
 { ... }:
 
+# set global flatpak overrides.
 {
-  # per-user flatpak overrides to improve wayland integration.
   services.flatpak.overrides.global = {
+    # add dconf to the extra files.
     Context.filesystems = [ "xdg-config/dconf:ro" ];
 
+    # export gtk, gdk, and qt variables.
     Environment = {
       GDK_BACKEND = "wayland,x11,*";
       GSK_RENDERER = "vulkan";

@@ -5,10 +5,12 @@
   ...
 }:
 
+# configure zed editor.
 let
   inherit (lib)
     mkEnableOption
-    optionalAttrs;
+    optionalAttrs
+    ;
 
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.stateHome;
@@ -32,23 +34,25 @@ in
         "toml"
       ];
 
+      # add packages for language servers and formatters.
       extraPackages = with pkgs; [
-        # packages for nix
+        # packages for nix.
         nixd
         nixfmt
 
-        # packages for qml
+        # packages for qml.
         kdePackages.qtdeclarative
 
-        # packages for rust
+        # packages for rust.
         rust-analyzer
 
-        # packages for lua
+        # packages for lua.
         stylua
       ];
 
+      # configure editor behavior and language settings.
       userSettings = {
-        # disable telemetry
+        # disable telemetry.
         telemetry = {
           diagnostics = false;
           metrics = false;
@@ -58,7 +62,7 @@ in
 
         cursor_shape = "block";
 
-        # minimap scrollbar
+        # minimap scrollbar.
         scrollbar.axes.vertical = false;
         lsp_document_colors = "background";
         minimap = {
@@ -72,9 +76,9 @@ in
 
         languages = {
           Nix = {
-            # use nixd lsp for nix
+            # use nixd lsp for nix.
             language_servers = [ "nixd" ];
-            # use nixfmt formatter for nix
+            # use nixfmt formatter for nix.
             formatter.external.command = "nixfmt";
           };
 
@@ -89,7 +93,7 @@ in
             };
           };
 
-          # enable biome formatter and linter for supported languages
+          # enable biome formatter and linter for supported languages.
           Javascript.formatter.language_server.name = "biome";
           TypeScript.formatter.language_server.name = "biome";
           TSX.formatter.language_server.name = "biome";
@@ -97,6 +101,7 @@ in
           JSONC.formatter.language_server.name = "biome";
           CSS.formatter.language_server.name = "biome";
 
+          # enable stylua formatter for lua.
           Lua.formatter.external = {
             command = "stylua";
             arguments = [
@@ -113,6 +118,7 @@ in
       };
     };
 
+    # export editor-related session variables.
     home.sessionVariables =
       let
         cfgVm = config.zed.isVm;
@@ -120,6 +126,7 @@ in
         name = "zeditor";
       in
       {
+        # ZED
         EDITOR = name;
         VISUAL = name;
 

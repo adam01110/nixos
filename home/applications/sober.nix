@@ -4,6 +4,7 @@
   ...
 }:
 
+# configure sober flatpak.
 let
   inherit (builtins) toJSON;
   inherit (lib) mkOption types;
@@ -21,8 +22,10 @@ in
       targetFps = config.sober.fps;
     in
     {
+      # add flatpak packge.
       services.flatpak.packages = [ pkgName ];
 
+      # write sober config.
       home.file.".var/app/${pkgName}/config/sober/config.json".text = toJSON {
         allow_gamepad_permission = false;
         bring_back_oof = false;

@@ -1,5 +1,6 @@
 { ... }:
 
+# runtime-specific starship segments.
 {
   bun = {
     format = "[ ](#00000000)[](fg:base01)[$symbol($version)]($style)[](fg:base01)";

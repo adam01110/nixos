@@ -5,14 +5,16 @@
   ...
 }:
 
+# define zen browser profiles and shared settings.
 let
   inherit (builtins) attrValues;
   inherit (lib) foldl';
   inherit (vars) username;
 
+  # extensions shared by all profiles.
   commonExtensions = attrValues {
     inherit (pkgs.nur.repos.rycee.firefox-addons)
-      # content blocking
+      # content blocking.
       ublock-origin
       localcdn
       sponsorblock
@@ -21,7 +23,7 @@ let
       consent-o-matic
       don-t-fuck-with-paste
 
-      # annoyances
+      # annoyances.
       shinigami-eyes
       translate-web-pages
       return-youtube-dislikes
@@ -36,8 +38,9 @@ let
       ;
   };
 
+  # custom search engines and aliases.
   commonSearchEngines = {
-    # general search
+    # general search.
     brave = {
       urls = [
         {
@@ -53,9 +56,10 @@ let
       iconMapObj."16" = "https://brave.com/favicon.ico";
       definedAliases = [ "@b" ];
     };
+    # add alias to google.
     google.metaData.alias = "@g";
 
-    # wiki
+    # wiki.
     wikiwand = {
       urls = [
         {
@@ -72,7 +76,7 @@ let
       definedAliases = [ "@wi" ];
     };
 
-    # other
+    # other.
     youtube = {
       urls = [
         {
@@ -96,6 +100,7 @@ let
     ecosia.metaData.hidden = true;
   };
 
+  # arguments passed into each profile module.
   profileArgs = {
     inherit
       pkgs
@@ -105,13 +110,16 @@ let
       ;
   };
 
+  # list of profile modules to merge.
   profileFiles = [
     ./profiles/personal.nix
     ./profiles/academia.nix
   ];
 
+  # merge all profiles into a single attribute set.
   mergedProfiles = foldl' (acc: file: acc // (import file profileArgs)) { } profileFiles;
 in
 {
+  # set the profiles in zen browser.
   programs.zen-browser.profiles = mergedProfiles;
 }

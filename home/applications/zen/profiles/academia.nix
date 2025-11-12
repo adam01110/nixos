@@ -4,22 +4,26 @@
   ...
 }:
 
+# academia zen profile inheriting common settings.
 {
   academia = {
     id = 1;
     isDefault = false;
 
+    # add the extenions shared by every profile.
     extensions = {
       force = true;
       packages = commonExtensions;
     };
 
+    # add the search engines shared by every profile.
     search = {
       force = true;
       default = "brave";
       engines = commonSearchEngines;
     };
 
+    # set zen spaces.
     spacesForce = true;
     spaces = {
       "general" = {

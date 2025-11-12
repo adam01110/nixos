@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for image editing formats.
 {
   "image/vnd.adobe.photoshop" = "org.gimp.GIMP.desktop";
   "image/openraster" = "org.gimp.GIMP.desktop";

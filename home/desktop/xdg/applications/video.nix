@@ -1,5 +1,6 @@
 { ... }:
 
+# default handlers for video mime types.
 {
   "video/x-nsv" = "org.gnome.Showtime.desktop";
   "video/webm" = "org.gnome.Showtime.desktop";

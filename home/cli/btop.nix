@@ -1,5 +1,6 @@
 { ... }:
 
+# configure btop.
 {
   programs.btop = {
     enable = true;

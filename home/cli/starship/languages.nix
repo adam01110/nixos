@@ -1,5 +1,6 @@
 { ... }:
 
+# language-specific starship segments.
 {
   c = {
     format = "[ ](#00000000)[](fg:base01)[$symbol($version(-$name))]($style)[](fg:base01)";

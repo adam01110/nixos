@@ -3,6 +3,7 @@
   ...
 }:
 
+# configure onlyoffice desktop.
 let
   inherit (vars) username;
 in
@@ -10,6 +11,7 @@ in
   programs.onlyoffice = {
     enable = true;
 
+    # set ui preferences.
     settings = {
       inherit username;
       uitheme = "theme-night";

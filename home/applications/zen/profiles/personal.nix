@@ -6,12 +6,14 @@
   ...
 }:
 
+# personal zen profile with custom search engines and extensions.
 let
   inherit (builtins) attrValues;
   nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 in
 {
   "${username}" = {
+    # add extensions form shared extensions and extensions specific to this profile.
     extensions = {
       force = true;
       packages =
@@ -24,11 +26,12 @@ in
         };
     };
 
+    # add search engines form shared search engines and search engines specific to this profile.
     search = {
       force = true;
       default = "brave";
       engines = commonSearchEngines // {
-        # nix
+        # nix.
         nix = {
           urls = [
             {
@@ -105,7 +108,7 @@ in
           definedAliases = [ "@nu" ];
         };
 
-        # wiki
+        # wiki.
         "nixos-wiki" = {
           urls = [
             {
@@ -152,7 +155,7 @@ in
           definedAliases = [ "@mw" ];
         };
 
-        # dev
+        # dev.
         crates = {
           urls = [
             {
@@ -205,6 +208,7 @@ in
       };
     };
 
+    # set zen spaces.
     spacesForce = true;
     spaces = {
       "general" = {

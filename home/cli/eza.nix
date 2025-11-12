@@ -3,10 +3,12 @@
   ...
 }:
 
+# configure eza ls replacement.
 {
   programs.eza = {
     enable = true;
 
+    # enalbe icons, theme, and formatting.
     colors = "always";
     icons = "always";
     theme = ezaStylix;

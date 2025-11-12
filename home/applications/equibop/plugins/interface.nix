@@ -3,6 +3,7 @@
   ...
 }:
 
+# interface and layout related plugins.
 {
   AccountPanelServerProfile = {
     enabled = true;

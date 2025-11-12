@@ -1,5 +1,6 @@
 { ... }:
 
+# social and community related plugins.
 {
   BetterBlockedUsers.enabled = true;
   BetterInvites.enabled = true;
