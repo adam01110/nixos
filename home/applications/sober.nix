@@ -28,7 +28,6 @@ in
       # write sober config.
       home.file.".var/app/${pkgName}/config/sober/config.json".text = toJSON {
         allow_gamepad_permission = false;
-        bring_back_oof = false;
         close_on_leave = false;
         discord_rpc_enabled = true;
         enable_gamemode = false;
@@ -36,7 +35,7 @@ in
         fflags.DFIntTaskSchedulerTargetFps = targetFps;
         server_location_indicator_enabled = false;
         touch_mode = "off";
-        use_libsecret = false;
+        use_libsecret = true;
         use_opengl = false;
       };
     };
