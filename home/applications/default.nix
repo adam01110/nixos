@@ -12,6 +12,7 @@
     ./prism.nix
     ./pwvucontrol.nix
     ./sober.nix
+    ./spicetify.nix
     ./zathura.nix
     ./zed.nix
   ];

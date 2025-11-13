@@ -30,8 +30,8 @@ in
 
     icons = {
       enable = true;
-      light = "Gruvbox Plus Dark";
-      dark = "Gruvbox Plus Dark";
+      light = "Gruvbox-Plus-Dark";
+      dark = "Gruvbox-Plus-Dark";
       package = pkgs.gruvbox-plus-icons;
     };
 

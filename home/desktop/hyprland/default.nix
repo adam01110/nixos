@@ -7,9 +7,6 @@
   ...
 }:
 
-let
-  inherit (builtins) attrValues;
-in
 {
   # compose hyprland configuration from module segments.
   imports = [

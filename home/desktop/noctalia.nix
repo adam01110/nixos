@@ -44,7 +44,6 @@ in
       settings = {
         # application launcher behavior and appearance.
         appLauncher = {
-          backgroundOpacity = 0.95;
           enableClipboardHistory = true;
           terminalCommand = "${getExe config.programs.ghostty.package} -e";
           useApp2Unit = true;

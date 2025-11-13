@@ -250,6 +250,7 @@ in
           "widget.use-xdg-desktop-portal.mime-handler" = 1;
           "widget.use-xdg-desktop-portal.open-uri" = 1;
           "zen.urlbar.behavior" = "float";
+          "zen.urlbar.show-pip-button" = true;
           "zen.view.experimental-no-window-controls" = true;
           "zen.workspaces.continue-where-left-off" = true;
           "zen.workspaces.separate-essentials" = false;
