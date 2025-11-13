@@ -10,6 +10,7 @@ in
 {
   home.packages = attrValues {
     inherit (pkgs)
+      gitfetch
       speedtest-go
       tokei
       ;
