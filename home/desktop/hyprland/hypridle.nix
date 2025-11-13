@@ -7,6 +7,7 @@
   ...
 }:
 
+# configure hypridle timeouts, screen lock, and dpms.
 let
   inherit (lib)
     getExe
@@ -23,13 +24,17 @@ in
       in
       {
         general = {
+          # command to invoke the lockscreen.
           lock_cmd =
             let
               noctalia = "${getExe' inputs.noctalia.packages.${system}.default "noctalia-shell"} ipc call";
             in
             "${noctalia} lockScreen lock";
+          # lock before suspend to avoid flashing unlocked session.
           before_sleep_cmd = "loginctl lock-session";
+          # wake display(s) after sleep.
           after_sleep_cmd = "${hyprctl} dispatch dpms on";
+          # allow short inhibitions (e.g., video) before sleeping.
           inhibit_sleep = 3;
         };
 
@@ -38,6 +43,7 @@ in
             brightnessctl = getExe pkgs.brightnessctl;
           in
           [
+            # dim screen brightness.
             {
               # 2.5min.
               timeout = 150;
@@ -45,6 +51,7 @@ in
               on-timeout = "${brightnessctl} - s set 10";
               on-resume = "${brightnessctl} - r";
             }
+            # turn off keyboard backlight.
             {
               # 2.5min.
               timeout = 150;
@@ -52,21 +59,24 @@ in
               on-timeout = "${brightnessctl} -sd rgb:kbd_backlight set 0";
               on-resume = "${brightnessctl} -rd rgb:kbd_backlight";
             }
+            # lock the session.
             {
-              # 5min
+              # 5min.
               timeout = 300;
 
               on-timeout = "loginctl lock-session";
             }
+            # power off displays via dpms.
             {
-              # 5.5min
+              # 5.5min.
               timeout = 330;
 
               on-timeout = "${hyprctl} dispatch dpms off";
               on-resume = "${hyprctl} dispatch dpms on && ${brightnessctl} - r";
             }
+            # suspend the system.
             {
-              # 30min
+              # 30min.
               timeout = 1800;
 
               on-timeout = "systemctl suspend";

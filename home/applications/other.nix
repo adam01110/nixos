@@ -18,7 +18,6 @@
       upscayl
       warehouse
       wootility
-      youtube-music
     ]
     ++ (with kdePackages; [
       ark

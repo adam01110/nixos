@@ -57,7 +57,7 @@
       url = "github:shezdy/hyprsplit/main";
       inputs.hyprland.follows = "hyprland";
     };
-    
+
     # noctalia shell.
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -89,7 +89,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # modules for discord/equibop.
+    # discord/equibop flake.
     equinix = {
       url = "github:not-a-cowfr/equinix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -101,8 +101,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # steam homebrew.
+    # steam homebrew flake.
     millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
+
+    # spicetify flake
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   # outputs: expose host configurations and pass through common arguments.
