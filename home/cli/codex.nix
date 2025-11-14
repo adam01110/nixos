@@ -21,7 +21,4 @@
       };
     };
   };
-
-  # install the codex acp.
-  home.packages = [ inputs.nix-ai-tools.packages.${system}.codex-acp ];
 }
