@@ -42,7 +42,7 @@ in
 
       # configure all widget panels and behavior.
       settings = {
-        # application launcher behavior and appearance.
+        # application launcher behavior.
         appLauncher = {
           enableClipboardHistory = true;
           terminalCommand = "${getExe config.programs.ghostty.package} -e";
@@ -102,7 +102,7 @@ in
             right = [
               {
                 id = "Tray";
-                favorites = [
+                pinned = [
                   "Equibop"
                   "Beeper"
                 ];
@@ -210,12 +210,26 @@ in
           videoCodec = "hevc";
         };
 
-        # fonts and ui scaling for noctalia panels.
+        # disable the hibernate option in the sessionmenu.
+        sessionMenu.powerOptions = [
+          { action = "lock"; }
+          { action = "suspend"; }
+          { action = "reboot"; }
+          { action = "logout"; }
+          { action = "shutdown"; }
+          {
+            action = "hibernate";
+            enabled = false;
+          }
+        ];
+
+        # fonts, opacity, and ui scaling for noctalia panels.
         ui = {
           fontDefault = stylixFonts.default;
           fontDefaultScale = 0.9;
           fontFixed = stylixFonts.fixed;
           fontFixedScale = 0.9;
+          panelBackgroundOpacity = 0.16;
           panelsAttachedToBar = false;
         };
 
