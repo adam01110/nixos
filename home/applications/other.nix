@@ -31,7 +31,6 @@
   # install applications via flatpak.
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
-    "io.github.plrigaux.sysd-manager"
     "io.github.radiolamp.mangojuice"
     "info.febvre.Komikku"
     "me.iepure.devtoolbox"
