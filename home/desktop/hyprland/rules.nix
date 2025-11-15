@@ -50,12 +50,13 @@ in
       "noanim, ^selection$"
       "noanim, ^noctalia.*$"
 
-      # TODO: launcher?
       # ingoreaplha.
       "ignorealpha 0.9, ^noctalia-dock.*$"
+      "ignorealpha 0.9, ^noctalia-panel-content.*$"
 
       # blur
       "blur, noctalia-dock.*"
+      "blur, ^noctalia-panel-content.*$"
     ];
 
     windowrule = [

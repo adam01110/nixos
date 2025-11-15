@@ -15,7 +15,7 @@
     protontricks.enable = true;
 
     # include custom proton builds.
-    extraCompatPackages = [ pkgs.proton-ge-custom ];
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
 
     fontPackages = [ pkgs.noto-fonts-cjk-sans ];
   };

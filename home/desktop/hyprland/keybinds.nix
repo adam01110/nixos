@@ -50,7 +50,7 @@ in
           hyprshot = getExe pkgs.hyprshot;
           steam = getExe osConfig.programs.steam.package;
           zen-browser = getExe inputs.zen-browser.packages."${system}".default;
-          app2unit = "${getExe pkgs.app2unit} -- ";
+          app2unit = "${getExe pkgs.app2unit} --";
 
           screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
 
@@ -113,7 +113,7 @@ in
 
           # expand/shrink windows.
           "SUPER CTRL, LEFT, Expand/shrink window left, resizeactive, -20 0"
-          "SUPER CTRL, RIGHT, Expand/shrink window left, 20 0"
+          "SUPER CTRL, RIGHT, Expand/shrink window left, resizeactive, 20 0"
           "SUPER CTRL, UP, Expand/shrink window up, resizeactive, 0 -20"
           "SUPER CTRL, DOWN, Expand/shrink window down, resizeactive, 0 20"
 
@@ -152,28 +152,28 @@ in
           "SUPER SHIFT, minus, Reset zoom, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
 
           # shell.
-          "SUPER, tab, exec, Open the launcher, ${noctalia} launcher toggle"
-          "SUPER, P, exec, Open the session menu, ${noctalia} sessionMenu toggle"
-          "SUPER, C, exec, Open the wallpaper menu, ${noctalia} wallpaper toggle"
-          "SUPER, O, exec, Open the notification history, ${noctalia} notifications toggleHistory"
-          "SUPER, I, exec, Open the control center, ${noctalia} controlCenter toggle"
-          "SUPER, G, exec, Open the calculator in the launcher, ${noctalia} launcher calculator"
-          "SUPER, H, exec, Open the clipboard in the launcher, ${noctalia} launcher clipboard"
-          "SUPER, L, exec, Inhibit idle, ${noctalia} idleInhibitor toggle"
+          "SUPER, tab, Open the launcher, exec,  ${noctalia} launcher toggle"
+          "SUPER, P, Open the session menu, exec, ${noctalia} sessionMenu toggle"
+          "SUPER, C, Open the wallpaper menu, exec, ${noctalia} wallpaper toggle"
+          "SUPER, O, Open the notification history, exec, ${noctalia} notifications toggleHistory"
+          "SUPER, I, Open the control center, exec, ${noctalia} controlCenter toggle"
+          "SUPER, G, Open the calculator in the launcher, exec, ${noctalia} launcher calculator"
+          "SUPER, V, Open the clipboard in the launcher, exec, ${noctalia} launcher clipboard"
+          "SUPER, L, Inhibit idle, exec, ${noctalia} idleInhibitor toggle"
 
           # screenshots.
-          "SUPER SHIFT, S, exec, Screenshot selected region, ${hyprshot} -m region -z -o ${screenshotDir}/region"
-          "SUPER, Print, exec, Screenshot entire monitor, ${hyprshot} -m output -c -o ${screenshotDir}/output"
+          "SUPER SHIFT, S, Screenshot selected region, exec, ${hyprshot} -m region -z -o ${screenshotDir}/region"
+          "SUPER, Print, Screenshot entire monitor, exec, ${hyprshot} -m output -c -o ${screenshotDir}/output"
 
           # colorpicker.
-          "SUPER SHIFT, S, exec, Color picker, ${hyprpicker} -n -a -r -q -l"
+          "SUPER SHIFT, S, Color picker, exec, ${hyprpicker} -n -a -r -q -l"
 
           # applications.
-          "SUPER, Return, exec, Open the terminal, ${app2unit} ${ghostty}"
-          "SUPER, E, exec, Open the file manager, ${app2unit} ${dolphin}"
-          "SUPER, N, exec, Open discord, ${app2unit} ${equibop}"
-          "SUPER, B, exec, Open the browser, ${app2unit} ${zen-browser}"
-          "SUPER, M, exec, Open steam, ${app2unit} ${steam}"
+          "SUPER, Return, Open the terminal, exec, ${app2unit} ${ghostty}"
+          "SUPER, E, Open the file manager, exec, ${app2unit} ${dolphin}"
+          "SUPER, N, Open discord, exec, ${app2unit} ${equibop}"
+          "SUPER, B, Open the browser, exec, ${app2unit} ${zen-browser}"
+          "SUPER, M, Open steam, exec, ${app2unit} ${steam}"
 
           # toggle groups.
           "SUPER, X, Toggle window grouping, togglegroup"
@@ -224,13 +224,13 @@ in
           cfgBrightness = config.hyprland.brightness.enable;
         in
         [
-          "XF86AudioMute, exec, ${noctalia} volume muteOutput"
-          "XF86AudioRaiseVolume, exec, Volume up, ${noctalia} volume increase"
-          "XF86AudioLowerVolume, exec, Volume down, ${noctalia} volume decrease"
+          "XF86AudioMute, Volume mute, exec, ${noctalia} volume muteOutput"
+          "XF86AudioRaiseVolume, Volume up, exec, ${noctalia} volume increase"
+          "XF86AudioLowerVolume, Volume down, exec, ${noctalia} volume decrease"
         ]
         ++ optionals cfgBrightness [
-          "XF86MonBrightnessUp, exec, Brightness up, brightnessctl set 1%+"
-          "XF86MonBrightnessDown, exec, Brightness down, brightnessctl set 1%-"
+          "XF86MonBrightnessUp, Brightness up, exec, brightnessctl set 1%+"
+          "XF86MonBrightnessDown, Brightness down, exec, brightnessctl set 1%-"
         ];
     };
 }

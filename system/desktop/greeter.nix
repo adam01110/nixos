@@ -41,5 +41,5 @@ in
   };
 
   # ensure tuigreet is present system-wide.
-  systemPackages = [ pkgs.tuigreet ];
+  environment.systemPackages = [ pkgs.tuigreet ];
 }

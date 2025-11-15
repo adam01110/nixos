@@ -9,7 +9,6 @@
     ./stylix
     ./xdg
     ./noctalia.nix
-    ./stasis.nix
   ];
 
   home.packages = [ pkgs.brightnessctl ];

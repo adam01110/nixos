@@ -21,6 +21,7 @@ in
       # turn on experimental features and apply wm patch.
       experimentalFeatures = true;
       windowManagerPatch = true;
+      wayland = true;
 
       # enable extensions.
       enabledExtensions =

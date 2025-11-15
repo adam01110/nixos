@@ -105,6 +105,7 @@ in
                 pinned = [
                   "Equibop"
                   "Beeper"
+                  "spotify-client"
                 ];
               }
               { id = "Volume"; }
@@ -173,6 +174,7 @@ in
 
         # auto hiding dock with proportional sizing.
         dock = {
+          backgroundOpacity = 0.9;
           displayMode = "auto_hide";
           floatingRatio = 0.5;
           onlySameOutput = true;
@@ -212,11 +214,26 @@ in
 
         # disable the hibernate option in the sessionmenu.
         sessionMenu.powerOptions = [
-          { action = "lock"; }
-          { action = "suspend"; }
-          { action = "reboot"; }
-          { action = "logout"; }
-          { action = "shutdown"; }
+          {
+            action = "lock";
+            enabled = true;
+          }
+          {
+            action = "suspend";
+            enabled = true;
+          }
+          {
+            action = "reboot";
+            enabled = true;
+          }
+          {
+            action = "logout";
+            enabled = true;
+          }
+          {
+            action = "shutdown";
+            enabled = true;
+          }
           {
             action = "hibernate";
             enabled = false;
@@ -229,7 +246,7 @@ in
           fontDefaultScale = 0.9;
           fontFixed = stylixFonts.fixed;
           fontFixedScale = 0.9;
-          panelBackgroundOpacity = 0.16;
+          panelBackgroundOpacity = 0.9;
           panelsAttachedToBar = false;
         };
 
