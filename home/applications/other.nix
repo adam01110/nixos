@@ -11,9 +11,17 @@
     [
       bleachbit
       bitwarden-desktop
+      decibels
+      gimp
+      gnome-calculator
       helvum
+      komikku
+      loupe
+      mangojuice
       mcpelauncher-ui-qt
       newsflash
+      nucleus
+      obsidian
       showtime
       upscayl
       warehouse
@@ -31,14 +39,6 @@
   # install applications via flatpak.
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
-    "io.github.radiolamp.mangojuice"
-    "info.febvre.Komikku"
     "me.iepure.devtoolbox"
-    "md.obsidian.Obsidian"
-    "org.gimp.GIMP"
-    "org.gnome.Calculator"
-    "org.gnome.Decibels"
-    "org.gnome.Loupe"
-    "page.codeberg.lo_vely.Nucleus"
   ];
 }
