@@ -90,6 +90,7 @@ in
                 visualizerType = "linear";
               }
             ];
+
             # widgets centered in the bar.
             center = [
               {
@@ -98,6 +99,7 @@ in
                 labelMode = "none";
               }
             ];
+
             # widgets aligned to the right side.
             right = [
               {
@@ -106,6 +108,7 @@ in
                   "Equibop"
                   "Beeper"
                   "spotify-client"
+                  "steam"
                 ];
               }
               { id = "Volume"; }
@@ -115,12 +118,15 @@ in
                 displayMode = "onhover";
               }
             ]
+
             # quick toggle for keep awake.
             ++ [
               { id = "KeepAwake"; }
             ]
+
             # add battery widget when enabled.
             ++ (optionals config.noctalia.battery.enable [ { id = "Battery"; } ])
+
             ++ [
               {
                 id = "NotificationHistory";
@@ -184,7 +190,7 @@ in
         # global animation and scaling preferences.
         general = {
           animationSpeed = 2;
-          dimDesktop = false;
+          dimmerOpacity = 0;
           radiusRatio = 0.50;
           scaleRatio = 0.8;
           screenRadiusRatio = 0.5;

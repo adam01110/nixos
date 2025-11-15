@@ -153,12 +153,25 @@ Item {
                             const inWorkspaceGroup = (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
                             return inWorkspaceGroup;
                         }).sort((a, b) => {
-                            // Sort by stacking order from Hyprland (index in windowList)
+                            // Proper stacking order based on Hyprland's window properties
                             const addrA = `0x${a.HyprlandToplevel.address}`
                             const addrB = `0x${b.HyprlandToplevel.address}`
-                            const indexA = root.windowAddresses.indexOf(addrA)
-                            const indexB = root.windowAddresses.indexOf(addrB)
-                            return indexA - indexB
+                            const winA = windowByAddress[addrA]
+                            const winB = windowByAddress[addrB]
+
+                            // 1. Pinned windows are always on top
+                            if (winA?.pinned !== winB?.pinned) {
+                                return winA?.pinned ? 1 : -1
+                            }
+
+                            // 2. Floating windows above tiled windows
+                            if (winA?.floating !== winB?.floating) {
+                                return winA?.floating ? 1 : -1
+                            }
+
+                            // 3. Within same category, sort by focus history
+                            // Lower focusHistoryID = more recently focused = higher in stack
+                            return (winB?.focusHistoryID ?? 0) - (winA?.focusHistoryID ?? 0)
                         })
                     }
                 }

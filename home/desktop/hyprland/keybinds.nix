@@ -126,6 +126,7 @@ in
           "SUPER, F, Fullscreen window, fullscreen"
           "SUPER, V, Toggle window floating/tiling, togglefloating"
           "SUPER, S, Toggle window split, togglesplit"
+          "SUPER, P, Pseudo window, pseudo"
           "SUPER, Q, Close window, killactive"
           "SUPER SHIFT, O, Grab all windows in invalid workspaces, split:grabroguewindows"
 
@@ -153,7 +154,7 @@ in
 
           # shell.
           "SUPER, tab, Open the launcher, exec,  ${noctalia} launcher toggle"
-          "SUPER, P, Open the session menu, exec, ${noctalia} sessionMenu toggle"
+          "SUPER, ESCAPE, Open the session menu, exec, ${noctalia} sessionMenu toggle"
           "SUPER, C, Open the wallpaper menu, exec, ${noctalia} wallpaper toggle"
           "SUPER, O, Open the notification history, exec, ${noctalia} notifications toggleHistory"
           "SUPER, I, Open the control center, exec, ${noctalia} controlCenter toggle"
