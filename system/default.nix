@@ -22,7 +22,6 @@ in
     ./disk.nix
     ./locale.nix
     ./nix.nix
-    ./oxidize.nix
     ./slim.nix
     ./sops.nix
     ./tweaks.nix
