@@ -9,6 +9,7 @@
     enable = true;
     package = pkgs.steam-millennium;
 
+    # open necessary ports for remote play and on-LAN transfers.
     localNetworkGameTransfers.openFirewall = true;
     remotePlay.openFirewall = true;
 

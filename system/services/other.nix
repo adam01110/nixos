@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # enable miscellaneous desktop services in one place.
   services = {
     # bluetooth applet and helpers (tray bluetooth manager).
     blueman.enable = true;

@@ -1,22 +1,24 @@
 { ... }:
 
-# build tool segments for starship.
+# starship segments for build tooling versions.
 {
-  cmake = {
-    format = "[ ](#00000000)[](fg:base01)[$symbol($version)]($style)[](fg:base01)";
-    symbol = "󰔶 ";
-    style = "bg:base01 fg:red bold";
-  };
+  programs.starship.settings = {
+    cmake = {
+      format = "[ ](#00000000)[](fg:base01)[$symbol($version)]($style)[](fg:base01)";
+      symbol = "󰔶 ";
+      style = "bg:base01 fg:red bold";
+    };
 
-  gradle = {
-    format = "[ ](#00000000)[](fg:base01)[$symbol($version)]($style)[](fg:base01)";
-    symbol = " ";
-    style = "bg:base01 fg:cyan bold";
-  };
+    gradle = {
+      format = "[ ](#00000000)[](fg:base01)[$symbol($version)]($style)[](fg:base01)";
+      symbol = " ";
+      style = "bg:base01 fg:cyan bold";
+    };
 
-  meson = {
-    format = "[ ](#00000000)[](fg:base01)[$symbol$project]($style)[](fg:base01)";
-    symbol = "⬢ ";
-    style = "bg:base01 fg:blue bold";
+    meson = {
+      format = "[ ](#00000000)[](fg:base01)[$symbol$project]($style)[](fg:base01)";
+      symbol = "⬢ ";
+      style = "bg:base01 fg:blue bold";
+    };
   };
 }

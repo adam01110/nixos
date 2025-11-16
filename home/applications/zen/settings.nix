@@ -254,6 +254,7 @@ in
           "zen.view.experimental-no-window-controls" = true;
           "zen.workspaces.continue-where-left-off" = true;
           "zen.workspaces.separate-essentials" = false;
+          "zen.welcome-screen.seen" = true;
         };
 
       # add extensions not in nur.

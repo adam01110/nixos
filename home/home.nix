@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # home-manager base config for the primary user.
   # user-level files and session environment.
   home = {
     # copy user avatar to ~/.face for display managers.

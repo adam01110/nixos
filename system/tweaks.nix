@@ -12,6 +12,7 @@ let
     ;
 in
 {
+  # assorted low-level tweaks and helper tools.
   environment.systemPackages = attrValues {
     inherit (pkgs)
       bash
@@ -19,6 +20,7 @@ in
       ;
   };
 
+  # kernel parameters aimed at low latency desktops.
   boot = {
     extraModprobeConfig = ''
       options snd_hda_intel power_save=0
@@ -46,6 +48,7 @@ in
     };
   };
 
+  # udev rules for audio power saving and scheduler tuning.
   services.udev.extraRules =
     let
       bash = getExe pkgs.bash;
@@ -93,6 +96,7 @@ in
       DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
     '';
 
+  # systemd limits and tmpfiles overrides.
   systemd = {
     tmpfiles.rules = [
       "d /var/lib/systemd/coredump 0755 root root 3d"

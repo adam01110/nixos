@@ -14,6 +14,7 @@
     })
   ];
 
+  # start keyring services for secret storage.
   services.gnome.gnome-keyring.enable = true;
 
   # hook keyring into login and greetd sessions.

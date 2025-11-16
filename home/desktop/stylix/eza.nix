@@ -9,128 +9,128 @@ let
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
-  _module.args.ezaStylix = {
+  _module.args.ezaStylix = with colors; {
     colourful = true;
 
     # file kind colors.
     filekinds = {
-      normal = colors.base05;
-      directory = colors.base0D;
-      symlink = colors.base0C;
-      pipe = colors.base04;
-      block_device = colors.base08;
-      char_device = colors.base08;
-      socket = colors.base03;
-      special = colors.base0E;
-      executable = colors.base0B;
-      mount_point = colors.base09;
+      normal = base05;
+      directory = base0D;
+      symlink = base0C;
+      pipe = base04;
+      block_device = base08;
+      char_device = base08;
+      socket = base03;
+      special = base0E;
+      executable = base0B;
+      mount_point = base09;
     };
 
     # permission bit colors.
     perms = {
-      user_read = colors.base05;
-      user_write = colors.base0A;
-      user_execute_file = colors.base0B;
-      user_execute_other = colors.base0B;
-      group_read = colors.base05;
-      group_write = colors.base0A;
-      group_execute = colors.base0B;
-      other_read = colors.base04;
-      other_write = colors.base0A;
-      other_execute = colors.base0B;
-      special_user_file = colors.base0E;
-      special_other = colors.base04;
-      attribute = colors.base04;
+      user_read = base05;
+      user_write = base0A;
+      user_execute_file = base0B;
+      user_execute_other = base0B;
+      group_read = base05;
+      group_write = base0A;
+      group_execute = base0B;
+      other_read = base04;
+      other_write = base0A;
+      other_execute = base0B;
+      special_user_file = base0E;
+      special_other = base04;
+      attribute = base04;
     };
 
     # size column colors by unit and magnitude.
     size = {
-      major = colors.base04;
-      minor = colors.base0C;
-      number_byte = colors.base05;
-      number_kilo = colors.base05;
-      number_mega = colors.base0D;
-      number_giga = colors.base0E;
-      number_huge = colors.base0E;
-      unit_byte = colors.base04;
-      unit_kilo = colors.base0D;
-      unit_mega = colors.base0E;
-      unit_giga = colors.base0E;
-      unit_huge = colors.base09;
+      major = base04;
+      minor = base0C;
+      number_byte = base05;
+      number_kilo = base05;
+      number_mega = base0D;
+      number_giga = base0E;
+      number_huge = base0E;
+      unit_byte = base04;
+      unit_kilo = base0D;
+      unit_mega = base0E;
+      unit_giga = base0E;
+      unit_huge = base09;
     };
 
-    # user and group colors.
+    # user and group
     users = {
-      user_you = colors.base05;
-      user_root = colors.base08;
-      user_other = colors.base0E;
-      group_yours = colors.base05;
-      group_other = colors.base04;
-      group_root = colors.base08;
+      user_you = base05;
+      user_root = base08;
+      user_other = base0E;
+      group_yours = base05;
+      group_other = base04;
+      group_root = base08;
     };
 
-    # link count and hardlink colors.
+    # link count and hardlink
     links = {
-      normal = colors.base0C;
-      multi_link_file = colors.base09;
+      normal = base0C;
+      multi_link_file = base09;
     };
 
-    # git status colors.
+    # git status
     git = {
-      new = colors.base0B;
-      modified = colors.base0A;
-      deleted = colors.base08;
-      renamed = colors.base0C;
-      typechange = colors.base0E;
-      ignored = colors.base04;
-      conflicted = colors.base08;
+      new = base0B;
+      modified = base0A;
+      deleted = base08;
+      renamed = base0C;
+      typechange = base0E;
+      ignored = base04;
+      conflicted = base08;
     };
 
-    # git repo metadata colors.
+    # git repo metadata
     git_repo = {
-      branch_main = colors.base05;
-      branch_other = colors.base0E;
-      git_clean = colors.base0B;
-      git_dirty = colors.base08;
+      branch_main = base05;
+      branch_other = base0E;
+      git_clean = base0B;
+      git_dirty = base08;
     };
 
-    # selinux security context colors.
+    # selinux security context
     security_context = {
-      colon = colors.base04;
-      user = colors.base05;
-      role = colors.base0E;
-      typ = colors.base03;
-      range = colors.base0E;
+      colon = base04;
+      user = base05;
+      role = base0E;
+      typ = base03;
+      range = base0E;
     };
 
     # colors by file extension category.
     file_type = {
-      image = colors.base0A;
-      video = colors.base08;
-      music = colors.base0B;
-      lossless = colors.base0C;
-      crypto = colors.base04;
-      document = colors.base05;
-      compressed = colors.base0E;
-      temp = colors.base08;
-      compiled = colors.base0D;
-      build = colors.base04;
-      source = colors.base0D;
+      image = base0A;
+      video = base08;
+      music = base0B;
+      lossless = base0C;
+      crypto = base04;
+      document = base05;
+      compressed = base0E;
+      temp = base08;
+      compiled = base0D;
+      build = base04;
+      source = base0D;
     };
 
-    # misc token colors.
-    punctuation = colors.base04;
-    date = colors.base0A;
-    inode = colors.base04;
-    blocks = colors.base03;
-    header = colors.base05;
-    octal = colors.base0C;
-    flags = colors.base0E;
+    # misc token
+    punctuation = base04;
+    date = base0A;
+    inode = base04;
+    blocks = base03;
+    header = base05;
+    octal = base0C;
+    flags = base0E;
 
     # symlink visuals.
-    symlink_path = colors.base0C;
-    control_char = colors.base0D;
-    broken_symlink = colors.base08;
-    broken_path_overlay = colors.base04;
+    symlink_path = base0C;
+    control_char = base0D;
+    broken_symlink = base08;
+    broken_path_overlay = base04;
   };
 }

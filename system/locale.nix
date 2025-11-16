@@ -4,6 +4,7 @@
   # locale and i18n settings. adjust lc_* as desired per host.
   i18n = {
     defaultLocale = "en_US.UTF-8";
+    # keep locale categories aligned to avoid mismatch warnings.
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";

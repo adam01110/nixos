@@ -104,7 +104,7 @@
     # steam homebrew flake.
     millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
 
-    # spicetify flake
+    # spicetify flake.
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
