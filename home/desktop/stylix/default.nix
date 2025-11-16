@@ -54,7 +54,7 @@ in
       cava.rainbow.enable = true;
 
       zen-browser.profileNames = [
-        "${username}"
+        username
         "academia"
       ];
     };

@@ -16,10 +16,18 @@ let
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
-  # expose default and fixed font names for noctalia ui.
-  _module.args.noctaliaStylix.fonts = {
-    default = sansSerifFont;
-    fixed = monospaceFont;
+  _module.args.noctaliaStylix = {
+    # default and fixed font names.
+    fonts = {
+      default = sansSerifFont;
+      fixed = monospaceFont;
+    };
+
+    # system monitor colors from the Stylix palette.
+    systemMonitor = with colors; {
+      warningColor = base0A;
+      criticalColor = base08;
+    };
   };
 
   # write the noctalia color palette to a json file.

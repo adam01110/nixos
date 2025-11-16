@@ -34,6 +34,7 @@
   nixpkgs = {
     config.allowUnfree = true;
 
+    # supply overlays for hyprland themes and dolphin tweaks.
     overlays = with inputs; [
       millennium.overlays.default
       dolphin-overlay.overlays.default

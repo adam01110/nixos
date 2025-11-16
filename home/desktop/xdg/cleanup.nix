@@ -9,7 +9,7 @@ let
   stateHome = config.xdg.stateHome;
 in
 {
-  # route various tool caches and state into xdg directories.
+  # consolidate tool state under xdg paths to keep $HOME clean.
   home.sessionVariables = {
     # history.
     LESSHISTFILE = "${stateHome}/less/history";

@@ -18,5 +18,6 @@
   ];
   boot.kernelModules = [ "kvm-intel" ];
 
+  # default to x86_64 linux ABI inside VM guests.
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

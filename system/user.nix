@@ -24,7 +24,7 @@ in
       hashedPasswordFile = config.sops.secrets.user_password.path;
 
       # group memberships:
-      # - wheel: administrative access via sudo-rs.
+      # - wheel: administrative access via sudo.
       # - audio: access to sound devices.
       # - networkmanager: control network connections.
       extraGroups = [

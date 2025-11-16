@@ -6,9 +6,9 @@
 {
   imports = [
     ./hyprland
+    ./noctalia
     ./stylix
     ./xdg
-    ./noctalia.nix
   ];
 
   home.packages = [ pkgs.brightnessctl ];

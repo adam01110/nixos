@@ -3,12 +3,12 @@
   ...
 }:
 
-# define the prompt layout as a sequence of segments.
 let
   inherit (lib) concatStrings;
 in
 {
-  format = concatStrings [
+  # layout and coloring for the full starship prompt.
+  programs.starship.settings.format = concatStrings [
     "[](fg:base01)"
     "$hostname"
     "[/](fg:base05 bg:base01)"

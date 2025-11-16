@@ -8,6 +8,7 @@
   services.ananicy = {
     enable = true;
     package = pkgs.ananicy-cpp;
+    # prefer cachyos ruleset for desktop responsiveness.
     rulesProvider = pkgs.ananicy-rules-cachyos_git;
   };
 }
