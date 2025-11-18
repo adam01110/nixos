@@ -1,5 +1,4 @@
 {
-  # home manager hyprland configuration: plugins, quickshell, and extras.
   config,
   pkgs,
   inputs,
@@ -7,6 +6,7 @@
   ...
 }:
 
+# home manager hyprland configuration: plugins, quickshell, and extras.
 {
   # compose hyprland configuration from module segments.
   imports = [
@@ -32,7 +32,7 @@
 
     # add hyprfocus and hyprsplit plugins.
     plugins = with inputs; [
-      hyprland-plugins.packages.${system}.hyprfocus
+      #hyprland-plugins.packages.${system}.hyprfocus
       hyprsplit.packages.${system}.hyprsplit
     ];
   };
@@ -51,7 +51,7 @@
 
       # add qt5compat the overview.
       package = pkgs.quickshell.overrideAttrs (prev: {
-        buildInputs = (prev.buildInputs or [ ]) ++ [ pkgs.qt6Packages.qt5compat ];
+        buildInputs = prev.buildInputs ++ [ pkgs.qt6Packages.qt5compat ];
       });
 
       activeConfig = "overview";

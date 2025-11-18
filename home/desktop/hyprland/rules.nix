@@ -46,55 +46,55 @@ in
     # rules for layers and overlays.
     layerrule = [
       # noanim.
-      "noanim, ^hyprpicker$"
-      "noanim, ^selection$"
-      "noanim, ^noctalia.*$"
+      "match:namespace hyprpicker, no_anim on"
+      "match:namespace selection, no_anim on"
+      "match:namespace noctalia.+, no_anim on"
 
       # ingoreaplha.
-      "ignorealpha 0.9, ^noctalia-dock.*$"
-      "ignorealpha 0.9, ^noctalia-panel-content.*$"
+      "match:namespace noctalia-dock.+, ignore_alpha 0.9"
+      "match:namespace noctalia-panel-content.+, ignore_alpha 0.9"
 
       # blur
-      "blur, noctalia-dock.*"
-      "blur, ^noctalia-panel-content.*$"
+      "match:namespace noctalia-dock.+, blur on"
+      "match:namespace noctalia-panel-content.+, blur on"
     ];
 
     windowrule = [
       # force opacity.
-      "opacity 1 override 1 override, class:^(com.mitchellh.ghostty)$"
-      "opacity 1 override 1 override, class:^(equibop)$"
-      "opacity 1 override 1 override, class:^(steam_app_.*)$"
+      "match:class com.mitchellh.ghostty, opacity 1 override 1 override"
+      "match:class com.mitchellh.ghostty, opacity 1 override 1 override"
+      "match:class com.mitchellh.ghostty, opacity 1 override 1 override"
 
       # noblur.
-      "noblur, class:^(equibop)$"
-      "noblur, class:^(steam_app_.*)$"
+      "match:class equibop, no_blur on"
+      "match:class steam_app_.+, no_blur on"
 
       # tile.
-      "tile, class:^(io.mrarm.mcpelauncher-ui-qt)$"
+      "match:class io.mrarm.mcpelauncher-ui-qt, tile on"
 
       # float.
-      "float, class:^(org.kde.kcalc)$"
-      "float, title:^(Task Manager - Helium)$"
-      "float, class:^(BeeperTexts)$, title:^(Settings)$"
-      "float, class:^(steam)$, title:^(Friends List)$"
-      "float, class:^(steam)$, title:^(Steam Settings)$"
-      "float, class:^(zen)$, title:^(Picture-in-Picture)$"
-      "float, class:^(zen)$, title:^(Bitwarden)$"
-      "float, class:^(me.iepure.devtoolbox)$"
-      "float, class:^(org.freedesktop.impl.portal.desktop.kde)$"
+      "match:class org.gnome.Calculator, float on"
+      "match:title Task Manager - .+, float on"
+      "match:class BeeperTexts, match:title Settings, float on"
+      "match:class steam, match:title Friends List, float on"
+      "match:class steam, match:title Steam Settings, float on"
+      "match:class zen, match:title Picture-in-Picture, float on"
+      "match:class zen, match:title Bitwarden, float on"
+      "match:class me.iepure.devtoolbox, float on"
+      "match:class org.freedesktop.impl.portal.desktop.kde, float on"
 
-      # set zie.
-      "size 380 520, class:^(org.kde.kcalc)$"
-      "size 800 600, title:^(Task Manager - Helium)$"
-      "size 380 540, steam:^(steam)$, title:^(Friends List)$"
-      "size 900 900, class:^(BeeperTexts)$, title:^(Settings)$"
-      "size 450 800, class:^(zen)$, title:^(Bitwarden)$"
-      "size 400 600, class:^(protonvpn-app)$, title:^(Proton VPN)$"
-      "size 568 720, class:^(org.gnome.seahorse.Application)$, title:^(.+ — Private key)$"
-      "size 400 520, class:^(org.gnome.seahorse.Application)$, title:^(Item Properties)$"
+      # set size.
+      "match:class org.gnome.Calculator, size 695 800"
+      "match:title Task Manager - .+, size 800 600"
+      "match:class steam, match:title Friends List, size 380 540,"
+      "match:class BeeperTexts, match:title Settings, size 900 900"
+      "match:class zen, match:title Bitwarden, size 450 800"
+      "match:class protonvpn-app, match:title Proton VPN, size 400 600"
+      "match:class org.gnome.seahorse.Application, match:title .+ — Private key, size 568 720"
+      "match:class org.gnome.seahorse.Application, match:title Item Properties, size 400 520"
 
       # pin.
-      "pin, class:^(zen)$, title:^(Picture-in-Picture)$"
+      "match:class zen, match:title Picture-in-Picture, pin on"
     ];
   };
 }
