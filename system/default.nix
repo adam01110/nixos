@@ -37,7 +37,7 @@ in
 
     # bootloader, kernel, and initrd configuration.
     boot = {
-      kernelPackages = pkgs.linuxPackages_cachyos;
+      kernelPackages = pkgs.linuxPackages_cachyos-lto;
       initrd.services.udev.packages = [ pkgs.numworks-udev-rules ];
 
       loader = {

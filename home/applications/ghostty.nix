@@ -1,6 +1,13 @@
-{ ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 # configure ghostty settings.
+let
+  inherit (lib) mkForce;
+in
 {
   programs.ghostty = {
     enable = true;
@@ -9,6 +16,8 @@
       # font settings.
       font-feature = "-calt, -liga, -dlig";
       freetype-load-flags = "hinting";
+      # it uses pt not fucking px
+      font-size = mkForce config.stylix.fonts.sizes.terminal;
 
       # cursor settings.
       cursor-style = "block";

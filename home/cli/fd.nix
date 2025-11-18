@@ -7,6 +7,9 @@
 
     # enable hidden files and colored output.
     hidden = true;
-    extraOptions = [ "--color always" ];
+    extraOptions = [
+      "--color"
+      "always"
+    ];
   };
 }
