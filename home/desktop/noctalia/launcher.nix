@@ -10,6 +10,7 @@ in
 {
   # launcher behavior and default terminal command.
   programs.noctalia-shell.settings.appLauncher = {
+    enableClipPreview = false;
     enableClipboardHistory = true;
     position = "center";
     sortByMostUsed = false;
