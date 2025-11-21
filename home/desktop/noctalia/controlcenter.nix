@@ -5,7 +5,7 @@
 }:
 
 let
-  inherit (lib) optionals;
+  inherit (lib) optional;
 
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
   cfgWifi = osConfig.optServices.wifi.enable;
@@ -40,8 +40,8 @@ in
 
     shortcuts = {
       left =
-        (optionals cfgWifi [ { id = "WiFi"; } ])
-        ++ (optionals cfgBluetooth [ { id = "Bluetooth"; } ])
+        (optional cfgWifi { id = "WiFi"; })
+        ++ (optional cfgBluetooth { id = "Bluetooth"; })
         ++ [
           { id = "ScreenRecorder"; }
           { id = "WallpaperSelector"; }

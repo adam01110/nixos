@@ -34,7 +34,7 @@ in
       notify-send = getExe' pkgs.libnotify "notify-send";
 
       qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
-      noctalia = "${getExe' inputs.noctalia.packages.${system}.default "noctalia-shell"} ipc call";
+      noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
     in
     {
       # allow focus cycling while a window is fullscreen.
@@ -47,10 +47,10 @@ in
           equibop = getExe config.programs.equinix.equibop.package;
           ghostty = "${getExe config.programs.ghostty.package} +new-window";
           hyprpicker = getExe config.programs.hyprshot.package;
-          hyprshot = getExe pkgs.hyprshot;
+          hyprshot = getExe config.programs.hyprshot.package;
           steam = getExe osConfig.programs.steam.package;
           zen-browser = getExe inputs.zen-browser.packages."${system}".default;
-          app2unit = "${getExe pkgs.app2unit} --";
+          app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";
 
           screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
 

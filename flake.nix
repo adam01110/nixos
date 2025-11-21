@@ -59,16 +59,9 @@
     };
 
     # noctalia shell.
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        quickshell.follows = "quickshell";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # prebuilt database for nix-index/comma tooling.

@@ -86,7 +86,7 @@ in
           modernScrollbar
           removeGradient
           pointer
-          darkLyrics
+          prettyLyrics
           removeTheArtistsAndCreditsSectionsFromTheSidebar
           removeTopSpacing
           roundedButtons

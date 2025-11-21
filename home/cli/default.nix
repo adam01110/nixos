@@ -18,6 +18,7 @@
     ./nh.nix
     ./nvtop.nix
     ./other.nix
+    ./spotify-player.nix
     ./wikiman.nix
     ./zoxide.nix
   ];
