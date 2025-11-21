@@ -5,7 +5,7 @@
 }:
 
 let
-  inherit (lib) optionals;
+  inherit (lib) optional;
 in
 {
   # noctalia top bar layout, density, and widget ordering.
@@ -96,7 +96,7 @@ in
       ++ [
         { id = "KeepAwake"; }
       ]
-      ++ (optionals config.noctalia.battery.enable [ { id = "Battery"; } ])
+      ++ (optional config.noctalia.battery.enable { id = "Battery"; })
       ++ [
         {
           id = "NotificationHistory";

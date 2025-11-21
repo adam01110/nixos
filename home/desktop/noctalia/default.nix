@@ -33,7 +33,6 @@
     systemd.enable = true;
 
     package = inputs.noctalia.packages.${system}.default;
-    app2unit.package = pkgs.app2unit;
 
     settings.colorschemes.generateTemplatesForPredefined = false;
   };

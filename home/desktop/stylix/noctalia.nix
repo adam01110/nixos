@@ -1,14 +1,13 @@
 {
   osConfig,
+  pkgs,
   ...
 }:
 
-# helpers for mapping stylix fonts and colors to noctalia.
+# stylix theme for noctalia-shell.
 let
-  inherit (builtins)
-    mapAttrs
-    toJSON
-    ;
+  inherit (builtins) mapAttrs;
+  jsonFormat = pkgs.formats.json { };
 
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
   monospaceFont = osConfig.stylix.fonts.monospace.name;
@@ -31,9 +30,9 @@ in
   };
 
   # write the noctalia color palette to a json file.
-  xdg.configFile."noctalia/colors.json".text =
+  xdg.configFile."noctalia/colors.json".source =
     with colors;
-    toJSON {
+    jsonFormat.generate "noctalia-theme.json" {
       mError = base08;
       mHover = base0D;
       mOnHover = base00;
