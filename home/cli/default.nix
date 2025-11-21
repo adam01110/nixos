@@ -15,7 +15,6 @@
     ./fish.nix
     ./fzf.nix
     ./gh.nix
-    ./nh.nix
     ./nvtop.nix
     ./other.nix
     ./spotify-player.nix

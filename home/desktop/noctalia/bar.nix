@@ -81,6 +81,10 @@ in
           ];
         }
         {
+          id = "VPN";
+          displayMode = "onhover";
+        }
+        {
           id = "Volume";
           displayMode = "onhover";
         }
