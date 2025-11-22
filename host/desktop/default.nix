@@ -18,10 +18,7 @@ in
   disko.selectedDisk = "/dev/nvme0n1";
 
   # per-host optional services and settings.
-  optServices = {
-    geoclue2.static.enable = true;
-    timezone = "Europe/Amsterdam";
-  };
+  optServices.timezone = "Europe/Amsterdam";
 
   # extra hardware toggles.
   hardware = {
