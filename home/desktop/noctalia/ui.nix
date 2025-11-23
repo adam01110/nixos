@@ -13,7 +13,7 @@ in
     fontDefaultScale = 0.9;
     fontFixed = stylixFonts.fixed;
     fontFixedScale = 0.9;
-    panelBackgroundOpacity = 0.9;
+    panelBackgroundOpacity = 0.95;
     panelsAttachedToBar = false;
     settingsPanelAttachToBar = false;
     tooltipsEnabled = true;

@@ -9,6 +9,7 @@
     ./noctalia
     ./stylix
     ./xdg
+    ./mangohud.nix
   ];
 
   home.packages = [ pkgs.brightnessctl ];

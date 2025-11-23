@@ -3,7 +3,6 @@
 {
   imports = [
     ./zen
-    ./czkawka.nix
     ./equibop
     ./ghostty.nix
     ./lutris.nix

@@ -20,5 +20,8 @@ in
       powerOnBoot = false;
       settings.General.Experimental = true;
     };
+
+    # bluetooth applet and helpers (tray bluetooth manager).
+    services.blueman.enable = true;
   };
 }

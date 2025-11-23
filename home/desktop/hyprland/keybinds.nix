@@ -158,8 +158,8 @@ in
           "SUPER, C, Open the wallpaper menu, exec, ${noctalia} wallpaper toggle"
           "SUPER, O, Open the notification history, exec, ${noctalia} notifications toggleHistory"
           "SUPER, I, Open the control center, exec, ${noctalia} controlCenter toggle"
-          "SUPER, G, Open the calculator in the launcher, exec, ${noctalia} launcher calculator"
-          "SUPER, V, Open the clipboard in the launcher, exec, ${noctalia} launcher clipboard"
+          "SUPER, G, Open the emoji picker in the launcher, exec, ${noctalia} launcher emoji"
+          "SUPER SHIFT, V, Open the clipboard history in the launcher, exec, ${noctalia} launcher clipboard"
           "SUPER, L, Inhibit idle, exec, ${noctalia} idleInhibitor toggle"
 
           # screenshots.
