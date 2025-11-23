@@ -1,9 +1,47 @@
-{ ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 # configure btop.
+let
+  inherit (lib) elem mkOption types;
+
+  gpuBackends = config.btop.gpuBackends;
+  hasCuda = elem "cuda" gpuBackends;
+  hasRocm = elem "rocm" gpuBackends;
+
+  # pick gpu-aware version of btop.
+  btopPackage =
+    if hasCuda && hasRocm then
+      pkgs.btop.override {
+        cudaSupport = true;
+        rocmSupport = true;
+      }
+    else if hasCuda then
+      pkgs.btop-cuda
+    else if hasRocm then
+      pkgs.btop-rocm
+    else
+      pkgs.btop;
+in
 {
-  programs.btop = {
+  options.btop.gpuBackends = mkOption {
+    type = types.listOf (
+      types.enum [
+        "cuda"
+        "rocm"
+      ]
+    );
+    default = [ ];
+    description = "Select GPU backends to enable in btop.";
+  };
+
+  config.programs.btop = {
     enable = true;
+    package = btopPackage;
 
     settings = {
       vim_keys = true;

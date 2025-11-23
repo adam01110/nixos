@@ -10,7 +10,7 @@
       # hyprfocus bounce mode and intensity.
       hyprfocus = {
         mode = "bounce";
-        bounce_strength = 0.98;
+        bounce_strength = 0.995;
       };
     };
   };

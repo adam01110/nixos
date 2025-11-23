@@ -27,7 +27,7 @@
     # dedicate a key for github traffic to keep identities separate.
     matchBlocks."github.com" = {
       hostname = "github.com";
-      identityFile = "~/.ssh/github";
+      identityFile = "~/.ssh/git";
     };
 
     # pull in the sops-generated server host.

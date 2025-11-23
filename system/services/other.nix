@@ -3,9 +3,6 @@
 {
   # enable miscellaneous desktop services in one place.
   services = {
-    # bluetooth applet and helpers (tray bluetooth manager).
-    blueman.enable = true;
-
     # tune kernel bpf-related defaults for better performance.
     bpftune.enable = true;
 

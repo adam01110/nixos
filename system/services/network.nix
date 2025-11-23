@@ -28,13 +28,19 @@ in
         };
 
         # template for resolved.conf carrying dns servers from sops.
-        templates."resolved-dns.conf".content = ''
-          [Resolve]
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_1"}
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_2"}
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_3"}
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_4"}
-        '';
+        templates."resolved-dns.conf" = {
+          # allow systemd-resolved to read the rendered dns drop-in.
+          mode = "0440";
+          group = "systemd-resolve";
+
+          content = ''
+            [Resolve]
+            DNS=${config.sops.placeholder."dns/${hostname}/dns_1"}
+            DNS=${config.sops.placeholder."dns/${hostname}/dns_2"}
+            DNS=${config.sops.placeholder."dns/${hostname}/dns_3"}
+            DNS=${config.sops.placeholder."dns/${hostname}/dns_4"}
+          '';
+        };
       };
 
     services.resolved = {

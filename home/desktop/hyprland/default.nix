@@ -14,6 +14,7 @@
     ./hypridle.nix
     ./keybinds.nix
     ./general.nix
+    ./monitors.nix
     ./plugins.nix
     ./rules.nix
   ];
@@ -32,7 +33,7 @@
 
     # add hyprfocus and hyprsplit plugins.
     plugins = with inputs; [
-      #hyprland-plugins.packages.${system}.hyprfocus
+      hyprland-plugins.packages.${system}.hyprfocus
       hyprsplit.packages.${system}.hyprsplit
     ];
   };

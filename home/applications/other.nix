@@ -12,16 +12,17 @@
       bleachbit
       bitwarden-desktop
       decibels
+      fragments
       gimp
       gnome-calculator
       helvum
       komikku
       loupe
-      mangojuice
       mcpelauncher-ui-qt
       newsflash
       nucleus
       obsidian
+      protonvpn-gui
       showtime
       upscayl
       warehouse

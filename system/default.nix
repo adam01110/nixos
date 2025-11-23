@@ -38,7 +38,11 @@ in
     # bootloader, kernel, and initrd configuration.
     boot = {
       kernelPackages = pkgs.linuxPackages_cachyos-lto;
-      initrd.services.udev.packages = [ pkgs.numworks-udev-rules ];
+      initrd = {
+        services.udev.packages = [ pkgs.numworks-udev-rules ];
+
+        systemd.enable = true;
+      };
 
       loader = {
         timeout = 0;
@@ -61,6 +65,9 @@ in
       rtkit.enable = true;
       polkit.enable = true;
     };
+
+    # enable nix-ld to allow the use of dynamic libraries
+    programs.nix-ld.enable = true;
 
     # use nftables; individual services will add rules if needed.
     networking.nftables.enable = true;

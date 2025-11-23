@@ -33,6 +33,7 @@ in
             "--time"
             "--time-format '%Y-%m-%d %H:%M:%S'"
             "--remember"
+            "--remember-user-session"
             "--user-menu"
             "--cmd ${hyprland}"
           ];

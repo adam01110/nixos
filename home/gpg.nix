@@ -21,6 +21,9 @@
     enableSshSupport = true;
 
     # use the gnome pinentry for passphrase prompts.
-    pinentry.program = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
+
+  # package needed for pintenty gnome
+  home.packages = [ pkgs.gcr ];
 }

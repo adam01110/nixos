@@ -50,7 +50,7 @@ in
         nixos = {
           urls = [
             {
-              template = "https://searchix.ovh/options/nixos/";
+              template = "https://searchix.ovh/options/nixos/search";
               params = [
                 {
                   name = "query";
@@ -65,7 +65,7 @@ in
         "home-manager" = {
           urls = [
             {
-              template = "https://searchix.ovh/options/home-manager/";
+              template = "https://searchix.ovh/options/home-manager/search";
               params = [
                 {
                   name = "query";
@@ -80,7 +80,7 @@ in
         "nix-packages" = {
           urls = [
             {
-              template = "https://searchix.ovh/packages/nixpkgs/";
+              template = "https://searchix.ovh/packages/nixpkgs/search";
               params = [
                 {
                   name = "query";
@@ -95,7 +95,7 @@ in
         nur = {
           urls = [
             {
-              template = "https://searchix.ovh/packages/nur/";
+              template = "https://searchix.ovh/packages/nur/search";
               params = [
                 {
                   name = "query";

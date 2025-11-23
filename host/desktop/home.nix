@@ -17,14 +17,13 @@
     };
   };
 
-  # target fps for sober.
-  sober.fps = 170;
-
   # gpu types in the system to install for nvtop.
   nvtop.types = [
     "amd"
     "intel"
   ];
+
+  btop.gpuBackends = [ "rocm" ];
 
   zen-browser.commit-space = 25698;
 }

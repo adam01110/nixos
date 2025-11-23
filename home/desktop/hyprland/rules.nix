@@ -51,8 +51,8 @@ in
       "match:namespace noctalia.+, no_anim on"
 
       # ingoreaplha.
-      "match:namespace noctalia-dock.+, ignore_alpha 0.9"
-      "match:namespace noctalia-panel-content.+, ignore_alpha 0.9"
+      "match:namespace noctalia-dock.+, ignore_alpha 0.95"
+      "match:namespace noctalia-panel-content.+, ignore_alpha 0.95"
 
       # blur
       "match:namespace noctalia-dock.+, blur on"
@@ -62,8 +62,8 @@ in
     windowrule = [
       # force opacity.
       "match:class com.mitchellh.ghostty, opacity 1 override 1 override"
-      "match:class com.mitchellh.ghostty, opacity 1 override 1 override"
-      "match:class com.mitchellh.ghostty, opacity 1 override 1 override"
+      "match:class equibop, opacity 1 override 1 override"
+      "match:class steam_app_.*, opacity 1 override 1 override"
 
       # noblur.
       "match:class equibop, no_blur on"
@@ -89,9 +89,10 @@ in
       "match:class steam, match:title Friends List, size 380 540,"
       "match:class BeeperTexts, match:title Settings, size 900 900"
       "match:class zen, match:title Bitwarden, size 450 800"
-      "match:class protonvpn-app, match:title Proton VPN, size 400 600"
+      "match:class .protonvpn-app-wrapped, match:title Proton VPN, size 400 600"
       "match:class org.gnome.seahorse.Application, match:title .+ — Private key, size 568 720"
       "match:class org.gnome.seahorse.Application, match:title Item Properties, size 400 520"
+      "match:class me.iepure.devtoolbox, size 1130 750"
 
       # pin.
       "match:class zen, match:title Picture-in-Picture, pin on"
