@@ -11,7 +11,7 @@ let
     username
     gitUsername
     gitPublicSshkey
-    gitSigningkey
+    gitSigningKey
     ;
 in
 {
@@ -48,7 +48,7 @@ in
           # identity.
           user = {
             name = gitUsername;
-            signingkey = gitSigningkey;
+            signingkey = gitSigningKey;
           };
 
           # enable gpg signing.

@@ -5,56 +5,56 @@
 
 # interface and layout related plugins.
 {
-  accountPanelServerProfile = {
+  AccountPanelServerProfile = {
     enabled = true;
     prioritizeServerProfile = true;
   };
-  betterActivities = {
+  BetterActivities = {
     enabled = true;
     memberList = false;
     renderGifs = false;
     removeGameActivityStatus = true;
   };
-  betterSettings = {
+  BetterSettings = {
     enabled = true;
     disableFade = false;
   };
-  betterUploadButton.enabled = true;
-  customIdle = {
+  BetterUploadButton.enabled = true;
+  CustomIdle = {
     enabled = true;
     idleTimeout = 5.0;
     remainInIdle = false;
   };
-  dearrow = {
+  Dearrow = {
     enabled = true;
     replaceElements = 1;
   };
-  decor.enabled = true;
-  fakeNitro = {
+  Decor.enabled = true;
+  FakeNitro = {
     enabled = true;
     transformCompoundSentence = true;
   };
-  fakeProfileThemes.enabled = true;
-  fullUserInChatbox.enabled = true;
-  fullVCPFP.enabled = true;
-  fullSearchContext.enabled = true;
-  gameActivityToggle.enabled = true;
-  globalBadges.enabled = true;
-  greetStickerPicker.enabled = true;
-  mentionAvatars.enabled = true;
-  neverPausePreviews.enabled = true;
-  noNitroUpsell.enabled = true;
-  noPendingCount = {
+  FakeProfileThemes.enabled = true;
+  FullUserInChatbox.enabled = true;
+  FullVCPFP.enabled = true;
+  FullSearchContext.enabled = true;
+  FameActivityToggle.enabled = true;
+  GlobalBadges.enabled = true;
+  GreetStickerPicker.enabled = true;
+  GentionAvatars.enabled = true;
+  NeverPausePreviews.enabled = true;
+  NoNitroUpsell.enabled = true;
+  NoPendingCount = {
     enabled = true;
     hideFriendRequestsCount = false;
     hideMessageRequestsCount = false;
   };
-  noUnblockToJump.enabled = true;
-  platformIndicators.enabled = true;
-  platformSpoofer.enabled = true;
-  previewMessage.enabled = true;
-  questFocused.enabled = true;
-  questify = {
+  NoUnblockToJump.enabled = true;
+  PlatformIndicators.enabled = true;
+  PlatformSpoofer.enabled = true;
+  PreviewMessage.enabled = true;
+  QuestFocused.enabled = true;
+  Questify = {
     enabled = true;
     completeGameQuestsInBackground = true;
     completeVideoQuestsInBackground = true;
@@ -66,30 +66,30 @@
     restyleQuestsIgnored = stylix.questify.ignored;
     restyleQuestsExpired = stylix.questify.expired;
   };
-  readAllNotificationsButton.enabled = true;
-  roleColorEverywhere.enabled = true;
-  serverListIndicators = {
+  ReadAllNotificationsButton.enabled = true;
+  RoleColorEverywhere.enabled = true;
+  ServerListIndicators = {
     enabled = true;
     mode = 3;
   };
-  showAllMessageButtons.enabled = true;
-  showBadgesInChat.enabled = true;
-  showHiddenThings = {
+  ShowAllMessageButtons.enabled = true;
+  ShowBadgesInChat.enabled = true;
+  ShowHiddenThings = {
     enabled = true;
     showModView = false;
   };
-  statusWhileActive.enabled = true;
-  themeAttributes.enabled = true;
-  title = {
+  StatusWhileActive.enabled = true;
+  ThemeAttributes.enabled = true;
+  Title = {
     enabled = true;
     title = "Equibop";
   };
-  unlockedAvatarZoom.enabled = true;
-  userPFP.enabled = true;
-  userVoiceShow.enabled = true;
-  usrbg = {
+  UnlockedAvatarZoom.enabled = true;
+  UserPFP.enabled = true;
+  UserVoiceShow.enabled = true;
+  Usrbg = {
     enabled = true;
     voiceBackground = true;
   };
-  viewIcons.enabled = true;
+  ViewIcons.enabled = true;
 }
