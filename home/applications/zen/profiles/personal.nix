@@ -13,6 +13,9 @@ let
 in
 {
   "${username}" = {
+    id = 0;
+    isDefault = true;
+
     # add extensions form shared extensions and extensions specific to this profile.
     extensions = {
       force = true;

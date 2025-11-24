@@ -38,5 +38,5 @@ in
   # user option to toggle camera features in plugins.
   options.equibop.camera.enable = mkEnableOption "Enable camera functionality for Equibop plugins.";
   # attach merged plugin config to equinix.
-  config.programs.equinix.extraConfig.plugins = mergedPlugins;
+  config.programs.nixcord.config.plugins = mergedPlugins;
 }

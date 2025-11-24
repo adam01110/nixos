@@ -2,19 +2,19 @@
 
 # integrations with external services and providers.
 {
-  GitHubRepos.enabled = true;
-  OpenInApp = {
+  gitHubRepos.enabled = true;
+  openInApp = {
     enabled = true;
     spotify = false;
     tidal = false;
     itunes = false;
   };
-  ReplaceGoogleSearch = {
+  replaceGoogleSearch = {
     enabled = true;
     replacementEngine = "Brave";
   };
-  ReverseImageSearch.enabled = true;
-  UnitConverter = {
+  reverseImageSearch.enabled = true;
+  unitConverter = {
     enabled = true;
     myUnits = "metric";
   };

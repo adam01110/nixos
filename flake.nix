@@ -83,8 +83,8 @@
     };
 
     # discord/equibop flake.
-    equinix = {
-      url = "github:not-a-cowfr/equinix";
+    nixcord = {
+      url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

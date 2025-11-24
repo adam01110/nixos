@@ -77,7 +77,7 @@ in
           noctalia.homeModules.default
           nix-index-database.homeModules.nix-index
           zen-browser.homeModules.beta
-          equinix.homeModules.equinix
+          nixcord.homeModules.nixcord
           spicetify-nix.homeManagerModules.spicetify
         ]
         # and the repo's own home manager modules.

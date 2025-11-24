@@ -44,7 +44,7 @@ in
       bindd =
         let
           dolphin = getExe' pkgs.kdePackages.dolphin "dolphin";
-          equibop = getExe config.programs.equinix.equibop.package;
+          equibop = getExe config.programs.nixcord.equibop.package;
           ghostty = "${getExe config.programs.ghostty.package} +new-window";
           hyprpicker = getExe config.programs.hyprshot.package;
           hyprshot = getExe config.programs.hyprshot.package;

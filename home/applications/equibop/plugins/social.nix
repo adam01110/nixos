@@ -2,41 +2,41 @@
 
 # social and community related plugins.
 {
-  BetterBlockedUsers.enabled = true;
-  BetterInvites.enabled = true;
-  ForceOwnerCrown.enabled = true;
-  FriendshipRanks.enabled = true;
-  FriendsSince.enabled = true;
-  GuildTagSettings.enabled = true;
-  ImplicitRelationships.enabled = true;
-  InviteDefaults.enabled = true;
-  MemberCount.enabled = true;
-  MoreUserTags = {
+  betterBlockedUsers.enabled = true;
+  betterInvites.enabled = true;
+  forceOwnerCrown.enabled = true;
+  friendshipRanks.enabled = true;
+  friendsSince.enabled = true;
+  guildTagSettings.enabled = true;
+  implicitRelationships.enabled = true;
+  inviteDefaults.enabled = true;
+  memberCount.enabled = true;
+  moreUserTags = {
     enabled = true;
     dontShowForBots = true;
     showWebhookTagFully = true;
   };
-  MutualGroupDMs.enabled = true;
-  NewGuildSettings = {
+  mutualGroupDMs.enabled = true;
+  newGuildSettings = {
     enabled = true;
     messages = 1;
   };
-  PauseInvitesForever.enabled = true;
-  RelationshipNotifier.enabled = true;
-  ReviewDB = {
+  pauseInvitesForever.enabled = true;
+  relationshipNotifier.enabled = true;
+  reviewDB = {
     enabled = true;
     hideBlockedUsers = false;
   };
-  ServerInfo.enabled = true;
-  ShowConnections = {
+  serverInfo.enabled = true;
+  showConnections = {
     enabled = true;
     iconSpacing = 0;
   };
-  ShowHiddenChannels.enabled = true;
-  ShowTimeoutDuration = true;
-  SortFriends = {
+  showHiddenChannels.enabled = true;
+  showTimeoutDuration = true;
+  sortFriends = {
     enabled = true;
     showDates = true;
   };
-  WhoReacted.enabled = true;
+  whoReacted.enabled = true;
 }

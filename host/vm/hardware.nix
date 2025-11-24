@@ -1,10 +1,10 @@
 {
-  # hardware profile for qemu/kvm virtual machines.
-  lib,
   modulesPath,
+  system,
   ...
 }:
 
+# hardware profile for qemu/kvm virtual machines.
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -18,6 +18,5 @@
   ];
   boot.kernelModules = [ "kvm-intel" ];
 
-  # default to x86_64 linux ABI inside VM guests.
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = system;
 }
