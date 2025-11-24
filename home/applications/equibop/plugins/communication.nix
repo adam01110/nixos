@@ -6,19 +6,19 @@
 
 # plugins affecting chat, messages, and sharing.
 {
-  autoZipper.enabled = true;
-  betterCommands.enabled = true;
-  betterGifAltText.enabled = true;
-  betterQuickReact.enabled = true;
-  characterCounter.enabled = true;
-  cleanChannelName.enabled = true;
-  clearURLs.enabled = true;
-  copyEmojiMarkdown.enabled = true;
-  copyFileContents.enabled = true;
-  copyStickerLinks.enabled = true;
-  copyUserMention.enabled = true;
-  copyUserURLs.enabled = true;
-  customTimestamps = {
+  AutoZipper.enabled = true;
+  BetterCommands.enabled = true;
+  BetterGifAltText.enabled = true;
+  BetterQuickReact.enabled = true;
+  CharacterCounter.enabled = true;
+  CleanChannelName.enabled = true;
+  ClearURLs.enabled = true;
+  CopyEmojiMarkdown.enabled = true;
+  CopyFileContents.enabled = true;
+  CopyStickerLinks.enabled = true;
+  CopyUserMention.enabled = true;
+  CopyUserURLs.enabled = true;
+  CustomTimestamps = {
     enabled = true;
     formats = {
       cozyFormat = "YYYY-MM-DD HH:mm:ss";
@@ -30,54 +30,53 @@
       ariaLabelFormat = "YYYY-MM-DD HH:mm:ss";
     };
   };
-  dontFilterMe.enabled = true;
-  dontRoundMyTimestamps.enabled = true;
-  expressionCloner.enabled = true;
-  favoriteGifSearch.enabled = true;
-  fixCodeblockGap.enabled = true;
-  fixFileExtensions.enabled = true;
-  fixImagesQuality.enabled = true;
-  fixSpotifyEmbeds.enabled = true;
-  fixYoutubeEmbeds.enabled = true;
-  forwardAnywhere.enabled = true;
-  gifPaste.enabled = true;
-  holyNotes.enabled = true;
-  ignoreTerms.enabled = true;
-  iLoveSpam.enabled = true;
-  imageFilename.enabled = true;
-  imagePreview.enabled = true;
-  limitMiddleClickPaste = {
+  DontFilterMe.enabled = true;
+  DontRoundMyTimestamps.enabled = true;
+  ExpressionCloner.enabled = true;
+  FavoriteGifSearch.enabled = true;
+  FixCodeblockGap.enabled = true;
+  FixFileExtensions.enabled = true;
+  FixImagesQuality.enabled = true;
+  FixSpotifyEmbeds.enabled = true;
+  FixYoutubeEmbeds.enabled = true;
+  ForwardAnywhere.enabled = true;
+  GifPaste.enabled = true;
+  HolyNotes.enabled = true;
+  IgnoreTerms.enabled = true;
+  ILoveSpam.enabled = true;
+  ImageFilename.enabled = true;
+  LimitMiddleClickPaste = {
     enabled = true;
     limitTo = "never";
   };
-  messageBurst = {
+  MessageBurst = {
     enabled = true;
     timePeriod = 3;
   };
-  messageFetchTimer = {
+  MessageFetchTimer = {
     enabled = true;
     iconColor = stylix.messageFetchTimerIcon;
   };
-  messageLatency = {
+  MessageLatency = {
     enabled = true;
     latency = 1;
     showMillis = true;
   };
-  messageLinkEmbeds = {
+  MessageLinkEmbeds = {
     enabled = true;
     messageBackgroundColor = true;
   };
-  normalizeMessageLinks.enabled = true;
-  polishWording = {
+  NormalizeMessageLinks.enabled = true;
+  PolishWording = {
     enabled = true;
     fixCapitalization = true;
     fixPunctuation = true;
   };
-  replyTimestamp.enabled = true;
-  searchFix.enabled = true;
-  selfForward.enabled = true;
-  sendTimestamps.enabled = true;
-  songLink = {
+  ReplyTimestamp.enabled = true;
+  SearchFix.enabled = true;
+  SelfForward.enabled = true;
+  SendTimestamps.enabled = true;
+  SongLink = {
     enabled = true;
     inherit userCountry;
     servicesSettings = {
@@ -112,9 +111,9 @@
       bandcamp.enabled = false;
     };
   };
-  splitLargeMessages.enabled = true;
-  stickerPaste.enabled = true;
-  textReplace = {
+  SplitLargeMessages.enabled = true;
+  StickerPaste.enabled = true;
+  TextReplace = {
     enabled = true;
     regexRules = [
       {
@@ -139,24 +138,24 @@
       }
     ];
   };
-  timezones = {
+  Timezones = {
     enabled = true;
     "24h Time" = true;
   };
-  translate.enabled = true;
-  typingIndicator = {
+  Translate.enabled = true;
+  TypingIndicator = {
     enabled = true;
     includeMutedChannels = true;
     includeIgnoredUsers = true;
     includeBlockedUsers = true;
   };
-  unsuppressEmbeds.enabled = true;
-  userMessagesPronouns.enabled = true;
-  validReply.enabled = true;
-  writeUpperCase = {
+  UnsuppressEmbeds.enabled = true;
+  UserMessagesPronouns.enabled = true;
+  ValidReply.enabled = true;
+  WriteUpperCase = {
     enabled = true;
     blockedWords = "http, https";
   };
-  youtubeDescription.enabled = true;
-  zipPreview.enabled = true;
+  YoutubeDescription.enabled = true;
+  ZipPreview.enabled = true;
 }

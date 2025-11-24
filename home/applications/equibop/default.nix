@@ -1,10 +1,14 @@
 {
+  config,
   osConfig,
   pkgs,
   ...
 }:
 
 # configure equibop with themes and options.
+let
+  configHome = config.xdg.configHome;
+in
 {
   imports = [ ./plugins.nix ];
 
@@ -14,6 +18,8 @@
 
     equibop = {
       enable = true;
+
+      configDir = "${configHome}/equibop";
 
       settings = {
         discordBranch = "stable";

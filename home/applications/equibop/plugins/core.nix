@@ -2,20 +2,20 @@
 
 # core equibop plugins and global toggles.
 {
-  alwaysTrust.enabled = true;
-  anammox.enabled = true;
-  betterSessions = {
+  AlwaysTrust.enabled = true;
+  Anammox.enabled = true;
+  BetterSessions = {
     enabled = true;
     backgroundCheck = true;
     checkInterval = 30;
   };
-  crashHandler.attemptToNavigateToHome = true;
-  newPluginsManager.enabled = true;
-  noDevtoolsWarning.enabled = true;
-  noF1.enabled = true;
-  noOnboardingDelay.enabled = true;
-  permissionFreeWill.enabled = true;
-  startupTimings.enabled = true;
-  unlimitedAccounts.enabled = true;
-  validUser.enabled = true;
+  CrashHandler.attemptToNavigateToHome = true;
+  NewPluginsManager.enabled = true;
+  NoDevtoolsWarning.enabled = true;
+  NoF1.enabled = true;
+  NoOnboardingDelay.enabled = true;
+  PermissionFreeWill.enabled = true;
+  StartupTimings.enabled = true;
+  UnlimitedAccounts.enabled = true;
+  ValidUser.enabled = true;
 }

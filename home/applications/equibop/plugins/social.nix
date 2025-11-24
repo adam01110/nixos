@@ -2,41 +2,37 @@
 
 # social and community related plugins.
 {
-  betterBlockedUsers.enabled = true;
-  betterInvites.enabled = true;
-  forceOwnerCrown.enabled = true;
-  friendshipRanks.enabled = true;
-  friendsSince.enabled = true;
-  guildTagSettings.enabled = true;
-  implicitRelationships.enabled = true;
-  inviteDefaults.enabled = true;
-  memberCount.enabled = true;
-  moreUserTags = {
-    enabled = true;
-    dontShowForBots = true;
-    showWebhookTagFully = true;
-  };
-  mutualGroupDMs.enabled = true;
-  newGuildSettings = {
+  BetterBlockedUsers.enabled = true;
+  BetterInvites.enabled = true;
+  ForceOwnerCrown.enabled = true;
+  FriendshipRanks.enabled = true;
+  FriendsSince.enabled = true;
+  GuildTagSettings.enabled = true;
+  ImplicitRelationships.enabled = true;
+  InviteDefaults.enabled = true;
+  MemberCount.enabled = true;
+  MoreUserTags.enabled = true;
+  MutualGroupDMs.enabled = true;
+  NewGuildSettings = {
     enabled = true;
     messages = 1;
   };
-  pauseInvitesForever.enabled = true;
-  relationshipNotifier.enabled = true;
-  reviewDB = {
+  PauseInvitesForever.enabled = true;
+  RelationshipNotifier.enabled = true;
+  ReviewDB = {
     enabled = true;
     hideBlockedUsers = false;
   };
-  serverInfo.enabled = true;
-  showConnections = {
+  ServerInfo.enabled = true;
+  ShowConnections = {
     enabled = true;
     iconSpacing = 0;
   };
-  showHiddenChannels.enabled = true;
-  showTimeoutDuration = true;
-  sortFriends = {
+  ShowHiddenChannels.enabled = true;
+  ShowTimeoutDuration.enabled = true;
+  SortFriends = {
     enabled = true;
     showDates = true;
   };
-  whoReacted.enabled = true;
+  WhoReacted.enabled = true;
 }
