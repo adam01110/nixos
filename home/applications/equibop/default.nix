@@ -8,11 +8,24 @@
 {
   imports = [ ./plugins.nix ];
 
-  programs.equinix = {
+  programs.nixcord = {
     enable = true;
-
-    equibop.enable = true;
     discord.enable = false;
+
+    equibop = {
+      enable = true;
+
+      settings = {
+        discordBranch = "stable";
+        minimizeToTray = true;
+        arRPC = true;
+        autoStartMinimized = true;
+        hardwareVideoAcceleration = true;
+        customTitleBar = false;
+        splashProgress = true;
+        clickTrayToShowHide = true;
+      };
+    };
 
     # write main equibop configuration.
     config = {

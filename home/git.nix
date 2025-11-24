@@ -7,7 +7,12 @@
 
 # git configuration with sops-managed email and libsecret credentials.
 let
-  inherit (vars) username gitUsername gitPublicSshkey;
+  inherit (vars)
+    username
+    gitUsername
+    gitPublicSshkey
+    gitSigningkey
+    ;
 in
 {
   sops = {
@@ -40,8 +45,15 @@ in
         package = gitPackage;
 
         settings = {
-          # human-friendly name to appear in commits.
-          user.name = gitUsername;
+          # identity.
+          user = {
+            name = gitUsername;
+            signingkey = gitSigningkey;
+          };
+
+          # enable gpg signing.
+          commit.gpgsign = true;
+          tag.gpgSign = true;
 
           # store https credentials via the desktop keyring (libsecret).
           credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";

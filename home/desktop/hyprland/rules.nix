@@ -28,7 +28,7 @@ in
             ".xdg-desktop-portal-hyprland-wrapped";
         grim = getExe pkgs.grim;
         hyprpicker = getExe pkgs.hyprpicker;
-        equibop = getExe config.programs.equinix.equibop.package;
+        equibop = getExe config.programs.nixcord.equibop.package;
         quickshell = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       in
       [

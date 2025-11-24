@@ -27,7 +27,6 @@ in
       mkLockedAttrs = mapAttrs (
         _: value: {
           Value = value;
-          default = 3276;
           Status = "locked";
         }
       );

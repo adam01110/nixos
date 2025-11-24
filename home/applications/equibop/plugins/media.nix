@@ -5,31 +5,31 @@
 
 # plugins for media, calls, and voice features.
 {
-  AllCallTimers.enabled = true;
-  BiggerStreamPreview.enabled = true;
-  CallTimer.enabled = true;
-  DisableCameras.enabled = !cfgCamera;
-  DisableCallIdle.enabled = true;
-  MusicControls = {
+  allCallTimers.enabled = true;
+  biggerStreamPreview.enabled = true;
+  callTimer.enabled = true;
+  disableCameras.enabled = !cfgCamera;
+  disableCallIdle.enabled = true;
+  musicControls = {
     enabled = true;
     LyricsConversion = "Romanized";
     showYoutubeMusicControls = true;
   };
-  PictureInPicture.enabled = true;
-  VCPanelSettings = {
+  pictureInPicture.enabled = true;
+  vcPanelSettings = {
     enabled = true;
     camera = cfgCamera;
     showOutputDeviceHeader = true;
     showInputDeviceHeader = true;
     showVideoDeviceHeader = true;
   };
-  VideoSpeed.enabled = true;
-  VoiceButtons = {
+  videoSpeed.enabled = true;
+  voiceButtons = {
     enabled = true;
     whichNameToShow = "username";
   };
-  VoiceChatDoubleClick.enabled = true;
-  VoiceDownload.enabled = true;
-  VoiceMessages.enabled = true;
-  VolumeBooster.enabled = true;
+  voiceChatDoubleClick.enabled = true;
+  voiceDownload.enabled = true;
+  voiceMessages.enabled = true;
+  volumeBooster.enabled = true;
 }
