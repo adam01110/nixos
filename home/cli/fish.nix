@@ -67,17 +67,22 @@ in
     functions.fish_greeting = {
       body =
         let
-          fortune-kind = getExe pkgs.fortune-kind;
+          fortune = getExe pkgs.fortune;
           boxes = getExe pkgs.boxes;
         in
-        "${fortune-kind} -s | ${boxes} -d ansi-rounded";
+        "${fortune} -s | ${boxes} -d ansi-rounded";
+    };
+
+    binds = {
+      "alt-e".erase = true;
+      "alt-d".erase = true;
     };
   };
 
   # tools needed by the fish greeting.
   home.packages = attrValues {
     inherit (pkgs)
-      fortune-kind
+      fortune
       boxes
       ;
   };

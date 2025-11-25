@@ -111,17 +111,6 @@ in
           "SUPER SHIFT, K, Swap window up, movewindow, u"
           "SUPER SHIFT, J, Swap window down, movewindow, d"
 
-          # expand/shrink windows.
-          "SUPER CTRL, LEFT, Expand/shrink window left, resizeactive, -20 0"
-          "SUPER CTRL, RIGHT, Expand/shrink window left, resizeactive, 20 0"
-          "SUPER CTRL, UP, Expand/shrink window up, resizeactive, 0 -20"
-          "SUPER CTRL, DOWN, Expand/shrink window down, resizeactive, 0 20"
-
-          "SUPER CTRL, H, Expand/shrink window left, resizeactive, -20 0"
-          "SUPER CTRL, L, Expand/shrink window left, resizeactive, 20 0"
-          "SUPER CTRL, K, Expand/shrink window up, resizeactive, 0 -20"
-          "SUPER CTRL, J, Expand/shrink window down, resizeactive, 0 20"
-
           # window control.
           "SUPER, F, Fullscreen window, fullscreen"
           "SUPER, V, Toggle window floating/tiling, togglefloating"
@@ -217,6 +206,17 @@ in
         # zoom.
         "SUPER, equal, Zoom in, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
         "minus, Zoom out, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
+
+        # expand/shrink windows.
+        "SUPER CTRL, LEFT, Expand/shrink window left, resizeactive, -20 0"
+        "SUPER CTRL, RIGHT, Expand/shrink window left, resizeactive, 20 0"
+        "SUPER CTRL, UP, Expand/shrink window up, resizeactive, 0 -20"
+        "SUPER CTRL, DOWN, Expand/shrink window down, resizeactive, 0 20"
+
+        "SUPER CTRL, H, Expand/shrink window left, resizeactive, -20 0"
+        "SUPER CTRL, L, Expand/shrink window left, resizeactive, 20 0"
+        "SUPER CTRL, K, Expand/shrink window up, resizeactive, 0 -20"
+        "SUPER CTRL, J, Expand/shrink window down, resizeactive, 0 20"
       ];
 
       # xf86 keybinds.

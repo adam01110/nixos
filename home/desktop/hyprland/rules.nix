@@ -71,6 +71,7 @@ in
 
       # tile.
       "match:class io.mrarm.mcpelauncher-ui-qt, tile on"
+      "match:class Aseprite, tile on"
 
       # float.
       "match:class org.gnome.Calculator, float on"
@@ -82,6 +83,7 @@ in
       "match:class zen, match:title Bitwarden, float on"
       "match:class me.iepure.devtoolbox, float on"
       "match:class org.freedesktop.impl.portal.desktop.kde, float on"
+      "match:class file-.+, float on"
 
       # set size.
       "match:class org.gnome.Calculator, size 695 800"
@@ -93,6 +95,7 @@ in
       "match:class org.gnome.seahorse.Application, match:title .+ — Private key, size 568 720"
       "match:class org.gnome.seahorse.Application, match:title Item Properties, size 400 520"
       "match:class me.iepure.devtoolbox, size 1130 750"
+      "match:class file-.+, match:title Export Image as .+, size 670 513"
 
       # pin.
       "match:class zen, match:title Picture-in-Picture, pin on"

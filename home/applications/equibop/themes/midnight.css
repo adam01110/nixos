@@ -178,3 +178,8 @@ body {
 	--purple-4: oklch(48.93% 0.1242 344.28);
 	--purple-5: oklch(40.12% 0.1097 340.29);
 }
+
+.bannerButton_de8008,
+.bannerColor_fb7f94 {
+	color: var(--text-1);
+}

@@ -12,6 +12,9 @@
     # periodic trim for ssds to maintain performance and longevity.
     fstrim.enable = true;
 
+    # fuse envfs to provide fhs-style paths under /bin.
+    envfs.enable = true;
+
     # gio/gvfs backends: trash, smb/mtp/afc, network mounts, etc.
     gvfs.enable = true;
 

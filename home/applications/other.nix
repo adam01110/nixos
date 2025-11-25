@@ -9,6 +9,7 @@
   home.packages =
     with pkgs;
     [
+      aseprite
       bleachbit
       bitwarden-desktop
       decibels
