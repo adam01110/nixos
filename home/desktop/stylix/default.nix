@@ -53,10 +53,7 @@ in
     targets = disabledTargets // {
       cava.rainbow.enable = true;
 
-      zen-browser.profileNames = [
-        username
-        "academia"
-      ];
+      zen-browser.profileNames = [ "default" ];
     };
   };
 

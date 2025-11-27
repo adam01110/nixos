@@ -18,7 +18,10 @@ in
   disko.selectedDisk = "/dev/nvme0n1";
 
   # per-host optional services and settings.
-  optServices.timezone = "Europe/Amsterdam";
+  optServices = {
+    timezone = "Europe/Amsterdam";
+    virtManager.enable = true;
+  };
 
   # extra hardware toggles.
   hardware = {

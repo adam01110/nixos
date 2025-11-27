@@ -1,7 +1,7 @@
 { ... }:
 
+# misc system applications enabled here.
 {
-  # misc system applications enabled here.
   # enable seahore an application for managing encryption keys and passwords in the gnome keyring.
   programs.seahorse.enable = true;
 }

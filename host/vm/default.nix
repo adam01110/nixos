@@ -22,4 +22,9 @@ in
     ssh.enable = true;
     timezone = "automatic-timezoned";
   };
+
+  services = {
+    qemuGuest.enable = true;
+    spice-vdagentd.enable = true;
+  };
 }

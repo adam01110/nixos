@@ -39,7 +39,7 @@ in
       );
     in
     {
-      # set policies.S
+      # set policies.
       AutofillAddressEnabled = false;
       AutofillCreditCardEnabled = false;
       DisableAppUpdate = true;
@@ -64,6 +64,14 @@ in
       HttpsOnlyMode = true;
       PDFjs.Enabled = false;
       StartDownloadsInTempDirectory = true;
+
+      GenerativeAI = {
+        Enabled = false;
+        Chatbot = false;
+        LinkPreviews = false;
+        TabGroups = false;
+        Locked = true;
+      };
 
       EnableTrackingProtection = {
         Value = true;
@@ -202,7 +210,7 @@ in
           "network.connectivity-service.enabled" = false;
           "network.dnsCacheEntries" = 1000;
           "network.dnsCacheExpirationGracePeriod" = 240;
-          "network.dnsCacheExpiratio" = 3600;
+          "network.dnsCacheExpiration" = 3600;
           "network.http.max-connections" = 1800;
           "network.http.max-persistent-connections-per-proxy" = 48;
           "network.http.max-persistent-connections-per-server" = 10;

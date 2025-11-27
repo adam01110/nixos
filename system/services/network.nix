@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  vars,
   ...
 }:
 
@@ -10,11 +11,14 @@ let
     mkEnableOption
     mkIf
     ;
+  inherit (vars) username;
 in
 {
   options.optServices.wifi.enable = mkEnableOption "Enable wifi services.";
 
   config = {
+    users.users.${username}.extraGroups = [ "networkmanager" ];
+
     sops =
       let
         hostname = config.networking.hostName;
