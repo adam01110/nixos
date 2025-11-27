@@ -100,7 +100,6 @@ in
           "browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled" = false;
           "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
           "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
-          "browser.profiles.enabled" = true;
           "browser.promo.focus.enabled" = false;
           "browser.region.network.url" = " ";
           "browser.region.update.enabled" = false;

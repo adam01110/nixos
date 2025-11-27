@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./profiles.nix
+    ./profile.nix
     ./settings.nix
   ];
 
