@@ -26,11 +26,9 @@ in
       # group memberships:
       # - wheel: administrative access via sudo.
       # - audio: access to sound devices.
-      # - networkmanager: control network connections.
       extraGroups = [
         "wheel"
         "audio"
-        "networkmanager"
       ];
 
       isNormalUser = true;

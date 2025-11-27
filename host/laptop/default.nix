@@ -23,6 +23,7 @@ in
     printing.enable = true;
     timezone = "automatic-timezoned";
     wifi.enable = true;
+    virtManager.enable = true;
   };
 
   # tlp tuning for power management on battery.

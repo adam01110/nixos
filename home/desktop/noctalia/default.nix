@@ -11,6 +11,7 @@
     ./audio.nix
     ./bar.nix
     ./brightness.nix
+    ./calendar.nix
     ./controlcenter.nix
     ./dock.nix
     ./general.nix
