@@ -1,39 +1,111 @@
 {
   pkgs,
-  username,
-  commonExtensions,
-  commonSearchEngines,
   ...
 }:
 
-# personal zen profile with custom search engines and extensions.
+# default zen profile with shared search engines and extensions.
 let
   inherit (builtins) attrValues;
+
   nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 in
 {
-  "${username}" = {
-    id = 0;
-    isDefault = true;
-
-    # add extensions form shared extensions and extensions specific to this profile.
+  programs.zen-browser.profiles.default = {
+    # set extensions.
     extensions = {
       force = true;
-      packages =
-        commonExtensions
-        ++ attrValues {
-          inherit (pkgs.nur.repos.rycee.firefox-addons)
-            modrinthify
-            proton-vpn
-            ;
-        };
+      packages = attrValues {
+        inherit (pkgs.nur.repos.rycee.firefox-addons)
+          # content blocking.
+          ublock-origin
+          localcdn
+          sponsorblock
+          fastforwardteam
+          istilldontcareaboutcookies
+          consent-o-matic
+          don-t-fuck-with-paste
+
+          # annoyances.
+          shinigami-eyes
+          translate-web-pages
+          return-youtube-dislikes
+          dearrow
+
+          darkreader
+          stylus
+          bitwarden
+          wikiwand-wikipedia-modernized
+          violentmonkey
+          pronoundb
+          modrinthify
+          proton-vpn
+          ;
+      };
     };
 
-    # add search engines form shared search engines and search engines specific to this profile.
+    # set search engines.
     search = {
       force = true;
       default = "brave";
-      engines = commonSearchEngines // {
+      engines = {
+        # general search.
+        brave = {
+          urls = [
+            {
+              template = "https://search.brave.com/search";
+              params = [
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          iconMapObj."16" = "https://brave.com/favicon.ico";
+          definedAliases = [ "@b" ];
+        };
+        google.metaData.alias = "@g";
+
+        # wiki.
+        wikiwand = {
+          urls = [
+            {
+              template = "https://www.wikiwand.com/en/search";
+              params = [
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          iconMapObj."16" = "https://wikiwand.com/favicon.ico";
+          definedAliases = [ "@wi" ];
+        };
+
+        # other.
+        youtube = {
+          urls = [
+            {
+              template = "https://www.youtube.com/results";
+              params = [
+                {
+                  name = "search_query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          iconMapObj."16" = "https://www.youtube.com/favicon.ico";
+          definedAliases = [ "@yt" ];
+        };
+
+        # disabled (hidden)
+        bing.metaData.hidden = true;
+        ddg.metaData.hidden = true;
+        qwant.metaData.hidden = true;
+        ecosia.metaData.hidden = true;
+
         # nix.
         nix = {
           urls = [
