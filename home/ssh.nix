@@ -1,19 +1,28 @@
 {
   config,
+  vars,
   ...
 }:
 
 # ssh client config with sops-injected host templates.
+let
+  inherit (vars) username;
+in
 {
   sops = {
-    # hostname for the `server` host alias, stored in sops.
-    secrets.server_hostname = { };
+    secrets = {
+      # hostname for the euclid server host, stored in sops.
+      "servers/euclid/hostname" = { };
+
+      # write the ssh public and private keys.
+      "servers/euclid/private_ssh_key" = "/home/${username}/.ssh/euclid";
+      "servers/euclid/public_ssh_key" = "/home/${username}/.ssh/euclid.pub";
+    };
 
     # template that expands to a host block included below.
-    # TODO
     templates."ssh-config-server".content = ''
       Host server
-        HostName ${config.sops.placeholder.server_hostname}
+        HostName ${config.sops.placeholder."servers/euclid/hostname"}
         IdentityFile ~/.ssh/server
     '';
   };
