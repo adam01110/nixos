@@ -21,7 +21,10 @@ in
       cfgVirtManager = config.optServices.virtManager.enable;
     in
     mkIf cfgVirtManager {
-      users.users.${username}.extraGroups = [ "libvirtd" ];
+      users.users.${username}.extraGroups = [
+        "libvirtd"
+        "kvm"
+      ];
 
       programs.virt-manager.enable = true;
 

@@ -12,6 +12,9 @@
 
       # show hidden files?
       show-hidden = true;
+
+      # use the system clipboard
+      selection-clipboard = "clipboard";
     };
   };
 }
