@@ -17,6 +17,7 @@ if [ "$HYPRPERFORMANTMODE" = 1 ]; then
 
   # make all windows fully opaque until reload.
   @hyprctl@ keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
+
   # notify the user about the active mode.
   @notifySend@ -u low -a "desktop" "Performant mode" "Enabled"
   exit

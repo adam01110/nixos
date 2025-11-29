@@ -20,7 +20,6 @@ in
         gitfetch
         speedtest-go
         tokei
-        wiremix
         ;
     }
     ++ optional cfgWifi pkgs.impala

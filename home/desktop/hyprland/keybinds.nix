@@ -135,9 +135,6 @@ in
           "SUPER, F1, Toggle performant mode, exec, ${getExe performantMode}"
 
           # zoom.
-          "SUPER, mouse_down, Zoom in with mouse, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
-          "SUPER, mouse_up, Zoom out with mouse, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
-
           "SUPER SHIFT, mouse_down, Reset zoom, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
           "SUPER SHIFT, minus, Reset zoom, exec, ${hyprctl} -q keyword cursor:zoom_factor 1"
 
@@ -205,7 +202,10 @@ in
       bindde = [
         # zoom.
         "SUPER, equal, Zoom in, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
-        "minus, Zoom out, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
+        "SUPER, minus, Zoom out, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
+
+        "SUPER, mouse_down, Zoom in with mouse, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')"
+        "SUPER, mouse_up, Zoom out with mouse, exec, ${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')"
 
         # expand/shrink windows.
         "SUPER CTRL, LEFT, Expand/shrink window left, resizeactive, -20 0"

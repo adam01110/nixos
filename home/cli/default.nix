@@ -19,6 +19,7 @@
     ./other.nix
     ./spotify-player.nix
     ./wikiman.nix
+    ./wiremix.nix
     ./zoxide.nix
   ];
 }
