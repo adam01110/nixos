@@ -33,6 +33,7 @@ in
   xdg.desktopEntries.spotify-player = {
     name = "Spotify player";
     genericName = "Music Player";
+    icon = "spotify";
     exec = getExe config.programs.spotify-player.package;
     terminal = true;
     categories = [

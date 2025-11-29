@@ -15,8 +15,8 @@ in
       "servers/euclid/hostname" = { };
 
       # write the ssh public and private keys.
-      "servers/euclid/private_ssh_key" = "/home/${username}/.ssh/euclid";
-      "servers/euclid/public_ssh_key" = "/home/${username}/.ssh/euclid.pub";
+      "servers/euclid/private_ssh_key".path = "/home/${username}/.ssh/euclid";
+      "servers/euclid/public_ssh_key".path = "/home/${username}/.ssh/euclid.pub";
     };
 
     # template that expands to a host block included below.
