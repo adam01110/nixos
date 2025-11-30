@@ -42,8 +42,11 @@ in
         batman --export-env | source
       '';
 
-    # add shorthand fastfetch abbreviation.
-    shellAbbrs.ff = "fastfetch";
+    # add shorthand abbreviation.
+    shellAbbrs = {
+      ff = "fastfetch";
+      gf = "gitfetch";
+    };
 
     # override commands with preferred tools.
     shellAliases = {

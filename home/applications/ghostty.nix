@@ -29,6 +29,10 @@
       confirm-close-surface = false;
       right-click-action = "ignore";
 
+      # disable directory inherit.
+      working-directory = "home";
+      window-inherit-working-directory = false;
+
       # unbind the splitting keybinds.
       keybind = [
         "super+ctrl+equal=unbind"

@@ -54,4 +54,7 @@
       };
     };
   };
+
+  # cjk font.
+  fonts.packages = [ pkgs.noto-fonts-cjk-sans ];
 }
