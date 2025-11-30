@@ -28,6 +28,7 @@ in
     "$docker_context"
 
     "$directory"
+    "$direnv"
     "$sudo"
     "$jobs"
 
@@ -68,6 +69,8 @@ in
     "$rust"
     "$swift"
     "$zig"
+
+    "$cmd_duration"
 
     "$line_break"
     "$character"

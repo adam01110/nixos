@@ -2,13 +2,13 @@
   # flake entrypoint for this nixos + home manager setup.
   # - declares all external inputs (channels, overlays, and modules)
   # - defines common modules/args shared by hosts
-  # - exposes `nixosconfigurations` for each machine (desktop, laptop, vm)
+  # - exposes `nixosconfigurations` for each machine.
   description = "Adam0's nixos configuration.";
 
   # inputs: upstream channels, overlays, and extra flakes used by this config.
   inputs = {
     # core nixpkgs channel.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     # extra packages, overlays, and modules.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -120,6 +120,7 @@
     let
       # the system architecture.
       system = "x86_64-linux";
+
       # variables.
       vars = import ./vars.nix;
 
@@ -154,21 +155,21 @@
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = commonArgs;
-          modules = commonModules ++ [ ./host/desktop ];
+          modules = commonModules ++ [ ./hosts/desktop ];
         };
 
         # laptop profile with mobile-specific options.
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = commonArgs;
-          modules = commonModules ++ [ ./host/laptop ];
+          modules = commonModules ++ [ ./hosts/laptop ];
         };
 
         # lightweight vm target for testing.
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = commonArgs;
-          modules = commonModules ++ [ ./host/vm ];
+          modules = commonModules ++ [ ./hosts/vm ];
         };
       };
     };

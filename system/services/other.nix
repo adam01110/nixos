@@ -1,16 +1,13 @@
 { ... }:
 
+# enable miscellaneous desktop services in one place.
 {
-  # enable miscellaneous desktop services in one place.
   services = {
     # tune kernel bpf-related defaults for better performance.
     bpftune.enable = true;
 
     # flatpak runtime and portal integration for desktop apps.
     flatpak.enable = true;
-
-    # periodic trim for ssds to maintain performance and longevity.
-    fstrim.enable = true;
 
     # fuse envfs to provide fhs-style paths under /bin.
     envfs.enable = true;

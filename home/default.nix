@@ -6,6 +6,7 @@
     ./cli
     ./desktop
     ./services
+    ./tui
     ./git.nix
     ./gpg.nix
     ./home.nix

@@ -48,6 +48,7 @@ in
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
+
                   # subvolume layout and common mount options.
                   subvolumes = {
                     "@" = {
@@ -126,6 +127,7 @@ in
     nodev = {
       "/tmp" = {
         fsType = "tmpfs";
+
         mountOptions = [
           "mode=1777"
           "noatime"
