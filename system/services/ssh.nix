@@ -18,7 +18,10 @@ in
     services.openssh = {
       enable = true;
       settings = {
+        # block root login over ssh.
         PermitRootLogin = "no";
+
+        # allow password authentication for users.
         PasswordAuthentication = true;
       };
     };

@@ -15,9 +15,9 @@ let
 in
 {
   imports = [
-    ./applications
     ./cli
     ./desktop
+    ./gui
     ./services
     ./disk.nix
     ./locale.nix

@@ -1,17 +1,8 @@
+{ ... }:
+
 {
-  lib,
-  ...
-}:
-
-# xdg default application associations consolidated from segments.
-let
-  # helpers for composing application maps.
-  inherit (lib) foldl';
-
-  moduleArgs = { };
-
-  # split application categories into separate small files.
-  applicationFiles = [
+  # group per-category defaults via module imports.
+  imports = [
     ./applications/protocols.nix
     ./applications/files.nix
     ./applications/audio.nix
@@ -24,10 +15,5 @@ let
     ./applications/image-editors.nix
   ];
 
-  # merge all category maps left-to-right.
-  defaultApplications = foldl' (acc: file: acc // (import file moduleArgs)) { } applicationFiles;
-in
-{
-  # apply merged associations to xdg mime defaults.
-  xdg.mimeApps.defaultApplications = defaultApplications;
+  xdg.mimeApps.enable = true;
 }
