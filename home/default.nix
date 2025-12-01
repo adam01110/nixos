@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./applications
     ./cli
     ./desktop
+    ./gui
     ./services
     ./tui
     ./git.nix

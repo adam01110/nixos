@@ -1,4 +1,5 @@
 {
+  pkgs,
   inputs,
   system,
   ...
@@ -34,6 +35,17 @@
       # disable some sandboxing.
       sandbox_mode = "workspace-write";
       approval_policy = "on-failure";
+
+      # add mcp servers
+      mcp_servers = {
+        # nix tooling mcp.
+        nix = {
+          command = "mcp-nixos";
+          args = [ "--" ];
+        };
+      };
     };
   };
+
+  home.packages = [ pkgs.mcp-nixos ];
 }

@@ -116,7 +116,8 @@ in
         }
         {
           id = "ControlCenter";
-          colorizeDistroLogo = true;
+          colorizeSystemIcon = "tertiary";
+          enableColorization = true;
           useDistroLogo = true;
         }
       ];

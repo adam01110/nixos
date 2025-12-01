@@ -1,13 +1,11 @@
 {
   osConfig,
   pkgs,
-  vars,
   ...
 }:
 
 # per-user stylix customization layered on top of system stylix.
 let
-  inherit (vars) username;
   disabledTargets = import ./disabled.nix { };
 
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
