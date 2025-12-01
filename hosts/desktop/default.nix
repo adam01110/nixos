@@ -28,4 +28,7 @@ in
     wooting.enable = true;
     roccat.enable = true;
   };
+
+  # enable mesa-git.
+  chaotic.mesa-git.enable = true;
 }

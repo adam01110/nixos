@@ -9,7 +9,6 @@
     enabled = true;
     floatingRatio = 0.5;
     onlySameOutput = true;
-    radiusRatio = 0.5;
     size = 0.5;
   };
 }
