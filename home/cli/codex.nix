@@ -47,7 +47,7 @@ in
   };
 
   # set settings for codex cli.
-  xdg.configFile."codex/config.toml".source = tomlFormat.generate "codex-config.toml" {
+  home.file.".codex/config.toml".source = tomlFormat.generate "codex-config.toml" {
     model = "gpt-5.1-codex-max";
     model_reasoning_effort = "medium";
 
