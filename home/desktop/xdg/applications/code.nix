@@ -2,6 +2,7 @@
 
 # default handlers for source code and text formats.
 {
+  # ZED
   xdg.mimeApps.defaultApplications = {
     "application/x-zerosize" = "dev.zed.Zed.desktop";
     "application/x-php" = "dev.zed.Zed.desktop";
