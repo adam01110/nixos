@@ -32,7 +32,7 @@ in
         quickshell = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       in
       [
-        # allow plugin loading
+        # allow plugin loading.
         "${escapeRegex hyprctl}, plugin, allow"
 
         # allow screencopy.
@@ -54,7 +54,7 @@ in
       "match:namespace noctalia-dock.+, ignore_alpha 0.95"
       "match:namespace noctalia-panel-content.+, ignore_alpha 0.95"
 
-      # blur
+      # blur.
       "match:namespace noctalia-dock.+, blur on"
       "match:namespace noctalia-panel-content.+, blur on"
     ];
@@ -85,6 +85,10 @@ in
       "match:class org.freedesktop.impl.portal.desktop.kde, float on"
       "match:class file-.+, float on"
 
+      # pseudotile.
+      "match:class com.mitchellh.ghostty, match:title Wiremix, pseudo on"
+      "match:class com.saivert.pwvucontrol, pseudo on"
+
       # set size.
       "match:class org.gnome.Calculator, size 695 800"
       "match:title Task Manager - .+, size 800 600"
@@ -96,9 +100,14 @@ in
       "match:class org.gnome.seahorse.Application, match:title Item Properties, size 400 520"
       "match:class me.iepure.devtoolbox, size 1130 750"
       "match:class file-.+, match:title Export Image as .+, size 670 513"
+      "match:class com.mitchellh.ghostty, match:title Wiremix, size 1000 630"
+      "match:class com.saivert.pwvucontrol, size 1000 800"
 
       # pin.
       "match:class zen, match:title Picture-in-Picture, pin on"
+
+      # center.
+      "match:class org.gnome.Calculator, center on"
     ];
   };
 }

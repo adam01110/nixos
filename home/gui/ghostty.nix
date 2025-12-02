@@ -15,7 +15,6 @@
       cursor-style-blink = true;
 
       # appearance settings.
-      title = "ghostty";
       window-theme = "system";
       window-decoration = "none";
       gtk-titlebar = false;

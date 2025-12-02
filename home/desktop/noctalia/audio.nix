@@ -12,7 +12,7 @@
         terminalCommand = config.programs.noctalia-shell.settings.appLauncher.terminalCommand;
         wiremix = config.xdg.desktopEntries.wiremix.exec;
       in
-      "${terminalCommand} ${wiremix}";
+      "${terminalCommand} --title='Wiremix' ${wiremix}";
     visualizerQuality = "low";
     visualizerType = "mirrored";
     volumeOverdrive = true;
