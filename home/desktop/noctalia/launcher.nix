@@ -14,7 +14,7 @@ in
     enableClipboardHistory = true;
     position = "center";
     sortByMostUsed = false;
-    terminalCommand = "${getExe config.programs.ghostty.package} -e";
+    terminalCommand = getExe config.xdg.terminal-exec.package;
     useApp2Unit = true;
   };
 }

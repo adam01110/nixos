@@ -6,9 +6,6 @@
 # system xdg portal config and cursor fallback.
 {
   xdg = {
-    # implement xdg-terminal-exec so apps can open the user's terminal without hardcoding.
-    terminal-exec.enable = true;
-
     portal = {
       # enable the xdg-desktop-portal services.
       enable = true;

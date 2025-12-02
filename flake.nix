@@ -93,6 +93,10 @@
       url = "github:numtide/nix-ai-tools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mcp-servers-nix = {
+      url = "github:natsukium/mcp-servers-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # steam homebrew flake.
     millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";

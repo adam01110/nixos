@@ -45,6 +45,9 @@ in
       "kernel.kexec_load_disabled" = 1;
       "net.core.netdev_max_backlog" = 4096;
       "fs.file-max" = 2097152;
+      "net.ipv4.ip_forward" = 1;
+      "net.ipv4.tcp_mtu_probing" = 1;
+      "net.ipv4.tcp_tw_reuse" = 1;
     };
   };
 

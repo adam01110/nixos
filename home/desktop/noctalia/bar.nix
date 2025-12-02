@@ -10,7 +10,6 @@ in
 {
   # noctalia top bar layout, density, and widget ordering.
   programs.noctalia-shell.settings.bar = {
-    backgroundOpacity = 1;
     density = "compact";
     exclusive = true;
     floating = false;

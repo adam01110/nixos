@@ -13,14 +13,11 @@
       bleachbit
       bitwarden-desktop
       decibels
-      fragments
       gimp
       gnome-calculator
       helvum
-      komikku
       loupe
       mcpelauncher-ui-qt
-      newsflash
       nucleus
       obsidian
       protonvpn-gui
