@@ -8,7 +8,6 @@
 {
   xdg.autostart = {
     enable = true;
-    readOnly = true;
 
     # start essential background apps on login.
     entries = [
