@@ -48,6 +48,20 @@ in
       "net.ipv4.ip_forward" = 1;
       "net.ipv4.tcp_mtu_probing" = 1;
       "net.ipv4.tcp_tw_reuse" = 1;
+      "net.core.rmem_max" = 33554432;
+      "net.core.wmem_max" = 33554432;
+      "net.core.rmem_default" = 1048576;
+      "net.core.wmem_default" = 1048576;
+      "net.ipv4.udp_rmem_min" = 8192;
+      "net.ipv4.udp_wmem_min" = 8192;
+      "net.core.somaxconn" = 8192;
+      "net.ipv4.tcp_notsent_lowat" = 131072;
+      "net.ipv4.tcp_slow_start_after_idle" = 0;
+      "net.ipv4.tcp_keepalive_time" = 60;
+      "net.ipv4.tcp_keepalive_intvl" = 10;
+      "net.ipv4.tcp_keepalive_probes" = 6;
+      "net.ipv4.tcp_max_syn_backlog" = 8192;
+      "net.ipv4.tcp_fin_timeout" = 30;
     };
   };
 

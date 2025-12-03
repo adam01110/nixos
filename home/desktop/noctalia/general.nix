@@ -4,7 +4,7 @@
 {
   programs.noctalia-shell.settings.general =
     let
-      radius = 0.34;
+      radius = 0.30;
     in
     {
       animationSpeed = 2;

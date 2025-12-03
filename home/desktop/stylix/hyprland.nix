@@ -1,14 +1,17 @@
 {
   osConfig,
+  lib,
   ...
 }:
 
+# stylix color for hyprland integration.
 let
+  inherit (lib) mkForce;
+
   colors = osConfig.lib.stylix.colors;
   rgb = color: "rgb(${color})";
 in
 {
-  # stylix color plumbing for hyprland integration.
   # set the active border color used by hyprland decorations.
-  _module.args.hyprlandStylix.activeBorder = rgb colors.base03;
+  wayland.windowManager.hyprland.settings.general."col.active_border" = mkForce (rgb colors.base03);
 }

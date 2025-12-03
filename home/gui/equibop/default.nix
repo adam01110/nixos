@@ -40,7 +40,7 @@ in
       transparent = true;
 
       enabledThemes = [
-        "midnight.css"
+        "system24.css"
         "snippets.css"
       ];
 
@@ -53,8 +53,7 @@ in
   };
 
   # install themed css with fonts from stylix.
-  xdg.configFile."equibop/themes/midnight.css".source = pkgs.replaceVars ./themes/midnight.css {
-    sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
+  xdg.configFile."equibop/themes/system24.css".source = pkgs.replaceVars ./themes/system24.css {
     monospaceFont = osConfig.stylix.fonts.monospace.name;
   };
 

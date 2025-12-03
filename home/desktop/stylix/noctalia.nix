@@ -15,11 +15,11 @@ let
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in
 {
-  _module.args.noctaliaStylix = {
+  programs.noctalia-shell.settings = {
     # default and fixed font names.
-    fonts = {
-      default = sansSerifFont;
-      fixed = monospaceFont;
+    ui.fonts = {
+      fontDefault = sansSerifFont;
+      fontFixed = monospaceFont;
     };
 
     # system monitor colors from the Stylix palette.

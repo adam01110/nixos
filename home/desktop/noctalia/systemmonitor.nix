@@ -1,15 +1,17 @@
-{
-  noctaliaStylix,
-  ...
-}:
+{ ... }:
 
-let
-  stylixSystemMonitor = noctaliaStylix.systemMonitor;
-in
+# set polling for the system monitor.
 {
-  # stylix palette for system monitor thresholds.
-  programs.noctalia-shell.settings.systemMonitor = {
-    criticalColor = stylixSystemMonitor.criticalColor;
-    warningColor = stylixSystemMonitor.warningColor;
-  };
+  programs.noctalia-shell.settings.systemMonitor =
+    let
+      # reuse a shared 4s interval for slower sensors.
+      generalInterval = 4000;
+    in
+    {
+      cpuPollingInterval = 1000;
+      tempPollingInterval = generalInterval;
+      memPollingInterval = generalInterval;
+      diskPollingInterval = generalInterval;
+      networkPollingInterval = generalInterval;
+    };
 }

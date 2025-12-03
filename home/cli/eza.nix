@@ -1,7 +1,4 @@
-{
-  ezaStylix,
-  ...
-}:
+{ ... }:
 
 # configure eza ls replacement.
 {
@@ -11,7 +8,6 @@
     # enable icons, theme, and formatting.
     colors = "always";
     icons = "always";
-    theme = ezaStylix;
     extraOptions = [
       "--all"
       "--long"
