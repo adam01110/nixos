@@ -1,15 +1,11 @@
 {
   lib,
-  hyprlandStylix,
   ...
 }:
 
 # set hyprland appearance, gaps, decoration, and animations.
 let
-  inherit (lib)
-    mkForce
-    mkMerge
-    ;
+  inherit (lib) mkMerge;
 in
 {
   wayland.windowManager.hyprland.settings = mkMerge [
@@ -18,8 +14,6 @@ in
       general = {
         gaps_in = 4;
         gaps_out = 4;
-
-        "col.active_border" = mkForce hyprlandStylix.activeBorder;
       };
 
       # window decoration options including blur and shadow.

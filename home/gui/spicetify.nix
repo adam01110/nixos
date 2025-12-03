@@ -18,10 +18,10 @@ in
     {
       enable = true;
 
-      # turn on experimental features and apply wm patch.
+      # turn on experimental features, use wayland, and apply wm patch.
       experimentalFeatures = true;
       windowManagerPatch = true;
-      # wayland = true;
+      wayland = true;
 
       # enable extensions.
       enabledExtensions =

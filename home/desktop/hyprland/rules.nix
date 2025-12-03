@@ -108,6 +108,7 @@ in
 
       # center.
       "match:class org.gnome.Calculator, center on"
+      "match:class me.iepure.devtoolbox, center on"
     ];
   };
 }

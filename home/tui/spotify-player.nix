@@ -31,7 +31,7 @@ in
 
   # create desktop entry to allow launching via launcher.
   xdg.desktopEntries.spotify-player = {
-    name = "Spotify player";
+    name = "Spotify Player";
     genericName = "Music Player";
     icon = "spotify";
     exec = getExe config.programs.spotify-player.package;
