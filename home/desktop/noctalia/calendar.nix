@@ -1,9 +1,10 @@
 { ... }:
 
+# define card layout for the noctalia calendar widget.
 {
   programs.noctalia-shell.settings.calendar.cards = [
     {
-      id = "banner-card";
+      id = "calendar-header-card";
       enabled = true;
     }
     {
@@ -11,7 +12,7 @@
       enabled = false;
     }
     {
-      id = "calendar-card";
+      id = "calendar-month-card";
       enabled = true;
     }
     {

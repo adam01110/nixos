@@ -78,7 +78,6 @@ in
           nixcord.homeModules.nixcord
           spicetify-nix.homeManagerModules.spicetify
         ]
-        # and the repo's own home manager modules.
         ++ [ ./../home ];
 
       home = {

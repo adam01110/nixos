@@ -117,8 +117,6 @@
       stylix,
       lanzaboote,
       sops-nix,
-      noctalia,
-      nix-index-database,
       ...
     }@inputs:
     let
@@ -137,8 +135,6 @@
         stylix.nixosModules.stylix
         lanzaboote.nixosModules.lanzaboote
         sops-nix.nixosModules.sops
-        noctalia.nixosModules.default
-        nix-index-database.nixosModules.nix-index
         ./system
       ];
 

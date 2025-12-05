@@ -28,6 +28,7 @@ in
           showNetworkStats = false;
           usePrimaryColor = true;
         }
+        { id = "plugin:privacy-indicator"; }
         {
           id = "LockKeys";
           capsLockIcon = "circle-dashed-letter-c";
