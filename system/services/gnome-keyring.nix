@@ -6,7 +6,7 @@
     gnome-keyring.enable = true;
 
     # disable the gcr ssh agent managed by GNOME.
-    gcr-ssh-agent.enable = true;
+    gcr-ssh-agent.enable = false;
   };
 
   # hook keyring into login and greetd sessions.
