@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -18,10 +19,15 @@ in
     name = "Wiremix";
     genericName = "Pipewire Volume Control";
     icon = "multimedia-volume-control";
-    exec = getExe pkg;
-    terminal = true;
+    exec =
+      let
+        terminalCommand = getExe config.xdg.terminal-exec.package;
+        wiremix = getExe pkg;
+      in
+      "${terminalCommand} --title=Wiremix ${wiremix}";
     categories = [
       "Audio"
+      "AudioVideo"
       "System"
       "Settings"
       "Mixer"

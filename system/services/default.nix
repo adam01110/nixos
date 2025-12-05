@@ -3,6 +3,7 @@
 {
   imports = [
     ./ananicy.nix
+    ./angrr.nix
     ./avahi.nix
     ./bluetooth.nix
     ./geoclue.nix

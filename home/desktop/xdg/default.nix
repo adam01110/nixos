@@ -12,6 +12,9 @@
   # enable xdg integration for user-level options.
   xdg.enable = true;
 
-  # enable xdg userDirs.
-  xdg.userDirs.enable = true;
+  # manage xdg userDirs and create missing paths on login.
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
 }

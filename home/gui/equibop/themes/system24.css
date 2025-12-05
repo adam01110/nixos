@@ -84,7 +84,7 @@ body {
 	*::before,
 	*::after {
 		/* biome-ignore lint/complexity/noImportantStyles: required */
-		border-radius: 8px !important;
+		border-radius: 6px !important;
 	}
 
 	/* styling options */
