@@ -18,7 +18,6 @@
       helvum
       loupe
       mcpelauncher-ui-qt
-      nucleus
       obsidian
       protonvpn-gui
       showtime

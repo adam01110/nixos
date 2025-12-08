@@ -60,55 +60,81 @@ in
     ];
 
     windowrule = [
-      # force opacity.
-      "match:class com.mitchellh.ghostty, opacity 1 override 1 override"
-      "match:class equibop, opacity 1 override 1 override"
-      "match:class steam_app_.*, opacity 1 override 1 override"
+      # tag windows by application.
+      "tag +tile, match:class Aseprite"
 
-      # noblur.
-      "match:class equibop, no_blur on"
-      "match:class steam_app_.+, no_blur on"
+      "tag +float, match:class BeeperTexts, match:title Settings"
+      "tag +size-beeper-settings, match:class BeeperTexts, match:title Settings"
 
-      # tile.
-      "match:class io.mrarm.mcpelauncher-ui-qt, tile on"
-      "match:class Aseprite, tile on"
+      "tag +forceopacity, match:class com.mitchellh.ghostty"
 
-      # float.
-      "match:class org.gnome.Calculator, float on"
-      "match:title Task Manager - .+, float on"
-      "match:class BeeperTexts, match:title Settings, float on"
-      "match:class steam, match:title Friends List, float on"
-      "match:class steam, match:title Steam Settings, float on"
-      "match:class zen, match:title Picture-in-Picture, float on"
-      "match:class zen, match:title Bitwarden, float on"
-      "match:class me.iepure.devtoolbox, float on"
-      "match:class org.freedesktop.impl.portal.desktop.kde, float on"
-      "match:class file-.+, float on"
+      "tag +pseudotile, match:class com.mitchellh.ghostty, match:title Wiremix"
+      "tag +size-wiremix, match:class com.mitchellh.ghostty, match:title Wiremix"
 
-      # pseudotile.
-      "match:class com.mitchellh.ghostty, match:title Wiremix, pseudo on"
-      "match:class com.saivert.pwvucontrol, pseudo on"
+      "tag +forceopacity, match:class equibop"
+      "tag +noblur, match:class equibop"
 
-      # set size.
-      "match:class org.gnome.Calculator, size 695 800"
-      "match:title Task Manager - .+, size 800 600"
-      "match:class steam, match:title Friends List, size 380 540,"
-      "match:class BeeperTexts, match:title Settings, size 900 900"
-      "match:class zen, match:title Bitwarden, size 450 800"
-      "match:class .protonvpn-app-wrapped, match:title Proton VPN, size 400 600"
-      "match:class org.gnome.seahorse.Application, match:title .+ — Private key, size 568 720"
-      "match:class org.gnome.seahorse.Application, match:title Item Properties, size 400 520"
-      "match:class me.iepure.devtoolbox, size 1130 750"
-      "match:class file-.+, match:title Export Image as .+, size 670 513"
-      "match:class com.mitchellh.ghostty, match:title Wiremix, size 1000 630"
-      "match:class com.saivert.pwvucontrol, size 1000 800"
+      "tag +float, match:class file-.+"
+      "tag +size-file-export, match:class file-.+, match:title Export Image as .+"
 
-      # pin.
-      "match:class zen, match:title Picture-in-Picture, pin on"
+      "tag +tile, match:class io.mrarm.mcpelauncher-ui-qt"
 
-      # center.
-      "match:class org.gnome.Calculator, center on"
-      "match:class me.iepure.devtoolbox, center on"
+      "tag +float, match:class me.iepure.devtoolbox"
+      "tag +center, match:class me.iepure.devtoolbox"
+      "tag +size-devtoolbox, match:class me.iepure.devtoolbox"
+
+      "tag +float, match:class org.freedesktop.impl.portal.desktop.kde"
+
+      "tag +float, match:class org.gnome.Calculator"
+      "tag +center, match:class org.gnome.Calculator"
+      "tag +size-calculator, match:class org.gnome.Calculator"
+
+      "tag +float, match:class org.gnome.Decibels"
+      "tag +center, match:class org.gnome.Decibels"
+      "tag +size-decibels, match:class org.gnome.Decibels"
+
+      "tag +size-seahorse-key, match:class org.gnome.seahorse.Application, match:title .+ — Private key"
+      "tag +size-seahorse-item, match:class org.gnome.seahorse.Application, match:title Item Properties"
+
+      "tag +size-protonvpn, match:class .protonvpn-app-wrapped, match:title Proton VPN"
+
+      "tag +float, match:class steam, match:title Friends List"
+      "tag +float, match:class steam, match:title Steam Settings"
+      "tag +size-steam-friends, match:class steam, match:title Friends List"
+
+      "tag +forceopacity, match:class steam_app_.*"
+      "tag +noblur, match:class steam_app_.+"
+
+      "tag +float, match:title Task Manager - .+"
+      "tag +size-task-manager, match:title Task Manager - .+"
+
+      "tag +float, match:class zen, match:title Bitwarden"
+      "tag +float, match:class zen, match:title Picture-in-Picture"
+      "tag +pin, match:class zen, match:title Picture-in-Picture"
+      "tag +size-bitwarden, match:class zen, match:title Bitwarden"
+
+      # apply behaviors by tag.
+      "match:tag forceopacity, opacity 1 override 1 override"
+      "match:tag noblur, no_blur on"
+      "match:tag tile, tile on"
+      "match:tag float, float on"
+      "match:tag pseudotile, pseudo on"
+      "match:tag pin, pin on"
+      "match:tag center, center on"
+
+      # apply sizes by tag.
+      "match:tag size-calculator, size 695 800"
+      "match:tag size-task-manager, size 800 600"
+      "match:tag size-steam-friends, size 380 540"
+      "match:tag size-beeper-settings, size 900 900"
+      "match:tag size-bitwarden, size 450 800"
+      "match:tag size-protonvpn, size 400 600"
+      "match:tag size-seahorse-key, size 568 720"
+      "match:tag size-seahorse-item, size 400 520"
+      "match:tag size-devtoolbox, size 1130 750"
+      "match:tag size-file-export, size 670 513"
+      "match:tag size-wiremix, size 1000 630"
+      "match:tag size-decibels, size 720 500"
     ];
   };
 }
