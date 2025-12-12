@@ -82,11 +82,12 @@ in
     };
   };
 
-  # tools needed by the fish greeting.
+  # tools used by fish greeting and fifc previews.
   home.packages = attrValues {
     inherit (pkgs)
       fortune
       boxes
+      file
       ;
   };
 }
