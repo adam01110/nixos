@@ -102,7 +102,10 @@
     millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
 
     # spicetify flake.
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # outputs: expose host configurations and pass through common arguments.

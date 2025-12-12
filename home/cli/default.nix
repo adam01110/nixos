@@ -14,7 +14,6 @@
     ./fzf.nix
     ./gh.nix
     ./other.nix
-    ./parallel.nix
     ./zoxide.nix
   ];
 }

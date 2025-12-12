@@ -11,6 +11,8 @@ let
     concatStringsSep
     getExe
     ;
+
+  pkg = pkgs.tuigreet;
 in
 {
   services.greetd = {
@@ -23,7 +25,7 @@ in
       default_session = {
         command =
           let
-            tuigreet = getExe pkgs.tuigreet;
+            tuigreet = getExe pkg;
             hyprland = getExe config.programs.hyprland.package;
           in
           concatStringsSep " " [
@@ -42,5 +44,5 @@ in
   };
 
   # ensure tuigreet is present system-wide.
-  environment.systemPackages = [ pkgs.tuigreet ];
+  environment.systemPackages = [ pkg ];
 }

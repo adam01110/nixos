@@ -31,12 +31,19 @@
     };
 
     cursor = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.nur.repos.adam0.bibata-modern-cursors-classic;
+      name = "Bibata-Modern-Gruvbox-Dark";
+      package = pkgs.nur.repos.adam0.bibata-modern-cursors-gruvbox-dark;
       size = 24;
     };
 
-    # configure the use of the JetBrainsMono fonts without ligatures
+    icons = {
+      enable = true;
+      light = "Gruvbox-Plus-Dark";
+      dark = "Gruvbox-Plus-Dark";
+      package = pkgs.gruvbox-plus-icons;
+    };
+
+    # use JetBrainsMono without ligatures.
     fonts = {
       serif = {
         package = pkgs.nerd-fonts.jetbrains-mono;

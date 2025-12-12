@@ -145,11 +145,11 @@ in
           type = "memory";
           key = "│ ├󰑭 RAM";
           keyColor = "red";
-          format = " {4} {1} / {2} ({3})";
+          format = "{4} {1} / {2} ({3})";
         }
         {
           type = "disk";
-          key = "│ ├ DISKS ";
+          key = "│ ├ DISKS";
           keyColor = "red";
         }
         {
@@ -164,7 +164,7 @@ in
         }
         {
           type = "media";
-          key = "│ ├󰝚  TRACK";
+          key = "│ ├󰝚 TRACK";
           keyColor = "38";
           format = "{3} - {1} ({5})";
         }
@@ -172,7 +172,6 @@ in
           type = "sound";
           key = "│ ╰ VOLUME";
           keyColor = "38";
-          format = "{#1}{5} ({#1}{3})";
         }
         {
           type = "custom";

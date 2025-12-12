@@ -29,6 +29,6 @@ in
     roccat.enable = true;
   };
 
-  # enable mesa-git.
-  chaotic.mesa-git.enable = true;
+  # enable rocm support for packages.
+  nixpkgs.config.rocmSupport = true;
 }

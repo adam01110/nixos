@@ -4,11 +4,12 @@
   ...
 }:
 
-# stylix color for hyprland integration.
+# stylix color overrides for hyprland integration.
 let
   inherit (lib) mkForce;
 
   colors = osConfig.lib.stylix.colors;
+  # convert base16 hex into hyprland-friendly rgb string.
   rgb = color: "rgb(${color})";
 in
 {
