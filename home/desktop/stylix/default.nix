@@ -1,6 +1,5 @@
 {
   osConfig,
-  pkgs,
   ...
 }:
 
@@ -20,19 +19,6 @@ in
   ];
 
   stylix = {
-    cursor = {
-      name = "Bibata-Modern-Gruvbox-Dark";
-      package = pkgs.nur.repos.adam0.bibata-modern-cursors-gruvbox-dark;
-      size = 24;
-    };
-
-    icons = {
-      enable = true;
-      light = "Gruvbox-Plus-Dark";
-      dark = "Gruvbox-Plus-Dark";
-      package = pkgs.gruvbox-plus-icons;
-    };
-
     opacity = {
       applications = 0.95;
       desktop = 0.95;

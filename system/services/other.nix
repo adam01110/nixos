@@ -12,9 +12,6 @@
     # fuse envfs to provide fhs-style paths under /bin.
     envfs.enable = true;
 
-    # gio/gvfs backends: trash, smb/mtp/afc, network mounts, etc.
-    gvfs.enable = true;
-
     # input stack defaults (touchpad, mouse) via libinput.
     libinput.enable = true;
 

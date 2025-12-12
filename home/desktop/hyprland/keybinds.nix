@@ -146,7 +146,7 @@ in
           "SUPER, U, Open the control center, exec, ${noctalia} controlCenter toggle"
           "SUPER, G, Open the emoji picker in the launcher, exec, ${noctalia} launcher emoji"
           "SUPER SHIFT, V, Open the clipboard history in the launcher, exec, ${noctalia} launcher clipboard"
-          "SUPER, L, Inhibit idle, exec, ${noctalia} idleInhibitor toggle"
+          "SUPER, Y, Inhibit idle, exec, ${noctalia} idleInhibitor toggle"
 
           # screenshots.
           "SUPER SHIFT, S, Screenshot selected region, exec, ${hyprshot} -m region -z -o ${screenshotDir}/region"

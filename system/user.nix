@@ -63,9 +63,6 @@ in
     };
 
     users.${username} = {
-      # enable the `home-manager` command for this user.
-      programs.home-manager.enable = true;
-
       # home manager module sources from flake inputs.
       imports =
         with inputs;

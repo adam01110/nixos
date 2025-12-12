@@ -8,6 +8,7 @@
     ./bluetooth.nix
     ./geoclue.nix
     ./gnome-keyring.nix
+    ./gvfs.nix
     ./locate.nix
     ./network.nix
     ./other.nix

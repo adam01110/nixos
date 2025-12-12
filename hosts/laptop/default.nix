@@ -20,7 +20,6 @@ in
   # per-host optional services and settings.
   optServices = {
     bluetooth.enable = true;
-    printing.enable = true;
     timezone = "automatic-timezoned";
     wifi.enable = true;
     virtManager.enable = true;

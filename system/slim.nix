@@ -6,6 +6,7 @@
 # trim down default packages and documentation to keep install small.
 let
   inherit (lib) mkForce;
+  inherit (builtins) filter;
 in
 {
   documentation = {
@@ -19,4 +20,16 @@ in
     orca.enable = mkForce false;
     speechd.enable = mkForce false;
   };
+
+  # slim xdg-desktop-portal-gtk globally to avoid duplicate user units.
+  nixpkgs.overlays = [
+    (final: prev: {
+      xdg-desktop-portal-gtk = prev.xdg-desktop-portal-gtk.overrideAttrs (old: {
+        buildInputs = filter (
+          pkg: pkg != prev.gnome-desktop && pkg != prev.gnome-settings-daemon
+        ) old.buildInputs;
+        mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dwallpaper=disabled" ];
+      });
+    })
+  ];
 }

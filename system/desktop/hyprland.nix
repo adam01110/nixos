@@ -19,4 +19,15 @@
 
     uwsm.package = pkgs.uwsm.override { uuctlSupport = false; };
   };
+
+  hardware.graphics =
+    let
+      pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+    in
+    {
+      enable32Bit = true;
+
+      package = pkgs-unstable.mesa;
+      package32 = pkgs-unstable.pkgsi686Linux.mesa;
+    };
 }

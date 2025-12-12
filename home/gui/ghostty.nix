@@ -13,6 +13,7 @@
       # cursor settings.
       cursor-style = "block";
       cursor-style-blink = true;
+      shell-integration-features = "no-cursor";
 
       # appearance settings.
       window-theme = "system";
