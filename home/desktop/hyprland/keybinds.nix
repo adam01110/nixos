@@ -153,7 +153,7 @@ in
           "SUPER, Print, Screenshot entire monitor, exec, ${hyprshot} -m output -c -o ${screenshotDir}/output"
 
           # colorpicker.
-          "SUPER SHIFT, S, Color picker, exec, ${hyprpicker} -n -a -r -q -l"
+          "SUPER SHIFT, X, Color picker, exec, ${hyprpicker} -n -a -r -q -l"
 
           # applications.
           "SUPER, Return, Open the terminal, exec, ${app2unit} ${ghostty}"
