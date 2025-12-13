@@ -11,7 +11,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     # extra packages, overlays, and modules.
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -113,7 +113,6 @@
     {
       self,
       nixpkgs,
-      chaotic,
       nur,
       disko,
       home-manager,
@@ -131,7 +130,6 @@
 
       # modules shared by every host.
       commonModules = [
-        chaotic.nixosModules.default
         nur.modules.nixos.default
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
