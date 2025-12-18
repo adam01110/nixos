@@ -14,10 +14,15 @@ in
 {
   programs.noctalia-shell = {
     # system monitor colors from the Stylix
-    settings.palette.systemMonitor = with colors; {
-      useCustomColors = true;
-      warningColor = base0A;
-      criticalColor = base08;
+    settings = {
+      bar.backgroundOpacity = mkForce 1;
+      bar.capsuleOpacity = mkForce 1;
+
+      palette.systemMonitor = with colors; {
+        useCustomColors = true;
+        warningColor = base0A;
+        criticalColor = base08;
+      };
     };
 
     # write the noctalia color palette to a json file.

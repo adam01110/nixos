@@ -14,13 +14,13 @@
     };
 
     cmd_duration = {
-      format = "[ ](#00000000)[](fg:base01)[$duration]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$duration]($style)[ ](bg:base01)";
       style = "bg:base01 fg:yellow bold";
       min_time = 500;
     };
 
     directory = {
-      format = "[ ](#00000000)[](fg:base01)[$path]($style)[$read_only]($read_only_style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$path]($style)[$read_only]($read_only_style)[ ](bg:base01)";
       style = "bg:base01 fg:blue bold";
       read_only = " ";
       read_only_style = "bg:base01 fg:red bold";
@@ -31,7 +31,7 @@
 
     direnv = {
       disabled = false;
-      format = "[ ](#00000000)[](fg:base01)[$symbol$loaded/$allowed]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol$loaded/$allowed]($style)[ ](bg:base01)";
       symbol = " ";
       style = "bg:base01 fg:base09 bold";
     };
@@ -44,13 +44,13 @@
     };
 
     jobs = {
-      format = "[ ](#00000000)[](fg:base01)[$symbol$number]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol$number]($style)[ ](bg:base01)";
       symbol = "󱜯 ";
       style = "bg:base01 fg:blue bold";
     };
 
     nix_shell = {
-      format = "[ ](#00000000)[](fg:base01)[$symbol$state( \\($name\\))]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol$state( \\($name\\))]($style)[ ](bg:base01)";
       symbol = "󱄅 ";
       style = "bg:base01 fg:blue bold";
       heuristic = true;
@@ -71,7 +71,7 @@
     };
 
     package = {
-      format = "[ ](#00000000)[](fg:base01)[$symbol$version]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol$version]($style)[ ](bg:base01)";
       symbol = "󰏗 ";
       style = "bg:base01 fg:base09 bold";
       display_private = true;
@@ -92,7 +92,7 @@
 
     sudo = {
       disabled = false;
-      format = "[ ](#00000000)[](fg:base01)[$symbol]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol]($style)[ ](bg:base01)";
       symbol = "";
       style = "bg:base01 fg:yellow bold";
     };

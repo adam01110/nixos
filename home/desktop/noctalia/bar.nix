@@ -13,7 +13,7 @@ in
     density = "compact";
     exclusive = true;
     floating = false;
-    outerCorners = true;
+    outerCorners = false;
     position = "top";
     showCapsule = true;
 
@@ -23,6 +23,7 @@ in
           id = "SystemMonitor";
           showCpuTemp = true;
           showCpuUsage = true;
+          showGpuTemp = true;
           showMemoryAsPercent = false;
           showMemoryUsage = true;
           showNetworkStats = false;

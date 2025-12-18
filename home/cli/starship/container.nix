@@ -4,13 +4,13 @@
 {
   programs.starship.settings = {
     container = {
-      format = "[ ](#00000000)[](fg:base01)[$symbol \\[$name\\]]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol \\[$name\\]]($style)[ ](bg:base01)";
       symbol = " ";
       style = "bg:base01 fg:blue bold";
     };
 
     docker_context = {
-      format = "[ ](#00000000)[](fg:base01)[$symbol$context]($style)[](fg:base01)";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol$context]($style)[ ](bg:base01)";
       symbol = "󰡨 ";
       style = "bg:base01 fg:blue bold";
     };

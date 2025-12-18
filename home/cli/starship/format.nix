@@ -9,18 +9,18 @@ in
 {
   # layout and coloring for the full starship prompt.
   programs.starship.settings.format = concatStrings [
-    "[](fg:base01)"
+    "[ ](bg:base01)"
     "$hostname"
     "[/](fg:base05 bg:base01)"
     "$username"
-    "[](fg:base01)"
+    "[ ](bg:base01)"
 
     "[ ](#00000000)"
-    "[](fg:base01)"
+    "[ ](bg:base01)"
     "$os"
     "[ ](bg:base01)"
     "$shell"
-    "[](fg:base01)"
+    "[ ](bg:base01)"
 
     "$nix_shell"
 
@@ -34,13 +34,13 @@ in
 
     "$fossil_branch"
     "[ ](#00000000)"
-    "[](fg:base01)"
+    "[ ](bg:base01)"
     "$git_branch"
     "[ ](bg:base01)"
     "$git_commit"
     "$git_state"
     "$git_status"
-    "[](fg:base01)"
+    "[ ](bg:base01)"
 
     "$package"
 

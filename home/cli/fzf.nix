@@ -7,7 +7,7 @@
 
     # change prompt default to look better.
     defaultOptions = [
-      "--border rounded"
+      "--border sharp"
       "--prompt '➜ '"
     ];
   };

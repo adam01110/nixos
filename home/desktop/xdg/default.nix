@@ -5,7 +5,6 @@
     ./applications.nix
     ./autostart.nix
     ./cleanup.nix
-    ./polkit.nix
     ./terminal.nix
   ];
 
@@ -17,4 +16,7 @@
     enable = true;
     createDirectories = true;
   };
+
+  # enable the gnome polkit.
+  services.polkit-gnome.enable = true;
 }

@@ -11,7 +11,6 @@ if [ "$HYPRPERFORMANTMODE" = 1 ]; then
     "general:gaps_in 0"
     "general:gaps_out 0"
     "general:border_size 1"
-    "decoration:rounding 0"
     "decoration:active_opacity 1"
     "decoration:inactive_opacity 1"
     "windowrule opacity 1 override 1 override 1 override, ^(.*)$"

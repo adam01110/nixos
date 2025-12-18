@@ -11,7 +11,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     # extra packages, overlays, and modules.
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=bb7b8aa687464f24dcd452354d9621331d6b0737";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -99,13 +99,16 @@
     };
 
     # steam homebrew flake.
-    millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium";
+    millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium?ref=legacy";
 
     # spicetify flake.
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # zed extensions flake.
+    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
   };
 
   # outputs: expose host configurations and pass through common arguments.

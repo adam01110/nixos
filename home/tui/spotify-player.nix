@@ -23,9 +23,6 @@ in
       play_icon = "";
       pause_icon = "";
       liked_icon = "";
-
-      # make panel edges rounded.
-      border_type = "Rounded";
     };
   };
 

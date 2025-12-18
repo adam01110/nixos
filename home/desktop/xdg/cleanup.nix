@@ -9,7 +9,7 @@ let
   stateHome = config.xdg.stateHome;
 in
 {
-  # consolidate tool state under xdg paths to keep $HOME clean.
+  # GET OUT OF MY $HOME!
   home.sessionVariables = {
     # history.
     LESSHISTFILE = "${stateHome}/less/history";
@@ -17,10 +17,18 @@ in
 
     FFMPEG_DATADIR = "${configHome}/ffmpeg";
 
-    # rust toolchain metadata directories.
+    # rust toolchains.
     CARGO_HOME = "${dataHome}/cargo";
     RUSTUP_HOME = "${dataHome}/rustup";
+
+    # javascript toolchains.
     BUN_INSTALL = "${dataHome}/bun";
+    NODE_REPL_HISTORY = "${dataHome}/node_repl_history";
+
+    # java toolschains.
+    GRADLE_USER_HOME = "${dataHome}/gradle";
+    MAVEN_OPTS = "-Dmaven.repo.local=${dataHome}/maven/repository";
+    MAVEN_ARGS = "--settings ${configHome}/maven/settings.xml";
 
     # gaming.
     RENPY_PATH_TO_SAVES = "${dataHome}/renpy";

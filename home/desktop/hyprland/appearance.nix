@@ -18,7 +18,7 @@ in
 
       # window decoration options including blur and shadow.
       decoration = {
-        rounding = 4;
+        rounding = 0;
 
         active_opacity = 0.95;
         inactive_opacity = 0.95;
