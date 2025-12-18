@@ -15,8 +15,14 @@ in
   programs.noctalia-shell = {
     # system monitor colors from the Stylix
     settings = {
-      bar.backgroundOpacity = mkForce 1;
-      bar.capsuleOpacity = mkForce 1;
+      bar = {
+        backgroundOpacity = mkForce 1.0;
+        capsuleOpacity = mkForce 1.0;
+      };
+      ui.panelBackgroundOpacity = mkForce 1.0;
+      dock.backgroundOpacity = mkForce 1.0;
+      osd.backgroundOpacity = mkForce 1.0;
+      notifications.backgroundOpacity = mkForce 1.0;
 
       palette.systemMonitor = with colors; {
         useCustomColors = true;
