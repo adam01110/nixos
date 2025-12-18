@@ -73,7 +73,7 @@ in
           fortune = getExe pkgs.fortune;
           boxes = getExe pkgs.boxes;
         in
-        "${fortune} -s | ${boxes} -d ansi-rounded";
+        "${fortune} -s | ${boxes} -d ansi";
     };
 
     binds = {

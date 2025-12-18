@@ -10,6 +10,7 @@ let
   inherit (lib)
     concatStringsSep
     getExe
+    getExe'
     ;
 
   pkg = pkgs.tuigreet;
@@ -26,7 +27,8 @@ in
         command =
           let
             tuigreet = getExe pkg;
-            hyprland = getExe config.programs.hyprland.package;
+            uwsm = getExe config.programs.uwsm.package;
+            hyprland = getExe' config.programs.hyprland.package "start-hyprland";
           in
           concatStringsSep " " [
             "${tuigreet}"
@@ -35,9 +37,8 @@ in
             "--time"
             "--time-format '%Y-%m-%d %H:%M:%S'"
             "--remember"
-            "--remember-user-session"
             "--user-menu"
-            "--cmd ${hyprland}"
+            "--cmd '${uwsm} start -F -eD Hyprland -- ${hyprland}'"
           ];
       };
     };

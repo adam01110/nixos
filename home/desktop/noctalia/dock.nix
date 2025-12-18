@@ -3,7 +3,6 @@
 # dock appearance and placement rules.
 {
   programs.noctalia-shell.settings.dock = {
-    backgroundOpacity = 0.95;
     colorizeIcons = false;
     displayMode = "auto_hide";
     enabled = true;

@@ -50,6 +50,7 @@ in
 
       proc_tree = true;
       proc_gradient = false;
+      rounded_corners = false;
 
       disks_filter = "exclude=/var/log /var/cache /var/tmp /home /srv /";
 

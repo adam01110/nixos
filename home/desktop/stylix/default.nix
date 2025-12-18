@@ -14,7 +14,6 @@ in
     ./equibop.nix
     ./eza.nix
     ./hyprcursor.nix
-    ./hyprland.nix
     ./noctalia.nix
   ];
 

@@ -4,6 +4,9 @@
 }:
 
 # system xdg portal config and cursor fallback.
+let
+  inherit (builtins) attrValues;
+in
 {
   xdg = {
     portal = {

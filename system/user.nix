@@ -74,6 +74,7 @@ in
           zen-browser.homeModules.beta
           nixcord.homeModules.nixcord
           spicetify-nix.homeManagerModules.spicetify
+          zed-extensions.homeManagerModules.default
         ]
         ++ [ ./../home ];
 

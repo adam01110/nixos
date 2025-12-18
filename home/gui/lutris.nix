@@ -6,7 +6,7 @@
 
 # configure lutris and integrate with steam packages.
 let
-  bluetoothEnabled = osConfig.optServices.bluetooth.enable or false;
+  bluetoothEnabled = osConfig.optServices.bluetooth.enable;
 
   slimLutris = pkgs.callPackage (
     {

@@ -7,114 +7,133 @@
 
 # configure zed editor.
 let
+  inherit (builtins) attrValues;
   inherit (lib)
     mkEnableOption
     optionalAttrs
+    getExe
     ;
 
   configHome = config.xdg.configHome;
-  cacheHome = config.xdg.stateHome;
+  cacheHome = config.xdg.cacheHome;
 in
 {
   options.zed.isVm = mkEnableOption "Allow the usage of virtio gpu accel";
 
   config = {
-    programs.zed-editor = {
-      enable = true;
+    programs = {
+      zed-editor = {
+        enable = true;
 
-      extensions = [
-        "biome"
-        "color-highlight"
-        "discord-presence"
-        "git-firefly"
-        "html"
-        "lua"
-        "nix"
-        "qml"
-        "toml"
-      ];
+        # add packages for language servers and formatters.
+        extraPackages = attrValues {
+          inherit (pkgs)
+            # packages for nix.
+            nixd
+            nixfmt
 
-      # add packages for language servers and formatters.
-      extraPackages = with pkgs; [
-        # packages for nix.
-        nixd
-        nixfmt
+            # packages for rust.
+            rust-analyzer
+            ;
 
-        # packages for qml.
-        kdePackages.qtdeclarative
-
-        # packages for rust.
-        rust-analyzer
-
-        # packages for lua.
-        stylua
-      ];
-
-      # configure editor behavior and language settings.
-      userSettings = {
-        # disable telemetry.
-        telemetry = {
-          diagnostics = false;
-          metrics = false;
+          # packages for qml.
+          inherit (pkgs.kdePackages) qtdeclarative;
         };
 
-        auto_update = false;
-
-        cursor_shape = "block";
-
-        # minimap scrollbar.
-        scrollbar.axes.vertical = false;
-        lsp_document_colors = "background";
-        minimap = {
-          show = "always";
-          thumb_border = "none";
-          current_line_highlight = "line";
-        };
-
-        inlay_hints.enabled = true;
-        show_edit_predictions = false;
-
-        languages = {
-          Nix = {
-            # use nixd lsp for nix.
-            language_servers = [ "nixd" ];
-            # use nixfmt formatter for nix.
-            formatter.external.command = "nixfmt";
+        # configure editor behavior and language settings.
+        userSettings = {
+          # disable telemetry.
+          telemetry = {
+            diagnostics = false;
+            metrics = false;
           };
 
-          Python = {
-            language_servers = [
-              "ty"
-              "ruff"
-            ];
-            formatter.code_actions = {
-              "source.fixAll.ruff" = true;
-              "source.organizeImports.ruff" = true;
+          auto_update = false;
+
+          cursor_shape = "block";
+
+          # minimap scrollbar.
+          scrollbar.axes.vertical = false;
+          lsp_document_colors = "background";
+          minimap = {
+            show = "always";
+            thumb_border = "none";
+            current_line_highlight = "line";
+          };
+
+          inlay_hints.enabled = true;
+          show_edit_predictions = false;
+
+          languages = {
+            Nix = {
+              # use nixd lsp for nix.
+              language_servers = [ "nixd" ];
+              # use nixfmt formatter for nix.
+              formatter.external.command = "nixfmt";
             };
+
+            Python.language_servers = [
+              "ty"
+              "!basedpyright"
+              "..."
+            ];
+
+            # enable biome formatter and linter for supported languages.
+            JavaScript.formatter.language_server.name = "oxc";
+            TypeScript = {
+              prettier.allowed = false;
+              formatter.language_server.name = "oxc";
+            };
+            TSX.formatter.language_server.name = "oxc";
+            JSON.formatter.language_server.name = "oxc";
+            JSONC.formatter.language_server.name = "biome";
+            CSS.formatter.language_server.name = "biome";
           };
 
-          # enable biome formatter and linter for supported languages.
-          Javascript.formatter.language_server.name = "biome";
-          TypeScript.formatter.language_server.name = "biome";
-          TSX.formatter.language_server.name = "biome";
-          JSON.formatter.language_server.name = "biome";
-          JSONC.formatter.language_server.name = "biome";
-          CSS.formatter.language_server.name = "biome";
+          lsp = {
+            # enable git integration for discord rpc.
+            discord_presence.initialization_options.git_integration = true;
 
-          # enable stylua formatter for lua.
-          Lua.formatter.external = {
-            command = "stylua";
-            arguments = [
-              "--syntax=Lua54"
-              "--respect-ignores"
-              "--stdin-filepath"
-              "{buffer_path}"
-              "-"
+            # enable tailwind css in typescript and javascript.
+            tailwindcss-language-server.settings.experimental.classRegex = [
+              "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]"
+              "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]"
+              "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]"
+              "\\.classList\\.add\\(['\"]([^'\"]*)['\"]"
+              "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]"
+              "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]"
+              "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]"
+              "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]"
+              "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]"
             ];
+
+            # enable path lookup.
+            rust-analyzer.binary.path_lookup = true;
+            nix.binary.path_lookup = true;
           };
         };
+      };
 
-        lsp.discord_presence.initialization_options.git_integration = true;
+      zed-editor-extensions = {
+        enable = true;
+        packages = attrValues {
+          inherit (pkgs.zed-extensions)
+            biome
+            color-highlight
+            discord-presence
+            docker-compose
+            dockerfile
+            git-firefly
+            html
+            lua
+            nix
+            oxc
+            qml
+            toml
+            tombi
+            xml
+            ;
+        };
       };
     };
 

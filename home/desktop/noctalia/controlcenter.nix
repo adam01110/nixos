@@ -26,7 +26,11 @@ in
       }
       {
         id = "audio-card";
-        enabled = true;
+        enabled = false;
+      }
+      {
+        id = "brightness-card";
+        enabled = false;
       }
       {
         id = "weather-card";

@@ -4,7 +4,7 @@
 {
   programs.noctalia-shell.settings.general =
     let
-      radius = 0.24;
+      radius = 0;
     in
     {
       animationSpeed = 2;
@@ -20,6 +20,6 @@
       shadowDirection = "center";
       shadowOffsetX = 0;
       shadowOffsetY = 0;
-      showScreenCorners = true;
+      showScreenCorners = false;
     };
 }
