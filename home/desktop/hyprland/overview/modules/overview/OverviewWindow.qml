@@ -1,4 +1,3 @@
-import Qt5Compat.GraphicalEffects
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -42,14 +41,7 @@ Item { // Window
     height: Math.min((windowData?.size[1] ?? 100) * root.scale, availableWorkspaceHeight)
     opacity: (windowData?.monitor ?? -1) == widgetMonitorId ? 1 : 0.4
 
-    layer.enabled: true
-    layer.effect: OpacityMask {
-        maskSource: Rectangle {
-            width: root.width
-            height: root.height
-            radius: Appearance.rounding.windowRounding * root.scale
-        }
-    }
+    clip: true
 
     Behavior on x {
         animation: Appearance.animation.elementMoveEnter.numberAnimation.createObject(this)
@@ -72,7 +64,7 @@ Item { // Window
 
         Rectangle {
             anchors.fill: parent
-            radius: Appearance.rounding.windowRounding * root.scale
+            radius: Appearance.rounding.windowRounding
             color: pressed ? ColorUtils.transparentize(Appearance.colors.colLayer2Active, 0.5) : hovered ? ColorUtils.transparentize(Appearance.colors.colLayer2Hover, 0.7) : ColorUtils.transparentize(Appearance.colors.colLayer2)
             border.color: ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.7)
             border.width: 1

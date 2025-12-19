@@ -35,7 +35,7 @@ Singleton {
         property color m3surfaceContainer: "#98971a" // window highlight
         property color m3onSurface: "#282828" // second highlight
         property color m3onSurfaceVariant: "#fbf1c7" // number
-        property color m3inverseSurface: "#3c3836" // popup
+        property color m3inverseSurface: "#504945" // popup
         property color m3inverseOnSurface: "#fbf1c7" // popup text
         property color m3outline: "#fbf1c7" // window outline
         property color m3outlineVariant: "#665c54" // main window outline
@@ -68,14 +68,14 @@ Singleton {
     }
 
     rounding: QtObject {
-        property int unsharpen: 2
-        property int verysmall: 8
-        property int small: 12
-        property int normal: 17
-        property int large: 23
-        property int full: 9999
-        property int screenRounding: large
-        property int windowRounding: 18
+        property int unsharpen: 0
+        property int verysmall: 0
+        property int small: 0
+        property int normal: 0
+        property int large: 0
+        property int full: 0
+        property int screenRounding: 0
+        property int windowRounding: 0
     }
 
     font: QtObject {
