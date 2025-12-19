@@ -50,11 +50,6 @@
       enable = true;
       systemd.enable = true;
 
-      # add qt5compat the overview.
-      package = pkgs.quickshell.overrideAttrs (prev: {
-        buildInputs = prev.buildInputs ++ [ pkgs.qt6Packages.qt5compat ];
-      });
-
       activeConfig = "overview";
       configs.overview = ./overview;
     };

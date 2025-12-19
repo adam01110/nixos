@@ -11,7 +11,6 @@ let
   inherit (lib)
     mkEnableOption
     optionalAttrs
-    getExe
     ;
 
   configHome = config.xdg.configHome;
@@ -34,6 +33,12 @@ in
 
             # packages for rust.
             rust-analyzer
+
+            # packages for shell script.
+            shfmt
+
+            # packages for bash.
+            shellcheck
             ;
 
           # packages for qml.
@@ -78,6 +83,16 @@ in
               "..."
             ];
 
+            "Shell Script".formatter.external = {
+              command = "shfmt";
+              arguments = [
+                "--filename"
+                "{buffer_path}"
+                "--indent"
+                "2"
+              ];
+            };
+
             # enable biome formatter and linter for supported languages.
             JavaScript.formatter.language_server.name = "oxc";
             TypeScript = {
@@ -118,6 +133,7 @@ in
         enable = true;
         packages = attrValues {
           inherit (pkgs.zed-extensions)
+            basher
             biome
             color-highlight
             discord-presence
