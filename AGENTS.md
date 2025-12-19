@@ -11,6 +11,7 @@ Goals: keep comments concise, consistent, and helpful for future maintainers of 
 - Place comments on their own line directly above the code they describe; avoid trailing inline comments.
 - Indent the comment to the same level as the code.
 - Start with a single `#` and one space; use `# -` for short bullet lists.
+- Start comment text in lowercase to match existing repo style.
 - Describe purpose or rationale, not just restating the identifier.
 - Keep to ASCII; use backticks only for literal commands or identifiers.
 - Prefer one short line; only add sub‑bullets when enumerating items.

@@ -1,6 +1,8 @@
 { ... }:
 
+# assemble the Starship prompt configuration.
 {
+  # pull in per-feature Starship settings.
   imports = [
     ./build.nix
     ./container.nix
@@ -12,5 +14,6 @@
     ./runtimes.nix
   ];
 
+  # enable Starship for the user profile.
   programs.starship.enable = true;
 }
