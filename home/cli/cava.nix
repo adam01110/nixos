@@ -15,6 +15,8 @@
         monstercat = 1;
         noise_reduction = 33;
       };
+
+      input.method = "pulse";
     };
   };
 }
