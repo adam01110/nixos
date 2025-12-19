@@ -12,6 +12,9 @@ in
     enable = true;
     openFirewall = true;
 
+    # diable the webinterface.
+    webInterface = false;
+
     # printer drivers packages.
     drivers = attrValues {
       inherit (pkgs)

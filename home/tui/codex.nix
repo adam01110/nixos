@@ -41,23 +41,25 @@ in
       library/API documentation. This means you should automatically use the Context7 MCP
       tools to resolve library id and get library docs without me having to explicitly ask.
 
-      Always use the NixOS MCP resources for anything NixOS- or Home Manager–related (packages, options, flakes, channels, nix-darwin). This means you should
-      automatically call the NixOS MCP tools to look up package/option info, versions, channels, or flakes without me having to ask explicitly.
+      Always use the NixOS MCP resources for anything NixOS- or
+      Home Manager–related (packages, options, flakes, channels, nix-darwin).
+      This means you should automatically call the NixOS MCP tools to look up
+      package/option info, versions, channels, or flakes without me having to ask explicitly.
     '';
   };
 
   # set settings for codex cli.
   home.file.".codex/config.toml".source = tomlFormat.generate "codex-config.toml" {
-    model = "gpt-5.1-codex-max";
+    model = "gpt-5.2-codex-max";
     model_reasoning_effort = "medium";
 
     features = {
       web_search_request = true;
       rmcp_client = true;
+      unified_exec = true;
     };
 
     # disable annoying notices.
-    notice."hide_gpt-5.1-codex-max_migration_prompt" = true;
     check_for_update_on_startup = false;
 
     # use the keyring for storing login creds.

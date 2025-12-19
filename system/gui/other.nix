@@ -2,6 +2,11 @@
 
 # misc system applications enabled here.
 {
-  # enable seahore an application for managing encryption keys and passwords in the gnome keyring.
-  programs.seahorse.enable = true;
+  programs = {
+    # enable seahore an application for managing encryption keys and passwords in the gnome keyring.
+    seahorse.enable = true;
+
+    # enable system-config-printer for an gui for managing printers.
+    system-config-printer.enable = true;
+  };
 }
