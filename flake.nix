@@ -5,13 +5,32 @@
   # - exposes `nixosconfigurations` for each machine.
   description = "Adam0's nixos configuration.";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://hyprland.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://lanzaboote.cachix.org"
+      "https://mic92.cachix.org"
+      "https://numtide.cachix.org"
+      "https://attic.xuyh0120.win/lantian"
+    ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "lanzaboote.cachix.org-1:Nt9//zGmqkg1k5iu+B3bkj3OmHKjSw9pvf3faffLLNk="
+      "mic92.cachix.org-1:gi8IhgiT3CYZnJsaW7fxznzTkMUOn1RY4GmXdT/nXYQ="
+      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+    ];
+  };
+
   # inputs: upstream channels, overlays, and extra flakes used by this config.
   inputs = {
     # core nixpkgs channel.
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     # extra packages, overlays, and modules.
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=bb7b8aa687464f24dcd452354d9621331d6b0737";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=release";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";

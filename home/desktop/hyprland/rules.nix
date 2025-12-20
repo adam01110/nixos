@@ -49,14 +49,6 @@ in
       "match:namespace hyprpicker, no_anim on"
       "match:namespace selection, no_anim on"
       "match:namespace noctalia.+, no_anim on"
-
-      # ingoreaplha.
-      "match:namespace noctalia-dock.+, ignore_alpha 0.95"
-      "match:namespace noctalia-panel-content.+, ignore_alpha 0.95"
-
-      # blur.
-      "match:namespace noctalia-dock.+, blur on"
-      "match:namespace noctalia-panel-content.+, blur on"
     ];
 
     windowrule = [

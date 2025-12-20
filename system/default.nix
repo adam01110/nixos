@@ -32,12 +32,9 @@ in
   options.hardware.roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
 
   config = {
-    # dont change.
-    system.stateVersion = "25.05";
-
     # bootloader, kernel, and initrd configuration.
     boot = {
-      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
+      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
       initrd = {
         services.udev.packages = [ pkgs.numworks-udev-rules ];
 
