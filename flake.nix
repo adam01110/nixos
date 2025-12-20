@@ -117,9 +117,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # steam homebrew flake.
-    millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium?ref=legacy";
-
     # spicetify flake.
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";

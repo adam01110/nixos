@@ -1,5 +1,5 @@
 {
-  # steam with millennium, proton ge, and sensible defaults.
+  # steam with proton ge, and sensible defaults.
   pkgs,
   ...
 }:
@@ -7,7 +7,6 @@
 {
   programs.steam = {
     enable = true;
-    package = pkgs.steam-millennium;
 
     # open necessary ports for remote play and on-LAN transfers.
     localNetworkGameTransfers.openFirewall = true;
