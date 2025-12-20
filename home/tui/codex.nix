@@ -50,7 +50,7 @@ in
 
   # set settings for codex cli.
   home.file.".codex/config.toml".source = tomlFormat.generate "codex-config.toml" {
-    model = "gpt-5.2-codex-max";
+    model = "gpt-5.2-codex";
     model_reasoning_effort = "medium";
 
     features = {

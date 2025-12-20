@@ -5,6 +5,7 @@
   # configure the hosts monitors.
   hyprland = {
     brightness.enable = true;
+    suspend.enable = true;
     touch.enable = true;
 
     monitors = {
