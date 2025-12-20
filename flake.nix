@@ -37,10 +37,10 @@
     };
 
     # flatpak module for home manager.
-    nix-flatpak.url = "github:gmodena/nix-flatpak/";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     # disk partitioning.
-    disko.url = "github:nix-community/disko/latest";
+    disko.url = "github:nix-community/disko?ref=latest";
 
     # home manager for user-level configuration.
     home-manager = {
@@ -56,7 +56,7 @@
 
     # secure boot support.
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.3";
+      url = "github:nix-community/lanzaboote?ref=v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -73,7 +73,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     hyprsplit = {
-      url = "github:shezdy/hyprsplit/main";
+      url = "github:shezdy/hyprsplit?ref=main";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -97,7 +97,7 @@
 
     # zen browser flake.
     zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake/beta";
+      url = "github:0xc000022070/zen-browser-flake?ref=beta";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

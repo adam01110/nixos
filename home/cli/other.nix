@@ -14,9 +14,6 @@ let
   cfgWifi = osConfig.optServices.wifi.enable;
 in
 {
-  # enable the nix-index-database integration with comma.
-  programs.nix-index-database.comma.enable = true;
-
   # bundle general-purpose cli tools.
   home.packages =
     attrValues {
@@ -36,6 +33,9 @@ in
   programs = {
     # enable ripgrep for fast recursive search.
     ripgrep.enable = true;
+
+    # enable the nix-index-database integration with comma.
+    nix-index-database.comma.enable = true;
 
     # enable nix-index for finding packages that provide commands.
     nix-index.enable = true;

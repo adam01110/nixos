@@ -1,4 +1,5 @@
 {
+  config,
   osConfig,
   lib,
   pkgs,
@@ -12,14 +13,20 @@ let
   inherit (lib)
     getExe
     getExe'
+    mkEnableOption
+    optionals
     ;
 in
 {
-  services.hypridle = {
+  # create a toggle for the suspend timeout.
+  options.hyprland.suspend.enable = mkEnableOption "Enable hypridle suspend timeout.";
+
+  config.services.hypridle = {
     enable = true;
 
     settings =
       let
+        cfgSuspend = config.hyprland.suspend.enable;
         hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
       in
       {
@@ -74,6 +81,8 @@ in
               on-timeout = "${hyprctl} dispatch dpms off";
               on-resume = "${hyprctl} dispatch dpms on && ${brightnessctl} - r";
             }
+          ]
+          ++ optionals cfgSuspend [
             # suspend the system.
             {
               # 30min.

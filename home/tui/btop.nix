@@ -50,12 +50,14 @@ in
 
       proc_tree = true;
       proc_gradient = false;
-      rounded_corners = false;
+      proc_aggregate = true;
 
       disks_filter = "exclude=/var/log /var/cache /var/tmp /home /srv /";
 
       mem_graphs = true;
       swap_disk = false;
+
+      rounded_corners = false;
     };
   };
 }

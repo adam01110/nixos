@@ -33,15 +33,15 @@ in
 
       isNormalUser = true;
       ignoreShellProgramCheck = true;
-      description = "${username}";
+      description = username;
       shell = pkgs.fish;
     };
   };
 
   # allow the user to perform privileged nix operations.
   nix.settings = {
-    allowed-users = [ "${username}" ];
-    trusted-users = [ "${username}" ];
+    allowed-users = [ username ];
+    trusted-users = [ username ];
   };
 
   # home manager setup.
@@ -80,7 +80,7 @@ in
 
       home = {
         # home-manager account identity.
-        username = "${username}";
+        username = username;
         homeDirectory = "/home/${username}";
 
         # align home manager state version with the system.
