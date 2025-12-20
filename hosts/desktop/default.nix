@@ -9,6 +9,8 @@ let
 in
 {
   networking.hostName = "desktop";
+  # dont change.
+  system.stateVersion = "25.05";
 
   # import host-specific hardware configuration.
   imports = [ ./hardware.nix ];

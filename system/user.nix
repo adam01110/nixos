@@ -51,7 +51,7 @@ in
     # reuse the system's nixpkgs for consistency and caching.
     useGlobalPkgs = true;
     # suffix used when home manager backs up existing files it will manage.
-    backupFileExtension = "backup";
+    backupFileExtension = "bak";
 
     # pass shared context (flake inputs, system, and vars) to home manager modules.
     extraSpecialArgs = {

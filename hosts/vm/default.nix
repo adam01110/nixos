@@ -9,6 +9,8 @@ let
 in
 {
   networking.hostName = "vm";
+  # dont change.
+  system.stateVersion = "25.05";
 
   # import vm hardware profile.
   imports = [ ./hardware.nix ];
