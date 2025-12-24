@@ -1,4 +1,6 @@
 {
+  config,
+  lib,
   pkgs,
   inputs,
   system,
@@ -7,6 +9,7 @@
 
 # configure codex cli and the acp.
 let
+  inherit (lib) getExe;
   tomlFormat = pkgs.formats.toml { };
 in
 {

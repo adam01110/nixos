@@ -25,6 +25,7 @@ in
       upscayl
       warehouse
       wootility
+      heroic
       ;
 
     inherit (pkgs.kdePackages)

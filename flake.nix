@@ -167,29 +167,37 @@
           vars
           ;
       };
+
+      # helper for building host configurations.
+      mkHost =
+        {
+          system,
+          hostPath,
+        }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = commonArgs // {
+            inherit system;
+          };
+          modules = commonModules ++ [ hostPath ];
+        };
     in
     {
       # host machines defined by directory under ./host/*
       nixosConfigurations = {
-        # main desktop configuration.
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = commonArgs;
-          modules = commonModules ++ [ ./hosts/desktop ];
+        desktop = mkHost {
+          system = "x86_64-linux";
+          hostPath = ./hosts/desktop;
         };
 
-        # laptop profile with mobile-specific options.
-        laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = commonArgs;
-          modules = commonModules ++ [ ./hosts/laptop ];
+        laptop = mkHost {
+          system = "x86_64-linux";
+          hostPath = ./hosts/laptop;
         };
 
-        # lightweight vm target for testing.
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = commonArgs;
-          modules = commonModules ++ [ ./hosts/vm ];
+        vm = mkHost {
+          system = "x86_64-linux";
+          hostPath = ./hosts/vm;
         };
       };
     };

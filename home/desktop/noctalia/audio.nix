@@ -13,7 +13,6 @@
         wiremix = config.xdg.desktopEntries.wiremix.exec;
       in
       "${terminalCommand} --title='Wiremix' ${wiremix}";
-    visualizerQuality = "low";
     visualizerType = "mirrored";
     volumeOverdrive = true;
     volumeStep = 5;
