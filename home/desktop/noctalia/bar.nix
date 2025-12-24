@@ -66,6 +66,7 @@ in
           id = "Workspace";
           hideUnoccupied = true;
           labelMode = "none";
+          followFocusedScreen = true;
         }
       ];
 

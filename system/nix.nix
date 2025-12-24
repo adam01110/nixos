@@ -37,7 +37,7 @@
 
     overlays = with inputs; [
       dolphin-overlay.overlays.default
-      nix-cachyos-kernel.overlay
+      nix-cachyos-kernel.overlays.pinned
       zed-extensions.overlays.default
     ];
   };
