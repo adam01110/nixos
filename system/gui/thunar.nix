@@ -5,14 +5,18 @@ let
   inherit (builtins) attrValues;
 in
 {
-  programs.thunar = {
-    enable = true;
+  programs = {
+    xfconf.enable = true;
 
-    plugins = attrValues {
-      inherit (pkgs.xfce)
-        thunar-archive-plugin
-        thunar-volman
-        ;
+    thunar = {
+      enable = true;
+
+      plugins = attrValues {
+        inherit (pkgs.xfce)
+          thunar-archive-plugin
+          thunar-volman
+          ;
+      };
     };
   };
 }

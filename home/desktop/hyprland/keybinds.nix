@@ -43,7 +43,7 @@ in
       # define general keybindings and commands.
       bindd =
         let
-          dolphin = getExe' pkgs.kdePackages.dolphin "dolphin";
+          thunar = getExe pkgs.xfce.thunar;
           equibop = getExe config.programs.nixcord.equibop.package;
           ghostty = "${getExe config.programs.ghostty.package} +new-window";
           hyprpicker = getExe config.programs.hyprshot.package;
@@ -157,7 +157,7 @@ in
 
           # applications.
           "SUPER, Return, Open the terminal, exec, ${app2unit} ${ghostty}"
-          "SUPER, E, Open the file manager, exec, ${app2unit} ${dolphin}"
+          "SUPER, E, Open the file manager, exec, ${app2unit} ${thunar}"
           "SUPER, N, Open discord, exec, ${app2unit} ${equibop}"
           "SUPER, B, Open the browser, exec, ${app2unit} ${zen-browser}"
           "SUPER, M, Open steam, exec, ${app2unit} ${steam}"

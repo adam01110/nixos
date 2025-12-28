@@ -18,6 +18,7 @@
     ./ssh.nix
     ./timesyncd.nix
     ./timezone.nix
+    ./tumbler.nix
     ./zram.nix
   ];
 }
