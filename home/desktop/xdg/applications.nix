@@ -7,7 +7,6 @@
     ./applications/files.nix
     ./applications/audio.nix
     ./applications/video.nix
-    ./applications/archives.nix
     ./applications/document-viewers.nix
     ./applications/document-editors.nix
     ./applications/code.nix

@@ -84,23 +84,6 @@ let
           # Curl
           libnghttp2
 
-          # Dolphin
-          ffmpeg_6
-          gettext
-          portaudio
-          miniupnpc
-          mbedtls
-          lzo
-          sfml
-          gsm
-          wavpack
-          orc
-          nettle
-          gmp
-          pcre
-          vulkan-loader
-          zstd
-
           # GOG
           glib-networking
 

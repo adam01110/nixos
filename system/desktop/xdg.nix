@@ -35,11 +35,6 @@
             "gtk"
           ];
 
-          # prefer kde's file chooser.
-          "org.freedesktop.impl.portal.FileChooser" = [
-            "kde"
-          ];
-
           # use gnome-keyring for the secret portal backend.
           "org.freedesktop.impl.portal.Secret" = [
             "gnome-keyring"
@@ -48,10 +43,7 @@
       };
 
       # provide gtk and kde portals.
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        kdePackages.xdg-desktop-portal-kde
-      ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
     # fallback cursor to keep cursors.

@@ -36,7 +36,6 @@
     config.allowUnfree = true;
 
     overlays = with inputs; [
-      dolphin-overlay.overlays.default
       nix-cachyos-kernel.overlays.pinned
       zed-extensions.overlays.default
     ];

@@ -89,12 +89,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # dolphin file manager overlay.
-    dolphin-overlay = {
-      url = "github:rumboon/dolphin-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # zen browser flake.
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake?ref=beta";
