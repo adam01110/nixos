@@ -92,4 +92,5 @@
     voiceBackground = true;
   };
   ViewIcons.enabled = true;
+  MicLoopbackTester.enabled = true;
 }

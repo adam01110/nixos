@@ -23,7 +23,6 @@ in
           id = "SystemMonitor";
           showCpuTemp = true;
           showCpuUsage = true;
-          showGpuTemp = true;
           showMemoryAsPercent = false;
           showMemoryUsage = true;
           showNetworkStats = false;

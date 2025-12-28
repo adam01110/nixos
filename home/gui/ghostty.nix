@@ -13,7 +13,7 @@
       # cursor settings.
       cursor-style = "block";
       cursor-style-blink = true;
-      shell-integration-features = "no-cursor";
+      shell-integration-features = "no-cursor,ssh-terminfo,ssh-env";
 
       # appearance settings.
       window-theme = "system";
