@@ -28,11 +28,6 @@ in
       heroic
       ;
 
-    inherit (pkgs.kdePackages)
-      ark
-      dolphin
-      ;
-
     inherit (pkgs.nur.repos.forkprince) helium-nightly;
     inherit (pkgs.nur.repos.ymstnt) beeper;
   };
