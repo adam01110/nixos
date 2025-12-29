@@ -3,6 +3,7 @@
 {
   # group per-category defaults via module imports.
   imports = [
+    ./applications/archives.nix
     ./applications/protocols.nix
     ./applications/files.nix
     ./applications/audio.nix
