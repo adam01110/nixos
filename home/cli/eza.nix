@@ -13,7 +13,6 @@
       "--long"
       "--group-directories-first"
       "--mounts"
-      "--context"
       "--time-style=long-iso"
     ];
   };

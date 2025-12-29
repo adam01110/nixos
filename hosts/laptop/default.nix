@@ -25,6 +25,8 @@ in
     virtManager.enable = true;
   };
 
+  optTweaks.rcuLazy.enable = true;
+
   # tlp tuning for power management on battery.
   services.tlp = {
     enable = true;

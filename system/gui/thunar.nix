@@ -19,4 +19,6 @@ in
       };
     };
   };
+
+  environment.systemPackages = [ pkgs.file-roller ];
 }
