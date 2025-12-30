@@ -21,8 +21,10 @@ in
       left = [
         {
           id = "SystemMonitor";
+          compactMode = false;
           showCpuTemp = true;
           showCpuUsage = true;
+          showGpuTemp = config.noctalia.enableGpu;
           showMemoryAsPercent = false;
           showMemoryUsage = true;
           showNetworkStats = false;
@@ -85,6 +87,7 @@ in
           id = "VPN";
           displayMode = "onhover";
         }
+        { id = "NoctaliaPerformance"; }
         {
           id = "Volume";
           displayMode = "onhover";

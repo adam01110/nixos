@@ -10,17 +10,13 @@
 
 # keybindings for hyprland including workspace, window, and media controls.
 let
-  inherit (builtins)
-    attrValues
-    readFile
-    replaceStrings
-    ;
   inherit (lib)
     getExe
     getExe'
     mkEnableOption
     optionals
     ;
+  inherit (pkgs) callPackage;
 in
 {
   options.hyprland.brightness.enable = mkEnableOption "Enable function-row (F-keys) for brightness keybindings.";
@@ -28,10 +24,8 @@ in
   # generate hyprland binding lists and helpers.
   config.wayland.windowManager.hyprland.settings =
     let
-      bash = getExe pkgs.bash;
       gawk = getExe pkgs.gawk;
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
-      notify-send = getExe' pkgs.libnotify "notify-send";
 
       qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
@@ -43,6 +37,7 @@ in
       # define general keybindings and commands.
       bindd =
         let
+          performantMode = callPackage ./scripts/performant-mode.nix { inherit osConfig; };
           thunar = getExe pkgs.xfce.thunar;
           equibop = getExe config.programs.nixcord.equibop.package;
           ghostty = "${getExe config.programs.ghostty.package} +new-window";
@@ -53,21 +48,6 @@ in
           app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";
 
           screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
-
-          performantMode = pkgs.writeShellApplication {
-            name = "performantMode";
-            runtimeInputs = attrValues {
-              inherit (pkgs)
-                bash
-                gawk
-                libnotify
-                ;
-            };
-            excludeShellChecks = [ "SC2276" ];
-            text =
-              replaceStrings [ "@bash@" "@hyprctl@" "@gawk@" "@notifySend@" ] [ bash hyprctl gawk notify-send ]
-                (readFile ./scripts/performant-mode.sh);
-          };
         in
         [
           # switch between numbered workspaces.

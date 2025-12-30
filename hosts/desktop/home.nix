@@ -26,4 +26,5 @@
   btop.gpuBackends = [ "rocm" ];
 
   zen-browser.commit-space = 25698;
+  noctalia.enableGpu = true;
 }

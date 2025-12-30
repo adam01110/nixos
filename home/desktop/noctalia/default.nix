@@ -16,6 +16,7 @@
     ./controlcenter.nix
     ./dock.nix
     ./general.nix
+    ./hooks.nix
     ./launcher.nix
     ./location.nix
     ./network.nix

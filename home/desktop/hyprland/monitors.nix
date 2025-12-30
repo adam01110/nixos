@@ -23,6 +23,7 @@ in
           resolution = "2560x1440@170";
           position = "0x0";
           scale = 1;
+          disabled = false;  # optional: disable the monitor when true
           transform = 0;  # optional: 0-7 for rotation
           mirror = "DP-2";  # optional: mirror another display
           bitdepth = 10;  # optional: 10-bit color
@@ -43,6 +44,8 @@ in
       formatMonitor =
         name: cfg:
         let
+          # allow disabled monitors without resolution/position/scale.
+          disabledLine = "${name}, disabled";
           base = "${name}, ${cfg.resolution}, ${cfg.position}, ${toString cfg.scale}";
 
           # optional parameters.
@@ -63,7 +66,10 @@ in
               "";
           vrr = if (cfg.vrr or null) != null then ", vrr, ${toString cfg.vrr}" else "";
         in
-        base + transform + mirror + bitdepth + cm + sdrbrightness + sdrsaturation + vrr;
+        if cfg.disabled or false then
+          disabledLine
+        else
+          base + transform + mirror + bitdepth + cm + sdrbrightness + sdrsaturation + vrr;
 
       formattedMonitors = mapAttrsToList formatMonitor cfgMonitors;
     in
