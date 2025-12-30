@@ -52,7 +52,7 @@ in
       proc_gradient = false;
       proc_aggregate = true;
 
-      disks_filter = "exclude=/var/log /var/cache /var/tmp /home /srv /";
+      disks_filter = "exclude=/var/log /var/cache /var/tmp /home /srv /nix";
 
       mem_graphs = true;
       swap_disk = false;

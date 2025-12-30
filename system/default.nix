@@ -51,6 +51,11 @@ in
 
       lanzaboote = {
         enable = true;
+        autoGenerateKeys.enable = true;
+        autoEnrollKeys = {
+          enable = true;
+          autoReboot = true;
+        };
         pkiBundle = "/var/lib/sbctl";
       };
     };
