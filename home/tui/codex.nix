@@ -76,4 +76,16 @@ in
     sandbox_mode = "workspace-write";
     approval_policy = "on-failure";
   };
+
+  # create desktop entry to allow launching via launcher.
+  xdg.desktopEntries.codex = {
+    name = "Codex";
+    genericName = "AI Coding Assistant";
+    exec = getExe config.programs.codex.package;
+    terminal = true;
+    categories = [
+      "Development"
+      "Utility"
+    ];
+  };
 }
