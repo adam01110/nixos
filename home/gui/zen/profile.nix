@@ -1,13 +1,40 @@
 {
+  osConfig,
+  lib,
   pkgs,
+  inputs,
+  system,
   ...
 }:
 
 # default zen profile with shared search engines and extensions.
 let
-  inherit (builtins) attrValues;
+  inherit (builtins)
+    attrValues
+    readFile
+    ;
+  inherit (lib)
+    getAttrs
+    range
+    ;
 
   nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+  # convert the stylix base16 scheme into a format accepted by nix-userstyles.
+  stylixPalette =
+    osConfig.lib.stylix.colors
+    |> getAttrs (
+      (range 0 9)
+      ++ [
+        "A"
+        "B"
+        "C"
+        "D"
+        "E"
+        "F"
+      ]
+      |> map (n: "base0${toString n}")
+    );
 in
 {
   programs.zen-browser.profiles.default = {
@@ -39,6 +66,7 @@ in
           pronoundb
           modrinthify
           proton-vpn
+          indie-wiki-buddy
           ;
       };
     };
@@ -307,5 +335,64 @@ in
         icon = "🗞️";
       };
     };
+
+    userContent = ''
+      ${readFile "${inputs.nix-userstyles.packages.${system}.mkUserStyles stylixPalette [
+        "advent-of-code"
+        "alternativeto"
+        "arch-wiki"
+        "brave-search"
+        "bsky"
+        "bstats"
+        "chatgpt"
+        "codeberg"
+        "crates.io"
+        "dev.to"
+        "devdocs"
+        "discord"
+        "docs.deno.com"
+        "docs.rs"
+        "freedesktop"
+        "ghostty.org"
+        "github"
+        "gmail"
+        "google"
+        "google-drive"
+        "hacker-news"
+        "home-manager-options-search"
+        "indie-wiki-buddy"
+        "lastfm"
+        "linkedin"
+        "lobste.rs"
+        "mastodon"
+        "mdbook"
+        "mdn"
+        "modrinth"
+        "namemc"
+        "nitter"
+        "neovim.io"
+        "nixos-manual"
+        "nixos-search"
+        "npm"
+        "planet-minecraft"
+        "porkbun"
+        "proton"
+        "pypi"
+        "react.dev"
+        "reddit"
+        "rentry.co"
+        "searchix"
+        "shinigami-eyes"
+        "spotify-web"
+        "stack-overflow"
+        "twitch"
+        "web.dev"
+        "wiki.nixos.org"
+        "wikipedia"
+        "wikiwand"
+        "youtube"
+        "zen-browser-docs"
+      ]}"}
+    '';
   };
 }

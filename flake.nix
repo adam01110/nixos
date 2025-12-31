@@ -100,6 +100,12 @@
 
     # zed extensions flake.
     zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
+
+    # userstyles for zen browser flake.
+    nix-userstyles = {
+      url = "github:knoopx/nix-userstyles";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # outputs: expose host configurations and pass through common arguments.

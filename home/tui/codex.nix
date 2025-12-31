@@ -9,7 +9,7 @@
 
 # configure codex cli and the acp.
 let
-  inherit (lib) getExe;
+  inherit (lib) getExe';
   tomlFormat = pkgs.formats.toml { };
 in
 {
@@ -81,7 +81,7 @@ in
   xdg.desktopEntries.codex = {
     name = "Codex";
     genericName = "AI Coding Assistant";
-    exec = getExe config.programs.codex.package;
+    exec = getExe' config.programs.codex.package "codex";
     terminal = true;
     categories = [
       "Development"
