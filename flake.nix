@@ -103,7 +103,7 @@
 
     # userstyles for zen browser flake.
     nix-userstyles = {
-      url = "github:knoopx/nix-userstyles";
+      url = "github:adam01110/nix-userstyles";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
