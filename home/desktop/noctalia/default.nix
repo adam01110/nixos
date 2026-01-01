@@ -37,8 +37,10 @@
     enable = true;
     systemd.enable = true;
 
-    # use the flake-provided Noctalia build.
-    package = inputs.noctalia.packages.${system}.default;
+    # enable calendar support in the flake-provided Noctalia build.
+    package = inputs.noctalia.packages.${system}.default.override {
+      calendarSupport = true;
+    };
 
     # keep template generation under explicit control.
     settings.colorschemes.generateTemplatesForPredefined = false;

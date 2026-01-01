@@ -64,6 +64,12 @@ in
     };
 
     power-profiles-daemon.enable = mkForce false;
+
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+      HandleLidSwitchDocked = "ignore";
+    };
   };
 
   # extra hardware toggles.

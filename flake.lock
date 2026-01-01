@@ -174,11 +174,11 @@
     "catppuccin-userstyles": {
       "flake": false,
       "locked": {
-        "lastModified": 1766248213,
-        "narHash": "sha256-gdG6lo0JpkBNiWl2+XNviXxhjAUlg0/hlSCJfZfbi7c=",
+        "lastModified": 1767250282,
+        "narHash": "sha256-/rLVI2DHl30EJhMzf3sCdKqxpbF74zDZBlOhwEYLwWs=",
         "owner": "catppuccin",
         "repo": "userstyles",
-        "rev": "616b334a16a79d9f91df3fbd58c8df55a1428770",
+        "rev": "a251a01173f411e5c420786e08d068b7d3c5e234",
         "type": "github"
       },
       "original": {
@@ -1035,15 +1035,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1766781849,
-        "narHash": "sha256-WIBScYoq8xrNN2Q6gUo8mQmDHrXrhOu30qreeZic56g=",
-        "owner": "knoopx",
+        "lastModified": 1767282537,
+        "narHash": "sha256-b1EL2VcWndpvC0kqcKFy+TbpDQWXCVDfcNnHEI01oiM=",
+        "owner": "adam01110",
         "repo": "nix-userstyles",
-        "rev": "f08debf09069ef1fa0e81ff215b124b4b4739980",
+        "rev": "15da7a73b1dbc00aa131324a96d12a7b46eca844",
         "type": "github"
       },
       "original": {
-        "owner": "knoopx",
+        "owner": "adam01110",
         "repo": "nix-userstyles",
         "type": "github"
       }

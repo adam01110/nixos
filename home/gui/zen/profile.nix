@@ -14,8 +14,8 @@ let
     readFile
     ;
   inherit (lib)
-    getAttrs
-    range
+    filterAttrs
+    hasPrefix
     ;
 
   nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
@@ -23,18 +23,7 @@ let
   # convert the stylix base16 scheme into a format accepted by nix-userstyles.
   stylixPalette =
     osConfig.lib.stylix.colors
-    |> getAttrs (
-      (range 0 9)
-      ++ [
-        "A"
-        "B"
-        "C"
-        "D"
-        "E"
-        "F"
-      ]
-      |> map (n: "base0${toString n}")
-    );
+    |> filterAttrs (name: _: hasPrefix "base0" name);
 in
 {
   programs.zen-browser.profiles.default = {
