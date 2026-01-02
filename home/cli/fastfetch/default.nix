@@ -21,9 +21,6 @@ in
         type = "kitty";
         height = 15;
         width = 35;
-        padding = {
-          top = 6;
-        };
       };
 
       display = {

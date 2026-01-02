@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 # configure thunar with core plugins for archives and removable media.
-let
-  inherit (builtins) attrValues;
-in
+
 {
   programs = {
     xfconf.enable = true;
@@ -11,12 +9,23 @@ in
     thunar = {
       enable = true;
 
-      plugins = attrValues {
-        inherit (pkgs.xfce)
-          thunar-archive-plugin
-          thunar-volman
-          ;
-      };
+      plugins =
+        let
+          pluginNames = [
+            "archive"
+            "volman"
+            "vcs"
+            "media-tags"
+          ];
+        in
+        pluginNames
+        |> map (
+          name:
+          let
+            suffix = if name == "volman" then "" else "-plugin";
+          in
+          pkgs.xfce."thunar-${name}${suffix}"
+        );
     };
   };
 
