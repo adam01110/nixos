@@ -21,9 +21,7 @@ let
   nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
   # convert the stylix base16 scheme into a format accepted by nix-userstyles.
-  stylixPalette =
-    osConfig.lib.stylix.colors
-    |> filterAttrs (name: _: hasPrefix "base0" name);
+  stylixPalette = osConfig.lib.stylix.colors |> filterAttrs (name: _: hasPrefix "base0" name);
 in
 {
   programs.zen-browser.profiles.default = {
@@ -54,7 +52,6 @@ in
           violentmonkey
           pronoundb
           modrinthify
-          proton-vpn
           indie-wiki-buddy
           ;
       };
