@@ -22,6 +22,7 @@
     ./network.nix
     ./notifications.nix
     ./osd.nix
+    ./plugins.nix
     ./screenrecorder.nix
     ./sessionmenu.nix
     ./systemmonitor.nix
