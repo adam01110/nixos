@@ -13,6 +13,7 @@ in
   imports = [
     ./equibop.nix
     ./eza.nix
+    ./gtk.nix
     ./hyprcursor.nix
     ./noctalia.nix
   ];
