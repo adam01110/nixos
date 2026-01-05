@@ -3,7 +3,6 @@
   lib,
   pkgs,
   inputs,
-  system,
   ...
 }:
 
@@ -18,7 +17,7 @@ in
 
     package = pkgs.symlinkJoin {
       name = "codex";
-      paths = [ inputs.nix-ai-tools.packages.${system}.codex ];
+      paths = [ pkgs.codex ];
       nativeBuildInputs = [ pkgs.makeWrapper ];
       postBuild =
         let
