@@ -14,7 +14,6 @@
           pluginNames = [
             "archive"
             "volman"
-            "vcs"
             "media-tags"
           ];
         in

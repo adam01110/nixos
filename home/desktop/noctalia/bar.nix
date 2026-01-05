@@ -113,8 +113,9 @@ in
         }
         {
           id = "Clock";
-          formatHorizontal = "HH:mm yyyy-MM-dd";
+          formatHorizontal = "yyyy-MM-dd HH:mm";
           formatVertical = "HH mm - dd MM";
+          tooltipFormat = "ddd, MMM dd HH:mm";
           useCustomFont = false;
           usePrimaryColor = true;
         }
