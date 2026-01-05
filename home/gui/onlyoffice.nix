@@ -14,7 +14,7 @@ in
     # set ui preferences.
     settings = {
       inherit username;
-      uitheme = "theme-dark";
+      UITheme = "theme-dark";
       uiscaling = 100;
       usegpu = true;
     };
