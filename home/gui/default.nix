@@ -11,6 +11,7 @@
     ./prism.nix
     ./sober.nix
     ./spicetify.nix
+    ./thunar.nix
     ./zathura.nix
     ./zed.nix
   ];
