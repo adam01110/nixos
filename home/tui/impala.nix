@@ -8,7 +8,7 @@
 # install terminal wifi manager when wifi is enabled.
 let
   inherit (lib)
-    getExe
+    getExe'
     mkIf
     ;
 
@@ -24,7 +24,7 @@ mkIf cfgWifi {
     name = "Impala";
     genericName = "Terminal WiFi Manager";
     icon = "network-wireless";
-    exec = getExe pkg;
+    exec = getExe' pkg "impala";
     terminal = true;
     categories = [
       "Network"

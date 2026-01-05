@@ -30,20 +30,20 @@ in
         hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
       in
       {
-        general = {
-          # command to invoke the lockscreen.
-          lock_cmd =
-            let
-              noctalia = "${getExe' inputs.noctalia.packages.${system}.default "noctalia-shell"} ipc call";
-            in
-            "${noctalia} lockScreen lock";
-          # lock before suspend to avoid flashing unlocked session.
-          before_sleep_cmd = "loginctl lock-session";
-          # wake display(s) after sleep.
-          after_sleep_cmd = "${hyprctl} dispatch dpms on";
-          # allow short inhibitions (e.g., video) before sleeping.
-          inhibit_sleep = 3;
-        };
+        general =
+          let
+            noctalia = "${getExe' inputs.noctalia.packages.${system}.default "noctalia-shell"} ipc call";
+          in
+          {
+            # command to invoke the lockscreen.
+            lock_cmd = "${noctalia} lockScreen lock";
+            # lock before suspend to avoid flashing unlocked session.
+            before_sleep_cmd = "loginctl lock-session && ${noctalia} lockScreen lock";
+            # wake display(s) after sleep.
+            after_sleep_cmd = "${hyprctl} dispatch dpms on";
+            # allow short inhibitions (e.g., video) before sleeping.
+            inhibit_sleep = 3;
+          };
 
         listener =
           let
