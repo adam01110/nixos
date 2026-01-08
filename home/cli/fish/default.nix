@@ -7,10 +7,17 @@
 
 # configure fish shell.
 let
-  inherit (builtins) attrValues;
-  inherit (lib) getExe;
+  inherit (lib)
+    getExe
+    getExe'
+    ;
 in
 {
+  imports = [
+    ./functions.nix
+    ./packages.nix
+  ];
+
   programs.fish = {
     enable = true;
 
@@ -49,45 +56,30 @@ in
     };
 
     # override commands with preferred tools.
-    shellAliases = {
-      wget = "wcurl";
-      cat = "bat";
-      grep = "rg";
-      egrep = "rg";
-      fgrep = "rg -F";
+    shellAliases =
+      let
+        ripgrep = getExe pkgs.ripgrep;
+      in
+      {
+        wget = getExe' pkgs.curl "wcurl";
+        cat = getExe pkgs.bat;
+        grep = ripgrep;
+        egrep = ripgrep;
+        fgrep = "${ripgrep} -F";
 
-      speedtest = "speedtest-go";
+        speedtest = getExe pkgs.speedtest-go;
 
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
-      "....." = "cd ../../../..";
-      "......" = "cd ../../../../..";
-      "......." = "cd ../../../../../..";
-    };
-
-    # display a fortune in a box on shell start.
-    functions.fish_greeting = {
-      body =
-        let
-          fortune = getExe pkgs.fortune;
-          boxes = getExe pkgs.boxes;
-        in
-        "${fortune} -s | ${boxes} -d ansi";
-    };
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        "...." = "cd ../../..";
+        "....." = "cd ../../../..";
+        "......" = "cd ../../../../..";
+        "......." = "cd ../../../../../..";
+      };
 
     binds = {
       "alt-e".erase = true;
       "alt-d".erase = true;
     };
-  };
-
-  # tools used by fish greeting and fifc previews.
-  home.packages = attrValues {
-    inherit (pkgs)
-      fortune
-      boxes
-      file
-      ;
   };
 }

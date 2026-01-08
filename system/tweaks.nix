@@ -55,6 +55,7 @@ in
         "net.ipv4.ip_forward" = 1;
         "net.ipv4.tcp_mtu_probing" = 1;
         "net.ipv4.tcp_tw_reuse" = 1;
+        "kernel.sched_rt_runtime_us" = -1;
       };
 
       kernelParams = [
@@ -68,26 +69,29 @@ in
       let
         bash = getExe pkgs.bash;
         hdparm = getExe pkgs.hdparm;
+
         cat = getExe' pkgs.coreutils "cat";
+        echo = getExe' pkgs.coreutils "echo";
+        touch = getExe' pkgs.coreutils "touch";
       in
       ''
         ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", \
-            RUN+="${bash} -c 'touch /run/udev/snd-hda-intel-powersave; \
+            RUN+="${bash} -c '${touch} /run/udev/snd-hda-intel-powersave; \
                 [[ $$((${cat} /sys/class/power_supply/BAT0/status 2>/dev/null) != \"Discharging\" ]] && \
-                echo $$((${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave && \
-                echo 0 > /sys/module/snd_hda_intel/parameters/power_save'"
+                ${echo} $$((${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave && \
+                ${echo} 0 > /sys/module/snd_hda_intel/parameters/power_save'"
 
         SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", TEST=="/sys/module/snd_hda_intel", \
-            RUN+="${bash} -c 'echo $$((${cat} /run/udev/snd-hda-intel-powersave 2>/dev/null || \
-                echo 10) > /sys/module/snd_hda_intel/parameters/power_save'"
+            RUN+="${bash} -c '${echo} $$((${cat} /run/udev/snd-hda-intel-powersave 2>/dev/null || \
+                ${echo} 10) > /sys/module/snd_hda_intel/parameters/power_save'"
 
         SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", TEST=="/sys/module/snd_hda_intel", \
             RUN+="${bash} -c '[[ $$((${cat} /sys/module/snd_hda_intel/parameters/power_save) != 0 ]] && \
-                echo $$(${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave; \
-                echo 0 > /sys/module/snd_hda_intel/parameters/power_save'"
+                ${echo} $$(${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave; \
+                ${echo} 0 > /sys/module/snd_hda_intel/parameters/power_save'"
 
         ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", \
-          RUN+="${bash} -c 'echo N > /sys/module/zswap/parameters/enabled'"
+          RUN+="${bash} -c '${echo} N > /sys/module/zswap/parameters/enabled'"
 
         KERNEL=="rtc0", GROUP="audio"
         KERNEL=="hpet", GROUP="audio"

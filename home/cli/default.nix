@@ -3,6 +3,7 @@
 {
   imports = [
     ./fastfetch
+    ./fish
     ./starship
     ./atuin.nix
     ./bat.nix
@@ -10,7 +11,6 @@
     ./direnv.nix
     ./eza.nix
     ./fd.nix
-    ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./npm.nix

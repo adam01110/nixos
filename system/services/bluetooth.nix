@@ -14,14 +14,9 @@ in
 {
   options.optServices.bluetooth.enable = mkEnableOption "Enable bluetooth services.";
 
-  config = mkIf config.optServices.bluetooth.enable {
-    hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = false;
-      settings.General.Experimental = true;
-    };
-
-    # bluetooth applet and helpers (tray bluetooth manager).
-    services.blueman.enable = true;
+  config.hardware.bluetooth = mkIf config.optServices.bluetooth.enable {
+    enable = true;
+    powerOnBoot = false;
+    settings.General.Experimental = true;
   };
 }

@@ -324,16 +324,20 @@ in
 
     # remove rounded corners in zen.
     userChrome = ''
-      * { border-radius: 0px !important; }
-      *::before { border-radius: 0px !important; }
-      *::after { border-radius: 0px !important; }
+      *,
+      *::before,
+      *::after {
+        border-radius: 0px !important;
+      }
     '';
 
     # remove rounded corners on sites, and theme them.
     userContent = ''
-      * { border-radius: 0px !important; }
-      *::before { border-radius: 0px !important; }
-      *::after { border-radius: 0px !important; }
+      *,
+      *::before,
+      *::after {
+        border-radius: 0px !important;
+      }
 
       ${readFile "${inputs.nix-userstyles.packages.${system}.mkUserStyles stylixPalette [
         "advent-of-code"

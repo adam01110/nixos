@@ -93,7 +93,6 @@ in
               ];
             };
 
-            # enable biome formatter and linter for supported languages.
             JavaScript.formatter.language_server.name = "oxc";
             TypeScript = {
               prettier.allowed = false;

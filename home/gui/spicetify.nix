@@ -92,5 +92,13 @@ in
           roundedButtons
           ;
       };
+
+      theme.additionalCss = ''
+        *,
+        *::before,
+        *::after {
+          border-radius: 0px !important;
+        }
+      '';
     };
 }
