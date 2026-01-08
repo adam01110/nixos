@@ -7,6 +7,7 @@
 
 # configure equibop with themes and options.
 let
+  inherit (pkgs) replaceVars;
   configHome = config.xdg.configHome;
 in
 {
@@ -53,7 +54,7 @@ in
   };
 
   # install themed css with fonts from stylix.
-  xdg.configFile."equibop/themes/system24.css".source = pkgs.replaceVars ./themes/system24.css {
+  xdg.configFile."equibop/themes/system24.css".source = replaceVars ./themes/system24.css {
     monospaceFont = osConfig.stylix.fonts.monospace.name;
   };
 

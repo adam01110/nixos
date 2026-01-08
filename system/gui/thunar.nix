@@ -17,14 +17,13 @@
             "media-tags"
           ];
         in
-        pluginNames
-        |> map (
+        map (
           name:
           let
             suffix = if name == "volman" then "" else "-plugin";
           in
           pkgs.xfce."thunar-${name}${suffix}"
-        );
+        ) pluginNames;
     };
   };
 
