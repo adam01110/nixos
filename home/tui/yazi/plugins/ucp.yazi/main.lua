@@ -174,7 +174,6 @@ end
 -- Entry END
 --==============================================================================
 
-
 --==============================================================================
 -- Copy BEGIN
 --==============================================================================
@@ -242,7 +241,11 @@ function M:copy_entry(job)
 	-- Try wl-copy first (Wayland) with text/uri-list target
 	ya.dbg("Attempting wl-copy with text/uri-list target...")
 	status, err = Command("wl-copy"):arg("--type"):arg("text/uri-list"):arg(file_list_formatted):spawn():wait()
-	ya.dbg("wl-copy text/uri-list result: status=%s, err=%s", status and tostring(status.success) or "nil", err or "nil")
+	ya.dbg(
+		"wl-copy text/uri-list result: status=%s, err=%s",
+		status and tostring(status.success) or "nil",
+		err or "nil"
+	)
 
 	-- If wl-copy fails, try pbcopy (macOS)
 	if not status or not status.success then
@@ -256,8 +259,14 @@ function M:copy_entry(job)
 	if not status or not status.success then
 		ya.dbg("pbcopy failed, trying xclip...")
 		-- xclip supports text/uri-list format
-		status, err = Command("xclip"):arg("-selection"):arg("clipboard"):arg("-t"):arg("text/uri-list"):arg(
-			file_list_formatted):spawn():wait()
+		status, err = Command("xclip")
+			:arg("-selection")
+			:arg("clipboard")
+			:arg("-t")
+			:arg("text/uri-list")
+			:arg(file_list_formatted)
+			:spawn()
+			:wait()
 		ya.dbg("xclip result: status=%s, err=%s", status and tostring(status.success) or "nil", err or "nil")
 	end
 
@@ -283,7 +292,6 @@ end
 --==============================================================================
 -- Copy END
 --==============================================================================
-
 
 --==============================================================================
 -- Paste Helpers BEGIN
@@ -316,11 +324,9 @@ local get_current_tab_id = ya.sync(function()
 	return tostring(cx.active.id.value)
 end)
 
-
 --==============================================================================
 -- Paste Helpers END
 --==============================================================================
-
 
 --==============================================================================
 -- Paste Images BEGIN
@@ -359,7 +365,9 @@ end
 
 -- Detect best image format from clipboard (with priority)
 local function get_best_image_format(targets)
-	if not targets then return nil end
+	if not targets then
+		return nil
+	end
 
 	-- svg differs from pattern image/jpeg -> .jpeg
 	if targets:match("image/svg%+xml") then
@@ -384,7 +392,6 @@ local function get_best_image_format(targets)
 	return nil
 end
 
-
 -- Get image data from clipboard
 local function get_clipboard_image_data(format)
 	local mime_type = "image/" .. format
@@ -403,11 +410,13 @@ local function get_clipboard_image_data(format)
 			local temp_file = "/tmp/yazi_clipboard_image." .. format
 			local save_cmd = string.format(
 				"osascript -e 'set the clipboard to (read (POSIX file \"%s\") as «class PNGf»)' 2>/dev/null || osascript -e 'set the clipboard to (read (POSIX file \"%s\") as «class JPEG»)' 2>/dev/null",
-				temp_file, temp_file)
+				temp_file,
+				temp_file
+			)
 
 			-- First, try to get the image data using pbpaste with different formats
 			local pbpaste_cmd =
-			"pbpaste -Prefer png 2>/dev/null || pbpaste -Prefer jpeg 2>/dev/null || pbpaste 2>/dev/null"
+				"pbpaste -Prefer png 2>/dev/null || pbpaste -Prefer jpeg 2>/dev/null || pbpaste 2>/dev/null"
 			handle = io.popen(pbpaste_cmd)
 			if handle then
 				local data = handle:read("*a")
@@ -469,11 +478,9 @@ end
 -- Paste Images END
 --==============================================================================
 
-
 --==============================================================================
 -- Paste List BEGIN
 --==============================================================================
-
 
 -- handle code/file-list clipboard mimetype
 local function handle_code_file_list_paste(content)
@@ -510,8 +517,8 @@ end
 
 local function handle_text_uri_list_paste(content)
 	ya.dbg("Found text/uri-list target as fallback, attempting to read...")
-	local uri_handle = io.popen(
-		"xclip -selection clipboard -o -t text/uri-list 2>/dev/null || wl-paste -t text/uri-list 2>/dev/null")
+	local uri_handle =
+		io.popen("xclip -selection clipboard -o -t text/uri-list 2>/dev/null || wl-paste -t text/uri-list 2>/dev/null")
 	if uri_handle then
 		local uri_content = uri_handle:read("*a")
 		uri_handle:close()
@@ -732,8 +739,10 @@ local function handle_directory_collision(dir_path, source_file_uri, source_file
 						end
 						source_files:close()
 						if success and not no_hover then
-							ya.emit("reveal",
-								{ tostring(target_file), tab = get_current_tab_id(), no_dummy = true, raw = true })
+							ya.emit(
+								"reveal",
+								{ tostring(target_file), tab = get_current_tab_id(), no_dummy = true, raw = true }
+							)
 						end
 						return success
 					end
@@ -774,7 +783,6 @@ local function handle_directory_collision(dir_path, source_file_uri, source_file
 	end
 end
 
-
 -- Handle file list paste (code/file-list mimetype)
 function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 	ya.dbg("file_uris: ", table.concat(file_uris, ", "))
@@ -809,16 +817,16 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 					-- Show bottom menu with directory info
 					action = ya.which({
 						cands = {
-							{ desc = string.format("Directory: %s", file_name),       on = "|" },
+							{ desc = string.format("Directory: %s", file_name), on = "|" },
 							{ desc = string.format("Progress: %d/%d", i, #file_uris), on = "|" },
-							{ desc = "",                                              on = "|" },
-							{ desc = "Overwrite",                                     on = "o" },
-							{ desc = "Create copy (_copy)",                           on = "c" },
-							{ desc = "Skip directory",                                on = "q" },
-							{ desc = "Overwrite All",                                 on = "O" },
-							{ desc = "Create copy All",                               on = "C" },
-							{ desc = "Cancel All",                                    on = "Q" }
-						}
+							{ desc = "", on = "|" },
+							{ desc = "Overwrite", on = "o" },
+							{ desc = "Create copy (_copy)", on = "c" },
+							{ desc = "Skip directory", on = "q" },
+							{ desc = "Overwrite All", on = "O" },
+							{ desc = "Create copy All", on = "C" },
+							{ desc = "Cancel All", on = "Q" },
+						},
 					})
 
 					-- Adjust action index since first three items are info only
@@ -862,7 +870,11 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 									warn("Failed to overwrite directory: %s", tostring(dir_path))
 								end
 							else
-								warn("Failed to remove existing directory: %s (err: %s)", tostring(dir_path), err_output)
+								warn(
+									"Failed to remove existing directory: %s (err: %s)",
+									tostring(dir_path),
+									err_output
+								)
 							end
 						else
 							-- Try fs.remove as fallback
@@ -874,8 +886,11 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 									warn("Failed to overwrite directory: %s", tostring(dir_path))
 								end
 							else
-								warn("Failed to remove existing directory: %s (err: %s)", tostring(dir_path),
-									tostring(err))
+								warn(
+									"Failed to remove existing directory: %s (err: %s)",
+									tostring(dir_path),
+									tostring(err)
+								)
 							end
 						end
 					end
@@ -924,16 +939,16 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 						-- Show bottom menu with file info in title
 						action = ya.which({
 							cands = {
-								{ desc = string.format("File: %s", file_name),            on = "|" },
+								{ desc = string.format("File: %s", file_name), on = "|" },
 								{ desc = string.format("Progress: %d/%d", i, #file_uris), on = "|" },
-								{ desc = "",                                              on = "|" },
-								{ desc = "Overwrite",                                     on = "o" },
-								{ desc = "Create copy (_copy)",                           on = "c" },
-								{ desc = "Skip file",                                     on = "q" },
-								{ desc = "Overwrite All",                                 on = "O" },
-								{ desc = "Create copy All",                               on = "C" },
-								{ desc = "Cancel All",                                    on = "Q" }
-							}
+								{ desc = "", on = "|" },
+								{ desc = "Overwrite", on = "o" },
+								{ desc = "Create copy (_copy)", on = "c" },
+								{ desc = "Skip file", on = "q" },
+								{ desc = "Overwrite All", on = "O" },
+								{ desc = "Create copy All", on = "C" },
+								{ desc = "Cancel All", on = "Q" },
+							},
 						})
 
 						-- Adjust action index since first three items are info only
@@ -974,13 +989,23 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 								if wrote then
 									success_count = success_count + 1
 									if not no_hover then
-										ya.emit("reveal",
-											{ tostring(file_path), tab = get_current_tab_id(), no_dummy = true, raw = true })
+										ya.emit(
+											"reveal",
+											{
+												tostring(file_path),
+												tab = get_current_tab_id(),
+												no_dummy = true,
+												raw = true,
+											}
+										)
 									end
 								else
-									warn("Failed to overwrite file: %s (delete err: %s, write err: %s)",
+									warn(
+										"Failed to overwrite file: %s (delete err: %s, write err: %s)",
 										tostring(file_path),
-										tostring(err), tostring(write_err))
+										tostring(err),
+										tostring(write_err)
+									)
 								end
 							end
 						else
@@ -990,8 +1015,10 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 							fs.write(file_path, file_content)
 							success_count = success_count + 1
 							if not no_hover then
-								ya.emit("reveal",
-									{ tostring(file_path), tab = get_current_tab_id(), no_dummy = true, raw = true })
+								ya.emit(
+									"reveal",
+									{ tostring(file_path), tab = get_current_tab_id(), no_dummy = true, raw = true }
+								)
 							end
 						end
 					elseif action == 2 then -- Create copy
@@ -1008,8 +1035,10 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 						fs.write(copy_path, file_content)
 						success_count = success_count + 1
 						if not no_hover then
-							ya.emit("reveal",
-								{ tostring(copy_path), tab = get_current_tab_id(), no_dummy = true, raw = true })
+							ya.emit(
+								"reveal",
+								{ tostring(copy_path), tab = get_current_tab_id(), no_dummy = true, raw = true }
+							)
 						end
 					end
 					-- If action == 3 (Cancel) or nil, do nothing
@@ -1020,8 +1049,10 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 					fs.write(file_path, file_content)
 					success_count = success_count + 1
 					if not no_hover then
-						ya.emit("reveal",
-							{ tostring(file_path), tab = get_current_tab_id(), no_dummy = true, raw = true })
+						ya.emit(
+							"reveal",
+							{ tostring(file_path), tab = get_current_tab_id(), no_dummy = true, raw = true }
+						)
 					end
 				end
 			else
@@ -1035,7 +1066,7 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 			title = PackageName,
 			content = string.format("Successfully pasted %d file(s)", success_count),
 			timeout = 3,
-			level = "info"
+			level = "info",
 		})
 	end
 end
@@ -1043,7 +1074,6 @@ end
 --==============================================================================
 -- Paste List END
 --==============================================================================
-
 
 --==============================================================================
 -- Paste Text To File BEGIN
@@ -1096,10 +1126,10 @@ function M:save_file_with_conflict_handling(file_name, clipboard_content, no_hov
 		-- Show bottom menu with file info as menu items
 		local action = ya.which({
 			cands = {
-				{ desc = "Overwrite",           on = "o" },
+				{ desc = "Overwrite", on = "o" },
 				{ desc = "Create copy (_copy)", on = "c" },
-				{ desc = "Cancel",              on = "q" }
-			}
+				{ desc = "Cancel", on = "q" },
+			},
 		})
 
 		if action == 1 then -- Overwrite
@@ -1113,20 +1143,26 @@ function M:save_file_with_conflict_handling(file_name, clipboard_content, no_hov
 					-- Try to write anyway - fs.write might handle overwrite
 					local wrote, write_err = fs.write(file_path, clipboard_content)
 					if not wrote then
-						warn("Failed to overwrite file: %s (delete err: %s, write err: %s)", tostring(file_path),
-							tostring(err), tostring(write_err))
+						warn(
+							"Failed to overwrite file: %s (delete err: %s, write err: %s)",
+							tostring(file_path),
+							tostring(err),
+							tostring(write_err)
+						)
 						return
 					end
 					if not no_hover then
-						ya.emit("reveal",
-							{ tostring(file_path), tab = get_current_tab_id(), no_dummy = true, raw = true })
+						ya.emit(
+							"reveal",
+							{ tostring(file_path), tab = get_current_tab_id(), no_dummy = true, raw = true }
+						)
 					end
 					if show_notify then
 						ya.notify({
 							title = PackageName,
 							content = string.format("Overwritten: %s", file_name),
 							timeout = 3,
-							level = "info"
+							level = "info",
 						})
 					end
 					return
@@ -1146,7 +1182,7 @@ function M:save_file_with_conflict_handling(file_name, clipboard_content, no_hov
 						title = PackageName,
 						content = string.format("Overwritten: %s", file_name),
 						timeout = 3,
-						level = "info"
+						level = "info",
 					})
 				end
 			else
@@ -1173,7 +1209,7 @@ function M:save_file_with_conflict_handling(file_name, clipboard_content, no_hov
 						title = PackageName,
 						content = string.format("Created copy: %s", copy_name),
 						timeout = 3,
-						level = "info"
+						level = "info",
 					})
 				end
 			else
@@ -1196,7 +1232,7 @@ function M:save_file_with_conflict_handling(file_name, clipboard_content, no_hov
 					title = PackageName,
 					content = string.format("Created: %s", file_name),
 					timeout = 3,
-					level = "info"
+					level = "info",
 				})
 			end
 		else
@@ -1208,7 +1244,6 @@ end
 --==============================================================================
 -- Paste Text To File BEGIN
 --==============================================================================
-
 
 --==============================================================================
 -- Paste Entry BEGIN
@@ -1276,9 +1311,13 @@ end
 
 -- Check if mimetypes array contains a mimetype that contains the substring
 local function has_mimetype(mimetypes, substring)
-	if not mimetypes then return false end
+	if not mimetypes then
+		return false
+	end
 	for _, mimetype in ipairs(mimetypes) do
-		if mimetype:find(substring, 1, true) then return true end
+		if mimetype:find(substring, 1, true) then
+			return true
+		end
 	end
 	return false
 end
@@ -1312,7 +1351,9 @@ function M:paste_entry(job)
 
 	if available_mimetypes then
 		-- 2: Handle text/uri-list and code/file-list clipboard mimetype
-		if has_mimetype(available_mimetypes, "code/file-list") or has_mimetype(available_mimetypes, "text/uri-list") then
+		if
+			has_mimetype(available_mimetypes, "code/file-list") or has_mimetype(available_mimetypes, "text/uri-list")
+		then
 			local file_uris = get_clipboard_file_uris()
 			if file_uris and #file_uris > 0 then
 				M:handle_file_list_paste(file_uris, no_hover, show_notify)
@@ -1332,7 +1373,11 @@ function M:paste_entry(job)
 		end
 
 		-- 4: Handle text/plain mimetype - suggest creating a new file
-		if has_mimetype(available_mimetypes, "text/plain") or has_mimetype(available_mimetypes, "TEXT") or has_mimetype(available_mimetypes, "STRING") then
+		if
+			has_mimetype(available_mimetypes, "text/plain")
+			or has_mimetype(available_mimetypes, "TEXT")
+			or has_mimetype(available_mimetypes, "STRING")
+		then
 			local clipboard_content = ya.clipboard()
 			if clipboard_content and clipboard_content ~= "" then
 				M:handle_text_paste(clipboard_content, no_hover, show_notify)
@@ -1356,6 +1401,5 @@ end
 --==============================================================================
 -- Paste Entry END
 --==============================================================================
-
 
 return M

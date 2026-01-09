@@ -1,20 +1,15 @@
-{
-  vars,
-  ...
-}:
-
+{vars, ...}:
 # laptop host profile: hardware, home manager imports, and optional services.
 let
   inherit (vars) username;
-in
-{
+in {
   networking.hostName = "vm";
   # dont change.
   system.stateVersion = "25.05";
 
   # import vm hardware profile.
-  imports = [ ./hardware.nix ];
-  home-manager.users.${username}.imports = [ ./home.nix ];
+  imports = [./hardware.nix];
+  home-manager.users.${username}.imports = [./home.nix];
 
   # vm disk device for disko.
   disko.selectedDisk = "/dev/vda";

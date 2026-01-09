@@ -98,21 +98,25 @@ Scope {
                     // Arrow keys and vim-style hjkl
                     if (event.key === Qt.Key_Left || event.key === Qt.Key_H) {
                         targetId = currentId - 1;
-                        if (targetId < minWorkspaceId) targetId = maxWorkspaceId;
+                        if (targetId < minWorkspaceId)
+                            targetId = maxWorkspaceId;
                     } else if (event.key === Qt.Key_Right || event.key === Qt.Key_L) {
                         targetId = currentId + 1;
-                        if (targetId > maxWorkspaceId) targetId = minWorkspaceId;
+                        if (targetId > maxWorkspaceId)
+                            targetId = minWorkspaceId;
                     } else if (event.key === Qt.Key_Up || event.key === Qt.Key_K) {
                         targetId = currentId - Config.options.overview.columns;
-                        if (targetId < minWorkspaceId) targetId += workspacesPerGroup;
+                        if (targetId < minWorkspaceId)
+                            targetId += workspacesPerGroup;
                     } else if (event.key === Qt.Key_Down || event.key === Qt.Key_J) {
                         targetId = currentId + Config.options.overview.columns;
-                        if (targetId > maxWorkspaceId) targetId -= workspacesPerGroup;
-                    }
+                        if (targetId > maxWorkspaceId)
+                            targetId -= workspacesPerGroup;
+                    } else
 
                     // Number keys: jump to workspace within the current group
                     // 1-9 map to positions 1-9, 0 maps to position 10
-                    else if (event.key >= Qt.Key_1 && event.key <= Qt.Key_9) {
+                    if (event.key >= Qt.Key_1 && event.key <= Qt.Key_9) {
                         const position = event.key - Qt.Key_0; // 1-9
                         if (position <= workspacesPerGroup) {
                             targetId = minWorkspaceId + position - 1;

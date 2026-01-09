@@ -6,14 +6,15 @@
   system,
   ...
 }:
-
 # default zen profile with shared search engines and extensions.
 let
-  inherit (builtins)
+  inherit
+    (builtins)
     attrValues
     readFile
     ;
-  inherit (lib)
+  inherit
+    (lib)
     filterAttrs
     hasPrefix
     ;
@@ -22,14 +23,14 @@ let
 
   # convert the stylix base16 scheme into a format accepted by nix-userstyles.
   stylixPalette = osConfig.lib.stylix.colors |> filterAttrs (name: _: hasPrefix "base0" name);
-in
-{
+in {
   programs.zen-browser.profiles.default = {
     # set extensions.
     extensions = {
       force = true;
       packages = attrValues {
-        inherit (pkgs.nur.repos.rycee.firefox-addons)
+        inherit
+          (pkgs.nur.repos.rycee.firefox-addons)
           # content blocking.
           ublock-origin
           localcdn
@@ -38,13 +39,11 @@ in
           istilldontcareaboutcookies
           consent-o-matic
           don-t-fuck-with-paste
-
           # annoyances.
           shinigami-eyes
           translate-web-pages
           return-youtube-dislikes
           dearrow
-
           darkreader
           stylus
           bitwarden
@@ -76,7 +75,7 @@ in
             }
           ];
           iconMapObj."16" = "https://brave.com/favicon.ico";
-          definedAliases = [ "@b" ];
+          definedAliases = ["@b"];
         };
         google.metaData.alias = "@g";
 
@@ -94,7 +93,7 @@ in
             }
           ];
           iconMapObj."16" = "https://wikiwand.com/favicon.ico";
-          definedAliases = [ "@wi" ];
+          definedAliases = ["@wi"];
         };
 
         # other.
@@ -111,7 +110,7 @@ in
             }
           ];
           iconMapObj."16" = "https://www.youtube.com/favicon.ico";
-          definedAliases = [ "@yt" ];
+          definedAliases = ["@yt"];
         };
 
         # disabled (hidden)
@@ -134,7 +133,7 @@ in
             }
           ];
           icon = nixIcon;
-          definedAliases = [ "@n" ];
+          definedAliases = ["@n"];
         };
         nixos = {
           urls = [
@@ -149,7 +148,7 @@ in
             }
           ];
           icon = nixIcon;
-          definedAliases = [ "@no" ];
+          definedAliases = ["@no"];
         };
         "home-manager" = {
           urls = [
@@ -164,7 +163,7 @@ in
             }
           ];
           icon = nixIcon;
-          definedAliases = [ "@hm" ];
+          definedAliases = ["@hm"];
         };
         "nix-packages" = {
           urls = [
@@ -179,7 +178,7 @@ in
             }
           ];
           icon = nixIcon;
-          definedAliases = [ "@np" ];
+          definedAliases = ["@np"];
         };
         nur = {
           urls = [
@@ -194,7 +193,7 @@ in
             }
           ];
           icon = nixIcon;
-          definedAliases = [ "@nu" ];
+          definedAliases = ["@nu"];
         };
 
         # wiki.
@@ -211,7 +210,7 @@ in
             }
           ];
           icon = nixIcon;
-          definedAliases = [ "@nw" ];
+          definedAliases = ["@nw"];
         };
         "arch-wiki" = {
           urls = [
@@ -226,7 +225,7 @@ in
             }
           ];
           icon = nixIcon;
-          definedAliases = [ "@aw" ];
+          definedAliases = ["@aw"];
         };
         "minecraft-wiki" = {
           urls = [
@@ -241,7 +240,7 @@ in
             }
           ];
           iconMapObj."16" = "https://minecraft.wiki/favicon.ico";
-          definedAliases = [ "@mw" ];
+          definedAliases = ["@mw"];
         };
 
         # dev.
@@ -258,7 +257,7 @@ in
             }
           ];
           iconMapObj."16" = "https://crates.io/favicon.ico";
-          definedAliases = [ "@c" ];
+          definedAliases = ["@c"];
         };
         dockerhub = {
           urls = [
@@ -273,7 +272,7 @@ in
             }
           ];
           iconMapObj."16" = "https://www.docker.com/favicon.ico";
-          definedAliases = [ "@dh" ];
+          definedAliases = ["@dh"];
         };
         github = {
           urls = [
@@ -292,7 +291,7 @@ in
             }
           ];
           iconMapObj."16" = "https://github.com/favicon.ico";
-          definedAliases = [ "@gh" ];
+          definedAliases = ["@gh"];
         };
       };
     };

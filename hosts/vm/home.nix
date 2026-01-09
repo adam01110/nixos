@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # per-host home manager overrides for the desktop.
 {
   # configure the hosts monitors.

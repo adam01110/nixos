@@ -3,15 +3,13 @@
   lib,
   ...
 }:
-
 # stylix theme for noctalia-shell.
 let
   inherit (builtins) mapAttrs;
   inherit (lib) mkForce;
 
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
-in
-{
+in {
   programs.noctalia-shell = {
     # system monitor colors from the Stylix
     settings = {

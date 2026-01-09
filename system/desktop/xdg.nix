@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # system xdg portal config and cursor fallback.
 {
   xdg = {
@@ -15,7 +11,6 @@
       config = {
         # defaults used by any desktop.
         common = {
-
           # prefer the gtk portal if nothing else claims a method.
           default = [
             "gtk"
@@ -43,16 +38,16 @@
       };
 
       # provide gtk and kde portals.
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
 
     # fallback cursor to keep cursors.
-    icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
+    icons.fallbackCursorThemes = ["Bibata-Modern-Classic"];
   };
 
   environment = {
     # ensure the cursor theme is present system-wide.
-    systemPackages = [ pkgs.nur.repos.adam0.bibata-modern-cursors-classic ];
+    systemPackages = [pkgs.nur.repos.adam0.bibata-modern-cursors-classic];
 
     # weird thing that fixes something?, do not touch.
     pathsToLink = [

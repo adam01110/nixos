@@ -4,30 +4,28 @@
   pkgs,
   ...
 }:
-
 # configure btop.
 let
-  inherit (lib) elem mkOption types;
+  inherit (lib) mkOption types;
 
   gpuBackends = config.btop.gpuBackends;
-  hasCuda = elem "cuda" gpuBackends;
-  hasRocm = elem "rocm" gpuBackends;
+  hasCuda = lib.elem "cuda" gpuBackends;
+  hasRocm = lib.elem "rocm" gpuBackends;
 
   # pick gpu-aware version of btop.
   btopPackage =
-    if hasCuda && hasRocm then
+    if hasCuda && hasRocm
+    then
       pkgs.btop.override {
         cudaSupport = true;
         rocmSupport = true;
       }
-    else if hasCuda then
-      pkgs.btop-cuda
-    else if hasRocm then
-      pkgs.btop-rocm
-    else
-      pkgs.btop;
-in
-{
+    else if hasCuda
+    then pkgs.btop-cuda
+    else if hasRocm
+    then pkgs.btop-rocm
+    else pkgs.btop;
+in {
   options.btop.gpuBackends = mkOption {
     type = types.listOf (
       types.enum [
@@ -35,7 +33,7 @@ in
         "rocm"
       ]
     );
-    default = [ ];
+    default = [];
     description = "Select GPU backends to enable in btop.";
   };
 

@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # disable stylix integrations for selected applications.
 {
   blender.enable = false;

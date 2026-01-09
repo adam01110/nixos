@@ -3,7 +3,6 @@
   pkgs,
   ...
 }:
-
 # gnupg and gpg-agent with ssh support and gnome pinentry.
 {
   programs.gpg = {
@@ -25,5 +24,5 @@
   };
 
   # package needed for pintenty gnome
-  home.packages = [ pkgs.gcr ];
+  home.packages = [pkgs.gcr];
 }

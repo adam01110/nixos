@@ -3,14 +3,14 @@
   lib,
   pkgs,
   ...
-}:
-
-let
-  inherit (builtins)
+}: let
+  inherit
+    (builtins)
     attrNames
     toJSON
     ;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
     mkMerge
@@ -18,7 +18,8 @@ let
     filterAttrs
     mapAttrs'
     ;
-  inherit (lib.types)
+  inherit
+    (lib.types)
     attrsOf
     anything
     submodule
@@ -29,26 +30,24 @@ let
   enabledPlugins = filterAttrs (_: plugin: plugin.enable) cfg;
   enabledNames = attrNames enabledPlugins;
   enabledSettings = lib.mapAttrs (_: plugin: plugin.settings) enabledPlugins;
-in
-{
+in {
   options.noctalia.plugins = mkOption {
     type = attrsOf (
       submodule (
-        { name, ... }:
-        {
+        {name, ...}: {
           options = {
             enable = mkEnableOption "Enable the ${name} plugin.";
 
             settings = mkOption {
               type = attrsOf anything;
-              default = { };
+              default = {};
               description = "Settings for the ${name} plugin.";
             };
           };
         }
       )
     );
-    default = { };
+    default = {};
     description = "Noctalia plugins keyed by plugin name.";
   };
 
@@ -80,9 +79,10 @@ in
         };
       }
       (mapAttrs' (name: settings: {
-        name = ".config/noctalia/plugins/${name}/settings.json";
-        value.text = toJSON settings;
-      }) enabledSettings)
+          name = ".config/noctalia/plugins/${name}/settings.json";
+          value.text = toJSON settings;
+        })
+        enabledSettings)
     ];
 
     noctalia.plugins."privacy-indicator" = {

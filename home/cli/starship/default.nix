@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # assemble the Starship prompt configuration.
 {
   # pull in per-feature Starship settings.

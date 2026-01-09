@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # system stylix theme: colors, fonts, and cursor.
 {
   stylix = {
@@ -63,5 +59,5 @@
   };
 
   # cjk font.
-  fonts.packages = [ pkgs.noto-fonts-cjk-sans ];
+  fonts.packages = [pkgs.noto-fonts-cjk-sans];
 }

@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # default handlers for office document editing.
 {
   xdg.mimeApps.defaultApplications = {
@@ -27,32 +26,25 @@
     "application/vnd.oasis.opendocument.spreadsheet-flat-xml" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-excel" = "onlyoffice-desktopeditors.desktop";
     "application/msword-template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
-      "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.template" =
-      "onlyoffice-desktopeditors.desktop";
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "onlyoffice-desktopeditors.desktop";
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.template" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.sun.xml.impress" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.sun.xml.writer.template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
-      "onlyoffice-desktopeditors.desktop";
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.oasis.opendocument.spreadsheet-template" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-powerpoint.template.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.presentationml.slideshow" =
-      "onlyoffice-desktopeditors.desktop";
+    "application/vnd.openxmlformats-officedocument.presentationml.slideshow" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.oasis.opendocument.spreadsheet" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-visio.template.macroEnabled.main+xml" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-excel.sheet.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.template" =
-      "onlyoffice-desktopeditors.desktop";
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.template" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.oasis.opendocument.graphics" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.sun.xml.calc" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-powerpoint.slideshow.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
-      "onlyoffice-desktopeditors.desktop";
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.oasis.opendocument.presentation-flat-xml" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-excel.template.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.presentationml.template" =
-      "onlyoffice-desktopeditors.desktop";
+    "application/vnd.openxmlformats-officedocument.presentationml.template" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-powerpoint" = "onlyoffice-desktopeditors.desktop";
     "application/vnd.ms-excel.sheet.binary.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
   };

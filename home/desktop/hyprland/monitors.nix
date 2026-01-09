@@ -3,19 +3,18 @@
   lib,
   ...
 }:
-
 # format hyprland monitor declarations.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mapAttrsToList
     mkOption
     types
     ;
-in
-{
+in {
   options.hyprland.monitors = mkOption {
     type = types.attrsOf (types.attrsOf types.anything);
-    default = { };
+    default = {};
     description = ''
       Example:
       monitors = {
@@ -37,41 +36,49 @@ in
   };
 
   # format monitor declarations from the option set.
-  config.wayland.windowManager.hyprland.settings.monitor =
-    let
-      cfgMonitors = config.hyprland.monitors;
+  config.wayland.windowManager.hyprland.settings.monitor = let
+    cfgMonitors = config.hyprland.monitors;
 
-      formatMonitor =
-        name: cfg:
-        let
-          # allow disabled monitors without resolution/position/scale.
-          disabledLine = "${name}, disabled";
-          base = "${name}, ${cfg.resolution}, ${cfg.position}, ${toString cfg.scale}";
+    formatMonitor = name: cfg: let
+      # allow disabled monitors without resolution/position/scale.
+      disabledLine = "${name}, disabled";
+      base = "${name}, ${cfg.resolution}, ${cfg.position}, ${toString cfg.scale}";
 
-          # optional parameters.
-          transform =
-            if (cfg.transform or null) != null then ", transform, ${toString cfg.transform}" else "";
-          mirror = if (cfg.mirror or null) != null then ", mirror, ${cfg.mirror}" else "";
-          bitdepth = if (cfg.bitdepth or null) != null then ", bitdepth, ${toString cfg.bitdepth}" else "";
-          cm = if (cfg.cm or null) != null then ", cm, ${cfg.cm}" else "";
-          sdrbrightness =
-            if (cfg.sdrbrightness or null) != null then
-              ", sdrbrightness, ${toString cfg.sdrbrightness}"
-            else
-              "";
-          sdrsaturation =
-            if (cfg.sdrsaturation or null) != null then
-              ", sdrsaturation, ${toString cfg.sdrsaturation}"
-            else
-              "";
-          vrr = if (cfg.vrr or null) != null then ", vrr, ${toString cfg.vrr}" else "";
-        in
-        if cfg.disabled or false then
-          disabledLine
-        else
-          base + transform + mirror + bitdepth + cm + sdrbrightness + sdrsaturation + vrr;
-
-      formattedMonitors = mapAttrsToList formatMonitor cfgMonitors;
+      # optional parameters.
+      transform =
+        if (cfg.transform or null) != null
+        then ", transform, ${toString cfg.transform}"
+        else "";
+      mirror =
+        if (cfg.mirror or null) != null
+        then ", mirror, ${cfg.mirror}"
+        else "";
+      bitdepth =
+        if (cfg.bitdepth or null) != null
+        then ", bitdepth, ${toString cfg.bitdepth}"
+        else "";
+      cm =
+        if (cfg.cm or null) != null
+        then ", cm, ${cfg.cm}"
+        else "";
+      sdrbrightness =
+        if (cfg.sdrbrightness or null) != null
+        then ", sdrbrightness, ${toString cfg.sdrbrightness}"
+        else "";
+      sdrsaturation =
+        if (cfg.sdrsaturation or null) != null
+        then ", sdrsaturation, ${toString cfg.sdrsaturation}"
+        else "";
+      vrr =
+        if (cfg.vrr or null) != null
+        then ", vrr, ${toString cfg.vrr}"
+        else "";
     in
+      if cfg.disabled or false
+      then disabledLine
+      else base + transform + mirror + bitdepth + cm + sdrbrightness + sdrsaturation + vrr;
+
+    formattedMonitors = mapAttrsToList formatMonitor cfgMonitors;
+  in
     formattedMonitors;
 }

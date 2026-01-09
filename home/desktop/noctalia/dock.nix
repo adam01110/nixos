@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # dock appearance and placement rules.
 {
   programs.noctalia-shell.settings.dock = {

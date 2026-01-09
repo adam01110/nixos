@@ -3,10 +3,9 @@
   system,
   ...
 }:
-
 # hardware profile for qemu/kvm virtual machines.
 {
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
   # kernel modules appropriate for generic vms.
   boot.initrd.availableKernelModules = [
@@ -16,7 +15,7 @@
     "sr_mod"
     "virtio_blk"
   ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = ["kvm-intel"];
 
   nixpkgs.hostPlatform = system;
 }

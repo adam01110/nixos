@@ -1,12 +1,6 @@
-{
-  lib,
-  ...
-}:
-
-let
+{lib, ...}: let
   inherit (lib) concatStrings;
-in
-{
+in {
   # layout and coloring for the full starship prompt.
   programs.starship.settings.format = concatStrings [
     "[ ](bg:base01)"

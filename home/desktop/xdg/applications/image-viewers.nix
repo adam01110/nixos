@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # default handlers for image viewing formats including raws.
 {
   xdg.mimeApps.defaultApplications = {

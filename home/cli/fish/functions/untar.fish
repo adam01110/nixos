@@ -11,20 +11,20 @@ for archive_path in $argv
 
     switch $archive_path
         case '*.tar.bz2' '*.tbz2'
-            set list_flags "-tjf"
-            set extract_flags "-xvjf"
+            set list_flags -tjf
+            set extract_flags -xvjf
         case '*.tar.gz' '*.tgz'
-            set list_flags "-tzf"
-            set extract_flags "-xvzf"
+            set list_flags -tzf
+            set extract_flags -xvzf
         case '*.tar.xz'
-            set list_flags "-tJf"
-            set extract_flags "-xvJf"
+            set list_flags -tJf
+            set extract_flags -xvJf
         case '*.tar.zst'
             set list_flags --zstd -tf
             set extract_flags --zstd -xvf
         case '*.tar'
-            set list_flags "-tf"
-            set extract_flags "-xvf"
+            set list_flags -tf
+            set extract_flags -xvf
         case '*'
             @echo@ "Unable to extract '$archive_path'"
             continue

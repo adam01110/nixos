@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # default handlers for directories and custom file associations.
 {
   xdg.mimeApps.defaultApplications = {

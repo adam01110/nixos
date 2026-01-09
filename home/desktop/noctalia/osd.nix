@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # on-screen display placement and timeout.
 {
   programs.noctalia-shell.settings.osd = {

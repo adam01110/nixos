@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # configure fzf.
 {
   programs.fzf = {

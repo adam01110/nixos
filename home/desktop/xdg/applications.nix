@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   # group per-category defaults via module imports.
   imports = [
     ./applications/archives.nix

@@ -3,17 +3,15 @@
   pkgs,
   ...
 }:
-
 # configure bat and related extras.
 let
   dataHome = config.xdg.dataHome;
-in
-{
+in {
   # enable bat with manuals.
   programs.bat = {
     enable = true;
 
-    extraPackages = [ pkgs.bat-extras.batman ];
+    extraPackages = [pkgs.bat-extras.batman];
   };
 
   # set cache path for bat.

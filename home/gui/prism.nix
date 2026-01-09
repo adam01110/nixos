@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # configure prismlauncher.
 {
   home.packages = with pkgs; [

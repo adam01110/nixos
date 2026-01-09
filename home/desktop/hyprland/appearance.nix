@@ -1,13 +1,8 @@
-{
-  lib,
-  ...
-}:
-
+{lib, ...}:
 # set hyprland appearance, gaps, decoration, and animations.
 let
   inherit (lib) mkMerge;
-in
-{
+in {
   wayland.windowManager.hyprland.settings = mkMerge [
     {
       # general outer and inner gaps and active border color.

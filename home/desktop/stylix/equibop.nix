@@ -1,14 +1,9 @@
-{
-  osConfig,
-  ...
-}:
-
+{osConfig, ...}:
 # provide themed values to equibop plugins via module args.
 let
   inherit (builtins) mapAttrs;
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
-in
-{
+in {
   _module.args.equibopStylix = {
     # icon color for message fetch timer.
     messageFetchTimerIcon = colors.base0B;

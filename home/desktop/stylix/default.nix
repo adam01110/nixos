@@ -1,15 +1,10 @@
-{
-  osConfig,
-  ...
-}:
-
+{osConfig, ...}:
 # per-user stylix customization layered on top of system stylix.
 let
-  disabledTargets = import ./disabled.nix { };
+  disabledTargets = import ./disabled.nix {};
 
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
-in
-{
+in {
   imports = [
     ./equibop.nix
     ./eza.nix
@@ -34,11 +29,13 @@ in
     };
 
     # enable/disable specific stylix targets.
-    targets = disabledTargets // {
-      cava.rainbow.enable = true;
+    targets =
+      disabledTargets
+      // {
+        cava.rainbow.enable = true;
 
-      zen-browser.profileNames = [ "default" ];
-    };
+        zen-browser.profileNames = ["default"];
+      };
   };
 
   # keep zathura fonts consistent with the desktop.

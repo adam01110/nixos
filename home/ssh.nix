@@ -3,16 +3,14 @@
   vars,
   ...
 }:
-
 # ssh client config with sops-injected host templates.
 let
   inherit (vars) username;
-in
-{
+in {
   sops = {
     secrets = {
       # hostname for the euclid server host, stored in sops.
-      "servers/euclid/hostname" = { };
+      "servers/euclid/hostname" = {};
 
       # write the ssh public and private keys.
       "servers/euclid/private_ssh_key".path = "/home/${username}/.ssh/euclid";
@@ -40,6 +38,6 @@ in
     };
 
     # pull in the sops-generated server host.
-    includes = [ config.sops.templates."ssh-config-server".path ];
+    includes = [config.sops.templates."ssh-config-server".path];
   };
 }

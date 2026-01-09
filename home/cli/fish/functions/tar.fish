@@ -22,9 +22,9 @@ end
 set -l flags
 switch $archive_path
     case '*.tar.gz'
-        set flags "-cvzf"
+        set flags -cvzf
     case '*.tar.bz2'
-        set flags "-cvjf"
+        set flags -cvjf
     case '*.tar.xz'
         set flags -cvJf
     case '*.tar.zst'

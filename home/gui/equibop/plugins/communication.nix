@@ -3,7 +3,6 @@
   userCountry,
   ...
 }:
-
 # plugins affecting chat, messages, and sharing.
 {
   AutoZipper.enabled = true;

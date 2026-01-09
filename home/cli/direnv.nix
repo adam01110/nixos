@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # configure direnv for per-project environments.
 {
   programs.direnv = {

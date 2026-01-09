@@ -1,13 +1,8 @@
-{
-  config,
-  ...
-}:
-
+{config, ...}:
 # set global flatpak overrides.
 let
   home = config.home.homeDirectory;
-in
-{
+in {
   services.flatpak.overrides.global = {
     # add icons and dconf to the extra files.
     Context.filesystems = [

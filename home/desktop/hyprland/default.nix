@@ -5,7 +5,6 @@
   system,
   ...
 }:
-
 # home manager hyprland configuration: plugins, quickshell, and extras.
 {
   # compose hyprland configuration from module segments.
@@ -20,8 +19,7 @@
   ];
 
   # make home manager session variables available to uwsm.
-  xdg.configFile."uwsm/env".source =
-    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   # enable hyprland.
   wayland.windowManager.hyprland = {
@@ -39,7 +37,7 @@
   };
 
   # add hyprpicker to packages.
-  home.packages = [ pkgs.hyprpicker ];
+  home.packages = [pkgs.hyprpicker];
 
   # enable hyprcursor theme support.
   home.pointerCursor.hyprcursor.enable = true;

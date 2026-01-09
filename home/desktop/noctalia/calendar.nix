@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # define card layout for the noctalia calendar widget.
 {
   programs.noctalia-shell.settings.calendar.cards = [

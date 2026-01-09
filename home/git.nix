@@ -4,21 +4,20 @@
   vars,
   ...
 }:
-
 # git configuration with sops-managed email and libsecret credentials.
 let
-  inherit (vars)
+  inherit
+    (vars)
     username
     gitUsername
     gitPublicSshkey
     gitSigningKey
     ;
-in
-{
+in {
   sops = {
     secrets = {
       # per-user git email address stored in sops.
-      "git/email" = { };
+      "git/email" = {};
 
       # place the decrypted private key at a stable path used by ssh.
       "git/private_ssh_key".path = "/home/${username}/.ssh/git";
@@ -35,33 +34,31 @@ in
   home.file.".ssh/git.pub".text = gitPublicSshkey;
 
   programs = {
-    git =
-      let
-        # use git full so the libsecret credential helper is available.
-        gitPackage = pkgs.gitFull;
-      in
-      {
-        enable = true;
-        package = gitPackage;
+    git = let
+      # use git full so the libsecret credential helper is available.
+      gitPackage = pkgs.gitFull;
+    in {
+      enable = true;
+      package = gitPackage;
 
-        settings = {
-          # identity.
-          user = {
-            name = gitUsername;
-            signingkey = gitSigningKey;
-          };
-
-          # enable gpg signing.
-          commit.gpgsign = true;
-          tag.gpgSign = true;
-
-          # store https credentials via the desktop keyring (libsecret).
-          credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
+      settings = {
+        # identity.
+        user = {
+          name = gitUsername;
+          signingkey = gitSigningKey;
         };
 
-        # include the sops-generated snippet to set the email.
-        includes = [ { path = config.sops.templates."git-config".path; } ];
+        # enable gpg signing.
+        commit.gpgsign = true;
+        tag.gpgSign = true;
+
+        # store https credentials via the desktop keyring (libsecret).
+        credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
       };
+
+      # include the sops-generated snippet to set the email.
+      includes = [{path = config.sops.templates."git-config".path;}];
+    };
 
     # delta pager for nicer diffs.
     delta = {

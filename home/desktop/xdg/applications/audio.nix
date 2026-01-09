@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # default handlers for audio mime types.
 {
   xdg.mimeApps.defaultApplications = {

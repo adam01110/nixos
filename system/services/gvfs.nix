@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # gio/gvfs backends: trash, smb/mtp/afc, network mounts, etc.
 {
   services.gvfs = {

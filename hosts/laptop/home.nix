@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # per-host home manager overrides for the desktop.
 {
   # configure the hosts monitors.
@@ -16,7 +15,7 @@
   };
 
   # show intel gpu stats in nvtop.
-  nvtop.types = [ "intel" ];
+  nvtop.types = ["intel"];
 
   # extra zen profile tweaks when travelling.
   zen-browser = {

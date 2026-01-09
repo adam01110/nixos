@@ -3,17 +3,15 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (builtins) attrValues;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkForce
     mkIf
     ;
-in
-{
+in {
   imports = [
     ./cli
     ./desktop
@@ -36,7 +34,7 @@ in
     boot = {
       kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
       initrd = {
-        services.udev.packages = [ pkgs.numworks-udev-rules ];
+        services.udev.packages = [pkgs.numworks-udev-rules];
 
         systemd.enable = true;
       };
@@ -91,7 +89,8 @@ in
 
       # extra packages for lanzaboote.
       systemPackages = attrValues {
-        inherit (pkgs)
+        inherit
+          (pkgs)
           sbctl
           tpm2-tss
           ;

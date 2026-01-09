@@ -6,12 +6,10 @@
   vars,
   ...
 }:
-
 # user account and home manager setup.
 let
   inherit (vars) username;
-in
-{
+in {
   # ensure the user account can be created with a password managed by sops-nix.
   sops.secrets.user_password.neededForUsers = true;
 
@@ -40,8 +38,8 @@ in
 
   # allow the user to perform privileged nix operations.
   nix.settings = {
-    allowed-users = [ username ];
-    trusted-users = [ username ];
+    allowed-users = [username];
+    trusted-users = [username];
   };
 
   # home manager setup.
@@ -64,8 +62,7 @@ in
 
     users.${username} = {
       # home manager module sources from flake inputs.
-      imports =
-        with inputs;
+      imports = with inputs;
         [
           nix-flatpak.homeManagerModules.nix-flatpak
           sops-nix.homeManagerModules.sops
@@ -76,7 +73,7 @@ in
           spicetify-nix.homeManagerModules.spicetify
           zed-extensions.homeManagerModules.default
         ]
-        ++ [ ./../home ];
+        ++ [./../home];
 
       home = {
         # home-manager account identity.

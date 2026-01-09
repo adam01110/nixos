@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # configure eza ls replacement.
 {
   programs.eza = {

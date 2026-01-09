@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   # home-manager base config for the primary user.
   # user-level files and session environment.
   home = {

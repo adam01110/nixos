@@ -1,11 +1,6 @@
-{
-  config,
-  ...
-}:
-let
+{config, ...}: let
   videosDir = config.xdg.userDirs.videos;
-in
-{
+in {
   # default recorder codecs and target directory.
   programs.noctalia-shell.settings.screenRecorder = {
     audioCodec = "opus";

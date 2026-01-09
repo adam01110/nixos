@@ -1,13 +1,8 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # enable cups printing service.
 let
   inherit (builtins) attrValues;
-in
-{
+in {
   services.printing = {
     enable = true;
     openFirewall = true;
@@ -17,7 +12,8 @@ in
 
     # printer drivers packages.
     drivers = attrValues {
-      inherit (pkgs)
+      inherit
+        (pkgs)
         foomatic-db-ppds
         foomatic-db-ppds-withNonfreeDb
         gutenprint

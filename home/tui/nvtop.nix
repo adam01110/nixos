@@ -4,19 +4,15 @@
   pkgs,
   ...
 }:
-
 # configure nvtop.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mkOption
     types
     optional
-    foldl'
-    head
-    tail
     ;
-in
-{
+in {
   options.nvtop.types = mkOption {
     type = types.listOf (
       types.enum [
@@ -30,19 +26,20 @@ in
         "apple"
       ]
     );
-    default = [ ];
+    default = [];
     description = "Choose which GPU types to monitor with nvtop.";
   };
 
   # pick a flavor then enable additional backends via override.
-  config.home.packages =
-    let
-      selectedTypes = config.nvtop.types;
-      base = head selectedTypes;
-      extras = tail selectedTypes;
-      backends = foldl' (acc: t: acc // { ${t} = true; }) { } selectedTypes;
-      package =
-        if extras == [ ] then pkgs.nvtopPackages.${base} else pkgs.nvtopPackages.${base}.override backends;
-    in
-    optional (selectedTypes != [ ]) package;
+  config.home.packages = let
+    selectedTypes = config.nvtop.types;
+    base = lib.head selectedTypes;
+    extras = lib.tail selectedTypes;
+    backends = lib.foldl' (acc: t: acc // {${t} = true;}) {} selectedTypes;
+    package =
+      if extras == []
+      then pkgs.nvtopPackages.${base}
+      else pkgs.nvtopPackages.${base}.override backends;
+  in
+    optional (selectedTypes != []) package;
 }

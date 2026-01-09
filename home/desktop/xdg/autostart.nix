@@ -3,7 +3,6 @@
   pkgs,
   ...
 }:
-
 # manage autostart desktop entries.
 {
   xdg.autostart = {

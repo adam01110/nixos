@@ -1,14 +1,8 @@
-{
-  vars,
-  ...
-}:
-
+{vars, ...}:
 # configure github cli.
-
 let
   inherit (vars) gitUsername;
-in
-{
+in {
   programs.gh = {
     enable = true;
 

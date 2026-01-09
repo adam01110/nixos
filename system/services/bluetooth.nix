@@ -3,15 +3,14 @@
   lib,
   ...
 }:
-
 # optional bluetooth service, toggled per host.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
-in
-{
+in {
   options.optServices.bluetooth.enable = mkEnableOption "Enable bluetooth services.";
 
   config.hardware.bluetooth = mkIf config.optServices.bluetooth.enable {

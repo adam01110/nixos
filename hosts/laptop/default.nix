@@ -3,20 +3,18 @@
   vars,
   ...
 }:
-
 # laptop host profile: hardware, home manager imports, battery-friendly defaults, and optional services.
 let
   inherit (lib) mkForce;
   inherit (vars) username;
-in
-{
+in {
   networking.hostName = "laptop";
   # dont change.
   system.stateVersion = "25.05";
 
   # import host-specific hardware configuration.
-  imports = [ ./hardware.nix ];
-  home-manager.users.${username}.imports = [ ./home.nix ];
+  imports = [./hardware.nix];
+  home-manager.users.${username}.imports = [./home.nix];
 
   # primary install disk for disko partitioning.
   disko.selectedDisk = "/dev/nvme0n1";

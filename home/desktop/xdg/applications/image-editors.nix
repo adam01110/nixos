@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # default handlers for image editing formats.
 {
   xdg.mimeApps.defaultApplications = {

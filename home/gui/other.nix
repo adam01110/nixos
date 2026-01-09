@@ -1,16 +1,12 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # desktop application and flatpak packages.
 let
   inherit (builtins) attrValues;
-in
-{
+in {
   # install applications from nixpkgs and nur.
   home.packages = attrValues {
-    inherit (pkgs)
+    inherit
+      (pkgs)
       aseprite
       bleachbit
       bitwarden-desktop
