@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # configure MangoHud overlay.
 {
   programs.mangohud = {

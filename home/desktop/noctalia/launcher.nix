@@ -2,12 +2,9 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   inherit (lib) getExe;
-in
-{
+in {
   # launcher behavior and default terminal command.
   programs.noctalia-shell.settings.appLauncher = {
     enableClipPreview = false;

@@ -1,7 +1,5 @@
-{ ... }:
-
+{...}:
 # default handlers for archive and compressed formats.
-
 {
   xdg.mimeApps.defaultApplications = {
     "application/x-compress" = "org.gnome.FileRoller.desktop";

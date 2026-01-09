@@ -1,14 +1,8 @@
-{
-  config,
-  ...
-}:
-
-let
+{config, ...}: let
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;
   stateHome = config.xdg.stateHome;
-in
-{
+in {
   # GET OUT OF MY $HOME!
   home.sessionVariables = {
     # history.

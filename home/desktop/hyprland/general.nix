@@ -3,25 +3,23 @@
   lib,
   ...
 }:
-
 # define hyprland options for touch and monitor layout.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkMerge
     ;
-in
-{
+in {
   options.hyprland.touch = {
     enable = mkEnableOption "Enable touch-specific configuration";
   };
 
   # merge base settings and conditional sections.
-  config =
-    let
-      cfgTouch = config.hyprland.touch.enable;
-    in
+  config = let
+    cfgTouch = config.hyprland.touch.enable;
+  in
     mkMerge [
       {
         # core defaults for input, rendering, and behavior.
@@ -95,7 +93,7 @@ in
         wayland.windowManager.hyprland.settings = {
           input.touchpad.natural_scroll = true;
 
-          gesture = [ "3, horizontal, workspace" ];
+          gesture = ["3, horizontal, workspace"];
         };
       })
     ];

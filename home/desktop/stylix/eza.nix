@@ -1,14 +1,9 @@
-{
-  osConfig,
-  ...
-}:
-
+{osConfig, ...}:
 # set stylix theme for eza.
 let
   inherit (builtins) mapAttrs;
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
-in
-{
+in {
   programs.eza.theme = with colors; {
     colourful = true;
 

@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # per-host home manager overrides for the desktop.
 {
   # configure the hosts monitors.
@@ -23,7 +22,7 @@
     "intel"
   ];
 
-  btop.gpuBackends = [ "rocm" ];
+  btop.gpuBackends = ["rocm"];
 
   zen-browser.commit-space = 25698;
   noctalia.enableGpu = true;

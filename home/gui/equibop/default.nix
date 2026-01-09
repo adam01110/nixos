@@ -4,14 +4,12 @@
   pkgs,
   ...
 }:
-
 # configure equibop with themes and options.
 let
   inherit (pkgs) replaceVars;
   configHome = config.xdg.configHome;
-in
-{
-  imports = [ ./plugins.nix ];
+in {
+  imports = [./plugins.nix];
 
   programs.nixcord = {
     enable = true;

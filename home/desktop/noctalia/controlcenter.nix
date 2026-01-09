@@ -2,15 +2,12 @@
   osConfig,
   lib,
   ...
-}:
-
-let
+}: let
   inherit (lib) optional;
 
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
   cfgWifi = osConfig.optServices.wifi.enable;
-in
-{
+in {
   # control center tiles and shortcuts surfaced from the bar.
   programs.noctalia-shell.settings.controlCenter = {
     position = "close_to_bar_button";
@@ -44,16 +41,16 @@ in
 
     shortcuts = {
       left =
-        (optional cfgWifi { id = "WiFi"; })
-        ++ (optional cfgBluetooth { id = "Bluetooth"; })
+        (optional cfgWifi {id = "WiFi";})
+        ++ (optional cfgBluetooth {id = "Bluetooth";})
         ++ [
-          { id = "ScreenRecorder"; }
-          { id = "WallpaperSelector"; }
+          {id = "ScreenRecorder";}
+          {id = "WallpaperSelector";}
         ];
       right = [
-        { id = "Notifications"; }
-        { id = "PowerProfile"; }
-        { id = "KeepAwake"; }
+        {id = "Notifications";}
+        {id = "PowerProfile";}
+        {id = "KeepAwake";}
       ];
     };
   };

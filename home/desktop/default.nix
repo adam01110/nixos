@@ -1,12 +1,6 @@
-{
-  pkgs,
-  ...
-}:
-
-let
+{pkgs, ...}: let
   inherit (builtins) attrValues;
-in
-{
+in {
   imports = [
     ./hyprland
     ./noctalia
@@ -16,7 +10,8 @@ in
   ];
 
   home.packages = attrValues {
-    inherit (pkgs)
+    inherit
+      (pkgs)
       brightnessctl
       ddcutil
       ;

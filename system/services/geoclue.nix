@@ -1,8 +1,4 @@
-{
-  config,
-  ...
-}:
-
+{config, ...}:
 # geoclue2 service using wifi positioning only.
 {
   services.geoclue2 = {

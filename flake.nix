@@ -102,80 +102,90 @@
       url = "github:adam01110/nix-userstyles";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # treefmt.
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   # outputs: expose host configurations and pass through common arguments.
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nur,
-      disko,
-      home-manager,
-      stylix,
-      lanzaboote,
-      sops-nix,
-      ...
-    }@inputs:
-    let
-      # the system architecture.
-      system = "x86_64-linux";
+  outputs = {
+    self,
+    nixpkgs,
+    nur,
+    disko,
+    home-manager,
+    stylix,
+    lanzaboote,
+    sops-nix,
+    systems,
+    treefmt-nix,
+    ...
+  } @ inputs: let
+    # variables.
+    vars = import ./vars.nix;
 
-      # variables.
-      vars = import ./vars.nix;
+    # modules shared by every host.
+    commonModules = [
+      nur.modules.nixos.default
+      disko.nixosModules.disko
+      home-manager.nixosModules.home-manager
+      stylix.nixosModules.stylix
+      lanzaboote.nixosModules.lanzaboote
+      sops-nix.nixosModules.sops
+      ./system
+    ];
 
-      # modules shared by every host.
-      commonModules = [
-        nur.modules.nixos.default
-        disko.nixosModules.disko
-        home-manager.nixosModules.home-manager
-        stylix.nixosModules.stylix
-        lanzaboote.nixosModules.lanzaboote
-        sops-nix.nixosModules.sops
-        ./system
-      ];
-
-      # arguments shared by every host.
-      commonArgs = {
-        inherit
-          self
-          inputs
-          system
-          vars
-          ;
-      };
-
-      # helper for building host configurations.
-      mkHost =
-        {
-          system,
-          hostPath,
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = commonArgs // {
+    # helper for building host configurations.
+    mkHost = {
+      system,
+      hostPath,
+    }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs =
+          {
+            # arguments shared by every host.
+            inherit
+              self
+              inputs
+              system
+              vars
+              ;
+          }
+          // {
             inherit system;
           };
-          modules = commonModules ++ [ hostPath ];
-        };
-    in
-    {
-      # host machines defined by directory under ./host/*
-      nixosConfigurations = {
-        desktop = mkHost {
-          system = "x86_64-linux";
-          hostPath = ./hosts/desktop;
-        };
+        modules = commonModules ++ [hostPath];
+      };
 
-        laptop = mkHost {
-          system = "x86_64-linux";
-          hostPath = ./hosts/laptop;
-        };
+    # Small tool to iterate over each systems
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
 
-        vm = mkHost {
-          system = "x86_64-linux";
-          hostPath = ./hosts/vm;
-        };
+    # Eval the treefmt modules from ./treefmt.nix
+    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+  in {
+    # host machines defined by directory under ./host/*
+    nixosConfigurations = {
+      desktop = mkHost {
+        system = "x86_64-linux";
+        hostPath = ./hosts/desktop;
+      };
+
+      laptop = mkHost {
+        system = "x86_64-linux";
+        hostPath = ./hosts/laptop;
+      };
+
+      vm = mkHost {
+        system = "x86_64-linux";
+        hostPath = ./hosts/vm;
       };
     };
+
+    formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
+    # for `nix flake check`
+    checks = eachSystem (pkgs: {
+      formatting = treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.check self;
+    });
+  };
 }

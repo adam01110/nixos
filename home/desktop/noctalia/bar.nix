@@ -2,12 +2,9 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   inherit (lib) optional;
-in
-{
+in {
   # noctalia top bar layout, density, and widget ordering.
   programs.noctalia-shell.settings.bar = {
     density = "compact";
@@ -30,7 +27,7 @@ in
           showNetworkStats = false;
           usePrimaryColor = true;
         }
-        { id = "plugin:privacy-indicator"; }
+        {id = "plugin:privacy-indicator";}
         {
           id = "LockKeys";
           capsLockIcon = "circle-dashed-letter-c";
@@ -71,61 +68,62 @@ in
         }
       ];
 
-      right = [
-        {
-          id = "Tray";
-          colorizeIcons = false;
-          drawerEnabled = true;
-          pinned = [
-            "Equibop"
-            "Beeper"
-            "spotify-client"
-            "steam"
-          ];
-        }
-        {
-          id = "VPN";
-          displayMode = "onhover";
-        }
-        { id = "NoctaliaPerformance"; }
-        {
-          id = "Volume";
-          displayMode = "onhover";
-        }
-        {
-          id = "Microphone";
-          displayMode = "onhover";
-        }
-        {
-          id = "Brightness";
-          displayMode = "onhover";
-        }
-      ]
-      ++ [
-        { id = "KeepAwake"; }
-      ]
-      ++ (optional config.noctalia.battery.enable { id = "Battery"; })
-      ++ [
-        {
-          id = "NotificationHistory";
-          hideWhenZero = true;
-          showUnreadBadge = true;
-        }
-        {
-          id = "Clock";
-          formatHorizontal = "yyyy-MM-dd HH:mm";
-          formatVertical = "HH mm - dd MM";
-          tooltipFormat = "ddd, MMM dd HH:mm";
-          useCustomFont = false;
-          usePrimaryColor = true;
-        }
-        {
-          id = "ControlCenter";
-          colorizeSystemIcon = "tertiary";
-          enableColorization = true;
-          useDistroLogo = true;
-        }
-      ];
+      right =
+        [
+          {
+            id = "Tray";
+            colorizeIcons = false;
+            drawerEnabled = true;
+            pinned = [
+              "Equibop"
+              "Beeper"
+              "spotify-client"
+              "steam"
+            ];
+          }
+          {
+            id = "VPN";
+            displayMode = "onhover";
+          }
+          {id = "NoctaliaPerformance";}
+          {
+            id = "Volume";
+            displayMode = "onhover";
+          }
+          {
+            id = "Microphone";
+            displayMode = "onhover";
+          }
+          {
+            id = "Brightness";
+            displayMode = "onhover";
+          }
+        ]
+        ++ [
+          {id = "KeepAwake";}
+        ]
+        ++ (optional config.noctalia.battery.enable {id = "Battery";})
+        ++ [
+          {
+            id = "NotificationHistory";
+            hideWhenZero = true;
+            showUnreadBadge = true;
+          }
+          {
+            id = "Clock";
+            formatHorizontal = "yyyy-MM-dd HH:mm";
+            formatVertical = "HH mm - dd MM";
+            tooltipFormat = "ddd, MMM dd HH:mm";
+            useCustomFont = false;
+            usePrimaryColor = true;
+          }
+          {
+            id = "ControlCenter";
+            colorizeSystemIcon = "tertiary";
+            enableColorization = true;
+            useDistroLogo = true;
+          }
+        ];
     };
   };
 }

@@ -3,25 +3,24 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (builtins) attrValues;
-  inherit (lib)
+  inherit
+    (lib)
     getExe
     getExe'
     mkEnableOption
     optional
     ;
-in
-{
+in {
   # optional rcu lazy toggle to defer callback processing.
   options.optTweaks.rcuLazy.enable = mkEnableOption "Enable RCU lazy mode.";
 
   config = {
     # assorted low-level tweaks and helper tools.
     environment.systemPackages = attrValues {
-      inherit (pkgs)
+      inherit
+        (pkgs)
         bash
         hdparm
         ;
@@ -58,63 +57,62 @@ in
         "kernel.sched_rt_runtime_us" = -1;
       };
 
-      kernelParams = [
-        "lru_gen=y"
-      ]
-      ++ optional config.optTweaks.rcuLazy.enable "rcutree.enable_rcu_lazy=1";
+      kernelParams =
+        [
+          "lru_gen=y"
+        ]
+        ++ optional config.optTweaks.rcuLazy.enable "rcutree.enable_rcu_lazy=1";
     };
 
     # udev rules for audio power saving and scheduler tuning.
-    services.udev.extraRules =
-      let
-        bash = getExe pkgs.bash;
-        hdparm = getExe pkgs.hdparm;
+    services.udev.extraRules = let
+      bash = getExe pkgs.bash;
+      hdparm = getExe pkgs.hdparm;
 
-        cat = getExe' pkgs.coreutils "cat";
-        echo = getExe' pkgs.coreutils "echo";
-        touch = getExe' pkgs.coreutils "touch";
-      in
-      ''
-        ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", \
-            RUN+="${bash} -c '${touch} /run/udev/snd-hda-intel-powersave; \
-                [[ $$((${cat} /sys/class/power_supply/BAT0/status 2>/dev/null) != \"Discharging\" ]] && \
-                ${echo} $$((${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave && \
-                ${echo} 0 > /sys/module/snd_hda_intel/parameters/power_save'"
+      cat = getExe' pkgs.coreutils "cat";
+      echo = getExe' pkgs.coreutils "echo";
+      touch = getExe' pkgs.coreutils "touch";
+    in ''
+      ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", \
+          RUN+="${bash} -c '${touch} /run/udev/snd-hda-intel-powersave; \
+              [[ $$((${cat} /sys/class/power_supply/BAT0/status 2>/dev/null) != \"Discharging\" ]] && \
+              ${echo} $$((${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave && \
+              ${echo} 0 > /sys/module/snd_hda_intel/parameters/power_save'"
 
-        SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", TEST=="/sys/module/snd_hda_intel", \
-            RUN+="${bash} -c '${echo} $$((${cat} /run/udev/snd-hda-intel-powersave 2>/dev/null || \
-                ${echo} 10) > /sys/module/snd_hda_intel/parameters/power_save'"
+      SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", TEST=="/sys/module/snd_hda_intel", \
+          RUN+="${bash} -c '${echo} $$((${cat} /run/udev/snd-hda-intel-powersave 2>/dev/null || \
+              ${echo} 10) > /sys/module/snd_hda_intel/parameters/power_save'"
 
-        SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", TEST=="/sys/module/snd_hda_intel", \
-            RUN+="${bash} -c '[[ $$((${cat} /sys/module/snd_hda_intel/parameters/power_save) != 0 ]] && \
-                ${echo} $$(${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave; \
-                ${echo} 0 > /sys/module/snd_hda_intel/parameters/power_save'"
+      SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", TEST=="/sys/module/snd_hda_intel", \
+          RUN+="${bash} -c '[[ $$((${cat} /sys/module/snd_hda_intel/parameters/power_save) != 0 ]] && \
+              ${echo} $$(${cat} /sys/module/snd_hda_intel/parameters/power_save) > /run/udev/snd-hda-intel-powersave; \
+              ${echo} 0 > /sys/module/snd_hda_intel/parameters/power_save'"
 
-        ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", \
-          RUN+="${bash} -c '${echo} N > /sys/module/zswap/parameters/enabled'"
+      ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", \
+        RUN+="${bash} -c '${echo} N > /sys/module/zswap/parameters/enabled'"
 
-        KERNEL=="rtc0", GROUP="audio"
-        KERNEL=="hpet", GROUP="audio"
+      KERNEL=="rtc0", GROUP="audio"
+      KERNEL=="hpet", GROUP="audio"
 
-        ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", \
-            ATTR{link_power_management_policy}=="*", \
-            ATTR{link_power_management_policy}="max_performance"
+      ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", \
+          ATTR{link_power_management_policy}=="*", \
+          ATTR{link_power_management_policy}="max_performance"
 
-        # HDD
-        ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \
-          ATTR{queue/scheduler}="bfq"
+      # HDD
+      ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \
+        ATTR{queue/scheduler}="bfq"
 
-        ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
-          ATTR{queue/scheduler}="adios"
+      ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
+        ATTR{queue/scheduler}="adios"
 
-        ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", \
-          ATTR{queue/scheduler}="adios"
+      ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", \
+        ATTR{queue/scheduler}="adios"
 
-        ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", \
-          ATTRS{id/bus}=="ata", RUN+="${hdparm} -B 254 -S 0 /dev/%k"
+      ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", \
+        ATTRS{id/bus}=="ata", RUN+="${hdparm} -B 254 -S 0 /dev/%k"
 
-        DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
-      '';
+      DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
+    '';
 
     # systemd limits and tmpfiles overrides.
     systemd = {

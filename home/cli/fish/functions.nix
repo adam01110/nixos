@@ -2,59 +2,52 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (builtins) readFile;
-  inherit (lib)
+  inherit
+    (lib)
     getExe
     getExe'
     ;
   inherit (pkgs) replaceVars;
 
-  mkFunction =
-    {
-      description,
-      file,
-      withMkdir ? false,
-      ...
-    }@fnArgs:
-    {
-      inherit description;
-      body = readFile (
-        replaceVars file (
-          let
-            commonReplaceVars = {
-              echo = getExe' pkgs.coreutils "echo";
-              test = getExe' pkgs.coreutils "test";
-            };
-            args = lib.removeAttrs fnArgs [
-              "description"
-              "file"
-              "withMkdir"
-            ];
-          in
+  mkFunction = {
+    description,
+    file,
+    withMkdir ? false,
+    ...
+  } @ fnArgs: {
+    inherit description;
+    body = readFile (
+      replaceVars file (
+        let
+          commonReplaceVars = {
+            echo = getExe' pkgs.coreutils "echo";
+            test = getExe' pkgs.coreutils "test";
+          };
+          args = lib.removeAttrs fnArgs [
+            "description"
+            "file"
+            "withMkdir"
+          ];
+        in
           (
-            if withMkdir then
-              commonReplaceVars // { mkdir = getExe' pkgs.coreutils "mkdir"; }
-            else
-              commonReplaceVars
+            if withMkdir
+            then commonReplaceVars // {mkdir = getExe' pkgs.coreutils "mkdir";}
+            else commonReplaceVars
           )
           // args
-        )
-      );
-    };
-in
-{
+      )
+    );
+  };
+in {
   programs.fish.functions = {
     fish_greeting = {
       description = "Greeting to show when starting a fish shell.";
-      body =
-        let
-          fortune = getExe pkgs.fortune;
-          boxes = getExe pkgs.boxes;
-        in
-        "${fortune} -s | ${boxes} -d ansi";
+      body = let
+        fortune = getExe pkgs.fortune;
+        boxes = getExe pkgs.boxes;
+      in "${fortune} -s | ${boxes} -d ansi";
     };
 
     # tar.

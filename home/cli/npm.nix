@@ -1,16 +1,11 @@
-{
-  config,
-  ...
-}:
-
+{config, ...}:
 # configure npm cli to use XDG base directories for globals and logs.
 let
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;
   stateHome = config.xdg.stateHome;
   cacheHome = config.xdg.cacheHome;
-in
-{
+in {
   programs.npm = {
     enable = true;
     package = null;

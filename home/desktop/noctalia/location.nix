@@ -1,16 +1,12 @@
-{
-  vars,
-  ...
-}:
-
+{vars, ...}:
 # calendar locale and weather location.
 let
-  inherit (vars)
+  inherit
+    (vars)
     noctaliaFirstDayOfWeek
     noctaliaLocation
     ;
-in
-{
+in {
   programs.noctalia-shell.settings.location = {
     analogClockInCalendar = false;
     firstDayOfWeek = noctaliaFirstDayOfWeek;

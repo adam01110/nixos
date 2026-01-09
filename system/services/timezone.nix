@@ -3,17 +3,16 @@
   lib,
   ...
 }:
-
 # time zone configuration with optional automatic mode.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mkIf
     mkMerge
     mkOption
     types
     ;
-in
-{
+in {
   options.optServices.timezone = mkOption {
     type = types.nullOr types.str;
     default = null;
@@ -26,10 +25,9 @@ in
   };
 
   # choose between a fixed time zone or automatic-timezoned service.
-  config =
-    let
-      cfgTimezone = config.optServices.timezone;
-    in
+  config = let
+    cfgTimezone = config.optServices.timezone;
+  in
     mkMerge [
       (mkIf (cfgTimezone != null && cfgTimezone != "automatic-timezoned") {
         time.timeZone = cfgTimezone;

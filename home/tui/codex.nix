@@ -5,36 +5,32 @@
   inputs,
   ...
 }:
-
 # configure codex cli and the acp.
 let
   inherit (lib) getExe';
-  tomlFormat = pkgs.formats.toml { };
-in
-{
+  tomlFormat = pkgs.formats.toml {};
+in {
   programs.codex = {
     enable = true;
 
     package = pkgs.symlinkJoin {
       name = "codex";
-      paths = [ pkgs.codex ];
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      postBuild =
-        let
-          config = inputs.mcp-servers-nix.lib.mkConfig pkgs {
-            flavor = "codex";
-            format = "toml-inline";
-            fileName = ".mcp.toml";
-            programs = {
-              # set up mcp servers
-              context7.enable = true;
-              nixos.enable = true;
-            };
+      paths = [pkgs.codex];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = let
+        config = inputs.mcp-servers-nix.lib.mkConfig pkgs {
+          flavor = "codex";
+          format = "toml-inline";
+          fileName = ".mcp.toml";
+          programs = {
+            # set up mcp servers
+            context7.enable = true;
+            nixos.enable = true;
           };
-        in
-        ''
-          wrapProgram $out/bin/codex "--add-flags" "-c '$(cat ${config})'"
-        '';
+        };
+      in ''
+        wrapProgram $out/bin/codex "--add-flags" "-c '$(cat ${config})'"
+      '';
     };
 
     # set custom instructions so that it actually uses the mcp servers.

@@ -4,7 +4,6 @@
   system,
   ...
 }:
-
 # configure the Noctalia shell and related widgets.
 {
   # pull in per-feature Noctalia modules.

@@ -34,7 +34,7 @@ for archive_path in $argv
         end
 
         if @test@ -z "$top_level_dir"
-        set top_level_dir $entry_root
+            set top_level_dir $entry_root
         else if @test@ "$entry_root" != "$top_level_dir"
             set has_multiple 1
             break

@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # configure atuin shell history manager.
 {
   programs.atuin = {

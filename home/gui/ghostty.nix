@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # configure ghostty settings.
 {
   programs.ghostty = {

@@ -1,8 +1,4 @@
-{
-  stylix,
-  ...
-}:
-
+{stylix, ...}:
 # interface and layout related plugins.
 {
   AccountPanelServerProfile = {

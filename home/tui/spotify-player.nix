@@ -3,12 +3,10 @@
   lib,
   ...
 }:
-
 # configure spotify-player.
 let
   inherit (lib) getExe;
-in
-{
+in {
   programs.spotify-player = {
     enable = true;
 

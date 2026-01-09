@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # keep nix gc roots retained automatically via angrr.
 {
   services.angrr = {
@@ -22,7 +21,7 @@
       };
       profile-policies = {
         system = {
-          profile-paths = [ "/nix/var/nix/profiles/system" ];
+          profile-paths = ["/nix/var/nix/profiles/system"];
           keep-since = "4d";
           keep-latest-n = 4;
           keep-booted-system = true;

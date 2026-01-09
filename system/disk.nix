@@ -3,15 +3,14 @@
   lib,
   ...
 }:
-
 # disk layout using disko.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mkOption
     types
     ;
-in
-{
+in {
   # host option: which block device to partition and install to.
   options.disko.selectedDisk = mkOption {
     type = types.str;
@@ -35,7 +34,7 @@ in
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
 
@@ -47,7 +46,7 @@ in
                 settings.allowDiscards = true;
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ];
+                  extraArgs = ["-f"];
 
                   # subvolume layout and common mount options.
                   subvolumes = {

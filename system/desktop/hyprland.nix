@@ -4,7 +4,6 @@
   system,
   ...
 }:
-
 # system-wide hyprland setup using packages from the hyprland flake.
 {
   programs = {
@@ -17,17 +16,15 @@
       portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
     };
 
-    uwsm.package = pkgs.uwsm.override { uuctlSupport = false; };
+    uwsm.package = pkgs.uwsm.override {uuctlSupport = false;};
   };
 
-  hardware.graphics =
-    let
-      pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-    in
-    {
-      enable32Bit = true;
+  hardware.graphics = let
+    pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  in {
+    enable32Bit = true;
 
-      package = pkgs-unstable.mesa;
-      package32 = pkgs-unstable.pkgsi686Linux.mesa;
-    };
+    package = pkgs-unstable.mesa;
+    package32 = pkgs-unstable.pkgsi686Linux.mesa;
+  };
 }

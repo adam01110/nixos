@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # enable miscellaneous desktop services in one place.
 {
   services = {

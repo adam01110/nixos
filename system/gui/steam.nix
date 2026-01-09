@@ -2,9 +2,7 @@
   # steam with proton ge, and sensible defaults.
   pkgs,
   ...
-}:
-
-{
+}: {
   programs.steam = {
     enable = true;
 
@@ -15,8 +13,8 @@
     protontricks.enable = true;
 
     # include custom proton builds.
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraCompatPackages = [pkgs.proton-ge-bin];
 
-    fontPackages = [ pkgs.noto-fonts-cjk-sans ];
+    fontPackages = [pkgs.noto-fonts-cjk-sans];
   };
 }

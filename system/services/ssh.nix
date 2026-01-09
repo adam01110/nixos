@@ -3,15 +3,14 @@
   lib,
   ...
 }:
-
 # optional openssh server, toggled per host.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
-in
-{
+in {
   options.optServices.ssh.enable = mkEnableOption "Enable Ssh services.";
 
   config = mkIf config.optServices.ssh.enable {

@@ -4,18 +4,16 @@
   lib,
   ...
 }:
-
 # text-based greeter (greetd + tuigreet).
 let
-  inherit (lib)
-    concatStringsSep
+  inherit
+    (lib)
     getExe
     getExe'
     ;
 
   pkg = pkgs.tuigreet;
-in
-{
+in {
   services.greetd = {
     enable = true;
 
@@ -24,13 +22,12 @@ in
 
     settings = {
       default_session = {
-        command =
-          let
-            tuigreet = getExe pkg;
-            uwsm = getExe config.programs.uwsm.package;
-            hyprland = getExe' config.programs.hyprland.package "start-hyprland";
-          in
-          concatStringsSep " " [
+        command = let
+          tuigreet = getExe pkg;
+          uwsm = getExe config.programs.uwsm.package;
+          hyprland = getExe' config.programs.hyprland.package "start-hyprland";
+        in
+          lib.concatStringsSep " " [
             "${tuigreet}"
             "--no-xsession-wrapper"
             "--asterisks"
@@ -45,5 +42,5 @@ in
   };
 
   # ensure tuigreet is present system-wide.
-  environment.systemPackages = [ pkg ];
+  environment.systemPackages = [pkg];
 }

@@ -1,20 +1,15 @@
-{
-  vars,
-  ...
-}:
-
+{vars, ...}:
 # desktop host profile: hardware, home manager imports, and optional services.
 let
   inherit (vars) username;
-in
-{
+in {
   networking.hostName = "desktop";
   # dont change.
   system.stateVersion = "25.05";
 
   # import host-specific hardware configuration.
-  imports = [ ./hardware.nix ];
-  home-manager.users.${username}.imports = [ ./home.nix ];
+  imports = [./hardware.nix];
+  home-manager.users.${username}.imports = [./home.nix];
 
   # primary install disk for disko partitioning.
   disko.selectedDisk = "/dev/nvme0n1";

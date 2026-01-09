@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # sops configuration for both system and home manager modules.
 {
   sops = {
@@ -8,7 +7,7 @@
     validateSopsFiles = false;
 
     age = {
-      sshKeyPaths = [ ];
+      sshKeyPaths = [];
       keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = false;
     };

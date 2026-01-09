@@ -5,22 +5,20 @@
   vars,
   ...
 }:
-
 # optional virt-manager install for libvirt management.
 let
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
   inherit (vars) username;
-in
-{
+in {
   options.optServices.virtManager.enable = mkEnableOption "Enable virt-manager for VMs.";
 
-  config =
-    let
-      cfgVirtManager = config.optServices.virtManager.enable;
-    in
+  config = let
+    cfgVirtManager = config.optServices.virtManager.enable;
+  in
     mkIf cfgVirtManager {
       # groups for libvirt access.
       users.users.${username}.extraGroups = [
@@ -48,8 +46,8 @@ in
 
       # allow the default libvirt bridge and leave it unmanaged by NetworkManager.
       networking = {
-        firewall.trustedInterfaces = [ "virbr0" ];
-        networkmanager.unmanaged = [ "virbr0" ];
+        firewall.trustedInterfaces = ["virbr0"];
+        networkmanager.unmanaged = ["virbr0"];
       };
     };
 }

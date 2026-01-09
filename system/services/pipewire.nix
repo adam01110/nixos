@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # pipewire with wireplumber and legacy audio shims.
 {
   services.pipewire = {

@@ -1,10 +1,9 @@
-{ ... }:
-
+{...}:
 # configure sober flatpak.
 {
   # add flatpak packge.
   services.flatpak = {
-    packages = [ "org.vinegarhq.Sober" ];
+    packages = ["org.vinegarhq.Sober"];
 
     # set flatpak overrides for discord rpc
     overrides."org.vinegarhq.Sober".Context.filesystems = [

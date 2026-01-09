@@ -1,8 +1,4 @@
-{
-  osConfig,
-  ...
-}:
-
+{osConfig, ...}:
 # reuse the system’s sops settings in home manager.
 {
   sops = {

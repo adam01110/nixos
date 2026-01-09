@@ -1,13 +1,8 @@
-{
-  vars,
-  ...
-}:
-
+{vars, ...}:
 # configure onlyoffice desktop.
 let
   inherit (vars) username;
-in
-{
+in {
   programs.onlyoffice = {
     enable = true;
 

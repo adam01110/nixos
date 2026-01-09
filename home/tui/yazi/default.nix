@@ -1,16 +1,11 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # yazi tui file manager.
 let
   inherit (builtins) attrValues listToAttrs;
   inherit (pkgs.lib.attrsets) nameValuePair;
 
   imageAllocMB = 1024;
-in
-{
+in {
   programs.yazi = {
     enable = true;
 
@@ -19,10 +14,9 @@ in
     shellWrapperName = "y";
 
     # enable plugins.
-    plugins =
-      let
-        mkPlugin = name: nameValuePair name pkgs.yaziPlugins.${name};
-      in
+    plugins = let
+      mkPlugin = name: nameValuePair name pkgs.yaziPlugins.${name};
+    in
       listToAttrs (
         (map mkPlugin [
           "full-border"
@@ -117,26 +111,6 @@ in
     keymap.mgr.prepend_keymap = [
       {
         on = "p";
-        run = "plugin ucp paste";
-        desc = "Paste";
-      }
-      {
-        on = "y";
-        run = "plugin ucp copy";
-        desc = "Copy";
-      }
-      {
-        on = "p";
-        run = "plugin ucp paste notify";
-        desc = "Paste";
-      }
-      {
-        on = "y";
-        run = "plugin ucp copy notify";
-        desc = "Copy";
-      }
-      {
-        on = "p";
         run = "plugin smart-paste";
         desc = "Paste into the hovered directory or CWD";
       }
@@ -160,14 +134,35 @@ in
         run = "plugin smart-enter";
         desc = "Enter the child directory, or open the file";
       }
+      {
+        on = "p";
+        run = "plugin ucp paste";
+        desc = "Paste";
+      }
+      {
+        on = "y";
+        run = "plugin ucp copy";
+        desc = "Copy";
+      }
+      {
+        on = "p";
+        run = "plugin ucp paste notify";
+        desc = "Paste";
+      }
+      {
+        on = "y";
+        run = "plugin ucp copy notify";
+        desc = "Copy";
+      }
     ];
   };
 
   # add packages required by the yazi plugins.
   home.packages = attrValues {
-    inherit (pkgs)
+    inherit
+      (pkgs)
       mediainfo
-      wl-clipboard
+      wl-clipboard-rs
       glow
       ;
   };

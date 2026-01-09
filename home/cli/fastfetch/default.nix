@@ -3,15 +3,13 @@
   pkgs,
   ...
 }:
-
 # configure fastfetch.
 let
   inherit (builtins) fromJSON;
   inherit (lib) getExe';
 
   esc = fromJSON "\"\\u001b\"";
-in
-{
+in {
   programs.fastfetch = {
     enable = true;
 
@@ -58,19 +56,17 @@ in
           type = "command";
           key = "│ ├󰅐 OS-AGE";
           keyColor = "34";
-          text =
-            let
-              stat = getExe' pkgs.coreutils "stat";
-              date = getExe' pkgs.coreutils "date";
-              echo = getExe' pkgs.coreutils "echo";
-            in
-            ''
-              birth_install=$(${stat} -c %W /)
-              current=$(${date} +%s)
-              time_progression=$((current - birth_install))
-              days_difference=$((time_progression / 86400))
-              ${echo} $days_difference days
-            '';
+          text = let
+            stat = getExe' pkgs.coreutils "stat";
+            date = getExe' pkgs.coreutils "date";
+            echo = getExe' pkgs.coreutils "echo";
+          in ''
+            birth_install=$(${stat} -c %W /)
+            current=$(${date} +%s)
+            time_progression=$((current - birth_install))
+            days_difference=$((time_progression / 86400))
+            ${echo} $days_difference days
+          '';
         }
         {
           type = "uptime";

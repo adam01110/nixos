@@ -1,13 +1,8 @@
-{
-  vars,
-  ...
-}:
-
+{vars, ...}:
 # configure nh.
 let
   inherit (vars) username;
-in
-{
+in {
   programs.nh = {
     enable = true;
 

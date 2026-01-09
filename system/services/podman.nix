@@ -2,12 +2,9 @@
   pkgs,
   vars,
   ...
-}:
-
-let
+}: let
   inherit (vars) username;
-in
-{
+in {
   virtualisation.podman = {
     # enable podman service and tooling.
     enable = true;
@@ -27,7 +24,7 @@ in
   };
 
   # add user to the podman group.
-  users.users.${username}.extraGroups = [ "podman" ];
+  users.users.${username}.extraGroups = ["podman"];
 
-  environment.systemPackages = [ pkgs.podman-compose ];
+  environment.systemPackages = [pkgs.podman-compose];
 }

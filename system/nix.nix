@@ -1,9 +1,4 @@
-{
-  inputs,
-  ...
-}:
-
-{
+{inputs, ...}: {
   nix.settings = {
     # add binary caches.
     substituters = [

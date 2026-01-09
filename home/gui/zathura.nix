@@ -1,5 +1,4 @@
-{ ... }:
-
+{...}:
 # configure zathura pdf viewer options.
 {
   programs.zathura = {

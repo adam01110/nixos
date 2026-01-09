@@ -1,12 +1,6 @@
-{
-  config,
-  ...
-}:
-
-let
+{config, ...}: let
   picturesDir = config.xdg.userDirs.pictures;
-in
-{
+in {
   # wallpaper directory and rotation settings.
   programs.noctalia-shell.settings.wallpaper = {
     directory = "${picturesDir}/Wallpapers";

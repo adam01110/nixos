@@ -1,16 +1,12 @@
-{
-  pkgs,
-  ...
-}:
-
+{pkgs, ...}:
 # install additional utilities.
 let
   inherit (builtins) attrValues;
-in
-{
+in {
   # bundle general-purpose cli tools.
   home.packages = attrValues {
-    inherit (pkgs)
+    inherit
+      (pkgs)
       gitfetch
       speedtest-go
       sshfs

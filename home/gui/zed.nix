@@ -4,19 +4,19 @@
   pkgs,
   ...
 }:
-
 # configure zed editor.
 let
   inherit (builtins) attrValues;
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     optionalAttrs
+    getExe
     ;
 
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.cacheHome;
-in
-{
+in {
   options.zed.isVm = mkEnableOption "Allow the usage of virtio gpu accel";
 
   config = {
@@ -26,19 +26,19 @@ in
 
         # add packages for language servers and formatters.
         extraPackages = attrValues {
-          inherit (pkgs)
+          inherit
+            (pkgs)
             # packages for nix.
             nixd
-            nixfmt
-
+            alejandra
             # packages for rust.
             rust-analyzer
-
             # packages for shell script.
             shfmt
-
             # packages for bash.
             shellcheck
+            # packages for lua.
+            stylua
             ;
 
           # packages for qml.
@@ -72,9 +72,9 @@ in
           languages = {
             Nix = {
               # use nixd lsp for nix.
-              language_servers = [ "nixd" ];
+              language_servers = ["nixd"];
               # use nixfmt formatter for nix.
-              formatter.external.command = "nixfmt";
+              formatter.external.command = getExe pkgs.alejandra;
             };
 
             Python.language_servers = [
@@ -84,12 +84,23 @@ in
             ];
 
             "Shell Script".formatter.external = {
-              command = "shfmt";
+              command = getExe pkgs.shfmt;
               arguments = [
                 "--filename"
                 "{buffer_path}"
                 "--indent"
                 "2"
+              ];
+            };
+
+            Lua.formatter.external = {
+              command = getExe pkgs.stylua;
+              arguments = [
+                "--syntax=Lua54"
+                "--respect-ignores"
+                "--stdin-filepath"
+                "{buffer_path}"
+                "-"
               ];
             };
 
@@ -100,6 +111,7 @@ in
             };
             TSX.formatter.language_server.name = "oxc";
             JSON.formatter.language_server.name = "oxc";
+
             JSONC.formatter.language_server.name = "biome";
             CSS.formatter.language_server.name = "biome";
           };
@@ -131,7 +143,8 @@ in
       zed-editor-extensions = {
         enable = true;
         packages = attrValues {
-          inherit (pkgs.zed-extensions)
+          inherit
+            (pkgs.zed-extensions)
             basher
             biome
             color-highlight
@@ -153,12 +166,11 @@ in
     };
 
     # export editor-related session variables.
-    home.sessionVariables =
-      let
-        cfgVm = config.zed.isVm;
+    home.sessionVariables = let
+      cfgVm = config.zed.isVm;
 
-        name = "zeditor";
-      in
+      name = "zeditor";
+    in
       {
         # ZED
         EDITOR = name;
@@ -167,6 +179,6 @@ in
         BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
         RUFF_CACHE_DIR = "${cacheHome}/ruff";
       }
-      // optionalAttrs cfgVm { ZED_ALLOW_EMULATED_GPU = "1"; };
+      // optionalAttrs cfgVm {ZED_ALLOW_EMULATED_GPU = "1";};
   };
 }
