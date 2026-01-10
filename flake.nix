@@ -83,10 +83,9 @@
     };
 
     # packages and home manager modules for ai tools.
-    mcp-servers-nix = {
-      url = "github:natsukium/mcp-servers-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    mcp-nix.url = "github:felixdorn/mcp-nix";
+    mcp-servers-nix.url = "github:natsukium/mcp-servers-nix";
 
     # spicetify flake.
     spicetify-nix = {

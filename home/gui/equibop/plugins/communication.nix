@@ -157,4 +157,5 @@
   };
   YoutubeDescription.enabled = true;
   ZipPreview.enabled = true;
+  WebScreenShareFixes.enabled = true;
 }

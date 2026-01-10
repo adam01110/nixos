@@ -1,10 +1,11 @@
 {...}: {
   imports = [
+    ./opencode
     ./yazi
     ./btop.nix
-    ./codex.nix
     ./impala.nix
     ./nvtop.nix
+    ./other.nix
     ./spotify-player.nix
     ./wiremix.nix
   ];

@@ -13,9 +13,6 @@ let
     optionalAttrs
     getExe
     ;
-
-  configHome = config.xdg.configHome;
-  cacheHome = config.xdg.cacheHome;
 in {
   options.zed.isVm = mkEnableOption "Allow the usage of virtio gpu accel";
 
@@ -96,7 +93,6 @@ in {
             Lua.formatter.external = {
               command = getExe pkgs.stylua;
               arguments = [
-                "--syntax=Lua54"
                 "--respect-ignores"
                 "--stdin-filepath"
                 "{buffer_path}"
@@ -175,9 +171,6 @@ in {
         # ZED
         EDITOR = name;
         VISUAL = name;
-
-        BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
-        RUFF_CACHE_DIR = "${cacheHome}/ruff";
       }
       // optionalAttrs cfgVm {ZED_ALLOW_EMULATED_GPU = "1";};
   };

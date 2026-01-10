@@ -13,7 +13,6 @@
     (lib)
     mkEnableOption
     mkOption
-    mkMerge
     genAttrs
     filterAttrs
     mapAttrs'
@@ -53,7 +52,7 @@ in {
 
   config = {
     # keep the plugin settings file in sync with the enabled list.
-    home.file = mkMerge [
+    home.file =
       {
         ".config/noctalia/plugins" = {
           recursive = true;
@@ -78,12 +77,11 @@ in {
           });
         };
       }
-      (mapAttrs' (name: settings: {
+      // (mapAttrs' (name: settings: {
           name = ".config/noctalia/plugins/${name}/settings.json";
           value.text = toJSON settings;
         })
-        enabledSettings)
-    ];
+        enabledSettings);
 
     noctalia.plugins."privacy-indicator" = {
       enable = true;

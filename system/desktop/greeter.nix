@@ -6,6 +6,7 @@
 }:
 # text-based greeter (greetd + tuigreet).
 let
+  inherit (builtins) concatStringsSep;
   inherit
     (lib)
     getExe
@@ -27,7 +28,7 @@ in {
           uwsm = getExe config.programs.uwsm.package;
           hyprland = getExe' config.programs.hyprland.package "start-hyprland";
         in
-          lib.concatStringsSep " " [
+          concatStringsSep " " [
             "${tuigreet}"
             "--no-xsession-wrapper"
             "--asterisks"
