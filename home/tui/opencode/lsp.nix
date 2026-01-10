@@ -1,0 +1,54 @@
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) getExe;
+in {
+  programs.opencode.settings.lsp = {
+    nixd = {
+      command = [(getExe pkgs.nixd)];
+      extensions = [".nix"];
+    };
+
+    lua-language-server = {
+      command = [(getExe pkgs.lua-language-server)];
+      extensions = [".lua"];
+    };
+
+    bash-language-server = {
+      command = [(getExe pkgs.bash-language-server) "start"];
+      extensions = [".sh" ".bash"];
+    };
+
+    yaml-language-server = {
+      command = [(getExe pkgs.yaml-language-server) "--stdio"];
+      extensions = [".yaml" ".yml"];
+    };
+
+    vscode-json-languageserver = {
+      command = [(getExe pkgs.vscode-json-languageserver) "--stdio"];
+      extensions = [".json" ".jsonc"];
+    };
+
+    ty = {
+      command = [(getExe pkgs.ty)];
+      extensions = [".py" ".pyi"];
+    };
+
+    oxlint = {
+      command = [(getExe pkgs.oxlint)];
+      extensions = [".ts" ".tsx" ".js" ".jsx"];
+    };
+
+    taplo = {
+      command = [(getExe pkgs.taplo) "lsp" "stdio"];
+      extensions = [".toml"];
+    };
+
+    typescript-language-server = {
+      command = [(getExe pkgs.typescript-language-server) "--stdio"];
+      extensions = [".ts" ".tsx" ".js" ".jsx"];
+    };
+  };
+}

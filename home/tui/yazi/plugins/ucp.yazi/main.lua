@@ -989,15 +989,12 @@ function M:handle_file_list_paste(file_uris, no_hover, show_notify)
 								if wrote then
 									success_count = success_count + 1
 									if not no_hover then
-										ya.emit(
-											"reveal",
-											{
-												tostring(file_path),
-												tab = get_current_tab_id(),
-												no_dummy = true,
-												raw = true,
-											}
-										)
+										ya.emit("reveal", {
+											tostring(file_path),
+											tab = get_current_tab_id(),
+											no_dummy = true,
+											raw = true,
+										})
 									end
 								else
 									warn(

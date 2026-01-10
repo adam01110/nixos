@@ -1,4 +1,7 @@
-{...}: {
+{config, ...}: let
+  configHome = config.xdg.configHome;
+  cacheHome = config.xdg.cacheHome;
+in {
   # home-manager base config for the primary user.
   # user-level files and session environment.
   home = {
@@ -32,6 +35,9 @@
 
       APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
       APP2UNIT_TYPE = "service";
+
+      BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
+      RUFF_CACHE_DIR = "${cacheHome}/ruff";
     };
   };
 
