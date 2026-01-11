@@ -7,6 +7,7 @@
 let
   bluetoothEnabled = osConfig.optServices.bluetooth.enable;
 
+  # slimLutris provides minimal lutris with essential dependencies.
   slimLutris = pkgs.callPackage (
     {
       lib,

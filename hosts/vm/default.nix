@@ -1,25 +1,26 @@
 {vars, ...}:
-# laptop host profile: hardware, home manager imports, and optional services.
+# vm host profile: hardware, home manager imports, and optional services.
 let
   inherit (vars) username;
 in {
   networking.hostName = "vm";
-  # dont change.
+  # system version for state compatibility - do not modify.
   system.stateVersion = "25.05";
 
-  # import vm hardware profile.
+  # import vm-specific hardware configuration.
   imports = [./hardware.nix];
   home-manager.users.${username}.imports = [./home.nix];
 
-  # vm disk device for disko.
+  # virtual disk device for disko partitioning.
   disko.selectedDisk = "/dev/vda";
 
-  # per-host optional services and settings.
+  # vm-specific optional services.
   optServices = {
     ssh.enable = true;
     timezone = "automatic-timezoned";
   };
 
+  # enable vm guest services for better integration.
   services = {
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;

@@ -9,5 +9,6 @@ let
   inherit (lib) optional;
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
 in {
+  # only install when bluetooth is enabled.
   home.packages = optional cfgBluetooth pkgs.bluetui;
 }

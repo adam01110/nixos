@@ -1,4 +1,6 @@
-{pkgs, ...}: let
+{pkgs, ...}:
+# zen browser extensions configuration.
+let
   inherit
     (builtins)
     attrValues
@@ -7,6 +9,7 @@
 in {
   # add extensions in nur.
   programs.zen-browser.profiles.default.extensions = {
+    # force extensions to be enabled.
     force = true;
     packages = attrValues {
       inherit

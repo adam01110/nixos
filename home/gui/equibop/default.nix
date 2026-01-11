@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# configure equibop with themes and options.
+# set up discord with nixcord and equibop.
 let
   inherit (pkgs) replaceVars;
   configHome = config.xdg.configHome;
@@ -38,11 +38,13 @@ in {
       frameless = true;
       transparent = true;
 
+      # enable custom css themes.
       enabledThemes = [
         "system24.css"
         "snippets.css"
       ];
 
+      # load external theme links for enhanced styling.
       themeLinks = [
         "https://raw.githubusercontent.com/Augenbl1ck/Discord-Styles/refs/heads/main/expProfile.css"
         "https://raw.githubusercontent.com/yiruzu/vencord-snippets/refs/heads/main/snippets/BubbleUsernames/import.css"
@@ -56,6 +58,6 @@ in {
     monospaceFont = osConfig.stylix.fonts.monospace.name;
   };
 
-  # add snippets stylesheet.
+  # add snippets stylesheet for additional styling.
   xdg.configFile."equibop/themes/snippets.css".source = ./themes/snippets.css;
 }

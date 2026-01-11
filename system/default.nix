@@ -1,3 +1,4 @@
+# system-wide configuration entry point for nixos.
 {
   config,
   lib,
@@ -32,14 +33,17 @@ in {
   config = {
     # bootloader, kernel, and initrd configuration.
     boot = {
+      # use cachyos kernel for performance optimizations.
       kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
       initrd = {
+        # use numworks udev package for calculator.
         services.udev.packages = [pkgs.numworks-udev-rules];
 
         systemd.enable = true;
       };
 
       loader = {
+        # skip bootloader timeout for faster boot.
         timeout = 0;
 
         # secure boot is handled via lanzaboote below.
@@ -68,7 +72,7 @@ in {
       polkit.enable = true;
     };
 
-    # enable nix-ld to allow the use of dynamic libraries
+    # enable nix-ld to allow the use of dynamic libraries.
     programs.nix-ld.enable = true;
 
     # use nftables; individual services will add rules if needed.

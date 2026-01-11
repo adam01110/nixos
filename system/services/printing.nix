@@ -7,7 +7,7 @@ in {
     enable = true;
     openFirewall = true;
 
-    # diable the webinterface.
+    # disable the web interface.
     webInterface = false;
 
     # printer drivers packages.

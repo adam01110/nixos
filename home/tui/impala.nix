@@ -12,10 +12,10 @@ let
     mkIf
     ;
 
-  # tie enablement to the host wifi option.
   cfgWifi = osConfig.optServices.wifi.enable;
   pkg = pkgs.impala;
 in
+  # only install when wifi is enabled to avoid unnecessary packages on desktops.
   mkIf cfgWifi {
     home.packages = [pkg];
 

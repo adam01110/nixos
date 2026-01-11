@@ -8,18 +8,19 @@ let
   inherit (lib) mkForce;
   inherit (vars) username;
 in {
-  networking.hostName = "laptop";
-  # dont change.
+  # system version for state compatibility - do not modify.
   system.stateVersion = "25.05";
 
-  # import host-specific hardware configuration.
+  networking.hostName = "laptop";
+
+  # import laptop-specific hardware configuration.
   imports = [./hardware.nix];
   home-manager.users.${username}.imports = [./home.nix];
 
-  # primary install disk for disko partitioning.
+  # primary nvme disk for disko partitioning.
   disko.selectedDisk = "/dev/nvme0n1";
 
-  # per-host optional services and settings.
+  # laptop-specific optional services.
   optServices = {
     bluetooth.enable = true;
     timezone = "automatic-timezoned";
@@ -27,34 +28,50 @@ in {
     virtManager.enable = true;
   };
 
+  # enable rcu lazy mode for better battery life.
   optTweaks.rcuLazy.enable = true;
 
-  # tlp tuning for power management on battery.
+  # advanced power management for laptop battery optimization.
   services = {
     tlp = {
+      # enable tlp power management.
       enable = true;
 
       settings = {
-        TLP_ENABLE = 1;
+        # cpu performance profiles: maximize performance on ac, conserve battery on bat.
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
+        # cpu frequency limits: allow full range on ac, cap at 30% on battery.
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 30;
+
+        # disable cpu boost because it makes noise FOR SOME REASON ?!.
         CPU_BOOST_ON_AC = 0;
+
+        # platform power profiles: balanced on ac, low power on battery.
         PLATFORM_PROFILE_ON_AC = "balanced";
         PLATFORM_PROFILE_ON_BAT = "low-power";
+
+        # sleep modes.
         MEM_SLEEP_ON_AC = "s2idle";
-        MEM_SLEEP_ON_BAT = "deep";
+        MEM_SLEEP_ON_BAT = "s2idle";
+
+        # storage device for power management.
         DISK_DEVICES = "nvme-Samsung_SSD_980_PRO_500GB_S5GYNX0W331360B";
+
+        # intel gpu frequency limits: high performance on ac, reduced on battery.
         INTEL_GPU_MIN_FREQ_ON_AC = 100;
         INTEL_GPU_MIN_FREQ_ON_BAT = 100;
         INTEL_GPU_MAX_FREQ_ON_AC = 1300;
         INTEL_GPU_MAX_FREQ_ON_BAT = 450;
         INTEL_GPU_BOOST_FREQ_ON_AC = 1300;
         INTEL_GPU_BOOST_FREQ_ON_BAT = 700;
+
+        # disable unused amd gpu features since this is intel graphics.
         RADEON_DPM_PERF_LEVEL_ON_AC = "";
         RADEON_DPM_PERF_LEVEL_ON_BAT = "";
         AMDGPU_ABM_LEVEL_ON_AC = "";
@@ -63,8 +80,10 @@ in {
       };
     };
 
+    # disable conflicting power management daemon.
     power-profiles-daemon.enable = mkForce false;
 
+    # lid switch behavior configuration.
     logind.settings.Login = {
       HandleLidSwitch = "suspend";
       HandleLidSwitchExternalPower = "suspend";
@@ -72,6 +91,6 @@ in {
     };
   };
 
-  # extra hardware toggles.
+  # enable laptop hardware support.
   hardware.roccat.enable = true;
 }

@@ -1,7 +1,7 @@
 {...}:
 # per-host home manager overrides for the desktop.
 {
-  # configure the hosts monitors.
+  # configure dual monitor setup.
   hyprland.monitors = {
     DP-2 = {
       resolution = "2560x1440@170";
@@ -16,14 +16,18 @@
     };
   };
 
-  # gpu types in the system to install for nvtop.
+  # gpu monitoring support for multi-gpu desktop.
   nvtop.types = [
     "amd"
     "intel"
   ];
 
+  # enable rocm gpu backend for system monitoring.
   btop.gpuBackends = ["rocm"];
 
+  # browser memory allocation for desktop usage.
   zen-browser.commit-space = 25698;
+
+  # enable gpu acceleration for noctalia.
   noctalia.enableGpu = true;
 }

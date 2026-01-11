@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}:
+# zen browser search engine configuration.
+{
   programs.zen-browser.profiles.default = {
     search = {
       force = true;
@@ -6,7 +8,7 @@
       engines = let
         nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
       in {
-        # general search.
+        # general search engines.
         brave = {
           urls = [
             {
@@ -24,7 +26,7 @@
         };
         google.metaData.alias = "@g";
 
-        # wiki.
+        # wiki search engines.
         wikiwand = {
           urls = [
             {
@@ -41,7 +43,7 @@
           definedAliases = ["@wi"];
         };
 
-        # other.
+        # media search engines.
         youtube = {
           urls = [
             {
@@ -64,7 +66,7 @@
         qwant.metaData.hidden = true;
         ecosia.metaData.hidden = true;
 
-        # nix.
+        # nix related search engines.
         nix = {
           urls = [
             {
@@ -188,7 +190,7 @@
           definedAliases = ["@mw"];
         };
 
-        # dev.
+        # development resources.
         crates = {
           urls = [
             {

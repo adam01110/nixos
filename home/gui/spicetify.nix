@@ -90,6 +90,7 @@ in {
         ;
     };
 
+    # remove rounded corners from all elements for consistent styling.
     theme.additionalCss = ''
       *,
       *::before,

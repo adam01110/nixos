@@ -5,8 +5,10 @@ in {
   home.packages = attrValues {
     inherit
       (pkgs)
+      # greeting.
       fortune
       boxes
+      # fifc.
       file
       # tar.
       gnutar

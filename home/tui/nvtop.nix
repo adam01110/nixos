@@ -30,7 +30,7 @@ in {
     description = "Choose which GPU types to monitor with nvtop.";
   };
 
-  # pick a flavor then enable additional backends via override.
+  # override enables multiple gpu backends in single nvtop instance.
   config.home.packages = let
     selectedTypes = config.nvtop.types;
     base = lib.head selectedTypes;
@@ -41,5 +41,6 @@ in {
       then pkgs.nvtopPackages.${base}
       else pkgs.nvtopPackages.${base}.override backends;
   in
+    # only install nvtop when gpu types are specified.
     optional (selectedTypes != []) package;
 }

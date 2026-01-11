@@ -1,5 +1,5 @@
 {...}:
-# compressed swap in ram for responsiveness under load.
+# zram compressed swap for improved system responsiveness under memory pressure.
 {
   zramSwap = {
     enable = true;

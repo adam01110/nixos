@@ -4,11 +4,11 @@
   system,
   ...
 }:
-# hardware profile for the desktop machine..
+# hardware profile for the desktop machine.
 {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-  # kernel modules the desktop machine.
+  # kernel modules for desktop hardware support.
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -18,8 +18,11 @@
     "usbhid"
     "sd_mod"
   ];
+  # enable intel virtualization support.
   boot.kernelModules = ["kvm-intel"];
 
   nixpkgs.hostPlatform = system;
+
+  # enable intel microcode updates when firmware is available.
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 }

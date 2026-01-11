@@ -2,7 +2,9 @@
   config,
   lib,
   ...
-}: let
+}:
+# thunar file manager configuration.
+let
   inherit (lib) getExe;
 in {
   # make thunar use the ghostty terminal.
