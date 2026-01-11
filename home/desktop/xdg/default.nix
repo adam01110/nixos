@@ -14,4 +14,7 @@
     enable = true;
     createDirectories = true;
   };
+
+  # enable the gnome polkit.
+  services.polkit-gnome.enable = true;
 }

@@ -18,7 +18,6 @@ in {
     ./formatter.nix
     ./lsp.nix
     ./mcp.nix
-    ./plugins.nix
     ./settings.nix
   ];
 
