@@ -103,6 +103,13 @@
 
     # treefmt.
     treefmt-nix.url = "github:numtide/treefmt-nix";
+
+    # temporary inputs until nixpkgs fixes their shit.
+    mcp-nixos.url = "github:utensils/mcp-nixos?ref=v2.1.0";
+    spotify-player = {
+      url = "github:aome510/spotify-player?ref=v0.21.3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # outputs: expose host configurations and pass through common arguments.

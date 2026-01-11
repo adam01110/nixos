@@ -26,7 +26,7 @@ in {
     servers = let
       cat = getExe' pkgs.coreutils "cat";
     in {
-      nix.command = getExe pkgs.mcp-nixos;
+      nix.command = getExe inputs.mcp-nixos.packages.${system}.mcp-nixos;
 
       context7.command = getExe (writeShellApplication {
         name = "context7-mcp-wrapper";

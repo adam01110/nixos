@@ -34,7 +34,7 @@ in {
     # define general keybindings and commands.
     bindd = let
       performantMode = callPackage ./scripts/performant-mode.nix {inherit osConfig;};
-      thunar = getExe pkgs.xfce.thunar;
+      thunar = getExe pkgs.thunar;
       equibop = getExe config.programs.nixcord.equibop.package;
       ghostty = "${getExe config.programs.ghostty.package} +new-window";
       hyprpicker = getExe config.programs.hyprshot.package;
