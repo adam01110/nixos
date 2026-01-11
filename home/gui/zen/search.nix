@@ -1,66 +1,11 @@
-{
-  osConfig,
-  lib,
-  pkgs,
-  inputs,
-  system,
-  ...
-}:
-# default zen profile with shared search engines and extensions.
-let
-  inherit
-    (builtins)
-    attrValues
-    readFile
-    ;
-  inherit
-    (lib)
-    filterAttrs
-    hasPrefix
-    ;
-
-  nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-
-  # convert the stylix base16 scheme into a format accepted by nix-userstyles.
-  stylixPalette = osConfig.lib.stylix.colors |> filterAttrs (name: _: hasPrefix "base0" name);
-in {
+{pkgs, ...}: {
   programs.zen-browser.profiles.default = {
-    # set extensions.
-    extensions = {
-      force = true;
-      packages = attrValues {
-        inherit
-          (pkgs.nur.repos.rycee.firefox-addons)
-          # content blocking.
-          ublock-origin
-          localcdn
-          sponsorblock
-          fastforwardteam
-          istilldontcareaboutcookies
-          consent-o-matic
-          don-t-fuck-with-paste
-          # annoyances.
-          shinigami-eyes
-          translate-web-pages
-          return-youtube-dislikes
-          dearrow
-          darkreader
-          stylus
-          bitwarden
-          wikiwand-wikipedia-modernized
-          violentmonkey
-          pronoundb
-          modrinthify
-          indie-wiki-buddy
-          ;
-      };
-    };
-
-    # set search engines.
     search = {
       force = true;
       default = "brave";
-      engines = {
+      engines = let
+        nixIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      in {
         # general search.
         brave = {
           urls = [
@@ -295,105 +240,5 @@ in {
         };
       };
     };
-
-    # set zen spaces.
-    spacesForce = true;
-    spaces = {
-      "general" = {
-        id = "29680918-95d2-4162-ba72-1c41bd1b628d";
-        position = 1000;
-        icon = "🧶";
-      };
-      "dev" = {
-        id = "9b41acc7-1eb2-4c14-9fba-7f6d670db845";
-        position = 2000;
-        icon = "🖥️";
-      };
-      "gaming" = {
-        id = "70e211cd-676f-4abb-9317-35fac2078913";
-        position = 3000;
-        icon = "🎮";
-      };
-      "news" = {
-        id = "b2e284cd-b0d6-4d05-9b0a-9021148ff0bb";
-        position = 4000;
-        icon = "🗞️";
-      };
-    };
-
-    # remove rounded corners in zen.
-    userChrome = ''
-      *,
-      *::before,
-      *::after {
-        border-radius: 0px !important;
-      }
-    '';
-
-    # remove rounded corners on sites, and theme them.
-    userContent = ''
-      *,
-      *::before,
-      *::after {
-        border-radius: 0px !important;
-      }
-
-      ${readFile "${inputs.nix-userstyles.packages.${system}.mkUserStyles stylixPalette [
-        "advent-of-code"
-        "alternativeto"
-        "arch-wiki"
-        "brave-search"
-        "bsky"
-        "bstats"
-        "chatgpt"
-        "codeberg"
-        "crates.io"
-        "dev.to"
-        "devdocs"
-        "discord"
-        "docs.deno.com"
-        "docs.rs"
-        "freedesktop"
-        "ghostty.org"
-        "github"
-        "gmail"
-        "google"
-        "google-drive"
-        "hacker-news"
-        "home-manager-options-search"
-        "indie-wiki-buddy"
-        "lastfm"
-        "linkedin"
-        "lobste.rs"
-        "mastodon"
-        "mdbook"
-        "mdn"
-        "modrinth"
-        "namemc"
-        "nitter"
-        "neovim.io"
-        "nixos-manual"
-        "nixos-search"
-        "npm"
-        "planet-minecraft"
-        "porkbun"
-        "proton"
-        "pypi"
-        "react.dev"
-        "reddit"
-        "rentry.co"
-        "searchix"
-        "shinigami-eyes"
-        "spotify-web"
-        "stack-overflow"
-        "twitch"
-        "web.dev"
-        "wiki.nixos.org"
-        "wikipedia"
-        "wikiwand"
-        "youtube"
-        "zen-browser-docs"
-      ]}"}
-    '';
   };
 }

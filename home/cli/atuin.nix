@@ -5,7 +5,7 @@
     enable = true;
 
     daemon = {
-      # TODO
+      # TODO(adam0): decide when to enable the daemon.
       # enable = true;
       logLevel = "error";
     };
@@ -20,7 +20,7 @@
       inline_height = 24;
       show_tabs = false;
 
-      # TODO
+      # TODO(adam0): set sync address when ready.
       #sync_address = "";
       sync_frequency = 600;
     };

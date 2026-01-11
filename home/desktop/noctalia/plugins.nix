@@ -25,7 +25,7 @@ in {
     ];
 
     states = let
-      mkPlugin = name: {
+      mkPlugin = _name: {
         enabled = true;
         sourceUrl = noctaliaPluginsUrl;
       };
