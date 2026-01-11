@@ -21,7 +21,7 @@
               then ""
               else "-plugin";
           in
-            pkgs.xfce."thunar-${name}${suffix}"
+            pkgs."thunar-${name}${suffix}"
         )
         pluginNames;
     };

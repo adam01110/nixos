@@ -28,17 +28,21 @@ in {
     package = symlinkJoin {
       name = "opencode-wrapped";
       paths = with inputs;
-        [llm-agents.packages.${system}.opencode]
+        [
+          llm-agents.packages.${system}.opencode
+          #mcp
+          mcp-nixos.packages.${system}.mcp-nixos
+        ]
         ++ (with mcp-servers-nix.packages.${system}; [
           # mcp
           context7-mcp
           mcp-server-git
         ])
+        ++ [inputs.mcp-nixos.packages.${system}.mcp-nixos]
         ++ attrValues {
           inherit
             (pkgs)
             # mcp
-            mcp-nixos
             github-mcp-server
             # lsp
             lua-language-server
