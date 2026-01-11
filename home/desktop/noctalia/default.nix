@@ -1,11 +1,10 @@
 {
   lib,
   inputs,
+  pkgs,
   system,
   ...
-}:
-# configure the Noctalia shell and related widgets.
-{
+}: {
   # pull in per-feature Noctalia modules.
   imports = [
     ./audio.nix
@@ -20,9 +19,7 @@
     ./location.nix
     ./network.nix
     ./notifications.nix
-    ./osd.nix
     ./plugins.nix
-    ./screenrecorder.nix
     ./sessionmenu.nix
     ./systemmonitor.nix
     ./ui.nix
@@ -33,16 +30,46 @@
   options.noctalia.battery.enable = lib.mkEnableOption "Enable the battery service & widgets.";
 
   # enable the Noctalia shell and wire up its package.
-  config.programs.noctalia-shell = {
-    enable = true;
-    systemd.enable = true;
+  config = let
+    agentPackage = inputs.noctalia-auth-agent.packages.${system}.noctalia-polkit;
+  in {
+    programs.noctalia-shell = {
+      enable = true;
+      systemd.enable = true;
 
-    # enable calendar support in the flake-provided Noctalia build.
-    package = inputs.noctalia.packages.${system}.default.override {
-      calendarSupport = true;
+      # enable calendar support in the flake-provided Noctalia build.
+      package = inputs.noctalia.packages.${system}.default.override {
+        calendarSupport = true;
+      };
+
+      # keep template generation under explicit control.
+      settings.colorschemes.generateTemplatesForPredefined = false;
     };
 
-    # keep template generation under explicit control.
-    settings.colorschemes.generateTemplatesForPredefined = false;
+    home.packages = [agentPackage];
+
+    # wire up the polkit auth agent user service.
+    systemd.user.services.noctalia-polkit = {
+      Unit = {
+        Description = "Noctalia Polkit Authentication Agent";
+        PartOf = ["graphical-session.target"];
+        After = ["graphical-session.target"];
+        ConditionEnvironment = "WAYLAND_DISPLAY";
+      };
+
+      Service = {
+        ExecStartPre = let
+          keyringPrompter = "${agentPackage}/share/noctalia-polkit/org.gnome.keyring.SystemPrompter.service";
+        in "${pkgs.runtimeShell} -c 'mkdir -p \"\${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services\" && cp -n ${keyringPrompter} \"\${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/\"'";
+        ExecStart = "${agentPackage}/libexec/noctalia-polkit";
+        Slice = "session.slice";
+        TimeoutStopSec = "5s";
+        Restart = "on-failure";
+      };
+
+      Install = {
+        WantedBy = ["graphical-session.target"];
+      };
+    };
   };
 }

@@ -8,14 +8,10 @@ let
     ;
 in {
   programs.noctalia-shell.settings.location = {
-    analogClockInCalendar = false;
+    analogClockInCalendar = true;
     firstDayOfWeek = noctaliaFirstDayOfWeek;
     name = noctaliaLocation;
-    showCalendarEvents = true;
     showCalendarWeather = false;
     showWeekNumberInCalendar = true;
-    use12hourFormat = false;
-    useFahrenheit = false;
-    weatherEnabled = true;
   };
 }

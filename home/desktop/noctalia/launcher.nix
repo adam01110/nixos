@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) getExe;
@@ -13,5 +14,9 @@ in {
     sortByMostUsed = false;
     terminalCommand = getExe config.xdg.terminal-exec.package;
     useApp2Unit = true;
+    showIconBackground = true;
+    autoPasteClipboard = true;
   };
+
+  home.packages = [pkgs.wtype];
 }

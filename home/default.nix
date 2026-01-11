@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./ai
     ./cli
     ./desktop
     ./gui

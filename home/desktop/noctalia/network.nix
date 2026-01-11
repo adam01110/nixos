@@ -6,5 +6,7 @@ in {
   programs.noctalia-shell.settings.network = {
     wifiEnabled = cfgWifi;
     bluetoothEnabled = cfgBluetooth;
+    bluetoothHideUnnamedDevices = true;
+    bluetoothRssiPollingEnabled = true;
   };
 }

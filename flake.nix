@@ -54,13 +54,18 @@
       inputs.hyprland.follows = "hyprland";
     };
     hyprsplit = {
-      url = "github:shezdy/hyprsplit?ref=main";
+      url = "github:shezdy/hyprsplit";
       inputs.hyprland.follows = "hyprland";
     };
 
     # noctalia shell.
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # noctalia polkit auth agent.
+    noctalia-auth-agent = {
+      url = "github:anthonyhab/noctalia-unofficial-auth-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -84,7 +89,6 @@
 
     # packages and home manager modules for ai tools.
     llm-agents.url = "github:numtide/llm-agents.nix";
-    mcp-nix.url = "github:felixdorn/mcp-nix";
     mcp-servers-nix.url = "github:natsukium/mcp-servers-nix";
 
     # spicetify flake.

@@ -23,6 +23,7 @@ in {
         (pkgs)
         bash
         hdparm
+        coreutils
         ;
     };
 

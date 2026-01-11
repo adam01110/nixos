@@ -5,7 +5,7 @@
 }:
 # expose a gpu toggle for system monitor widgets.
 let
-  inherit (lib) mkEnableOption;
+  inherit (lib) mkEnableOption getExe;
 in {
   options.noctalia.enableGpu = mkEnableOption "Enable dGPU monitoring and GPU temperature widgets.";
 
@@ -20,5 +20,9 @@ in {
     diskPollingInterval = generalInterval;
     networkPollingInterval = generalInterval;
     enableDgpuMonitoring = config.noctalia.enableGpu;
+    externalMonitor = let
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      btop = getExe config.programs.btop.package;
+    in "${terminalCommand} --title=Btop ${btop}";
   };
 }

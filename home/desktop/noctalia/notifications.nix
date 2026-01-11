@@ -2,13 +2,10 @@
 # notification bubble styling and durations.
 {
   programs.noctalia-shell.settings.notifications = {
-    criticalUrgencyDuration = 15;
     enableKeyboardLayoutToast = false;
-    enabled = true;
-    location = "top_right";
-    lowUrgencyDuration = 3;
-    normalUrgencyDuration = 8;
-    overlayLayer = true;
+    lowUrgencyDuration = 2;
+    normalUrgencyDuration = 4;
+    criticalUrgencyDuration = 8;
     respectExpireTimeout = false;
   };
 }

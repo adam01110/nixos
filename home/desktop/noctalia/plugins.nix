@@ -1,91 +1,77 @@
 {
   config,
-  lib,
   pkgs,
+  vars,
   ...
 }: let
-  inherit
-    (builtins)
-    attrNames
-    toJSON
-    ;
-  inherit
-    (lib)
-    mkEnableOption
-    mkOption
-    genAttrs
-    filterAttrs
-    mapAttrs'
-    ;
-  inherit
-    (lib.types)
-    attrsOf
-    anything
-    submodule
-    ;
-  inherit (pkgs) fetchFromGitHub;
+  inherit (builtins) toJSON;
+  inherit (config.lib.file) mkOutOfStoreSymlink;
 
-  cfg = config.noctalia.plugins;
-  enabledPlugins = filterAttrs (_: plugin: plugin.enable) cfg;
-  enabledNames = attrNames enabledPlugins;
-  enabledSettings = lib.mapAttrs (_: plugin: plugin.settings) enabledPlugins;
+  inherit (vars) gitUsername;
+
+  videosDir = config.xdg.userDirs.videos;
 in {
-  options.noctalia.plugins = mkOption {
-    type = attrsOf (
-      submodule (
-        {name, ...}: {
-          options = {
-            enable = mkEnableOption "Enable the ${name} plugin.";
+  programs.noctalia-shell.plugins = let
+    noctaliaPluginsUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+    polkitPluginUrl = "https://github.com/anthonyhab/noctalia-plugins";
+  in {
+    version = 1;
 
-            settings = mkOption {
-              type = attrsOf anything;
-              default = {};
-              description = "Settings for the ${name} plugin.";
-            };
-          };
-        }
-      )
-    );
-    default = {};
-    description = "Noctalia plugins keyed by plugin name.";
-  };
-
-  config = {
-    # keep the plugin settings file in sync with the enabled list.
-    home.file =
+    sources = [
       {
-        ".config/noctalia/plugins" = {
-          recursive = true;
-          source = fetchFromGitHub {
-            owner = "noctalia-dev";
-            repo = "noctalia-plugins";
-            rev = "8ef7e1762e3d5a48ce71716e503ecc9ffd1738e7";
-            hash = "sha256-AM9y11GCGbufapubXAQlD6f2bN8f8MA/jtnPjyhlOJU=";
-            sparseCheckout = enabledNames;
-          };
-        };
-
-        ".config/noctalia/plugins.json".text = toJSON {
-          sources = [
-            {
-              name = "Official Noctalia Plugins";
-              url = "https://github.com/noctalia-dev/noctalia-plugins";
-            }
-          ];
-          states = genAttrs enabledNames (_: {
-            enabled = true;
-          });
-        };
+        enabled = true;
+        name = "Official Noctalia Plugins";
+        url = noctaliaPluginsUrl;
       }
-      // (mapAttrs' (name: settings: {
-          name = ".config/noctalia/plugins/${name}/settings.json";
-          value.text = toJSON settings;
-        })
-        enabledSettings);
+      {
+        enabled = true;
+        name = "Plugin source for polkit auth.";
+        url = polkitPluginUrl;
+      }
+    ];
 
-    noctalia.plugins."privacy-indicator" = {
-      enable = true;
-      settings.hideInactive = true;
+    states = let
+      mkPlugin = name: {
+        enabled = true;
+        sourceUrl = noctaliaPluginsUrl;
+      };
+    in {
+      kaomoji-provider = mkPlugin "kaomoji-provider";
+      github-feed = mkPlugin "github-feed";
+      privacy-indicator = mkPlugin "privacy-indicator";
+      screen-recorder = mkPlugin "screen-recorder";
+
+      polkit-auth = {
+        enabled = true;
+        sourceUrl = polkitPluginUrl;
+      };
+    };
+
+    pluginSettings = {
+      privacy-indicator.hideInactive = true;
+
+      screen-recorder = {
+        directory = "${videosDir}/Recordings";
+        videoCodec = "hevc";
+        copyToClipboard = true;
+      };
     };
   };
+
+  # the noctalia github feed plugin settings
+  sops = {
+    secrets."noctalia_github_token" = {};
+
+    templates."noctalia_github_config".content = toJSON {
+      username = gitUsername;
+      token = config.sops.placeholder."noctalia_github_token";
+      refreshInterval = 2000;
+      maxEvents = 64;
+    };
+  };
+
+  xdg.configFile."noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia_github_config".path;
+
+  # packages for screen-recorder.
+  home.packages = [pkgs.gpu-screen-recorder];
 }
