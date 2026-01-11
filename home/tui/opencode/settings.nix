@@ -1,7 +1,5 @@
 {...}: {
   programs.opencode.settings = {
-    model = "minimax/minimax-m2.1";
-
     autoupdate = false;
 
     tui.diff_style = "stacked";

@@ -99,7 +99,6 @@ in {
           ATTR{link_power_management_policy}=="*", \
           ATTR{link_power_management_policy}="max_performance"
 
-      # HDD
       ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \
         ATTR{queue/scheduler}="bfq"
 

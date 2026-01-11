@@ -1,7 +1,6 @@
 **Always use the TODO tool.**
 Any time the user is planning, tracking progress, breaking down work, or managing ongoing tasks, automatically use the TODO tool to create, update, or maintain the task list without me having to explicitly ask.
 
-
 **Always use Context7 when I need code generation, setup or configuration steps, or library/API documentation.**
 Automatically call the Context7 MCP tools to resolve library IDs and retrieve documentation without me having to explicitly ask.
 

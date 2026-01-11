@@ -156,10 +156,10 @@
         modules = commonModules ++ [hostPath];
       };
 
-    # Small tool to iterate over each systems
+    # small helper to iterate over each system.
     eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
 
-    # Eval the treefmt modules from ./treefmt.nix
+    # eval the treefmt modules from ./treefmt.nix.
     treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
   in {
     # host machines defined by directory under ./host/*
