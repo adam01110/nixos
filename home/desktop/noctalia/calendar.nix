@@ -14,9 +14,5 @@
       id = "calendar-month-card";
       enabled = true;
     }
-    {
-      id = "timer-card";
-      enabled = false;
-    }
   ];
 }

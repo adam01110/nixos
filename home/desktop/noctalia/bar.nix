@@ -104,6 +104,7 @@ in {
         ]
         ++ (optional config.noctalia.battery.enable {id = "Battery";})
         ++ [
+          {id = "plugin:github-feed";}
           {
             id = "NotificationHistory";
             hideWhenZero = true;

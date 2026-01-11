@@ -9,6 +9,5 @@
     in "${terminalCommand} --title='Wiremix' ${wiremix}";
     visualizerType = "mirrored";
     volumeOverdrive = true;
-    volumeStep = 5;
   };
 }

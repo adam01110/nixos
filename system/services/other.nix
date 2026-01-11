@@ -19,5 +19,7 @@
 
     # power and battery information service used by desktops.
     upower.enable = true;
+
+    gnome.evolution-data-server.enable = true;
   };
 }
