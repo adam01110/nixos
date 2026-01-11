@@ -13,7 +13,6 @@
 in {
   programs.noctalia-shell.plugins = let
     noctaliaPluginsUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-    polkitPluginUrl = "https://github.com/anthonyhab/noctalia-plugins";
   in {
     version = 1;
 
@@ -22,11 +21,6 @@ in {
         enabled = true;
         name = "Official Noctalia Plugins";
         url = noctaliaPluginsUrl;
-      }
-      {
-        enabled = true;
-        name = "Plugin source for polkit auth.";
-        url = polkitPluginUrl;
       }
     ];
 
@@ -40,11 +34,6 @@ in {
       github-feed = mkPlugin "github-feed";
       privacy-indicator = mkPlugin "privacy-indicator";
       screen-recorder = mkPlugin "screen-recorder";
-
-      polkit-auth = {
-        enabled = true;
-        sourceUrl = polkitPluginUrl;
-      };
     };
 
     pluginSettings = {

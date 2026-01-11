@@ -63,11 +63,6 @@
       url = "github:noctalia-dev/noctalia-shell?ref=v4.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # noctalia polkit auth agent.
-    noctalia-auth-agent = {
-      url = "github:anthonyhab/noctalia-unofficial-auth-agent";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # prebuilt database for nix-index/comma tooling.
     nix-index-database = {
