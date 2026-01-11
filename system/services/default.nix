@@ -8,6 +8,7 @@
     ./gnome-keyring.nix
     ./gvfs.nix
     ./locate.nix
+    ./logind.nix
     ./network.nix
     ./other.nix
     ./pipewire.nix
@@ -16,6 +17,7 @@
     ./ssh.nix
     ./timesyncd.nix
     ./timezone.nix
+    ./tlp.nix
     ./tumbler.nix
     ./zram.nix
   ];
