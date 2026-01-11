@@ -4,6 +4,7 @@ let
   inherit (builtins) attrValues listToAttrs;
   inherit (pkgs.lib.attrsets) nameValuePair;
 
+  # memory allocation for image previews in megabytes.
   imageAllocMB = 1024;
 in {
   programs.yazi = {
@@ -37,6 +38,7 @@ in {
       );
 
     settings = {
+      # manager settings control file browser appearance and behavior.
       mgr = {
         ratio = [
           1
@@ -51,6 +53,7 @@ in {
         show_hidden = true;
       };
 
+      # preview settings control file preview quality and dimensions.
       preview = {
         image_filter = "lanczos3";
         image_quality = 90;

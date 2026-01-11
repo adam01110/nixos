@@ -2,7 +2,9 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+# fish shell function definitions.
+let
   inherit (builtins) readFile;
   inherit
     (lib)
@@ -11,6 +13,7 @@
     ;
   inherit (pkgs) replaceVars;
 
+  # helper to generate fish functions from template files with variable substitution.
   mkFunction = {
     description,
     file,
@@ -41,6 +44,7 @@
     );
   };
 in {
+  # define custom fish functions with descriptions for shell integration.
   programs.fish.functions = {
     fish_greeting = {
       description = "Greeting to show when starting a fish shell.";

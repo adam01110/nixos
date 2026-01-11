@@ -3,29 +3,30 @@
 let
   inherit (vars) username;
 in {
-  networking.hostName = "desktop";
-  # dont change.
+  # system version for state compatibility - do not modify.
   system.stateVersion = "25.05";
 
-  # import host-specific hardware configuration.
+  networking.hostName = "desktop";
+
+  # import desktop-specific hardware configuration.
   imports = [./hardware.nix];
   home-manager.users.${username}.imports = [./home.nix];
 
-  # primary install disk for disko partitioning.
+  # primary nvme disk for disko partitioning.
   disko.selectedDisk = "/dev/nvme0n1";
 
-  # per-host optional services and settings.
+  # desktop-specific optional services.
   optServices = {
     timezone = "Europe/Amsterdam";
     virtManager.enable = true;
   };
 
-  # extra hardware toggles.
+  # enable specialized hardware support.
   hardware = {
     wooting.enable = true;
     roccat.enable = true;
   };
 
-  # enable rocm support for packages.
+  # enable amd rocm support for gpu.
   nixpkgs.config.rocmSupport = true;
 }

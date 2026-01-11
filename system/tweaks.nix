@@ -1,3 +1,4 @@
+# low-level system tweaks for desktop responsiveness and performance.
 {
   config,
   lib,
@@ -29,15 +30,19 @@ in {
 
     # kernel parameters aimed at low latency desktops.
     boot = {
+      # audio power management: disable power saving for continuous audio availability.
       extraModprobeConfig = ''
         options snd_hda_intel power_save=0
 
+        # disable hardware watchdogs for lower latency.
         blacklist iTCO_wdt
         blacklist wdat_wdt
       '';
 
+      # enable nt sync for better wine/proton performance.
       kernelModules.ntsync = true;
 
+      # memory and system tuning for desktop responsiveness.
       kernel.sysctl = {
         "vm.swappiness" = 100;
         "vm.vfs_cache_pressure" = 50;
@@ -58,14 +63,17 @@ in {
         "kernel.sched_rt_runtime_us" = -1;
       };
 
+      # kernel boot parameters for additional tuning.
       kernelParams =
         [
+          # enable lru page generation for better memory management.
           "lru_gen=y"
         ]
+        # optionally enable rcu lazy mode for battery life on laptops.
         ++ optional config.optTweaks.rcuLazy.enable "rcutree.enable_rcu_lazy=1";
     };
 
-    # udev rules for audio power saving and scheduler tuning.
+    # udev rules for audio power saving and disk scheduler tuning.
     services.udev.extraRules = let
       bash = getExe pkgs.bash;
       hdparm = getExe pkgs.hdparm;

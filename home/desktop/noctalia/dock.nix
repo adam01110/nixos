@@ -1,5 +1,5 @@
 {...}:
-# dock appearance and placement rules.
+# dock appearance and placement rules for application launcher.
 {
   programs.noctalia-shell.settings.dock = {
     colorizeIcons = false;

@@ -2,10 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+# noctalia top bar.
+let
   inherit (lib) optional;
 in {
-  # noctalia top bar layout, density, and widget ordering.
   programs.noctalia-shell.settings.bar = {
     density = "compact";
     exclusive = true;

@@ -3,10 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+# launcher behavior and default terminal command configuration.
+let
   inherit (lib) getExe;
 in {
-  # launcher behavior and default terminal command.
   programs.noctalia-shell.settings.appLauncher = {
     enableClipPreview = false;
     enableClipboardHistory = true;
@@ -18,5 +19,6 @@ in {
     autoPasteClipboard = true;
   };
 
+  # wtype for the automatic clipboard paste.
   home.packages = [pkgs.wtype];
 }

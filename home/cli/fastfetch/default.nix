@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# configure fastfetch.
+# configure fastfetch system information fetch program.
 let
   inherit (builtins) fromJSON;
   inherit (lib) getExe';
@@ -14,6 +14,7 @@ in {
     enable = true;
 
     settings = {
+      # use custom logo and kitty terminal image display.
       logo = {
         source = ./logo.png;
         type = "kitty";
@@ -21,6 +22,7 @@ in {
         width = 35;
       };
 
+      # configure display formatting and binary prefix standards.
       display = {
         separator = " ";
         size = {
@@ -28,6 +30,7 @@ in {
         };
       };
 
+      # define information modules to show in system overview.
       modules = [
         "break"
         {
@@ -56,6 +59,8 @@ in {
           type = "command";
           key = "│ ├󰅐 OS-AGE";
           keyColor = "34";
+
+          # calculate system installation age from root filesystem birth time.
           text = let
             stat = getExe' pkgs.coreutils "stat";
             date = getExe' pkgs.coreutils "date";

@@ -1,5 +1,6 @@
-{...}: {
-  # group per-category defaults via module imports.
+{...}:
+# xdg application mime type associations and default handlers.
+{
   imports = [
     ./applications/archives.nix
     ./applications/protocols.nix
@@ -13,5 +14,6 @@
     ./applications/image-editors.nix
   ];
 
+  # enable mime application database for file type associations.
   xdg.mimeApps.enable = true;
 }

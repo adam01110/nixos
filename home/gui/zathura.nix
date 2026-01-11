@@ -9,10 +9,10 @@
       recolor = true;
       recolor-keephue = true;
 
-      # show hidden files?
+      # show hidden files for complete filesystem access.
       show-hidden = true;
 
-      # use the system clipboard.
+      # use the system clipboard for text selection.
       selection-clipboard = "clipboard";
     };
   };

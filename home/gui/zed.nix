@@ -14,6 +14,7 @@ let
     getExe
     ;
 in {
+  # vm option enables gpu acceleration for virtual machine environments.
   options.zed.isVm = mkEnableOption "Allow the usage of virtio gpu accel";
 
   config = {
@@ -70,7 +71,7 @@ in {
             Nix = {
               # use nixd lsp for nix.
               language_servers = ["nixd"];
-              # use nixfmt formatter for nix.
+              # use alejandra formatter for nix.
               formatter.external.command = getExe pkgs.alejandra;
             };
 
@@ -136,6 +137,7 @@ in {
         };
       };
 
+      # install extensions for zed with nix packages.
       zed-editor-extensions = {
         enable = true;
         packages = attrValues {

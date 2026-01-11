@@ -1,5 +1,5 @@
 {osConfig, ...}:
-# per-user stylix customization layered on top of system stylix.
+# per-user stylix customization layered on top of system-wide stylix theming.
 let
   disabledTargets = import ./disabled.nix {};
 
@@ -14,6 +14,7 @@ in {
   ];
 
   stylix = {
+    # opacity values: slightly reduced for better readability with wallpapers.
     opacity = {
       applications = 0.95;
       desktop = 0.95;
@@ -21,6 +22,7 @@ in {
       terminal = 0.95;
     };
 
+    # font sizes: consistent small sizing for information density.
     fonts.sizes = {
       applications = 10;
       desktop = 10;

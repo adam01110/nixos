@@ -1,7 +1,8 @@
 {...}:
-# noctalia shell visuals and behavior.
+# noctalia shell visuals and behavior configuration.
 {
   programs.noctalia-shell.settings.general = let
+    # use sharp corners (no rounding) for consistent design.
     radius = 0;
   in {
     animationSpeed = 2;

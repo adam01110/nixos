@@ -2,13 +2,13 @@
 # enable miscellaneous desktop services in one place.
 {
   services = {
-    # tune kernel bpf-related defaults for better performance.
+    # auto-tune kernel bpf settings for performance.
     bpftune.enable = true;
 
     # flatpak runtime and portal integration for desktop apps.
     flatpak.enable = true;
 
-    # fuse envfs to provide fhs-style paths under /bin.
+    # provide fhs-style paths for compatibility with legacy applications.
     envfs.enable = true;
 
     # input stack defaults (touchpad, mouse) via libinput.
@@ -20,6 +20,7 @@
     # power and battery information service used by desktops.
     upower.enable = true;
 
+    # enable gnome evolution data server for calendar and contact integration.
     gnome.evolution-data-server.enable = true;
   };
 }
