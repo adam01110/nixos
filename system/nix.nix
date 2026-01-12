@@ -19,6 +19,9 @@
         "https://numtide.cachix.org"
         "https://attic.xuyh0120.win/lantian"
         "https://cache.numtide.com"
+        "https://adam01110-nur.cachix.org/"
+        "https://forkprince.cachix.org/"
+        "https://ymstnt-nur-packages.cachix.org/"
       ];
 
       trusted-public-keys = [
@@ -29,6 +32,9 @@
         "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+        "adam01110-nur.cachix.org-1:43B8awTREG19aQ20luDD9BkxijKG/Q7hf8voMzS1X9I="
+        "forkprince.cachix.org-1:9cN+fX492ZKlfd228xpYAC3T9gNKwS1sZvCqH8iAy1M="
+        "ymstnt-nur-packages.cachix.org-1:6XI6/GtEZmGUEYQsK5gUBrEMGTSnAN6xq8Vg++DA/lc="
       ];
 
       # enable modern commands and flakes.

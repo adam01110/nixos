@@ -75,6 +75,11 @@
       url = "github:0xc000022070/zen-browser-flake?ref=beta";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # userstyles for zen browser flake.
+    nix-userstyles = {
+      url = "github:adam01110/nix-userstyles";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # discord/equibop flake.
     nixcord = {
@@ -94,12 +99,6 @@
 
     # zed extensions flake.
     zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
-
-    # userstyles for zen browser flake.
-    nix-userstyles = {
-      url = "github:adam01110/nix-userstyles";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # treefmt.
     treefmt-nix.url = "github:numtide/treefmt-nix";

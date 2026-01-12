@@ -14,6 +14,7 @@
     ./pipewire.nix
     ./podman.nix
     ./printing.nix
+    ./scx.nix
     ./ssh.nix
     ./timesyncd.nix
     ./timezone.nix
