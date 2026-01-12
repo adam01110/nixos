@@ -1,10 +1,12 @@
 {
   config,
+  lib,
   pkgs,
   vars,
   ...
 }: let
   inherit (builtins) toJSON;
+  inherit (lib) genAttrs;
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
   inherit (vars) gitUsername;
@@ -29,12 +31,15 @@ in {
         enabled = true;
         sourceUrl = noctaliaPluginsUrl;
       };
-    in {
-      kaomoji-provider = mkPlugin "kaomoji-provider";
-      github-feed = mkPlugin "github-feed";
-      privacy-indicator = mkPlugin "privacy-indicator";
-      screen-recorder = mkPlugin "screen-recorder";
-    };
+    in
+      genAttrs [
+        "screen-recorder"
+        "kaomoji-provider"
+        "unicode-picker"
+        "github-feed"
+        "privacy-indicator"
+      ]
+      mkPlugin;
 
     pluginSettings = {
       privacy-indicator.hideInactive = true;

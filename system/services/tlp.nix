@@ -21,7 +21,7 @@ in {
       enable = true;
 
       # enable tlp power daemon for power-profiles-daemon compatibility.
-      # tlp-pd.enable = true;
+      pd.enable = true;
     };
 
     # disable conflicting power management daemon.

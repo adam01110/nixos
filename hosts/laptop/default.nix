@@ -18,11 +18,12 @@ in {
   # laptop-specific optional services.
   optServices = {
     bluetooth.enable = true;
-    logind.lidSwitch.enable = true;
+    logind.lidSwitch = true;
     tlp.enable = true;
     timezone = "automatic-timezoned";
     wifi.enable = true;
     virtManager.enable = true;
+    scx.enable = true;
   };
 
   # enable rcu lazy mode for better battery life.

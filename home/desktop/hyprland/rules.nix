@@ -57,6 +57,8 @@ in {
 
       "tag +forceopacity, match:class com.mitchellh.ghostty"
 
+      "tag +forceopacity, match:class org.pwmt.zathura"
+
       "tag +pseudotile, match:class com.mitchellh.ghostty, match:title Wiremix"
       "tag +size-wiremix, match:class com.mitchellh.ghostty, match:title Wiremix"
 
