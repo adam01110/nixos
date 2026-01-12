@@ -27,41 +27,45 @@ in {
 
     package = symlinkJoin {
       name = "opencode-wrapped";
-      paths = with inputs;
-        [
-          llm-agents.packages.${system}.opencode
-          #mcp
-          mcp-nixos.packages.${system}.mcp-nixos
-        ]
-        ++ (with mcp-servers-nix.packages.${system}; [
-          # mcp
-          context7-mcp
-          mcp-server-git
-        ])
-        ++ [inputs.mcp-nixos.packages.${system}.mcp-nixos]
-        ++ attrValues {
-          inherit
-            (pkgs)
-            # mcp
-            github-mcp-server
-            # lsp
-            lua-language-server
-            bash-language-server
-            yaml-language-server
-            vscode-json-languageserver
-            ty
-            oxlint
-            taplo
-            typescript-language-server
-            # formatter
-            alejandra
-            fish
-            stylua
-            shfmt
-            oxfmt
-            ruff
-            ;
-        };
+      paths = let
+        mcp-servers-nix = inputs.mcp-servers-nix.packages.${system};
+      in
+        with inputs;
+          [
+            llm-agents.packages.${system}.opencode
+            #mcp
+            mcp-nixos.packages.${system}.mcp-nixos
+          ]
+          ++ attrValues {
+            inherit
+              (mcp-servers-nix)
+              # mcp
+              context7-mcp
+              mcp-server-git
+              ;
+
+            inherit
+              (pkgs)
+              # mcp
+              github-mcp-server
+              # lsp
+              lua-language-server
+              bash-language-server
+              yaml-language-server
+              vscode-json-languageserver
+              ty
+              oxlint
+              taplo
+              typescript-language-server
+              # formatter
+              alejandra
+              fish
+              stylua
+              shfmt
+              oxfmt
+              ruff
+              ;
+          };
     };
 
     rules = ./instructions.md;
