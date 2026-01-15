@@ -22,7 +22,6 @@ in {
     tlp.enable = true;
     timezone = "automatic-timezoned";
     wifi.enable = true;
-    virtManager.enable = true;
     scx.enable = true;
   };
 
@@ -30,46 +29,50 @@ in {
   optTweaks.rcuLazy.enable = true;
 
   # advanced power management for laptop battery optimization.
-  services.tlp.settings = {
-    # cpu performance profiles: maximize performance on ac, conserve battery on bat.
-    CPU_SCALING_GOVERNOR_ON_AC = "performance";
-    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  services = {
+    thermald.enable = true;
 
-    # cpu frequency limits: allow full range on ac, cap at 30% on battery.
-    CPU_MIN_PERF_ON_AC = 0;
-    CPU_MAX_PERF_ON_AC = 100;
-    CPU_MIN_PERF_ON_BAT = 0;
-    CPU_MAX_PERF_ON_BAT = 30;
+    tlp.settings = {
+      # cpu performance profiles: maximize performance on ac, conserve battery on bat.
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
-    # disable cpu boost because it makes noise FOR SOME REASON ?!.
-    CPU_BOOST_ON_AC = 0;
+      # cpu frequency limits: allow full range on ac, cap at 30% on battery.
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 30;
 
-    # platform power profiles: balanced on ac, low power on battery.
-    PLATFORM_PROFILE_ON_AC = "balanced";
-    PLATFORM_PROFILE_ON_BAT = "low-power";
+      # disable cpu boost because it makes noise FOR SOME REASON ?!.
+      CPU_BOOST_ON_AC = 0;
 
-    # sleep modes.
-    MEM_SLEEP_ON_AC = "s2idle";
-    MEM_SLEEP_ON_BAT = "s2idle";
+      # platform power profiles: balanced on ac, low power on battery.
+      PLATFORM_PROFILE_ON_AC = "balanced";
+      PLATFORM_PROFILE_ON_BAT = "low-power";
 
-    # storage device for power management.
-    DISK_DEVICES = "nvme-Samsung_SSD_980_PRO_500GB_S5GYNX0W331360B";
+      # sleep modes.
+      MEM_SLEEP_ON_AC = "s2idle";
+      MEM_SLEEP_ON_BAT = "s2idle";
 
-    # intel gpu frequency limits: high performance on ac, reduced on battery.
-    INTEL_GPU_MIN_FREQ_ON_AC = 100;
-    INTEL_GPU_MIN_FREQ_ON_BAT = 100;
-    INTEL_GPU_MAX_FREQ_ON_AC = 1300;
-    INTEL_GPU_MAX_FREQ_ON_BAT = 450;
-    INTEL_GPU_BOOST_FREQ_ON_AC = 1300;
-    INTEL_GPU_BOOST_FREQ_ON_BAT = 700;
+      # storage device for power management.
+      DISK_DEVICES = "nvme-Samsung_SSD_980_PRO_500GB_S5GYNX0W331360B";
 
-    # disable unused amd gpu features since this is intel graphics.
-    RADEON_DPM_PERF_LEVEL_ON_AC = "";
-    RADEON_DPM_PERF_LEVEL_ON_BAT = "";
-    AMDGPU_ABM_LEVEL_ON_AC = "";
-    AMDGPU_ABM_LEVEL_ON_BAT = "";
-    PCIE_ASPM_ON_AC = "";
+      # intel gpu frequency limits: high performance on ac, reduced on battery.
+      INTEL_GPU_MIN_FREQ_ON_AC = 100;
+      INTEL_GPU_MIN_FREQ_ON_BAT = 100;
+      INTEL_GPU_MAX_FREQ_ON_AC = 1300;
+      INTEL_GPU_MAX_FREQ_ON_BAT = 450;
+      INTEL_GPU_BOOST_FREQ_ON_AC = 1300;
+      INTEL_GPU_BOOST_FREQ_ON_BAT = 700;
+
+      # disable unused amd gpu features since this is intel graphics.
+      RADEON_DPM_PERF_LEVEL_ON_AC = "";
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "";
+      AMDGPU_ABM_LEVEL_ON_AC = "";
+      AMDGPU_ABM_LEVEL_ON_BAT = "";
+      PCIE_ASPM_ON_AC = "";
+    };
   };
 
   # enable laptop hardware support.

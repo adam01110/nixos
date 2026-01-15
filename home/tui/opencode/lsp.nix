@@ -50,5 +50,10 @@ in {
       command = [(getExe pkgs.typescript-language-server) "--stdio"];
       extensions = [".ts" ".tsx" ".js" ".jsx"];
     };
+
+    rust-analyzer = {
+      command = [(getExe pkgs.rust-analyzer)];
+      extensions = [".rs"];
+    };
   };
 }

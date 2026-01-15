@@ -1,8 +1,6 @@
 {
   config,
-  inputs,
   lib,
-  system,
   ...
 }:
 # configure spotify-player.
@@ -11,9 +9,6 @@ let
 in {
   programs.spotify-player = {
     enable = true;
-
-    package = inputs.spotify-player.defaultPackage.${system};
-
     settings = {
       # enable audio cache and normalization.
       device = {

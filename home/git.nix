@@ -39,6 +39,8 @@ in {
       gitPackage = pkgs.gitFull;
     in {
       enable = true;
+      lfs.enable = true;
+
       package = gitPackage;
 
       settings = {

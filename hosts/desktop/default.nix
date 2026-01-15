@@ -17,8 +17,8 @@ in {
 
   # desktop-specific optional services.
   optServices = {
+    podman.enable = true;
     timezone = "Europe/Amsterdam";
-    virtManager.enable = true;
   };
 
   # enable specialized hardware support.
