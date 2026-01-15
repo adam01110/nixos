@@ -34,7 +34,7 @@ in {
     # bootloader, kernel, and initrd configuration.
     boot = {
       # use cachyos kernel for performance optimizations.
-      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
       initrd = {
         # use numworks udev package for calculator.
         services.udev.packages = [pkgs.numworks-udev-rules];
@@ -80,16 +80,19 @@ in {
 
     environment = {
       # optional libinput quirk for specific roccat mouse.
-      etc."libinput/local-overrides.quirks" = mkIf config.hardware.roccat.enable {
-        text = ''
-          [ROCCAT ROCCAT Kain 100]
-          MatchName=ROCCAT ROCCAT Kain 100
-          ModelBouncingKeys=1
-        '';
-        mode = "0644";
-        user = "root";
-        group = "root";
-      };
+      etc."libinput/local-overrides.quirks" = let
+        name = "ROCCAT ROCCAT Kain 100";
+      in
+        mkIf config.hardware.roccat.enable {
+          text = ''
+            [${name}]
+            MatchName=${name}
+            ModelBouncingKeys=1
+          '';
+          mode = "0644";
+          user = "root";
+          group = "root";
+        };
 
       # extra packages for lanzaboote.
       systemPackages = attrValues {

@@ -50,5 +50,10 @@ in {
       command = [(getExe pkgs.ruff)];
       extensions = [".py" ".pyi"];
     };
+
+    rustfmt = {
+      command = [(getExe pkgs.rustfmt) "$FILE"];
+      extensions = [".rs"];
+    };
   };
 }

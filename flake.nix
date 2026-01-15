@@ -103,12 +103,11 @@
     # treefmt.
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
+    # preload-ng
+    preload-ng.url = "github:miguel-b-p/preload-ng";
+
     # temporary inputs until nixpkgs fixes their shit.
     mcp-nixos.url = "github:utensils/mcp-nixos?ref=v2.1.0";
-    spotify-player = {
-      url = "github:aome510/spotify-player?ref=v0.21.3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # outputs: expose host configurations and pass through common arguments.
@@ -123,6 +122,7 @@
     sops-nix,
     systems,
     treefmt-nix,
+    preload-ng,
     ...
   } @ inputs: let
     # variables.
@@ -136,6 +136,7 @@
       stylix.nixosModules.stylix
       lanzaboote.nixosModules.lanzaboote
       sops-nix.nixosModules.sops
+      preload-ng.nixosModules.default
       ./system
     ];
 
@@ -187,7 +188,6 @@
     };
 
     formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
-    # for `nix flake check`
     checks = eachSystem (pkgs: {
       formatting = treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.check self;
     });

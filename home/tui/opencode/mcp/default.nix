@@ -1,0 +1,22 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) getExe;
+
+  configHome = config.xdg.configHome;
+in {
+  imports = [./modular-mcp.nix];
+
+  programs.mcp = {
+    enable = true;
+
+    servers.modular-mcp = {
+      command = getExe pkgs.nur.repos.adam0.modular-mcp;
+
+      args = ["${configHome}/modular-mcp.json"];
+    };
+  };
+}
