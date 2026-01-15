@@ -33,7 +33,7 @@ in {
           inherit
             (pkgs)
             mediainfo
-            wl-clipboard-rs
+            wl-clipboard
             glow
             ;
         })}
