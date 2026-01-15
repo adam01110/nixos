@@ -11,7 +11,11 @@
     attrValues
     listToAttrs
     ;
-  inherit (lib) getExe';
+  inherit
+    (lib)
+    getExe'
+    makeBinPath
+    ;
   inherit (pkgs) symlinkJoin;
 in {
   imports = [
@@ -25,15 +29,18 @@ in {
     enable = true;
     enableMcpIntegration = true;
 
+    # wrap opencode with mcp's, formatters, and lsp's.
     package = symlinkJoin {
       name = "opencode-wrapped";
-      paths =
-        [inputs.llm-agents.packages.${system}.opencode]
-        ++ attrValues {
+      paths = [inputs.llm-agents.packages.${system}.opencode];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/opencode \
+          --prefix PATH : ${makeBinPath (attrValues {
           inherit (pkgs.nur.repos.adam0) modular-mcp;
           inherit
             (pkgs)
-            # lsp
+            # lsp's
             lua-language-server
             bash-language-server
             yaml-language-server
@@ -43,7 +50,7 @@ in {
             taplo
             typescript-language-server
             rust-analyzer
-            # formatter
+            # formatters
             alejandra
             fish
             stylua
@@ -52,12 +59,15 @@ in {
             ruff
             rustfmt
             ;
-        };
+        })}
+      '';
     };
 
+    # set agent rules.
     rules = ./instructions.md;
   };
 
+  # set env vars for eperimental features and disabled features.
   home.sessionVariables = let
     mkEnv = prefix: features:
       listToAttrs (

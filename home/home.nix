@@ -45,5 +45,6 @@ in {
   dconf.settings = {
     "org/gnome/desktop/wm/preferences".button-layout = "";
     "org/gnome/desktop/interface".gtk-enable-primary-paste = false;
+    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 }

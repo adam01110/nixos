@@ -1,172 +1,47 @@
-{pkgs, ...}:
+{
+  pkgs,
+  lib,
+  ...
+}:
 # yazi tui file manager.
 let
-  inherit (builtins) attrValues listToAttrs;
-  inherit (pkgs.lib.attrsets) nameValuePair;
-
-  # memory allocation for image previews in megabytes.
-  imageAllocMB = 1024;
+  inherit (builtins) attrValues;
+  inherit (lib) makeBinPath;
+  inherit
+    (pkgs)
+    symlinkJoin
+    makeWrapper
+    ;
 in {
+  imports = [
+    ./plugins.nix
+    ./settings.nix
+    ./theme.nix
+  ];
+
+  # wrap yazi with plugin dependencies.
   programs.yazi = {
     enable = true;
+
+    package = symlinkJoin {
+      name = "yazi-wrapped";
+      paths = [pkgs.yazi];
+      nativeBuildInputs = [makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/yazi \
+          --prefix PATH : ${makeBinPath (attrValues {
+          inherit
+            (pkgs)
+            mediainfo
+            wl-clipboard-rs
+            glow
+            ;
+        })}
+      '';
+    };
 
     initLua = ./init.lua;
 
     shellWrapperName = "y";
-
-    # enable plugins.
-    plugins = let
-      mkPlugin = name: nameValuePair name pkgs.yaziPlugins.${name};
-    in
-      listToAttrs (
-        (map mkPlugin [
-          "full-border"
-          "git"
-          "mediainfo"
-          "smart-enter"
-          "smart-paste"
-          "starship"
-          "piper"
-        ])
-        # ucp is not in nixpkgs yet.
-        ++ [
-          {
-            name = "ucp";
-            value = ./plugins/ucp.yazi;
-          }
-        ]
-      );
-
-    settings = {
-      # manager settings control file browser appearance and behavior.
-      mgr = {
-        ratio = [
-          1
-          2
-          2
-        ];
-        linemode = "size_mtime";
-        scrolloff = 10;
-
-        sort_by = "natural";
-        sort_translit = true;
-        show_hidden = true;
-      };
-
-      # preview settings control file preview quality and dimensions.
-      preview = {
-        image_filter = "lanczos3";
-        image_quality = 90;
-
-        max_width = 900;
-        max_height = 1200;
-      };
-
-      # use mediainfo for rich previews and piper with glow for markdown.
-      plugin = {
-        prepend_previewers = [
-          # replace magick, image, video with mediainfo.
-          {
-            mime = "{audio,video,image}/*";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/subrip";
-            run = "mediainfo";
-          }
-          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above.
-          {
-            mime = "application/postscript";
-            run = "mediainfo";
-          }
-          {
-            url = "*.md";
-            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark '$1'";
-          }
-        ];
-
-        prepend_preloaders = [
-          # replace magick, image, video with mediainfo.
-          {
-            mime = "{audio,video,image}/*";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/subrip";
-            run = "mediainfo";
-          }
-          # adobe illustrator, adobe photoshop is image/adobe.photoshop, already handled above.
-          {
-            mime = "application/postscript";
-            run = "mediainfo";
-          }
-        ];
-      };
-
-      # control memory used by image previews.
-      tasks.image_alloc = imageAllocMB * 1024 * 1024;
-
-      input.cursor_blink = false;
-      which.sort_translit = true;
-    };
-
-    # define keybindings for copy, paste, and smart actions.
-    keymap.mgr.prepend_keymap = [
-      {
-        on = "p";
-        run = "plugin smart-paste";
-        desc = "Paste into the hovered directory or CWD";
-      }
-      {
-        on = "<Enter>";
-        run = "plugin smart-enter";
-        desc = "Enter the child directory, or open the file";
-      }
-      {
-        on = "l";
-        run = "plugin smart-enter";
-        desc = "Enter the child directory, or open the file";
-      }
-      {
-        on = "<right>";
-        run = "plugin smart-enter";
-        desc = "Enter the child directory, or open the file";
-      }
-      {
-        on = "L";
-        run = "plugin smart-enter";
-        desc = "Enter the child directory, or open the file";
-      }
-      {
-        on = "p";
-        run = "plugin ucp paste";
-        desc = "Paste";
-      }
-      {
-        on = "y";
-        run = "plugin ucp copy";
-        desc = "Copy";
-      }
-      {
-        on = "p";
-        run = "plugin ucp paste notify";
-        desc = "Paste";
-      }
-      {
-        on = "y";
-        run = "plugin ucp copy notify";
-        desc = "Copy";
-      }
-    ];
-  };
-
-  # add packages required by the yazi plugins.
-  home.packages = attrValues {
-    inherit
-      (pkgs)
-      mediainfo
-      wl-clipboard-rs
-      glow
-      ;
   };
 }

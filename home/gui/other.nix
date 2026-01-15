@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# desktop application and flatpak packages.
+# gui application and gui flatpak packages.
 let
   inherit (builtins) attrValues;
 in {
@@ -22,6 +22,7 @@ in {
       warehouse
       wootility
       heroic
+      devtoolbox
       ;
 
     inherit (pkgs.nur.repos.forkprince) helium-nightly;
@@ -32,6 +33,6 @@ in {
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
     "io.mrarm.mcpelauncher"
-    "me.iepure.devtoolbox"
+    "im.bernard.Memorado"
   ];
 }
