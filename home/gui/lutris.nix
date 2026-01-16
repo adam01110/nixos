@@ -6,6 +6,7 @@
 # configure lutris and integrate with steam packages.
 let
   bluetoothEnabled = osConfig.optServices.bluetooth.enable;
+  steam = osConfig.programs.steam;
 
   # slimLutris provides minimal lutris with essential dependencies.
   slimLutris = pkgs.callPackage (
@@ -234,10 +235,10 @@ in {
     package = slimLutris;
 
     # add umu launcher for proton outside of steam.
-    extraPackages = [pkgs.umu-launcher];
+    extraPackages = [pkgs.umu-launcher] ++ steam.extraPackages;
 
     # proton and the package of steam form the system steam module.
-    steamPackage = osConfig.programs.steam.package;
-    protonPackages = osConfig.programs.steam.extraCompatPackages;
+    steamPackage = steam.package;
+    protonPackages = steam.extraCompatPackages;
   };
 }
