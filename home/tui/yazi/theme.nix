@@ -1,4 +1,4 @@
-{...}:
+_:
 # remove rounded corners.
 {
   programs.yazi.theme = {

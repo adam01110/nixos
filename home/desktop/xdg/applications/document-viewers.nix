@@ -1,4 +1,4 @@
-{...}:
+_:
 # default handlers for document and ebook viewing.
 {
   xdg.mimeApps.defaultApplications = {

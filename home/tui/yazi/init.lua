@@ -45,3 +45,8 @@ require("starship"):setup()
 require("full-border"):setup({
 	type = ui.Border.PLAIN,
 })
+
+-- relative-motions.yazi
+require("relative-motions"):setup({
+	show_numbers = "relative",
+})

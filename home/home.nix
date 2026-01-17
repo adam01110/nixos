@@ -1,6 +1,6 @@
 {config, ...}: let
-  configHome = config.xdg.configHome;
-  cacheHome = config.xdg.cacheHome;
+  inherit (config.xdg) configHome;
+  inherit (config.xdg) cacheHome;
 in {
   # home-manager base config for the primary user.
   # user-level files and session environment.

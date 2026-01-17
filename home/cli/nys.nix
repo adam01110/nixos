@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure nix-your-shell prompts and monitoring.
 {
   programs.nix-your-shell = {

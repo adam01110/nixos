@@ -14,6 +14,8 @@ in {
     outerCorners = false;
     position = "top";
     showCapsule = true;
+    useSeparateOpacity = true;
+    backgroundOpacity = 1;
 
     widgets = {
       left = [

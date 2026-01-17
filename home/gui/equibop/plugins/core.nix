@@ -1,4 +1,4 @@
-{...}:
+_:
 # core equibop plugins and global toggles.
 {
   AlwaysTrust.enabled = true;

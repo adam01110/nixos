@@ -1,4 +1,4 @@
-{...}:
+_:
 # core prompt symbols and common modules.
 {
   programs.starship.settings = {

@@ -77,11 +77,11 @@ in {
 
       home = {
         # home-manager account identity.
-        username = username;
+        inherit username;
         homeDirectory = "/home/${username}";
 
         # align home manager state version with the system.
-        stateVersion = config.system.stateVersion;
+        inherit (config.system) stateVersion;
       };
     };
   };

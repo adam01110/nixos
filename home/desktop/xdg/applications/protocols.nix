@@ -1,4 +1,4 @@
-{...}:
+_:
 # default handlers for custom url protocols and schemes.
 {
   xdg.mimeApps.defaultApplications = {

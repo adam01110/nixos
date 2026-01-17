@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.gnome = {
     # start keyring services for secret storage.
     gnome-keyring.enable = true;

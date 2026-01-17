@@ -1,4 +1,4 @@
-{...}:
+_:
 # per-host home manager overrides for qemu/kvm virtual machines.
 {
   # configure the vm display settings.

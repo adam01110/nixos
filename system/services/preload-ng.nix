@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.preload-ng = {
     enable = true;
 

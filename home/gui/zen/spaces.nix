@@ -1,4 +1,4 @@
-{...}:
+_:
 # zen browser workspace/spaces configuration.
 {
   programs.zen-browser.profiles.default = {

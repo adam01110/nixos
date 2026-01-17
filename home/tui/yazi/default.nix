@@ -1,43 +1,28 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{pkgs, ...}:
 # yazi tui file manager.
 let
   inherit (builtins) attrValues;
-  inherit (lib) makeBinPath;
-  inherit
-    (pkgs)
-    symlinkJoin
-    makeWrapper
-    ;
 in {
   imports = [
+    ./keymap.nix
     ./plugins.nix
     ./settings.nix
     ./theme.nix
   ];
 
-  # wrap yazi with plugin dependencies.
+  # add runtime helpers for yazi plugins.
   programs.yazi = {
     enable = true;
 
-    package = symlinkJoin {
-      name = "yazi-wrapped";
-      paths = [pkgs.yazi];
-      nativeBuildInputs = [makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/yazi \
-          --prefix PATH : ${makeBinPath (attrValues {
-          inherit
-            (pkgs)
-            mediainfo
-            wl-clipboard
-            glow
-            ;
-        })}
-      '';
+    package = pkgs.yazi.override {
+      extraPackages = attrValues {
+        inherit
+          (pkgs)
+          mediainfo
+          wl-clipboard
+          glow
+          ;
+      };
     };
 
     initLua = ./init.lua;

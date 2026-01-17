@@ -1,4 +1,4 @@
-{...}:
+_:
 # ui fonts and panel styling for noctalia shell.
 {
   programs.noctalia-shell.settings.ui = {
@@ -6,5 +6,6 @@
     fontFixedScale = 0.8;
     panelsAttachedToBar = false;
     settingsPanelAttachToBar = false;
+    panelBackgroundOpacity = 0.95;
   };
 }

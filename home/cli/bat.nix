@@ -5,7 +5,7 @@
 }:
 # configure bat and related extras.
 let
-  dataHome = config.xdg.dataHome;
+  inherit (config.xdg) dataHome;
 in {
   # enable bat with manuals.
   programs.bat = {

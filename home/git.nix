@@ -59,7 +59,7 @@ in {
       };
 
       # include the sops-generated snippet to set the email.
-      includes = [{path = config.sops.templates."git-config".path;}];
+      includes = [{inherit (config.sops.templates."git-config") path;}];
     };
 
     # delta pager for nicer diffs.

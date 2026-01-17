@@ -1,4 +1,4 @@
-{...}:
+_:
 # session menu entries and confirmation timing.
 {
   programs.noctalia-shell.settings.sessionMenu = {

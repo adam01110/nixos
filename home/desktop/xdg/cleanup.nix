@@ -1,7 +1,7 @@
 {config, ...}: let
-  dataHome = config.xdg.dataHome;
-  configHome = config.xdg.configHome;
-  stateHome = config.xdg.stateHome;
+  inherit (config.xdg) dataHome;
+  inherit (config.xdg) configHome;
+  inherit (config.xdg) stateHome;
 in {
   # GET OUT OF MY $HOME!
   home.sessionVariables = {

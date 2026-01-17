@@ -6,7 +6,7 @@
 }: let
   inherit (lib) getExe;
 
-  configHome = config.xdg.configHome;
+  inherit (config.xdg) configHome;
 in {
   imports = [./modular-mcp.nix];
 

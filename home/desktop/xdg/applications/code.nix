@@ -1,4 +1,4 @@
-{...}:
+_:
 # default handlers for source code and text formats.
 {
   # ZED

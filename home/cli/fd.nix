@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure fd.
 {
   programs.fd = {

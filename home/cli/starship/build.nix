@@ -1,4 +1,4 @@
-{...}:
+_:
 # starship segments for build tooling versions.
 {
   programs.starship.settings = {

@@ -1,4 +1,4 @@
-{...}:
+_:
 # per-language version modules for compilers and sdks.
 {
   programs.starship.settings = {

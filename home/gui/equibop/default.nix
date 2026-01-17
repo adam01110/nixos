@@ -7,7 +7,7 @@
 # set up discord with nixcord and equibop.
 let
   inherit (pkgs) replaceVars;
-  configHome = config.xdg.configHome;
+  inherit (config.xdg) configHome;
 in {
   imports = [./plugins.nix];
 

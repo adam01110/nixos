@@ -1,5 +1,4 @@
-{...}: let
-
+_: let
   # memory allocation for image previews in megabytes.
   imageAllocMB = 1024;
 in {
@@ -23,6 +22,7 @@ in {
     preview = {
       image_filter = "lanczos3";
       image_quality = 90;
+      image_delay = 0;
 
       max_width = 900;
       max_height = 1200;
