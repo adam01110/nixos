@@ -1,4 +1,4 @@
-{...}:
+_:
 # notification bubble styling and durations.
 {
   programs.noctalia-shell.settings.notifications = {

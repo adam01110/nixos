@@ -1,4 +1,4 @@
-{...}:
+_:
 # default handlers for office document editing.
 {
   xdg.mimeApps.defaultApplications = {

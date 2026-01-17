@@ -1,4 +1,4 @@
-{...}:
+_:
 # social and community related plugins.
 {
   BetterBlockedUsers.enabled = true;

@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure cava audio visualizer.
 {
   programs.cava = {

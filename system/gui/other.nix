@@ -1,4 +1,4 @@
-{...}:
+_:
 # misc system applications enabled here.
 {
   programs = {

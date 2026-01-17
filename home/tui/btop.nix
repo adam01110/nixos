@@ -8,7 +8,7 @@
 let
   inherit (lib) mkOption types;
 
-  gpuBackends = config.btop.gpuBackends;
+  inherit (config.btop) gpuBackends;
   hasCuda = lib.elem "cuda" gpuBackends;
   hasRocm = lib.elem "rocm" gpuBackends;
 

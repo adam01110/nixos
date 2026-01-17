@@ -2,14 +2,14 @@
 # reuse the system’s sops settings in home manager.
 {
   sops = {
-    defaultSopsFile = osConfig.sops.defaultSopsFile;
-    defaultSopsFormat = osConfig.sops.defaultSopsFormat;
-    validateSopsFiles = osConfig.sops.validateSopsFiles;
+    inherit (osConfig.sops) defaultSopsFile;
+    inherit (osConfig.sops) defaultSopsFormat;
+    inherit (osConfig.sops) validateSopsFiles;
 
     age = {
-      sshKeyPaths = osConfig.sops.age.sshKeyPaths;
-      keyFile = osConfig.sops.age.keyFile;
-      generateKey = osConfig.sops.age.generateKey;
+      inherit (osConfig.sops.age) sshKeyPaths;
+      inherit (osConfig.sops.age) keyFile;
+      inherit (osConfig.sops.age) generateKey;
     };
   };
 }

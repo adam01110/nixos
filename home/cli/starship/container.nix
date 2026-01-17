@@ -1,4 +1,4 @@
-{...}:
+_:
 # show container context in the prompt.
 {
   programs.starship.settings = {

@@ -15,11 +15,11 @@
 
   jsonFormat = pkgs.formats.json {};
 
-  context7-mcp = inputs.mcp-servers-nix.packages.${system}.context7-mcp;
-  mcp-server-git = inputs.mcp-servers-nix.packages.${system}.mcp-server-git;
-  github-mcp-server = pkgs.github-mcp-server;
-  mcp-nixos = inputs.mcp-nixos.packages.${system}.mcp-nixos;
-  rust-mcp-server = pkgs.nur.repos.adam0.rust-mcp-server;
+  inherit (inputs.mcp-servers-nix.packages.${system}) context7-mcp;
+  inherit (inputs.mcp-servers-nix.packages.${system}) mcp-server-git;
+  inherit (pkgs) github-mcp-server;
+  inherit (inputs.mcp-nixos.packages.${system}) mcp-nixos;
+  inherit (pkgs.nur.repos.adam0) rust-mcp-server;
 in {
   sops = {
     secrets = {
@@ -74,7 +74,7 @@ in {
             exec "${getExe github-mcp-server}" "$@"
           '';
         });
-        args = ["stdio" "--dynamic-toolsets" "--read-only"];
+        args = ["stdio" "--read-only"];
       };
 
       nix = {

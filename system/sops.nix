@@ -1,4 +1,4 @@
-{...}:
+_:
 # sops configuration for both system and home manager modules.
 {
   sops = {

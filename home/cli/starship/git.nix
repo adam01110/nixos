@@ -1,4 +1,4 @@
-{...}:
+_:
 # detailed git and fossil status sections.
 {
   programs.starship.settings = {

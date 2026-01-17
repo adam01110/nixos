@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure fzf.
 {
   programs.fzf = {

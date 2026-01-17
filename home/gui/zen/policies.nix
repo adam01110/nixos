@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.zen-browser.policies = {
     AutofillAddressEnabled = false;
     AutofillCreditCardEnabled = false;

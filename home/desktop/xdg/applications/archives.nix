@@ -1,4 +1,4 @@
-{...}:
+_:
 # default handlers for archive and compressed formats.
 {
   xdg.mimeApps.defaultApplications = {

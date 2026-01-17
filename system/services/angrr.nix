@@ -1,4 +1,4 @@
-{...}:
+_:
 # keep nix gc roots retained automatically via angrr.
 {
   services.angrr = {

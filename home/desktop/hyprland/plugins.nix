@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure hyprland plugins.
 {
   wayland.windowManager.hyprland.settings = {

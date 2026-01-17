@@ -1,4 +1,4 @@
-{...}:
+_:
 # disable unwanted modules to keep the prompt minimal.
 {
   programs.starship.settings = {

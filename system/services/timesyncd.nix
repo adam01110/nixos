@@ -1,4 +1,4 @@
-{...}:
+_:
 # ntp servers for systemd-timesyncd.
 {
   services.timesyncd.servers = [

@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure sober flatpak.
 let
   pkg = "org.vinegarhq.Sober";

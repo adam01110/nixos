@@ -46,6 +46,10 @@ in {
       "match:namespace hyprpicker, no_anim on"
       "match:namespace selection, no_anim on"
       "match:namespace noctalia.+, no_anim on"
+
+      "match:namespace noctalia-background-.*$, ignore_alpha 0.94"
+      "match:namespace noctalia-background-.*$, blur on"
+      "match:namespace noctalia-background-.*$, blur_popups on"
     ];
 
     windowrule = [

@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure zoxide.
 {
   programs.zoxide = {

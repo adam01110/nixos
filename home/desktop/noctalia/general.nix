@@ -1,4 +1,4 @@
-{...}:
+_:
 # noctalia shell visuals and behavior configuration.
 {
   programs.noctalia-shell.settings.general = let
@@ -14,5 +14,6 @@
     shadowDirection = "center";
     shadowOffsetX = 0;
     shadowOffsetY = 0;
+    telemetryEnabled = false;
   };
 }

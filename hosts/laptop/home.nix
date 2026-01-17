@@ -1,4 +1,4 @@
-{...}:
+_:
 # per-host home manager overrides for the laptop.
 {
   # enable laptop-specific hyprland features.

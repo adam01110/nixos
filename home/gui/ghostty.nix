@@ -1,4 +1,4 @@
-{...}:
+_:
 # configure ghostty settings.
 {
   programs.ghostty = {

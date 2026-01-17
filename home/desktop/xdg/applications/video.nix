@@ -1,4 +1,4 @@
-{...}:
+_:
 # default handlers for video mime types.
 {
   xdg.mimeApps.defaultApplications = {
