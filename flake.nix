@@ -103,8 +103,11 @@
     # treefmt.
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
-    # preload-ng
+    # preload-ng.
     preload-ng.url = "github:miguel-b-p/preload-ng";
+
+    # milennnium steam flake.
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 
     # temporary inputs until nixpkgs fixes their shit.
     mcp-nixos.url = "github:utensils/mcp-nixos?ref=v2.1.0";
