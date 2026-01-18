@@ -6,6 +6,11 @@
   inherit (lib) getExe;
 in {
   programs.opencode.settings.lsp = {
+    nixd = {
+      command = [(getExe pkgs.nixd)];
+      extensions = [".nix"];
+    };
+
     lua-language-server = {
       command = [(getExe pkgs.lua-language-server)];
       extensions = [".lua"];
@@ -44,6 +49,11 @@ in {
     typescript-language-server = {
       command = [(getExe pkgs.typescript-language-server) "--stdio"];
       extensions = [".ts" ".tsx" ".js" ".jsx"];
+    };
+
+    rust-analyzer = {
+      command = [(getExe pkgs.rust-analyzer)];
+      extensions = [".rs"];
     };
   };
 }
