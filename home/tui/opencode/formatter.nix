@@ -20,6 +20,11 @@ in {
       extensions = [".lua"];
     };
 
+    shfmt = {
+      command = [(getExe pkgs.shfmt)];
+      extensions = [".sh" ".bash"];
+    };
+
     fish_indent = {
       command = [(getExe' pkgs.fish "fish_indent")];
       extensions = [".fish"];
@@ -44,6 +49,11 @@ in {
     ruff = {
       command = [(getExe pkgs.ruff)];
       extensions = [".py" ".pyi"];
+    };
+
+    rustfmt = {
+      command = [(getExe pkgs.rustfmt) "$FILE"];
+      extensions = [".rs"];
     };
   };
 }

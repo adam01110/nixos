@@ -60,7 +60,7 @@
 
     # noctalia shell.
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.1.0";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.1.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
