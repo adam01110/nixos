@@ -11,6 +11,7 @@ in {
     ./gtk.nix
     ./hyprcursor.nix
     ./noctalia.nix
+    ./opencode.nix
   ];
 
   stylix = {

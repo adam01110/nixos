@@ -33,6 +33,5 @@ in {
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
     "io.mrarm.mcpelauncher"
-    "im.bernard.Memorado"
   ];
 }
