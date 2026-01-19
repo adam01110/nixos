@@ -102,6 +102,4 @@ in {
       ];
     };
   };
-
-  stylix.targets.opencode.enable = true;
 }

@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  system,
   ...
 }: {
   sops = {
@@ -9,6 +10,9 @@
   };
 
   nix = {
+    # use determinate nix package.
+    package = inputs.determinate.packages.${system}.default;
+
     settings = {
       # add binary caches.
       substituters = [
@@ -45,6 +49,10 @@
         "flakes"
         "pipe-operators"
       ];
+
+      # enable determinate nix features.
+      lazy-trees = true;
+      eval-cores = 0;
     };
 
     extraOptions = ''!include ${config.sops.templates."access_tokens".path}'';
