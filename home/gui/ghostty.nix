@@ -28,6 +28,10 @@ _:
       confirm-close-surface = false;
       right-click-action = "ignore";
 
+      # improve startup time.
+      quit-after-last-window-closed = true;
+      quit-after-last-window-closed-delay = "5m";
+
       # disable directory inherit.
       working-directory = "home";
       window-inherit-working-directory = false;

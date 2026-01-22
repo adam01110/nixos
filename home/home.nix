@@ -2,7 +2,6 @@
   inherit (config.xdg) configHome;
   inherit (config.xdg) cacheHome;
 in {
-  # home-manager base config for the primary user.
   # user-level files and session environment.
   home = {
     # copy user avatar to ~/.face for display managers.
@@ -41,7 +40,7 @@ in {
     };
   };
 
-  # minimal dconf tweaks used by some apps.
+  # minimal dconf tweaks.
   dconf.settings = {
     "org/gnome/desktop/wm/preferences".button-layout = "";
     "org/gnome/desktop/interface".gtk-enable-primary-paste = false;
