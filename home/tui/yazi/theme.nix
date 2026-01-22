@@ -9,13 +9,13 @@ _:
 
     status = {
       sep_left = {
-        open = "█";
-        close = "█";
+        open = "";
+        close = "";
       };
 
       sep_right = {
-        open = "█";
-        close = "█";
+        open = "";
+        close = "";
       };
     };
 
