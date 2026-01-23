@@ -21,7 +21,7 @@ _: {
     prepend_preloaders = [
       {
         url = "*.md";
-        run = "faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -- \"$1\"";
+        run = "faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark -- \"$1\"";
       }
       {
         url = "*.tar*";
