@@ -32,6 +32,9 @@ in {
             mouse_refocus = false;
             accel_profile = "flat";
 
+            # swap caps lock and escape.
+            kb_options = "caps:swapescape";
+
             touchdevice.enable = false;
           };
 

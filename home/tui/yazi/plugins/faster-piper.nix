@@ -21,15 +21,15 @@ _: {
     prepend_preloaders = [
       {
         url = "*.md";
-        run = "faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dracula -- '$1'";
+        run = "faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -- \"$1\"";
       }
       {
         url = "*.tar*";
-        run = "faster-piper -- tar tf '$1'";
+        run = "faster-piper -- tar tf \"$1\"";
       }
       {
         url = "*.txt.gz";
-        run = "faster-piper -- gzip -dc '$1'";
+        run = "faster-piper -- gzip -dc \"$1\"";
       }
     ];
   };

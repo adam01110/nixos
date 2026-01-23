@@ -1,4 +1,4 @@
-{...}:
+_:
 # set hyprland appearance, gaps, decoration, and animations.
 {
   wayland.windowManager.hyprland.settings = {

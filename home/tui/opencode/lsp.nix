@@ -16,12 +16,12 @@ in {
       extensions = [".lua"];
     };
 
-    bash-language-server = {
+    bash = {
       command = [(getExe pkgs.bash-language-server) "start"];
       extensions = [".sh" ".bash"];
     };
 
-    yaml-language-server = {
+    yaml-ls = {
       command = [(getExe pkgs.yaml-language-server) "--stdio"];
       extensions = [".yaml" ".yml"];
     };

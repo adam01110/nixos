@@ -70,6 +70,7 @@ in {
           nix-index-database.homeModules.nix-index
           zen-browser.homeModules.beta
           nixcord.homeModules.nixcord
+          nvf.homeManagerModules.default
           spicetify-nix.homeManagerModules.spicetify
           zed-extensions.homeManagerModules.default
         ]
