@@ -11,6 +11,7 @@
     ./brightness.nix
     ./calendar.nix
     ./controlcenter.nix
+    ./delobotomize.nix
     ./dock.nix
     ./general.nix
     ./hooks.nix
@@ -34,7 +35,7 @@
     systemd.enable = true;
 
     # enable calendar support in the flake-provided Noctalia build.
-    package = inputs.noctalia.packages.${system}.default.override {
+    packageBase = inputs.noctalia.packages.${system}.default.override {
       calendarSupport = true;
     };
 
