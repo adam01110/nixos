@@ -17,9 +17,9 @@
 
   inherit (inputs.mcp-servers-nix.packages.${system}) context7-mcp;
   inherit (inputs.mcp-servers-nix.packages.${system}) mcp-server-git;
-  inherit (pkgs) github-mcp-server;
-  inherit (inputs.mcp-nixos.packages.${system}) mcp-nixos;
+
   inherit (pkgs.nur.repos.adam0) rust-mcp-server;
+  inherit (pkgs) mcp-nixos github-mcp-server;
 in {
   sops = {
     secrets = {

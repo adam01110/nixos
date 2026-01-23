@@ -109,11 +109,14 @@
     # milennnium steam flake.
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 
-    # temporary inputs until nixpkgs fixes their shit.
-    mcp-nixos.url = "github:utensils/mcp-nixos?ref=v2.1.0";
-
     # determinate nix flake.
     determinate.url = "github:DeterminateSystems/nix-src";
+
+    # nvf neovim flake.
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # outputs: expose host configurations and pass through common arguments.

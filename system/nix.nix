@@ -27,6 +27,7 @@
         "https://forkprince.cachix.org/"
         "https://ymstnt-nur-packages.cachix.org/"
         "https://nur-xyenon.cachix.org/"
+        "https://nvf.cachix.org/"
       ];
 
       trusted-public-keys = [
@@ -41,6 +42,7 @@
         "forkprince.cachix.org-1:9cN+fX492ZKlfd228xpYAC3T9gNKwS1sZvCqH8iAy1M="
         "ymstnt-nur-packages.cachix.org-1:6XI6/GtEZmGUEYQsK5gUBrEMGTSnAN6xq8Vg++DA/lc="
         "nur-xyenon.cachix.org-1:fZ3SGJ3E1p34JSG5j4etfF9+vjJGMZxe1dDBNliKx5U="
+        "nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
       ];
 
       # enable modern commands and flakes.

@@ -8,7 +8,6 @@
   AutoZipper.enabled = true;
   BetterCommands.enabled = true;
   BetterGifAltText.enabled = true;
-  BetterQuickReact.enabled = true;
   CharacterCounter.enabled = true;
   CleanChannelName.enabled = true;
   ClearURLs.enabled = true;
@@ -65,6 +64,7 @@
     enabled = true;
     messageBackgroundColor = true;
   };
+  MoreQuickReactions.enabled = true;
   NormalizeMessageLinks.enabled = true;
   PolishWording = {
     enabled = true;

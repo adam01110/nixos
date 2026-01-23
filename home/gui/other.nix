@@ -23,6 +23,7 @@ in {
       wootility
       heroic
       devtoolbox
+      krita
       ;
 
     inherit (pkgs.nur.repos.forkprince) helium-nightly;
