@@ -29,6 +29,7 @@ in {
           showMemoryUsage = true;
           showNetworkStats = false;
           usePrimaryColor = true;
+          showSwapUsage = true;
         }
         {id = "plugin:privacy-indicator";}
         {

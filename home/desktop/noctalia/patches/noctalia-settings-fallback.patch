@@ -1,0 +1,39 @@
+diff --git a/Commons/Settings.qml b/Commons/Settings.qml
+--- a/Commons/Settings.qml
++++ b/Commons/Settings.qml
+@@ -137,6 +137,11 @@
+         // File doesn't exist, create it with default values
+         root.isFreshInstall = true;
+         writeAdapter();
++
++        // Also write to fallback if set
++        if (Quickshell.env("NOCTALIA_SETTINGS_FALLBACK")) {
++          settingsFallbackFileView.writeAdapter();
++        }
+ 
+         // We started without settings, we should open the setupWizard
+         root.shouldOpenSetupWizard = true;
+@@ -145,4 +145,13 @@
+   }
+ 
++  // Fallback FileView for writing settings to alternate location
++  FileView {
++    id: settingsFallbackFileView
++    path: Quickshell.env("NOCTALIA_SETTINGS_FALLBACK") || ""
++    adapter: Quickshell.env("NOCTALIA_SETTINGS_FALLBACK") ? adapter : null
++    printErrors: false
++    watchChanges: false
++  }
++
+   // FileView to load default settings for comparison
+   FileView {
+@@ -917,5 +926,9 @@
+   // Public function to trigger immediate settings saving
+   function saveImmediate() {
+     settingsFileView.writeAdapter();
++    // Write to fallback location if set
++    if (Quickshell.env("NOCTALIA_SETTINGS_FALLBACK")) {
++      settingsFallbackFileView.writeAdapter();
++    }
+     root.settingsSaved(); // Emit signal after saving
+   }
