@@ -7,6 +7,9 @@
 let
   inherit
     (lib)
+    attrNames
+    filter
+    head
     mkEnableOption
     mkIf
     mkMerge
@@ -19,6 +22,15 @@ in {
   # merge base settings and conditional sections.
   config = let
     cfgTouch = config.hyprland.touch.enable;
+    cfgMonitors = config.hyprland.monitors;
+
+    # pick the output anchored at 0x0 for tablet mapping.
+    tabletOutput = let
+      candidates = filter (
+        name: (cfgMonitors.${name}.position or null) == "0x0"
+      ) (attrNames cfgMonitors);
+    in
+      head candidates;
   in
     mkMerge [
       {
@@ -36,6 +48,12 @@ in {
             kb_options = "caps:swapescape";
 
             touchdevice.enable = false;
+          };
+
+          device = {
+            name = "opentabletdriver-virtual-artist-tablet";
+            transform = 0;
+            output = tabletOutput;
           };
 
           # renderer tweaks.

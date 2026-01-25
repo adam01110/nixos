@@ -47,20 +47,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland compositor and plugins.
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     # noctalia shell.
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.2.1";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
