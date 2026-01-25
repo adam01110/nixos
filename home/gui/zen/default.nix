@@ -2,6 +2,7 @@
   imports = [
     ./chrome.nix
     ./extensions.nix
+    ./mods.nix
     ./policies.nix
     ./preferences.nix
     ./search.nix

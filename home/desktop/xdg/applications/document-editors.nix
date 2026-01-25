@@ -1,51 +1,65 @@
 _:
 # default handlers for office document editing.
-{
-  xdg.mimeApps.defaultApplications = {
-    "application/vnd.oasis.opendocument.text" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.apple.pages" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-word.template.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.sun.xml.writer" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-visio.template.main+xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-visio.stencil.main+xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.text-flat-xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-visio.drawing.macroEnabled.main+xml" = "onlyoffice-desktopeditors.desktop";
-    "application/x-hwp" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-word.document.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/msword" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.apple.keynote" = "onlyoffice-desktopeditors.desktop";
-    "text/csv" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-powerpoint.presentation.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.text-template" = "onlyoffice-desktopeditors.desktop";
-    "application/rtf" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-visio.stencil.macroEnabled.main+xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.presentation" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-visio.drawing.main+xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.apple.numbers" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.presentation-template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.spreadsheet-flat-xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-excel" = "onlyoffice-desktopeditors.desktop";
-    "application/msword-template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.sun.xml.impress" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.sun.xml.writer.template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.spreadsheet-template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-powerpoint.template.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.presentationml.slideshow" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.spreadsheet" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-visio.template.macroEnabled.main+xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-excel.sheet.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.graphics" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.sun.xml.calc" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-powerpoint.slideshow.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.oasis.opendocument.presentation-flat-xml" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-excel.template.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.openxmlformats-officedocument.presentationml.template" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-powerpoint" = "onlyoffice-desktopeditors.desktop";
-    "application/vnd.ms-excel.sheet.binary.macroEnabled.12" = "onlyoffice-desktopeditors.desktop";
-  };
+let
+  inherit (builtins) listToAttrs;
+in {
+  xdg.mimeApps.defaultApplications = let
+    mkEntries = prefix: desktop: names:
+      map (name: {
+        name = "${prefix}/${name}";
+        value = desktop;
+      })
+      names;
+  in
+    listToAttrs (
+      (mkEntries "application" "onlyoffice-desktopeditors.desktop" [
+        "vnd.oasis.opendocument.text"
+        "vnd.apple.pages"
+        "vnd.ms-word.template.macroEnabled.12"
+        "vnd.sun.xml.writer"
+        "vnd.ms-visio.template.main+xml"
+        "vnd.ms-visio.stencil.main+xml"
+        "vnd.oasis.opendocument.text-flat-xml"
+        "vnd.ms-visio.drawing.macroEnabled.main+xml"
+        "x-hwp"
+        "vnd.ms-word.document.macroEnabled.12"
+        "msword"
+        "vnd.apple.keynote"
+        "vnd.ms-powerpoint.presentation.macroEnabled.12"
+        "vnd.oasis.opendocument.text-template"
+        "rtf"
+        "vnd.ms-visio.stencil.macroEnabled.main+xml"
+        "vnd.oasis.opendocument.presentation"
+        "vnd.ms-visio.drawing.main+xml"
+        "vnd.apple.numbers"
+        "vnd.oasis.opendocument.presentation-template"
+        "vnd.oasis.opendocument.spreadsheet-flat-xml"
+        "vnd.ms-excel"
+        "msword-template"
+        "vnd.openxmlformats-officedocument.wordprocessingml.document"
+        "vnd.openxmlformats-officedocument.spreadsheetml.template"
+        "vnd.sun.xml.impress"
+        "vnd.sun.xml.writer.template"
+        "vnd.openxmlformats-officedocument.presentationml.presentation"
+        "vnd.oasis.opendocument.spreadsheet-template"
+        "vnd.ms-powerpoint.template.macroEnabled.12"
+        "vnd.openxmlformats-officedocument.presentationml.slideshow"
+        "vnd.oasis.opendocument.spreadsheet"
+        "vnd.ms-visio.template.macroEnabled.main+xml"
+        "vnd.ms-excel.sheet.macroEnabled.12"
+        "vnd.openxmlformats-officedocument.wordprocessingml.template"
+        "vnd.oasis.opendocument.graphics"
+        "vnd.sun.xml.calc"
+        "vnd.ms-powerpoint.slideshow.macroEnabled.12"
+        "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "vnd.oasis.opendocument.presentation-flat-xml"
+        "vnd.ms-excel.template.macroEnabled.12"
+        "vnd.openxmlformats-officedocument.presentationml.template"
+        "vnd.ms-powerpoint"
+        "vnd.ms-excel.sheet.binary.macroEnabled.12"
+      ])
+      ++ (mkEntries "text" "onlyoffice-desktopeditors.desktop" [
+        "csv"
+      ])
+    );
 }

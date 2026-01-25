@@ -13,7 +13,6 @@
     ./other.nix
     ./pipewire.nix
     ./podman.nix
-    ./preload-ng.nix
     ./printing.nix
     ./scx.nix
     ./ssh.nix

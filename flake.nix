@@ -92,9 +92,6 @@
     # treefmt.
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
-    # preload-ng.
-    preload-ng.url = "github:miguel-b-p/preload-ng";
-
     # milennnium steam flake.
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 
@@ -120,7 +117,6 @@
     sops-nix,
     systems,
     treefmt-nix,
-    preload-ng,
     ...
   } @ inputs: let
     # variables.
@@ -134,7 +130,6 @@
       stylix.nixosModules.stylix
       lanzaboote.nixosModules.lanzaboote
       sops-nix.nixosModules.sops
-      preload-ng.nixosModules.default
       ./system
     ];
 

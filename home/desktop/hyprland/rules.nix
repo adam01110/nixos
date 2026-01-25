@@ -3,8 +3,6 @@
   osConfig,
   lib,
   pkgs,
-  inputs,
-  system,
   ...
 }:
 # define permissions, layer rules, and window rules.
