@@ -1,18 +1,46 @@
 _:
 # default handlers for custom url protocols and schemes.
-{
-  xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/https" = "zen-beta.desktop";
-    "x-scheme-handler/obsidian" = "obsidian.desktop";
-    "x-scheme-handler/beeper" = "beepertexts.desktop";
-    "x-scheme-handler/curseforge" = "org.prismlauncher.PrismLauncher.desktop";
-    "x-scheme-handler/prismlauncher" = "org.prismlauncher.PrismLauncher.desktop";
-    "x-scheme-handler/roblox-player" = "org.vinegarhq.Sober.desktop";
-    "x-scheme-handler/roblox" = "org.vinegarhq.Sober.desktop";
-    "x-scheme-handler/bitwarden" = "bitwarden.desktop";
-    "x-scheme-handler/oo-office" = "onlyoffice-desktopeditors.desktop";
-    "x-scheme-handler/zed" = "dev.zed.Zed.desktop";
-    "x-scheme-handler/steam" = "steam.desktop";
-    "x-scheme-handler/steamlink" = "steam.desktop";
-  };
+let
+  inherit (builtins) listToAttrs;
+in {
+  xdg.mimeApps.defaultApplications = let
+    mkEntries = prefix: desktop: names:
+      map (name: {
+        name = "${prefix}/${name}";
+        value = desktop;
+      })
+      names;
+  in
+    listToAttrs (
+      (mkEntries "x-scheme-handler" "zen-beta.desktop" [
+        "https"
+      ])
+      ++ (mkEntries "x-scheme-handler" "obsidian.desktop" [
+        "obsidian"
+      ])
+      ++ (mkEntries "x-scheme-handler" "beepertexts.desktop" [
+        "beeper"
+      ])
+      ++ (mkEntries "x-scheme-handler" "org.prismlauncher.PrismLauncher.desktop" [
+        "curseforge"
+        "prismlauncher"
+      ])
+      ++ (mkEntries "x-scheme-handler" "org.vinegarhq.Sober.desktop" [
+        "roblox-player"
+        "roblox"
+      ])
+      ++ (mkEntries "x-scheme-handler" "bitwarden.desktop" [
+        "bitwarden"
+      ])
+      ++ (mkEntries "x-scheme-handler" "onlyoffice-desktopeditors.desktop" [
+        "oo-office"
+      ])
+      ++ (mkEntries "x-scheme-handler" "dev.zed.Zed.desktop" [
+        "zed"
+      ])
+      ++ (mkEntries "x-scheme-handler" "steam.desktop" [
+        "steam"
+        "steamlink"
+      ])
+    );
 }
