@@ -1,12 +1,12 @@
 {
   config,
   pkgs,
-  inputs,
-  system,
   ...
 }:
 # home manager hyprland configuration: plugins, quickshell, and extras.
-{
+let
+  inherit (builtins) attrValues;
+in {
   # compose hyprland configuration from module segments.
   imports = [
     ./appearance.nix
@@ -30,10 +30,13 @@
     portalPackage = null;
 
     # add hyprfocus and hyprsplit plugins.
-    plugins = with inputs; [
-      hyprland-plugins.packages.${system}.hyprfocus
-      hyprsplit.packages.${system}.hyprsplit
-    ];
+    plugins = attrValues {
+      inherit
+        (pkgs.hyprlandPlugins)
+        hyprfocus
+        hyprsplit
+        ;
+    };
   };
 
   # add hyprpicker to packages.

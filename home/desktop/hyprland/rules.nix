@@ -21,9 +21,7 @@ in {
     permission = let
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
 
-      xdg-desktop-portal-hyprland =
-        getExe' inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland
-        ".xdg-desktop-portal-hyprland-wrapped";
+      xdg-desktop-portal-hyprland = getExe' osConfig.programs.hyprland.portalPackage ".xdg-desktop-portal-hyprland-wrapped";
       grim = getExe pkgs.grim;
       hyprpicker = getExe pkgs.hyprpicker;
       equibop = getExe config.programs.nixcord.equibop.package;
