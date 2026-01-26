@@ -49,6 +49,7 @@ in {
     shellAbbrs = {
       ff = "fastfetch";
       gf = "gitfetch";
+      oc = "opencode";
     };
 
     # override commands with preferred tools.

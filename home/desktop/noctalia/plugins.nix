@@ -21,7 +21,7 @@ in {
     sources = [
       {
         enabled = true;
-        name = "Official Noctalia Plugins";
+        name = "Noctalia Plugins";
         url = noctaliaPluginsUrl;
       }
     ];

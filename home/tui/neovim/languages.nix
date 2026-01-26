@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.settings.vim.languages = {
+  programs.nvf.settings.vim.anguages = {
     enableFormat = true;
     enableTreesitter = true;
     enableExtraDiagnostics = true;
@@ -8,6 +8,8 @@ _: {
     lua.enable = true;
     html.enable = true;
     tailwind.enable = true;
+    bash.enable = true;
+    json.enable = true;
 
     nix = {
       enable = true;
@@ -25,8 +27,33 @@ _: {
       format.type = ["biome"];
     };
 
+    ts = {
+      enable = true;
+      format.type = ["biome"];
+
+      extensions.ts-error-translator = {
+        enable = true;
+        setupOpts.servers = ["ts_ls"];
+      };
+    };
+
+    rust = {
+      enable = true;
+
+      extensions.crates-nvim = {
+        enable = true;
+        setupOpts = {};
+      };
+    };
+
     markdown = {
       enable = true;
+      lsp.servers = ["markdown-oxide"];
+
+      extensions.render-markdown-nvim = {
+        enable = true;
+        setupOpts = {};
+      };
     };
   };
 }

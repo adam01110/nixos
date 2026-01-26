@@ -1,4 +1,4 @@
-_: {
+{...}: {
   programs.nvf.settings.vim = {
     searchCase = "smart";
     options.wrap = false;
@@ -20,13 +20,6 @@ _: {
       enable = true;
     };
 
-    ui = {
-      borders = {
-        enable = true;
-        globalStyle = "single";
-      };
-    };
-
     lsp = {
       enable = true;
       formatOnSave = true;
@@ -44,14 +37,6 @@ _: {
       setupOpts = {
         showmode = false;
         max_count = 2;
-      };
-    };
-
-    notify.nvim-notify = {
-      enable = true;
-      setupOpts = {
-        render = "default";
-        stages = "fade";
       };
     };
   };

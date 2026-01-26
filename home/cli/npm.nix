@@ -1,10 +1,13 @@
 {config, ...}:
 # configure npm cli to use XDG base directories for globals and logs.
 let
-  inherit (config.xdg) dataHome;
-  inherit (config.xdg) configHome;
-  inherit (config.xdg) stateHome;
-  inherit (config.xdg) cacheHome;
+  inherit
+    (config.xdg)
+    dataHome
+    configHome
+    stateHome
+    cacheHome
+    ;
 in {
   programs.npm = {
     enable = true;
