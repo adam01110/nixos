@@ -1,7 +1,12 @@
 {config, ...}: let
-  inherit (config.xdg) dataHome;
-  inherit (config.xdg) configHome;
-  inherit (config.xdg) stateHome;
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+
+  inherit
+    (config.xdg)
+    dataHome
+    configHome
+    stateHome
+    ;
 in {
   # GET OUT OF MY $HOME!
   home.sessionVariables = {
@@ -29,4 +34,7 @@ in {
     RENPY_MULTIPERSISTENT = "${dataHome}/renpy_shared";
     WINEPREFIX = "${dataHome}/wineprefixes/default";
   };
+
+  # keep renpy saves under xdg data and expose legacy path.
+  home.file.".renpy".source = mkOutOfStoreSymlink "${dataHome}/renpy";
 }

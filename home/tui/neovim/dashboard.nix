@@ -33,12 +33,6 @@ in {
               title = "Notifications";
               section = "terminal";
               cmd = "${getExe pkgs.gh-notify} -s -a -n4";
-              action = mkLuaInline ''
-                function()
-                  vim.ui.open("https://github.com/notifications")
-                end
-              '';
-              key = "n";
               height = 4;
               padding = 1;
               indent = 3;
@@ -85,9 +79,19 @@ in {
                 local packpath = vim.o.packpath
                 local start_plugins = vim.fn.globpath(packpath, "pack/*/start/*", 0, 1)
                 local opt_plugins = vim.fn.globpath(packpath, "pack/*/opt/*", 0, 1)
-                local loaded = #start_plugins
-                local total = loaded + #opt_plugins
+                local total = #start_plugins + #opt_plugins
 
+                local loaded_start = 0
+                local loaded_opt = 0
+                for path in string.gmatch(vim.o.runtimepath, "([^,]+)") do
+                  if path:match("/pack/.+/start/[^/]+$") then
+                    loaded_start = loaded_start + 1
+                  elseif path:match("/pack/.+/opt/[^/]+$") then
+                    loaded_opt = loaded_opt + 1
+                  end
+                end
+
+                local loaded = loaded_start + loaded_opt
                 local text = {
                   { "󱐋 Neovim loaded ", hl = "SnacksDashboardFooter" },
                   { string.format("%d/%d", loaded or 0, total or 0), hl = "SnacksDashboardKey" },

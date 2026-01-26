@@ -3,6 +3,7 @@
     ./dashboard.nix
     ./languages.nix
     ./settings.nix
+    ./ui.nix
   ];
 
   programs.nvf = {
