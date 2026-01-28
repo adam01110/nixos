@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.settings.vim.anguages = {
+  programs.nvf.settings.vim.languages = {
     enableFormat = true;
     enableTreesitter = true;
     enableExtraDiagnostics = true;
