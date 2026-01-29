@@ -2,6 +2,7 @@
   imports = [
     ./dashboard.nix
     ./languages.nix
+    ./presence.nix
     ./settings.nix
     ./ui.nix
   ];

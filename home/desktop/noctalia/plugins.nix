@@ -11,6 +11,7 @@
 
   inherit (vars) gitUsername;
 
+  inherit (config.xdg) configHome;
   videosDir = config.xdg.userDirs.videos;
 in {
   programs.noctalia-shell.plugins = let
@@ -38,6 +39,7 @@ in {
         "unicode-picker"
         "github-feed"
         "privacy-indicator"
+        "keybind-cheatsheet"
       ]
       mkPlugin;
 
@@ -49,6 +51,8 @@ in {
         videoCodec = "hevc";
         copyToClipboard = true;
       };
+
+      keybind-cheatsheet.hyprlandConfigPath = "${configHome}/hypr/text.conf";
     };
   };
 

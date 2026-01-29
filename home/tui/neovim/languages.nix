@@ -10,6 +10,7 @@ _: {
     tailwind.enable = true;
     bash.enable = true;
     json.enable = true;
+    xml.enable = true;
 
     nix = {
       enable = true;

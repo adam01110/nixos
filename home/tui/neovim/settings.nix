@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nvf.settings.vim = {
     searchCase = "smart";
     options.wrap = false;
