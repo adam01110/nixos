@@ -72,8 +72,16 @@ in {
       polkit.enable = true;
     };
 
-    # enable nix-ld to allow the use of dynamic libraries.
-    programs.nix-ld.enable = true;
+    programs = {
+      # enable nix-ld to allow the use of dynamic libraries.
+      nix-ld.enable = true;
+
+      # enable support for appimages.
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+    };
 
     # use nftables; individual services will add rules if needed.
     networking.nftables.enable = true;
