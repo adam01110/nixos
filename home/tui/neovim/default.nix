@@ -1,4 +1,8 @@
-{...}: {
+{
+  inputs,
+  system,
+  ...
+}: {
   imports = [
     ./dashboard.nix
     ./languages.nix
@@ -15,6 +19,8 @@
       withNodeJs = true;
       withPython3 = true;
       enableLuaLoader = true;
+
+      package = inputs.neovim-nightly-overlay.packages.${system}.default;
     };
   };
 
