@@ -9,7 +9,6 @@
 in {
   programs.nvf.settings.vim = {
     utility.snacks-nvim = {
-      enable = true;
       setupOpts = {
         dashboard = {
           enable = true;
