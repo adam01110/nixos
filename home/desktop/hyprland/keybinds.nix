@@ -53,150 +53,152 @@ in {
       zoomOut = "${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')";
     in
       ''
-        # 1. Applications
-        bind = SUPER, Return, exec, ${app2unit} ${ghostty} #"terminal"
-        bind = SUPER, E, exec, ${app2unit} ${thunar} #"file manager"
-        bind = SUPER, N, exec, ${app2unit} ${equibop} #"discord"
-        bind = SUPER, B, exec, ${app2unit} ${zen-browser} #"browser"
-        bind = SUPER, M, exec, ${app2unit} ${steam} #"steam"
+        # 1. APPLICATIONS
+        bind = SUPER, Return, exec, ${app2unit} ${ghostty} #"Terminal"
+        bind = SUPER, E, exec, ${app2unit} ${thunar} #"File manager"
+        bind = SUPER, N, exec, ${app2unit} ${equibop} #"Discord"
+        bind = SUPER, B, exec, ${app2unit} ${zen-browser} #"Browser"
+        bind = SUPER, M, exec, ${app2unit} ${steam} #"Steam"
 
-        # 2. Shell
-        bind = SUPER, tab, exec, ${noctalia} launcher toggle #"launcher"
-        bind = SUPER, ESCAPE, exec, ${noctalia} sessionMenu toggle #"session menu"
-        bind = SUPER, C, exec, ${noctalia} wallpaper toggle #"wallpaper menu"
-        bind = SUPER, O, exec, ${noctalia} notifications toggleHistory #"notification history"
-        bind = SUPER, U, exec, ${noctalia} controlCenter toggle #"control center"
-        bind = SUPER, G, exec, ${noctalia} launcher emoji #"emoji picker"
-        bind = SUPER SHIFT, V, exec, ${noctalia} launcher clipboard #"clipboard history"
-        bind = SUPER, Y, exec, ${noctalia} idleInhibitor toggle #"idle inhibitor"
+        # 2. SHELL
+        bind = SUPER, TAB, exec, ${noctalia} launcher toggle #"Launcher"
+        bind = SUPER, ESCAPE, exec, ${noctalia} sessionMenu toggle #"Session menu"
+        bind = SUPER, C, exec, ${noctalia} wallpaper toggle #"Wallpaper menu"
+        bind = SUPER, O, exec, ${noctalia} notifications toggleHistory #"Notification history"
+        bind = SUPER, U, exec, ${noctalia} controlCenter toggle #"Control center"
+        bind = SUPER, G, exec, ${noctalia} launcher emoji #"Emoji picker"
+        bind = SUPER SHIFT, V, exec, ${noctalia} launcher clipboard #"Clipboard history"
+        bind = SUPER, Y, exec, ${noctalia} idleInhibitor toggle #"Idle inhibitor"
 
-        # 3. Workspaces
-        bind = SUPER, 1, split:workspace, 1 #"workspace 1"
-        bind = SUPER, 2, split:workspace, 2 #"workspace 2"
-        bind = SUPER, 3, split:workspace, 3 #"workspace 3"
-        bind = SUPER, 4, split:workspace, 4 #"workspace 4"
-        bind = SUPER, 5, split:workspace, 5 #"workspace 5"
-        bind = SUPER, 6, split:workspace, 6 #"workspace 6"
-        bind = SUPER, 7, split:workspace, 7 #"workspace 7"
-        bind = SUPER, 8, split:workspace, 8 #"workspace 8"
+        # 3. WORKSPACES (SWITCH)
+        bind = SUPER, 1, split:workspace, 1 #"Workspace 1"
+        bind = SUPER, 2, split:workspace, 2 #"Workspace 2"
+        bind = SUPER, 3, split:workspace, 3 #"Workspace 3"
+        bind = SUPER, 4, split:workspace, 4 #"Workspace 4"
+        bind = SUPER, 5, split:workspace, 5 #"Workspace 5"
+        bind = SUPER, 6, split:workspace, 6 #"Workspace 6"
+        bind = SUPER, 7, split:workspace, 7 #"Workspace 7"
+        bind = SUPER, 8, split:workspace, 8 #"Workspace 8"
 
-        bind = SUPER SHIFT, 1, split:movetoworkspace, 1 #"move window to workspace 1"
-        bind = SUPER SHIFT, 2, split:movetoworkspace, 2 #"move window to workspace 2"
-        bind = SUPER SHIFT, 3, split:movetoworkspace, 3 #"move window to workspace 3"
-        bind = SUPER SHIFT, 4, split:movetoworkspace, 4 #"move window to workspace 4"
-        bind = SUPER SHIFT, 5, split:movetoworkspace, 5 #"move window to workspace 5"
-        bind = SUPER SHIFT, 6, split:movetoworkspace, 6 #"move window to workspace 6"
-        bind = SUPER SHIFT, 7, split:movetoworkspace, 7 #"move window to workspace 7"
-        bind = SUPER SHIFT, 8, split:movetoworkspace, 8 #"move window to workspace 8"
+        # 4. WORKSPACES (MOVE)
+        bind = SUPER SHIFT, 1, split:movetoworkspace, 1 #"Move to workspace 1"
+        bind = SUPER SHIFT, 2, split:movetoworkspace, 2 #"Move to workspace 2"
+        bind = SUPER SHIFT, 3, split:movetoworkspace, 3 #"Move to workspace 3"
+        bind = SUPER SHIFT, 4, split:movetoworkspace, 4 #"Move to workspace 4"
+        bind = SUPER SHIFT, 5, split:movetoworkspace, 5 #"Move to workspace 5"
+        bind = SUPER SHIFT, 6, split:movetoworkspace, 6 #"Move to workspace 6"
+        bind = SUPER SHIFT, 7, split:movetoworkspace, 7 #"Move to workspace 7"
+        bind = SUPER SHIFT, 8, split:movetoworkspace, 8 #"Move to workspace 8"
 
-        bind = SUPER CTRL, 1, split:movetoworkspacesilent, 1 #"move window to workspace 1 (silent)"
-        bind = SUPER CTRL, 2, split:movetoworkspacesilent, 2 #"move window to workspace 2 (silent)"
-        bind = SUPER CTRL, 3, split:movetoworkspacesilent, 3 #"move window to workspace 3 (silent)"
-        bind = SUPER CTRL, 4, split:movetoworkspacesilent, 4 #"move window to workspace 4 (silent)"
-        bind = SUPER CTRL, 5, split:movetoworkspacesilent, 5 #"move window to workspace 5 (silent)"
-        bind = SUPER CTRL, 6, split:movetoworkspacesilent, 6 #"move window to workspace 6 (silent)"
-        bind = SUPER CTRL, 7, split:movetoworkspacesilent, 7 #"move window to workspace 7 (silent)"
-        bind = SUPER CTRL, 8, split:movetoworkspacesilent, 8 #"move window to workspace 8 (silent)"
+        # 5. WORKSPACES (MOVE SILENT)
+        bind = SUPER CTRL, 1, split:movetoworkspacesilent, 1 #"Move to workspace 1 (silent)"
+        bind = SUPER CTRL, 2, split:movetoworkspacesilent, 2 #"Move to workspace 2 (silent)"
+        bind = SUPER CTRL, 3, split:movetoworkspacesilent, 3 #"Move to workspace 3 (silent)"
+        bind = SUPER CTRL, 4, split:movetoworkspacesilent, 4 #"Move to workspace 4 (silent)"
+        bind = SUPER CTRL, 5, split:movetoworkspacesilent, 5 #"Move to workspace 5 (silent)"
+        bind = SUPER CTRL, 6, split:movetoworkspacesilent, 6 #"Move to workspace 6 (silent)"
+        bind = SUPER CTRL, 7, split:movetoworkspacesilent, 7 #"Move to workspace 7 (silent)"
+        bind = SUPER CTRL, 8, split:movetoworkspacesilent, 8 #"Move to workspace 8 (silent)"
 
-        # 4. Window Management
-        bind = SUPER, F, fullscreen #"toggle fullscreen"
-        bind = SUPER, V, togglefloating #"toggle floating"
-        bind = SUPER, S, togglesplit #"toggle split"
-        bind = SUPER, P, pseudo #"toggle pseudo"
-        bind = SUPER, Q, killactive #"close window"
-        bind = SUPER SHIFT, O, split:grabroguewindows #"grab rogue windows"
+        # 6. WINDOW MANAGEMENT
+        bind = SUPER, F, fullscreen, #"Toggle fullscreen"
+        bind = SUPER, V, togglefloating, #"Toggle floating"
+        bind = SUPER, S, togglesplit, #"Toggle split"
+        bind = SUPER, P, pseudo, #"Toggle pseudo"
+        bind = SUPER, Q, killactive, #"Close window"
+        bind = SUPER SHIFT, O, split:grabroguewindows, #"Grab rogue windows"
 
-        bind = SUPER SHIFT, LEFT, movewindow, l #"swap window left"
-        bind = SUPER SHIFT, RIGHT, movewindow, r #"swap window right"
-        bind = SUPER SHIFT, UP, movewindow, u #"swap window up"
-        bind = SUPER SHIFT, DOWN, movewindow, d #"swap window down"
+        # 7. WINDOW MOVE
+        bind = SUPER SHIFT, LEFT, movewindow, l #"Move window left"
+        bind = SUPER SHIFT, RIGHT, movewindow, r #"Move window right"
+        bind = SUPER SHIFT, UP, movewindow, u #"Move window up"
+        bind = SUPER SHIFT, DOWN, movewindow, d #"Move window down"
 
-        bind = SUPER SHIFT, H, movewindow, l #"swap window left"
-        bind = SUPER SHIFT, L, movewindow, r #"swap window right"
-        bind = SUPER SHIFT, K, movewindow, u #"swap window up"
-        bind = SUPER SHIFT, J, movewindow, d #"swap window down"
+        bind = SUPER SHIFT, H, movewindow, l #"Move window left"
+        bind = SUPER SHIFT, L, movewindow, r #"Move window right"
+        bind = SUPER SHIFT, K, movewindow, u #"Move window up"
+        bind = SUPER SHIFT, J, movewindow, d #"Move window down"
 
-        # 5. Window Focus
-        bind = SUPER, LEFT, movefocus, l #"focus left"
-        bind = SUPER, RIGHT, movefocus, r #"focus right"
-        bind = SUPER, UP, movefocus, u #"focus up"
-        bind = SUPER, DOWN, movefocus, d #"focus down"
+        # 8. WINDOW FOCUS
+        bind = SUPER, LEFT, movefocus, l #"Focus left"
+        bind = SUPER, RIGHT, movefocus, r #"Focus right"
+        bind = SUPER, UP, movefocus, u #"Focus up"
+        bind = SUPER, DOWN, movefocus, d #"Focus down"
 
-        bind = SUPER, H, movefocus, l #"focus left"
-        bind = SUPER, L, movefocus, r #"focus right"
-        bind = SUPER, K, movefocus, u #"focus up"
-        bind = SUPER, J, movefocus, d #"focus down"
+        bind = SUPER, H, movefocus, l #"Focus left"
+        bind = SUPER, L, movefocus, r #"Focus right"
+        bind = SUPER, K, movefocus, u #"Focus up"
+        bind = SUPER, J, movefocus, d #"Focus down"
 
-        # 6. Groups
-        bind = SUPER, X, togglegroup #"toggle grouping"
-        bind = SUPER ALT, X, moveoutofgroup #"move out of group"
+        # 9. GROUPS
+        bind = SUPER, X, togglegroup, #"Toggle group"
+        bind = SUPER ALT, X, moveoutofgroup, #"Move out of group"
 
-        bind = SUPER ALT, LEFT, moveintogroup, l #"move into group (left)"
-        bind = SUPER ALT, RIGHT, moveintogroup, r #"move into group (right)"
-        bind = SUPER ALT, UP, moveintogroup, u #"move into group (up)"
-        bind = SUPER ALT, DOWN, moveintogroup, d #"move into group (down)"
+        bind = SUPER ALT, LEFT, moveintogroup, l #"Move into group (left)"
+        bind = SUPER ALT, RIGHT, moveintogroup, r #"Move into group (right)"
+        bind = SUPER ALT, UP, moveintogroup, u #"Move into group (up)"
+        bind = SUPER ALT, DOWN, moveintogroup, d #"Move into group (down)"
 
-        bind = SUPER ALT, H, moveintogroup, l #"move into group (left)"
-        bind = SUPER ALT, L, moveintogroup, r #"move into group (right)"
-        bind = SUPER ALT, K, moveintogroup, u #"move into group (up)"
-        bind = SUPER ALT, J, moveintogroup, d #"move into group (down)"
+        bind = SUPER ALT, H, moveintogroup, l #"Move into group (left)"
+        bind = SUPER ALT, L, moveintogroup, r #"Move into group (right)"
+        bind = SUPER ALT, K, moveintogroup, u #"Move into group (up)"
+        bind = SUPER ALT, J, moveintogroup, d #"Move into group (down)"
 
-        bind = SUPER ALT, TAB, changegroupactive, f #"next in group"
-        bind = SUPER ALT SHIFT, TAB, changegroupactive, b #"previous in group"
-        bind = SUPER ALT, mouse_down, changegroupactive, f #"next in group"
-        bind = SUPER ALT, mouse_up, changegroupactive, b #"previous in group"
+        bind = SUPER ALT, TAB, changegroupactive, f #"Next in group"
+        bind = SUPER ALT SHIFT, TAB, changegroupactive, b #"Previous in group"
+        bind = SUPER ALT, mouse_down, changegroupactive, f #"Next in group"
+        bind = SUPER ALT, mouse_up, changegroupactive, b #"Previous in group"
 
-        bind = SUPER ALT, 1, changegroupactive, 1 #"group window 1"
-        bind = SUPER ALT, 2, changegroupactive, 2 #"group window 2"
-        bind = SUPER ALT, 3, changegroupactive, 3 #"group window 3"
-        bind = SUPER ALT, 4, changegroupactive, 4 #"group window 4"
-        bind = SUPER ALT, 5, changegroupactive, 5 #"group window 5"
+        bind = SUPER ALT, 1, changegroupactive, 1 #"Focus group window 1"
+        bind = SUPER ALT, 2, changegroupactive, 2 #"Focus group window 2"
+        bind = SUPER ALT, 3, changegroupactive, 3 #"Focus group window 3"
+        bind = SUPER ALT, 4, changegroupactive, 4 #"Focus group window 4"
+        bind = SUPER ALT, 5, changegroupactive, 5 #"Focus group window 5"
 
-        # 7. Layout and Resize
-        binde = SUPER CTRL, LEFT, resizeactive, -20 0 #"resize left"
-        binde = SUPER CTRL, RIGHT, resizeactive, 20 0 #"resize right"
-        binde = SUPER CTRL, UP, resizeactive, 0 -20 #"resize up"
-        binde = SUPER CTRL, DOWN, resizeactive, 0 20 #"resize down"
+        # 10. LAYOUT AND RESIZE
+        binde = SUPER CTRL, LEFT, resizeactive, -20 0 #"Resize left"
+        binde = SUPER CTRL, RIGHT, resizeactive, 20 0 #"Resize right"
+        binde = SUPER CTRL, UP, resizeactive, 0 -20 #"Resize up"
+        binde = SUPER CTRL, DOWN, resizeactive, 0 20 #"Resize down"
 
-        binde = SUPER CTRL, H, resizeactive, -20 0 #"resize left"
-        binde = SUPER CTRL, L, resizeactive, 20 0 #"resize right"
-        binde = SUPER CTRL, K, resizeactive, 0 -20 #"resize up"
-        binde = SUPER CTRL, J, resizeactive, 0 20 #"resize down"
+        binde = SUPER CTRL, H, resizeactive, -20 0 #"Resize left"
+        binde = SUPER CTRL, L, resizeactive, 20 0 #"Resize right"
+        binde = SUPER CTRL, K, resizeactive, 0 -20 #"Resize up"
+        binde = SUPER CTRL, J, resizeactive, 0 20 #"Resize down"
 
-        # 8. Screenshots and Color
-        bind = SUPER SHIFT, S, exec, ${hyprshot} -m region -z -o ${screenshotDir}/region #"screenshot region"
-        bind = SUPER, Print, exec, ${hyprshot} -m output -c -o ${screenshotDir}/output #"screenshot output"
-        bind = SUPER SHIFT, X, exec, ${hyprpicker} -n -a -r -q -l #"color picker"
+        bindm = SUPER, mouse:272, movewindow #"Move window"
+        bindm = SUPER, mouse:273, resizewindow #"Resize window"
 
-        # 9. System
-        bind = SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle #"overview"
-        bind = SUPER, F2, exec, ${noctalia} plugin togglePanel keybind-cheatsheet #"keybind cheatsheet"
-        bind = SUPER, F1, exec, ${getExe performantMode} #"performant mode"
+        # 11. SCREENSHOTS AND COLOR
+        bind = SUPER SHIFT, S, exec, ${hyprshot} -m region -z -o ${screenshotDir}/region #"Screenshot (region)"
+        bind = SUPER, Print, exec, ${hyprshot} -m output -c -o ${screenshotDir}/output #"Screenshot (output)"
+        bind = SUPER SHIFT, X, exec, ${hyprpicker} -n -a -r -q -l #"Color picker"
 
-        # 10. Zoom
-        binde = SUPER, equal, exec, ${zoomIn} #"zoom in"
-        binde = SUPER, minus, exec, ${zoomOut} #"zoom out"
+        # 12. SYSTEM
+        bind = SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle #"Overview"
+        bind = SUPER, F2, exec, ${noctalia} plugin togglePanel keybind-cheatsheet #"Keybind cheatsheet"
+        bind = SUPER, F1, exec, ${getExe performantMode} #"Performant mode"
 
-        bind = SUPER, mouse_down, exec, ${zoomIn} #"zoom in"
-        bind = SUPER, mouse_up, exec, ${zoomOut} #"zoom out"
+        # 13. CURSOR ZOOM
+        binde = SUPER, equal, exec, ${zoomIn} #"Zoom in"
+        binde = SUPER, minus, exec, ${zoomOut} #"Zoom out"
 
-        bind = SUPER SHIFT, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor 1 #"reset zoom"
-        bind = SUPER SHIFT, minus, exec, ${hyprctl} -q keyword cursor:zoom_factor 1 #"reset zoom"
+        bind = SUPER, mouse_down, exec, ${zoomIn} #"Zoom in"
+        bind = SUPER, mouse_up, exec, ${zoomOut} #"Zoom out"
 
-        # 11. Media
-        bindl = , XF86AudioMute, exec, ${noctalia} volume muteOutput #"mute"
-        bindel = , XF86AudioRaiseVolume, exec, ${noctalia} volume increase #"volume up"
-        bindel = , XF86AudioLowerVolume, exec, ${noctalia} volume decrease #"volume down"
+        bind = SUPER SHIFT, mouse_down, exec, ${hyprctl} -q keyword cursor:zoom_factor 1 #"Reset zoom"
+        bind = SUPER SHIFT, minus, exec, ${hyprctl} -q keyword cursor:zoom_factor 1 #"Reset zoom"
 
-        # 12. Mouse
-        bindm = SUPER, mouse:272, movewindow #"move window"
-        bindm = SUPER, mouse:273, resizewindow #"resize window"
+        # 14. MEDIA
+        bindl = , XF86AudioMute, exec, ${noctalia} volume muteOutput #"Mute"
+        bindel = , XF86AudioRaiseVolume, exec, ${noctalia} volume increase #"Volume up"
+        bindel = , XF86AudioLowerVolume, exec, ${noctalia} volume decrease #"Volume down"
       ''
       + optionalString cfgBrightness ''
 
-        # 13. Brightness
-        bindel = , XF86MonBrightnessUp, exec, ${brightnessctl} set 1%+ #"brightness up"
-        bindel = , XF86MonBrightnessDown, exec, ${brightnessctl} set 1%- #"brightness down"
+        # 15. MEDIA (BRIGHTNESS)
+        bindel = , XF86MonBrightnessUp, exec, ${brightnessctl} set 1%+ #"Brightness up"
+        bindel = , XF86MonBrightnessDown, exec, ${brightnessctl} set 1%- #"Brightness down"
       '';
 
     wayland.windowManager.hyprland.extraConfig = ''

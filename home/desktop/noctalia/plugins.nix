@@ -52,7 +52,10 @@ in {
         copyToClipboard = true;
       };
 
-      keybind-cheatsheet.hyprlandConfigPath = "${configHome}/hypr/text.conf";
+      keybind-cheatsheet = {
+        hyprlandConfigPath = "${configHome}/hypr/text.conf";
+        columnCount = 4;
+      };
     };
   };
 

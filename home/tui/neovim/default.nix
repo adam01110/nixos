@@ -7,6 +7,7 @@
     ./dashboard.nix
     ./languages.nix
     ./presence.nix
+    ./profiler.nix
     ./settings.nix
     ./ui.nix
   ];
@@ -19,6 +20,8 @@
       withNodeJs = true;
       withPython3 = true;
       enableLuaLoader = true;
+
+      utility.snacks-nvim.enable = true;
 
       package = inputs.neovim-nightly-overlay.packages.${system}.default;
     };

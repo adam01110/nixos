@@ -40,6 +40,7 @@ in {
           inherit (pkgs.nur.repos.adam0) modular-mcp;
           inherit
             (pkgs)
+            wl-clipboard
             # lsp's
             lua-language-server
             bash-language-server
