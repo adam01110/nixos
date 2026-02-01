@@ -28,7 +28,7 @@ let
             echo = getExe' pkgs.coreutils "echo";
             test = getExe' pkgs.coreutils "test";
           };
-          args = lib.removeAttrs fnArgs [
+          args = removeAttrs fnArgs [
             "description"
             "file"
             "withMkdir"

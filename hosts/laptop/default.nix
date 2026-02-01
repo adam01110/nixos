@@ -23,7 +23,6 @@ in {
     timezone = "automatic-timezoned";
     wifi.enable = true;
     scx.enable = true;
-    podman.enable = true;
   };
 
   # enable rcu lazy mode for better battery life.

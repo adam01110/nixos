@@ -11,7 +11,7 @@ in {
       extensions = [".nix"];
     };
 
-    lua-language-server = {
+    lua = {
       command = [(getExe pkgs.lua-language-server)];
       extensions = [".lua"];
     };
@@ -26,7 +26,7 @@ in {
       extensions = [".yaml" ".yml"];
     };
 
-    vscode-json-languageserver = {
+    json = {
       command = [(getExe pkgs.vscode-json-languageserver) "--stdio"];
       extensions = [".json" ".jsonc"];
     };
@@ -46,12 +46,12 @@ in {
       extensions = [".toml"];
     };
 
-    typescript-language-server = {
+    typescript = {
       command = [(getExe pkgs.typescript-language-server) "--stdio"];
       extensions = [".ts" ".tsx" ".js" ".jsx"];
     };
 
-    rust-analyzer = {
+    rust = {
       command = [(getExe pkgs.rust-analyzer)];
       extensions = [".rs"];
     };

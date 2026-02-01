@@ -16,10 +16,7 @@ in {
   disko.selectedDisk = "/dev/nvme0n1";
 
   # desktop-specific optional services.
-  optServices = {
-    podman.enable = true;
-    timezone = "Europe/Amsterdam";
-  };
+  optServices.timezone = "Europe/Amsterdam";
 
   # enable specialized hardware support.
   hardware = {

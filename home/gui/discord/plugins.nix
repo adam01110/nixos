@@ -7,7 +7,11 @@
 }:
 # collect equibop plugins and expose options.
 let
-  inherit (lib) mkEnableOption;
+  inherit
+    (lib)
+    mkEnableOption
+    foldl'
+    ;
   inherit (vars) countryCode;
 
   # short alias for camera enable option.
@@ -31,7 +35,7 @@ let
   ];
 
   # merge plugin modules into a single attribute set.
-  mergedPlugins = lib.foldl' (acc: file: acc // (import file pluginArgs)) {} pluginFiles;
+  mergedPlugins = foldl' (acc: file: acc // (import file pluginArgs)) {} pluginFiles;
 in {
   # user option to toggle camera features in plugins.
   options.equibop.camera.enable = mkEnableOption "Enable camera functionality for Equibop plugins.";
