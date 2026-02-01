@@ -66,6 +66,20 @@
       nix-cachyos-kernel.overlays.pinned
       zed-extensions.overlays.default
       millennium.overlays.default
+      # patch hardtime.nvim to avoid per-key which-key require.
+      (_final: prev: {
+        vimPlugins =
+          prev.vimPlugins
+          // {
+            hardtime-nvim = prev.vimPlugins.hardtime-nvim.overrideAttrs (old: {
+              patches =
+                (old.patches or [])
+                ++ [
+                  ../patches/hardtime-nvim-no-which-key-require.patch
+                ];
+            });
+          };
+      })
     ];
   };
 }

@@ -36,10 +36,7 @@ in {
 
         content = ''
           [Resolve]
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_1"}
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_2"}
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_3"}
-          DNS=${config.sops.placeholder."dns/${hostname}/dns_4"}
+          DNS=${config.sops.placeholder."dns/${hostname}/dns_1"} ${config.sops.placeholder."dns/${hostname}/dns_2"} ${config.sops.placeholder."dns/${hostname}/dns_3"} ${config.sops.placeholder."dns/${hostname}/dns_4"}
         '';
       };
     };
@@ -47,7 +44,7 @@ in {
     services.resolved = {
       enable = true;
       settings.Resolve = {
-        DNSOverTLS = "true";
+        DNSOverTLS = "opportunistic";
 
         FallbackDNS = [
           "1.1.1.1#cloudflare-dns.com"

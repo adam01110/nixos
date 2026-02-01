@@ -1,5 +1,4 @@
 _: {
-  # 🍿 profiler.
   programs.nvf.settings.vim = {
     utility.snacks-nvim.setupOpts.profiler = {
       autocmds = true;

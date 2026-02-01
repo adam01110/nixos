@@ -8,40 +8,41 @@
   inherit (builtins) toJSON;
   inherit (lib) genAttrs;
   inherit (config.lib.file) mkOutOfStoreSymlink;
-
   inherit (vars) gitUsername;
 
   inherit (config.xdg) configHome;
   videosDir = config.xdg.userDirs.videos;
 in {
-  programs.noctalia-shell.plugins = let
-    noctaliaPluginsUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-  in {
-    version = 1;
+  programs.noctalia-shell = {
+    plugins = let
+      noctaliaPluginsUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+    in {
+      version = 1;
 
-    sources = [
-      {
-        enabled = true;
-        name = "Noctalia Plugins";
-        url = noctaliaPluginsUrl;
-      }
-    ];
+      sources = [
+        {
+          enabled = true;
+          name = "Noctalia Plugins";
+          url = noctaliaPluginsUrl;
+        }
+      ];
 
-    states = let
-      mkPlugin = _name: {
-        enabled = true;
-        sourceUrl = noctaliaPluginsUrl;
-      };
-    in
-      genAttrs [
-        "screen-recorder"
-        "kaomoji-provider"
-        "unicode-picker"
-        "github-feed"
-        "privacy-indicator"
-        "keybind-cheatsheet"
-      ]
-      mkPlugin;
+      states = let
+        mkPlugin = _name: {
+          enabled = true;
+          sourceUrl = noctaliaPluginsUrl;
+        };
+      in
+        genAttrs [
+          "screen-recorder"
+          "kaomoji-provider"
+          "unicode-picker"
+          "github-feed"
+          "privacy-indicator"
+          "keybind-cheatsheet"
+        ]
+        mkPlugin;
+    };
 
     pluginSettings = {
       privacy-indicator.hideInactive = true;
@@ -53,7 +54,7 @@ in {
       };
 
       keybind-cheatsheet = {
-        hyprlandConfigPath = "${configHome}/hypr/text.conf";
+        hyprlandConfigPath = "${configHome}/hypr/keybinds.conf";
         columnCount = 4;
       };
     };

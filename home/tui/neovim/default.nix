@@ -9,6 +9,7 @@
     ./presence.nix
     ./profiler.nix
     ./settings.nix
+    ./scrollbar.nix
     ./ui.nix
   ];
 
