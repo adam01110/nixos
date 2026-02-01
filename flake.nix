@@ -63,6 +63,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    oxicord = {
+      url = "github:linuxmobile/oxicord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     llm-agents.url = "github:numtide/llm-agents.nix";
     mcp-servers-nix.url = "github:natsukium/mcp-servers-nix";
 

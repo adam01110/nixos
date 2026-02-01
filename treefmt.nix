@@ -35,6 +35,7 @@ _: {
 
     stylua.enable = true;
 
-    mdformat.enable = true;
+    rumdl-check.enable = true;
+    rumdl-format.enable = true;
   };
 }

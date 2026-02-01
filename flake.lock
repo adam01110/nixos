@@ -1456,6 +1456,28 @@
         "type": "github"
       }
     },
+    "oxicord": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay_2",
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1769747529,
+        "narHash": "sha256-JoUavgk0ih3vDWOT7wyDSv0UpNU7o7rDPiNMISH2BoM=",
+        "owner": "linuxmobile",
+        "repo": "oxicord",
+        "rev": "aa0b706df99fb6baa9ac48c255706ad410bb97c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linuxmobile",
+        "repo": "oxicord",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -1515,10 +1537,11 @@
         "noctalia": "noctalia",
         "nur": "nur",
         "nvf": "nvf",
+        "oxicord": "oxicord",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
-        "systems": "systems_5",
+        "systems": "systems_6",
         "treefmt-nix": "treefmt-nix_3",
         "tuigreet": "tuigreet",
         "zed-extensions": "zed-extensions",
@@ -1547,6 +1570,27 @@
       }
     },
     "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "oxicord",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768186348,
+        "narHash": "sha256-nkpIe3zkpeoFuOl8xBpexulECsHLQ9Ljg1gW3bPCjSI=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "af69e497567a5945a64057717bc9b17c8478097e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_3": {
       "inputs": {
         "nixpkgs": "nixpkgs_12"
       },
@@ -1589,7 +1633,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1769316930,
@@ -1618,7 +1662,7 @@
           "nixpkgs"
         ],
         "nur": "nur_2",
-        "systems": "systems_4",
+        "systems": "systems_5",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
@@ -1700,6 +1744,21 @@
       }
     },
     "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_6": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -1892,7 +1951,7 @@
       "inputs": {
         "nixpkgs": "nixpkgs_11",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "rust-overlay": "rust-overlay_2"
+        "rust-overlay": "rust-overlay_3"
       },
       "locked": {
         "lastModified": 1769831318,
