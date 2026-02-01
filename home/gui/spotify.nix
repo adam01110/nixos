@@ -40,6 +40,12 @@ in {
         rev = "8d0ec54581920629734acc5e4449d34d6afce7fb";
         hash = "sha256-VuBbW4xYpB2QbSsNjR1an05WMXhLU9rv9moHw/DgCgk=";
       };
+      SpotifyPlaylistIconsSrc = pkgs.fetchFromGitHub {
+        owner = "jeroentvb";
+        repo = "spicetify-playlist-icons";
+        rev = "dist";
+        hash = "sha256-hOkFIAperiWzfR+EVVAxEdta9LRndJbjritMj4I0gNw=";
+      };
     in
       # extensions from spicetify-nix.
       (attrValues {
@@ -57,6 +63,7 @@ in {
           playingSource
           sectionMarker
           queueTime
+          aiBandBlocker
           ;
       })
       # custom extensions fetched above.
@@ -73,20 +80,22 @@ in {
           src = cacheCleanerSrc;
           name = "cacheCleaner.js";
         }
+        {
+          src = SpotifyPlaylistIconsSrc;
+          name = "playlist-icons.js";
+        }
       ];
 
     # enable css snippets.
     enabledSnippets = attrValues {
       inherit
         (spicePkgs.snippets)
-        roundedImages
         modernScrollbar
         removeGradient
         pointer
         prettyLyrics
         removeTheArtistsAndCreditsSectionsFromTheSidebar
         removeTopSpacing
-        roundedButtons
         ;
     };
 

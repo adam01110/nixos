@@ -6,12 +6,12 @@ _: {
       enableExtraDiagnostics = true;
 
       yaml.enable = true;
-      lua.enable = true;
       html.enable = true;
       tailwind.enable = true;
       bash.enable = true;
       json.enable = true;
       xml.enable = true;
+      toml.enable = true;
 
       nix = {
         enable = true;
@@ -48,9 +48,17 @@ _: {
         };
       };
 
+      lua = {
+        enable = true;
+        extraDiagnostics.types = ["selene"];
+      };
+
       markdown = {
         enable = true;
-        lsp.servers = ["markdown-oxide"];
+
+        lsp.servers = ["rumdl"];
+        format.type = ["rumdl"];
+        extraDiagnostics.types = ["rumdl"];
 
         extensions.markview-nvim = {
           enable = true;
