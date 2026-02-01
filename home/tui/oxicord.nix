@@ -1,14 +1,19 @@
 {
-  inputs,
-  lib,
+  config,
   osConfig,
+  lib,
   pkgs,
+  inputs,
   system,
   ...
 }:
 # provide a styled oxicord wrapper.
 let
-  inherit (lib) getExe';
+  inherit
+    (lib)
+    getExe
+    getExe'
+    ;
 
   oxicordPkg = inputs.oxicord.packages.${system}.default;
   accentColor = "#${osConfig.lib.stylix.colors.base0B}";
@@ -31,8 +36,10 @@ in {
     name = "Oxicord";
     genericName = "Terminal Discord Client";
     icon = "discord";
-    exec = getExe' oxicord "oxicord";
-    terminal = true;
+    exec = let
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      oxicord = getExe' oxicord "oxicord";
+    in "${terminalCommand} --title=Oxicord ${oxicord}";
     categories = [
       "Network"
       "Chat"
