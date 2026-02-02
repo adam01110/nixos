@@ -24,7 +24,7 @@ let
     nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = ''
       wrapProgram $out/bin/oxicord \
-        --add-flags "--group-guilds" \
+        --add-flags "--group-guilds=true" \
         --add-flags "--accent-color=${accentColor}"
     '';
   };
@@ -38,8 +38,8 @@ in {
     icon = "discord";
     exec = let
       terminalCommand = getExe config.xdg.terminal-exec.package;
-      oxicord = getExe' oxicord "oxicord";
-    in "${terminalCommand} --title=Oxicord ${oxicord}";
+      oxicordExe = getExe' oxicord "oxicord";
+    in "${terminalCommand} --title=Oxicord ${oxicordExe}";
     categories = [
       "Network"
       "Chat"
