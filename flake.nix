@@ -62,7 +62,6 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     oxicord = {
       url = "github:linuxmobile/oxicord";
       inputs.nixpkgs.follows = "nixpkgs";

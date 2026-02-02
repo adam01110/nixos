@@ -90,7 +90,6 @@ in {
     enabledSnippets = attrValues {
       inherit
         (spicePkgs.snippets)
-        modernScrollbar
         removeGradient
         pointer
         prettyLyrics
@@ -98,14 +97,5 @@ in {
         removeTopSpacing
         ;
     };
-
-    # remove rounded corners from all elements for consistent styling.
-    theme.additionalCss = ''
-      *,
-      *::before,
-      *::after {
-        border-radius: 0px !important;
-      }
-    '';
   };
 }

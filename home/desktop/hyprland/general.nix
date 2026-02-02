@@ -58,7 +58,7 @@ in {
 
           # renderer tweaks.
           render = {
-            direct_scanout = 0;
+            direct_scanout = 1;
             ctm_animation = 0;
           };
 

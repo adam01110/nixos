@@ -26,13 +26,15 @@ Goals: keep comments concise, consistent, and helpful for future maintainers of 
 - Section headers to group related blocks:\
   `# outputs: expose host configurations and pass through common arguments.` (flake.nix:111)
 - Bulleted explanations for lists:
-  ````
+
+  ````text
   # group memberships:
   # - wheel: administrative access via sudo.
   # - audio: access to sound devices.
   # - networkmanager: control network connections.
   ``` (system/user.nix:26-29)
   ````
+
 - Rationale above templated or generated content:\
   `# template for resolved.conf carrying dns servers from sops.` (system/services/network.nix:30)
 - Short labels for config blocks:\
@@ -62,7 +64,8 @@ Goals: keep comments concise, consistent, and helpful for future maintainers of 
 - Section header:\
   `# <short description>.`
 - Bulleted list:
-  ```
+
+  ```text
   # <topic>:
   # - <item 1>.
   # - <item 2>.

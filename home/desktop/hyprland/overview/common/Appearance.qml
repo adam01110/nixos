@@ -17,22 +17,22 @@ Singleton {
 
     m3colors: QtObject {
         property bool darkmode: true
-        property color m3primary: "#cc241d" // ?
-        property color m3onPrimary: "#cc241d" // ?
-        property color m3primaryContainer: "#cc241d" // ?
-        property color m3onPrimaryContainer: "#cc241d" // ?
-        property color m3onSecondary: "#cc241d" // ?
+        property color m3primary: "#fb4934" // ?
+        property color m3onPrimary: "#fb4934" // ?
+        property color m3primaryContainer: "#fb4934" // ?
+        property color m3onPrimaryContainer: "#fb4934" // ?
+        property color m3onSecondary: "#fb4934" // ?
         property color m3secondaryContainer: "#534457"
         property color m3onSecondaryContainer: "#F2DCF3"
-        property color m3onBackground: "#cc241d" // ?
-        property color m3surface: "#cc241d" // ?
-        property color m3surfaceContainerHigh: "#cc241d" // ?
-        property color m3surfaceContainerHighest: "#cc241d" // ?
-        property color m3surfaceVariant: "#cc241d" // ?
+        property color m3onBackground: "#fb4934" // ?
+        property color m3surface: "#fb4934" // ?
+        property color m3surfaceContainerHigh: "#fb4934" // ?
+        property color m3surfaceContainerHighest: "#fb4934" // ?
+        property color m3surfaceVariant: "#fb4934" // ?
         property color m3background: "#3c3836" // main bg
-        property color m3secondary: "#98971a" // accent
+        property color m3secondary: "#b8bb26" // accent
         property color m3surfaceContainerLow: "#282828" // empty workspaces
-        property color m3surfaceContainer: "#98971a" // window highlight
+        property color m3surfaceContainer: "#b8bb26" // window highlight
         property color m3onSurface: "#282828" // second highlight
         property color m3onSurfaceVariant: "#fbf1c7" // number
         property color m3inverseSurface: "#504945" // popup

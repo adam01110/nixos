@@ -12,6 +12,7 @@ in {
     ./hyprcursor.nix
     ./noctalia.nix
     ./opencode.nix
+    ./spotify.nix
   ];
 
   stylix = {
