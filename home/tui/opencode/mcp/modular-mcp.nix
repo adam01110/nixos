@@ -2,8 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
-  system,
   ...
 }: let
   inherit
@@ -15,11 +13,8 @@
 
   jsonFormat = pkgs.formats.json {};
 
-  inherit (inputs.mcp-servers-nix.packages.${system}) context7-mcp;
-  inherit (inputs.mcp-servers-nix.packages.${system}) mcp-server-git;
-
   inherit (pkgs.nur.repos.adam0) rust-mcp-server;
-  inherit (pkgs) mcp-nixos github-mcp-server;
+  inherit (pkgs) context7-mcp github-mcp-server mcp-nixos mcp-server-git;
 in {
   sops = {
     secrets = {
