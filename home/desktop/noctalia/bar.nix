@@ -21,7 +21,7 @@ in {
       left = [
         {
           id = "SystemMonitor";
-          compactMode = false;
+          showCpuFreq = true;
           showCpuTemp = true;
           showCpuUsage = true;
           showGpuTemp = config.noctalia.enableGpu;
