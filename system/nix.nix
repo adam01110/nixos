@@ -1,7 +1,8 @@
 {
   config,
   inputs,
-  system,
+  lib,
+  pkgs,
   ...
 }: {
   sops = {
@@ -11,7 +12,7 @@
 
   nix = {
     # use determinate nix package.
-    package = inputs.determinate.packages.${system}.default;
+    package = pkgs.determinate-nix;
 
     settings = {
       # add binary caches.
@@ -62,24 +63,6 @@
   nixpkgs = {
     config.allowUnfree = true;
 
-    overlays = with inputs; [
-      nix-cachyos-kernel.overlays.pinned
-      zed-extensions.overlays.default
-      millennium.overlays.default
-      # patch hardtime.nvim to avoid per-key which-key require.
-      (_final: prev: {
-        vimPlugins =
-          prev.vimPlugins
-          // {
-            hardtime-nvim = prev.vimPlugins.hardtime-nvim.overrideAttrs (old: {
-              patches =
-                (old.patches or [])
-                ++ [
-                  ../patches/hardtime-nvim-no-which-key-require.patch
-                ];
-            });
-          };
-      })
-    ];
+    overlays = import ../overlays {inherit inputs lib;};
   };
 }

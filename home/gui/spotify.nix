@@ -90,11 +90,8 @@ in {
     enabledSnippets = attrValues {
       inherit
         (spicePkgs.snippets)
-        removeGradient
         pointer
-        prettyLyrics
         removeTheArtistsAndCreditsSectionsFromTheSidebar
-        removeTopSpacing
         ;
     };
   };

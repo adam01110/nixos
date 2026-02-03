@@ -10,6 +10,7 @@
     ./sober.nix
     ./spotify.nix
     ./thunar.nix
+    ./zaread.nix
     ./zathura.nix
     ./zed.nix
   ];

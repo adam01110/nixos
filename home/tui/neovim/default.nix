@@ -1,8 +1,4 @@
-{
-  inputs,
-  system,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./dashboard.nix
     ./languages.nix
@@ -24,7 +20,7 @@
 
       utility.snacks-nvim.enable = true;
 
-      package = inputs.neovim-nightly-overlay.packages.${system}.default;
+      package = pkgs.neovim-nightly;
     };
   };
 

@@ -93,6 +93,8 @@
       url = "github:notashelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    import-tree.url = "github:vic/import-tree";
   };
 
   # outputs: expose host configurations and pass through common arguments.

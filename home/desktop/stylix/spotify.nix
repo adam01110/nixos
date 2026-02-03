@@ -4,7 +4,7 @@
   system,
   ...
 }: let
-  colors = osConfig.lib.stylix.colors;
+  inherit (osConfig.lib.stylix) colors;
   font = osConfig.stylix.fonts.monospace.name;
 in {
   programs.spicetify = {
@@ -12,7 +12,7 @@ in {
       spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
     in {
       name = "stylix";
-      src = spicePkgs.themes.text.src;
+      inherit (spicePkgs.themes.text) src;
       sidebarConfig = false;
 
       # set font to stylix font.
