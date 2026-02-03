@@ -16,11 +16,14 @@ in {
       sidebarConfig = false;
 
       # set font to stylix font.
+      # remove border transitions.
       # remove rounded corners from all elements for consistent styling.
       # remove the ugly spotify-tui header.
       additionalCss = ''
         :root {
           --font-family: '${font}', monospace;
+
+          --border-transition none;
         }
 
         *,
