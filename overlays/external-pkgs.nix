@@ -24,4 +24,4 @@ let
     };
   };
 in
-  builtins.mapAttrs (_name: spec: fromInput spec) packages
+  builtins.mapAttrs (_name: fromInput) packages

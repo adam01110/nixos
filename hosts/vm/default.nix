@@ -1,15 +1,9 @@
-{vars, ...}:
-# vm host profile: hardware, home manager imports, and optional services.
-let
-  inherit (vars) username;
-in {
+_:
+# vm host profile: virtualized services and optional defaults.
+{
   networking.hostName = "vm";
   # system version for state compatibility - do not modify.
   system.stateVersion = "25.05";
-
-  # import vm-specific hardware configuration.
-  imports = [./hardware.nix];
-  home-manager.users.${username}.imports = [./home.nix];
 
   # virtual disk device for disko partitioning.
   disko.selectedDisk = "/dev/vda";

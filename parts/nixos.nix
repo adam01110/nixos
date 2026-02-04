@@ -6,6 +6,7 @@
 # nixos host definitions for flake-parts.
 let
   vars = import ../vars.nix;
+  import-tree = inputs.import-tree.withLib inputs.nixpkgs.lib;
 
   commonModules = with inputs; [
     nur.modules.nixos.default
@@ -17,10 +18,7 @@ let
     (import-tree ../system)
   ];
 
-  mkHost = {
-    system,
-    hostPath,
-  }:
+  mkHost = name: system:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
@@ -30,23 +28,21 @@ let
           vars
           ;
       };
-      modules = commonModules ++ [hostPath];
-    };
-in {
-  flake.nixosConfigurations = {
-    desktop = mkHost {
-      system = "x86_64-linux";
-      hostPath = ../hosts/desktop;
+
+      modules =
+        commonModules
+        ++ [
+          (import-tree (../hosts + "/${name}"))
+        ];
     };
 
-    laptop = mkHost {
-      system = "x86_64-linux";
-      hostPath = ../hosts/laptop;
-    };
-
-    vm = mkHost {
-      system = "x86_64-linux";
-      hostPath = ../hosts/vm;
-    };
+  hosts = {
+    desktop = "x86_64-linux";
+    laptop = "x86_64-linux";
+    vm = "x86_64-linux";
   };
+in {
+  flake.nixosConfigurations =
+    inputs.nixpkgs.lib.genAttrs (builtins.attrNames hosts)
+    (name: mkHost name hosts.${name});
 }
