@@ -1,16 +1,10 @@
-{vars, ...}:
-# laptop host profile: hardware, home manager imports, battery-friendly defaults, and optional services.
-let
-  inherit (vars) username;
-in {
+_:
+# laptop host profile: battery-friendly defaults and optional services.
+{
   # system version for state compatibility - do not modify.
   system.stateVersion = "25.05";
 
   networking.hostName = "laptop";
-
-  # import laptop-specific hardware configuration.
-  imports = [./hardware.nix];
-  home-manager.users.${username}.imports = [./home.nix];
 
   # primary nvme disk for disko partitioning.
   disko.selectedDisk = "/dev/nvme0n1";
