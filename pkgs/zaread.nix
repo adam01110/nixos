@@ -5,14 +5,14 @@
   zathura,
   makeWrapper,
   bashNonInteractive,
-  libreoffice ? null,
-  libreofficeSupport ? libreoffice != null,
-  md2pdf ? null,
-  markdownSupport ? md2pdf != null,
-  calibre ? null,
-  mobiSupport ? calibre != null,
-  typst ? null,
-  typstSupport ? typst != null,
+  libreoffice,
+  libreofficeSupport ? true,
+  md2pdf,
+  markdownSupport ? true,
+  calibre,
+  mobiSupport ? true,
+  typst,
+  typstSupport ? true,
 }:
 stdenv.mkDerivation {
   pname = "zaread";
@@ -26,9 +26,7 @@ stdenv.mkDerivation {
   };
 
   pathAdd = lib.makeBinPath (
-    [
-      zathura
-    ]
+    [zathura]
     ++ lib.optionals libreofficeSupport [libreoffice]
     ++ lib.optionals markdownSupport [md2pdf]
     ++ lib.optionals mobiSupport [calibre]

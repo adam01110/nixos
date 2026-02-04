@@ -10,7 +10,7 @@ let
   inherit
     (lib)
     mkEnableOption
-    optionalAttrs
+    mkIf
     getExe
     ;
 in {
@@ -164,17 +164,7 @@ in {
       };
     };
 
-    # export editor-related session variables.
-    home.sessionVariables = let
-      cfgVm = config.zed.isVm;
-
-      name = "zeditor";
-    in
-      {
-        # ZED
-        EDITOR = name;
-        VISUAL = name;
-      }
-      // optionalAttrs cfgVm {ZED_ALLOW_EMULATED_GPU = "1";};
+    # export zed session variables.
+    home.sessionVariables = mkIf config.zed.isVm {ZED_ALLOW_EMULATED_GPU = "1";};
   };
 }

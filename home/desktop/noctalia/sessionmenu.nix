@@ -3,6 +3,7 @@ _:
 {
   programs.noctalia-shell.settings.sessionMenu = {
     countdownDuration = 8000;
+    largeButtonsStyle = false;
     powerOptions = [
       {
         action = "lock";

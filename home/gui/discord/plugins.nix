@@ -26,12 +26,12 @@ let
 
   # files that define plugin chunks to merge.
   pluginFiles = [
-    ./plugins/core.nix
-    ./plugins/communication.nix
-    ./plugins/interface.nix
-    ./plugins/media.nix
-    ./plugins/social.nix
-    ./plugins/integrations.nix
+    ./plugins/_core.nix
+    ./plugins/_communication.nix
+    ./plugins/_interface.nix
+    ./plugins/_media.nix
+    ./plugins/_social.nix
+    ./plugins/_integrations.nix
   ];
 
   # merge plugin modules into a single attribute set.

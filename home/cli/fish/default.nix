@@ -12,11 +12,6 @@ let
     getExe'
     ;
 in {
-  imports = [
-    ./functions.nix
-    ./packages.nix
-  ];
-
   programs.fish = {
     enable = true;
 

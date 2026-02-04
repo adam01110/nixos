@@ -3,8 +3,6 @@
   osConfig,
   lib,
   pkgs,
-  inputs,
-  system,
   ...
 }:
 # provide a styled oxicord wrapper.
@@ -15,7 +13,7 @@ let
     getExe'
     ;
 
-  oxicordPkg = inputs.oxicord.packages.${system}.default;
+  oxicordPkg = pkgs.oxicord;
   accentColor = "#${osConfig.lib.stylix.colors.base0B}";
 
   oxicord = pkgs.symlinkJoin {

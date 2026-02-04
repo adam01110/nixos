@@ -7,13 +7,10 @@ let
   inherit
     (builtins)
     filter
-    functionArgs
-    hasAttr
     ;
-  inherit (lib) filterAttrs;
 
   importTree = inputs.import-tree.withLib lib;
-  upstreamOverlays = import ./inputs.nix {inherit inputs;};
+  upstreamOverlays = import ./_inputs.nix {inherit inputs;};
 
   overlayArgs = {
     inherit
@@ -23,17 +20,12 @@ let
   };
 
   overlayFiles = importTree.pipeTo (files: filter isOverlayFile files) ./.;
-  isOverlayFile = path: let
-    baseName = baseNameOf path;
-  in
-    baseName != "default.nix" && baseName != "inputs.nix";
+  isOverlayFile = path: baseNameOf path != "default.nix";
 
   mkOverlay = file: let
     overlayFn = import file;
   in
-    overlayFn (filterArgs overlayFn overlayArgs);
-  filterArgs = fn: args:
-    filterAttrs (name: _: hasAttr name (functionArgs fn)) args;
+    overlayFn overlayArgs;
 
   externalPkgsOverlay = mkOverlay ./external-pkgs.nix;
 in

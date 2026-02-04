@@ -3,8 +3,6 @@
   osConfig,
   lib,
   pkgs,
-  inputs,
-  system,
   ...
 }:
 # configure hypridle timeouts, screen lock, and dpms.
@@ -28,7 +26,7 @@ in {
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
     in {
       general = let
-        noctalia = "${getExe' inputs.noctalia.packages.${system}.default "noctalia-shell"} ipc call";
+        noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
       in {
         # command to invoke the lockscreen.
         lock_cmd = "${noctalia} lockScreen lock";

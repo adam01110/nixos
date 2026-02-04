@@ -7,5 +7,6 @@ _:
     panelsAttachedToBar = false;
     settingsPanelAttachToBar = false;
     panelBackgroundOpacity = 0.95;
+    boxBorderEnabled = true;
   };
 }

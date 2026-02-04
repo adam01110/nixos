@@ -1,28 +1,6 @@
 {lib, ...}: let
   inherit (lib) mkEnableOption;
 in {
-  # pull in per-feature Noctalia modules.
-  imports = [
-    ./audio.nix
-    ./bar.nix
-    ./brightness.nix
-    ./calendar.nix
-    ./controlcenter.nix
-    ./delobotomize.nix
-    ./dock.nix
-    ./general.nix
-    ./hooks.nix
-    ./launcher.nix
-    ./location.nix
-    ./network.nix
-    ./notifications.nix
-    ./plugins.nix
-    ./sessionmenu.nix
-    ./systemmonitor.nix
-    ./ui.nix
-    ./wallpaper.nix
-  ];
-
   # expose an enable toggle for battery widgets.
   options.noctalia.battery.enable = mkEnableOption "Enable the battery service & widgets.";
 
