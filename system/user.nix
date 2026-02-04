@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  system,
   vars,
   ...
 }:
@@ -51,30 +50,28 @@ in {
     # suffix used when home manager backs up existing files it will manage.
     backupFileExtension = "bak";
 
-    # pass shared context (flake inputs, system, and vars) to home manager modules.
+    # pass shared context (flake inputs and vars) to home manager modules.
     extraSpecialArgs = {
       inherit
         inputs
-        system
         vars
         ;
     };
 
     users.${username} = {
       # home manager module sources from flake inputs.
-      imports = with inputs;
-        [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          sops-nix.homeManagerModules.sops
-          noctalia.homeModules.default
-          nix-index-database.homeModules.nix-index
-          zen-browser.homeModules.beta
-          nixcord.homeModules.nixcord
-          nvf.homeManagerModules.default
-          spicetify-nix.homeManagerModules.spicetify
-          zed-extensions.homeManagerModules.default
-        ]
-        ++ [./../home];
+      imports = with inputs; [
+        nix-flatpak.homeManagerModules.nix-flatpak
+        sops-nix.homeManagerModules.sops
+        noctalia.homeModules.default
+        nix-index-database.homeModules.nix-index
+        zen-browser.homeModules.beta
+        nixcord.homeModules.nixcord
+        nvf.homeManagerModules.default
+        spicetify-nix.homeManagerModules.spicetify
+        zed-extensions.homeManagerModules.default
+        (import-tree ../home)
+      ];
 
       home = {
         # home-manager account identity.

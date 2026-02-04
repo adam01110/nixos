@@ -1,14 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ./dashboard.nix
-    ./languages.nix
-    ./presence.nix
-    ./profiler.nix
-    ./settings.nix
-    ./scrollbar.nix
-    ./ui.nix
-  ];
-
   programs.nvf = {
     enable = true;
     enableManpages = true;
@@ -22,6 +12,13 @@
 
       package = pkgs.neovim-nightly;
     };
+  };
+
+  home.sessionVariables = let
+    editor = "nvim";
+  in {
+    EDITOR = editor;
+    VISUAL = editor;
   };
 
   stylix.targets.nvf.transparentBackground = true;

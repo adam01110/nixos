@@ -6,6 +6,7 @@
   extraLibraries ? _pkgs: [],
   bluetoothEnabled ? false,
   steamSupport ? true,
+  ...
 }:
 # slim lutris provides minimal lutris with essential dependencies.
 let

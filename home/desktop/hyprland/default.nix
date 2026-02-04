@@ -7,17 +7,6 @@
 let
   inherit (builtins) attrValues;
 in {
-  # compose hyprland configuration from module segments.
-  imports = [
-    ./appearance.nix
-    ./hypridle.nix
-    ./keybinds.nix
-    ./general.nix
-    ./monitors.nix
-    ./plugins.nix
-    ./rules.nix
-  ];
-
   # make home manager session variables available to uwsm.
   xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 

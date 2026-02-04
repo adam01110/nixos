@@ -3,13 +3,6 @@
 let
   inherit (builtins) attrValues;
 in {
-  imports = [
-    ./keymap.nix
-    ./plugins.nix
-    ./settings.nix
-    ./theme.nix
-  ];
-
   # add runtime helpers for yazi plugins.
   programs.yazi = {
     enable = true;

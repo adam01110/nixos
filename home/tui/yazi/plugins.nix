@@ -2,15 +2,6 @@
   inherit (builtins) listToAttrs;
   inherit (pkgs.lib.attrsets) nameValuePair;
 in {
-  imports = [
-    ./plugins/faster-piper.nix
-    ./plugins/mediainfo.nix
-    ./plugins/relative-motions.nix
-    ./plugins/smart-enter.nix
-    ./plugins/smart-paste.nix
-    ./plugins/ucp.nix
-  ];
-
   programs.yazi = {
     plugins = let
       mkPlugin = source: name: nameValuePair name source.${name};

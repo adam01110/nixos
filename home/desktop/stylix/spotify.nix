@@ -1,10 +1,12 @@
 {
+  pkgs,
   osConfig,
   inputs,
-  system,
   ...
 }: let
   inherit (osConfig.lib.stylix) colors;
+  inherit (pkgs.stdenv.hostPlatform) system;
+
   font = osConfig.stylix.fonts.monospace.name;
 in {
   programs.spicetify = {

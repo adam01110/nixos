@@ -1,8 +1,4 @@
-{
-  modulesPath,
-  system,
-  ...
-}:
+{modulesPath, ...}:
 # hardware profile for qemu/kvm virtual machines.
 {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
@@ -16,6 +12,4 @@
     "virtio_blk"
   ];
   boot.kernelModules = ["kvm-intel"];
-
-  nixpkgs.hostPlatform = system;
 }

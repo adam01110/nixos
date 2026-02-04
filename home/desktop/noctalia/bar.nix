@@ -72,7 +72,10 @@ in {
         }
       ];
 
-      right =
+      right = let
+        inherit (config.programs.noctalia-shell.settings.appLauncher) terminalCommand;
+        wiremix = "${terminalCommand} --title='Wiremix' ${config.xdg.desktopEntries.wiremix.exec}";
+      in
         [
           {
             id = "Tray";
@@ -93,10 +96,12 @@ in {
           {
             id = "Volume";
             displayMode = "onhover";
+            middleClickCommand = wiremix;
           }
           {
             id = "Microphone";
             displayMode = "onhover";
+            middleClickCommand = wiremix;
           }
           {
             id = "Brightness";
@@ -106,12 +111,14 @@ in {
         ++ [
           {id = "KeepAwake";}
         ]
-        ++ (optional config.noctalia.battery.enable {id = "Battery";})
+        ++ (optional config.noctalia.battery.enable {
+          id = "Battery";
+          showPowerProfiles = true;
+        })
         ++ [
           {id = "plugin:github-feed";}
           {
             id = "NotificationHistory";
-            hideWhenZero = true;
             showUnreadBadge = true;
           }
           {

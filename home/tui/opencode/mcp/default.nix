@@ -8,8 +8,6 @@
 
   inherit (config.xdg) configHome;
 in {
-  imports = [./modular-mcp.nix];
-
   programs.mcp = {
     enable = true;
 

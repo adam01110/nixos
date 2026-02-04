@@ -1,12 +1,5 @@
 # xdg desktop integration and mime type configuration module.
-{...}: {
-  imports = [
-    ./applications.nix
-    ./autostart.nix
-    ./cleanup.nix
-    ./terminal.nix
-  ];
-
+_: {
   # enable xdg integration.
   xdg.enable = true;
 

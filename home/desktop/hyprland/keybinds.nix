@@ -3,8 +3,6 @@
   osConfig,
   lib,
   pkgs,
-  inputs,
-  system,
   ...
 }:
 # keybindings for hyprland including workspace, window, and media controls.
@@ -35,14 +33,14 @@ in {
       qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
 
-      performantMode = callPackage ./scripts/performant-mode.nix {inherit osConfig;};
+      performantMode = callPackage ./scripts/_performant-mode.nix {inherit osConfig;};
       thunar = getExe pkgs.thunar;
       equibop = getExe config.programs.nixcord.equibop.package;
       ghostty = "${getExe config.programs.ghostty.package} +new-window";
       hyprpicker = getExe config.programs.hyprshot.package;
       hyprshot = getExe config.programs.hyprshot.package;
       steam = getExe osConfig.programs.steam.package;
-      zen-browser = getExe inputs.zen-browser.packages."${system}".default;
+      zen-browser = getExe config.programs.zen-browser.package;
       app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";
       brightnessctl = getExe pkgs.brightnessctl;
 

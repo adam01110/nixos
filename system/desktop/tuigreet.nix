@@ -2,8 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
-  system,
   vars,
   ...
 }:
@@ -17,7 +15,6 @@ let
   inherit (vars) username;
 
   tomlFormat = pkgs.formats.toml {};
-  inherit (inputs.tuigreet.packages.${system}) tuigreet;
 in {
   services.greetd = {
     enable = true;
@@ -26,7 +23,7 @@ in {
     useTextGreeter = true;
 
     # start tuigreet.
-    settings.default_session.command = getExe tuigreet;
+    settings.default_session.command = getExe pkgs.tuigreet;
   };
 
   environment = {
@@ -82,5 +79,5 @@ in {
   };
 
   # ensure tuigreet is present system-wide.
-  environment.systemPackages = [tuigreet];
+  environment.systemPackages = [pkgs.tuigreet];
 }

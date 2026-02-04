@@ -1,20 +1,10 @@
 {osConfig, ...}:
 # per-user stylix customization layered on top of system-wide stylix theming.
 let
-  disabledTargets = import ./disabled.nix {};
+  disabledTargets = import ./_disabled.nix {};
 
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
 in {
-  imports = [
-    ./equibop.nix
-    ./eza.nix
-    ./gtk.nix
-    ./hyprcursor.nix
-    ./noctalia.nix
-    ./opencode.nix
-    ./spotify.nix
-  ];
-
   stylix = {
     # opacity values: slightly reduced for better readability with wallpapers.
     opacity = {

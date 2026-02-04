@@ -14,11 +14,13 @@
     types
     ;
 
+  hostSystem = pkgs.stdenv.hostPlatform.system;
+
   cfg = config.programs.noctalia-shell;
   basePackage =
     if cfg.packageOverrides.package != null
     then cfg.packageOverrides.package
-    else inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    else inputs.noctalia.packages.${hostSystem}.default;
   overrideArgs = removeAttrs cfg.packageOverrides ["package"];
 in {
   options = {

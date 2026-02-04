@@ -1,9 +1,7 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
-  system,
   ...
 }: let
   inherit
@@ -18,13 +16,6 @@
     ;
   inherit (pkgs) symlinkJoin;
 in {
-  imports = [
-    ./mcp
-    ./formatter.nix
-    ./lsp.nix
-    ./settings.nix
-  ];
-
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
@@ -32,7 +23,7 @@ in {
     # wrap opencode with mcp's, formatters, and lsp's.
     package = symlinkJoin {
       name = "opencode-wrapped";
-      paths = [inputs.llm-agents.packages.${system}.opencode];
+      paths = [pkgs.opencode];
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/opencode \

@@ -9,8 +9,6 @@ let
   inherit (pkgs) replaceVars;
   inherit (config.xdg) configHome;
 in {
-  imports = [./plugins.nix];
-
   programs.nixcord = {
     enable = true;
     discord.enable = false;

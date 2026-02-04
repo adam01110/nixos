@@ -1,7 +1,6 @@
 {
   config,
   modulesPath,
-  system,
   ...
 }:
 # hardware profile for the laptop.
@@ -21,8 +20,6 @@
   ];
   # enable intel virtualization support.
   boot.kernelModules = ["kvm-intel"];
-
-  nixpkgs.hostPlatform = system;
 
   # enable intel microcode updates when firmware is available.
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;

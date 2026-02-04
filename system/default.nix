@@ -13,20 +13,6 @@
     mkIf
     ;
 in {
-  imports = [
-    ./cli
-    ./desktop
-    ./gui
-    ./services
-    ./disk.nix
-    ./locale.nix
-    ./nix.nix
-    ./slim.nix
-    ./sops.nix
-    ./tweaks.nix
-    ./user.nix
-  ];
-
   # custom option gate for roccat kain 100 mouse hardware quirks.
   options.hardware.roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
 

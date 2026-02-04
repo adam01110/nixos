@@ -8,6 +8,8 @@
   # inputs: upstream channels, overlays, and extra flakes used by this config.
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=release";
     nur = {
@@ -40,7 +42,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.3.0";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.3.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -98,83 +100,15 @@
   };
 
   # outputs: expose host configurations and pass through common arguments.
-  outputs = {
-    self,
-    nixpkgs,
-    nur,
-    disko,
-    home-manager,
-    stylix,
-    lanzaboote,
-    sops-nix,
-    systems,
-    treefmt-nix,
-    ...
-  } @ inputs: let
-    # variables.
-    vars = import ./vars.nix;
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = import inputs.systems;
 
-    # modules shared by every host.
-    commonModules = [
-      nur.modules.nixos.default
-      disko.nixosModules.disko
-      home-manager.nixosModules.home-manager
-      stylix.nixosModules.stylix
-      lanzaboote.nixosModules.lanzaboote
-      sops-nix.nixosModules.sops
-      ./system
-    ];
-
-    # helper for building host configurations.
-    mkHost = {
-      system,
-      hostPath,
-    }:
-      nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs =
-          {
-            # arguments shared by every host.
-            inherit
-              self
-              inputs
-              system
-              vars
-              ;
-          }
-          // {
-            inherit system;
-          };
-        modules = commonModules ++ [hostPath];
-      };
-
-    # small helper to iterate over each system.
-    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
-
-    # eval the treefmt modules from ./treefmt.nix.
-    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
-  in {
-    # host machines defined by directory under ./host/*
-    nixosConfigurations = {
-      desktop = mkHost {
-        system = "x86_64-linux";
-        hostPath = ./hosts/desktop;
-      };
-
-      laptop = mkHost {
-        system = "x86_64-linux";
-        hostPath = ./hosts/laptop;
-      };
-
-      vm = mkHost {
-        system = "x86_64-linux";
-        hostPath = ./hosts/vm;
-      };
+      imports = with inputs; [
+        home-manager.flakeModules.home-manager
+        treefmt-nix.flakeModule
+        disko.flakeModules.default
+        (import-tree ./parts)
+      ];
     };
-
-    formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
-    checks = eachSystem (pkgs: {
-      formatting = treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.check self;
-    });
-  };
 }

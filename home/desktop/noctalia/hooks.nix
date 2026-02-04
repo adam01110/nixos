@@ -10,7 +10,7 @@ let
   inherit (pkgs) callPackage;
 in {
   programs.noctalia-shell.settings.hooks = let
-    performantMode = callPackage ../hyprland/scripts/performant-mode.nix {inherit osConfig;};
+    performantMode = callPackage ../hyprland/scripts/_performant-mode.nix {inherit osConfig;};
   in {
     enabled = true;
 

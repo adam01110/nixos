@@ -1,12 +1,12 @@
 {
   pkgs,
   inputs,
-  system,
   ...
 }:
 # configure spicetify.
 let
   inherit (builtins) attrValues;
+  inherit (pkgs.stdenv.hostPlatform) system;
 in {
   programs.spicetify = let
     # access spicetify-nix packages.

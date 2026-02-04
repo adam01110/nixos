@@ -2,7 +2,7 @@
   osConfig,
   lib,
   inputs,
-  system,
+  pkgs,
   ...
 }:
 # zen browser user chrome and content styling with nix-userstyles integration.
@@ -13,6 +13,7 @@ let
     filterAttrs
     hasPrefix
     ;
+  inherit (pkgs.stdenv.hostPlatform) system;
 
   # convert the stylix base16 scheme into a format accepted by nix-userstyles.
   stylixPalette = osConfig.lib.stylix.colors |> filterAttrs (name: _: hasPrefix "base0" name);
