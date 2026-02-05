@@ -132,7 +132,7 @@ in {
             formatVertical = "HH mm - dd MM";
             tooltipFormat = "ddd, MMM dd HH:mm";
             useCustomFont = false;
-            usePrimaryColor = true;
+            clockColor = "primary";
           }
           {
             id = "ControlCenter";
