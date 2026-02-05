@@ -1,18 +1,23 @@
-_: {
+_: let
+  us = "en_US.UTF-8";
+  nl = "nl_NL.UTF-8";
+in {
   # Locale and i18n settings. adjust lc_* as desired per host.
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = us;
     # Keep locale categories aligned to avoid mismatch warnings.
     extraLocaleSettings = {
-      LC_ADDRESS = "en_US.UTF-8";
-      LC_IDENTIFICATION = "en_US.UTF-8";
-      LC_MEASUREMENT = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF-8";
-      LC_NAME = "en_US.UTF-8";
-      LC_NUMERIC = "en_US.UTF-8";
-      LC_PAPER = "en_US.UTF-8";
-      LC_TELEPHONE = "en_US.UTF-8";
-      LC_TIME = "en_US.UTF-8";
+      LC_CTYPE = us;
+      LC_ADDRESS = nl;
+      LC_MEASUREMENT = nl;
+      LC_MESSAGES = us;
+      LC_MONETARY = nl;
+      LC_NAME = nl;
+      LC_NUMERIC = nl;
+      LC_PAPER = nl;
+      LC_TELEPHONE = nl;
+      LC_TIME = us;
+      LC_COLLATE = us;
     };
   };
 }
