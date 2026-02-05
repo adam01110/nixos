@@ -1,5 +1,5 @@
 _:
-# show container context in the prompt.
+# Show container context in the prompt.
 {
   programs.starship.settings = {
     container = {

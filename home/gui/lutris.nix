@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# configure lutris and integrate with steam packages.
+# Configure lutris and integrate with steam packages.
 let
   bluetoothEnabled = osConfig.optServices.bluetooth.enable;
   inherit (osConfig.programs) steam;
@@ -16,10 +16,10 @@ in {
       steamSupport = true;
     };
 
-    # add umu launcher for proton outside of steam.
+    # Add umu launcher for proton outside of steam.
     extraPackages = [pkgs.umu-launcher] ++ steam.extraPackages;
 
-    # proton and the package of steam form the system steam module.
+    # Proton and the package of steam form the system steam module.
     steamPackage = steam.package;
     protonPackages = steam.extraCompatPackages;
   };

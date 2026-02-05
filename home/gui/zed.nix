@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# configure zed editor.
+# Configure zed editor.
 let
   inherit (builtins) attrValues;
   inherit
@@ -14,7 +14,7 @@ let
     getExe
     ;
 in {
-  # vm option enables gpu acceleration for virtual machine environments.
+  # Vm option enables gpu acceleration for virtual machine environments.
   options.zed.isVm = mkEnableOption "Allow the usage of virtio gpu accel";
 
   config = {
@@ -22,30 +22,30 @@ in {
       zed-editor = {
         enable = true;
 
-        # add packages for language servers and formatters.
+        # Add packages for language servers and formatters.
         extraPackages = attrValues {
           inherit
             (pkgs)
-            # packages for nix.
+            # Packages for nix.
             nixd
             alejandra
-            # packages for rust.
+            # Packages for rust.
             rust-analyzer
-            # packages for shell script.
+            # Packages for shell script.
             shfmt
-            # packages for bash.
+            # Packages for bash.
             shellcheck
-            # packages for lua.
+            # Packages for lua.
             stylua
             ;
 
-          # packages for qml.
+          # Packages for qml.
           inherit (pkgs.kdePackages) qtdeclarative;
         };
 
-        # configure editor behavior and language settings.
+        # Configure editor behavior and language settings.
         userSettings = {
-          # disable telemetry.
+          # Disable telemetry.
           telemetry = {
             diagnostics = false;
             metrics = false;
@@ -55,7 +55,7 @@ in {
 
           cursor_shape = "block";
 
-          # minimap scrollbar.
+          # Minimap scrollbar.
           scrollbar.axes.vertical = false;
           lsp_document_colors = "background";
           minimap = {
@@ -69,9 +69,9 @@ in {
 
           languages = {
             Nix = {
-              # use nixd lsp for nix.
+              # Use nixd lsp for nix.
               language_servers = ["nixd"];
-              # use alejandra formatter for nix.
+              # Use alejandra formatter for nix.
               formatter.external.command = getExe pkgs.alejandra;
             };
 
@@ -114,10 +114,10 @@ in {
           };
 
           lsp = {
-            # enable git integration for discord rpc.
+            # Enable git integration for discord rpc.
             discord_presence.initialization_options.git_integration = true;
 
-            # enable tailwind css in typescript and javascript.
+            # Enable tailwind css in typescript and javascript.
             tailwindcss-language-server.settings.experimental.classRegex = [
               "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]"
               "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]"
@@ -130,14 +130,14 @@ in {
               "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]"
             ];
 
-            # enable path lookup.
+            # Enable path lookup.
             rust-analyzer.binary.path_lookup = true;
             nix.binary.path_lookup = true;
           };
         };
       };
 
-      # install extensions for zed with nix packages.
+      # Install extensions for zed with nix packages.
       zed-editor-extensions = {
         enable = true;
         packages = attrValues {
@@ -164,7 +164,7 @@ in {
       };
     };
 
-    # export zed session variables.
+    # Export zed session variables.
     home.sessionVariables = mkIf config.zed.isVm {ZED_ALLOW_EMULATED_GPU = "1";};
   };
 }

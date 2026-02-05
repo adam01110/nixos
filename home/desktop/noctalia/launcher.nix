@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# launcher behavior and default terminal command configuration.
+# Launcher behavior and default terminal command configuration.
 let
   inherit (lib) getExe;
 in {
@@ -19,6 +19,6 @@ in {
     autoPasteClipboard = true;
   };
 
-  # wtype for the automatic clipboard paste.
+  # Wtype for the automatic clipboard paste.
   home.packages = [pkgs.wtype];
 }

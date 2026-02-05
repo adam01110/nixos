@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-# define permissions, layer rules, and window rules.
+# Define permissions, layer rules, and window rules.
 let
   inherit
     (lib)
@@ -15,7 +15,7 @@ let
     ;
 in {
   wayland.windowManager.hyprland.settings = {
-    # permission settings.
+    # Permission settings.
     permission = let
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
 
@@ -25,10 +25,10 @@ in {
       equibop = getExe config.programs.nixcord.equibop.package;
       quickshell = getExe' config.programs.quickshell.package ".quickshell-wrapped";
     in [
-      # allow plugin loading.
+      # Allow plugin loading.
       "${escapeRegex hyprctl}, plugin, allow"
 
-      # allow screencopy.
+      # Allow screencopy.
       "${escapeRegex xdg-desktop-portal-hyprland}, screencopy, allow"
       "${escapeRegex grim}, screencopy, allow"
       "${escapeRegex hyprpicker}, screencopy, allow"
@@ -36,9 +36,9 @@ in {
       "${escapeRegex equibop}, screencopy, allow"
     ];
 
-    # rules for layers and overlays.
+    # Rules for layers and overlays.
     layerrule = [
-      # noanim.
+      # Noanim.
       "match:namespace hyprpicker, no_anim on"
       "match:namespace selection, no_anim on"
       "match:namespace noctalia.+, no_anim on"
@@ -49,7 +49,7 @@ in {
     ];
 
     windowrule = [
-      # tag windows by application.
+      # Tag windows by application.
       "tag +tile, match:class Aseprite"
 
       "tag +float, match:class BeeperTexts, match:title Settings"
@@ -104,7 +104,7 @@ in {
       "tag +pin, match:class zen, match:title Picture-in-Picture"
       "tag +size-bitwarden, match:class zen, match:title Bitwarden"
 
-      # apply behaviors by tag.
+      # Apply behaviors by tag.
       "match:tag forceopacity, opacity 1 override 1 override"
       "match:tag noblur, no_blur on"
       "match:tag tile, tile on"
@@ -113,7 +113,7 @@ in {
       "match:tag pin, pin on"
       "match:tag center, center on"
 
-      # apply sizes by tag.
+      # Apply sizes by tag.
       "match:tag size-calculator, size 695 800"
       "match:tag size-task-manager, size 800 600"
       "match:tag size-steam-friends, size 380 540"

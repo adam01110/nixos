@@ -1,5 +1,5 @@
 _:
-# integrations with external services and providers.
+# Integrations with external services and providers.
 {
   GitHubRepos.enabled = true;
   OpenInApp = {

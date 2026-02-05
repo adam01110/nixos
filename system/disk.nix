@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# disk layout using disko.
+# Disk layout using disko.
 let
   inherit
     (lib)
@@ -11,14 +11,14 @@ let
     types
     ;
 in {
-  # host option: which block device to partition and install to.
+  # Host option: which block device to partition and install to.
   options.disko.selectedDisk = mkOption {
     type = types.str;
     example = "/dev/vda";
     description = "The disk device used by the system.";
   };
 
-  # partitioning scheme and filesystem layout.
+  # Partitioning scheme and filesystem layout.
   config.disko.devices = {
     disk = {
       main = {
@@ -48,7 +48,7 @@ in {
                   type = "btrfs";
                   extraArgs = ["-f"];
 
-                  # subvolume layout and common mount options.
+                  # Subvolume layout and common mount options.
                   subvolumes = {
                     "@" = {
                       mountpoint = "/";
@@ -122,7 +122,7 @@ in {
       };
     };
 
-    # tmpfs mount for /tmp.
+    # Tmpfs mount for /tmp.
     nodev = {
       "/tmp" = {
         fsType = "tmpfs";

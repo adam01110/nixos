@@ -1,4 +1,4 @@
--- show size and modification time.
+-- Show size and modification time.
 function Linemode:size_mtime()
 	local mtime_num = math.floor(self._file.cha.mtime or 0)
 	local mtime_str
@@ -13,7 +13,7 @@ function Linemode:size_mtime()
 	return string.format("%s %s", size and ya.readable_size(size) or "-", mtime_str)
 end
 
--- show symlink in status bar
+-- Show symlink in status bar
 Status:children_add(function(self)
 	local h = self._current.hovered
 	if h and h.link_to then
@@ -23,7 +23,7 @@ Status:children_add(function(self)
 	end
 end, 3300, Status.LEFT)
 
--- show user and group in status bar
+-- Show user and group in status bar
 Status:children_add(function()
 	local h = cx.active.current.hovered
 	if not h or ya.target_family() ~= "unix" then
@@ -38,15 +38,15 @@ Status:children_add(function()
 	})
 end, 500, Status.RIGHT)
 
--- starship.yazi
+-- Starship.yazi
 require("starship"):setup()
 
--- full-border.yazi
+-- Full-border.yazi
 require("full-border"):setup({
 	type = ui.Border.PLAIN,
 })
 
--- relative-motions.yazi
+-- Relative-motions.yazi
 require("relative-motions"):setup({
 	show_numbers = "relative",
 })

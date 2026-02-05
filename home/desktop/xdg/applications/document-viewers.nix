@@ -1,5 +1,5 @@
 _:
-# default handlers for document and ebook viewing.
+# Default handlers for document and ebook viewing.
 let
   inherit (builtins) listToAttrs;
 in {

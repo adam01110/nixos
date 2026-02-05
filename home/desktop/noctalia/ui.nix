@@ -1,5 +1,5 @@
 _:
-# ui fonts and panel styling for noctalia shell.
+# Ui fonts and panel styling for noctalia shell.
 {
   programs.noctalia-shell.settings.ui = {
     fontDefaultScale = 0.8;

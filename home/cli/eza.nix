@@ -1,10 +1,10 @@
 _:
-# configure eza ls replacement.
+# Configure eza ls replacement.
 {
   programs.eza = {
     enable = true;
 
-    # enable icons, theme, and formatting.
+    # Enable icons, theme, and formatting.
     colors = "always";
     icons = "always";
     extraOptions = [

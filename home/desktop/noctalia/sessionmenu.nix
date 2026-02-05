@@ -1,5 +1,5 @@
 _:
-# session menu entries and confirmation timing.
+# Session menu entries and confirmation timing.
 {
   programs.noctalia-shell.settings.sessionMenu = {
     countdownDuration = 8000;

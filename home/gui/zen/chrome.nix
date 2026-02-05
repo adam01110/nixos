@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-# zen browser user chrome and content styling with nix-userstyles integration.
+# Zen browser user chrome and content styling with nix-userstyles integration.
 let
   inherit (builtins) readFile;
   inherit
@@ -15,11 +15,11 @@ let
     ;
   inherit (pkgs.stdenv.hostPlatform) system;
 
-  # convert the stylix base16 scheme into a format accepted by nix-userstyles.
+  # Convert the stylix base16 scheme into a format accepted by nix-userstyles.
   stylixPalette = osConfig.lib.stylix.colors |> filterAttrs (name: _: hasPrefix "base0" name);
 in {
   programs.zen-browser.profiles.default = {
-    # remove rounded corners in zen browser interface.
+    # Remove rounded corners in zen browser interface.
     userChrome = ''
       *,
       *::before,
@@ -28,7 +28,7 @@ in {
       }
     '';
 
-    # remove rounded corners on sites and apply nix-userstyles themes.
+    # Remove rounded corners on sites and apply nix-userstyles themes.
     userContent = ''
       *,
       *::before,
@@ -37,7 +37,7 @@ in {
       }
 
       ${readFile "${inputs.nix-userstyles.packages.${system}.mkUserStyles stylixPalette [
-        # apply nix-userstyles themes.
+        # Apply nix-userstyles themes.
         "advent-of-code"
         "alternativeto"
         "anonymous-overflow"

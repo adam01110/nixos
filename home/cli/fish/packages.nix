@@ -1,21 +1,21 @@
 {pkgs, ...}: let
   inherit (builtins) attrValues;
 in {
-  # tools used by aliases, functions, and plugins.
+  # Tools used by aliases, functions, and plugins.
   home.packages = attrValues {
     inherit
       (pkgs)
-      # greeting.
+      # Greeting.
       fortune
       boxes
-      # fifc.
+      # Fifc.
       file
-      # tar.
+      # Tar.
       gnutar
-      # zip.
+      # Zip.
       zip
       unzip
-      # rar.
+      # Rar.
       rar
       # 7z.
       _7zz

@@ -1,5 +1,5 @@
 {vars, ...}:
-# calendar locale and weather location.
+# Calendar locale and weather location.
 let
   inherit
     (vars)

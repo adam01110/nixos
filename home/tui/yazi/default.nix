@@ -1,9 +1,9 @@
 {pkgs, ...}:
-# yazi tui file manager.
+# Yazi tui file manager.
 let
   inherit (builtins) attrValues;
 in {
-  # add runtime helpers for yazi plugins.
+  # Add runtime helpers for yazi plugins.
   programs.yazi = {
     enable = true;
 

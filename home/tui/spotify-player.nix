@@ -3,27 +3,27 @@
   lib,
   ...
 }:
-# configure spotify-player.
+# Configure spotify-player.
 let
   inherit (lib) getExe;
 in {
   programs.spotify-player = {
     enable = true;
     settings = {
-      # enable audio cache and normalization.
+      # Enable audio cache and normalization.
       device = {
         audio_cache = true;
         normalization = true;
       };
 
-      # use better nerd font icons.
+      # Use better nerd font icons.
       play_icon = "";
       pause_icon = "";
       liked_icon = "";
     };
   };
 
-  # create desktop entry to allow launching via launcher.
+  # Create desktop entry to allow launching via launcher.
   xdg.desktopEntries.spotify-player = {
     name = "Spotify Player";
     genericName = "Music Player";

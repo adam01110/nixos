@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# sched-ext scx userspace scheduler service.
+# Sched-ext scx userspace scheduler service.
 let
   inherit
     (lib)
@@ -19,7 +19,7 @@ in {
   config.services.scx = mkIf cfgScx.enable {
     enable = true;
 
-    # use the rust scheds package with lavd and autopower tuning.
+    # Use the rust scheds package with lavd and autopower tuning.
     package = pkgs.scx.rustscheds;
     scheduler = "scx_lavd";
 

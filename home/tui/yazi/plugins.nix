@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# yazi plugin from nixpkgs and nur.
+# Yazi plugin from nixpkgs and nur.
 let
   inherit (builtins) listToAttrs;
   inherit (pkgs.lib.attrsets) nameValuePair;
@@ -8,7 +8,7 @@ in {
     plugins = let
       mkPlugin = source: name: nameValuePair name source.${name};
 
-      # plugins from nixpkgs.
+      # Plugins from nixpkgs.
       nixpkgsPlugins = [
         "full-border"
         "git"
@@ -18,12 +18,12 @@ in {
         "starship"
         "relative-motions"
       ];
-      # plugins from adam0's nur set.
+      # Plugins from adam0's nur set.
       adam0Plugins = [
         "faster-piper"
         "ucp"
       ];
-      # plugins from xyenon's nur set.
+      # Plugins from xyenon's nur set.
       xyenonPlugins = [
         "types"
       ];

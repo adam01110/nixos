@@ -3,19 +3,19 @@
   pkgs,
   ...
 }:
-# configure fastfetch system information fetch program.
+# Configure fastfetch system information fetch program.
 let
   inherit (builtins) fromJSON;
   inherit (lib) getExe';
 
-  # escape code for fastfetch color formatting.
+  # Escape code for fastfetch color formatting.
   esc = fromJSON "\"\\u001b\"";
 in {
   programs.fastfetch = {
     enable = true;
 
     settings = {
-      # use custom logo and kitty terminal image display.
+      # Use custom logo and kitty terminal image display.
       logo = {
         source = ./logo.png;
         type = "kitty";
@@ -23,7 +23,7 @@ in {
         width = 35;
       };
 
-      # configure display formatting and binary prefix standards.
+      # Configure display formatting and binary prefix standards.
       display = {
         separator = " ";
         size = {
@@ -31,7 +31,7 @@ in {
         };
       };
 
-      # define information modules to show in system overview.
+      # Define information modules to show in system overview.
       modules = [
         "break"
         {
@@ -61,7 +61,7 @@ in {
           key = "│ ├󰅐 OS-AGE";
           keyColor = "34";
 
-          # calculate system installation age from root filesystem birth time.
+          # Calculate system installation age from root filesystem birth time.
           text = let
             stat = getExe' pkgs.coreutils "stat";
             date = getExe' pkgs.coreutils "date";

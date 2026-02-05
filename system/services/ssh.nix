@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# optional openssh server, toggled per host.
+# Optional openssh server, toggled per host.
 let
   inherit
     (lib)
@@ -17,10 +17,10 @@ in {
     services.openssh = {
       enable = true;
       settings = {
-        # block root login over ssh.
+        # Block root login over ssh.
         PermitRootLogin = "no";
 
-        # allow password authentication.
+        # Allow password authentication.
         PasswordAuthentication = true;
       };
     };

@@ -1,5 +1,5 @@
 {cfgCamera, ...}:
-# plugins for media, calls, and voice features.
+# Plugins for media, calls, and voice features.
 {
   AllCallTimers.enabled = true;
   BiggerStreamPreview.enabled = true;

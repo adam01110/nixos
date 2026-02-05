@@ -15,7 +15,7 @@ this NixOS + Home Manager configuration.
   trailing inline comments.
 - Indent the comment to the same level as the code.
 - Start with a single `#` and one space; use `# -` for short bullet lists.
-- Start comment text in lowercase to match existing repo style.
+- Start comment text with a capital letter.
 - Describe purpose or rationale, not just restating the identifier.
 - Keep to ASCII; use backticks only for literal commands or identifiers.
 - Prefer one short line; only add sub-bullets when enumerating items.
@@ -25,14 +25,15 @@ this NixOS + Home Manager configuration.
 ## Patterns Seen in This Repo
 
 - File headers that summarize the file's role:
-  `# flake entrypoint for this nixos + home manager setup.` (flake.nix:2)
+  `# Flake entrypoint for this nixos + home manager setup.` (flake.nix:2)
 - Section headers to group related blocks:
-  `# outputs: expose host configurations and pass through common arguments.`
+  `# Outputs: expose host configurations and pass through common arguments.`
   (flake.nix:111)
+
 - Bulleted explanations for lists:
 
   ````text
-  # group memberships:
+  # Group memberships:
   # - wheel: administrative access via sudo.
   # - audio: access to sound devices.
   # - networkmanager: control network connections.
@@ -40,10 +41,10 @@ this NixOS + Home Manager configuration.
   ````
 
 - Rationale above templated or generated content:
-  `# template for resolved.conf carrying dns servers from sops.`
+  `# Template for resolved.conf carrying dns servers from sops.`
   (system/services/network.nix:30)
 - Short labels for config blocks:
-  `# set global flatpak overrides.` (home/services/flatpak.nix:6)
+  `# Set global flatpak overrides.` (home/services/flatpak.nix:6)
 
 ## When to Comment
 
@@ -74,11 +75,11 @@ this NixOS + Home Manager configuration.
 ## Templates
 
 - Section header:
-  `# <short description>.`
+  `# <Short description>.`
 - Bulleted list:
 
   ```text
-  # <topic>:
+  # <Topic>:
   # - <item 1>.
   # - <item 2>.
   ```

@@ -1,20 +1,20 @@
 _:
-# configure ghostty settings.
+# Configure ghostty settings.
 {
   programs.ghostty = {
     enable = true;
 
     settings = {
-      # font settings.
+      # Font settings.
       font-feature = "-calt, -liga, -dlig";
       freetype-load-flags = "hinting";
 
-      # cursor settings.
+      # Cursor settings.
       cursor-style = "block";
       cursor-style-blink = true;
       shell-integration-features = "no-cursor,ssh-terminfo,ssh-env";
 
-      # appearance settings.
+      # Appearance settings.
       window-theme = "system";
       window-decoration = "none";
       gtk-titlebar = false;
@@ -22,21 +22,21 @@ _:
       window-padding-y = 2;
       resize-overlay = "never";
 
-      # misc settings.
+      # Misc settings.
       copy-on-select = false;
       auto-update = "off";
       confirm-close-surface = false;
       right-click-action = "ignore";
 
-      # improve startup time.
+      # Improve startup time.
       quit-after-last-window-closed = true;
       quit-after-last-window-closed-delay = "5m";
 
-      # disable directory inherit.
+      # Disable directory inherit.
       working-directory = "home";
       window-inherit-working-directory = false;
 
-      # unbind the splitting keybinds.
+      # Unbind the splitting keybinds.
       keybind = [
         "super+ctrl+equal=unbind"
         "super+alt+right=unbind"

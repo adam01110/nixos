@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  # discord rich presence via cord.nvim.
+  # Discord rich presence via cord.nvim.
   programs.nvf.settings.vim.extraPlugins.cord = {
     package = pkgs.vimPlugins.cord-nvim;
     setup = ''

@@ -3,25 +3,25 @@
   inputs,
   ...
 }:
-# configure spicetify.
+# Configure spicetify.
 let
   inherit (builtins) attrValues;
   inherit (pkgs.stdenv.hostPlatform) system;
 in {
   programs.spicetify = let
-    # access spicetify-nix packages.
+    # Access spicetify-nix packages.
     spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
   in {
     enable = true;
 
-    # turn on experimental features, use wayland, and apply wm patch.
+    # Turn on experimental features, use wayland, and apply wm patch.
     experimentalFeatures = true;
     windowManagerPatch = true;
     wayland = true;
 
-    # enable extensions.
+    # Enable extensions.
     enabledExtensions = let
-      # extensions not packaaged in spicetify-nix.
+      # Extensions not packaaged in spicetify-nix.
       volumePercentageSrc = pkgs.fetchFromGitHub {
         owner = "jeroentvb";
         repo = "spicetify-volume-percentage";
@@ -47,7 +47,7 @@ in {
         hash = "sha256-hOkFIAperiWzfR+EVVAxEdta9LRndJbjritMj4I0gNw=";
       };
     in
-      # extensions from spicetify-nix.
+      # Extensions from spicetify-nix.
       (attrValues {
         inherit
           (spicePkgs.extensions)
@@ -66,7 +66,7 @@ in {
           aiBandBlocker
           ;
       })
-      # custom extensions fetched above.
+      # Custom extensions fetched above.
       ++ [
         {
           src = volumePercentageSrc;
@@ -86,7 +86,7 @@ in {
         }
       ];
 
-    # enable css snippets.
+    # Enable css snippets.
     enabledSnippets = attrValues {
       inherit
         (spicePkgs.snippets)

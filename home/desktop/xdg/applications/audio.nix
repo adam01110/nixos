@@ -1,5 +1,5 @@
 _:
-# default handlers for audio mime types.
+# Default handlers for audio mime types.
 let
   inherit (builtins) listToAttrs;
 in {

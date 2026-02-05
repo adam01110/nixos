@@ -5,7 +5,7 @@
   vars,
   ...
 }:
-# text-based greeter (greetd + tuigreet).
+# Text-based greeter (greetd + tuigreet).
 let
   inherit
     (lib)
@@ -19,10 +19,10 @@ in {
   services.greetd = {
     enable = true;
 
-    # extra required tweaks for tty greeters with greetd, do not touch.
+    # Extra required tweaks for tty greeters with greetd, do not touch.
     useTextGreeter = true;
 
-    # start tuigreet.
+    # Start tuigreet.
     settings.default_session.command = getExe pkgs.tuigreet;
   };
 
@@ -78,6 +78,6 @@ in {
       };
   };
 
-  # ensure tuigreet is present system-wide.
+  # Ensure tuigreet is present system-wide.
   environment.systemPackages = [pkgs.tuigreet];
 }

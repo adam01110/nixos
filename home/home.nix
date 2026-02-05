@@ -2,14 +2,14 @@
   inherit (config.xdg) configHome;
   inherit (config.xdg) cacheHome;
 in {
-  # user-level files and session environment.
+  # User-level files and session environment.
   home = {
-    # copy user avatar to ~/.face for display managers.
+    # Copy user avatar to ~/.face for display managers.
     file.".face".source = ../face.png;
 
     preferXdgDirectories = true;
 
-    # wayland-first environment, renderers, and toolkit hints.
+    # Wayland-first environment, renderers, and toolkit hints.
     sessionVariables = {
       MAGICK_OPENCL_DEVICE = "gpu";
       RUSTICL_ENABLE = "radeonsi";
@@ -40,7 +40,7 @@ in {
     };
   };
 
-  # minimal dconf tweaks.
+  # Minimal dconf tweaks.
   dconf.settings = {
     "org/gnome/desktop/wm/preferences".button-layout = "";
     "org/gnome/desktop/interface".gtk-enable-primary-paste = false;

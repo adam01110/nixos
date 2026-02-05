@@ -1,10 +1,10 @@
 {pkgs, ...}:
-# gio/gvfs backends: trash, smb/mtp/afc, network mounts, etc.
+# Gio/gvfs backends: trash, smb/mtp/afc, network mounts, etc.
 {
   services.gvfs = {
     enable = true;
 
-    # use minimal gvfs without the full gnome desktop.
+    # Use minimal gvfs without the full gnome desktop.
     package = pkgs.gvfs;
   };
 }

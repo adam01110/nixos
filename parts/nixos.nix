@@ -3,12 +3,12 @@
   self,
   ...
 }:
-# nixos host definitions for flake-parts.
+# Nixos host definitions for flake-parts.
 let
   vars = import ../vars.nix;
   import-tree = inputs.import-tree.withLib inputs.nixpkgs.lib;
 
-  # shared module stack for every host configuration.
+  # Shared module stack for every host configuration.
   commonModules = with inputs; [
     nur.modules.nixos.default
     disko.nixosModules.disko
@@ -19,7 +19,7 @@ let
     (import-tree ../system)
   ];
 
-  # helper to build a host with shared args and modules.
+  # Helper to build a host with shared args and modules.
   mkHost = name: system:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
@@ -38,7 +38,7 @@ let
         ];
     };
 
-  # host map used to derive nixosConfigurations.
+  # Host map used to derive nixosConfigurations.
   hosts = {
     desktop = "x86_64-linux";
     laptop = "x86_64-linux";

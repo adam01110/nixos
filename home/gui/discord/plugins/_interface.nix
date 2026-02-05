@@ -1,5 +1,5 @@
 {stylix, ...}:
-# interface and layout related plugins.
+# Interface and layout related plugins.
 {
   AccountPanelServerProfile = {
     enabled = true;

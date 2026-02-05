@@ -4,7 +4,7 @@
   vars,
   ...
 }:
-# networking: resolved + networkmanager, optional wi‑fi via iwd.
+# Networking: resolved + networkmanager, optional wi‑fi via iwd.
 let
   inherit
     (lib)
@@ -28,9 +28,9 @@ in {
         "dns/${hostname}/dns_4" = {};
       };
 
-      # template for resolved.conf carrying dns servers from sops.
+      # Template for resolved.conf carrying dns servers from sops.
       templates."resolved-dns.conf" = {
-        # allow systemd-resolved to read the rendered dns drop-in.
+        # Allow systemd-resolved to read the rendered dns drop-in.
         mode = "0440";
         group = "systemd-resolve";
 
@@ -56,7 +56,7 @@ in {
     };
 
     systemd = {
-      # avoid blocking boot on network readiness.
+      # Avoid blocking boot on network readiness.
       network.wait-online.enable = false;
 
       services.systemd-resolved = {
@@ -65,11 +65,11 @@ in {
       };
     };
 
-    # install the resolved dns drop-in rendered from sops.
+    # Install the resolved dns drop-in rendered from sops.
     environment.etc."systemd/resolved.conf.d/00-dns.conf".source =
       config.sops.templates."resolved-dns.conf".path;
 
-    # networkmanager with iwd wi‑fi backend when enabled.
+    # Networkmanager with iwd wi‑fi backend when enabled.
     networking = let
       cfgWifi = config.optServices.wifi.enable;
     in {

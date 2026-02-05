@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# noctalia top bar.
+# Noctalia top bar.
 let
   inherit (lib) optional;
 in {
@@ -74,7 +74,7 @@ in {
 
       right = let
         inherit (config.programs.noctalia-shell.settings.appLauncher) terminalCommand;
-        # open wiremix in a named terminal window.
+        # Open wiremix in a named terminal window.
         wiremix = "${terminalCommand} --title='Wiremix' ${config.xdg.desktopEntries.wiremix.exec}";
       in
         [
@@ -114,7 +114,7 @@ in {
         ++ [
           {id = "KeepAwake";}
         ]
-        # show the battery widget when enabled.
+        # Show the battery widget when enabled.
         ++ (optional config.noctalia.battery.enable {
           id = "Battery";
           showPowerProfiles = true;

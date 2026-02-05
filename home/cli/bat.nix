@@ -3,17 +3,17 @@
   pkgs,
   ...
 }:
-# configure bat and extras.
+# Configure bat and extras.
 let
   inherit (config.xdg) dataHome;
 in {
-  # enable bat with manuals.
+  # Enable bat with manuals.
   programs.bat = {
     enable = true;
 
     extraPackages = [pkgs.bat-extras.batman];
   };
 
-  # set cache path for bat.
+  # Set cache path for bat.
   home.sessionVariables.BAT_CACHE_PATH = "${dataHome}/bat";
 }

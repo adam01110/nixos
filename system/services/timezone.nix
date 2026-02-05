@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# time zone configuration with optional automatic mode.
+# Time zone configuration with optional automatic mode.
 let
   inherit
     (lib)
@@ -24,7 +24,7 @@ in {
     '';
   };
 
-  # choose between a fixed time zone or automatic-timezoned service.
+  # Choose between a fixed time zone or automatic-timezoned service.
   config = let
     cfgTimezone = config.optServices.timezone;
   in

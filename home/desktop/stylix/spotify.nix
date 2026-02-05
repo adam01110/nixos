@@ -4,7 +4,7 @@
   inputs,
   ...
 }:
-# apply stylix overrides for spicetify.
+# Apply stylix overrides for spicetify.
 let
   inherit (osConfig.lib.stylix) colors;
   inherit (pkgs.stdenv.hostPlatform) system;
@@ -19,10 +19,10 @@ in {
       inherit (spicePkgs.themes.text) src;
       sidebarConfig = false;
 
-      # set font to stylix font.
-      # remove border transitions.
-      # remove rounded corners from all elements for consistent styling.
-      # remove the ugly spotify-tui header.
+      # Set font to stylix font.
+      # Remove border transitions.
+      # Remove rounded corners from all elements for consistent styling.
+      # Remove the ugly spotify-tui header.
       additionalCss = ''
         :root {
           --font-family: '${font}', monospace;

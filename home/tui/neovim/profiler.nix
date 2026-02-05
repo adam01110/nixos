@@ -1,5 +1,5 @@
 _:
-# enable snacks.nvim profiler options and toggle keymap.
+# Enable snacks.nvim profiler options and toggle keymap.
 {
   programs.nvf.settings.vim = {
     utility.snacks-nvim.setupOpts.profiler = {

@@ -60,7 +60,7 @@ in {
     };
   };
 
-  # the noctalia github feed plugin settings.
+  # The noctalia github feed plugin settings.
   sops = {
     secrets."noctalia_github_token" = {};
 
@@ -74,6 +74,6 @@ in {
 
   xdg.configFile."noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia_github_config".path;
 
-  # packages for screen-recorder.
+  # Packages for screen-recorder.
   home.packages = [pkgs.gpu-screen-recorder];
 }

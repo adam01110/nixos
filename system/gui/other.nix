@@ -1,5 +1,5 @@
 _:
-# misc system applications enabled here.
+# Misc system applications enabled here.
 {
   programs = {
     seahorse.enable = true;

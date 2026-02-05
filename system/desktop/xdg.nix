@@ -1,55 +1,55 @@
 {pkgs, ...}:
-# system xdg portal config and cursor fallback.
+# System xdg portal config and cursor fallback.
 {
   xdg = {
     portal = {
-      # enable the xdg-desktop-portal services.
+      # Enable the xdg-desktop-portal services.
       enable = true;
-      # route `xdg-open` through the portal.
+      # Route `xdg-open` through the portal.
       xdgOpenUsePortal = true;
 
       config = {
-        # defaults used by any desktop.
+        # Defaults used by any desktop.
         common = {
-          # prefer the gtk portal if nothing else claims a method.
+          # Prefer the gtk portal if nothing else claims a method.
           default = [
             "gtk"
           ];
 
-          # use gnome-keyring for the secret portal backend.
+          # Use gnome-keyring for the secret portal backend.
           "org.freedesktop.impl.portal.Secret" = [
             "gnome-keyring"
           ];
         };
 
-        # desktop-specific overrides for hyprland.
+        # Desktop-specific overrides for hyprland.
         hyprland = {
-          # use hyprland portal first, then gtk as a fallback.
+          # Use hyprland portal first, then gtk as a fallback.
           default = [
             "hyprland"
             "gtk"
           ];
 
-          # use gnome-keyring for the secret portal backend.
+          # Use gnome-keyring for the secret portal backend.
           "org.freedesktop.impl.portal.Secret" = [
             "gnome-keyring"
           ];
         };
       };
 
-      # provide the gtk portal.
+      # Provide the gtk portal.
       extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
 
-    # fallback cursor to keep cursors.
+    # Fallback cursor to keep cursors.
     icons.fallbackCursorThemes = ["Bibata-Modern-Classic"];
   };
 
   environment = {
-    # ensure the cursor theme is present system-wide.
+    # Ensure the cursor theme is present system-wide.
     systemPackages = [pkgs.nur.repos.adam0.bibata-modern-cursors-classic];
 
-    # work around portal path discovery, do not touch.
+    # Work around portal path discovery, do not touch.
     pathsToLink = [
       "/share/xdg-desktop-portal"
       "/share/applications"

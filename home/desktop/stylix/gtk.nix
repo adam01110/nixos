@@ -1,5 +1,5 @@
 _:
-# remove all rounded corners from gtk apps.
+# Remove all rounded corners from gtk apps.
 {
   stylix.targets.gtk.extraCss = ''
     * { border-radius: 0px; }

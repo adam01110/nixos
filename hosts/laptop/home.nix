@@ -1,10 +1,10 @@
 {vars, ...}:
-# per-host home manager overrides for the laptop.
+# Per-host home manager overrides for the laptop.
 let
   inherit (vars) username;
 in {
   home-manager.users.${username} = {
-    # enable laptop-specific hyprland features.
+    # Enable laptop-specific hyprland features.
     hyprland = {
       brightness.enable = true;
       suspend.enable = true;
@@ -17,16 +17,16 @@ in {
       };
     };
 
-    # gpu monitoring for intel integrated graphics.
+    # Gpu monitoring for intel integrated graphics.
     nvtop.types = ["intel"];
 
-    # travel mode configuration for mobile usage.
+    # Travel mode configuration for mobile usage.
     zen-browser = {
       travel.enable = true;
       commit-space = 13107;
     };
 
-    # enable laptop hardware features.
+    # Enable laptop hardware features.
     noctalia.battery.enable = true;
     equibop.camera.enable = true;
   };

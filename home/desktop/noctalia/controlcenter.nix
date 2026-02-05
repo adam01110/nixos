@@ -7,7 +7,7 @@
 
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
 in {
-  # control center tiles and shortcuts surfaced from the bar.
+  # Control center tiles and shortcuts surfaced from the bar.
   programs.noctalia-shell.settings.controlCenter = {
     position = "close_to_bar_button";
 

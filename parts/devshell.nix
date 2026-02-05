@@ -1,5 +1,5 @@
 _:
-# dev shell for vim and sops tooling.
+# Dev shell for vim and sops tooling.
 {
   perSystem = {pkgs, ...}: let
     inherit (builtins) attrValues;
@@ -14,7 +14,7 @@ _:
           ;
       };
 
-      # default editor vars to vim when unset.
+      # Default editor vars to vim when unset.
       shellHook = let
         editor = "vim";
       in ''

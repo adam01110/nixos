@@ -1,5 +1,5 @@
 _:
-# remove rounded corners.
+# Remove rounded corners.
 {
   programs.yazi.theme = {
     indicator.padding = {

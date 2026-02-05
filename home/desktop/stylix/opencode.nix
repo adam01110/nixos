@@ -3,7 +3,7 @@
 in {
   stylix.targets.opencode.enable = true;
 
-  # keep the opencode background transparent to match stylix.
+  # Keep the opencode background transparent to match stylix.
   programs.opencode.themes.stylix.theme.background = {
     dark = mkForce "none";
     light = mkForce "none";

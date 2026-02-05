@@ -1,5 +1,5 @@
 {lib, ...}:
-# trim down default packages and documentation to keep install small.
+# Trim down default packages and documentation to keep install small.
 let
   inherit (lib) mkForce;
   inherit (builtins) filter;
@@ -16,7 +16,7 @@ in {
     speechd.enable = mkForce false;
   };
 
-  # slim xdg-desktop-portal-gtk globally to avoid duplicate user units.
+  # Slim xdg-desktop-portal-gtk globally to avoid duplicate user units.
   nixpkgs.overlays = [
     (_final: prev: {
       xdg-desktop-portal-gtk = prev.xdg-desktop-portal-gtk.overrideAttrs (old: {

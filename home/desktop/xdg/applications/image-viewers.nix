@@ -1,5 +1,5 @@
 _:
-# default handlers for image viewing formats including raws.
+# Default handlers for image viewing formats including raws.
 let
   inherit (builtins) listToAttrs;
 in {

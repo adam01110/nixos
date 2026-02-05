@@ -1,12 +1,12 @@
 _:
-# configure atuin shell history.
+# Configure atuin shell history.
 {
   programs.atuin = {
     enable = true;
 
     daemon = {
       # TODO(adam0): decide when to enable the daemon.
-      # enable = true;
+      # Enable = true;
       logLevel = "error";
     };
 

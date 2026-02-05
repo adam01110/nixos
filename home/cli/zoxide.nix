@@ -1,10 +1,10 @@
 _:
-# configure zoxide.
+# Configure zoxide.
 {
   programs.zoxide = {
     enable = true;
 
-    # alias zoxide to just cd.
+    # Alias zoxide to just cd.
     options = ["--cmd cd"];
   };
 }

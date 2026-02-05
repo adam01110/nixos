@@ -1,5 +1,5 @@
 _:
-# starship segments for build tooling versions.
+# Starship segments for build tooling versions.
 {
   programs.starship.settings = {
     cmake = {

@@ -8,7 +8,7 @@
   steamSupport ? true,
   ...
 }:
-# slim lutris provides minimal lutris with essential dependencies.
+# Slim lutris provides minimal lutris with essential dependencies.
 let
   qt5Deps = pkgs:
     with pkgs.qt5; [
@@ -196,13 +196,13 @@ in
       ln -sf ${lutris-unwrapped}/share/icons $out/share
     '';
 
-    # allows for some gui applications to share IPC
-    # this fixes certain issues where they don't render correctly
+    # Allows for some gui applications to share IPC
+    # This fixes certain issues where they don't render correctly
     unshareIpc = false;
 
     # Some applications such as Natron need access to MIT-SHM or other
-    # shared memory mechanisms. Unsharing the pid namespace
-    # breaks the ability for application to reference shared memory.
+    # Shared memory mechanisms. Unsharing the pid namespace
+    # Breaks the ability for application to reference shared memory.
     unsharePid = false;
 
     meta = {
