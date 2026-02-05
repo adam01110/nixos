@@ -1,4 +1,6 @@
-_: {
+_:
+# zen browser enterprise policies.
+{
   programs.zen-browser.policies = {
     AutofillAddressEnabled = false;
     AutofillCreditCardEnabled = false;

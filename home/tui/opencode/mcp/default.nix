@@ -8,6 +8,7 @@
 
   inherit (config.xdg) configHome;
 in {
+  # register modular-mcp server with opencode.
   programs.mcp = {
     enable = true;
 

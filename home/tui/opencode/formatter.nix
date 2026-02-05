@@ -2,7 +2,9 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+# configure opencode formatter commands by extension.
+let
   inherit
     (lib)
     getExe

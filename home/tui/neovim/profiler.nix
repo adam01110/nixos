@@ -1,4 +1,6 @@
-_: {
+_:
+# enable snacks.nvim profiler options and toggle keymap.
+{
   programs.nvf.settings.vim = {
     utility.snacks-nvim.setupOpts.profiler = {
       autocmds = true;

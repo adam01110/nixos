@@ -1,4 +1,6 @@
-_: {
+_:
+# yazi manager keymap overrides.
+{
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
       on = "!";

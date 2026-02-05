@@ -1,4 +1,6 @@
-_: {
+_:
+# tune opencode ui and permissions defaults.
+{
   programs.opencode.settings = {
     autoupdate = false;
 

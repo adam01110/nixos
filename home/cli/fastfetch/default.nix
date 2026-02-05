@@ -8,6 +8,7 @@ let
   inherit (builtins) fromJSON;
   inherit (lib) getExe';
 
+  # escape code for fastfetch color formatting.
   esc = fromJSON "\"\\u001b\"";
 in {
   programs.fastfetch = {

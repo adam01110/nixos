@@ -1,8 +1,6 @@
+{pkgs, ...}:
+# steam with proton ge, and sensible defaults.
 {
-  # steam with proton ge, and sensible defaults.
-  pkgs,
-  ...
-}: {
   programs.steam = {
     enable = true;
 

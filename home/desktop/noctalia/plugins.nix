@@ -60,7 +60,7 @@ in {
     };
   };
 
-  # the noctalia github feed plugin settings
+  # the noctalia github feed plugin settings.
   sops = {
     secrets."noctalia_github_token" = {};
 

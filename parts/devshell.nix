@@ -14,6 +14,7 @@ _:
           ;
       };
 
+      # default editor vars to vim when unset.
       shellHook = let
         editor = "vim";
       in ''

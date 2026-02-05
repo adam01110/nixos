@@ -56,6 +56,7 @@ in {
     };
 
     systemd = {
+      # avoid blocking boot on network readiness.
       network.wait-online.enable = false;
 
       services.systemd-resolved = {
@@ -64,6 +65,7 @@ in {
       };
     };
 
+    # install the resolved dns drop-in rendered from sops.
     environment.etc."systemd/resolved.conf.d/00-dns.conf".source =
       config.sops.templates."resolved-dns.conf".path;
 

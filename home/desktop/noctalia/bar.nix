@@ -74,6 +74,7 @@ in {
 
       right = let
         inherit (config.programs.noctalia-shell.settings.appLauncher) terminalCommand;
+        # open wiremix in a named terminal window.
         wiremix = "${terminalCommand} --title='Wiremix' ${config.xdg.desktopEntries.wiremix.exec}";
       in
         [
@@ -103,6 +104,8 @@ in {
             displayMode = "onhover";
             middleClickCommand = wiremix;
           }
+          {id = "Bluetooth";}
+          {id = "Network";}
           {
             id = "Brightness";
             displayMode = "onhover";
@@ -111,9 +114,11 @@ in {
         ++ [
           {id = "KeepAwake";}
         ]
+        # show the battery widget when enabled.
         ++ (optional config.noctalia.battery.enable {
           id = "Battery";
           showPowerProfiles = true;
+          isplayMode = "icon-hover";
         })
         ++ [
           {id = "plugin:github-feed";}

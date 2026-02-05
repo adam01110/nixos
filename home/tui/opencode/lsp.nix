@@ -2,7 +2,9 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+# configure opencode lsp commands by extension.
+let
   inherit (lib) getExe;
 in {
   programs.opencode.settings.lsp = {

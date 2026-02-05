@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# configure bat and related extras.
+# configure bat and extras.
 let
   inherit (config.xdg) dataHome;
 in {

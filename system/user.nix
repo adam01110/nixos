@@ -29,6 +29,7 @@ in {
       ];
 
       isNormalUser = true;
+      # allow non-standard shells without /etc/shells checks.
       ignoreShellProgramCheck = true;
       description = username;
       shell = pkgs.fish;

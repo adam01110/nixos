@@ -3,7 +3,9 @@
   osConfig,
   inputs,
   ...
-}: let
+}:
+# apply stylix overrides for spicetify.
+let
   inherit (osConfig.lib.stylix) colors;
   inherit (pkgs.stdenv.hostPlatform) system;
 

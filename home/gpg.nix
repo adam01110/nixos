@@ -8,7 +8,7 @@
   programs.gpg = {
     enable = true;
 
-    # store the keyring under xdg data home instead of ~/.gnupg
+    # store the keyring under xdg data home instead of ~/.gnupg.
     homedir = "${config.xdg.dataHome}/gnupg";
   };
 
@@ -23,6 +23,6 @@
     pinentry.package = pkgs.pinentry-gnome3;
   };
 
-  # package needed for pintenty gnome
+  # supply gcr for the gnome pinentry integration.
   home.packages = [pkgs.gcr];
 }

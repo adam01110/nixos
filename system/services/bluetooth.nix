@@ -15,6 +15,7 @@ in {
 
   config.hardware.bluetooth = mkIf config.optServices.bluetooth.enable {
     enable = true;
+    # enable experimental features needed by some devices.
     settings.General.Experimental = true;
 
     # disable bluetooth power-on at boot to save battery.

@@ -37,7 +37,7 @@ in {
       }
 
       ${readFile "${inputs.nix-userstyles.packages.${system}.mkUserStyles stylixPalette [
-        #  apply nix-userstyles themes.
+        # apply nix-userstyles themes.
         "advent-of-code"
         "alternativeto"
         "anonymous-overflow"

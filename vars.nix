@@ -6,6 +6,7 @@
   # - username: primary local account name.
   # - gitusername: used by git and related tooling.
   # - gitpublicsshkey: your public ssh key for authorized_keys and tooling.
+  # - gitsigningkey: gpg key id used for signed commits.
   countryCode = "NL";
   noctaliaLocation = "Roermond";
   noctaliaFirstDayOfWeek = 1;
