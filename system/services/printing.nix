@@ -5,6 +5,7 @@ let
 in {
   services.printing = {
     enable = true;
+    # allow network clients to reach cups.
     openFirewall = true;
 
     # disable the web interface.

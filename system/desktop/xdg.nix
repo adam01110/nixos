@@ -5,7 +5,7 @@
     portal = {
       # enable the xdg-desktop-portal services.
       enable = true;
-      # route `xdg-open` through the portal..
+      # route `xdg-open` through the portal.
       xdgOpenUsePortal = true;
 
       config = {
@@ -37,7 +37,7 @@
         };
       };
 
-      # provide gtk and kde portals.
+      # provide the gtk portal.
       extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
 
@@ -49,7 +49,7 @@
     # ensure the cursor theme is present system-wide.
     systemPackages = [pkgs.nur.repos.adam0.bibata-modern-cursors-classic];
 
-    # weird thing that fixes something?, do not touch.
+    # work around portal path discovery, do not touch.
     pathsToLink = [
       "/share/xdg-desktop-portal"
       "/share/applications"

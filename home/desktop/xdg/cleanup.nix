@@ -14,6 +14,7 @@ in {
     LESSHISTFILE = "${stateHome}/less/history";
     HISTFILE = "${stateHome}/bash/history";
 
+    # keep ffmpeg config under xdg config home.
     FFMPEG_DATADIR = "${configHome}/ffmpeg";
 
     # rust toolchains.

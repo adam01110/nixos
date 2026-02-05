@@ -50,6 +50,7 @@ in {
             touchdevice.enable = false;
           };
 
+          # map the virtual tablet device to the primary output.
           device = {
             name = "opentabletdriver-virtual-artist-tablet";
             transform = 0;

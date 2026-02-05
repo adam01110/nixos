@@ -19,6 +19,7 @@ in {
   config.services.scx = mkIf cfgScx.enable {
     enable = true;
 
+    # use the rust scheds package with lavd and autopower tuning.
     package = pkgs.scx.rustscheds;
     scheduler = "scx_lavd";
 

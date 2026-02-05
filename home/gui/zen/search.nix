@@ -60,7 +60,7 @@
           definedAliases = ["@yt"];
         };
 
-        # disabled (hidden)
+        # disabled (hidden).
         bing.metaData.hidden = true;
         ddg.metaData.hidden = true;
         qwant.metaData.hidden = true;

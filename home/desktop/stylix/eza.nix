@@ -54,7 +54,7 @@ in {
       unit_huge = base09;
     };
 
-    # user and group
+    # user and group colors.
     users = {
       user_you = base05;
       user_root = base08;
@@ -64,13 +64,13 @@ in {
       group_root = base08;
     };
 
-    # link count and hardlink
+    # link count and hardlink colors.
     links = {
       normal = base0C;
       multi_link_file = base09;
     };
 
-    # git status
+    # git status colors.
     git = {
       new = base0B;
       modified = base0A;
@@ -81,7 +81,7 @@ in {
       conflicted = base08;
     };
 
-    # git repo metadata
+    # git repo metadata colors.
     git_repo = {
       branch_main = base05;
       branch_other = base0E;
@@ -89,7 +89,7 @@ in {
       git_dirty = base08;
     };
 
-    # selinux security context
+    # selinux security context colors.
     security_context = {
       colon = base04;
       user = base05;
@@ -113,7 +113,7 @@ in {
       source = base0D;
     };
 
-    # misc token
+    # misc token colors.
     punctuation = base04;
     date = base0A;
     inode = base04;

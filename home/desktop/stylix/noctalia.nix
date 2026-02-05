@@ -11,7 +11,7 @@ let
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in {
   programs.noctalia-shell = {
-    # system monitor colors from the Stylix
+    # system monitor colors from stylix.
     settings = {
       bar = {
         backgroundOpacity = mkForce 1.0;

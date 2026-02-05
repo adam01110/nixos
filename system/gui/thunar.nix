@@ -27,6 +27,7 @@
     };
   };
 
+  # drop nautilus integration from file-roller.
   environment.systemPackages = [
     (pkgs.file-roller.overrideAttrs (old: let
       removeNautilus = pkgList:

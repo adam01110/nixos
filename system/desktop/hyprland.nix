@@ -8,6 +8,7 @@
       xwayland.enable = true;
     };
 
+    # remove uuctl support from uwsm.
     uwsm.package = pkgs.uwsm.override {uuctlSupport = false;};
   };
 }

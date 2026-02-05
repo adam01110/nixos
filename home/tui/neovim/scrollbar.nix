@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}:
+# add satellite.nvim scrollbar indicators.
+{
   programs.nvf.settings.vim.lazy.plugins."satellite.nvim" = {
     package = pkgs.vimPlugins.satellite-nvim;
     setupModule = "satellite";

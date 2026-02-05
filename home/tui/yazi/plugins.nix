@@ -1,4 +1,6 @@
-{pkgs, ...}: let
+{pkgs, ...}:
+# yazi plugin from nixpkgs and nur.
+let
   inherit (builtins) listToAttrs;
   inherit (pkgs.lib.attrsets) nameValuePair;
 in {

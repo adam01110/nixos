@@ -28,7 +28,7 @@ in {
   programs.ssh = {
     enable = true;
 
-    # got a warning asking me to disable this, dont touch for now?
+    # keep the default config disabled to quiet the upstream warning.
     enableDefaultConfig = false;
 
     # dedicate a key for github traffic to keep identities separate.

@@ -122,7 +122,7 @@ in {
       };
     };
 
-    # tmpfs for /tmp
+    # tmpfs mount for /tmp.
     nodev = {
       "/tmp" = {
         fsType = "tmpfs";

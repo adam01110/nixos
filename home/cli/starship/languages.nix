@@ -80,6 +80,8 @@ _:
       format = "[ ](#00000000)[ ](bg:base01)[$symbol$pyenv_prefix($version)( \\($virtualenv\\))]($style)[ ](bg:base01)";
       symbol = "󰌠 ";
       style = "bg:base01 fg:yellow bold";
+
+      # show the pyenv name with an uv prefix.
       pyenv_version_name = true;
       pyenv_prefix = "uv";
     };

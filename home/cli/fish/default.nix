@@ -68,6 +68,7 @@ in {
     };
 
     binds = {
+      # remove conflicting default bindings.
       "alt-e".erase = true;
       "alt-d".erase = true;
     };

@@ -1,5 +1,5 @@
 _:
-# configure atuin shell history manager.
+# configure atuin shell history.
 {
   programs.atuin = {
     enable = true;

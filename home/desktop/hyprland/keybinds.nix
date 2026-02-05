@@ -192,6 +192,7 @@ in {
         bindel = , XF86AudioRaiseVolume, exec, ${noctalia} volume increase #"Volume up"
         bindel = , XF86AudioLowerVolume, exec, ${noctalia} volume decrease #"Volume down"
       ''
+      # append brightness bindings when enabled.
       + optionalString cfgBrightness ''
 
         # 15. MEDIA (BRIGHTNESS)

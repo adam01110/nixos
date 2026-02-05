@@ -11,6 +11,8 @@ let
 in {
   programs.npm = {
     enable = true;
+
+    # dont install npm, ew.
     package = null;
 
     # route npm paths to XDG paths instead of ~/.npm.
