@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# optional bluetooth service, toggled per host.
+# Optional bluetooth service, toggled per host.
 let
   inherit
     (lib)
@@ -15,10 +15,10 @@ in {
 
   config.hardware.bluetooth = mkIf config.optServices.bluetooth.enable {
     enable = true;
-    # enable experimental features needed by some devices.
+    # Enable experimental features needed by some devices.
     settings.General.Experimental = true;
 
-    # disable bluetooth power-on at boot to save battery.
+    # Disable bluetooth power-on at boot to save battery.
     powerOnBoot = false;
   };
 }

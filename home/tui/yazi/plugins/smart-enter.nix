@@ -1,5 +1,5 @@
 _: {
-  # use smart-enter bindings in manager mode.
+  # Use smart-enter bindings in manager mode.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
       on = "p";

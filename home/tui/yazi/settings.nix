@@ -1,9 +1,9 @@
 _: let
-  # memory allocation for image previews in megabytes.
+  # Memory allocation for image previews in megabytes.
   imageAllocMB = 1024;
 in {
   programs.yazi.settings = {
-    # manager settings control file browser appearance and behavior.
+    # Manager settings control file browser appearance and behavior.
     mgr = {
       ratio = [
         1
@@ -18,7 +18,7 @@ in {
       show_hidden = true;
     };
 
-    # preview settings control file preview quality and dimensions.
+    # Preview settings control file preview quality and dimensions.
     preview = {
       image_filter = "lanczos3";
       image_quality = 90;
@@ -28,7 +28,7 @@ in {
       max_height = 1200;
     };
 
-    # control memory used by image previews.
+    # Control memory used by image previews.
     tasks.image_alloc = imageAllocMB * 1024 * 1024;
 
     input.cursor_blink = false;

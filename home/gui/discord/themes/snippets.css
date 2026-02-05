@@ -1,5 +1,5 @@
-/* additional snippets for discord ui tweaks. */
-/* readd timestamp tooltips. */
+/* Additional snippets for discord ui tweaks. */
+/* Readd timestamp tooltips. */
 time[datetime]:hover::after {
 	content: "(" attr(datetime) ")";
 	width: max-content;
@@ -10,7 +10,7 @@ time[datetime]:hover::after {
 	border-radius: 6px;
 }
 
-/* swap clan tag and role icons. */
+/* Swap clan tag and role icons. */
 [class^="headerText"] {
 	display: inline-flex;
 	& > span:has([class^="roleicon"]) {
@@ -33,7 +33,7 @@ time[datetime]:hover::after {
 	}
 }
 
-/* replace all display name fonts with a single one. */
+/* Replace all display name fonts with a single one. */
 [class*="zillaSlab"] /* Tempo */,
 [class*="cherryBomb"] /* Sakura */,
 [class*="chicle"] /* Jellybean */,
@@ -45,7 +45,7 @@ time[datetime]:hover::after {
 	font-family: var(--font-primary) !important;
 }
 
-/* read all notifications button version. */
+/* Read all notifications button version. */
 .vc-ranb-button {
 	margin: 0 var(--space-md);
 	display: flex;
@@ -86,7 +86,7 @@ time[datetime]:hover::after {
 	}
 }
 
-/* remove discords checkpoint. */
+/* Remove discords checkpoint. */
 .button__85643:nth-of-type(1) {
 	display: none;
 }

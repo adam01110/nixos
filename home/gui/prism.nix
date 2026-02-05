@@ -1,14 +1,14 @@
 {pkgs, ...}:
-# configure prismlauncher.
+# Configure prismlauncher.
 {
   home.packages = with pkgs; [
     (prismlauncher.override {
-      # disable uneeded support.
+      # Disable uneeded support.
       controllerSupport = false;
       gamemodeSupport = false;
       textToSpeechSupport = false;
 
-      # specifiy what java runtimes to install.
+      # Specifiy what java runtimes to install.
       jdks = [
         graalvmPackages.graalvm-ce
         jdk21

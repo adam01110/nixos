@@ -1,5 +1,5 @@
 _:
-# default handlers for image editing formats.
+# Default handlers for image editing formats.
 let
   inherit (builtins) listToAttrs;
 in {

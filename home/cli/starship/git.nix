@@ -1,5 +1,5 @@
 _:
-# detailed git and fossil status sections.
+# Detailed git and fossil status sections.
 {
   programs.starship.settings = {
     fossil_branch = {

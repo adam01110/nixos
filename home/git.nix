@@ -4,7 +4,7 @@
   vars,
   ...
 }:
-# git configuration with sops-managed email and libsecret credentials.
+# Git configuration with sops-managed email and libsecret credentials.
 let
   inherit
     (vars)
@@ -16,26 +16,26 @@ let
 in {
   sops = {
     secrets = {
-      # per-user git email address stored in sops.
+      # Per-user git email address stored in sops.
       "git/email" = {};
 
-      # place the decrypted private key at a stable path used by ssh.
+      # Place the decrypted private key at a stable path used by ssh.
       "git/private_ssh_key".path = "/home/${username}/.ssh/git";
     };
 
-    # small include that injects the sops email into git config.
+    # Small include that injects the sops email into git config.
     templates."git-config".content = ''
       [user]
         email = ${config.sops.placeholder."git/email"}
     '';
   };
 
-  # publish the public key alongside the private key path.
+  # Publish the public key alongside the private key path.
   home.file.".ssh/git.pub".text = gitPublicSshkey;
 
   programs = {
     git = let
-      # use git full so the libsecret credential helper is available.
+      # Use git full so the libsecret credential helper is available.
       gitPackage = pkgs.gitFull;
     in {
       enable = true;
@@ -44,25 +44,25 @@ in {
       package = gitPackage;
 
       settings = {
-        # identity.
+        # Identity.
         user = {
           name = gitUsername;
           signingkey = gitSigningKey;
         };
 
-        # enable gpg signing.
+        # Enable gpg signing.
         commit.gpgsign = true;
         tag.gpgSign = true;
 
-        # store https credentials via the desktop keyring (libsecret).
+        # Store https credentials via the desktop keyring (libsecret).
         credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";
       };
 
-      # include the sops-generated snippet to set the email.
+      # Include the sops-generated snippet to set the email.
       includes = [{inherit (config.sops.templates."git-config") path;}];
     };
 
-    # delta pager for nicer diffs.
+    # Delta pager for nicer diffs.
     delta = {
       enable = true;
       enableGitIntegration = true;
@@ -71,7 +71,7 @@ in {
         true-color = "always";
         line-numbers = true;
 
-        # hyperlink file paths to jump to locations in zed.
+        # Hyperlink file paths to jump to locations in zed.
         hyperlinks = true;
         # ZED
         hyperlinks-file-link-format = "zed://file{path}:{line}";

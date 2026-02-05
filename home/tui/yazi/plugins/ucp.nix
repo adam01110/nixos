@@ -1,5 +1,5 @@
 _: {
-  # add ucp clipboard bindings with notifications.
+  # Add ucp clipboard bindings with notifications.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
       on = "p";

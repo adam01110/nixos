@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# tlp power management service with power saving features.
+# Tlp power management service with power saving features.
 let
   inherit
     (lib)
@@ -20,11 +20,11 @@ in {
     tlp = {
       enable = true;
 
-      # enable tlp power daemon for power-profiles-daemon compatibility.
+      # Enable tlp power daemon for power-profiles-daemon compatibility.
       pd.enable = true;
     };
 
-    # disable conflicting power management daemon.
+    # Disable conflicting power management daemon.
     power-profiles-daemon.enable = mkForce false;
   };
 }

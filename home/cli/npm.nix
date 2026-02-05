@@ -1,5 +1,5 @@
 {config, ...}:
-# configure npm cli to use XDG base directories for globals and logs.
+# Configure npm cli to use XDG base directories for globals and logs.
 let
   inherit
     (config.xdg)
@@ -12,10 +12,10 @@ in {
   programs.npm = {
     enable = true;
 
-    # dont install npm, ew.
+    # Dont install npm, ew.
     package = null;
 
-    # route npm paths to XDG paths instead of ~/.npm.
+    # Route npm paths to XDG paths instead of ~/.npm.
     settings = {
       prefix = "${dataHome}/npm";
       cache = "${cacheHome}/npm";

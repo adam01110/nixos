@@ -1,5 +1,5 @@
 _:
-# zen browser enterprise policies.
+# Zen browser enterprise policies.
 {
   programs.zen-browser.policies = {
     AutofillAddressEnabled = false;

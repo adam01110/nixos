@@ -1,5 +1,5 @@
 _: {
-  # bind number keys to relative-motions steps.
+  # Bind number keys to relative-motions steps.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
       on = ["1"];

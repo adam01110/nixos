@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# format hyprland monitor declarations.
+# Format hyprland monitor declarations.
 let
   inherit
     (lib)
@@ -35,16 +35,16 @@ in {
     '';
   };
 
-  # format monitor declarations from the option set.
+  # Format monitor declarations from the option set.
   config.wayland.windowManager.hyprland.settings.monitor = let
     cfgMonitors = config.hyprland.monitors;
 
     formatMonitor = name: cfg: let
-      # allow disabled monitors without resolution/position/scale.
+      # Allow disabled monitors without resolution/position/scale.
       disabledLine = "${name}, disabled";
       base = "${name}, ${cfg.resolution}, ${cfg.position}, ${toString cfg.scale}";
 
-      # optional parameters.
+      # Optional parameters.
       transform =
         if (cfg.transform or null) != null
         then ", transform, ${toString cfg.transform}"

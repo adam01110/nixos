@@ -1,7 +1,7 @@
 {config, ...}: let
   picturesDir = config.xdg.userDirs.pictures;
 in {
-  # wallpaper directory and rotation settings.
+  # Wallpaper directory and rotation settings.
   programs.noctalia-shell.settings.wallpaper = {
     directory = "${picturesDir}/Wallpapers";
     overviewEnabled = true;

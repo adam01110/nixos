@@ -1,5 +1,5 @@
 _:
-# default handlers for archive and compressed formats.
+# Default handlers for archive and compressed formats.
 let
   inherit (builtins) listToAttrs;
 in {

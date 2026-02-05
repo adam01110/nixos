@@ -1,5 +1,5 @@
 _: {
-  # use smart-paste bindings in manager mode.
+  # Use smart-paste bindings in manager mode.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
       on = "p";

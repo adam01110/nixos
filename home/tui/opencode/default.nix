@@ -20,7 +20,7 @@ in {
     enable = true;
     enableMcpIntegration = true;
 
-    # wrap opencode with mcp's, formatters, and lsp's.
+    # Wrap opencode with mcp's, formatters, and lsp's.
     package = symlinkJoin {
       name = "opencode-wrapped";
       paths = [pkgs.opencode];
@@ -32,7 +32,7 @@ in {
           inherit
             (pkgs)
             wl-clipboard
-            # lsp's
+            # Lsp's
             lua-language-server
             bash-language-server
             yaml-language-server
@@ -42,7 +42,7 @@ in {
             taplo
             typescript-language-server
             rust-analyzer
-            # formatters
+            # Formatters
             alejandra
             fish
             stylua
@@ -55,11 +55,11 @@ in {
       '';
     };
 
-    # set agent rules.
+    # Set agent rules.
     rules = ./instructions.md;
   };
 
-  # set env vars for eperimental features and disabled features.
+  # Set env vars for eperimental features and disabled features.
   home.sessionVariables = let
     mkEnv = prefix: features:
       listToAttrs (
@@ -82,7 +82,7 @@ in {
     // mkEnv "OPENCODE_DISABLE" disabledFeatures;
 
   xdg = {
-    # create desktop entry to allow launching via launcher.
+    # Create desktop entry to allow launching via launcher.
     desktopEntries.opencode = {
       name = "Opencode";
       genericName = "AI Coding Assistant";

@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-# keybindings for hyprland including workspace, window, and media controls.
+# Keybindings for hyprland including workspace, window, and media controls.
 let
   inherit
     (lib)
@@ -20,12 +20,12 @@ let
 in {
   options.hyprland.brightness.enable = mkEnableOption "Enable function-row (F-keys) for brightness keybindings.";
 
-  # generate hyprland binding lists and helpers.
+  # Generate hyprland binding lists and helpers.
   config = {
-    # allow focus cycling while a window is fullscreen.
+    # Allow focus cycling while a window is fullscreen.
     wayland.windowManager.hyprland.settings.binds.movefocus_cycles_fullscreen = true;
 
-    # keep keybinds in a separate file for parsing tools.
+    # Keep keybinds in a separate file for parsing tools.
     xdg.configFile."hypr/keybinds.conf".text = let
       gawk = getExe pkgs.gawk;
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
@@ -192,7 +192,7 @@ in {
         bindel = , XF86AudioRaiseVolume, exec, ${noctalia} volume increase #"Volume up"
         bindel = , XF86AudioLowerVolume, exec, ${noctalia} volume decrease #"Volume down"
       ''
-      # append brightness bindings when enabled.
+      # Append brightness bindings when enabled.
       + optionalString cfgBrightness ''
 
         # 15. MEDIA (BRIGHTNESS)

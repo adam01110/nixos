@@ -1,17 +1,17 @@
 {pkgs, ...}:
-# enable cups printing service.
+# Enable cups printing service.
 let
   inherit (builtins) attrValues;
 in {
   services.printing = {
     enable = true;
-    # allow network clients to reach cups.
+    # Allow network clients to reach cups.
     openFirewall = true;
 
-    # disable the web interface.
+    # Disable the web interface.
     webInterface = false;
 
-    # printer drivers packages.
+    # Printer drivers packages.
     drivers = attrValues {
       inherit
         (pkgs)
@@ -23,11 +23,11 @@ in {
         ;
     };
 
-    # enable network printer discovery and share local queues by default.
+    # Enable network printer discovery and share local queues by default.
     browsing = true;
     defaultShared = true;
   };
 
-  # enable some fonts for ghostscript.
+  # Enable some fonts for ghostscript.
   fonts.enableGhostscriptFonts = true;
 }

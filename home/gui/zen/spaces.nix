@@ -1,32 +1,32 @@
 _:
-# zen browser workspace/spaces configuration.
+# Zen browser workspace/spaces configuration.
 {
   programs.zen-browser.profiles.default = {
-    # force spaces to be enabled.
+    # Force spaces to be enabled.
     spacesForce = true;
     spaces = {
-      # general browsing space with productivity focus.
+      # General browsing space with productivity focus.
       "general" = {
         id = "29680918-95d2-4162-ba72-1c41bd1b628d";
         position = 1000;
         icon = "🧶";
       };
 
-      # development space for coding and technical resources.
+      # Development space for coding and technical resources.
       "dev" = {
         id = "9b41acc7-1eb2-4c14-9fba-7f6d670db845";
         position = 2000;
         icon = "🖥️";
       };
 
-      # gaming space for entertainment and gaming content.
+      # Gaming space for entertainment and gaming content.
       "gaming" = {
         id = "70e211cd-676f-4abb-9317-35fac2078913";
         position = 3000;
         icon = "🎮";
       };
 
-      # news space for current events and information.
+      # News space for current events and information.
       "news" = {
         id = "b2e284cd-b0d6-4d05-9b0a-9021148ff0bb";
         position = 4000;

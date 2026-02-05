@@ -1,7 +1,7 @@
 _: {
-  # use faster-piper for markdown, archives, and compressed text previews.
+  # Use faster-piper for markdown, archives, and compressed text previews.
   programs.yazi.settings.plugin = {
-    # previewers routed through faster-piper.
+    # Previewers routed through faster-piper.
     prepend_previewers = [
       {
         url = "*.md";
@@ -17,7 +17,7 @@ _: {
       }
     ];
 
-    # preloaders that render content for faster-piper.
+    # Preloaders that render content for faster-piper.
     prepend_preloaders = [
       {
         url = "*.md";

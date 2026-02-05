@@ -1,8 +1,8 @@
 _:
-# treefmt-nix configuration for flake-parts.
+# Treefmt-nix configuration for flake-parts.
 {
   perSystem = _: let
-    # keep sops-managed files out of formatting and linting.
+    # Keep sops-managed files out of formatting and linting.
     sopsExcludes = [
       ".sops.yaml"
       "secrets/secrets.yaml"

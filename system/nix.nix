@@ -11,11 +11,11 @@
   };
 
   nix = {
-    # use determinate nix package.
+    # Use determinate nix package.
     package = pkgs.determinate-nix;
 
     settings = {
-      # add binary caches.
+      # Add binary caches.
       substituters = [
         "https://nix-community.cachix.org"
         "https://lanzaboote.cachix.org"
@@ -44,14 +44,14 @@
         "nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
       ];
 
-      # enable modern commands and flakes.
+      # Enable modern commands and flakes.
       experimental-features = [
         "nix-command"
         "flakes"
         "pipe-operators"
       ];
 
-      # enable determinate nix features.
+      # Enable determinate nix features.
       lazy-trees = true;
       eval-cores = 0;
     };
@@ -59,7 +59,7 @@
     extraOptions = ''!include ${config.sops.templates."access_tokens".path}'';
   };
 
-  # nixpkgs settings and overlays.
+  # Nixpkgs settings and overlays.
   nixpkgs = {
     config.allowUnfree = true;
 

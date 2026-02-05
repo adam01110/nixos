@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   inherit (builtins) attrValues;
 in {
-  # add lossless scaling linux packages.
+  # Add lossless scaling linux packages.
   environment.systemPackages = attrValues {
     inherit
       (pkgs)

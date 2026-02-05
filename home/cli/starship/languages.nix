@@ -1,5 +1,5 @@
 _:
-# per-language version modules for compilers and sdks.
+# Per-language version modules for compilers and sdks.
 {
   programs.starship.settings = {
     c = {
@@ -81,7 +81,7 @@ _:
       symbol = "󰌠 ";
       style = "bg:base01 fg:yellow bold";
 
-      # show the pyenv name with an uv prefix.
+      # Show the pyenv name with an uv prefix.
       pyenv_version_name = true;
       pyenv_prefix = "uv";
     };

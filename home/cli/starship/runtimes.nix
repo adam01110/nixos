@@ -1,5 +1,5 @@
 _:
-# display js runtime versions when active.
+# Display js runtime versions when active.
 {
   programs.starship.settings = {
     bun = {

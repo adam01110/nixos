@@ -1,6 +1,6 @@
 _:
-# assemble the Starship prompt configuration.
+# Assemble the Starship prompt configuration.
 {
-  # enable Starship for the user profile.
+  # Enable Starship for the user profile.
   programs.starship.enable = true;
 }

@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# install wiremix.
+# Install wiremix.
 let
   inherit (lib) getExe;
 
@@ -12,7 +12,7 @@ let
 in {
   home.packages = [pkg];
 
-  # create desktop entry to allow launching via launcher.
+  # Create desktop entry to allow launching via launcher.
   xdg.desktopEntries.wiremix = {
     name = "Wiremix";
     genericName = "Pipewire Volume Control";

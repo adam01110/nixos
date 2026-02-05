@@ -1,9 +1,9 @@
 {modulesPath, ...}:
-# hardware profile for qemu/kvm virtual machines.
+# Hardware profile for qemu/kvm virtual machines.
 {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
-  # kernel modules appropriate for generic vms.
+  # Kernel modules appropriate for generic vms.
   boot.initrd.availableKernelModules = [
     "ahci"
     "xhci_pci"

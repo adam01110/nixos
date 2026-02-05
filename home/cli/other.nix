@@ -1,9 +1,9 @@
 {pkgs, ...}:
-# install additional utilities.
+# Install additional utilities.
 let
   inherit (builtins) attrValues;
 in {
-  # bundle general-purpose cli tools.
+  # Bundle general-purpose cli tools.
   home.packages = attrValues {
     inherit
       (pkgs)
@@ -16,13 +16,13 @@ in {
   };
 
   programs = {
-    # enable ripgrep for fast recursive search.
+    # Enable ripgrep for fast recursive search.
     ripgrep.enable = true;
 
-    # enable the nix-index-database integration with comma.
+    # Enable the nix-index-database integration with comma.
     nix-index-database.comma.enable = true;
 
-    # enable nix-index for finding packages that provide commands.
+    # Enable nix-index for finding packages that provide commands.
     nix-index.enable = true;
   };
 }

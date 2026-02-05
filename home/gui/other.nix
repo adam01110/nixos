@@ -4,12 +4,12 @@
   pkgs,
   ...
 }:
-# gui application and gui flatpak packages.
+# Gui application and gui flatpak packages.
 let
   inherit (builtins) attrValues;
   inherit (lib) optional;
 in {
-  # install applications from nixpkgs and nur.
+  # Install applications from nixpkgs and nur.
   home.packages =
     attrValues {
       inherit
@@ -37,7 +37,7 @@ in {
     }
     ++ optional osConfig.hardware.wooting.enable pkgs.wootility;
 
-  # install applications via flatpak.
+  # Install applications via flatpak.
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
     "io.mrarm.mcpelauncher"

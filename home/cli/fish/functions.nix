@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# fish shell function definitions.
+# Fish shell function definitions.
 let
   inherit (builtins) readFile;
   inherit
@@ -13,7 +13,7 @@ let
     ;
   inherit (pkgs) replaceVars;
 
-  # helper to generate fish functions from template files with variable substitution.
+  # Helper to generate fish functions from template files with variable substitution.
   mkFunction = {
     description,
     file,
@@ -44,7 +44,7 @@ let
     );
   };
 in {
-  # define custom fish functions with descriptions for shell integration.
+  # Define custom fish functions with descriptions for shell integration.
   programs.fish.functions = {
     fish_greeting = {
       description = "Greeting to show when starting a fish shell.";
@@ -54,7 +54,7 @@ in {
       in "${fortune} -s | ${boxes} -d ansi";
     };
 
-    # tar.
+    # Tar.
     tar = mkFunction {
       description = "Custom tar function.";
       file = ./functions/tar.fish;
@@ -68,7 +68,7 @@ in {
       withMkdir = true;
     };
 
-    # zip.
+    # Zip.
     zip = mkFunction {
       description = "Custom zip function.";
       file = ./functions/zip.fish;
@@ -82,7 +82,7 @@ in {
       withMkdir = true;
     };
 
-    # rar.
+    # Rar.
     rar = mkFunction {
       description = "Custom rar function.";
       file = ./functions/rar.fish;

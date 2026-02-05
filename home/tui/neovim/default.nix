@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# configure neovim via nvf and set editor defaults.
+# Configure neovim via nvf and set editor defaults.
 {
   programs.nvf = {
     enable = true;
@@ -16,7 +16,7 @@
     };
   };
 
-  # export editor vars for cli tools.
+  # Export editor vars for cli tools.
   home.sessionVariables = let
     editor = "nvim";
   in {
@@ -24,6 +24,6 @@
     VISUAL = editor;
   };
 
-  # keep nvf background transparent in the stylix.
+  # Keep nvf background transparent in the stylix.
   stylix.targets.nvf.transparentBackground = true;
 }

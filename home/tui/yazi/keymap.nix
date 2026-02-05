@@ -1,5 +1,5 @@
 _:
-# yazi manager keymap overrides.
+# Yazi manager keymap overrides.
 {
   programs.yazi.keymap.mgr.prepend_keymap = [
     {

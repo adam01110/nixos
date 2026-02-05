@@ -2,7 +2,7 @@
   inputs,
   lib,
 }:
-# overlays loaded from this directory.
+# Overlays loaded from this directory.
 let
   inherit
     (builtins)

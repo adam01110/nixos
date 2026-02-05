@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-# provide a styled oxicord wrapper.
+# Provide a styled oxicord wrapper.
 let
   inherit
     (lib)
@@ -29,7 +29,7 @@ let
 in {
   home.packages = [oxicord];
 
-  # create desktop entry to allow launching via launcher.
+  # Create desktop entry to allow launching via launcher.
   xdg.desktopEntries.oxicord = {
     name = "Oxicord";
     genericName = "Terminal Discord Client";

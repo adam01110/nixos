@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# performance mode hooks for noctalia shell.
+# Performance mode hooks for noctalia shell.
 let
   inherit (lib) getExe;
   inherit (pkgs) callPackage;

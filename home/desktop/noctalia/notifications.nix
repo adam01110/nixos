@@ -1,5 +1,5 @@
 _:
-# notification bubble styling and durations.
+# Notification bubble styling and durations.
 {
   programs.noctalia-shell.settings.notifications = {
     enableKeyboardLayoutToast = false;

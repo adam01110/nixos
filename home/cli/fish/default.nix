@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# configure fish shell.
+# Configure fish shell.
 let
   inherit
     (lib)
@@ -15,7 +15,7 @@ in {
   programs.fish = {
     enable = true;
 
-    # enable plugins.
+    # Enable plugins.
     plugins = let
       mkPlugin = pkg: {
         name = "${pkg}";
@@ -29,7 +29,7 @@ in {
         "fifc"
       ];
 
-    # initialize interactive shell settings.
+    # Initialize interactive shell settings.
     interactiveShellInit = let
       editorName = config.home.sessionVariables.EDITOR;
     in ''
@@ -40,14 +40,14 @@ in {
       batman --export-env | source
     '';
 
-    # add shorthand abbreviation.
+    # Add shorthand abbreviation.
     shellAbbrs = {
       ff = "fastfetch";
       gf = "gitfetch";
       oc = "opencode";
     };
 
-    # override commands with preferred tools.
+    # Override commands with preferred tools.
     shellAliases = let
       ripgrep = getExe pkgs.ripgrep;
     in {
@@ -68,7 +68,7 @@ in {
     };
 
     binds = {
-      # remove conflicting default bindings.
+      # Remove conflicting default bindings.
       "alt-e".erase = true;
       "alt-d".erase = true;
     };

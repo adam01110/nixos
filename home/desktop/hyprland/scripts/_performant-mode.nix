@@ -3,7 +3,7 @@
   pkgs,
   osConfig,
 }:
-# wrap the performant mode toggle script with concrete runtime paths.
+# Wrap the performant mode toggle script with concrete runtime paths.
 let
   inherit (builtins) attrValues;
   inherit
@@ -32,10 +32,10 @@ in
         notify_enabled=0
       fi
 
-      # read the current animations.enabled flag to infer mode state.
+      # Read the current animations.enabled flag to infer mode state.
       HYPRPERFORMANTMODE=$(${hyprctl} getoption animations:enabled | ${gawk} 'NR==1{print $2}')
       if [ "$HYPRPERFORMANTMODE" = 1 ]; then
-        # turn off visual features and tighten layout.
+        # Turn off visual features and tighten layout.
         SETTINGS=(
           "animations:enabled 0"
           "decoration:shadow:enabled 0"
@@ -51,13 +51,13 @@ in
         BATCH_COMMANDS=$(printf 'keyword %s;' "''${SETTINGS[@]}")
         ${hyprctl} --batch "$BATCH_COMMANDS"
 
-        # notify the user about the active mode.
+        # Notify the user about the active mode.
         if [ "$notify_enabled" = 1 ]; then
           ${notify-send} -u low -a "desktop" "Performant mode" "Enabled"
         fi
         exit
       else
-        # restore normal settings by reloading hyprland.
+        # Restore normal settings by reloading hyprland.
         if [ "$notify_enabled" = 1 ]; then
           ${notify-send} -u low -a "desktop" "Performant mode" "Disabled"
         fi

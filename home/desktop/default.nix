@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   inherit (builtins) attrValues;
 in {
-  # packages: hardware control utilities for brightness and display management.
+  # Packages: hardware control utilities for brightness and display management.
   home.packages = attrValues {
     inherit
       (pkgs)
@@ -10,6 +10,6 @@ in {
       ;
   };
 
-  # enable cliphist for clipboard history.
+  # Enable cliphist for clipboard history.
   services.cliphist.enable = true;
 }

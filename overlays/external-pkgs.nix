@@ -1,5 +1,5 @@
 {inputs, ...}: final: _prev:
-# expose packages from flake inputs under pkgs.*.
+# Expose packages from flake inputs under pkgs.*.
 let
   inherit (final.stdenv.hostPlatform) system;
 

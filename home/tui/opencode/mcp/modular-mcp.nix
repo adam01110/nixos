@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# provide mcp server config and token wrappers.
+# Provide mcp server config and token wrappers.
 let
   inherit
     (lib)

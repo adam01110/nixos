@@ -1,14 +1,14 @@
-# xdg desktop integration and mime type configuration module.
+# Xdg desktop integration and mime type configuration module.
 _: {
-  # enable xdg integration.
+  # Enable xdg integration.
   xdg.enable = true;
 
-  # manage xdg userdirs and auto-create missing paths.
+  # Manage xdg userdirs and auto-create missing paths.
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
   };
 
-  # enable gnome polkit for graphical authentication prompts.
+  # Enable gnome polkit for graphical authentication prompts.
   services.polkit-gnome.enable = true;
 }

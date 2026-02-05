@@ -3,13 +3,13 @@
   modulesPath,
   ...
 }:
-# hardware profile for the laptop.
+# Hardware profile for the laptop.
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  # kernel modules for laptop hardware support.
+  # Kernel modules for laptop hardware support.
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "thunderbolt"
@@ -18,9 +18,9 @@
     "sd_mod"
     "rtsx_pci_sdmmc"
   ];
-  # enable intel virtualization support.
+  # Enable intel virtualization support.
   boot.kernelModules = ["kvm-intel"];
 
-  # enable intel microcode updates when firmware is available.
+  # Enable intel microcode updates when firmware is available.
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 }

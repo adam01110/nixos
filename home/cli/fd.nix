@@ -1,10 +1,10 @@
 _:
-# configure fd.
+# Configure fd.
 {
   programs.fd = {
     enable = true;
 
-    # enable hidden files and colored output.
+    # Enable hidden files and colored output.
     hidden = true;
     extraOptions = [
       "--color"

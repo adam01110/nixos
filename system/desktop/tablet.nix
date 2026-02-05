@@ -1,8 +1,8 @@
 _: {
-  # enable opentabletdriver.
+  # Enable opentabletdriver.
   hardware.opentabletdriver.enable = true;
 
-  # required by opentabletdriver.
+  # Required by opentabletdriver.
   hardware.uinput.enable = true;
   boot.kernelModules = ["uinput"];
 }

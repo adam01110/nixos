@@ -1,4 +1,4 @@
 _: {
-  # enable zen browser.
+  # Enable zen browser.
   programs.zen-browser.enable = true;
 }

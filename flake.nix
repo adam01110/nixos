@@ -1,11 +1,11 @@
 {
-  # flake entrypoint for this nixos + home manager setup.
-  # - declares all external inputs (channels, overlays, and modules)
-  # - defines common modules/args shared by hosts
-  # - exposes `nixosconfigurations` for each machine.
+  # Flake entrypoint for this nixos + home manager setup.
+  # - Declares all external inputs (channels, overlays, and modules)
+  # - Defines common modules/args shared by hosts
+  # - Exposes `nixosconfigurations` for each machine.
   description = "Adam0's nixos configuration.";
 
-  # inputs: upstream channels, overlays, and extra flakes used by this config.
+  # Inputs: upstream channels, overlays, and extra flakes used by this config.
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -99,7 +99,7 @@
     import-tree.url = "github:vic/import-tree";
   };
 
-  # outputs: expose host configurations and pass through common arguments.
+  # Outputs: expose host configurations and pass through common arguments.
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;

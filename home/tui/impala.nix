@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# install terminal wifi manager when wifi is enabled.
+# Install terminal wifi manager when wifi is enabled.
 let
   inherit
     (lib)
@@ -15,11 +15,11 @@ let
   cfgWifi = osConfig.optServices.wifi.enable;
   pkg = pkgs.impala;
 in
-  # only install when wifi is enabled to avoid unnecessary packages on desktops.
+  # Only install when wifi is enabled to avoid unnecessary packages on desktops.
   mkIf cfgWifi {
     home.packages = [pkg];
 
-    # create desktop entry to allow launching via launcher.
+    # Create desktop entry to allow launching via launcher.
     xdg.desktopEntries.impala = {
       name = "Impala";
       genericName = "Terminal WiFi Manager";

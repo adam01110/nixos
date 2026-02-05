@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# system-wide hyprland setup using packages from the hyprland flake.
+# System-wide hyprland setup using packages from the hyprland flake.
 {
   programs = {
     hyprland = {
@@ -8,7 +8,7 @@
       xwayland.enable = true;
     };
 
-    # remove uuctl support from uwsm.
+    # Remove uuctl support from uwsm.
     uwsm.package = pkgs.uwsm.override {uuctlSupport = false;};
   };
 }

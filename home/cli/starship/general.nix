@@ -1,5 +1,5 @@
 _:
-# core prompt symbols and common modules.
+# Core prompt symbols and common modules.
 {
   programs.starship.settings = {
     character = {

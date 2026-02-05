@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-# configure hypridle timeouts, screen lock, and dpms.
+# Configure hypridle timeouts, screen lock, and dpms.
 let
   inherit
     (lib)
@@ -15,7 +15,7 @@ let
     optionals
     ;
 in {
-  # create a toggle for the suspend timeout.
+  # Create a toggle for the suspend timeout.
   options.hyprland.suspend.enable = mkEnableOption "Enable hypridle suspend timeout.";
 
   config.services.hypridle = {
@@ -28,13 +28,13 @@ in {
       general = let
         noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
       in {
-        # command to invoke the lockscreen.
+        # Command to invoke the lockscreen.
         lock_cmd = "${noctalia} lockScreen lock";
-        # lock before suspend to avoid flashing unlocked session.
+        # Lock before suspend to avoid flashing unlocked session.
         before_sleep_cmd = "loginctl lock-session && ${noctalia} lockScreen lock";
-        # wake display(s) after sleep.
+        # Wake display(s) after sleep.
         after_sleep_cmd = "${hyprctl} dispatch dpms on";
-        # allow short inhibitions (e.g., video) before sleeping.
+        # Allow short inhibitions (e.g., video) before sleeping.
         inhibit_sleep = 3;
       };
 
@@ -42,7 +42,7 @@ in {
         brightnessctl = getExe pkgs.brightnessctl;
       in
         [
-          # dim screen brightness.
+          # Dim screen brightness.
           {
             # 2.5min.
             timeout = 150;
@@ -50,7 +50,7 @@ in {
             on-timeout = "${brightnessctl} - s set 10";
             on-resume = "${brightnessctl} - r";
           }
-          # turn off keyboard backlight.
+          # Turn off keyboard backlight.
           {
             # 2.5min.
             timeout = 150;
@@ -58,14 +58,14 @@ in {
             on-timeout = "${brightnessctl} -sd rgb:kbd_backlight set 0";
             on-resume = "${brightnessctl} -rd rgb:kbd_backlight";
           }
-          # lock the session.
+          # Lock the session.
           {
             # 5min.
             timeout = 300;
 
             on-timeout = "loginctl lock-session";
           }
-          # power off displays via dpms.
+          # Power off displays via dpms.
           {
             # 5.5min.
             timeout = 330;
@@ -75,7 +75,7 @@ in {
           }
         ]
         ++ optionals cfgSuspend [
-          # suspend the system.
+          # Suspend the system.
           {
             # 30min.
             timeout = 1800;

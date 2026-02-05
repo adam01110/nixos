@@ -1,12 +1,12 @@
 {pkgs, ...}:
-# system stylix theme: colors, fonts, and cursor.
+# System stylix theme: colors, fonts, and cursor.
 {
   stylix = {
     enable = true;
 
     polarity = "dark";
 
-    # tweaked default tinted gruvbox-dark colorscheme to use the lighter colors.
+    # Tweaked default tinted gruvbox-dark colorscheme to use the lighter colors.
     base16Scheme = {
       base00 = "#282828";
       base01 = "#3c3836";
@@ -39,7 +39,7 @@
       package = pkgs.gruvbox-plus-icons;
     };
 
-    # use JetBrainsMono without ligatures.
+    # Use JetBrainsMono without ligatures.
     fonts = {
       serif = {
         package = pkgs.nerd-fonts.jetbrains-mono;
@@ -58,6 +58,6 @@
     };
   };
 
-  # cjk font.
+  # Cjk font.
   fonts.packages = [pkgs.noto-fonts-cjk-sans];
 }

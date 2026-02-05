@@ -1,5 +1,5 @@
 _:
-# default handlers for custom url protocols and schemes.
+# Default handlers for custom url protocols and schemes.
 let
   inherit (builtins) listToAttrs;
 in {

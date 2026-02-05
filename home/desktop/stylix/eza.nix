@@ -1,5 +1,5 @@
 {osConfig, ...}:
-# set stylix theme for eza.
+# Set stylix theme for eza.
 let
   inherit (builtins) mapAttrs;
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
@@ -7,7 +7,7 @@ in {
   programs.eza.theme = with colors; {
     colourful = true;
 
-    # file kind colors.
+    # File kind colors.
     filekinds = {
       normal = base05;
       directory = base0D;
@@ -21,7 +21,7 @@ in {
       mount_point = base09;
     };
 
-    # permission bit colors.
+    # Permission bit colors.
     perms = {
       user_read = base05;
       user_write = base0A;
@@ -38,7 +38,7 @@ in {
       attribute = base04;
     };
 
-    # size column colors by unit and magnitude.
+    # Size column colors by unit and magnitude.
     size = {
       major = base04;
       minor = base0C;
@@ -54,7 +54,7 @@ in {
       unit_huge = base09;
     };
 
-    # user and group colors.
+    # User and group colors.
     users = {
       user_you = base05;
       user_root = base08;
@@ -64,13 +64,13 @@ in {
       group_root = base08;
     };
 
-    # link count and hardlink colors.
+    # Link count and hardlink colors.
     links = {
       normal = base0C;
       multi_link_file = base09;
     };
 
-    # git status colors.
+    # Git status colors.
     git = {
       new = base0B;
       modified = base0A;
@@ -81,7 +81,7 @@ in {
       conflicted = base08;
     };
 
-    # git repo metadata colors.
+    # Git repo metadata colors.
     git_repo = {
       branch_main = base05;
       branch_other = base0E;
@@ -89,7 +89,7 @@ in {
       git_dirty = base08;
     };
 
-    # selinux security context colors.
+    # Selinux security context colors.
     security_context = {
       colon = base04;
       user = base05;
@@ -98,7 +98,7 @@ in {
       range = base0E;
     };
 
-    # colors by file extension category.
+    # Colors by file extension category.
     file_type = {
       image = base0A;
       video = base08;
@@ -113,7 +113,7 @@ in {
       source = base0D;
     };
 
-    # misc token colors.
+    # Misc token colors.
     punctuation = base04;
     date = base0A;
     inode = base04;
@@ -122,7 +122,7 @@ in {
     octal = base0C;
     flags = base0E;
 
-    # symlink visuals.
+    # Symlink visuals.
     symlink_path = base0C;
     control_char = base0D;
     broken_symlink = base08;

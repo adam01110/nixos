@@ -1,5 +1,5 @@
 _:
-# configure MangoHud overlay.
+# Configure MangoHud overlay.
 {
   programs.mangohud = {
     enable = true;

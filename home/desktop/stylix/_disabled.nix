@@ -1,5 +1,5 @@
 _:
-# disable stylix integrations for selected applications.
+# Disable stylix integrations for selected applications.
 {
   blender.enable = false;
   gnome.enable = false;

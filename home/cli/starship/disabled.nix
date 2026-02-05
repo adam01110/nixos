@@ -1,5 +1,5 @@
 _:
-# disable unwanted modules to keep the prompt minimal.
+# Disable unwanted modules to keep the prompt minimal.
 {
   programs.starship.settings = {
     aws.disabled = true;

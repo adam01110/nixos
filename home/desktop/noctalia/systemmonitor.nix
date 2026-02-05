@@ -3,15 +3,15 @@
   lib,
   ...
 }:
-# expose a gpu toggle for system monitor widgets.
+# Expose a gpu toggle for system monitor widgets.
 let
   inherit (lib) mkEnableOption getExe;
 in {
   options.noctalia.enableGpu = mkEnableOption "Enable dGPU monitoring and GPU temperature widgets.";
 
-  # set polling for the system monitor.
+  # Set polling for the system monitor.
   config.programs.noctalia-shell.settings.systemMonitor = let
-    # reuse a shared 4s interval for slower sensors.
+    # Reuse a shared 4s interval for slower sensors.
     generalInterval = 4000;
   in {
     cpuPollingInterval = 1000;

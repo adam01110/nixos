@@ -3,7 +3,7 @@
   lib,
   pkgs,
 }:
-# custom packages exported to pkgs.
+# Custom packages exported to pkgs.
 let
   inherit
     (builtins)
@@ -15,15 +15,15 @@ let
     removeSuffix
     ;
 
-  # import-tree with lib helpers for file discovery.
+  # Import-tree with lib helpers for file discovery.
   importTree = inputs.import-tree.withLib lib;
 
-  # gather all package definition files under this directory.
+  # Gather all package definition files under this directory.
   packageFiles = importTree.pipeTo (files: filter isPackageFile files) ./.;
-  # ignore default.nix so it only aggregates.
+  # Ignore default.nix so it only aggregates.
   isPackageFile = path: baseNameOf path != "default.nix";
 
-  # map file path to attr set entry.
+  # Map file path to attr set entry.
   mkPackage = file: let
     name = removeSuffix ".nix" (baseNameOf file);
   in {

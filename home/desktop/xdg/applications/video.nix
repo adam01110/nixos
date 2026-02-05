@@ -1,5 +1,5 @@
 _:
-# default handlers for video mime types.
+# Default handlers for video mime types.
 let
   inherit (builtins) listToAttrs;
 in {

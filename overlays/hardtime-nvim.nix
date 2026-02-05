@@ -1,5 +1,5 @@
 _: _final: prev:
-# patch hardtime.nvim to avoid per-key which-key require.
+# Patch hardtime.nvim to avoid per-key which-key require.
 {
   vimPlugins =
     prev.vimPlugins

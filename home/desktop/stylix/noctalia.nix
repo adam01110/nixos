@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# stylix theme for noctalia-shell.
+# Stylix theme for noctalia-shell.
 let
   inherit (builtins) mapAttrs;
   inherit (lib) mkForce;
@@ -11,7 +11,7 @@ let
   colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in {
   programs.noctalia-shell = {
-    # system monitor colors from stylix.
+    # System monitor colors from stylix.
     settings = {
       bar = {
         backgroundOpacity = mkForce 1.0;
@@ -29,7 +29,7 @@ in {
       };
     };
 
-    # write the noctalia color palette to a json file.
+    # Write the noctalia color palette to a json file.
     colors = with colors; {
       mHover = mkForce base0D;
       mOnSurface = mkForce base06;

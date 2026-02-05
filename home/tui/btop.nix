@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# configure btop.
+# Configure btop.
 let
   inherit (lib) mkOption types;
 
@@ -12,7 +12,7 @@ let
   hasCuda = lib.elem "cuda" gpuBackends;
   hasRocm = lib.elem "rocm" gpuBackends;
 
-  # pick gpu-aware version of btop.
+  # Pick gpu-aware version of btop.
   btopPackage =
     if hasCuda && hasRocm
     then
@@ -42,28 +42,28 @@ in {
     package = btopPackage;
 
     settings = {
-      # vim keys enable keyboard navigation similar to vim editor.
+      # Vim keys enable keyboard navigation similar to vim editor.
       vim_keys = true;
 
-      # update frequency of 1000ms balances responsiveness and performance.
+      # Update frequency of 1000ms balances responsiveness and performance.
       update_ms = 1000;
 
-      # disable logging
+      # Disable logging
       log_level = "DISABLED";
 
-      # process display settings.
+      # Process display settings.
       proc_tree = true;
       proc_gradient = false;
       proc_aggregate = true;
 
-      # disk filtering excludes system directories to focus on relevant storage.
+      # Disk filtering excludes system directories to focus on relevant storage.
       disks_filter = "exclude=/var/log /var/cache /var/tmp /home /srv /nix";
 
-      # memory display settings.
+      # Memory display settings.
       mem_graphs = true;
       swap_disk = false;
 
-      # disable rounded corners for consistent flat design.
+      # Disable rounded corners for consistent flat design.
       rounded_corners = false;
     };
   };

@@ -3,22 +3,22 @@
   pkgs,
   ...
 }:
-# home manager hyprland configuration: plugins, quickshell, and extras.
+# Home manager hyprland configuration: plugins, quickshell, and extras.
 let
   inherit (builtins) attrValues;
 in {
-  # make home manager session variables available to uwsm.
+  # Make home manager session variables available to uwsm.
   xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
-  # enable hyprland.
+  # Enable hyprland.
   wayland.windowManager.hyprland = {
     enable = true;
 
-    # packages are null because its installed sytem wide.
+    # Packages are null because its installed sytem wide.
     package = null;
     portalPackage = null;
 
-    # add hyprfocus and hyprsplit plugins.
+    # Add hyprfocus and hyprsplit plugins.
     plugins = attrValues {
       inherit
         (pkgs.hyprlandPlugins)
@@ -28,14 +28,14 @@ in {
     };
   };
 
-  # add hyprpicker to packages.
+  # Add hyprpicker to packages.
   home.packages = [pkgs.hyprpicker];
 
-  # enable hyprcursor theme support.
+  # Enable hyprcursor theme support.
   home.pointerCursor.hyprcursor.enable = true;
 
   programs = {
-    # enable quickshell.
+    # Enable quickshell.
     quickshell = {
       enable = true;
       systemd.enable = true;
@@ -44,7 +44,7 @@ in {
       configs.overview = ./overview;
     };
 
-    # enable hyprshot for screenshotting with hyprland.
+    # Enable hyprshot for screenshotting with hyprland.
     hyprshot.enable = true;
   };
 }

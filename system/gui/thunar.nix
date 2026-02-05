@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# configure thunar with core plugins for archives and removable media.
+# Configure thunar with core plugins for archives and removable media.
 {
   programs = {
     xfconf.enable = true;
@@ -27,7 +27,7 @@
     };
   };
 
-  # drop nautilus integration from file-roller.
+  # Drop nautilus integration from file-roller.
   environment.systemPackages = [
     (pkgs.file-roller.overrideAttrs (old: let
       removeNautilus = pkgList:

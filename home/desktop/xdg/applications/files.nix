@@ -1,5 +1,5 @@
 _:
-# default handlers for directories and custom file associations.
+# Default handlers for directories and custom file associations.
 {
   xdg.mimeApps.defaultApplications = {
     "inode/directory" = "thunar.desktop";

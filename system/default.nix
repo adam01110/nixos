@@ -1,4 +1,4 @@
-# system-wide configuration entry point for nixos.
+# System-wide configuration entry point for nixos.
 {
   config,
   lib,
@@ -13,26 +13,26 @@
     mkIf
     ;
 in {
-  # custom option gate for roccat kain 100 mouse hardware quirks.
+  # Custom option gate for roccat kain 100 mouse hardware quirks.
   options.hardware.roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
 
   config = {
-    # bootloader, kernel, and initrd configuration.
+    # Bootloader, kernel, and initrd configuration.
     boot = {
-      # use cachyos kernel for performance optimizations.
+      # Use cachyos kernel for performance optimizations.
       kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
       initrd = {
-        # use numworks udev package for calculator.
+        # Use numworks udev package for calculator.
         services.udev.packages = [pkgs.numworks-udev-rules];
 
         systemd.enable = true;
       };
 
       loader = {
-        # skip bootloader timeout for faster boot.
+        # Skip bootloader timeout for faster boot.
         timeout = 0;
 
-        # secure boot is handled via lanzaboote below.
+        # Secure boot is handled via lanzaboote below.
         systemd-boot.enable = mkForce false;
         efi.canTouchEfiVariables = true;
       };
@@ -50,7 +50,7 @@ in {
       };
     };
 
-    # firmware, polkit, rtkit and other core security niceties.
+    # Firmware, polkit, rtkit and other core security niceties.
     hardware.enableAllFirmware = true;
 
     security = {
@@ -59,21 +59,21 @@ in {
     };
 
     programs = {
-      # enable nix-ld to allow the use of dynamic libraries.
+      # Enable nix-ld to allow the use of dynamic libraries.
       nix-ld.enable = true;
 
-      # enable support for appimages.
+      # Enable support for appimages.
       appimage = {
         enable = true;
         binfmt = true;
       };
     };
 
-    # use nftables; individual services will add rules if needed.
+    # Use nftables; individual services will add rules if needed.
     networking.nftables.enable = true;
 
     environment = {
-      # optional libinput quirk for specific roccat mouse.
+      # Optional libinput quirk for specific roccat mouse.
       etc."libinput/local-overrides.quirks" = let
         name = "ROCCAT ROCCAT Kain 100";
       in
@@ -88,7 +88,7 @@ in {
           group = "root";
         };
 
-      # extra packages for lanzaboote.
+      # Extra packages for lanzaboote.
       systemPackages = attrValues {
         inherit
           (pkgs)

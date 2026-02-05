@@ -1,5 +1,5 @@
 {osConfig, ...}:
-# reuse the system’s sops settings in home manager.
+# Reuse the system’s sops settings in home manager.
 {
   sops = {
     inherit (osConfig.sops) defaultSopsFile;

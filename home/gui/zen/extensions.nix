@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# zen browser extensions configuration.
+# Zen browser extensions configuration.
 let
   inherit
     (builtins)
@@ -7,14 +7,14 @@ let
     mapAttrs
     ;
 in {
-  # add extensions in nur.
+  # Add extensions in nur.
   programs.zen-browser.profiles.default.extensions = {
-    # force extensions to be enabled.
+    # Force extensions to be enabled.
     force = true;
     packages = attrValues {
       inherit
         (pkgs.nur.repos.rycee.firefox-addons)
-        # content blocking.
+        # Content blocking.
         ublock-origin
         localcdn
         sponsorblock
@@ -22,7 +22,7 @@ in {
         istilldontcareaboutcookies
         consent-o-matic
         don-t-fuck-with-paste
-        # annoyances.
+        # Annoyances.
         shinigami-eyes
         translate-web-pages
         return-youtube-dislikes
@@ -39,7 +39,7 @@ in {
     };
   };
 
-  # add extensions not in nur.
+  # Add extensions not in nur.
   programs.zen-browser.policies.ExtensionSettings = let
     mkExtensionSettings = mapAttrs (
       _: pluginId: {

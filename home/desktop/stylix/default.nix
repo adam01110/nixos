@@ -1,12 +1,12 @@
 {osConfig, ...}:
-# per-user stylix customization layered on top of system-wide stylix theming.
+# Per-user stylix customization layered on top of system-wide stylix theming.
 let
   disabledTargets = import ./_disabled.nix {};
 
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
 in {
   stylix = {
-    # opacity values: slightly reduced for better readability with wallpapers.
+    # Opacity values: slightly reduced for better readability with wallpapers.
     opacity = {
       applications = 0.95;
       desktop = 0.95;
@@ -14,7 +14,7 @@ in {
       terminal = 0.95;
     };
 
-    # font sizes: consistent small sizing for information density.
+    # Font sizes: consistent small sizing for information density.
     fonts.sizes = {
       applications = 10;
       desktop = 10;
@@ -22,7 +22,7 @@ in {
       terminal = 10;
     };
 
-    # enable/disable specific stylix targets.
+    # Enable/disable specific stylix targets.
     targets =
       disabledTargets
       // {
@@ -32,6 +32,6 @@ in {
       };
   };
 
-  # keep zathura fonts consistent with the desktop.
+  # Keep zathura fonts consistent with the desktop.
   programs.zathura.options.font = sansSerifFont;
 }

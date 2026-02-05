@@ -1,12 +1,12 @@
 {vars, ...}:
-# configure onlyoffice desktop.
+# Configure onlyoffice desktop.
 let
   inherit (vars) username;
 in {
   programs.onlyoffice = {
     enable = true;
 
-    # set ui preferences.
+    # Set ui preferences.
     settings = {
       inherit username;
       UITheme = "theme-dark";
