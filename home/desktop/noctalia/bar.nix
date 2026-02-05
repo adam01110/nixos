@@ -73,9 +73,7 @@ in {
       ];
 
       right = let
-        inherit (config.programs.noctalia-shell.settings.appLauncher) terminalCommand;
-        # Open wiremix in a named terminal window.
-        wiremix = "${terminalCommand} --title='Wiremix' ${config.xdg.desktopEntries.wiremix.exec}";
+        wiremix = config.xdg.desktopEntries.wiremix.exec;
       in
         [
           {
@@ -118,7 +116,7 @@ in {
         ++ (optional config.noctalia.battery.enable {
           id = "Battery";
           showPowerProfiles = true;
-          isplayMode = "icon-hover";
+          DisplayMode = "icon-hover";
         })
         ++ [
           {id = "plugin:github-feed";}
