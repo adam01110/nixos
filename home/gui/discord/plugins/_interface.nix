@@ -89,4 +89,5 @@
   };
   ViewIcons.enabled = true;
   MicLoopbackTester.enabled = true;
+  CleanerChannelGroups.enabled = true;
 }

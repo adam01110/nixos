@@ -17,4 +17,5 @@ _:
     enabled = true;
     myUnits = "metric";
   };
+  Dragify.enabled = true;
 }
