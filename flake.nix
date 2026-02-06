@@ -8,18 +8,27 @@
   # Inputs: upstream channels, overlays, and extra flakes used by this config.
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
     systems.url = "github:nix-systems/default";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=release";
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    disko.url = "github:nix-community/disko?ref=latest";
+    disko = {
+      url = "github:nix-community/disko?ref=latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -28,7 +37,12 @@
 
     stylix = {
       url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        nur.follows = "nur";
+        systems.follows = "systems";
+      };
     };
 
     lanzaboote = {
@@ -53,11 +67,17 @@
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake?ref=beta";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
     nix-userstyles = {
       url = "github:adam01110/nix-userstyles";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     nixcord = {
@@ -66,37 +86,63 @@
     };
     oxicord = {
       url = "github:linuxmobile/oxicord";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
 
-    llm-agents.url = "github:numtide/llm-agents.nix";
-    mcp-servers-nix.url = "github:natsukium/mcp-servers-nix";
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mcp-servers-nix = {
+      url = "github:natsukium/mcp-servers-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    zed-extensions = {
+      url = "github:DuskSystems/nix-zed-extensions";
+    };
+
+    millennium = {
+      url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
-
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-
-    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
-
-    determinate.url = "github:DeterminateSystems/nix-src";
+    determinate = {
+      url = "github:DeterminateSystems/nix-src";
+      inputs.flake-parts.follows = "flake-parts";
+    };
 
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
 
     tuigreet = {
       url = "github:notashelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    import-tree.url = "github:vic/import-tree";
   };
 
   # Outputs: expose host configurations and pass through common arguments.
@@ -105,9 +151,7 @@
       systems = import inputs.systems;
 
       imports = with inputs; [
-        home-manager.flakeModules.home-manager
         treefmt-nix.flakeModule
-        disko.flakeModules.default
         (import-tree ./parts)
       ];
     };
