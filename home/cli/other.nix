@@ -11,7 +11,6 @@ in {
       pokemon-colorscripts
       speedtest-go
       sshfs
-      tokei
       ;
   };
 

@@ -11,6 +11,7 @@ _:
           (pkgs)
           vim
           sops
+          tokei
           ;
       };
 
