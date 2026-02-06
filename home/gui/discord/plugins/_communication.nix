@@ -158,4 +158,5 @@
   YoutubeDescription.enabled = true;
   ZipPreview.enabled = true;
   WebScreenShareFixes.enabled = true;
+  VoiceRejoin.enabled = true;
 }
