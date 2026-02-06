@@ -1,11 +1,14 @@
 {
   config,
+  osConfig,
   lib,
   ...
 }:
 # Noctalia top bar.
 let
   inherit (lib) optional;
+
+  cfgBluetooth = osConfig.optServices.bluetooth.enable;
 in {
   programs.noctalia-shell.settings.bar = {
     density = "compact";
@@ -102,7 +105,9 @@ in {
             displayMode = "onhover";
             middleClickCommand = wiremix;
           }
-          {id = "Bluetooth";}
+        ]
+        ++ (optional cfgBluetooth {id = "Bluetooth";})
+        ++ [
           {id = "Network";}
           {
             id = "Brightness";
