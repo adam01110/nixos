@@ -14,11 +14,13 @@ _:
         action = "suspend";
         enabled = true;
         countdownEnabled = true;
+        command = "systemctl suspend";
       }
       {
         action = "reboot";
         enabled = true;
         countdownEnabled = true;
+        command = "systemctl reboot";
       }
       {
         action = "logout";
@@ -29,6 +31,7 @@ _:
         action = "shutdown";
         enabled = true;
         countdownEnabled = true;
+        command = "systemctl poweroff";
       }
       {
         action = "hibernate";

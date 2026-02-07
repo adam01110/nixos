@@ -6,8 +6,8 @@ in {
     directory = "${picturesDir}/Wallpapers";
     overviewEnabled = true;
     panelPosition = "center";
-    randomEnabled = true;
     randomIntervalSec = 7200;
     setWallpaperOnAllMonitors = true;
+    transitionType = "stripes";
   };
 }

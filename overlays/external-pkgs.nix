@@ -6,13 +6,19 @@ let
   fromInput = {
     input,
     package ? "default",
-  }:
-    inputs.${input}.packages.${system}.${package};
+  }: let
+    flake = inputs.${input};
+  in
+    if flake ? packages
+    then flake.packages.${system}.${package}
+    else if package == "default" && flake ? defaultPackage
+    then flake.defaultPackage.${system}
+    else throw "Input `${input}` does not expose `packages.${system}.${package}`.";
 
   packages = {
     determinate-nix = {input = "determinate";};
-    neovim-nightly = {input = "neovim-nightly-overlay";};
     oxicord = {input = "oxicord";};
+    spotify-player = {input = "spotify-player";};
 
     opencode = {
       input = "llm-agents";
