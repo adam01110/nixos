@@ -247,7 +247,7 @@
     "discord-userstyle": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-eYBPCle4NaZiDbrF/phe5WULSEIqWPyDfQ+UASqeM8M=",
+        "narHash": "sha256-kQK+xOaUBqWXtGhyS2GuSMztQAMy7/jIz85mhjgBiDw=",
         "type": "file",
         "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
       },
@@ -1003,11 +1003,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770362134,
-        "narHash": "sha256-L7WE1tBFLAUDEZny+1fhl/srutHj76BcNDKADPsOdbc=",
+        "lastModified": 1770488625,
+        "narHash": "sha256-X3oYZbPS0Popk7wJQbno6yuj8ZbHHIAtqybe7636jX4=",
         "owner": "adam01110",
         "repo": "nix-userstyles",
-        "rev": "d30d0be7b93970e129bbbf4377440ce160af1066",
+        "rev": "f1aa5dfe44ad6ccbccb4ec89b070f565be5db192",
         "type": "github"
       },
       "original": {
