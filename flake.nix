@@ -56,7 +56,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.3.3";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.4.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -109,9 +109,12 @@
       };
     };
 
-    zed-extensions = {
-      url = "github:DuskSystems/nix-zed-extensions";
+    spotify-player = {
+      url = "github:aome510/spotify-player";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
     millennium = {
       url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";

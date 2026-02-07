@@ -58,6 +58,8 @@ in {
         columnCount = 4;
       };
     };
+
+    settings.plugins.autoUpdate = true;
   };
 
   # The noctalia github feed plugin settings.

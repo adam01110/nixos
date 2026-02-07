@@ -1,4 +1,4 @@
-{pkgs, ...}:
+_:
 # Configure neovim via nvf and set editor defaults.
 {
   programs.nvf = {
@@ -11,8 +11,6 @@
       enableLuaLoader = true;
 
       utility.snacks-nvim.enable = true;
-
-      package = pkgs.neovim-nightly;
     };
   };
 

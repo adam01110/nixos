@@ -158,7 +158,6 @@ in {
             toml
             tombi
             xml
-            opencode
             ;
         };
       };
