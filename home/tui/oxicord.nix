@@ -5,29 +5,25 @@
   pkgs,
   ...
 }:
-# Provide a styled oxicord wrapper.
+# Configure oxicord and expose a desktop launcher.
 let
   inherit
     (lib)
     getExe
-    getExe'
     ;
+
+  tomlFormat = pkgs.formats.toml {};
 
   oxicordPkg = pkgs.oxicord;
   accentColor = "#${osConfig.lib.stylix.colors.base0B}";
-
-  oxicord = pkgs.symlinkJoin {
-    name = "oxicord-wrapped";
-    paths = [oxicordPkg];
-    nativeBuildInputs = [pkgs.makeWrapper];
-    postBuild = ''
-      wrapProgram $out/bin/oxicord \
-        --add-flags "--group-guilds=true" \
-        --add-flags "--accent-color=${accentColor}"
-    '';
-  };
 in {
-  home.packages = [oxicord];
+  home.packages = [oxicordPkg];
+
+  # Generate a minimal oxicord configuration with changed values.
+  xdg.configFile."oxicord/config.toml".source = tomlFormat.generate "oxicord-config.toml" {
+    ui.group_guilds = true;
+    theme.accent_color = accentColor;
+  };
 
   # Create desktop entry to allow launching via launcher.
   xdg.desktopEntries.oxicord = {
@@ -36,8 +32,8 @@ in {
     icon = "discord";
     exec = let
       terminalCommand = getExe config.xdg.terminal-exec.package;
-      oxicordExe = getExe' oxicord "oxicord";
-    in "${terminalCommand} --title=Oxicord ${oxicordExe}";
+      oxicord = getExe oxicordPkg;
+    in "${terminalCommand} --title=Oxicord ${oxicord}";
     categories = [
       "Network"
       "Chat"
