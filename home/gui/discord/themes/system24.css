@@ -121,7 +121,7 @@ body {
 
 	/* Accent colors */
 	--accent-1: var(--green-1); /* Links and other accent text */
-	--accent-2: var(--green-2); /* Small accent elements */
+	--accent-2: var(--blue-1); /* Small accent elements */
 	--accent-3: var(--green-3); /* Accent buttons */
 	--accent-4: var(--green-4); /* Accent buttons when hovered */
 	--accent-5: var(--green-5); /* Accent buttons when clicked */
@@ -159,7 +159,7 @@ body {
 	/* Border colors */
 	--border-light: var(--hover); /* General light border color */
 	--border: var(--active); /* General normal border color */
-	--border-hover: var(--active); /* Border color of panels when hovered */
+	--border-hover: var(--accent-2); /* Border color of panels when hovered */
 	--button-border: hsl(
 		220,
 		0%,

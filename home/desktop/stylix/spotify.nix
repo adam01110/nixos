@@ -27,7 +27,7 @@ in {
         :root {
           --font-family: '${font}', monospace;
 
-          --border-transition none;
+          --border-transition: none;
         }
 
         *,
