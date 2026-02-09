@@ -105,6 +105,7 @@ in {
 
       ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", \
           ATTR{link_power_management_policy}=="*", \
+          ATTR{link_power_management_supported}=="1", \
           ATTR{link_power_management_policy}="max_performance"
 
       ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \

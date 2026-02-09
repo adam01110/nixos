@@ -26,9 +26,14 @@ in {
     targets =
       disabledTargets
       // {
+        # Cava.
         cava.rainbow.enable = true;
 
+        # Zen-browser.
         zen-browser.profileNames = ["default"];
+
+        # Neovim.
+        nvf.transparentBackground = true;
       };
   };
 

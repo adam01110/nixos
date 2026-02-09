@@ -79,7 +79,7 @@ in
           glib-networking
 
           # WINE
-          xorg.xrandr
+          xrandr
           perl
           which
           p7zip
