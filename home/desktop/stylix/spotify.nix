@@ -20,14 +20,43 @@ in {
       sidebarConfig = false;
 
       # Set font to stylix font.
-      # Remove border transitions.
+      # Force the text theme to show all images.
+      # Disable border highlight animations and fades.
       # Remove rounded corners from all elements for consistent styling.
       # Remove the ugly spotify-tui header.
       additionalCss = ''
         :root {
           --font-family: '${font}', monospace;
 
-          --border-transition: none;
+          --display-card-image: block;
+          --display-coverart-image: block;
+          --display-header-image: block;
+          --display-sidebar-image: block;
+          --display-tracklist-image: block;
+          --border-transition: 0s;
+        }
+
+        .Root__globalNav,
+        .main-yourLibraryX-entryPoints,
+        .Root__main-view,
+        .main-nowPlayingBar-container,
+        .Root__right-sidebar:has(aside:not(:empty)) {
+          transition: none !important;
+        }
+
+        .Root__globalNav::before,
+        .Root__nav-bar .main-yourLibraryX-entryPoints::before,
+        .Root__main-view::before,
+        .main-nowPlayingBar-container::before,
+        .Root__right-sidebar:has(aside:not(:empty))::before {
+          transition: none !important;
+        }
+
+        .player-controls__buttons,
+        .main-nowPlayingBar-extraControls,
+        .main-connectBar-connectBar {
+          opacity: 1 !important;
+          transition: none !important;
         }
 
         *,

@@ -21,7 +21,4 @@ _:
     EDITOR = editor;
     VISUAL = editor;
   };
-
-  # Keep nvf background transparent in the stylix.
-  stylix.targets.nvf.transparentBackground = true;
 }
