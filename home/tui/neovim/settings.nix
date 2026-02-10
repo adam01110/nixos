@@ -18,6 +18,12 @@ _: {
 
     telescope = {
       enable = true;
+
+      # Keep Telescope borders in explicit single-line style.
+      setupOpts.defaults = {
+        border = true;
+        borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
+      };
     };
 
     lsp = {

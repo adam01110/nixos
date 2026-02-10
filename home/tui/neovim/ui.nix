@@ -39,6 +39,14 @@ in {
       nvim-web-devicons.enable = true;
     };
 
+    # Keep Telescope border windows visible with themes that flatten border groups.
+    highlight = {
+      TelescopeBorder.link = "FloatBorder";
+      TelescopePromptBorder.link = "FloatBorder";
+      TelescopeResultsBorder.link = "FloatBorder";
+      TelescopePreviewBorder.link = "FloatBorder";
+    };
+
     notify.nvim-notify = {
       enable = true;
 
