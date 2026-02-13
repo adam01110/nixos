@@ -5,7 +5,6 @@ _:
     fontDefaultScale = 0.8;
     fontFixedScale = 0.8;
     panelsAttachedToBar = false;
-    settingsPanelAttachToBar = false;
     panelBackgroundOpacity = 0.95;
     boxBorderEnabled = true;
   };

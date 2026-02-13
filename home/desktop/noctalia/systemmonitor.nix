@@ -15,7 +15,6 @@ in {
     generalInterval = 4000;
   in {
     cpuPollingInterval = 1000;
-    tempPollingInterval = generalInterval;
     memPollingInterval = generalInterval;
     diskPollingInterval = generalInterval;
     networkPollingInterval = generalInterval;

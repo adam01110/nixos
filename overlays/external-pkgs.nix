@@ -18,7 +18,6 @@ let
   packages = {
     determinate-nix = {input = "determinate";};
     oxicord = {input = "oxicord";};
-    spotify-player = {input = "spotify-player";};
 
     opencode = {
       input = "llm-agents";

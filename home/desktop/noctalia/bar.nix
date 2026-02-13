@@ -12,7 +12,6 @@ let
 in {
   programs.noctalia-shell.settings.bar = {
     density = "compact";
-    exclusive = true;
     floating = false;
     outerCorners = false;
     position = "top";
@@ -31,7 +30,6 @@ in {
           showMemoryAsPercent = false;
           showMemoryUsage = true;
           showNetworkStats = false;
-          usePrimaryColor = true;
           showSwapUsage = true;
         }
         {id = "plugin:privacy-indicator";}

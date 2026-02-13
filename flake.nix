@@ -56,7 +56,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.4.0";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -76,6 +76,9 @@
       url = "github:adam01110/nix-userstyles";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        import-tree.follows = "import-tree";
+        systems.follows = "systems";
         treefmt-nix.follows = "treefmt-nix";
       };
     };
@@ -107,11 +110,6 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
-    };
-
-    spotify-player = {
-      url = "github:aome510/spotify-player";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zed-extensions.url = "github:DuskSystems/nix-zed-extensions";

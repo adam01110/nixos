@@ -14,7 +14,7 @@ in {
       calendarSupport = true;
     };
 
-    # Keep template generation under explicit control.
-    settings.colorschemes.generateTemplatesForPredefined = false;
+    # Use the current theming schema.
+    settings.templates.enableUserTheming = false;
   };
 }

@@ -9,5 +9,8 @@ in {
     randomIntervalSec = 7200;
     setWallpaperOnAllMonitors = true;
     transitionType = "stripes";
+    skipStartupTransition = true;
+    showHiddenFiles = true;
+    hideWallpaperFilenames = true;
   };
 }
