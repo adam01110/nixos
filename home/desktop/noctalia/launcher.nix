@@ -17,6 +17,11 @@ in {
     useApp2Unit = true;
     showIconBackground = true;
     autoPasteClipboard = true;
+    overviewLayer = true;
+    density = "comfortable";
+    enableSessionSearch = false;
+    enableSettingsSearch = false;
+    enableWindowsSearch = false;
   };
 
   # Wtype for the automatic clipboard paste.

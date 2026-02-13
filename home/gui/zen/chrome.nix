@@ -36,82 +36,84 @@ in {
         border-radius: 0px !important;
       }
 
-      ${readFile "${inputs.nix-userstyles.packages.${system}.mkUserStyles stylixPalette [
-        # Apply nix-userstyles themes.
-        "advent-of-code"
-        "alternativeto"
-        "anonymous-overflow"
-        "arch-wiki"
+      ${readFile "${
+        inputs.nix-userstyles.lib.mkUserStyles system stylixPalette [
+          # Apply nix-userstyles themes.
+          "advent-of-code"
+          "alternativeto"
+          "anonymous-overflow"
+          "arch-wiki"
 
-        "brave-search"
-        "bsky"
-        "bstats"
+          "brave-search"
+          "bsky"
+          "bstats"
 
-        "chatgpt"
-        "codeberg"
-        "crates.io"
+          "chatgpt"
+          "codeberg"
+          "crates.io"
 
-        "dev.to"
-        "devdocs"
-        "discord"
-        "docs.deno.com"
-        "docs.rs"
+          "dev.to"
+          "devdocs"
+          "discord"
+          "docs.deno.com"
+          "docs.rs"
 
-        "freedesktop"
+          "freedesktop"
 
-        "ghostty.org"
-        "github"
-        "gmail"
-        "google"
-        "google-drive"
+          "ghostty.org"
+          "github"
+          "gmail"
+          "google"
+          "google-drive"
 
-        "hacker-news"
-        "home-manager-options-search"
+          "hacker-news"
+          "home-manager-options-search"
 
-        "indie-wiki-buddy"
+          "indie-wiki-buddy"
 
-        "lastfm"
-        "linkedin"
-        "lobste.rs"
+          "lastfm"
+          "linkedin"
+          "lobste.rs"
 
-        "mastodon"
-        "mdbook"
-        "mdn"
-        "modrinth"
+          "mastodon"
+          "mdbook"
+          "mdn"
+          "modrinth"
 
-        "namemc"
-        "nitter"
-        "neovim.io"
-        "nixos-manual"
-        "nixos-search"
-        "npm"
+          "namemc"
+          "nitter"
+          "neovim.io"
+          "nixos-manual"
+          "nixos-search"
+          "npm"
 
-        "planet-minecraft"
-        "porkbun"
-        "proton"
-        "pypi"
+          "planet-minecraft"
+          "porkbun"
+          "proton"
+          "pypi"
 
-        "react.dev"
-        "reddit"
-        "regex101"
-        "rentry.co"
+          "react.dev"
+          "reddit"
+          "regex101"
+          "rentry.co"
 
-        "searchix"
-        "shinigami-eyes"
-        "spotify-web"
+          "searchix"
+          "shinigami-eyes"
+          "spotify-web"
 
-        "stack-overflow"
-        "twitch"
+          "stack-overflow"
+          "twitch"
 
-        "web.dev"
-        "wiki.nixos.org"
-        "wikipedia"
-        "wikiwand"
+          "web.dev"
+          "wiki.nixos.org"
+          "wikipedia"
+          "wikiwand"
 
-        "youtube"
+          "youtube"
 
-        "zen-browser-docs"
-      ]}"}
+          "zen-browser-docs"
+        ]
+      }"}
     '';
   };
 }

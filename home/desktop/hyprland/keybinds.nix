@@ -14,7 +14,6 @@ let
     mkEnableOption
     optionalString
     ;
-  inherit (pkgs) callPackage;
 
   inherit (config.xdg) configHome;
 in {
@@ -33,7 +32,6 @@ in {
       qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
 
-      performantMode = callPackage ./scripts/_performant-mode.nix {inherit osConfig;};
       thunar = getExe pkgs.thunar;
       equibop = getExe config.programs.nixcord.equibop.package;
       ghostty = "${getExe config.programs.ghostty.package} +new-window";
@@ -174,8 +172,8 @@ in {
 
         # 12. SYSTEM
         bind = SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle #"Overview"
-        bind = SUPER, F2, exec, ${noctalia} plugin togglePanel keybind-cheatsheet #"Keybind cheatsheet"
-        bind = SUPER, F1, exec, ${getExe performantMode} #"Performant mode"
+        bind = SUPER, SPACE, exec, ${noctalia} plugin togglePanel keybind-cheatsheet #"Keybind cheatsheet"
+        bind = SUPER, F1, exec, ${noctalia} powerProfile toggleNoctaliaPerformance #"Performant mode"
 
         # 13. CURSOR ZOOM
         binde = SUPER, equal, exec, ${zoomIn} #"Zoom in"

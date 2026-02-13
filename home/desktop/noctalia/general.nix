@@ -15,5 +15,28 @@ _:
     shadowOffsetX = 0;
     shadowOffsetY = 0;
     telemetryEnabled = false;
+
+    clockStyle = "analog";
+    lockScreenAnimations = true;
+    lockScreenBlur = 30;
+
+    keybinds = {
+      keyDown = [
+        "Down"
+        "Ctrl+J"
+      ];
+      keyLeft = [
+        "Left"
+        "Ctrl+H"
+      ];
+      keyRight = [
+        "Right"
+        "Ctrl+L"
+      ];
+      keyUp = [
+        "Up"
+        "Ctrl+K"
+      ];
+    };
   };
 }

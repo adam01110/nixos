@@ -22,7 +22,7 @@ in {
       osd.backgroundOpacity = mkForce 1.0;
       notifications.backgroundOpacity = mkForce 1.0;
 
-      palette.systemMonitor = with colors; {
+      systemMonitor = with colors; {
         useCustomColors = true;
         warningColor = base0A;
         criticalColor = base08;

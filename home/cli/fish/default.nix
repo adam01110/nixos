@@ -73,4 +73,10 @@ in {
       "alt-d".erase = true;
     };
   };
+
+  # Tools used by plugins.
+  home.packages = [
+    # File is used by Fifc
+    pkgs.file
+  ];
 }

@@ -25,8 +25,8 @@ in {
       dockerSocket.enable = true;
 
       # Clean up unused images/containers regularly.
-      autoPrune = {
-        enable = cfgPodman.autoPrune.enable;
+      autoPrune = mkIf cfgPodman.autoPrune.enable {
+        enable = true;
 
         flags = [
           "--all"
