@@ -14,10 +14,10 @@ in {
         enable = true;
 
         setupOpts = {
-          # keep using `nvim-notify` and avoid noice overwrite warnings.
+          # Keep using `nvim-notify` and avoid noice overwrite warnings.
           notify.enabled = false;
 
-          # don't hook hover/markdown helpers that other plugins replace.
+          # Avoid hooking hover and markdown helpers that other plugins replace.
           lsp = {
             hover.enabled = false;
             override = {
@@ -39,14 +39,6 @@ in {
       nvim-web-devicons.enable = true;
     };
 
-    # Keep Telescope border windows visible with themes that flatten border groups.
-    highlight = {
-      TelescopeBorder.link = "FloatBorder";
-      TelescopePromptBorder.link = "FloatBorder";
-      TelescopeResultsBorder.link = "FloatBorder";
-      TelescopePreviewBorder.link = "FloatBorder";
-    };
-
     notify.nvim-notify = {
       enable = true;
 
@@ -60,6 +52,20 @@ in {
           end
         '';
       };
+    };
+
+    # Keep Telescope border windows visible with themes that flatten border groups.
+    highlight = {
+      TelescopeBorder.link = "FloatBorder";
+      TelescopePromptBorder.link = "FloatBorder";
+      TelescopeResultsBorder.link = "FloatBorder";
+      TelescopePreviewBorder.link = "FloatBorder";
+    };
+
+    # Keep Telescope borders in explicit single-line style.
+    telescope.setupOpts.defaults = {
+      border = true;
+      borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
     };
   };
 }
