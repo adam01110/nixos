@@ -2,7 +2,6 @@
   config,
   inputs,
   lib,
-  pkgs,
   ...
 }: {
   sops = {
@@ -11,9 +10,6 @@
   };
 
   nix = {
-    # Use determinate nix package.
-    package = pkgs.determinate-nix;
-
     settings = {
       # Add binary caches.
       substituters = [
