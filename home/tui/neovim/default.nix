@@ -6,10 +6,7 @@ _:
     enableManpages = true;
 
     settings.vim = {
-      withNodeJs = true;
-      withPython3 = true;
       enableLuaLoader = true;
-
       utility.snacks-nvim.enable = true;
     };
   };

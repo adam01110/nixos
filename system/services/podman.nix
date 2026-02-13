@@ -10,7 +10,11 @@
 
   cfgPodman = config.optServices.podman;
 in {
-  options.optServices.podman.enable = mkEnableOption "Enable podman services.";
+  options.optServices.podman = {
+    enable = mkEnableOption "Enable podman services.";
+
+    autoPrune.enable = mkEnableOption "Enable podman auto-prune.";
+  };
 
   config = mkIf cfgPodman.enable {
     virtualisation.podman = {
@@ -22,7 +26,7 @@ in {
 
       # Clean up unused images/containers regularly.
       autoPrune = {
-        enable = true;
+        enable = cfgPodman.autoPrune.enable;
 
         flags = [
           "--all"

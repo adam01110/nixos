@@ -11,6 +11,45 @@ in {
   programs.nvf.settings.vim = {
     utility.snacks-nvim.setupOpts.dashboard = {
       enable = true;
+      # Define dashboard shortcuts explicitly and omit the default Config entry.
+      preset.keys = [
+        {
+          icon = " ";
+          key = "f";
+          desc = "Find File";
+          action = ":lua Snacks.dashboard.pick('files')";
+        }
+        {
+          icon = " ";
+          key = "n";
+          desc = "New File";
+          action = ":ene | startinsert";
+        }
+        {
+          icon = " ";
+          key = "g";
+          desc = "Find Text";
+          action = ":lua Snacks.dashboard.pick('live_grep')";
+        }
+        {
+          icon = " ";
+          key = "r";
+          desc = "Recent Files";
+          action = ":lua Snacks.dashboard.pick('oldfiles')";
+        }
+        {
+          icon = " ";
+          key = "s";
+          desc = "Restore Session";
+          section = "session";
+        }
+        {
+          icon = " ";
+          key = "q";
+          desc = "Quit";
+          action = ":qa";
+        }
+      ];
       sections = [
         {section = "header";}
         {
@@ -53,7 +92,7 @@ in {
           padding = 1;
         }
         {
-          pane = 2;
+          pane = 1;
           icon = " ";
           title = "Git Status";
           section = "terminal";
@@ -67,6 +106,7 @@ in {
           padding = 1;
           indent = 3;
         }
+        # Render startup metrics based on loaded runtime plugins.
         (mkLuaInline ''
           function()
             local ms = vim.g.snacks_start_ms
@@ -103,6 +143,7 @@ in {
       ];
     };
 
+    # Capture startup timing early and finalize after UI attach.
     luaConfigPre = ''
       vim.g.snacks_start_ns = vim.uv.hrtime()
       vim.api.nvim_create_autocmd("UIEnter", {
@@ -113,6 +154,7 @@ in {
       })
     '';
 
+    # Provide CLI tools consumed by dashboard terminal sections.
     extraPackages = attrValues {
       inherit
         (pkgs)

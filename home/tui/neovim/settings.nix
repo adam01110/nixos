@@ -1,4 +1,5 @@
 _: {
+  # Configure editing behavior, clipboard integration, and LSP defaults.
   programs.nvf.settings.vim = {
     searchCase = "smart";
     options.wrap = false;
@@ -9,21 +10,8 @@ _: {
       registers = "unnamedplus";
     };
 
-    spellcheck = {
-      enable = true;
-
-      # run :DirtytalkUpdate on first use to download the spellfile.
-      programmingWordlist.enable = true;
-    };
-
     telescope = {
       enable = true;
-
-      # Keep Telescope borders in explicit single-line style.
-      setupOpts.defaults = {
-        border = true;
-        borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
-      };
     };
 
     lsp = {
@@ -31,12 +19,14 @@ _: {
       formatOnSave = true;
       lspSignature.enable = true;
 
+      # Support embedded code blocks in mixed-language buffers.
       otter-nvim = {
         enable = true;
         setupOpts.handle_leading_whitespace = true;
       };
     };
 
+    # Discourage repeated movement spam.
     binds.hardtime-nvim = {
       enable = true;
 
