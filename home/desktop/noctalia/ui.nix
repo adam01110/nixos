@@ -7,5 +7,6 @@ _:
     panelsAttachedToBar = false;
     panelBackgroundOpacity = 0.95;
     boxBorderEnabled = true;
+    settingsPanelMode = "centered";
   };
 }

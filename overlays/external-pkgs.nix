@@ -16,7 +16,7 @@ let
     else throw "Input `${input}` does not expose `packages.${system}.${package}`.";
 
   packages = {
-    determinate-nix = {input = "determinate";};
+    nix = {input = "determinate";};
     oxicord = {input = "oxicord";};
 
     opencode = {
