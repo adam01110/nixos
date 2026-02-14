@@ -1,4 +1,7 @@
-_: {
+{pkgs, ...}: {
+  # Register the ucp plugin source.
+  programs.yazi.plugins.ucp = pkgs.nur.repos.adam0.yaziPlugins.ucp;
+
   # Add ucp clipboard bindings with notifications.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {

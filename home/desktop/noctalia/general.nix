@@ -18,7 +18,7 @@ _:
 
     clockStyle = "analog";
     lockScreenAnimations = true;
-    lockScreenBlur = 30;
+    lockScreenBlur = 0.2;
 
     keybinds = {
       keyDown = [

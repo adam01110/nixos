@@ -1,4 +1,7 @@
-_: {
+{pkgs, ...}: {
+  # Register the mediainfo plugin source.
+  programs.yazi.plugins.mediainfo = pkgs.yaziPlugins.mediainfo;
+
   # Use mediainfo for media and related mime types.
   programs.yazi.settings.plugin = {
     # Replace default magick/image/video previewers with mediainfo.

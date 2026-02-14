@@ -12,5 +12,6 @@ in {
     skipStartupTransition = true;
     showHiddenFiles = true;
     hideWallpaperFilenames = true;
+    automationEnabled = true;
   };
 }

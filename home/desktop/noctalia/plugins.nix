@@ -17,7 +17,7 @@ in {
     plugins = let
       noctaliaPluginsUrl = "https://github.com/noctalia-dev/noctalia-plugins";
     in {
-      version = 1;
+      version = 2;
 
       sources = [
         {

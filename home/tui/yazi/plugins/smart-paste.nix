@@ -1,4 +1,7 @@
-_: {
+{pkgs, ...}: {
+  # Register the smart-paste plugin source.
+  programs.yazi.plugins.smart-paste = pkgs.yaziPlugins.smart-paste;
+
   # Use smart-paste bindings in manager mode.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
