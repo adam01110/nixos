@@ -1,4 +1,7 @@
-_: {
+{pkgs, ...}: {
+  # Register the faster-piper plugin source.
+  programs.yazi.plugins.faster-piper = pkgs.nur.repos.adam0.yaziPlugins.faster-piper;
+
   # Use faster-piper for markdown, archives, and compressed text previews.
   programs.yazi.settings.plugin = {
     # Previewers routed through faster-piper.

@@ -1,4 +1,7 @@
-_: {
+{pkgs, ...}: {
+  # Register the relative-motions plugin source.
+  programs.yazi.plugins.relative-motions = pkgs.yaziPlugins.relative-motions;
+
   # Bind number keys to relative-motions steps.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {

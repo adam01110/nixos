@@ -36,8 +36,8 @@ in {
         {
           id = "LockKeys";
           capsLockIcon = "circle-dashed-letter-c";
-          numLockIcon = "circle-dotted-letter-n";
-          scrollLockIcon = "circle-dotted-letter-s";
+          numLockIcon = "circle-dashed-letter-n";
+          scrollLockIcon = "circle-dashed-letter-s";
           showCapsLock = true;
           showNumLock = false;
           showScrollLock = false;

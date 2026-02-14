@@ -1,4 +1,7 @@
-_: {
+{pkgs, ...}: {
+  # Register the smart-enter plugin source.
+  programs.yazi.plugins.smart-enter = pkgs.yaziPlugins.smart-enter;
+
   # Use smart-enter bindings in manager mode.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
