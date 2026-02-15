@@ -53,3 +53,8 @@ require("relative-motions"):setup({
 
 -- recycle-bin.yazi
 require("recycle-bin"):setup()
+
+-- spot.yazi
+require("spot"):setup({
+	metadata_section = { relative_time = false },
+})

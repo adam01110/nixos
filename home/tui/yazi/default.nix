@@ -1,23 +1,7 @@
-{pkgs, ...}:
-# Yazi tui file manager.
-let
-  inherit (builtins) attrValues;
-in {
-  # Add runtime helpers for yazi plugins.
+_: {
+  # Yazi tui file manager.
   programs.yazi = {
     enable = true;
-
-    package = pkgs.yazi.override {
-      extraPackages = attrValues {
-        inherit
-          (pkgs)
-          mediainfo
-          wl-clipboard
-          glow
-          trash-cli
-          ;
-      };
-    };
 
     initLua = ./init.lua;
 
