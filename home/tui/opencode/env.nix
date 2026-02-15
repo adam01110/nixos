@@ -18,6 +18,8 @@ in {
       "FILEWATCHER"
       "LSP_TY"
       "OXFMT"
+      "LSP_TOOL"
+      "MARKDOWN"
     ];
     disabledFeatures = ["LSP_DOWNLOAD"];
   in

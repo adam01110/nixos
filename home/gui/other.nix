@@ -32,8 +32,11 @@ in {
         krita
         ;
 
-      inherit (pkgs.nur.repos.forkprince) helium-nightly;
-      inherit (pkgs.nur.repos.ymstnt) beeper;
+      inherit
+        (pkgs.nur.repos.forkprince)
+        helium-nightly
+        beeper-nightly
+        ;
     }
     ++ optional osConfig.hardware.wooting.enable pkgs.wootility;
 

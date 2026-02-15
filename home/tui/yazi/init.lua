@@ -50,3 +50,6 @@ require("full-border"):setup({
 require("relative-motions"):setup({
 	show_numbers = "relative",
 })
+
+-- recycle-bin.yazi
+require("recycle-bin"):setup()
