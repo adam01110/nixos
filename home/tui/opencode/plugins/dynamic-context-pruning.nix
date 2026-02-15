@@ -1,5 +1,4 @@
 {pkgs, ...}:
-
 # Register dynamic-context-pruning plugin.
 let
   dynamicContextPruning = pkgs.nur.repos.adam0.opencodePlugins.dynamic-context-pruning;

@@ -11,6 +11,9 @@ in {
       (pkgs)
       webp-pixbuf-loader
       ffmpegthumbnailer
+      gnome-epub-thumbnailer
+      poppler
+      icoextract
       ;
   };
 }

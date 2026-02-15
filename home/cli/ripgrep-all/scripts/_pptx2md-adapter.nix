@@ -37,7 +37,7 @@ in
         exit 127
       fi
 
-      output_file="$(mktemp "${TMPDIR:-/tmp}/tempXXXXXXXXXX.md")"
+      output_file="$(mktemp "${"TMPDIR:-/tmp"}/tempXXXXXXXXXX.md")"
       cleanup_output() {
         rm -f "$output_file"
       }
@@ -45,7 +45,7 @@ in
 
       for arg; do :; done
       if [ "$arg" = "-" ]; then
-        input_file="$(mktemp "${TMPDIR:-/tmp}/tempXXXXXXXXXX.pptx")"
+        input_file="$(mktemp "${"TMPDIR:-/tmp"}/tempXXXXXXXXXX.pptx")"
         cleanup_input() {
           rm -f "$input_file"
         }
