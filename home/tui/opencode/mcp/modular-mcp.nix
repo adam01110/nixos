@@ -94,12 +94,4 @@ in {
       };
     };
   };
-
-  home.packages = [
-    context7-mcp
-    mcp-server-git
-    github-mcp-server
-    mcp-nixos
-    rust-mcp-server
-  ];
 }

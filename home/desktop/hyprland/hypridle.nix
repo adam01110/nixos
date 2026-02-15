@@ -24,14 +24,13 @@ in {
     settings = let
       cfgSuspend = config.hyprland.suspend.enable;
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
+      noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
     in {
-      general = let
-        noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
-      in {
+      general = {
         # Command to invoke the lockscreen.
         lock_cmd = "${noctalia} lockScreen lock";
         # Lock before suspend to avoid flashing unlocked session.
-        before_sleep_cmd = "loginctl lock-session && ${noctalia} lockScreen lock";
+        before_sleep_cmd = "${noctalia} lockScreen lock";
         # Wake display(s) after sleep.
         after_sleep_cmd = "${hyprctl} dispatch dpms on";
         # Allow short inhibitions (e.g., video) before sleeping.
@@ -63,7 +62,7 @@ in {
             # 5min.
             timeout = 300;
 
-            on-timeout = "loginctl lock-session";
+            on-timeout = "${noctalia} lockScreen lock";
           }
           # Power off displays via dpms.
           {

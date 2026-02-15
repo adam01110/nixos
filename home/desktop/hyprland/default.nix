@@ -28,9 +28,6 @@ in {
     };
   };
 
-  # Add hyprpicker to packages.
-  home.packages = [pkgs.hyprpicker];
-
   # Enable hyprcursor theme support.
   home.pointerCursor.hyprcursor.enable = true;
 

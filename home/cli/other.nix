@@ -8,7 +8,6 @@ in {
     inherit
       (pkgs)
       gitfetch
-      pokemon-colorscripts
       speedtest-go
       sshfs
       ;

@@ -14,6 +14,7 @@ in {
           mediainfo
           wl-clipboard
           glow
+          trash-cli
           ;
       };
     };

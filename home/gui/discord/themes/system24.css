@@ -14,187 +14,173 @@
 @import url("https://refact0r.github.io/system24/build/system24.css");
 
 body {
-	/* Font, change to '' for default discord font */
-	--font: "@monospaceFont@"; /* Change to "" for default discord font */
-	--code-font: "@monospaceFont@"; /* Change to "" for default discord font */
-	font-weight: 300; /* Text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
-	letter-spacing: -0.05ch; /* Decreases letter spacing for better readability. recommended on monospace fonts.*/
+  /* Font, change to '' for default discord font */
+  --font: "@monospaceFont@"; /* Change to "" for default discord font */
+  --code-font: "@monospaceFont@"; /* Change to "" for default discord font */
+  font-weight: 300; /* Text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
+  letter-spacing: -0.05ch; /* Decreases letter spacing for better readability. recommended on monospace fonts.*/
 
-	/* Sizes */
-	--gap: 8px; /* Spacing between panels */
-	--divider-thickness: 4px; /* Thickness of unread messages divider and highlighted message borders */
-	--border-thickness: 1px; /* Thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
-	--border-hover-transition: none; /* Transition for borders when hovered */
+  /* Sizes */
+  --gap: 8px; /* Spacing between panels */
+  --divider-thickness: 4px; /* Thickness of unread messages divider and highlighted message borders */
+  --border-thickness: 1px; /* Thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
+  --border-hover-transition: none; /* Transition for borders when hovered */
 
-	/* Animation/transition options */
-	--animations: off; /* Off: disable animations/transitions, on: enable animations/transitions */
-	--list-item-transition: none; /* Transition for list items */
-	--dms-icon-svg-transition: none; /* Transition for the dms icon */
+  /* Animation/transition options */
+  --animations: off; /* Off: disable animations/transitions, on: enable animations/transitions */
+  --list-item-transition: none; /* Transition for list items */
+  --dms-icon-svg-transition: none; /* Transition for the dms icon */
 
-	/* Top bar options */
-	--top-bar-height: var(
-		--gap
-	); /* Height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
-	--top-bar-button-position: titlebar; /* Off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
-	--top-bar-title-position: off; /* Off: default centered position, hide: hide title completely, left: left align title (like old discord) */
-	--subtle-top-bar-title: off; /* Off: default, on: hide the icon and use subtle text color (like old discord) */
+  /* Top bar options */
+  --top-bar-height: var(
+    --gap
+  ); /* Height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+  --top-bar-button-position: titlebar; /* Off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+  --top-bar-title-position: off; /* Off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+  --subtle-top-bar-title: off; /* Off: default, on: hide the icon and use subtle text color (like old discord) */
 
-	/* Window controls */
-	--custom-window-controls: off; /* Off: default window controls, on: custom window controls */
-	--window-control-size: 14px; /* Size of custom window controls */
+  /* Window controls */
+  --custom-window-controls: off; /* Off: default window controls, on: custom window controls */
+  --window-control-size: 14px; /* Size of custom window controls */
 
-	/* Dms button options */
-	--custom-dms-icon: off; /* Off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
-	--dms-icon-svg-url: url(""); /* Icon svg url. MUST BE A SVG. */
-	--dms-icon-svg-size: 90%; /* Size of the svg (css mask-size property) */
-	--dms-icon-color-before: var(--icon-subtle); /* Normal icon color */
-	--dms-icon-color-after: var(
-		--white
-	); /* Icon color when button is hovered/selected */
-	--custom-dms-background: off; /* Off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
-	--dms-background-image-url: url(""); /* Url of the background image */
-	--dms-background-image-size: cover; /* Size of the background image (css background-size property) */
-	--dms-background-color: linear-gradient(
-		70deg,
-		var(--blue-2),
-		var(--purple-2),
-		var(--red-2)
-	); /* Fixed color/gradient (css background property) */
+  /* Dms button options */
+  --custom-dms-icon: off; /* Off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+  --dms-icon-svg-url: url(""); /* Icon svg url. MUST BE A SVG. */
+  --dms-icon-svg-size: 90%; /* Size of the svg (css mask-size property) */
+  --dms-icon-color-before: var(--icon-subtle); /* Normal icon color */
+  --dms-icon-color-after: var(--white); /* Icon color when button is hovered/selected */
+  --custom-dms-background: off; /* Off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+  --dms-background-image-url: url(""); /* Url of the background image */
+  --dms-background-image-size: cover; /* Size of the background image (css background-size property) */
+  --dms-background-color: linear-gradient(
+    70deg,
+    var(--blue-2),
+    var(--purple-2),
+    var(--red-2)
+  ); /* Fixed color/gradient (css background property) */
 
-	/* Background image options */
-	--background-image: off; /* Off: no background image, on: enable background image (must set url variable below) */
-	--background-image-url: url(""); /* Url of the background image */
+  /* Background image options */
+  --background-image: off; /* Off: no background image, on: enable background image (must set url variable below) */
+  --background-image-url: url(""); /* Url of the background image */
 
-	/* Transparency/blur options */
-	/* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
-	--transparency-tweaks: on; /* Off: no changes, on: remove some elements for better transparency */
-	--remove-bg-layer: off; /* Off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
-	--panel-blur: on; /* Off: no changes, on: blur the background of panels */
-	--blur-amount: 8px; /* Amount of blur */
-	--bg-floating: var(
-		--bg-3
-	); /* Set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
+  /* Transparency/blur options */
+  /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+  --transparency-tweaks: on; /* Off: no changes, on: remove some elements for better transparency */
+  --remove-bg-layer: off; /* Off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+  --panel-blur: on; /* Off: no changes, on: blur the background of panels */
+  --blur-amount: 8px; /* Amount of blur */
+  --bg-floating: var(
+    --bg-3
+  ); /* Set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
 
-	/* Other options */
-	--small-user-panel: off; /* Off: default user panel, on: smaller user panel like in old discord */
+  /* Other options */
+  --small-user-panel: off; /* Off: default user panel, on: smaller user panel like in old discord */
 
-	/* Unrounding options */
-	--unrounding: on; /* Off: default, on: remove rounded corners from panels */
+  /* Unrounding options */
+  --unrounding: on; /* Off: default, on: remove rounded corners from panels */
 
-	/* Styling options */
-	--custom-spotify-bar: on; /* Off: default, on: custom text-like spotify progress bar */
-	--ascii-titles: on; /* Off: default, on: use ascii font for titles at the start of a channel */
-	--ascii-loader: system24; /* Off: default, system24: use system24 ascii loader, cats: use cats loader */
+  /* Styling options */
+  --custom-spotify-bar: on; /* Off: default, on: custom text-like spotify progress bar */
+  --ascii-titles: on; /* Off: default, on: use ascii font for titles at the start of a channel */
+  --ascii-loader: system24; /* Off: default, system24: use system24 ascii loader, cats: use cats loader */
 
-	/* Panel labels */
-	--panel-labels: on; /* Off: default, on: add labels to panels */
-	--label-color: var(--text-muted); /* Color of labels */
-	--label-font-weight: 500; /* Font weight of labels */
+  /* Panel labels */
+  --panel-labels: on; /* Off: default, on: add labels to panels */
+  --label-color: var(--text-muted); /* Color of labels */
+  --label-font-weight: 500; /* Font weight of labels */
 }
 
 /* Color options */
 :root {
-	--colors: on; /* Off: discord default colors, on: midnight custom colors */
+  --colors: on; /* Off: discord default colors, on: midnight custom colors */
 
-	/* Text colors */
-	--text-0: var(--bg-4); /* Text on colored elements */
-	--text-1: hsl(43.16, 58.76%, 80.98%); /* Other normally white text */
-	--text-2: hsl(38, 41.1%, 71.37%); /* Headings and important text */
-	--text-3: hsl(35, 17.14%, 58.82%); /* Normal text */
-	--text-4: hsl(27.5, 10.71%, 43.92%); /* Icon buttons and channels */
-	--text-5: hsl(26.67, 9.68%, 36.47%); /* Muted channels/chats and timestamps */
+  /* Text colors */
+  --text-0: var(--bg-4); /* Text on colored elements */
+  --text-1: hsl(43.16, 58.76%, 80.98%); /* Other normally white text */
+  --text-2: hsl(38, 41.1%, 71.37%); /* Headings and important text */
+  --text-3: hsl(35, 17.14%, 58.82%); /* Normal text */
+  --text-4: hsl(27.5, 10.71%, 43.92%); /* Icon buttons and channels */
+  --text-5: hsl(26.67, 9.68%, 36.47%); /* Muted channels/chats and timestamps */
 
-	/* Background and dark colors */
-	--bg-1: hsla(21.82, 7.38%, 29.22%, 1); /* Dark buttons when clicked */
-	--bg-2: hsla(20, 5.26%, 22.35%, 1); /* Dark buttons */
-	--bg-3: hsla(20, 3.09%, 19.02%, 1); /* Spacing, secondary elements */
-	--bg-4: hsla(0, 0%, 16%, 0.95); /* Main background color */
-	--hover: hsla(35, 17%, 59%, 0.1); /* Channels and buttons when hovered */
-	--active: hsla(
-		35,
-		17%,
-		59%,
-		0.2
-	); /* Channels and buttons when clicked or selected */
-	--active-2: hsla(35, 17%, 59%, 0.3); /* Extra state for transparent buttons */
-	--message-hover: hsla(35, 17%, 59%, 0.05); /* Messages when hovered */
+  /* Background and dark colors */
+  --bg-1: hsla(21.82, 7.38%, 29.22%, 1); /* Dark buttons when clicked */
+  --bg-2: hsla(20, 5.26%, 22.35%, 1); /* Dark buttons */
+  --bg-3: hsla(20, 3.09%, 19.02%, 1); /* Spacing, secondary elements */
+  --bg-4: hsla(0, 0%, 16%, 0.95); /* Main background color */
+  --hover: hsla(35, 17%, 59%, 0.1); /* Channels and buttons when hovered */
+  --active: hsla(35, 17%, 59%, 0.2); /* Channels and buttons when clicked or selected */
+  --active-2: hsla(35, 17%, 59%, 0.3); /* Extra state for transparent buttons */
+  --message-hover: hsla(35, 17%, 59%, 0.05); /* Messages when hovered */
 
-	/* Accent colors */
-	--accent-1: var(--green-1); /* Links and other accent text */
-	--accent-2: var(--blue-1); /* Small accent elements */
-	--accent-3: var(--green-3); /* Accent buttons */
-	--accent-4: var(--green-4); /* Accent buttons when hovered */
-	--accent-5: var(--green-5); /* Accent buttons when clicked */
-	--accent-new: var(
-		--red-2
-	); /* Stuff that's normally red like mute/deafen buttons */
-	--mention: linear-gradient(
-		to right,
-		color-mix(in hsl, var(--accent-2), transparent 90%) 40%,
-		transparent
-	); /* Background of messages that mention you */
-	--mention-hover: linear-gradient(
-		to right,
-		color-mix(in hsl, var(--accent-2), transparent 95%) 40%,
-		transparent
-	); /* Background of messages that mention you when hovered */
-	--reply: linear-gradient(
-		to right,
-		color-mix(in hsl, var(--text-3), transparent 90%) 40%,
-		transparent
-	); /* Background of messages that reply to you */
-	--reply-hover: linear-gradient(
-		to right,
-		color-mix(in hsl, var(--text-3), transparent 95%) 40%,
-		transparent
-	); /* Background of messages that reply to you when hovered */
+  /* Accent colors */
+  --accent-1: var(--green-1); /* Links and other accent text */
+  --accent-2: var(--blue-1); /* Small accent elements */
+  --accent-3: var(--green-3); /* Accent buttons */
+  --accent-4: var(--green-4); /* Accent buttons when hovered */
+  --accent-5: var(--green-5); /* Accent buttons when clicked */
+  --accent-new: var(--red-2); /* Stuff that's normally red like mute/deafen buttons */
+  --mention: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--accent-2), transparent 90%) 40%,
+    transparent
+  ); /* Background of messages that mention you */
+  --mention-hover: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--accent-2), transparent 95%) 40%,
+    transparent
+  ); /* Background of messages that mention you when hovered */
+  --reply: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--text-3), transparent 90%) 40%,
+    transparent
+  ); /* Background of messages that reply to you */
+  --reply-hover: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--text-3), transparent 95%) 40%,
+    transparent
+  ); /* Background of messages that reply to you when hovered */
 
-	/* Status indicator colors */
-	--online: var(--green-2); /* Change to #40a258 for default */
-	--dnd: var(--red-2); /* Change to #d83a41 for default */
-	--idle: var(--yellow-2); /* Change to #cc954c for default */
-	--streaming: var(--purple-2); /* Change to ##9147ff for default */
-	--offline: var(--text-4); /* Change to #82838b for default offline color */
+  /* Status indicator colors */
+  --online: var(--green-2); /* Change to #40a258 for default */
+  --dnd: var(--red-2); /* Change to #d83a41 for default */
+  --idle: var(--yellow-2); /* Change to #cc954c for default */
+  --streaming: var(--purple-2); /* Change to ##9147ff for default */
+  --offline: var(--text-4); /* Change to #82838b for default offline color */
 
-	/* Border colors */
-	--border-light: var(--hover); /* General light border color */
-	--border: var(--active); /* General normal border color */
-	--border-hover: var(--accent-2); /* Border color of panels when hovered */
-	--button-border: hsl(
-		220,
-		0%,
-		100%,
-		0.1
-	); /* Neutral border color of buttons */
+  /* Border colors */
+  --border-light: var(--hover); /* General light border color */
+  --border: var(--active); /* General normal border color */
+  --border-hover: var(--accent-2); /* Border color of panels when hovered */
+  --button-border: hsl(220, 0%, 100%, 0.1); /* Neutral border color of buttons */
 
-	/* Base colors */
-	--red-1: oklch(65.97% 0.2175 30.39);
-	--red-2: oklch(67.68% 0.1615 25.42);
-	--red-3: oklch(54.58% 0.203 28.66);
-	--red-4: oklch(43.74% 0.1789 28.26);
-	--red-5: oklch(37.33% 0.1462 30.21);
+  /* Base colors */
+  --red-1: oklch(65.97% 0.2175 30.39);
+  --red-2: oklch(67.68% 0.1615 25.42);
+  --red-3: oklch(54.58% 0.203 28.66);
+  --red-4: oklch(43.74% 0.1789 28.26);
+  --red-5: oklch(37.33% 0.1462 30.21);
 
-	--green-1: oklch(76.52% 0.1581 110.83);
-	--green-2: oklch(74.78% 0.1066 116.53);
-	--green-3: oklch(65.64% 0.1354 109.12);
-	--green-4: oklch(54.63% 0.1124 106.46);
-	--green-5: oklch(45.31% 0.0943 109.64);
+  --green-1: oklch(76.52% 0.1581 110.83);
+  --green-2: oklch(74.78% 0.1066 116.53);
+  --green-3: oklch(65.64% 0.1354 109.12);
+  --green-4: oklch(54.63% 0.1124 106.46);
+  --green-5: oklch(45.31% 0.0943 109.64);
 
-	--blue-1: oklch(69.27% 0.042 169.77);
-	--blue-2: oklch(71.28% 0.0546 179.19);
-	--blue-3: oklch(57.56% 0.0658 199.49);
-	--blue-4: oklch(47.06% 0.0816 215.81);
-	--blue-5: oklch(38.61% 0.0633 217.12);
+  --blue-1: oklch(69.27% 0.042 169.77);
+  --blue-2: oklch(71.28% 0.0546 179.19);
+  --blue-3: oklch(57.56% 0.0658 199.49);
+  --blue-4: oklch(47.06% 0.0816 215.81);
+  --blue-5: oklch(38.61% 0.0633 217.12);
 
-	--yellow-1: oklch(83.25% 0.1595 82.99);
-	--yellow-2: oklch(75.58% 0.1133 77.04);
-	--yellow-3: oklch(72.51% 0.1429 77.71);
-	--yellow-4: oklch(61.76% 0.1277 70.67);
-	--yellow-5: oklch(51.25% 0.1109 69.12);
+  --yellow-1: oklch(83.25% 0.1595 82.99);
+  --yellow-2: oklch(75.58% 0.1133 77.04);
+  --yellow-3: oklch(72.51% 0.1429 77.71);
+  --yellow-4: oklch(61.76% 0.1277 70.67);
+  --yellow-5: oklch(51.25% 0.1109 69.12);
 
-	--purple-1: oklch(70.54% 0.0976 2.19);
-	--purple-2: var(--purple-1);
-	--purple-3: oklch(59.73% 0.1105 352.22);
-	--purple-4: oklch(48.93% 0.1242 344.28);
-	--purple-5: oklch(40.12% 0.1097 340.29);
+  --purple-1: oklch(70.54% 0.0976 2.19);
+  --purple-2: var(--purple-1);
+  --purple-3: oklch(59.73% 0.1105 352.22);
+  --purple-4: oklch(48.93% 0.1242 344.28);
+  --purple-5: oklch(40.12% 0.1097 340.29);
 }
