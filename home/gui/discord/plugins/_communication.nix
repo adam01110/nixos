@@ -40,7 +40,6 @@
   ForwardAnywhere.enabled = true;
   GifPaste.enabled = true;
   HolyNotes.enabled = true;
-  IgnoreTerms.enabled = true;
   ILoveSpam.enabled = true;
   ImageFilename.enabled = true;
   LimitMiddleClickPaste = {
@@ -115,13 +114,16 @@
   TextReplace = {
     enabled = true;
     regexRules = [
-      {
-        find = "gh:([a-zA-Z0-9_-]+)/([a-zA-Z0-9_.-]+)";
-        replace = "[$1/$2](https://github.com/$1/$2)";
-      }
+      # Minecraft bugs regex.
       {
         find = "(?:^|(?<=[\\s,:;/&]))MC-\\d+(?:(?=[\\s.?!,:;/&])|$) replace: [$&]";
         replace = "(<https://bugs.mojang.com/browse/$&>)";
+      }
+
+      # Github regex.
+      {
+        find = "gh:([a-zA-Z0-9_-]+)/([a-zA-Z0-9_.-]+)";
+        replace = "[$1/$2](https://github.com/$1/$2)";
       }
       {
         find = "(https:\\/\\/github\\.com\\/[^\\/]+\\/[^\\/]+\\/issues\\/([0-9a-f]{1,}))";
@@ -134,6 +136,34 @@
       {
         find = "(https:\\/\\/github\\.com\\/[^\\/]+\\/[^\\/]+\\/commit\\/([0-9a-f]{7})([0-9a-f]{0,33}))";
         replace = "[`$2`]($1)";
+      }
+
+      # Tenor regex.
+      {
+        find = "(https:\/\/media1\.tenor\.com\/m\/[^\/]+\/[^\/]+\.gif)(?!\?)";
+        replace = "$1?download=1";
+      }
+      {
+        find = "tenor\.com\/..-..\/view ";
+        replace = "tenor.com/view";
+      }
+
+      # Reddit regex.
+      {
+        find = "http(?:s)?:\/\/(?:redd\.it\/|(?:[\w-]+\.)?r[ex]ddit\.com\/)(?:(r\/[\w-]+\/s\/\w+)|(u)(?:ser)?(\/)([\w-]+)(.*?)?|(?:(?:r\/[\w-]+\/)?((c)omments\/))(\w+)(?:\/[^\/\s\)\]\}]+)+(\/)(\w+)|(?:(?:(?:r\/[\w-]+\/)?comments\/)|(?<=redd\.it\/))(\w+)(?:\/.*?)?|(?!r\/|u\/|user\/|comments\/)(.*?)?)\/?(?:[?#][^\s\)\]\}]*)?(?=[\s\)\]\}]|$)";
+        replace = "https://rxddit.com/$1$2$3$4$5$6$8$9$7$9$10$11";
+      }
+
+      # Steam regex.
+      {
+        find = "https?://store\.steampowered\.com/app/(\d+)(?:/[^\s]*)?";
+        replace = "https://s.team/a/$1";
+      }
+
+      # XKCD regex.
+      {
+        find = "(?:^|(?<=[\s,:;/&]))xkcd\/(\d+)(?:(?=[\s.?!,:;/&])|$)";
+        replace = "[$&](https://xkcd.com/$1)";
       }
     ];
   };
