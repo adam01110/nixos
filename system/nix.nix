@@ -23,6 +23,7 @@
         "https://forkprince.cachix.org/"
         "https://nur-xyenon.cachix.org/"
         "https://nvf.cachix.org/"
+        "https://install.determinate.systems"
       ];
 
       trusted-public-keys = [
@@ -36,6 +37,7 @@
         "forkprince.cachix.org-1:9cN+fX492ZKlfd228xpYAC3T9gNKwS1sZvCqH8iAy1M="
         "nur-xyenon.cachix.org-1:fZ3SGJ3E1p34JSG5j4etfF9+vjJGMZxe1dDBNliKx5U="
         "nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
+        "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
       ];
 
       # Enable modern commands and flakes.
