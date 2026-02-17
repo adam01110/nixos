@@ -40,13 +40,12 @@ in {
           "github-feed"
           "privacy-indicator"
           "keybind-cheatsheet"
+          "file-search"
         ]
         mkPlugin;
     };
 
     pluginSettings = {
-      privacy-indicator.hideInactive = true;
-
       screen-recorder = {
         directory = "${videosDir}/Recordings";
         videoCodec = "hevc";
@@ -57,6 +56,8 @@ in {
         hyprlandConfigPath = "${configHome}/hypr/keybinds.conf";
         columnCount = 4;
       };
+
+      file-search.maxResults = 200;
     };
 
     settings.plugins.autoUpdate = true;
