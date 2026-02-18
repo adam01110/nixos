@@ -38,6 +38,13 @@ _:
         enabled = false;
         countdownEnabled = true;
       }
+      {
+        action = "rebootToUefi";
+        enabled = true;
+        countdownEnabled = true;
+        command = "systemctl reboot --firmware-setup";
+        keybind = "7";
+      }
     ];
   };
 }
