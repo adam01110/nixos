@@ -6,6 +6,7 @@
   inherit (lib) optional;
 
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
+  cfgWifi = osConfig.optServices.wifi.enable;
 in {
   # Control center tiles and shortcuts surfaced from the bar.
   programs.noctalia-shell.settings.controlCenter = {
@@ -46,11 +47,13 @@ in {
           {id = "plugin:screen-recorder";}
           {id = "WallpaperSelector";}
         ];
-      right = [
-        {id = "Notifications";}
-        {id = "PowerProfile";}
-        {id = "KeepAwake";}
-      ];
+      right =
+        [
+          {id = "Notifications";}
+          {id = "PowerProfile";}
+          {id = "KeepAwake";}
+        ]
+        ++ (optional cfgWifi {id = "AirplaneMode";});
     };
   };
 }
