@@ -9,29 +9,34 @@ _:
         action = "lock";
         enabled = true;
         countdownEnabled = false;
+        keybind = "1";
       }
       {
         action = "suspend";
         enabled = true;
         countdownEnabled = true;
         command = "systemctl suspend";
+        keybind = "2";
       }
       {
         action = "reboot";
         enabled = true;
         countdownEnabled = true;
         command = "systemctl reboot";
+        keybind = "3";
       }
       {
         action = "logout";
         enabled = true;
         countdownEnabled = true;
+        keybind = "4";
       }
       {
         action = "shutdown";
         enabled = true;
         countdownEnabled = true;
         command = "systemctl poweroff";
+        keybind = "5";
       }
       {
         action = "hibernate";
@@ -43,7 +48,7 @@ _:
         enabled = true;
         countdownEnabled = true;
         command = "systemctl reboot --firmware-setup";
-        keybind = "7";
+        keybind = "6";
       }
     ];
   };
