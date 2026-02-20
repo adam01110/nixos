@@ -10,7 +10,7 @@
   md2pdf,
   markdownSupport ? true,
   calibre,
-  mobiSupport ? true,
+  mobiSupport ? false,
   typst,
   typstSupport ? true,
 }:
