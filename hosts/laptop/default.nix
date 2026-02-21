@@ -69,6 +69,8 @@ _:
     };
   };
 
+  powerManagement.powertop.enable = true;
+
   # Enable laptop hardware support.
   hardware.roccat.enable = true;
 }
