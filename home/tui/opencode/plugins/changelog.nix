@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# Register cc-safety-net plugin.
+# Register changelog plugin.
 let
   inherit (pkgs.nur.repos.adam0.opencodePlugins) changelog;
 in {
