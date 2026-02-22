@@ -32,7 +32,7 @@ _:
       disabled = false;
       format = "[ ](#00000000)[ ](bg:base01)[$symbol$loaded/$allowed]($style)[ ](bg:base01)";
       symbol = " ";
-      style = "bg:base01 fg:base09 bold";
+      style = "bg:base01 fg:base09";
     };
 
     hostname = {
@@ -60,12 +60,51 @@ _:
       format = "[$symbol]($style)";
       style = "bg:base01 fg:base04 bold";
 
-      symbols = {
-        Linux = "";
-        NixOS = "";
+      symbols = let
+        linux = "";
+        apple = "";
+        redhat = "󱄛";
+      in {
+        Linux = linux;
+        NixOS = "󱄅";
         Windows = "";
-        Macos = "";
         Android = "";
+        Unknown = "";
+
+        AlmaLinux = "";
+        Alpine = "";
+        Arch = "";
+        Artix = "";
+        CachyOS = linux;
+        CentOS = "";
+        Debian = "";
+        Elementary = "";
+        EndeavourOS = "";
+        Fedora = "";
+        Garuda = "";
+        Gentoo = "";
+        Kali = "";
+        Manjaro = "";
+        Mint = "󰣭";
+        Nobara = "";
+        openSUSE = "";
+        PikaOS = linux;
+        Pop = "";
+        Raspbian = "";
+        Redhat = redhat;
+        RedHatEnterprise = redhat;
+        RockyLinux = "";
+        Solus = "";
+        SUSE = "";
+        Ubuntu = "";
+        Void = "";
+        Zorin = "";
+
+        Macos = apple;
+        Ios = apple;
+
+        FreeBSD = "";
+        OpenBSD = "";
       };
     };
 
