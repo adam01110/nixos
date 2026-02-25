@@ -6,11 +6,6 @@ _:
 
     tui.diff_style = "stacked";
 
-    permission = {
-      webfetch = "ask";
-      todoread = "ask";
-    };
-
     watcher.ignore = [
       ".git/**"
       ".direnv/**"

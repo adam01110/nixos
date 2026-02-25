@@ -90,6 +90,6 @@ _:
 
   # Style hints for applications that read hypr conf snippets.
   xdg.configFile."hypr/application-style.conf".text = ''
-    roundness=2
+    roundness=0
   '';
 }

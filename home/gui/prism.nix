@@ -19,9 +19,9 @@ in {
 
       # Specify which Java runtimes to install.
       jdks = attrValues {
-        inherit (pkgs.graalvmPackages) graalvm-ce;
         inherit
           (pkgs)
+          temurin-bin-25
           jdk21
           jdk17
           jdk8
