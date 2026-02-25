@@ -22,7 +22,9 @@ in {
       "MARKDOWN"
     ];
     disabledFeatures = ["LSP_DOWNLOAD"];
+    enabledFeatures = ["EXA"];
   in
     mkEnv "OPENCODE_EXPERIMENTAL" experimentalFeatures
-    // mkEnv "OPENCODE_DISABLE" disabledFeatures;
+    // mkEnv "OPENCODE_DISABLE" disabledFeatures
+    // mkEnv "OPENCODE_ENABLE" enabledFeatures;
 }
