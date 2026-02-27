@@ -28,8 +28,10 @@ in {
     name = "Spotify Player";
     genericName = "Music Player";
     icon = "spotify";
-    exec = getExe config.programs.spotify-player.package;
-    terminal = true;
+    exec = let
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      spotify-player = getExe config.programs.spotify-player.package;
+    in "${terminalCommand} --title=Spotify-player ${spotify-player}";
     categories = [
       "Audio"
       "Music"

@@ -7,6 +7,7 @@
   inherit (builtins) attrValues;
   inherit
     (lib)
+    getExe
     getExe'
     makeBinPath
     ;
@@ -57,10 +58,10 @@ in {
             rust-analyzer
             # Formatters
             alejandra
+            biome
             fish
             stylua
             shfmt
-            oxfmt
             ruff
             rustfmt
             ;
@@ -77,8 +78,10 @@ in {
     desktopEntries.opencode = {
       name = "Opencode";
       genericName = "AI Coding Assistant";
-      exec = getExe' config.programs.opencode.package "opencode";
-      terminal = true;
+      exec = let
+        terminalCommand = getExe config.xdg.terminal-exec.package;
+        opencode = getExe' config.programs.opencode.package "opencode";
+      in "${terminalCommand} --title=Opencode ${opencode}";
       categories = [
         "Development"
         "Utility"

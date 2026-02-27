@@ -30,8 +30,8 @@ _:
 
     direnv = {
       disabled = false;
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$loaded/$allowed]($style)[ ](bg:base01)";
-      symbol = " ";
+      format = "[ ](#00000000)[ ](bg:base01)[$symbol$loaded( \\($allowed\\))]($style)[ ](bg:base01)";
+      symbol = " ";
       style = "bg:base01 fg:base09";
     };
 

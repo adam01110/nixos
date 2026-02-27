@@ -1,4 +1,5 @@
 {
+  config,
   osConfig,
   lib,
   pkgs,
@@ -8,6 +9,7 @@
 let
   inherit
     (lib)
+    getExe
     getExe'
     mkIf
     ;
@@ -24,8 +26,10 @@ in
       name = "Impala";
       genericName = "Terminal WiFi Manager";
       icon = "network-wireless";
-      exec = getExe' pkg "impala";
-      terminal = true;
+      exec = let
+        terminalCommand = getExe config.xdg.terminal-exec.package;
+        impala = getExe' pkg "impala";
+      in "${terminalCommand} --title=Impala ${impala}";
       categories = [
         "Network"
         "Utility"

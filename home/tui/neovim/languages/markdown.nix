@@ -130,15 +130,22 @@ in {
       }
     ];
 
-    # Apply prose-friendly wrapping and width guidance for markdown buffers.
+    # Apply prose-friendly wrapping and auto-reflow for markdown buffers.
     augroups = [{name = "MarkdownEditing";}];
     autocmds = [
       {
         event = ["FileType"];
         pattern = ["markdown"];
         group = "MarkdownEditing";
-        desc = "Enable markdown wrap and line length hints";
-        command = "setlocal wrap linebreak textwidth=80 colorcolumn=+1 formatoptions+=t";
+        desc = "Enable markdown wrapping at 120 columns without a guide line";
+        command = "setlocal wrap linebreak breakindent textwidth=120 colorcolumn= formatoptions+=ta formatexpr= formatprg=";
+      }
+      {
+        event = ["BufWritePre"];
+        pattern = ["*.md"];
+        group = "MarkdownEditing";
+        desc = "Reflow the full markdown buffer to 120 columns before save";
+        command = "setlocal formatexpr= formatprg= | keepjumps normal! gggqG";
       }
     ];
   };

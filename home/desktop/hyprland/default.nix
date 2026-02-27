@@ -1,11 +1,13 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
 # Home manager hyprland configuration: plugins, quickshell, and extras.
 let
   inherit (builtins) attrValues;
+  inherit (lib) getExe;
 in {
   # Make home manager session variables available to uwsm.
   xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
@@ -26,6 +28,11 @@ in {
         hyprsplit
         ;
     };
+
+    settings.exec-once = let
+      app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";
+      ghostty = "${getExe config.programs.ghostty.package} --initial-window=false +new-window";
+    in ["${app2unit} ${ghostty}"];
   };
 
   # Enable hyprcursor theme support.

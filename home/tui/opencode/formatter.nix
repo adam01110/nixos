@@ -32,8 +32,8 @@ in {
       extensions = [".fish"];
     };
 
-    oxfmt = {
-      command = [(getExe pkgs.oxfmt)];
+    biome = {
+      command = [(getExe pkgs.biome)];
       extensions = [
         ".yaml"
         ".yml"

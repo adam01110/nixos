@@ -17,7 +17,6 @@ in {
       "ICON_DISCOVERY"
       "FILEWATCHER"
       "LSP_TY"
-      "OXFMT"
       "LSP_TOOL"
       "MARKDOWN"
     ];

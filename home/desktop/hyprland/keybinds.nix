@@ -32,15 +32,16 @@ in {
       qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
 
-      thunar = getExe pkgs.thunar;
       equibop = getExe config.programs.nixcord.equibop.package;
-      ghostty = "${getExe config.programs.ghostty.package} +new-window";
+      ghostty = "${getExe config.programs.ghostty.package} --initial-window=false +new-window";
       hyprpicker = getExe config.programs.hyprshot.package;
       hyprshot = getExe config.programs.hyprshot.package;
       steam = getExe osConfig.programs.steam.package;
       zen-browser = getExe config.programs.zen-browser.package;
+      yazi = getExe config.programs.yazi.package;
+
+      terminalCommand = getExe config.xdg.terminal-exec.package;
       app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";
-      brightnessctl = getExe pkgs.brightnessctl;
 
       cfgBrightness = config.hyprland.brightness.enable;
       screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
@@ -51,7 +52,7 @@ in {
       ''
         # 1. APPLICATIONS
         bind = SUPER, Return, exec, ${app2unit} ${ghostty} #"Terminal"
-        bind = SUPER, E, exec, ${app2unit} ${thunar} #"File manager"
+        bind = SUPER, E, exec, ${app2unit} ${terminalCommand} --title=Yazi ${yazi} #"File manager"
         bind = SUPER, N, exec, ${app2unit} ${equibop} #"Discord"
         bind = SUPER, B, exec, ${app2unit} ${zen-browser} #"Browser"
         bind = SUPER, M, exec, ${app2unit} ${steam} #"Steam"
@@ -194,8 +195,8 @@ in {
       + optionalString cfgBrightness ''
 
         # 15. MEDIA (BRIGHTNESS)
-        bindel = , XF86MonBrightnessUp, exec, ${brightnessctl} set 1%+ #"Brightness up"
-        bindel = , XF86MonBrightnessDown, exec, ${brightnessctl} set 1%- #"Brightness down"
+        bindel = , XF86MonBrightnessUp, exec, ${noctalia} ipc call brightness increase #"Brightness up"
+        bindel = , XF86MonBrightnessDown, exec, ${noctalia} brightness decrease #"Brightness down"
       '';
 
     wayland.windowManager.hyprland.extraConfig = ''
