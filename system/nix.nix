@@ -50,6 +50,9 @@
       # Enable determinate nix features.
       lazy-trees = true;
       eval-cores = 0;
+
+      # Store profile and channel links under XDG state directories.
+      use-xdg-base-directories = true;
     };
 
     extraOptions = ''!include ${config.sops.templates."access_tokens".path}'';

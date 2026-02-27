@@ -97,7 +97,7 @@ in {
             key_press_enables_dpms = true;
 
             enable_swallow = true;
-            swallow_regex = "^(ghostty)$";
+            swallow_regex = "^com\.mitchellh\.ghostty$";
 
             # Open windows on the workspace they were invoked on
             initial_workspace_tracking = 2;
