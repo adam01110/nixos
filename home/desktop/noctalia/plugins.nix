@@ -72,6 +72,8 @@ in {
       token = config.sops.placeholder."noctalia_github_token";
       refreshInterval = 2000;
       maxEvents = 64;
+      enableSystemNotifications = true;
+      defaultTab = 1;
     };
   };
 

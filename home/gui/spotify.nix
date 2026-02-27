@@ -92,6 +92,7 @@ in {
         (spicePkgs.snippets)
         pointer
         removeTheArtistsAndCreditsSectionsFromTheSidebar
+        smoothProgressBar
         ;
     };
   };
