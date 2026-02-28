@@ -1,15 +1,19 @@
-_:
+{inputs, ...}:
 # Treefmt-nix configuration for flake-parts.
 {
-  perSystem = _: let
-    # Keep sops-managed files out of formatting and linting.
-    sopsExcludes = [
-      ".sops.yaml"
-      "secrets/secrets.yaml"
-    ];
-  in {
+  # import the treefmt flake-parts module.
+  imports = [inputs.treefmt-nix.flakeModule];
+
+  perSystem = _: {
     treefmt = {
       projectRootFile = "flake.nix";
+
+      # Keep sops and direnv files out of formatting and linting.
+      settings.global.excludes = [
+        ".direnv/*"
+        ".sops.yaml"
+        "secrets/secrets.yaml"
+      ];
 
       programs = {
         alejandra.enable = true;
@@ -25,20 +29,8 @@ _:
           severity = "style";
         };
 
-        qmlformat.enable = true;
-
-        yamlfmt = {
-          enable = true;
-          excludes = sopsExcludes;
-        };
-        yamllint = {
-          enable = true;
-          excludes = sopsExcludes;
-        };
-
-        fish_indent.enable = true;
-
-        taplo.enable = true;
+        yamlfmt.enable = true;
+        yamllint.enable = true;
 
         stylua.enable = true;
 

@@ -60,6 +60,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    overzicht = {
+      url = "path:/home/adam0/Development/overzicht";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        import-tree.follows = "import-tree";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -150,10 +161,6 @@
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;
-
-      imports = with inputs; [
-        treefmt-nix.flakeModule
-        (import-tree ./parts)
-      ];
+      imports = with inputs; [(import-tree ./parts)];
     };
 }

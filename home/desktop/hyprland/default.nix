@@ -38,17 +38,6 @@ in {
   # Enable hyprcursor theme support.
   home.pointerCursor.hyprcursor.enable = true;
 
-  programs = {
-    # Enable quickshell.
-    quickshell = {
-      enable = true;
-      systemd.enable = true;
-
-      activeConfig = "overview";
-      configs.overview = ./overview;
-    };
-
-    # Enable hyprshot for screenshotting with hyprland.
-    hyprshot.enable = true;
-  };
+  # Enable hyprshot for screenshotting with hyprland.
+  programs.hyprshot.enable = true;
 }
