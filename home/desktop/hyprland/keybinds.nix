@@ -29,7 +29,7 @@ in {
       gawk = getExe pkgs.gawk;
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
 
-      qs = getExe' config.programs.quickshell.package ".quickshell-wrapped";
+      overzicht = getExe config.programs.overzicht.package;
       noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
 
       equibop = getExe config.programs.nixcord.equibop.package;
@@ -172,7 +172,7 @@ in {
         bind = SUPER SHIFT, X, exec, ${hyprpicker} -n -a -r -q -l #"Color picker"
 
         # 12. SYSTEM
-        bind = SUPER SHIFT, TAB, exec, ${qs} ipc -c overview call overview toggle #"Overview"
+        bind = SUPER SHIFT, TAB, exec, ${overzicht} ipc call overview toggle #"Overview"
         bind = SUPER, SPACE, exec, ${noctalia} plugin togglePanel keybind-cheatsheet #"Keybind cheatsheet"
         bind = SUPER, F1, exec, ${noctalia} powerProfile toggleNoctaliaPerformance #"Performant mode"
 

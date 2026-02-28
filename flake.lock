@@ -1289,6 +1289,34 @@
         "type": "github"
       }
     },
+    "overzicht": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "import-tree": [
+          "import-tree"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-vy5SjAGCsmb2/SH/roTU0Rz04foaD5UoIHoFII2Utm0=",
+        "path": "/home/adam0/Development/overzicht",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/adam0/Development/overzicht",
+        "type": "path"
+      }
+    },
     "oxicord": {
       "inputs": {
         "nixpkgs": [
@@ -1374,6 +1402,7 @@
         "noctalia": "noctalia",
         "nur": "nur",
         "nvf": "nvf",
+        "overzicht": "overzicht",
         "oxicord": "oxicord",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",

@@ -65,6 +65,7 @@ in {
         nix-flatpak.homeManagerModules.nix-flatpak
         sops-nix.homeManagerModules.sops
         noctalia.homeModules.default
+        overzicht.homeModules.default
         nix-index-database.homeModules.nix-index
         zen-browser.homeModules.beta
         nixcord.homeModules.nixcord
