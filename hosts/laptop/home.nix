@@ -7,6 +7,7 @@ in {
     # Enable laptop-specific hyprland features.
     hyprland = {
       brightness.enable = true;
+      idle.brightness.enable = true;
       suspend.enable = true;
       touch.enable = true;
 
