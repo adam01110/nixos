@@ -15,14 +15,21 @@ let
     optionals
     ;
 in {
-  # Create a toggle for the suspend timeout.
-  options.hyprland.suspend.enable = mkEnableOption "Enable hypridle suspend timeout.";
+  options.hyprland = {
+    # Create a toggle for brightness dimming and restore actions.
+    idle.brightness.enable = mkEnableOption "Enable hypridle brightness dimming actions.";
+
+    # Create a toggle for the suspend timeout.
+    suspend.enable = mkEnableOption "Enable hypridle suspend timeout.";
+  };
 
   config.services.hypridle = {
     enable = true;
 
     settings = let
+      cfgBrightness = config.hyprland.idle.brightness.enable;
       cfgSuspend = config.hyprland.suspend.enable;
+
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
       noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
     in {
@@ -40,33 +47,35 @@ in {
       listener = let
         brightnessctl = getExe pkgs.brightnessctl;
       in
-        [
+        optionals cfgBrightness [
           # Dim screen brightness.
           {
-            # 2.5min.
+            # 2.5 minutes.
             timeout = 150;
 
             on-timeout = "${brightnessctl} - s set 10";
             on-resume = "${brightnessctl} - r";
           }
-          # Turn off keyboard backlight.
+          # Turn off keyboard backlight brightness.
           {
-            # 2.5min.
+            # 2.5 minutes.
             timeout = 150;
 
             on-timeout = "${brightnessctl} -sd rgb:kbd_backlight set 0";
             on-resume = "${brightnessctl} -rd rgb:kbd_backlight";
           }
+        ]
+        ++ [
           # Lock the session.
           {
-            # 5min.
+            # 5 minutes.
             timeout = 300;
 
             on-timeout = "${noctalia} lockScreen lock";
           }
           # Power off displays via dpms.
           {
-            # 5.5min.
+            # 5.5 minutes.
             timeout = 330;
 
             on-timeout = "${hyprctl} dispatch dpms off";
@@ -76,8 +85,8 @@ in {
         ++ optionals cfgSuspend [
           # Suspend the system.
           {
-            # 30min.
-            timeout = 1800;
+            # 8 minutes.
+            timeout = 480;
 
             on-timeout = "systemctl suspend";
           }
