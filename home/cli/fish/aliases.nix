@@ -22,6 +22,7 @@ in {
     fgrep = "${ripgrep} -F";
 
     speedtest = getExe pkgs.speedtest-go;
+    cpond = "${getExe pkgs.nur.repos.adam0.cpond} -b -c 16";
 
     ".." = "cd ..";
     "..." = "cd ../..";
