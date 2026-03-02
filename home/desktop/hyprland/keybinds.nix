@@ -98,12 +98,13 @@ in {
         bind = SUPER CTRL, 8, split:movetoworkspacesilent, 8 #"Move to workspace 8 (silent)"
 
         # 6. WINDOW MANAGEMENT
-        bind = SUPER, F, fullscreen, #"Toggle fullscreen"
-        bind = SUPER, V, togglefloating, #"Toggle floating"
-        bind = SUPER, S, togglesplit, #"Toggle split"
+        bind = SUPER, F, fullscreen #"Toggle fullscreen"
+        bind = SUPER, V, togglefloating #"Toggle floating"
+        bind = SUPER, S, layoutmsg, togglesplit #"Toggle split"
+        bind = SUPER, Z, layoutmsg, swapsplit #"Swap split windows"
         bind = SUPER, P, pseudo, #"Toggle pseudo"
         bind = SUPER, Q, killactive, #"Close window"
-        bind = SUPER SHIFT, O, split:grabroguewindows, #"Grab rogue windows"
+        bind = SUPER SHIFT, O, split:grabroguewindows #"Grab rogue windows"
 
         # 7. WINDOW MOVE
         bind = SUPER SHIFT, LEFT, movewindow, l #"Move window left"
@@ -128,8 +129,8 @@ in {
         bind = SUPER, J, movefocus, d #"Focus down"
 
         # 9. GROUPS
-        bind = SUPER, X, togglegroup, #"Toggle group"
-        bind = SUPER ALT, X, moveoutofgroup, #"Move out of group"
+        bind = SUPER, X, togglegroup #"Toggle group"
+        bind = SUPER ALT, X, moveoutofgroup #"Move out of group"
 
         bind = SUPER ALT, LEFT, moveintogroup, l #"Move into group (left)"
         bind = SUPER ALT, RIGHT, moveintogroup, r #"Move into group (right)"

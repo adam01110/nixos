@@ -6,8 +6,6 @@ in {
   home-manager.users.${username} = {
     # Enable laptop-specific hyprland features.
     hyprland = {
-      brightness.enable = true;
-      idle.brightness.enable = true;
       suspend.enable = true;
       touch.enable = true;
 
@@ -16,6 +14,13 @@ in {
         position = "0x0";
         scale = 1;
       };
+    };
+
+    # enable laptop-specific noctalia features.
+    noctalia = {
+      battery.enable = true;
+      brightness.enable = true;
+      suspend.enable = true;
     };
 
     # Gpu monitoring for intel integrated graphics.
@@ -28,7 +33,6 @@ in {
     };
 
     # Enable laptop hardware features.
-    noctalia.battery.enable = true;
     equibop.camera.enable = true;
   };
 }
