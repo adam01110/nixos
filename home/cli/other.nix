@@ -11,6 +11,8 @@ in {
       speedtest-go
       sshfs
       ;
+
+    inherit (pkgs.nur.repos.adam0) cpond;
   };
 
   programs = {
