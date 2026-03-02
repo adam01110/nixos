@@ -1,9 +1,11 @@
-_:
+{config, ...}:
 # Noctalia shell visuals and behavior configuration.
 {
   programs.noctalia-shell.settings.general = let
     # Use sharp corners (no rounding) for consistent design.
     radius = 0;
+
+    cfgTouch = config.hyprland.touch.enable;
   in {
     animationSpeed = 2;
     dimmerOpacity = 0;
@@ -15,6 +17,7 @@ _:
     shadowOffsetX = 0;
     shadowOffsetY = 0;
     telemetryEnabled = false;
+    reverseScroll = cfgTouch;
 
     clockStyle = "analog";
     lockScreenAnimations = true;

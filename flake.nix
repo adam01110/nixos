@@ -56,7 +56,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.6.0";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.6.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -104,6 +104,10 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
+    };
+    spotify-player = {
+      url = "github:Knightsmarian/spotify-player?ref=spotify-api-feb-2026-migration";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     llm-agents = {
