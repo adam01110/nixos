@@ -8,6 +8,11 @@ in {
       borders = {
         enable = true;
         globalStyle = borderType;
+
+        plugins.which-key = {
+          enable = true;
+          style = borderType;
+        };
       };
 
       noice = {

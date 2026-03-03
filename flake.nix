@@ -105,6 +105,7 @@
         systems.follows = "systems";
       };
     };
+
     spotify-player = {
       url = "github:Knightsmarian/spotify-player?ref=spotify-api-feb-2026-migration";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -116,6 +117,10 @@
     };
     mcp-servers-nix = {
       url = "github:natsukium/mcp-servers-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mcp-nixos = {
+      url = "github:DavidDudson/mcp-nixos?ref=fix/pytest-toml-types";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -158,6 +163,16 @@
     tuigreet = {
       url = "github:notashelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.54.1";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
     };
   };
 

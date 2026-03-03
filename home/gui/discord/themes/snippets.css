@@ -90,3 +90,23 @@ time[datetime]:hover::after {
 .button__85643:nth-of-type(1) {
 	display: none;
 }
+
+/* Fix overlap */
+[class*="toolbar_"] [class*="clickable_"]:has(path[d^="M4 5a3 3 0 0"]),
+#message-save-for-later-upsell,
+[class*="buttonContainer_"]
+	[class*="button_"]:has(path[d^="M17 4H7a1 1 0 0 0-1"]),
+[class*="tabBar_"] div:nth-child(4) {
+	display: none;
+}
+.alignedRightContent__80679,
+[class^="search__"],
+[class^="inviteToolbar__"] {
+	margin-right: 40px;
+}
+.navBarContent__131a1 > .button_a22cb0 {
+	margin-right: 195px;
+}
+.headerBarContent__1a9ce {
+	margin-right: calc(var(--top-bar-right-margin) / 2);
+}

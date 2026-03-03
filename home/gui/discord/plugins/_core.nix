@@ -2,13 +2,13 @@ _:
 # Core equibop plugins and global toggles.
 {
   AlwaysTrust.enabled = true;
-  Anammox.enabled = true;
   BetterSessions = {
     enabled = true;
     backgroundCheck = true;
     checkInterval = 30;
   };
   CrashHandler.attemptToNavigateToHome = true;
+  Declutter.enabled = true;
   NewPluginsManager.enabled = true;
   NoDevtoolsWarning.enabled = true;
   NoF1.enabled = true;
