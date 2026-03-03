@@ -34,4 +34,5 @@ _:
     showDates = true;
   };
   WhoReacted.enabled = true;
+  SongSpotlight.enabled = true;
 }

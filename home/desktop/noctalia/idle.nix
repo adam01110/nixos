@@ -21,7 +21,7 @@ in {
     suspend.enable = mkEnableOption "Enable noctalia idle suspend timeout.";
   };
 
-  config.programs.noctalia-shell.settings.audio =
+  config.programs.noctalia-shell.settings.idle =
     {
       enabled = true;
 

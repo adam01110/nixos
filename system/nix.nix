@@ -10,8 +10,7 @@
   };
 
   nix = {
-    settings = {
-      # Add binary caches.
+    settings = let
       substituters = [
         "https://nix-community.cachix.org"
         "https://lanzaboote.cachix.org"
@@ -24,7 +23,12 @@
         "https://nur-xyenon.cachix.org/"
         "https://nvf.cachix.org/"
         "https://install.determinate.systems"
+        "https://hyprland.cachix.org"
       ];
+    in {
+      # Add binary caches.
+      inherit substituters;
+      trusted-substituters = substituters;
 
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -38,6 +42,7 @@
         "nur-xyenon.cachix.org-1:fZ3SGJ3E1p34JSG5j4etfF9+vjJGMZxe1dDBNliKx5U="
         "nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
         "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
 
       # Enable modern commands and flakes.
