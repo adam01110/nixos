@@ -1,4 +1,4 @@
-_:
+{config, ...}:
 # Configure ghostty settings.
 {
   programs.ghostty = {
@@ -36,8 +36,17 @@ _:
       working-directory = "home";
       window-inherit-working-directory = false;
 
+      # Enable cursor shader animation.
+      custom-shader = "${config.xdg.configHome}/ghostty/cursor.glsl";
+      custom-shader-animation = true;
+
       # Unbind the splitting keybinds.
       keybind = [
+        "ctrl+enter=unbind"
+        "ctrl+shift+enter=unbind"
+        "ctrl+shift+e=unbind"
+        "ctrl+shift+0=unbind"
+        "ctrl+shift+q=unbind"
         "super+ctrl+equal=unbind"
         "super+alt+right=unbind"
         "super+d=unbind"
@@ -52,7 +61,11 @@ _:
         "super+left_bracket=unbind"
         "super+right_bracket=unbind"
         "super+shift+d=unbind"
+        "alt+f4=unbind"
       ];
     };
   };
+
+  # Put the shader file into the ghostty config dir.
+  xdg.configFile."ghostty/cursor.glsl".source = ./cursor.glsl;
 }

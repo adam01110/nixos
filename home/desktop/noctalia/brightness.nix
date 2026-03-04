@@ -5,7 +5,4 @@
     enableDdcSupport = true;
     enforceMinimum = false;
   };
-
-  # Hardware control utilities for brightness and display management.
-  home.packages = [pkgs.ddcutil];
 }

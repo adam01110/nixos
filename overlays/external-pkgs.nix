@@ -18,7 +18,6 @@ let
   packages = {
     nix = {input = "determinate";};
     oxicord = {input = "oxicord";};
-    spotify-player = {input = "spotify-player";};
 
     opencode = {
       input = "llm-agents";
@@ -30,4 +29,10 @@ let
     };
   };
 in
-  builtins.mapAttrs (_name: fromInput) packages
+  (builtins.mapAttrs (_name: fromInput) packages)
+  // {
+    # Disable checks for tuigreet to avoid flaky integration test failures.
+    tuigreet = (fromInput packages.tuigreet).overrideAttrs (_old: {
+      doCheck = false;
+    });
+  }

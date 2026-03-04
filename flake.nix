@@ -61,7 +61,7 @@
     };
 
     overzicht = {
-      url = "path:/home/adam0/Development/overzicht";
+      url = "github:adam01110/overzicht";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
@@ -104,11 +104,6 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
-    };
-
-    spotify-player = {
-      url = "github:Knightsmarian/spotify-player?ref=spotify-api-feb-2026-migration";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     llm-agents = {
