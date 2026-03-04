@@ -9,19 +9,10 @@ _:
       packages = attrValues {
         inherit
           (pkgs)
-          vim
           sops
           tokei
           ;
       };
-
-      # Default editor vars to vim when unset.
-      shellHook = let
-        editor = "vim";
-      in ''
-        : ''${EDITOR:=${editor}}
-        : ''${VISUAL:=${editor}}
-      '';
     };
   };
 }
