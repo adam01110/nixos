@@ -10,10 +10,8 @@ let
     filter
     listToAttrs
     ;
-  inherit
-    (lib)
-    removeSuffix
-    ;
+  inherit (lib) removeSuffix;
+  inherit (pkgs) callPackage;
 
   # Import-tree with lib helpers for file discovery.
   importTree = inputs.import-tree.withLib lib;
@@ -28,7 +26,7 @@ let
     name = removeSuffix ".nix" (baseNameOf file);
   in {
     inherit name;
-    value = pkgs.callPackage file {inherit inputs lib;};
+    value = callPackage file {inherit inputs lib;};
   };
 in
   listToAttrs (map mkPackage packageFiles)
