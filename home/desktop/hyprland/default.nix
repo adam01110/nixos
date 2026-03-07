@@ -1,12 +1,10 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 # Home manager hyprland configuration: plugins, quickshell, and extras.
 let
-  inherit (builtins) attrValues;
   inherit (lib) getExe;
 in {
   # Make home manager session variables available to uwsm.
@@ -19,15 +17,6 @@ in {
     # Packages are null because its installed sytem wide.
     package = null;
     portalPackage = null;
-
-    # Add hyprfocus and hyprsplit plugins.
-    plugins = attrValues {
-      inherit
-        (pkgs.hyprlandPlugins)
-        hyprfocus
-        hyprsplit
-        ;
-    };
 
     settings.exec-once = let
       app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";

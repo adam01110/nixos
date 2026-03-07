@@ -13,20 +13,7 @@
     ;
 
   inherit (pkgs) symlinkJoin;
-
-  # Source a sops-rendered env snippet for the Morph API key at runtime.
-  morphFastApplyEnv = config.sops.templates."opencode-morph-fast-apply-env".path;
 in {
-  sops = {
-    # Declare the Morph API key secret.
-    secrets."ai/morph_fast_apply_key" = {};
-
-    # Render a shell snippet wrappers can source to export MORPH_API_KEY.
-    templates."opencode-morph-fast-apply-env".content = ''
-      export MORPH_API_KEY="${config.sops.placeholder."ai/morph_fast_apply_key"}"
-    '';
-  };
-
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
@@ -40,7 +27,6 @@ in {
       # Source plugin credentials before launching the wrapped binary.
       postBuild = ''
         wrapProgram $out/bin/opencode \
-          --run '. "${morphFastApplyEnv}"' \
           --prefix PATH : ${makeBinPath (attrValues {
           inherit (pkgs.nur.repos.adam0) modular-mcp;
           inherit

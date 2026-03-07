@@ -5,7 +5,7 @@
   vars,
   ...
 }: let
-  inherit (builtins) toJSON;
+  inherit (builtins) toJSON attrValues;
   inherit (lib) genAttrs;
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (vars) gitUsername;
@@ -61,6 +61,13 @@ in {
     };
 
     settings.plugins.autoUpdate = true;
+
+    packageOverrides.extraPackages = attrValues {
+      inherit
+        (pkgs)
+        gpu-screen-recorder
+        ;
+    };
   };
 
   # The noctalia github feed plugin settings.
@@ -78,7 +85,4 @@ in {
   };
 
   xdg.configFile."noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia_github_config".path;
-
-  # Packages for screen-recorder.
-  home.packages = [pkgs.gpu-screen-recorder];
 }

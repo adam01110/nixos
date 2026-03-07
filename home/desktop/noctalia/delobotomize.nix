@@ -7,9 +7,9 @@
 }: let
   inherit
     (lib)
+    mkAfter
     mkForce
     mkOption
-    optional
     optionals
     types
     ;
@@ -47,6 +47,14 @@ in {
             default = null;
             description = "Optional base package used before applying local patches.";
           };
+
+          # Add runtime tools directly to the wrapped shell package path.
+          options.extraPackages = mkOption {
+            type = types.listOf types.package;
+            default = [];
+            description = "Additional runtime packages prepended to the shell wrapper PATH.";
+          };
+
           freeformType = types.attrs;
         };
         default = {};
@@ -56,12 +64,12 @@ in {
   };
 
   config = {
-    # Add app2unit when the launcher expects it.
-    home.packages = let
+    # Keep app2unit in the shell wrapper path when the launcher expects it.
+    programs.noctalia-shell.packageOverrides.extraPackages = mkAfter (let
       useApp2Unit = config.programs.noctalia-shell.settings.appLauncher.useApp2Unit or false;
       app2UnitPackage = config.programs.noctalia-shell.app2unit.package;
     in
-      optional useApp2Unit app2UnitPackage;
+      optionals useApp2Unit [app2UnitPackage]);
 
     # Let the gui save settings to a fallback file.
     systemd.user.services.noctalia-shell.Service.Environment = let

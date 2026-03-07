@@ -51,7 +51,3 @@ TODO tool for that interaction.
 ### When both GitHub MCP and Git MCP could apply
 
 Prefer GitHub MCP for GitHub repositories; otherwise use Git MCP.
-
-### When fetching code from GitHub
-
-Use GitHub MCP instead of `webfetch`.

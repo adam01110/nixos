@@ -1,8 +1,19 @@
-_:
+{pkgs, ...}:
 # Configure hyprland plugins.
-{
-  wayland.windowManager.hyprland.settings = {
-    plugin = {
+let
+  inherit (builtins) attrValues;
+in {
+  wayland.windowManager.hyprland = {
+    # Add hyprfocus, hyprsplit, and hypr-kinetic-scroll plugins.
+    plugins = attrValues {
+      inherit
+        (pkgs.hyprlandPlugins)
+        hyprfocus
+        hyprsplit
+        ;
+    };
+
+    settings.plugin = {
       # Split plugin workspace count.
       hyprsplit.num_workspaces = 8;
 

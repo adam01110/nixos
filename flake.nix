@@ -96,7 +96,10 @@
 
     nixcord = {
       url = "github:kaylorben/nixcord";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
     oxicord = {
       url = "github:linuxmobile/oxicord";
@@ -108,14 +111,14 @@
 
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
     };
     mcp-servers-nix = {
       url = "github:natsukium/mcp-servers-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mcp-nixos = {
-      url = "github:DavidDudson/mcp-nixos?ref=fix/pytest-toml-types";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
