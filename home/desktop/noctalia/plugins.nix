@@ -5,7 +5,7 @@
   vars,
   ...
 }: let
-  inherit (builtins) toJSON attrValues;
+  inherit (builtins) toJSON;
   inherit (lib) genAttrs;
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (vars) gitUsername;
@@ -62,12 +62,8 @@ in {
 
     settings.plugins.autoUpdate = true;
 
-    packageOverrides.extraPackages = attrValues {
-      inherit
-        (pkgs)
-        gpu-screen-recorder
-        ;
-    };
+    # Package for screen-recorder plugin.
+    packageOverrides.extraPackages = [pkgs.gpu-screen-recorder];
   };
 
   # The noctalia github feed plugin settings.

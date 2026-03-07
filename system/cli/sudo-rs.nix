@@ -8,9 +8,9 @@ _:
       enable = true;
       execWheelOnly = true;
 
-      # Use explicit defaults for environment reset, password feedback, and insults.
+      # Enable password feedback.
       extraConfig = ''
-        Defaults env_reset,pwfeedback,insults
+        Defaults env_reset,pwfeedback
       '';
     };
   };

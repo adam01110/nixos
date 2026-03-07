@@ -32,27 +32,31 @@
       size = 24;
     };
 
-    icons = {
+    icons = let
+      name = "Gruvbox-Plus-Dark";
+    in {
       enable = true;
-      light = "Gruvbox-Plus-Dark";
-      dark = "Gruvbox-Plus-Dark";
+      dark = name;
+      light = name;
       package = pkgs.gruvbox-plus-icons;
     };
 
     # Use JetBrainsMono without ligatures.
-    fonts = {
+    fonts = let
+      inherit (pkgs.nerd-fonts) jetbrains-mono;
+    in {
       serif = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = jetbrains-mono;
         name = "JetBrainsMonoNL Nerd Font Propo";
       };
 
       sansSerif = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = jetbrains-mono;
         name = "JetBrainsMonoNL Nerd Font Propo";
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = jetbrains-mono;
         name = "JetBrainsMonoNL Nerd Font Mono";
       };
     };
