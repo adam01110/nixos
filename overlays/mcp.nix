@@ -1,19 +1,7 @@
-{inputs, ...}: final: _prev:
+{inputs, ...}: final: prev:
 # Expose packages from flake inputs under pkgs.*.
 let
   inherit (final.stdenv.hostPlatform) system;
-
-  fromInput = {
-    input,
-    package ? "default",
-  }: let
-    flake = inputs.${input};
-  in
-    if flake ? packages
-    then flake.packages.${system}.${package}
-    else if package == "default" && flake ? defaultPackage
-    then flake.defaultPackage.${system}
-    else throw "Input `${input}` does not expose `packages.${system}.${package}`.";
 
   mcpPackages = inputs.mcp-servers-nix.packages.${system};
 in {
@@ -23,8 +11,15 @@ in {
     mcp-server-git
     ;
 
-  mcp-nixos = fromInput {
-    input = "mcp-nixos";
-    package = "mcp-nixos";
-  };
+  # Pin mcp-nixos to the nixpkgs main update until it reaches unstable.
+  mcp-nixos = prev.mcp-nixos.overrideAttrs (_old: rec {
+    version = "2.3.0";
+
+    src = final.fetchFromGitHub {
+      owner = "utensils";
+      repo = "mcp-nixos";
+      tag = "v${version}";
+      hash = "sha256-ogAug05ChGLSJ+KvmP5xXreDhkLHau15Wnp0ry7Ck88=";
+    };
+  });
 }

@@ -17,10 +17,10 @@ in {
         aseprite
         bleachbit
         bitwarden-desktop
+        crosspipe
         decibels
         gimp
         gnome-calculator
-        helvum
         loupe
         obsidian
         protonvpn-gui

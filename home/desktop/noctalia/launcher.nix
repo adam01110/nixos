@@ -8,22 +8,24 @@
 let
   inherit (lib) getExe;
 in {
-  programs.noctalia-shell.settings.appLauncher = {
-    enableClipPreview = false;
-    enableClipboardHistory = true;
-    position = "center";
-    sortByMostUsed = false;
-    terminalCommand = getExe config.xdg.terminal-exec.package;
-    useApp2Unit = true;
-    showIconBackground = true;
-    autoPasteClipboard = true;
-    overviewLayer = true;
-    density = "comfortable";
-    enableSessionSearch = false;
-    enableSettingsSearch = false;
-    enableWindowsSearch = false;
-  };
+  programs.noctalia-shell = {
+    settings.appLauncher = {
+      enableClipPreview = false;
+      enableClipboardHistory = true;
+      position = "center";
+      sortByMostUsed = false;
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      useApp2Unit = true;
+      showIconBackground = true;
+      autoPasteClipboard = true;
+      overviewLayer = true;
+      density = "comfortable";
+      enableSessionSearch = false;
+      enableSettingsSearch = false;
+      enableWindowsSearch = false;
+    };
 
-  # Wtype for the automatic clipboard paste.
-  home.packages = [pkgs.wtype];
+    # Keep launcher runtime tools in the wrapped shell package path.
+    packageOverrides.extraPackages = [pkgs.wtype];
+  };
 }

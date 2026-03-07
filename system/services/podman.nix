@@ -35,6 +35,9 @@ in {
       };
     };
 
+    # Disable the podman compose warning about external command execution.
+    virtualisation.containers.containersConf.settings.engine.compose_warning_logs = false;
+
     # Add user to the podman group.
     users.users.${username}.extraGroups = ["podman"];
 
