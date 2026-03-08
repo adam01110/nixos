@@ -10,6 +10,7 @@ in {
       gitfetch
       speedtest-go
       sshfs
+      onefetch
       ;
 
     inherit (pkgs.nur.repos.adam0) cpond;

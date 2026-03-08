@@ -5,6 +5,8 @@ _:
   programs.fish.shellAbbrs = {
     ff = "fastfetch";
     gf = "gitfetch";
+    of = "onefetch";
+
     oc = "opencode";
   };
 }
