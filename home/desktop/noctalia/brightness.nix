@@ -1,4 +1,4 @@
-{pkgs, ...}:
+_:
 # Brightness slider tuning for noctalia shell.
 {
   programs.noctalia-shell.settings.brightness = {

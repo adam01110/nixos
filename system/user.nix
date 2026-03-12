@@ -61,19 +61,21 @@ in {
 
     users.${username} = {
       # Home manager module sources from flake inputs.
-      imports = with inputs; [
-        nix-flatpak.homeManagerModules.nix-flatpak
-        sops-nix.homeManagerModules.sops
-        noctalia.homeModules.default
-        overzicht.homeModules.default
-        nix-index-database.homeModules.nix-index
-        zen-browser.homeModules.beta
-        nixcord.homeModules.nixcord
-        nvf.homeManagerModules.default
-        spicetify-nix.homeManagerModules.spicetify
-        zed-extensions.homeManagerModules.default
-        (import-tree ../home)
-      ];
+      imports =
+        (with inputs; [
+          nix-flatpak.homeManagerModules.nix-flatpak
+          sops-nix.homeManagerModules.sops
+          noctalia.homeModules.default
+          overzicht.homeModules.default
+          nix-index-database.homeModules.nix-index
+          zen-browser.homeModules.beta
+          nixcord.homeModules.nixcord
+          nvf.homeManagerModules.default
+          spicetify-nix.homeManagerModules.spicetify
+          zed-extensions.homeManagerModules.default
+          (import-tree ../home)
+        ])
+        ++ [pkgs.nur.repos.adam0.hmModules.opencode-plugins];
 
       home = {
         # Home-manager account identity.

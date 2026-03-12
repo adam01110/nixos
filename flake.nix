@@ -56,8 +56,19 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.6.5";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.6.7";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        noctalia-qs.follows = "noctalia-qs";
+      };
+    };
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     overzicht = {
@@ -109,13 +120,9 @@
       };
     };
 
-    llm-agents = {
-      url = "github:numtide/llm-agents.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        systems.follows = "systems";
-      };
+    leohenon-opencode = {
+      url = "github:leohenon/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-servers-nix = {
       url = "github:natsukium/mcp-servers-nix";
@@ -163,7 +170,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.54.1";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.54.2";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -178,6 +185,6 @@
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;
-      imports = with inputs; [(import-tree ./parts)];
+      imports = [(inputs.import-tree ./parts)];
     };
 }

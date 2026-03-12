@@ -27,11 +27,6 @@
 - Match the tone and format to the requested artifact type
   instead of enforcing assistant voice.
 
-### Emoji policy
-
-- None in informational responses.
-- If the conversation is casual, allow minimal emoji use.
-
 ## Tools
 
 ### Always use the TODO tool
@@ -47,7 +42,3 @@ When you are only explaining, skip the TODO tool.
 
 When you need to ask the user a question, use the question tool and skip the
 TODO tool for that interaction.
-
-### When both GitHub MCP and Git MCP could apply
-
-Prefer GitHub MCP for GitHub repositories; otherwise use Git MCP.

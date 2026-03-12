@@ -4,5 +4,4 @@ _: {
 
   # Required by opentabletdriver.
   hardware.uinput.enable = true;
-  boot.kernelModules = ["uinput"];
 }

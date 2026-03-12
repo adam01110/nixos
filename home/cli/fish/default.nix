@@ -23,6 +23,7 @@
       # Remove conflicting default bindings.
       "alt-e".erase = true;
       "alt-d".erase = true;
+      "alt-l".erase = true;
     };
   };
 

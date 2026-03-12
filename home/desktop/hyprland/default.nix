@@ -20,7 +20,7 @@ in {
 
     settings.exec-once = let
       app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";
-      ghostty = "${getExe config.programs.ghostty.package} --initial-window=false +new-window";
+      ghostty = "${getExe config.programs.ghostty.package} --initial-window=false";
     in ["${app2unit} ${ghostty}"];
   };
 
