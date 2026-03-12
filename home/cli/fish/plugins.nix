@@ -14,6 +14,7 @@
         "done"
         "fishbang"
         "fifc"
+        "fish-you-should-use"
       ];
   };
 }
