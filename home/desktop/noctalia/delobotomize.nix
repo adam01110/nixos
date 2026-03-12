@@ -14,7 +14,7 @@
     types
     ;
 
-  system = pkgs.stdenv.hostPlatform.system;
+  inherit (pkgs.stdenv.hostPlatform) system;
 
   cfg = config.programs.noctalia-shell;
   basePackage =

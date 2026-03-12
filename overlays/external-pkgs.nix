@@ -20,7 +20,7 @@ let
     oxicord = {input = "oxicord";};
 
     opencode = {
-      input = "llm-agents";
+      input = "leohenon-opencode";
       package = "opencode";
     };
     tuigreet = {

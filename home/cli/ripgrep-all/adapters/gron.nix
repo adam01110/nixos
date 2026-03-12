@@ -7,8 +7,8 @@
 let
   inherit (lib) getExe;
 
-  gron = getExe (pkgs.gron);
-  qq = getExe (pkgs.nur.repos.adam0.qq-jfryy);
+  gron = getExe pkgs.gron;
+  qq = getExe pkgs.nur.repos.adam0.qq-jfryy;
 in {
   programs.ripgrep-all.custom_adapters = [
     # Convert JSON into line-oriented assignments for grep.

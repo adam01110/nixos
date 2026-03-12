@@ -15,8 +15,12 @@ let
 
   jsonFormat = pkgs.formats.json {};
 
-  inherit (pkgs.nur.repos.adam0) rust-mcp-server;
-  inherit (pkgs) context7-mcp github-mcp-server mcp-nixos mcp-server-git;
+  inherit
+    (pkgs)
+    context7-mcp
+    github-mcp-server
+    mcp-nixos
+    ;
 in {
   sops = {
     secrets = {
@@ -46,16 +50,6 @@ in {
         });
       };
 
-      git = {
-        description = ''
-          **Always use the Git MCP server for anything involving Git repositories outside of GitHub**
-          (local repositories, non-GitHub remotes, code search, diffs, commit history, branches, repository structure).
-          Automatically call the Git MCP tools for Git-level operations without me having to explicitly ask.
-        '';
-
-        command = getExe mcp-server-git;
-      };
-
       github = {
         description = ''
           **Always use the GitHub MCP server for anything related to GitHub**
@@ -82,15 +76,6 @@ in {
         '';
 
         command = getExe mcp-nixos;
-      };
-
-      rust = {
-        description = ''
-          **Always use the Rust MCP Server for anything Rust-project–related.**
-          (creating/managing Cargo projects, building/testing/linting/formatting, dependency management, toolchain management, and Rust-specific diagnostics)
-        '';
-
-        command = getExe rust-mcp-server;
       };
     };
   };

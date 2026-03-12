@@ -38,7 +38,7 @@
       enable = true;
       dark = name;
       light = name;
-      package = pkgs.gruvbox-plus-icons;
+      package = pkgs.nur.repos.adam0.gruvbox-plus-icons;
     };
 
     # Use JetBrainsMono without ligatures.

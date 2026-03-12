@@ -13,5 +13,8 @@ _:
       "dist/**"
       "target/**"
     ];
+
+    agent.general.reasoningEffort = "medium";
+    agent.explore.reasoningEffort = "medium";
   };
 }

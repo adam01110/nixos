@@ -17,6 +17,7 @@
     shadowOffsetX = 0;
     shadowOffsetY = 0;
     telemetryEnabled = false;
+    showChangelogOnStartup = false;
     reverseScroll = cfgTouch;
 
     clockStyle = "analog";

@@ -5,11 +5,6 @@
   # Use smart-enter bindings in manager mode.
   programs.yazi.keymap.mgr.prepend_keymap = [
     {
-      on = "p";
-      run = "plugin smart-paste";
-      desc = "Paste into the hovered directory or CWD";
-    }
-    {
       on = "<Enter>";
       run = "plugin smart-enter";
       desc = "Enter the child directory, or open the file";

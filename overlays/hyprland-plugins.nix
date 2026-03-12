@@ -3,8 +3,10 @@
 let
   inherit (final.stdenv.hostPlatform) system;
 in {
-  hyprlandPlugins = prev.hyprlandPlugins // {
-    hyprsplit = inputs.hyprsplit.packages.${system}.hyprsplit;
-    hyprfocus = inputs.hyprland-plugins.packages.${system}.hyprfocus;
-  };
+  hyprlandPlugins =
+    prev.hyprlandPlugins
+    // {
+      inherit (inputs.hyprsplit.packages.${system}) hyprsplit;
+      inherit (inputs.hyprland-plugins.packages.${system}) hyprfocus;
+    };
 }
