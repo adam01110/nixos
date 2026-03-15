@@ -126,7 +126,7 @@ in {
     # Systemd limits and tmpfiles overrides.
     systemd = {
       tmpfiles.rules = [
-        "d /var/lib/systemd/coredump 0755 root root 3d"
+        "e /var/lib/systemd/coredump - - - 3d"
 
         "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
         "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"

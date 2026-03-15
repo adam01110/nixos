@@ -4,17 +4,17 @@
   programs.fish = {
     # Enable plugins.
     plugins = let
-      mkPlugin = pkg: {
-        name = "${pkg}";
-        inherit (pkgs.fishPlugins.${pkg}) src;
+      mkPlugin = source: pkg: {
+        name = pkg;
+        inherit (source.${pkg}) src;
       };
     in
-      map mkPlugin [
+      (map (mkPlugin pkgs.fishPlugins) [
         "autopair"
         "done"
         "fishbang"
-        "fifc"
         "fish-you-should-use"
-      ];
+      ])
+      ++ [(mkPlugin pkgs.nur.repos.adam0.fishPlugins "fifc")];
   };
 }

@@ -20,7 +20,7 @@ in {
           inherit
             (pkgs)
             csvkit
-            gron
+            fastgron
             qq
             ;
         })}

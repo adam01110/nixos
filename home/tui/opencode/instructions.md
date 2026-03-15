@@ -42,3 +42,8 @@ When you are only explaining, skip the TODO tool.
 
 When you need to ask the user a question, use the question tool and skip the
 TODO tool for that interaction.
+
+### Use shell fallbacks when needed
+
+If a required tool is unavailable, use shell helpers such as `nix run nixpkgs#<package>` or
+`comma <command>` to access the missing command.
