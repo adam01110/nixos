@@ -66,60 +66,6 @@ in {
       };
     };
 
-    # Pass the required `fmt` subcommand so conform can run rumdl.
-    formatter.conform-nvim.setupOpts.formatters.rumdl = {
-      command = "rumdl";
-
-      args = [
-        "fmt"
-        "-"
-      ];
-    };
-
-    # Provide a parser for rumdl until nvim-lint ships one.
-    diagnostics.nvim-lint.linters.rumdl = {
-      args = [
-        "check"
-        "--output-format"
-        "json"
-      ];
-      stdin = false;
-      append_fname = true;
-      stream = "stdout";
-      ignore_exitcode = true;
-      parser = mkLuaInline ''
-        function(output)
-          local diagnostics = {}
-          local ok, results = pcall(vim.json.decode, output)
-          if not ok then
-            return diagnostics
-          end
-
-          for _, result in ipairs(results or {}) do
-            local severity = vim.diagnostic.severity.WARN
-            if result.severity == "error" then
-              severity = vim.diagnostic.severity.ERROR
-            elseif result.severity == "info" then
-              severity = vim.diagnostic.severity.INFO
-            elseif result.severity == "hint" then
-              severity = vim.diagnostic.severity.HINT
-            end
-
-            table.insert(diagnostics, {
-              lnum = (result.line or 1) - 1,
-              col = (result.column or 1) - 1,
-              message = result.message or "",
-              code = result.rule,
-              severity = severity,
-              source = "rumdl",
-            })
-          end
-
-          return diagnostics
-        end
-      '';
-    };
-
     # Add a shortcut to toggle markview rendering.
     keymaps = [
       {

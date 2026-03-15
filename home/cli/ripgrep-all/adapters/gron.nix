@@ -3,11 +3,11 @@
   pkgs,
   ...
 }:
-# Add custom adapters for additional file formats with gron.
+# Add custom adapters for additional file formats with fastgron.
 let
   inherit (lib) getExe;
 
-  gron = getExe pkgs.gron;
+  fastgron = getExe pkgs.fastgron;
   qq = getExe pkgs.nur.repos.adam0.qq-jfryy;
 in {
   programs.ripgrep-all.custom_adapters = [
@@ -18,12 +18,12 @@ in {
       description = "Transform JSON into discrete JS assignments";
       extensions = ["json"];
       mimetypes = ["application/json" "text/json"];
-      binary = gron;
+      binary = fastgron;
       disabled_by_default = false;
       match_only_by_mime = false;
     }
 
-    # Convert TOML into gron-style assignments through qq.
+    # Convert TOML into fastgron-style assignments through qq.
     {
       name = "toml";
       version = 1;
@@ -31,11 +31,11 @@ in {
       extensions = ["toml"];
       mimetypes = ["application/toml" "text/toml"];
       binary = qq;
-      args = ["--monochrome-output" "--output" "${gron}" "--input" "toml"];
+      args = ["--monochrome-output" "--output" "${fastgron}" "--input" "toml"];
       disabled_by_default = false;
       match_only_by_mime = false;
     }
-    # Convert XML into gron-style assignments through qq.
+    # Convert XML into fastgron-style assignments through qq.
     {
       name = "xml";
       version = 1;
@@ -43,11 +43,11 @@ in {
       extensions = ["xml"];
       mimetypes = ["application/xml" "text/xml"];
       binary = qq;
-      args = ["--monochrome-output" "--output" "${gron}" "--input" "xml"];
+      args = ["--monochrome-output" "--output" "${fastgron}" "--input" "xml"];
       disabled_by_default = false;
       match_only_by_mime = false;
     }
-    # Convert YAML into gron-style assignments through qq.
+    # Convert YAML into fastgron-style assignments through qq.
     {
       name = "yaml";
       version = 1;
@@ -55,11 +55,11 @@ in {
       extensions = ["yml" "yaml"];
       mimetypes = ["application/yaml" "text/yaml"];
       binary = qq;
-      args = ["--monochrome-output" "--output" "${gron}" "--input" "yaml"];
+      args = ["--monochrome-output" "--output" "${fastgron}" "--input" "yaml"];
       disabled_by_default = false;
       match_only_by_mime = false;
     }
-    # Convert JSONC into gron-style assignments through qq.
+    # Convert JSONC into fastgron-style assignments through qq.
     {
       name = "jsonc";
       version = 1;
@@ -67,7 +67,7 @@ in {
       extensions = ["jsonc"];
       mimetypes = ["application/jsonc" "text/jsonc"];
       binary = qq;
-      args = ["--monochrome-output" "--output" "${gron}" "--input" "jsonc"];
+      args = ["--monochrome-output" "--output" "${fastgron}" "--input" "jsonc"];
       disabled_by_default = false;
       match_only_by_mime = false;
     }

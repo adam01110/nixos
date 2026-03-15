@@ -51,6 +51,8 @@ in {
     (mkExtensionSettings {
       "{76ef94a4-e3d0-4c6f-961a-d38a429a332b}" = "ttv-lol-pro";
       "{3507f56d-2ef5-45c1-b6d7-5297a0ba7642}" = "cookie-remover";
+      "{microslop@4o4}" = "microslop";
+      "@crw-extension-firefox" = "consumer-rights-wiki";
     })
     // {
       "magnolia@12.34" = {
