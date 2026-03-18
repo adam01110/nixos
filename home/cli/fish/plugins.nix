@@ -1,6 +1,8 @@
 {pkgs, ...}:
 # Add some plugins to the fish shell.
-{
+let
+  inherit (builtins) attrValues;
+in {
   programs.fish = {
     # Enable plugins.
     plugins = let
@@ -15,6 +17,18 @@
         "fishbang"
         "fish-you-should-use"
       ])
-      ++ [(mkPlugin pkgs.nur.repos.adam0.fishPlugins "fifc")];
+      ++ [(mkPlugin pkgs.nur.repos.adam0.fishPlugins "fzfish")];
+  };
+
+  # Extra packages required by FzFish.
+  home.packages = attrValues {
+    inherit
+      (pkgs)
+      # FzFish
+      timg
+      hexyl
+      procs
+      trash-cli
+      ;
   };
 }

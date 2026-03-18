@@ -1,20 +1,18 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+{pkgs, ...}:
 # Configure fish shell.
 {
   programs.fish = {
     enable = true;
 
     # Initialize interactive shell settings.
-    interactiveShellInit = let
-      editorName = config.home.sessionVariables.EDITOR;
-    in ''
-      set -U fifc_fd_opts --hidden
+    interactiveShellInit = ''
       set -U __done_min_cmd_duration 10000
-      set -Ux fifc_editor ${editorName}
+
+      set -U fzfish_popup true
+      set -U fzfish_case_insensitive true
+      set -U fzfish_show_hidden true
+      set -U fzfish_bat_opts --style=numbers
+      set -U fzfish_rm_cmd trash-put
 
       batman --export-env | source
     '';

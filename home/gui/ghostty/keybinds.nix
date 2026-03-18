@@ -22,5 +22,8 @@ _:
     "super+right_bracket=unbind"
     "super+shift+d=unbind"
     "alt+f4=unbind"
+    "super+ctrl+O=unbind"
+    "super+ctrl+W=unbind"
+    "super+ctrl+T=unbind"
   ];
 }
