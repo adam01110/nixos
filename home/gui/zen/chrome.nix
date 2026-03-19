@@ -12,14 +12,15 @@ let
     (lib)
     filterAttrs
     hasPrefix
+    mkAfter
     ;
   inherit (pkgs.stdenv.hostPlatform) system;
 
   # Convert the stylix base16 scheme into a format accepted by nix-userstyles.
-  stylixPalette = osConfig.lib.stylix.colors |> filterAttrs (name: _: hasPrefix "base0" name);
+  palette = filterAttrs (name: _: hasPrefix "base0" name) osConfig.lib.stylix.colors;
 in {
+  # Remove rounded corners in zen browser interface.
   programs.zen-browser.profiles.default = {
-    # Remove rounded corners in zen browser interface.
     userChrome = ''
       *,
       *::before,
@@ -28,17 +29,12 @@ in {
       }
     '';
 
-    # Remove rounded corners on sites and apply nix-userstyles themes.
-    userContent = ''
-      *,
-      *::before,
-      *::after {
-        border-radius: 0px !important;
-      }
+    userContent = mkAfter (
+      readFile (inputs.nix-userstyles.lib.mkUserContent system {
+        inherit palette;
 
-      ${readFile "${
-        inputs.nix-userstyles.lib.mkUserStyles system stylixPalette [
-          # Apply nix-userstyles themes.
+        # Apply nix-userstyles themes.
+        userStyles = [
           "advent-of-code"
           "alternativeto"
           "anonymous-overflow"
@@ -112,8 +108,17 @@ in {
           "youtube"
 
           "zen-browser-docs"
-        ]
-      }"}
-    '';
+        ];
+
+        # Remove rounded corners on sites and apply nix-userstyles themes.
+        extraCss = ''
+          *,
+          *::before,
+          *::after {
+            border-radius: 0px !important;
+          }
+        '';
+      })
+    );
   };
 }
