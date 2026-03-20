@@ -121,7 +121,7 @@
     };
 
     leohenon-opencode = {
-      url = "github:leohenon/opencode?ref=v1.2.27";
+      url = "github:leohenon/opencode?ref=v1.2.27-vim.2.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-servers-nix = {
