@@ -5,7 +5,11 @@
   vars,
   ...
 }: let
-  inherit (builtins) toJSON;
+  inherit
+    (builtins)
+    toJSON
+    attrValues
+    ;
   inherit (lib) genAttrs;
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (vars) gitUsername;
@@ -41,6 +45,8 @@ in {
           "privacy-indicator"
           "keybind-cheatsheet"
           "file-search"
+          "web-search"
+          "zed-provider"
         ]
         mkPlugin;
     };
@@ -58,12 +64,25 @@ in {
       };
 
       file-search.maxResults = 200;
+
+      web-search = {
+        search_engine = "Brave";
+        max_results = 5;
+      };
     };
 
     settings.plugins.autoUpdate = true;
 
     # Package for screen-recorder plugin.
-    packageOverrides.extraPackages = [pkgs.gpu-screen-recorder];
+    packageOverrides.extraPackages = attrValues {
+      inherit
+        (pkgs)
+        # screen-recorder
+        gpu-screen-recorder
+        # zed-provider
+        sqlite
+        ;
+    };
   };
 
   # The noctalia github feed plugin settings.

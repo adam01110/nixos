@@ -8,7 +8,13 @@ in {
     panelPosition = "center";
     randomIntervalSec = 7200;
     setWallpaperOnAllMonitors = true;
-    transitionType = "stripes";
+    transitionType = [
+      "honeycomb"
+      "fade"
+      "disc"
+      "stripes"
+      "wipe"
+    ];
     skipStartupTransition = true;
     showHiddenFiles = true;
     hideWallpaperFilenames = true;

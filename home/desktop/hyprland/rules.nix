@@ -54,6 +54,8 @@ in {
 
       "tag +float, match:class BeeperTexts, match:title Settings"
       "tag +size-beeper-settings, match:class BeeperTexts, match:title Settings"
+      "workspace special:beeper silent, match:class BeeperTexts"
+      "no_initial_focus on, match:class BeeperTexts"
 
       "tag +forceopacity, match:class com.mitchellh.ghostty"
 
