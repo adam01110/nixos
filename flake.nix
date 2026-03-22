@@ -166,7 +166,7 @@
     };
 
     tuigreet = {
-      url = "github:notashelf/tuigreet";
+      url = "github:notashelf/tuigreet?ref=0.10.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

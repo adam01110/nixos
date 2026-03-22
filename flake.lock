@@ -1028,16 +1028,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1774007758,
-        "narHash": "sha256-qjX1fDV5BtDMtow6tlq5MwkPVQqiwnNVmJM0p4SlhWs=",
+        "lastModified": 1774088858,
+        "narHash": "sha256-i59aIlfSUEl4HfB0MDGiqZCm/SCHLuCC1v22HUefGTA=",
         "owner": "leohenon",
         "repo": "opencode",
-        "rev": "3a2cf1b3c1c37f2569aa6886ede97c94240f9493",
+        "rev": "ab508355b130ee79efece080143041bdc2a829f8",
         "type": "github"
       },
       "original": {
         "owner": "leohenon",
-        "ref": "v1.2.27-vim.2.2",
+        "ref": "v1.2.27-vim.2.6",
         "repo": "opencode",
         "type": "github"
       }
@@ -2161,15 +2161,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1773673855,
-        "narHash": "sha256-pZxUT5nrIiVlvzWqQQIR2L2eclNsC6GFVssK0Mq+B20=",
+        "lastModified": 1774185329,
+        "narHash": "sha256-jeelrp9r/V8540qKoCofD8wz/w/qBcubs72HkremhME=",
         "owner": "notashelf",
         "repo": "tuigreet",
-        "rev": "6899798f7dbf8e5811a3c1437a0da2508a4a7b65",
+        "rev": "46830fa2c6a6bc3b78d9985bfaec050d85a229c4",
         "type": "github"
       },
       "original": {
         "owner": "notashelf",
+        "ref": "0.10.2",
         "repo": "tuigreet",
         "type": "github"
       }
