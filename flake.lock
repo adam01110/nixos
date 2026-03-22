@@ -1028,16 +1028,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1774002335,
-        "narHash": "sha256-porBwhtTcgxcGLmtHJfdTmxXJ+WBYqusr+NAIxHaCUA=",
+        "lastModified": 1774007758,
+        "narHash": "sha256-qjX1fDV5BtDMtow6tlq5MwkPVQqiwnNVmJM0p4SlhWs=",
         "owner": "leohenon",
         "repo": "opencode",
-        "rev": "918cfe773dc206ad2bc15273cc1c914dc3983f6c",
+        "rev": "3a2cf1b3c1c37f2569aa6886ede97c94240f9493",
         "type": "github"
       },
       "original": {
         "owner": "leohenon",
-        "ref": "v1.2.27-vim.2.1",
+        "ref": "v1.2.27-vim.2.2",
         "repo": "opencode",
         "type": "github"
       }
