@@ -81,6 +81,7 @@ _:
 
       # Workspaces.
       "workspaces, 1, 3.5, smoothSlide, slide"
+      "specialWorkspace, 1, 3.5, smoothSlide, slidefadevert -50%"
 
       # Disable.
       "border, 0"

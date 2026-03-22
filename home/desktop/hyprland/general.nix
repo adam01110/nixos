@@ -106,7 +106,12 @@ in {
             anr_missed_pings = 8;
           };
 
-          dwindle.preserve_split = true;
+          dwindle = {
+            preserve_split = true;
+
+            # Keep the special workspace narrower than the full monitor.
+            special_scale_factor = 0.8;
+          };
         };
       }
 
