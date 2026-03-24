@@ -5,19 +5,26 @@
 }:
 # Nixos host definitions for flake-parts.
 let
+  inherit
+    (inputs.nixpkgs.lib)
+    getAttrFromPath
+    splitString
+    ;
   vars = import ../vars.nix;
+
   import-tree = inputs.import-tree.withLib inputs.nixpkgs.lib;
 
   # Shared module stack for every host configuration.
-  commonModules = with inputs; [
-    nur.modules.nixos.default
-    disko.nixosModules.disko
-    home-manager.nixosModules.home-manager
-    stylix.nixosModules.stylix
-    lanzaboote.nixosModules.lanzaboote
-    sops-nix.nixosModules.sops
-    (import-tree ../system)
-  ];
+  commonModules =
+    (map (path: getAttrFromPath (splitString "." path) inputs) [
+      "nur.modules.nixos.default"
+      "disko.nixosModules.disko"
+      "home-manager.nixosModules.home-manager"
+      "stylix.nixosModules.stylix"
+      "lanzaboote.nixosModules.lanzaboote"
+      "sops-nix.nixosModules.sops"
+    ])
+    ++ [(import-tree ../system)];
 
   # Helper to build a host with shared args and modules.
   mkHost = name: system:

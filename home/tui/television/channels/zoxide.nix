@@ -23,7 +23,10 @@ in {
     metadata = {
       name = "zoxide";
       description = "Browse zoxide directory history";
-      requirements = ["zoxide"];
+      requirements = [
+        "zoxide"
+        "eza"
+      ];
     };
 
     source = {

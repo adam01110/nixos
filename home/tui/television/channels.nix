@@ -1,26 +1,41 @@
 {
   osConfig,
   config,
+  lib,
   pkgs,
   ...
 }: let
   inherit (builtins) attrValues;
+  inherit
+    (lib)
+    splitString
+    getAttrFromPath
+    ;
 in {
   programs.television.package = pkgs.television.withPackages (
     _:
       attrValues {
         inherit
           (pkgs)
-          man
           tlrc
+          gnused
+          gawk
+          coreutils
+          procs
+          procps
+          less
           ;
-
-        inherit (pkgs.bat-extras) batman;
       }
-      ++ [
-        config.programs.zoxide.package
-        config.programs.bat.package
-        osConfig.services.flatpak.package
-      ]
+      ++ (map (program: config.programs.${program}.package) [
+        "zoxide"
+        "bat"
+        "man"
+        "eza"
+      ])
+      ++ (map (path: (getAttrFromPath (splitString "." path) osConfig).package) [
+        "services.flatpak"
+        "systemd"
+        "security.sudo-rs"
+      ])
   );
 }

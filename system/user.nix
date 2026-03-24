@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   inputs,
   vars,
@@ -7,7 +8,14 @@
 }:
 # User account and home manager setup.
 let
+  inherit
+    (lib)
+    getAttrFromPath
+    splitString
+    ;
   inherit (vars) username;
+
+  import-tree = inputs.import-tree.withLib lib;
 in {
   # Ensure the user account can be created with a password managed by sops-nix.
   sops.secrets.user_password.neededForUsers = true;
@@ -62,20 +70,22 @@ in {
     users.${username} = {
       # Home manager module sources from flake inputs.
       imports =
-        (with inputs; [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          sops-nix.homeManagerModules.sops
-          noctalia.homeModules.default
-          overzicht.homeModules.default
-          nix-index-database.homeModules.nix-index
-          zen-browser.homeModules.beta
-          nixcord.homeModules.nixcord
-          nvf.homeManagerModules.default
-          spicetify-nix.homeManagerModules.spicetify
-          zed-extensions.homeManagerModules.default
-          (import-tree ../home)
+        (map (path: getAttrFromPath (splitString "." path) inputs) [
+          "nix-flatpak.homeManagerModules.nix-flatpak"
+          "sops-nix.homeManagerModules.sops"
+          "noctalia.homeModules.default"
+          "overzicht.homeModules.default"
+          "nix-index-database.homeModules.nix-index"
+          "zen-browser.homeModules.beta"
+          "nixcord.homeModules.nixcord"
+          "nvf.homeManagerModules.default"
+          "spicetify-nix.homeManagerModules.spicetify"
+          "zed-extensions.homeManagerModules.default"
         ])
-        ++ [pkgs.nur.repos.adam0.hmModules.opencode-plugins];
+        ++ [
+          pkgs.nur.repos.adam0.hmModules.opencode-plugins
+          (import-tree ../home)
+        ];
 
       home = {
         # Home-manager account identity.

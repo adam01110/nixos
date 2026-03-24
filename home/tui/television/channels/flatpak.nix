@@ -1,9 +1,12 @@
 {
   osConfig,
+  config,
   lib,
   ...
 }: let
   inherit (lib) getExe;
+
+  bat = getExe config.programs.bat.package;
 in {
   programs.television.channels.flatpak = let
     flatpak = getExe osConfig.services.flatpak.package;
@@ -11,7 +14,10 @@ in {
     metadata = {
       name = "flatpak";
       description = "List and manage Flatpak applications";
-      requirements = ["flatpak"];
+      requirements = [
+        "flatpak"
+        "bat"
+      ];
     };
 
     source = {
@@ -20,7 +26,7 @@ in {
       output = "{split:\t:0}";
     };
 
-    preview.command = "${flatpak} info '{split:\t:0}' 2>/dev/null";
+    preview.command = "${flatpak} info --show-metadata '{split:\t:0}' 2>/dev/null | ${bat} --language=ini --style=plain --color=always";
 
     actions = {
       run = {

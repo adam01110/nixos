@@ -19,6 +19,8 @@ in {
         underline = true;
       };
 
+      description.color = "white";
+
       bullet = {
         color = "green";
         bold = true;

@@ -1,9 +1,12 @@
 {
+  config,
   pkgs,
   lib,
   ...
 }: let
   inherit (lib) getExe;
+
+  inherit (config.xdg) configHome;
 
   bat = getExe pkgs.bat;
   tv = getExe pkgs.television;
@@ -20,7 +23,7 @@ in {
 
     source.command = "${tv} list-channels";
 
-    preview.command = ''${bat} -pn --color always ''${XDG_CONFIG_HOME:-$HOME/.config}/television/cable/**/{}.toml'';
+    preview.command = "${bat} -pn --color always ${configHome}/television/cable/**/{}.toml";
 
     keybindings.enter = "actions:channel-enter";
 

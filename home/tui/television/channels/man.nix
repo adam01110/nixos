@@ -1,29 +1,30 @@
 {
+  config,
   pkgs,
   lib,
   ...
 }: let
-  inherit (lib) getExe getExe';
+  inherit (lib) getExe;
 
-  man = getExe pkgs.man;
-  batman = getExe pkgs.bat-extras.batman;
-  apropos = getExe' pkgs.man "apropos";
+  bat = getExe config.programs.bat.package;
+  man = getExe config.programs.man.package;
+  sed = getExe pkgs.gnused;
 in {
   programs.television.channels.man = {
     metadata = {
       name = "man";
       description = "Browse and preview system manual pages";
       requirements = [
-        "apropos"
-        "batman"
         "man"
+        "bat"
+        "sed"
       ];
     };
 
-    source.command = "${apropos} .";
+    source.command = "${man} -k .";
 
     preview = {
-      command = "${batman} '{0}'";
+      command = "MANPAGER=cat MANROFFOPT=-c ${man} '{0}' | ${sed} -e 's/\\x1B\\[[0-9;]*m//g; s/.\\x08//g' | ${bat} --language=man --plain --color=always";
       env.MANWIDTH = "80";
     };
 
