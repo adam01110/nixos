@@ -67,6 +67,12 @@ in {
         enable = true;
         binfmt = true;
       };
+
+      # Enable support for java applications.
+      java = {
+        enable = true;
+        binfmt = true;
+      };
     };
 
     # Use nftables; individual services will add rules if needed.

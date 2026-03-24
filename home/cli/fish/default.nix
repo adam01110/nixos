@@ -1,6 +1,19 @@
-{pkgs, ...}:
-# Configure fish shell.
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+# Configure fish shell.
+let
+  inherit (lib) escapeShellArgs;
+
+  inherit
+    (config.programs.eza)
+    extraOptions
+    icons
+    ;
+in {
   programs.fish = {
     enable = true;
 
@@ -13,6 +26,11 @@
       set -U fzfish_show_hidden true
       set -U fzfish_bat_opts --style=numbers
       set -U fzfish_rm_cmd trash-put
+
+      set -U fzfish_eza_opts ${escapeShellArgs (
+        extraOptions
+        ++ ["--icons=${icons}"]
+      )}
 
       batman --export-env | source
     '';

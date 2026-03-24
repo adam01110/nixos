@@ -101,10 +101,10 @@ in {
       "tag +float, match:title Task Manager - .+"
       "tag +size-task-manager, match:title Task Manager - .+"
 
-      "tag +float, match:class zen, match:title Bitwarden"
-      "tag +float, match:class zen, match:title Picture-in-Picture"
-      "tag +pin, match:class zen, match:title Picture-in-Picture"
-      "tag +size-bitwarden, match:class zen, match:title Bitwarden"
+      "tag +float, match:class zen(-beta)?, match:title Bitwarden"
+      "tag +float, match:title [Pp]icture[ -]in[ -][Pp]icture"
+      "tag +pin, match:title [Pp]icture[ -]in[ -][Pp]icture"
+      "tag +size-bitwarden, match:class zen(-beta)?, match:title Bitwarden"
 
       # Apply behaviors by tag.
       "match:tag forceopacity, opacity 1 override 1 override"

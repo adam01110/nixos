@@ -7,6 +7,7 @@ _: {
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
   };
 
   # Enable gnome polkit for graphical authentication prompts.

@@ -56,7 +56,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.0";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.1";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         noctalia-qs.follows = "noctalia-qs";
@@ -122,10 +122,6 @@
 
     leohenon-opencode = {
       url = "github:leohenon/opencode?ref=v1.2.27-vim.2.6";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mcp-servers-nix = {
-      url = "github:natsukium/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
