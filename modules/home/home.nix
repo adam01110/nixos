@@ -5,7 +5,7 @@ in {
   # User-level files and session environment.
   home = {
     # Copy user avatar to ~/.face for display managers.
-    file.".face".source = ../face.png;
+    file.".face".source = ../../face.png;
 
     preferXdgDirectories = true;
 

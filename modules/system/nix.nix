@@ -67,6 +67,6 @@
   nixpkgs = {
     config.allowUnfree = true;
 
-    overlays = import ../overlays {inherit inputs lib;};
+    overlays = import ../../overlays {inherit inputs lib;};
   };
 }

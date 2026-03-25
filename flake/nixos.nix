@@ -24,7 +24,7 @@ let
       "lanzaboote.nixosModules.lanzaboote"
       "sops-nix.nixosModules.sops"
     ])
-    ++ [(import-tree ../system)];
+    ++ [(import-tree ../modules/system)];
 
   # Helper to build a host with shared args and modules.
   mkHost = name: system:
@@ -41,7 +41,7 @@ let
       modules =
         commonModules
         ++ [
-          (import-tree (../hosts + "/${name}"))
+          (import-tree (../modules/hosts + "/${name}"))
         ];
     };
 
