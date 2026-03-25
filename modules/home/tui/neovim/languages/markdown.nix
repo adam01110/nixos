@@ -1,6 +1,4 @@
-{lib, ...}: let
-  inherit (lib.generators) mkLuaInline;
-in {
+_: {
   programs.nvf.settings.vim = {
     # Enable Markdown support with rumdl and rich markview rendering.
     languages.markdown = {
