@@ -23,7 +23,7 @@ in {
 
     source.command = "${journalctl} --field SYSLOG_IDENTIFIER 2>/dev/null | ${sort} -f";
 
-    preview.command = "${journalctl} -b --no-pager -o short-iso -n 50 SYSLOG_IDENTIFIER='{}' 2>/dev/null | ${bat} --language=log --style=plain --color=always";
+    preview.command = "${journalctl} -b --no-pager -o short-iso -n 50 SYSLOG_IDENTIFIER='{}' 2>/dev/null | ${bat} --language=syslog --theme=ansi --style=plain --color=always";
 
     ui.preview_panel.size = 70;
 

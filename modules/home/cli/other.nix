@@ -13,7 +13,6 @@ in {
       onefetch
       ;
 
-    inherit (pkgs.nur.repos.adam0) cpond;
   };
 
   programs = {

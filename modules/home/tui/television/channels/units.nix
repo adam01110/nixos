@@ -1,13 +1,17 @@
 {
+  config,
   osConfig,
   lib,
+  pkgs,
   ...
 }: let
+  inherit (builtins) attrValues;
   inherit
     (lib)
     getExe
     getExe'
     ;
+  inherit (pkgs) writeShellApplication;
 
   sudo = getExe osConfig.security.sudo-rs.package;
   systemctl = getExe' osConfig.systemd.package "systemctl";
@@ -16,7 +20,10 @@ in {
     metadata = {
       name = "units";
       description = "List and manage systemd services";
-      requirements = ["systemctl"];
+      requirements = [
+        "systemctl"
+        "bat"
+      ];
     };
 
     source = {
@@ -27,8 +34,38 @@ in {
       display = "{split: :0}";
     };
 
-    # Force ANSI colors because television preview runs without a tty.
-    preview.command = "SYSTEMD_COLORS=1 ${systemctl} status '{split: :0}' --no-pager";
+    # Preserve native systemd colors above the status/log separator line.
+    preview.command = "${getExe (writeShellApplication {
+      name = "tv-units-preview";
+      runtimeInputs =
+        attrValues {
+          inherit
+            (pkgs)
+            coreutils
+            gawk
+            ;
+        }
+        ++ [
+          config.programs.bat.package
+          osConfig.systemd.package
+        ];
+      text = ''
+        unit="$1"
+        status="$(SYSTEMD_COLORS=1 systemctl status "$unit" --no-pager --full --lines=50)"
+        sep="$(printf '%s\n' "$status" | awk '/^[[:space:]]*$/ { print NR; exit }')"
+
+        if [ -n "$sep" ]; then
+          printf '%s\n' "$status" | sed -n "1,$((sep - 1))p"
+
+          if [ "$(printf '%s\n' "$status" | wc -l)" -gt "$sep" ]; then
+            printf '\n'
+            printf '%s\n' "$status" | tail -n "+$((sep + 1))" | bat --language=syslog --theme=ansi --style=plain --color=always
+          fi
+        else
+          printf '%s\n' "$status"
+        fi
+      '';
+    })} '{split: :0}'";
 
     keybindings = {
       ctrl-s = "actions:start";
