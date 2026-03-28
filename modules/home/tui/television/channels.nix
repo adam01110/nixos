@@ -18,6 +18,7 @@ in {
         inherit
           (pkgs)
           tlrc
+          trash-cli
           gnused
           gawk
           coreutils

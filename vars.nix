@@ -1,14 +1,12 @@
 {
   # Variables used across modules.
   # - Countrycode: iso country code for regional defaults.
-  # - Noctalialocation: city name for noctalia shell weather integration.
   # - Noctaliafirstdayofweek: 1=monday, 0=sunday, 6=saturday; affects the calendar.
   # - Username: primary local account name.
   # - Gitusername: used by git and related tooling.
   # - Gitpublicsshkey: your public ssh key for authorized_keys and tooling.
   # - Gitsigningkey: gpg key id used for signed commits.
   countryCode = "NL";
-  noctaliaLocation = "REDACTED_LOCATION";
   noctaliaFirstDayOfWeek = 1;
   username = "adam0";
   gitUsername = "adam01110";

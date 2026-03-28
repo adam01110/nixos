@@ -1,17 +1,22 @@
-{vars, ...}:
+{
+  config,
+  vars,
+  ...
+}:
 # Calendar locale and weather location.
 let
-  inherit
-    (vars)
-    noctaliaFirstDayOfWeek
-    noctaliaLocation
-    ;
+  inherit (vars) noctaliaFirstDayOfWeek;
 in {
-  programs.noctalia-shell.settings.location = {
-    analogClockInCalendar = true;
-    firstDayOfWeek = noctaliaFirstDayOfWeek;
-    name = noctaliaLocation;
-    showCalendarWeather = false;
-    showWeekNumberInCalendar = true;
+  sops.secrets."noctalia/location" = {};
+
+  programs.noctalia-shell = {
+    systemd.locationFile = config.sops.secrets."noctalia/location".path;
+
+    settings.location = {
+      analogClockInCalendar = true;
+      firstDayOfWeek = noctaliaFirstDayOfWeek;
+      showCalendarWeather = false;
+      showWeekNumberInCalendar = true;
+    };
   };
 }

@@ -87,11 +87,11 @@ in {
 
   # The noctalia github feed plugin settings.
   sops = {
-    secrets."noctalia_github_token" = {};
+    secrets."noctalia/github_token" = {};
 
-    templates."noctalia_github_config".content = toJSON {
+    templates."noctalia-github-config".content = toJSON {
       username = gitUsername;
-      token = config.sops.placeholder."noctalia_github_token";
+      token = config.sops.placeholder."noctalia/github_token";
       refreshInterval = 2000;
       maxEvents = 64;
       enableSystemNotifications = true;
@@ -99,5 +99,5 @@ in {
     };
   };
 
-  xdg.configFile."noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia_github_config".path;
+  xdg.configFile."noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
 }

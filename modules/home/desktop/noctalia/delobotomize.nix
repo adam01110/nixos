@@ -22,6 +22,7 @@
     then cfg.packageOverrides.package
     else inputs.noctalia.packages.${system}.default;
   overrideArgs = removeAttrs cfg.packageOverrides ["package"];
+  locationFileEnv = optionals (cfg.systemd.locationFile != null) ["NOCTALIA_LOCATION_FILE=${cfg.systemd.locationFile}"];
 in {
   options = {
     programs.noctalia-shell = {
@@ -33,10 +34,18 @@ in {
       };
 
       # Keep gui settings writes outside the nix store.
-      systemd.mutableRuntimeSettings = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Whether noctalia-shell creates a gui-settings.json to store setting changes made within the GUI at runtime.";
+      systemd = {
+        mutableRuntimeSettings = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Whether noctalia-shell creates a gui-settings.json to store setting changes made within the GUI at runtime.";
+        };
+
+        locationFile = mkOption {
+          type = types.nullOr types.path;
+          default = null;
+          description = "Optional file whose trimmed contents override `settings.location.name` before the shell starts. Point this at a sops secret path to keep the location out of the nix store.";
+        };
       };
 
       # Keep a base package and overrides for local patches.
@@ -71,17 +80,21 @@ in {
     in
       optionals useApp2Unit [app2UnitPackage]);
 
-    # Let the gui save settings to a fallback file.
+    # Pass through runtime settings paths and optional location override file.
     systemd.user.services.noctalia-shell.Service.Environment = let
       cfgEnv = config.programs.noctalia-shell.systemd;
     in
-      optionals
-      (cfgEnv.enable && cfgEnv.mutableRuntimeSettings)
-      ["NOCTALIA_SETTINGS_FALLBACK=%h/.config/noctalia/gui-settings.json"];
+      optionals (cfgEnv.enable && cfgEnv.mutableRuntimeSettings) ["NOCTALIA_SETTINGS_FALLBACK=%h/.config/noctalia/gui-settings.json"]
+      ++ optionals cfgEnv.enable locationFileEnv;
 
-    # Restore gui-settings fallback behavior removed upstream.
+    # Restore gui-settings fallback behavior and add a location file override.
     programs.noctalia-shell.package = mkForce ((basePackage.override overrideArgs).overrideAttrs (old: {
-      patches = (old.patches or []) ++ [./patches/noctalia-settings-fallback.patch];
+      patches =
+        (old.patches or [])
+        ++ [
+          ./patches/noctalia-settings-fallback.patch
+          ./patches/noctalia-location-override.patch
+        ];
     }));
   };
 }
