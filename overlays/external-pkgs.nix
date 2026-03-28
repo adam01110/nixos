@@ -1,4 +1,4 @@
-{inputs, ...}: final: prev:
+{inputs, ...}: final: _prev:
 # Expose packages from flake inputs under pkgs.*.
 let
   inherit (final.stdenv.hostPlatform) system;
@@ -28,4 +28,5 @@ let
       package = "tuigreet";
     };
   };
-in (builtins.mapAttrs (_name: fromInput) packages)
+in
+  builtins.mapAttrs (_name: fromInput) packages
