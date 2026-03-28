@@ -23,6 +23,7 @@ in {
           coreutils
           procs
           procps
+          just
           less
           ;
       }

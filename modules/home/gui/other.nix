@@ -23,7 +23,7 @@ in {
         gnome-calculator
         loupe
         obsidian
-        protonvpn-gui
+        proton-vpn
         showtime
         upscayl
         warehouse

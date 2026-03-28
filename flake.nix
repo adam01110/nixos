@@ -15,6 +15,17 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=release";
+    adam0-nur = {
+      url = "path:/home/adam0/Development/nur";
+      inputs = {
+        flake-compat.follows = "nix-cachyos-kernel/flake-compat";
+        flake-parts.follows = "flake-parts";
+        import-tree.follows = "import-tree";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs = {

@@ -1,8 +1,4 @@
-{
-  inputs,
-  lib,
-  ...
-}: final: prev:
+{inputs, ...}: final: prev:
 # Expose packages from flake inputs under pkgs.*.
 let
   inherit (final.stdenv.hostPlatform) system;
@@ -32,18 +28,4 @@ let
       package = "tuigreet";
     };
   };
-in
-  (builtins.mapAttrs (_name: fromInput) packages)
-  // {
-    # Disable the per-test meson timeout to avoid flaky gtksourceview5 builds.
-    gtksourceview5 = prev.gtksourceview5.overrideAttrs (old: {
-      checkPhase =
-        if lib.hasInfix "--timeout-multiplier 0" old.checkPhase
-        then old.checkPhase
-        else
-          builtins.replaceStrings
-          ["meson test --no-rebuild --print-errorlogs"]
-          ["meson test --no-rebuild --print-errorlogs --timeout-multiplier 0"]
-          old.checkPhase;
-    });
-  }
+in (builtins.mapAttrs (_name: fromInput) packages)

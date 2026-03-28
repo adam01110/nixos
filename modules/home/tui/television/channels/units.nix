@@ -23,6 +23,7 @@ in {
       requirements = [
         "systemctl"
         "bat"
+        "sudo"
       ];
     };
 

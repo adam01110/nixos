@@ -41,7 +41,7 @@ in {
         display = {
           show_time = true;
           time_format = "%Y-%m-%d %H:%M:%S";
-          greeting = "ready when you are.";
+          greeting = "authentication required.";
         };
 
         remember = {
