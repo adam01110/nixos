@@ -33,8 +33,8 @@ in {
       hashedPasswordFile = config.sops.secrets.user_password.path;
 
       # Group memberships:
-      # - Wheel: administrative access via sudo.
-      # - Audio: access to sound devices.
+      # - `wheel`: administrative access via sudo.
+      # - `audio`: access to sound devices.
       extraGroups = [
         "wheel"
         "audio"

@@ -10,7 +10,6 @@ let
     (vars)
     fullName
     username
-    gitUsername
     gitPublicSshkey
     gitSigningKey
     ;

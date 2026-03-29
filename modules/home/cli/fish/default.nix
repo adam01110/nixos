@@ -22,8 +22,10 @@ in {
       # Disable fish history.
       set -gx fish_history ""
 
+      # Set the completed command notification to 10s.
       set -U __done_min_cmd_duration 10000
 
+      # Tune fzfish defaults to match the preferred preview and delete tools.
       set -U fzfish_popup true
       set -U fzfish_case_insensitive true
       set -U fzfish_show_hidden true
@@ -35,6 +37,7 @@ in {
         ++ ["--icons=${icons}"]
       )}
 
+      # Reuse bat's pager environment inside fish sessions.
       batman --export-env | source
     '';
 

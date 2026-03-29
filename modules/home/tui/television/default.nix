@@ -1,5 +1,6 @@
 _: {
   programs.television = let
+    # Disable shell hooks and use explicit invocation only.
     enableShellIntegration = false;
   in {
     enable = true;

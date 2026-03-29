@@ -29,6 +29,7 @@ in {
       }
     '';
 
+    # Append generated site styles after profile content overrides.
     userContent = mkAfter (
       readFile (inputs.nix-userstyles.lib.mkUserContent system {
         inherit palette;

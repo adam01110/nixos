@@ -9,9 +9,11 @@ in {
     info.enable = mkForce false;
   };
 
+  # Drop the default package seed so profiles start empty.
   environment.defaultPackages = mkForce [];
 
   services = {
+    # Disable speech stack.
     orca.enable = mkForce false;
     speechd.enable = mkForce false;
   };

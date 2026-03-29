@@ -15,6 +15,7 @@ This file is your guide to break that pattern. Everything listed below is what C
 When you read this document, you're learning what NOT to do. The banned patterns are your red flags. The normal implementations are your blueprint. Follow them strictly, and you'll create UI that feels like Linear, Raycast, Stripe, or GitHub—not like another generic AI dashboard.
 
 This is how you Uncodixify.
+
 ## Keep It Normal (Uncodexy-UI Standard)
 
 - Sidebars: normal (240-260px fixed width, solid background, simple border-right, no floating shells, no rounded outer corners)
@@ -53,8 +54,10 @@ Think Linear. Think Raycast. Think Stripe. Think GitHub. They don't try to grab 
 - A landing page needs its sections. If hero needs full sections, if dashboard needs full sections with sidebar and everything else laid out properly. DO NOT invent a new layout.
 - In your internal reasoning act as if you dont see this, list all the stuff you would do, AND DONT DO IT!
 - Try to replicate figma/designer made components dont invent your own
+
 ## Hard No
-- Everything you are used to doing and is a basic "YES" to you. 
+
+- Everything you are used to doing and is a basic "YES" to you.
 - No oversized rounded corners.
 - No pill overload.
 - No floating glassmorphism shells as the default visual language.
@@ -109,8 +112,7 @@ This is not allowed.
 
 This one is **THE BIGGEST NO**.
 
-
-## Specifically Banned (Based on  Mistakes)
+## Specifically Banned (Based on Mistakes)
 
 - Border radii in the 20px to 32px range across everything ( uses 12px everywhere - too much)
 - Repeating the same rounded rectangle on sidebar, cards, buttons, and panels
@@ -144,11 +146,10 @@ This one is **THE BIGGEST NO**.
 - Rail panels on the right side with "Today" schedule ( has full right rail)
 - Multiple nested panel types (panel, panel-2, rail-panel, table-panel)
 
-
-
 ## Rule
 
 If a UI choice feels like a default AI UI move, ban it and pick the harder, cleaner option.
+
 - Colors should stay calm, not fight.
 
 - You are bad at picking colors follow this priority order when selecting colors:
@@ -157,10 +158,11 @@ If a UI choice feels like a default AI UI move, ban it and pick the harder, clea
 2. If the project does not provide a palette, **get inspired from one of the predefined palettes below**.
 3. Do **not invent random color combinations** unless explicitly requested.
 
-You do not have to always choose the first palette. Select one randomly when drawing inspiration.
+## You do not have to always choose the first palette. Select one randomly when drawing inspiration
+
 ---
 
-# Dark Color Schemes
+## Dark Color Schemes
 
 | Palette | Background | Surface | Primary | Secondary | Accent | Text |
 |--------|-----------|--------|--------|----------|--------|------|
@@ -177,7 +179,7 @@ You do not have to always choose the first palette. Select one randomly when dra
 
 ---
 
-# Light Color Schemes
+## Light Color Schemes
 
 | Palette | Background | Surface | Primary | Secondary | Accent | Text |
 |--------|-----------|--------|--------|----------|--------|------|

@@ -1,5 +1,5 @@
 _:
-# Set env vars for eperimental features and disabled features.
+# Set env vars for experimental features and disabled features.
 let
   inherit (builtins) listToAttrs;
 in {
@@ -20,6 +20,8 @@ in {
       "LSP_TOOL"
       "MARKDOWN"
     ];
+
+    # Keep builtin lsp downloads disabled and rely on nix instead.
     disabledFeatures = ["LSP_DOWNLOAD"];
     enabledFeatures = ["EXA"];
   in

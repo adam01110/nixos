@@ -17,6 +17,8 @@
       "Office"
       "Viewer"
     ];
+
+    # Claim office and ebook formats that zaread converts before handing off to zathura.
     mimeType = [
       "application/msword"
       "application/msword-template"

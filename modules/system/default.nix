@@ -40,8 +40,10 @@ in {
       lanzaboote = {
         enable = true;
 
+        # Manage secure boot keys on the host during initial setup.
         autoGenerateKeys.enable = true;
         autoEnrollKeys = {
+          # Reboot after enrollment so firmware picks up the new keys.
           enable = true;
           autoReboot = true;
         };

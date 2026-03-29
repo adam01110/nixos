@@ -1,5 +1,6 @@
 _: {
   programs.television.settings.ui = let
+    # Use minimal box borders to match the rest of the terminal theme.
     borderType = "plain";
   in {
     input_bar = {

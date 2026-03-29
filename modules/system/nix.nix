@@ -28,6 +28,8 @@
     in {
       # Add binary caches.
       inherit substituters;
+
+      # Allow trusted users to opt into the same caches from per-user config.
       trusted-substituters = substituters;
 
       trusted-public-keys = [
@@ -60,6 +62,7 @@
       use-xdg-base-directories = true;
     };
 
+    # Load access tokens from the generated sops template.
     extraOptions = ''!include ${config.sops.templates."access_tokens".path}'';
   };
 

@@ -34,10 +34,5 @@ _: {
 
     # Enable cursor shader animation.
     custom-shader-animation = true;
-
-    # Enable notifications.
-    notify-on-command-finish = "never";
-    notify-on-command-finish-action = "no-bell,no-notify";
-    notify-on-command-finish-after = "4s";
   };
 }

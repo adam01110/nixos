@@ -5,10 +5,10 @@
     regionalLocale
     ;
 in {
-  # Locale and i18n settings. adjust lc_* as desired per host.
+  # Split message and collation locales from regional formatting defaults.
   i18n = {
     inherit defaultLocale;
-    # Keep locale categories aligned to avoid mismatch warnings.
+    # Keep locale categories explicit so mixed language and regional settings stay consistent.
     extraLocaleSettings = {
       LC_CTYPE = defaultLocale;
       LC_ADDRESS = regionalLocale;

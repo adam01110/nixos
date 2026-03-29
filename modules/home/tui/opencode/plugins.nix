@@ -1,4 +1,6 @@
-_: {
+_:
+# Install utility plugins that change agent behavior or add commands.
+{
   programs.opencode.plugins = {
     unmoji.enable = true;
     cc-safety-net.enable = true;

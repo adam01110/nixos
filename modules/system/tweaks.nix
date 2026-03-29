@@ -44,22 +44,33 @@ in {
 
       # Memory and system tuning for desktop responsiveness.
       kernel.sysctl = {
+        # Prefer compressed swap sooner to keep file cache and anonymous memory flexible.
         "vm.swappiness" = 100;
         "vm.vfs_cache_pressure" = 50;
+
+        # Cap dirty data in bytes so writeback starts predictably across ram sizes.
         "vm.dirty_bytes" = 268435456;
         "vm.page-cluster" = 0;
         "vm.dirty_background_bytes" = 67108864;
         "vm.dirty_writeback_centisecs" = 1500;
+
+        # Drop watchdog and console noise that can add scheduler jitter.
         "kernel.nmi_watchdog" = 0;
         "kernel.unprivileged_userns_clone" = 1;
         "kernel.printk" = "3 3 3 3";
+
+        # Keep kernel address exposure and kexec locked down despite the performance focus.
         "kernel.kptr_restrict" = 2;
         "kernel.kexec_load_disabled" = 1;
+
+        # Leave headroom for heavier desktop and gaming network bursts.
         "net.core.netdev_max_backlog" = 4096;
         "fs.file-max" = 2097152;
         "net.ipv4.ip_forward" = 1;
         "net.ipv4.tcp_mtu_probing" = 1;
         "net.ipv4.tcp_tw_reuse" = 1;
+
+        # Remove the global rt throttle so audio workloads can hold cpu time when needed.
         "kernel.sched_rt_runtime_us" = -1;
       };
 

@@ -34,7 +34,7 @@ in {
           inherit
             (pkgs)
             wl-clipboard
-            # Lsp's
+            # Lsp's.
             lua-language-server
             bash-language-server
             yaml-language-server
@@ -44,7 +44,7 @@ in {
             taplo
             typescript-language-server
             rust-analyzer
-            # Formatters
+            # Formatters.
             alejandra
             biome
             fish
