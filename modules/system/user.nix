@@ -13,7 +13,11 @@ let
     getAttrFromPath
     splitString
     ;
-  inherit (vars) username;
+  inherit
+    (vars)
+    username
+    fullName
+    ;
 
   import-tree = inputs.import-tree.withLib lib;
 in {
@@ -39,7 +43,7 @@ in {
       isNormalUser = true;
       # Allow non-standard shells without /etc/shells checks.
       ignoreShellProgramCheck = true;
-      description = username;
+      description = fullName;
       shell = pkgs.fish;
     };
   };

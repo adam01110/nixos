@@ -1,14 +1,14 @@
 {vars, ...}:
 # Configure onlyoffice desktop.
 let
-  inherit (vars) username;
+  inherit (vars) fullName;
 in {
   programs.onlyoffice = {
     enable = true;
 
     # Set ui preferences.
     settings = {
-      inherit username;
+      username = fullName;
       UITheme = "theme-dark";
       uiscaling = 100;
       usegpu = true;

@@ -8,6 +8,7 @@
 let
   inherit
     (vars)
+    fullName
     username
     gitUsername
     gitPublicSshkey
@@ -46,7 +47,7 @@ in {
       settings = {
         # Identity.
         user = {
-          name = gitUsername;
+          name = fullName;
           signingkey = gitSigningKey;
         };
 

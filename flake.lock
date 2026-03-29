@@ -17,38 +17,6 @@
         "type": "github"
       }
     },
-    "adam0-nur": {
-      "inputs": {
-        "flake-compat": [
-          "nix-cachyos-kernel",
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "import-tree": [
-          "import-tree"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ],
-        "treefmt-nix": [
-          "treefmt-nix"
-        ]
-      },
-      "locked": {
-        "narHash": "sha256-3bYu2h/dlR+oNijITnm4n3jxQTukiq/j8fMyaphpUOY=",
-        "path": "/home/adam0/Development/nur",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/adam0/Development/nur",
-        "type": "path"
-      }
-    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -1859,7 +1827,6 @@
     },
     "root": {
       "inputs": {
-        "adam0-nur": "adam0-nur",
         "determinate": "determinate",
         "disko": "disko",
         "flake-parts": "flake-parts",
