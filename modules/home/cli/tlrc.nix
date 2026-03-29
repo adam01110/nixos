@@ -1,5 +1,4 @@
 {pkgs, ...}:
-
 # Configure tlrc output formatting and package installation.
 let
   tomlFormat = pkgs.formats.toml {};

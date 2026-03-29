@@ -3,7 +3,6 @@
   lib,
   ...
 }:
-
 # Wrap ripgrep-all with adapter runtime dependencies.
 let
   inherit (builtins) attrValues;
