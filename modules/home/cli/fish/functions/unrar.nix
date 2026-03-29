@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# Fish archive extraction helper for rar files.
+# Define the fish `unrar` archive extraction helper.
 let
   inherit (builtins) attrValues;
   inherit

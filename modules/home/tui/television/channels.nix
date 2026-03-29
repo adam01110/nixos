@@ -4,7 +4,9 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+# Bundle television channel command dependencies.
+let
   inherit (builtins) attrValues;
   inherit
     (lib)

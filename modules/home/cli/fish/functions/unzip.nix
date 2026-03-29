@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# Fish archive extraction helper for zip files.
+# Define the fish `unzip` archive extraction helper.
 let
   inherit (builtins) attrValues;
   inherit

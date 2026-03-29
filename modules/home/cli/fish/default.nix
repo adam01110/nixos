@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-# Configure fish shell.
+# Configure fish shell defaults and shared tools.
 let
   inherit (lib) escapeShellArgs;
 

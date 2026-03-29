@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-# Xdg desktop entry for zaread so xdg-open can route non-native formats to zathura.
+# Install zaread with a desktop entry.
 {
   home.packages = [pkgs.zaread];
 

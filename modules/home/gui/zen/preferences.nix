@@ -3,8 +3,9 @@
   lib,
   vars,
   ...
-}: let
-  # Zen browser preference defaults and performance tuning.
+}:
+# Zen browser preference defaults and performance tuning.
+let
   inherit
     (lib)
     mkEnableOption

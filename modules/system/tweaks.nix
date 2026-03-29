@@ -1,10 +1,11 @@
-# Low-level system tweaks for desktop responsiveness and performance.
 {
   config,
   lib,
   pkgs,
   ...
-}: let
+}:
+# Low-level system tweaks for desktop responsiveness and performance.
+let
   inherit (builtins) attrValues;
   inherit
     (lib)

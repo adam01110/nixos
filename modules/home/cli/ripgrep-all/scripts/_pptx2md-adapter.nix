@@ -2,7 +2,7 @@
   lib,
   pkgs,
 }:
-# Wrap pptx2md so rga can pass files over stdin.
+# Provide a pptx2md adapter for ripgrep-all stdin input.
 let
   inherit (builtins) attrValues;
   inherit

@@ -3,7 +3,9 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+# Configure opencode integration, wrapper, and desktop entry.
+let
   inherit (builtins) attrValues;
   inherit
     (lib)

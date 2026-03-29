@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# Fish archive extraction helper for 7z files.
+# Define the fish `un7z` archive extraction helper.
 let
   inherit (builtins) attrValues;
   inherit

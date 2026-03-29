@@ -2,7 +2,10 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+
+# Wrap ripgrep-all with adapter runtime dependencies.
+let
   inherit (builtins) attrValues;
   inherit (lib) makeBinPath;
   inherit (pkgs) symlinkJoin;

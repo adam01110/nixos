@@ -1,10 +1,11 @@
-# System-wide configuration entry point for nixos.
 {
   config,
   lib,
   pkgs,
   ...
-}: let
+}:
+# System-wide configuration entry point for NixOS.
+let
   inherit (builtins) attrValues;
   inherit
     (lib)

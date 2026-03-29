@@ -1,5 +1,5 @@
 {pkgs, ...}:
-# Add some plugins to the fish shell.
+# Install fish plugins and their supporting tools.
 let
   inherit (builtins) attrValues;
 in {

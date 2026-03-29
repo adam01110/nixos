@@ -1,5 +1,5 @@
 _:
-# Install utility plugins that change agent behavior or add commands.
+# Enable opencode plugins for agent behavior and notifications.
 {
   programs.opencode.plugins = {
     unmoji.enable = true;

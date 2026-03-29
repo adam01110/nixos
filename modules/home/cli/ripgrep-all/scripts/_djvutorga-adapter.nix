@@ -2,7 +2,7 @@
   lib,
   pkgs,
 }:
-# Wrap djvused so rga can pass files over stdin.
+# Provide a djvused adapter for ripgrep-all stdin input.
 let
   inherit (builtins) attrValues;
   inherit

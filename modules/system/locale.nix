@@ -1,4 +1,6 @@
-{vars, ...}: let
+{vars, ...}:
+# Locale defaults and category-specific regional overrides.
+let
   inherit
     (vars)
     defaultLocale

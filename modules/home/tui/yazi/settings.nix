@@ -1,4 +1,6 @@
-_: let
+_:
+# Configure yazi file manager and preview settings.
+let
   # Memory allocation for image previews in megabytes.
   imageAllocMB = 1024;
 in {

@@ -1,4 +1,6 @@
-_: {
+_:
+# Enable television with shell integration disabled.
+{
   programs.television = let
     # Disable shell hooks and use explicit invocation only.
     enableShellIntegration = false;

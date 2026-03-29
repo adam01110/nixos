@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# Fish archive extraction helper for tar files.
+# Define the fish `untar` archive extraction helper.
 let
   inherit (builtins) attrValues;
   inherit

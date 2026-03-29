@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-# Configure opencode formatter commands by extension.
+# Configure opencode formatter commands by file extension.
 let
   inherit
     (lib)

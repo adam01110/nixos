@@ -2,7 +2,9 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+# Wrap the cpond command with preferred defaults.
+let
   inherit (lib) makeBinPath;
   inherit (pkgs) symlinkJoin;
 

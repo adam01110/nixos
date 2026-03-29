@@ -1,4 +1,7 @@
-{pkgs, ...}: let
+{pkgs, ...}:
+
+# Configure tlrc output formatting and package installation.
+let
   tomlFormat = pkgs.formats.toml {};
 in {
   xdg.configFile."tlrc/config.toml".source = tomlFormat.generate "tlrc-config.toml" {

@@ -1,4 +1,6 @@
-_: {
+_:
+# Configure television user interface settings.
+{
   programs.television.settings.ui = let
     # Use minimal box borders to match the rest of the terminal theme.
     borderType = "plain";
