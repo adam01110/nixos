@@ -11,8 +11,10 @@
     getExe'
     makeBinPath
     ;
-
+  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (pkgs) symlinkJoin;
+
+  home = config.home.homeDirectory;
 in {
   programs.opencode = {
     enable = true;
@@ -60,6 +62,9 @@ in {
   };
 
   xdg = {
+    # Point opencode at the shared agent skills directory.
+    configFile."opencode/skills".source = mkOutOfStoreSymlink "${home}/.agents/skills";
+
     # Create desktop entry to allow launching via launcher.
     desktopEntries.opencode = {
       name = "Opencode";

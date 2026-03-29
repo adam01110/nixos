@@ -20,6 +20,7 @@ in {
     grep = ripgrep;
     egrep = ripgrep;
     fgrep = "${ripgrep} -F";
+    npx = getExe' pkgs.bun "bunx";
 
     speedtest = getExe pkgs.speedtest-go;
 
