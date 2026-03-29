@@ -1,6 +1,12 @@
-{config, ...}:
-# Configure ghostty settings.
 {
+  config,
+  lib,
+  ...
+}:
+# Configure ghostty settings.
+let
+  inherit (lib) getExe;
+in {
   programs.ghostty = {
     enable = true;
 
@@ -10,4 +16,15 @@
 
   # Put the shader file into the ghostty config dir.
   xdg.configFile."ghostty/cursor.glsl".source = ./cursor.glsl;
+
+  # Start Ghostty with a systemd service.
+  systemd.user.services.ghostty = {
+    Unit = {
+      After = ["graphical-session.target"];
+      PartOf = ["graphical-session.target"];
+    };
+
+    Service.ExecStart = "${getExe config.programs.ghostty.package} --initial-window=false";
+    Install.WantedBy = ["graphical-session.target"];
+  };
 }

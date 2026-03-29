@@ -1,5 +1,10 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (builtins) attrValues;
+  inherit (lib) mkAfter;
 in {
   xdg = {
     portal = {
@@ -46,5 +51,10 @@ in {
           ;
       };
     };
+  };
+
+  systemd.user.services.xdg-desktop-portal = {
+    after = mkAfter ["graphical-session.target"];
+    wantedBy = ["graphical-session.target"];
   };
 }
