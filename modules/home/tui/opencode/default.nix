@@ -25,7 +25,7 @@ in {
     # Wrap opencode with mcp's, formatters, and lsp's.
     package = symlinkJoin {
       name = "opencode-wrapped";
-      paths = [pkgs.opencode];
+      paths = [pkgs.nur.repos.adam0.opencode];
       nativeBuildInputs = [pkgs.makeWrapper];
 
       # Source plugin credentials before launching the wrapped binary.

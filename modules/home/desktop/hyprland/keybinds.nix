@@ -54,7 +54,6 @@ in {
         bind = SUPER, Return, exec, ${app2unit} ${ghostty} #"Terminal"
         bind = SUPER, E, exec, ${app2unit} ${terminalCommand} --title=Yazi ${yazi} #"File manager"
         bind = SUPER, N, exec, ${app2unit} ${equibop} #"Discord"
-        bind = SUPER, T, togglespecialworkspace, beeper #"Beeper"
         bind = SUPER, B, exec, ${app2unit} ${zen-browser} #"Browser"
         bind = SUPER, M, exec, ${app2unit} ${steam} #"Steam"
 

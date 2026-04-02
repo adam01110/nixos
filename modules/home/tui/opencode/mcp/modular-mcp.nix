@@ -19,7 +19,6 @@ let
     (pkgs)
     context7-mcp
     github-mcp-server
-    mcp-nixos
     ;
 in {
   sops = {
@@ -66,16 +65,6 @@ in {
           '';
         });
         args = ["stdio" "--read-only"];
-      };
-
-      nix = {
-        description = ''
-          **Always use the NixOS MCP for anything NixOS- or Home Manager–related**
-          (packages, options, flakes, channels, nix-darwin).
-          Automatically call the NixOS MCP tools to look up package/option information, versions, channels, or flakes without me having to explicitly ask.
-        '';
-
-        command = getExe mcp-nixos;
       };
     };
   };

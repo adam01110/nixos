@@ -4,7 +4,10 @@ _:
   programs.opencode.settings = {
     autoupdate = false;
 
-    tui.diff_style = "stacked";
+    tui = {
+      diff_style = "stacked";
+      scroll_acceleration.enabled = true;
+    };
 
     watcher.ignore = [
       ".git/**"

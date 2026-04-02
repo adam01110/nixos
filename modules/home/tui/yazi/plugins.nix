@@ -1,40 +1,79 @@
-{pkgs, ...}:
+{
+  config,
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
 # Register plugins that do not have dedicated module files.
 let
   inherit (builtins) attrValues listToAttrs;
+  inherit
+    (lib)
+    getAttrFromPath
+    splitString
+    ;
   inherit (pkgs.lib.attrsets) nameValuePair;
 in {
   # Add runtime helpers for yazi plugins.
   programs.yazi.package = pkgs.yazi.override {
-    extraPackages = attrValues {
-      inherit
-        (pkgs)
-        # mediainfo & spot-audio
-        mediainfo
-        # ucp
-        wl-clipboard
-        # faster-piper
-        glow
-        sqlite
-        # recycle-bin
-        trash-cli
-        # spot
-        coreutils
-        # spot-audio & spot-video
-        ffmpeg
-        # spot-image
-        imagemagick
-        inkscape
-        # spot-cbz & preview-cbz
-        unzip
-        # preview-git
-        git
-        # preview-cbz
-        unrar
-        # preview-epub
-        gnome-epub-thumbnailer
-        ;
-    };
+    # Drop Yazi's builtin fzf and zoxide helpers from the wrapped runtime.
+    optionalDeps =
+      attrValues {
+        inherit
+          (pkgs)
+          jq
+          poppler-utils
+          _7zz
+          ffmpeg
+          imagemagick
+          chafa
+          resvg
+          ;
+      }
+      # Reuse packages from home-manager modules to avoid duplicate package selections.
+      ++ (map (program: config.programs.${program}.package) [
+        "fd"
+        "ripgrep"
+      ]);
+
+    extraPackages =
+      attrValues {
+        inherit
+          (pkgs)
+          # mediainfo & spot-audio
+          mediainfo
+          # ucp
+          wl-clipboard
+          # faster-piper
+          glow
+          sqlite
+          # recycle-bin
+          trash-cli
+          # spot
+          coreutils
+          # spot-image
+          inkscape
+          # spot-cbz & preview-cbz
+          unzip
+          # preview-cbz
+          unrar
+          # preview-epub
+          gnome-epub-thumbnailer
+          # mount
+          util-linux
+          ;
+      }
+      # Reuse packages from home-manager modules to avoid duplicate package selections.
+      ++ (map (program: config.programs.${program}.package) [
+        "git"
+        "television"
+        "bat"
+      ])
+      # Pull packaged tools from the system config when home-manager does not own them.
+      ++ (map (path: (getAttrFromPath (splitString "." path) osConfig).package) [
+        "services.udisks2"
+      ]);
   };
 
   programs.yazi.plugins = let

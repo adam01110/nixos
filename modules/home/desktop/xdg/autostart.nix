@@ -6,8 +6,12 @@
 }:
 # Manage autostart desktop entries.
 let
-  inherit (lib) getExe;
-  inherit (pkgs) makeDesktopItem;
+  inherit (lib) getExe getExe';
+  inherit
+    (pkgs)
+    makeDesktopItem
+    writeShellScriptBin
+    ;
 
   equibopAutostart = makeDesktopItem {
     name = "equibop-autostart";
@@ -21,6 +25,22 @@ let
       "Chat"
     ];
   };
+
+  beeperAutostart = makeDesktopItem {
+    name = "beeper-autostart";
+    desktopName = "Beeper";
+    exec = getExe (writeShellScriptBin "beeper-autostart" ''
+      sleep 4
+      exec ${getExe' pkgs.nur.repos.forkprince.beeper-nightly "beeper"} --no-sandbox
+    '');
+    icon = "beepertexts";
+    startupWMClass = "Beeper";
+    categories = [
+      "Network"
+      "InstantMessaging"
+      "Chat"
+    ];
+  };
 in {
   xdg.autostart = {
     enable = true;
@@ -28,7 +48,7 @@ in {
     # Start essential background apps on login.
     entries = [
       "${equibopAutostart}/share/applications/equibop-autostart.desktop"
-      "${pkgs.nur.repos.forkprince.beeper-nightly}/share/applications/beepertexts.desktop"
+      "${beeperAutostart}/share/applications/beeper-autostart.desktop"
     ];
   };
 }

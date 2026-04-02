@@ -19,10 +19,6 @@ let
     nix = {input = "determinate";};
     oxicord = {input = "oxicord";};
 
-    opencode = {
-      input = "leohenon-opencode";
-      package = "opencode";
-    };
     tuigreet = {
       input = "tuigreet";
       package = "tuigreet";

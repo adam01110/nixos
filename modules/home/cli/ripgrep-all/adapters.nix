@@ -23,8 +23,9 @@ in {
             (pkgs)
             csvkit
             fastgron
-            qq
             ;
+
+          inherit (pkgs.nur.repos.adam0) qq-jfryy;
         })}
       '';
     };

@@ -20,6 +20,9 @@ _:
     # Power and battery information service used by desktops.
     upower.enable = true;
 
+    # Disk management dbus service.
+    udisks2.enable = true;
+
     # Enable gnome evolution data server for calendar and contact integration.
     gnome.evolution-data-server.enable = true;
   };

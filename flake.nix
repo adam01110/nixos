@@ -56,7 +56,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.1";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.4";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         noctalia-qs.follows = "noctalia-qs";
@@ -120,11 +120,6 @@
       };
     };
 
-    leohenon-opencode = {
-      url = "github:leohenon/opencode?ref=v1.2.27-vim.2.6";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs = {
@@ -166,7 +161,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.54.2";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.54.3";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
