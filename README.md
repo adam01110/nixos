@@ -5,6 +5,19 @@
 
   Modular multi-host NixOS and Home Manager flake for desktop, laptop, and virtual machine systems.
 
+  [![CI](https://img.shields.io/github/actions/workflow/status/adam01110/nixos/ci.yml?branch=main&style=for-the-badge&label=CI&labelColor=504945&color=cc241d)](https://github.com/adam01110/nixos/actions/workflows/ci.yml)
+  [![Repo Size](https://img.shields.io/github/repo-size/adam01110/nixos?style=for-the-badge&label=repo%20size&labelColor=504945&color=3c3836)](https://github.com/adam01110/nixos)
+
+  <br />
+
+  [![NixOS](https://img.shields.io/badge/NixOS-unstable-458588?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.org)
+  [![Flakes](https://img.shields.io/badge/Nix-flakes-689d6a?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.wiki/wiki/Flakes)
+  [![Home Manager](https://img.shields.io/badge/Home%20Manager-managed-b16286?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/home-manager)
+  [![Stylix](https://img.shields.io/badge/Stylix-theming-8f3f71?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/danth/stylix)
+  [![SOPS Nix](https://img.shields.io/badge/SOPS%20Nix-secrets-fe8019?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/Mic92/sops-nix)
+  [![Disko](https://img.shields.io/badge/Disko-managed%20storage-98971a?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/disko)
+  [![Lanzaboote](https://img.shields.io/badge/Lanzaboote-secure%20boot-458588?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/lanzaboote)
+
   [Overview](#overview) - [Layout](#layout) - [Hosts](#hosts) - [Usage](#usage) - [Secrets](#secrets)
 </div>
 
@@ -14,26 +27,25 @@ This repository contains a personal NixOS setup built around `flake-parts`, `Hom
 
 - Shared NixOS modules under `modules/system`, Home Manager modules under `modules/home`, and per-host overrides under `modules/hosts`.
 - Three flake outputs: `desktop`, `laptop`, and `vm`, all created from the same module stack in `flake/nixos.nix`.
-- Declarative storage with Disko, encrypted secrets with SOPS, Secure Boot with Lanzaboote, and theming through Stylix.
-- Wayland-first desktop built on Hyprland, UWSM, `greetd` + `tuigreet`, and Noctalia Shell.
-- Custom overlays and packages for local tooling, external flake packages, and Hyprland plugin overrides.
+- Declarative storage with `Disko`, encrypted secrets with `Sops-nix`, Secure Boot with `Lanzaboote`, and theming through `Stylix`.
+- Desktop built on `Hyprland`, `UWSM`, `greetd` + `tuigreet`, and `Noctalia Shell`.
 
 ## Layout
 
 ```text
 .
-|- flake.nix              # Flake entrypoint and inputs
-|- flake/                 # flake-parts modules (hosts, dev shell, formatting)
-|- modules/
-|  |- system/             # Shared NixOS modules
-|  |- home/               # Shared Home Manager modules
-|  `- hosts/              # desktop, laptop, vm overrides
-|- overlays/              # Local and upstream overlays
-|- pkgs/                  # Custom packages exposed through overlays
-|- secrets/               # SOPS-encrypted secrets
-|- keys/                  # Public keys used for secret recipients
-|- vars.nix               # Shared identity and locale values
-`- face.png               # Header/avatar asset
+├── flake.nix              # Flake entrypoint and inputs.
+├── flake/                 # flake-parts modules.
+├── modules/
+│   ├── system/            # Shared NixOS modules.
+│   ├── home/              # Shared Home Manager modules.
+│   └── hosts/             # desktop, laptop, vm overrides.
+├── overlays/              # Local and upstream overlays.
+├── pkgs/                  # Custom packages exposed through overlays.
+├── secrets/               # SOPS-encrypted secrets.
+├── keys/                  # Public keys used for secret recipients.
+├── vars.nix               # Shared identity and locale values.
+└── face.png               # Avatar asset.
 ```
 
 ## Hosts
@@ -65,14 +77,10 @@ nix develop
 > [!IMPORTANT]
 > The host modules point at real installation devices such as `/dev/nvme0n1` and `/dev/vda`, and the configuration expects an Age key at `/var/lib/sops-nix/key.txt`. Review `modules/hosts/*/default.nix`, `modules/system/disk.nix`, and `modules/system/sops.nix` before using this on a new machine.
 
-> [!NOTE]
-> `direnv` is enabled through `.envrc`, and the default dev shell currently provides `sops` and `tokei`.
-
 ## Secrets
 
-- Secrets live in `secrets/secrets.yaml` and are managed with SOPS.
+- Secrets live in `secrets/secrets.yaml` and are managed with Sops-nix.
 - Recipient rules are defined in `.sops.yaml` for one user key and three host Age keys.
-- System modules consume those secrets for items such as the user password, GitHub access tokens, and per-host DNS settings.
 
 Edit flow:
 
@@ -90,5 +98,4 @@ sops secrets/secrets.yaml
 ## Tooling
 
 - Formatting and linting are wired through `treefmt-nix` in `flake/treefmt.nix`.
-- Enabled tools include `alejandra`, `deadnix`, `statix`, `nixf-diagnose`, `biome`, `shfmt`, `shellcheck`, `yamlfmt`, `yamllint`, `stylua`, and `rumdl-format`.
 - The repository uses `import-tree` extensively to auto-discover modules, overlays, and local packages.

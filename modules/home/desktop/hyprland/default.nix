@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   ...
 }:
 # Home manager hyprland configuration: plugins, quickshell, and extras.

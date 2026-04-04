@@ -44,7 +44,6 @@ in {
         (pkgs.nur.repos.adam0.spicetifyExtensions)
         volumePercentage
         moreLyrics
-        cacheCleaner
         playlistIcons
         ;
     };

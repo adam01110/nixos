@@ -1,307 +1,189 @@
 {
-  osConfig,
   inputs,
   lib,
+  osConfig,
   pkgs,
-  vars,
   ...
 }:
-# Configure nix-search-tv with builtin indexes and flake-specific option sources.
-# This is completely fucking ai generated and does not work correctly at all, but atleast its a POC of which i can work of in the future.
+# Configure nix-search-tv with curated builtin indexes and filtered custom option sources.
 let
-  system = pkgs.stdenv.hostPlatform.system;
-  stateVersion = osConfig.system.stateVersion;
+  inherit (builtins) toJSON;
+  inherit (lib) mapAttrs;
+  hmLib = import "${inputs.home-manager}/modules/lib/stdlib-extended.nix" lib;
 
-  helpers = rec {
-    keepStorePath = value: toString value;
-
-    filterOptionsJson = name: input: prefixes: json:
-      if json == null
-      then null
-      else
-        keepStorePath (
-          pkgs.runCommandLocal "nix-search-tv-${name}-options" {
-            nativeBuildInputs = [pkgs.jq];
-            prefixesJson = builtins.toJSON prefixes;
-          } ''
-            mkdir -p "$out"
-            jq \
-              --arg prefix ${lib.escapeShellArg (keepStorePath input)} \
-              --argjson prefixes "$prefixesJson" \
-              'with_entries(select(
-                (.key as $key |
-                  any(.value.declarations[]?; startswith($prefix))
-                  or any($prefixes[]?; $key | startswith(.))
-                )
-              ))' \
-              ${lib.escapeShellArg json} > "$out/options.json"
-          ''
-        )
-        + "/options.json";
-
-    docsJsonFile = name: path:
-      keepStorePath path
-      + (
-        {
-          home-manager-flake = "/share/doc/home-manager/options.json";
-          nixcord = "/share/doc/nixos/options.json";
-          nvf = "/share/doc/nvf/options.json";
-        }.${
-          name
-        } or ""
-      );
-
-    legacyDocsJsonFile = name: path:
-      keepStorePath path
-      + (
-        {
-          spicetify-nix = "/share/doc/nixos/options.json";
-        }.${
-          name
-        } or ""
-      );
-
-    tryInputPath = path: let
-      result = builtins.tryEval (lib.getAttrFromPath path inputs);
-    in
-      if result.success
-      then keepStorePath result.value
-      else null;
-
-    docsJson = name: let
-      path = tryInputPath [name "packages" system "docs-json"];
-    in
-      if path == null
-      then null
-      else docsJsonFile name path;
-
-    legacyDocsJson = name: let
-      path = tryInputPath [name "legacyPackages" system "docs" "optionsJSON"];
-    in
-      if path == null
-      then null
-      else legacyDocsJsonFile name path;
-    tryOptionsJson = options: let
-      json = builtins.tryEval (
-        (
-          pkgs.nixosOptionsDoc {
-            inherit options;
-            warningsAreErrors = false;
-          }
-        ).optionsJSON
-      );
-    in
-      if json.success
-      then keepStorePath json.value + "/share/doc/nixos/options.json"
-      else null;
+  hmBaseModules = import "${inputs.home-manager}/modules/modules.nix" {
+    lib = hmLib;
+    inherit pkgs;
+    check = false;
   };
 
-  homeManager = let
-    hmLib = import "${inputs.home-manager}/modules/lib/stdlib-extended.nix" lib;
-    hmModules = import "${inputs.home-manager}/modules/modules.nix" {
-      lib = hmLib;
-      inherit pkgs;
-      check = false;
+  hmDocModule = {
+    home = {
+      homeDirectory = "/home/nix-search-tv";
+      stateVersion = osConfig.system.stateVersion;
+      username = "nix-search-tv";
     };
-    baseModule.home = {
-      username = "doc";
-      homeDirectory = "/home/doc";
-      inherit stateVersion;
-    };
-  in {
-    optionsJson = name: input: prefixes: module:
-      helpers.filterOptionsJson name input prefixes (
-        helpers.tryOptionsJson (
-          (hmLib.evalModules {
-            modules = [baseModule module] ++ hmModules;
-            class = "homeManager";
-            specialArgs = {
-              modulesPath = "${inputs.home-manager}/modules";
-              inherit
-                inputs
-                vars
-                ;
-              osConfig.services.flatpak.enable = false;
-            };
-          }).options
-        )
-      );
   };
 
-  nixos = {
-    optionsJson = name: input: prefixes: module:
-      helpers.filterOptionsJson name input prefixes (
-        helpers.tryOptionsJson (
-          (
-            import "${pkgs.path}/nixos/lib/eval-config.nix" {
-              inherit system;
+  mkHomeManagerDoc = module: let
+    # Evaluate third-party Home Manager modules against Home Manager's full module set.
+    homeManagerOptions =
+      (hmLib.evalModules {
+        modules = hmBaseModules ++ [hmDocModule module];
+        class = "homeManager";
+      }).options;
+  in
+    (
+      pkgs.nixosOptionsDoc {
+        options = removeAttrs homeManagerOptions ["_module"];
+        warningsAreErrors = false;
+      }
+    ).optionsJSON;
+
+  mkNixosDoc = module:
+    (
+      pkgs.nixosOptionsDoc {
+        inherit
+          ((
+            lib.nixosSystem {
+              inherit (pkgs.stdenv.hostPlatform) system;
               modules = [
-                {
-                  system.stateVersion = stateVersion;
-                }
+                {system.stateVersion = osConfig.system.stateVersion;}
                 module
               ];
+
               specialArgs = {
-                inherit
-                  inputs
-                  vars
-                  ;
+                inherit inputs;
+                modulesPath = "${inputs.nixpkgs}/nixos/modules";
               };
             }
-          ).options
-        )
-      );
-  };
-
-  stylix = let
-    noPkgs = {
-      inherit (pkgs) _type;
-      formats = builtins.mapAttrs (_: fmt: args: {inherit (fmt args) type;}) pkgs.formats;
-    };
-
-    evalDocs = module:
-      lib.evalModules {
-        modules = ["${inputs.stylix}/doc/eval_compat.nix"] ++ lib.toList module;
-        specialArgs = {
-          pkgs = noPkgs;
-          config = noConfig;
-        };
-      };
-
-    noConfig = let
-      configuration = evalDocs {
-        options.lib = lib.mkOption {
-          type = lib.types.attrsOf lib.types.attrs;
-          description = "";
-          default = {};
-          visible = false;
-        };
-        imports = ["${inputs.stylix}/stylix/target.nix"];
-      };
-    in {
-      lib.stylix = {
-        inherit
-          (configuration.config.lib.stylix)
-          mkEnableIf
-          mkEnableTarget
-          mkEnableTargetWith
-          mkEnableWallpaper
+          ))
+          options
           ;
-      };
+
+        warningsAreErrors = false;
+      }
+    ).optionsJSON;
+
+  mkFilteredOptionsFile = name: rawDoc: prefixes:
+    toString (
+      pkgs.runCommandLocal "nix-search-tv-${name}-options" {
+        nativeBuildInputs = [pkgs.jq];
+        inherit rawDoc;
+        prefixesJson = toJSON prefixes;
+      } ''
+        mkdir -p "$out"
+
+        jq -S \
+          --argjson prefixes "$prefixesJson" \
+          'with_entries(
+            . as $entry
+            | select(any(
+              $prefixes[];
+              . as $prefix
+              | ($entry.key == $prefix) or ($entry.key | startswith($prefix + "."))
+            ))
+          )' \
+          "$rawDoc/share/doc/nixos/options.json" > "$out/options.json"
+      ''
+    )
+    + "/options.json";
+
+  # Keep only sources with stable namespaces.
+  sources = {
+    # Home Manager-backed sources.
+    nixcord = {
+      rawDoc = mkHomeManagerDoc inputs.nixcord.homeModules.nixcord;
+      prefixes = ["programs.nixcord"];
     };
-  in {
-    optionsJson = name: input: prefixes: module:
-      helpers.filterOptionsJson name input prefixes (helpers.tryOptionsJson ((evalDocs module).options));
+    nix-flatpak = {
+      rawDoc = mkHomeManagerDoc inputs.nix-flatpak.homeManagerModules.nix-flatpak;
+      prefixes = ["services.flatpak"];
+    };
+    nix-index-database = {
+      rawDoc = mkHomeManagerDoc inputs.nix-index-database.homeModules.nix-index;
+      prefixes = [
+        "programs.nix-index-database"
+        "programs.nix-index"
+      ];
+    };
+    noctalia = {
+      rawDoc = mkHomeManagerDoc inputs.noctalia.homeModules.default;
+      prefixes = ["programs.noctalia-shell"];
+    };
+    nvf = {
+      rawDoc = mkHomeManagerDoc inputs.nvf.homeManagerModules.default;
+      prefixes = ["programs.nvf"];
+    };
+    overzicht = {
+      rawDoc = mkHomeManagerDoc inputs.overzicht.homeModules.default;
+      prefixes = ["programs.overzicht"];
+    };
+    spicetify-nix = {
+      rawDoc = mkHomeManagerDoc inputs.spicetify-nix.homeManagerModules.spicetify;
+      prefixes = ["programs.spicetify"];
+    };
+    sops-nix-home-manager = {
+      rawDoc = mkHomeManagerDoc inputs.sops-nix.homeManagerModules.sops;
+      prefixes = ["sops"];
+    };
+    stylix-home-manager = {
+      rawDoc = mkHomeManagerDoc inputs.stylix.homeModules.stylix;
+      prefixes = ["stylix"];
+    };
+    zen-browser = {
+      rawDoc = mkHomeManagerDoc inputs.zen-browser.homeModules.beta;
+      prefixes = ["programs.zen-browser"];
+    };
+    zed-extensions = {
+      rawDoc = mkHomeManagerDoc inputs.zed-extensions.homeManagerModules.default;
+      prefixes = ["programs.zed-editor-extensions"];
+    };
+
+    # NixOS-backed sources.
+    disko = {
+      rawDoc = mkNixosDoc inputs.disko.nixosModules.disko;
+      prefixes = ["disko"];
+    };
+    home-manager-nixos = {
+      rawDoc = mkNixosDoc inputs.home-manager.nixosModules.home-manager;
+      prefixes = ["home-manager"];
+    };
+    lanzaboote = {
+      rawDoc = mkNixosDoc inputs.lanzaboote.nixosModules.lanzaboote;
+      prefixes = ["boot.lanzaboote"];
+    };
+    sops-nix = {
+      rawDoc = mkNixosDoc inputs.sops-nix.nixosModules.sops;
+      prefixes = ["sops"];
+    };
+    stylix = {
+      rawDoc = mkNixosDoc inputs.stylix.nixosModules.stylix;
+      prefixes = ["stylix"];
+    };
   };
 
-  docInputs = {
-    builtin = {
-      home-manager-flake = "home-manager";
-      nixcord = "nixcord";
-      nvf = "nvf";
-    };
-
-    legacy = {
-      spicetify-nix = "spicetify-nix";
-    };
-
-    homeManager = {
-      nix-flatpak = {
-        input = inputs.nix-flatpak;
-        prefixes = [];
-        module = inputs.nix-flatpak.homeManagerModules.nix-flatpak;
-      };
-      nix-index-database = {
-        input = inputs.nix-index-database;
-        prefixes = [];
-        module = inputs.nix-index-database.homeModules.nix-index;
-      };
-      noctalia = {
-        input = inputs.noctalia;
-        prefixes = [];
-        module = inputs.noctalia.homeModules.default;
-      };
-      overzicht = {
-        input = inputs.overzicht;
-        prefixes = ["programs.overzicht."];
-        module = inputs.overzicht.homeModules.default;
-      };
-      sops-nix-home-manager = {
-        input = inputs.sops-nix;
-        prefixes = [];
-        module = inputs.sops-nix.homeManagerModules.sops;
-      };
-      zed-extensions = {
-        input = inputs.zed-extensions;
-        prefixes = [
-          "programs.zed-editor."
-          "programs.zed-editor-extensions."
-        ];
-        module = inputs.zed-extensions.homeManagerModules.default;
-      };
-      zen-browser = {
-        input = inputs.zen-browser;
-        prefixes = ["programs.zen-browser."];
-        module = inputs.zen-browser.homeModules.beta;
-      };
-    };
-
-    nixos = {
-      disko = {
-        input = inputs.disko;
-        prefixes = [];
-        module = inputs.disko.nixosModules.disko;
-      };
-      home-manager-nixos = {
-        input = inputs.home-manager;
-        prefixes = [];
-        module = inputs.home-manager.nixosModules.home-manager;
-      };
-      lanzaboote = {
-        input = inputs.lanzaboote;
-        prefixes = [];
-        module = inputs.lanzaboote.nixosModules.lanzaboote;
-      };
-      sops-nix = {
-        input = inputs.sops-nix;
-        prefixes = [];
-        module = inputs.sops-nix.nixosModules.sops;
-      };
-    };
-
-    custom = {
-      stylix-nixos = {
-        input = inputs.stylix;
-        json = stylix.optionsJson "stylix-nixos" inputs.stylix [] inputs.stylix.nixosModules.stylix;
-      };
-    };
-  };
-
-  optionsFile = let
-    generatedSources = [
-      (lib.mapAttrs (_: helpers.docsJson) docInputs.builtin)
-      (lib.mapAttrs (_: helpers.legacyDocsJson) docInputs.legacy)
-      (lib.mapAttrs (name: value: homeManager.optionsJson name value.input value.prefixes value.module) docInputs.homeManager)
-      (lib.mapAttrs (name: value: nixos.optionsJson name value.input value.prefixes value.module) docInputs.nixos)
-      (lib.mapAttrs (_: value: value.json) docInputs.custom)
-    ];
-  in
-    lib.filterAttrs (_: value: value != null) (lib.foldl' (acc: attrs: acc // attrs) {} generatedSources);
+  optionsFile = mapAttrs (name: value: mkFilteredOptionsFile name value.rawDoc value.prefixes) sources;
 in {
   programs.nix-search-tv = {
     enable = true;
     enableTelevisionIntegration = true;
 
     settings = {
+      # Keep builtin upstream indexes under `indexes`.
       indexes = [
         "nixpkgs"
         "nixos"
         "home-manager"
+        "nur"
         "noogle"
-        "darwin"
       ];
 
+      # Add custom docs sources through `options_file`; they are not valid `indexes` entries.
       experimental.options_file = optionsFile;
+
+      # Disable the waiting message that never goes away.
+      enable_waiting_message = true;
     };
   };
 }

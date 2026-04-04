@@ -22,7 +22,11 @@ index 84f3399..33f1596 100644
 +  function applyLocationOverride() {
 +    const locationOverride = (fileLocationOverride || envLocation).trim();
 +
-+    if (locationOverride !== "" && adapter.location.name !== locationOverride) {
++    if (locationOverride === "") {
++      return;
++    }
++
++    if (adapter.location.name !== locationOverride) {
 +      adapter.location.name = locationOverride;
 +    }
 +  }

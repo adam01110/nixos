@@ -31,7 +31,12 @@ in {
     # Browser memory allocation for desktop usage.
     zen-browser.commit-space = 25698;
 
-    # Enable gpu acceleration for noctalia.
-    noctalia.enableGpu = true;
+    noctalia = {
+      # Enable gpu acceleration for noctalia.
+      enableGpu = true;
+
+      # Keep the desktop weather location in sops.
+      location = "sops";
+    };
   };
 }
