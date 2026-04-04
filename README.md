@@ -5,18 +5,18 @@
 
   Modular multi-host NixOS and Home Manager flake for desktop, laptop, and virtual machine systems.
 
-  [![CI](https://img.shields.io/github/actions/workflow/status/adam01110/nixos/ci.yml?branch=main&style=for-the-badge&label=CI&labelColor=504945&color=cc241d)](https://github.com/adam01110/nixos/actions/workflows/ci.yml)
-  [![Repo Size](https://img.shields.io/github/repo-size/adam01110/nixos?style=for-the-badge&label=repo%20size&labelColor=504945&color=3c3836)](https://github.com/adam01110/nixos)
+  [![CI](https://img.shields.io/github/actions/workflow/status/adam01110/nixos/ci.yml?branch=main&style=flat-square&label=CI&labelColor=504945&color=cc241d)](https://github.com/adam01110/nixos/actions/workflows/ci.yml)
+  [![Repo Size](https://img.shields.io/github/repo-size/adam01110/nixos?style=flat-square&label=repo%20size&labelColor=504945&color=3c3836)](https://github.com/adam01110/nixos)
 
   <br />
 
-  [![NixOS](https://img.shields.io/badge/NixOS-unstable-458588?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.org)
-  [![Flakes](https://img.shields.io/badge/Nix-flakes-689d6a?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.wiki/wiki/Flakes)
-  [![Home Manager](https://img.shields.io/badge/Home%20Manager-managed-b16286?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/home-manager)
-  [![Stylix](https://img.shields.io/badge/Stylix-theming-8f3f71?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/danth/stylix)
-  [![SOPS Nix](https://img.shields.io/badge/SOPS%20Nix-secrets-fe8019?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/Mic92/sops-nix)
-  [![Disko](https://img.shields.io/badge/Disko-managed%20storage-98971a?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/disko)
-  [![Lanzaboote](https://img.shields.io/badge/Lanzaboote-secure%20boot-458588?style=for-the-badge&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/lanzaboote)
+  [![NixOS](https://img.shields.io/badge/NixOS-unstable-458588?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.org)
+  [![Flakes](https://img.shields.io/badge/Nix-flakes-689d6a?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.wiki/wiki/Flakes)
+  [![Home Manager](https://img.shields.io/badge/Home%20Manager-managed-b16286?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/home-manager)
+  [![Stylix](https://img.shields.io/badge/Stylix-theming-8f3f71?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/danth/stylix)
+  [![SOPS Nix](https://img.shields.io/badge/SOPS%20Nix-secrets-fe8019?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/Mic92/sops-nix)
+  [![Disko](https://img.shields.io/badge/Disko-managed%20storage-98971a?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/disko)
+  [![Lanzaboote](https://img.shields.io/badge/Lanzaboote-secure%20boot-458588?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/lanzaboote)
 
   [Overview](#overview) - [Layout](#layout) - [Hosts](#hosts) - [Usage](#usage) - [Secrets](#secrets)
 </div>

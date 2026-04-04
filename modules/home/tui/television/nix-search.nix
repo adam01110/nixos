@@ -20,7 +20,7 @@ let
   hmDocModule = {
     home = {
       homeDirectory = "/home/nix-search-tv";
-      stateVersion = osConfig.system.stateVersion;
+      inherit (osConfig.system) stateVersion;
       username = "nix-search-tv";
     };
   };

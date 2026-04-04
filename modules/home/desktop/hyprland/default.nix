@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}:
+{config, ...}:
 # Home manager hyprland configuration: plugins, quickshell, and extras.
 {
   # Make home manager session variables available to uwsm.

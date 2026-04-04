@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   lib,
   vars,
@@ -41,13 +42,13 @@ in {
 
     # Read the desktop weather location from sops at runtime.
     (let
-      hostname = config.networking.hostName;
+      hostname = osConfig.networking.hostName;
     in
       mkIf (cfgLocation == "sops") {
         sops.secrets."noctalia/location/${hostname}" = {};
         programs.noctalia-shell = {
           settings.location.autoLocate = mkForce false;
-          systemd.locationFile = config.sops.secrets."noctalia/location".path;
+          systemd.locationFile = config.sops.secrets."noctalia/location/${hostname}".path;
         };
       })
   ];
