@@ -1,5 +1,6 @@
 <div align="center">
-  <img src="./face.png" alt="Project avatar" width="112" />
+  <img src="./face.png" alt="Avatar" width="112" />
+  <img src="./modules/home/cli/fastfetch/logo.png" alt="Nix logo" width="112" />
 
   # adam0's NixOS configuration
 
