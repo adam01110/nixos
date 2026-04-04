@@ -17,7 +17,7 @@ jobs:
         uses: cachix/install-nix-action@v31
         with:
           # yamllint disable rule:line-length
-          extra_nix_config: >-
+          extra_nix_config: |
             experimental-features = nix-command flakes
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             substituters = https://cache.nixos.org https://nix-community.cachix.org https://lanzaboote.cachix.org https://mic92.cachix.org https://numtide.cachix.org https://attic.xuyh0120.win/lantian https://cache.numtide.com https://adam01110-nur.cachix.org/ https://forkprince.cachix.org/ https://nur-xyenon.cachix.org/ https://nvf.cachix.org/ https://install.determinate.systems https://hyprland.cachix.org
