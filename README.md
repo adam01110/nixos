@@ -7,9 +7,7 @@
 
   [![CI](https://img.shields.io/github/actions/workflow/status/adam01110/nixos/ci.yml?branch=main&style=flat-square&label=CI&labelColor=504945&color=cc241d)](https://github.com/adam01110/nixos/actions/workflows/ci.yml)
   [![Repo Size](https://img.shields.io/github/repo-size/adam01110/nixos?style=flat-square&label=repo%20size&labelColor=504945&color=3c3836)](https://github.com/adam01110/nixos)
-
   <br />
-
   [![NixOS](https://img.shields.io/badge/NixOS-unstable-458588?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.org)
   [![Flakes](https://img.shields.io/badge/Nix-flakes-689d6a?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://nixos.wiki/wiki/Flakes)
   [![Home Manager](https://img.shields.io/badge/Home%20Manager-managed-b16286?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/home-manager)
