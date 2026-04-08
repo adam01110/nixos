@@ -29,24 +29,6 @@ This repository contains a personal NixOS setup built around `flake-parts`, `Hom
 - Declarative storage with `Disko`, encrypted secrets with `Sops-nix`, Secure Boot with `Lanzaboote`, and theming through `Stylix`.
 - Desktop built on `Hyprland`, `UWSM`, `greetd` + `tuigreet`, and `Noctalia Shell`.
 
-## Layout
-
-```text
-.
-├── flake.nix              # Flake entrypoint and inputs.
-├── flake/                 # flake-parts modules.
-├── modules/
-│   ├── system/            # Shared NixOS modules.
-│   ├── home/              # Shared Home Manager modules.
-│   └── hosts/             # desktop, laptop, vm overrides.
-├── overlays/              # Local and upstream overlays.
-├── pkgs/                  # Custom packages exposed through overlays.
-├── secrets/               # SOPS-encrypted secrets.
-├── keys/                  # Public keys used for secret recipients.
-├── vars.nix               # Shared identity and locale values.
-└── face.png               # Avatar asset.
-```
-
 ## Hosts
 
 | Host | Purpose | Notable differences |

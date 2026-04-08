@@ -7,47 +7,145 @@
 
   # Inputs: upstream channels, overlays, and extra flakes used by this config.
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
-    systems.url = "github:nix-systems/default";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=release";
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
+    # keep-sorted start block=yes newline_separated=yes
+    determinate = {
+      url = "github:DeterminateSystems/nix-src";
+      inputs.flake-parts.follows = "flake-parts";
     };
-
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     disko = {
       url = "github:nix-community/disko?ref=latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        nur.follows = "nur";
-        systems.follows = "systems";
-      };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.54.3";
+
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    import-tree.url = "github:vic/import-tree";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote?ref=v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    millennium = {
+      url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel?ref=release";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-userstyles = {
+      url = "github:adam01110/nix-userstyles";
+      inputs = {
+        # keep-sorted start
+        flake-parts.follows = "flake-parts";
+        import-tree.follows = "import-tree";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+        # keep-sorted end
+      };
+    };
+
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs = {
+        # keep-sorted start
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        # keep-sorted end
+      };
+    };
+
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.5";
+      inputs = {
+        # keep-sorted start
+        nixpkgs.follows = "nixpkgs";
+        noctalia-qs.follows = "noctalia-qs";
+        # keep-sorted end
+      };
+    };
+
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs = {
+        # keep-sorted start
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+        # keep-sorted end
+      };
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs = {
+        # keep-sorted start
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        # keep-sorted end
+      };
+    };
+
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs = {
+        # keep-sorted start
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        # keep-sorted end
+      };
+    };
+
+    overzicht = {
+      url = "github:adam01110/overzicht";
+      inputs = {
+        # keep-sorted start
+        flake-parts.follows = "flake-parts";
+        import-tree.follows = "import-tree";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+        # keep-sorted end
+      };
+    };
+
+    oxicord = {
+      url = "github:linuxmobile/oxicord";
+      inputs = {
+        # keep-sorted start
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        # keep-sorted end
+      };
     };
 
     sops-nix = {
@@ -55,121 +153,49 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.5";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        noctalia-qs.follows = "noctalia-qs";
-      };
-    };
-    noctalia-qs = {
-      url = "github:noctalia-dev/noctalia-qs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
-    overzicht = {
-      url = "github:adam01110/overzicht";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        import-tree.follows = "import-tree";
-        systems.follows = "systems";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake?ref=beta";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-      };
-    };
-    nix-userstyles = {
-      url = "github:adam01110/nix-userstyles";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        import-tree.follows = "import-tree";
-        systems.follows = "systems";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-    oxicord = {
-      url = "github:linuxmobile/oxicord";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs = {
+        # keep-sorted start
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        # keep-sorted end
       };
     };
 
-    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
-
-    millennium = {
-      url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    determinate = {
-      url = "github:DeterminateSystems/nix-src";
-      inputs.flake-parts.follows = "flake-parts";
-    };
-
-    nvf = {
-      url = "github:notashelf/nvf";
+    stylix = {
+      url = "github:danth/stylix";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # keep-sorted start
         flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        nur.follows = "nur";
         systems.follows = "systems";
+        # keep-sorted end
       };
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
+
+    systems.url = "github:nix-systems/default";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     tuigreet = {
       url = "github:notashelf/tuigreet?ref=0.10.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.54.3";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
+    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake?ref=beta";
+      inputs = {
+        # keep-sorted start
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        # keep-sorted end
+      };
     };
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # keep-sorted end
   };
 
   # Outputs: expose host configurations and pass through common arguments.

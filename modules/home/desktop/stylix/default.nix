@@ -1,10 +1,6 @@
-{osConfig, ...}:
+_:
 # Per-user stylix customization layered on top of system-wide stylix theming.
-let
-  disabledTargets = import ./_disabled.nix {};
-
-  sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
-in {
+{
   stylix = {
     # Opacity values: slightly reduced for better readability with wallpapers.
     opacity = {
@@ -21,22 +17,5 @@ in {
       popups = 10;
       terminal = 10;
     };
-
-    # Enable/disable specific stylix targets.
-    targets =
-      disabledTargets
-      // {
-        # Cava.
-        cava.rainbow.enable = true;
-
-        # Zen-browser.
-        zen-browser.profileNames = ["default"];
-
-        # Neovim.
-        nvf.transparentBackground = true;
-      };
   };
-
-  # Keep zathura fonts consistent with the desktop.
-  programs.zathura.options.font = sansSerifFont;
 }

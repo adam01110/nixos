@@ -1,6 +1,6 @@
 ---
 name: nix-search
-description: Search and query NixOS packages and options using nix-search-tv. Use when you need to find packages, get package details, view source code locations, or inspect NixOS, Home Manager, and configured flake option indexes.
+description: Use this skill to search NixOS packages and options with `nix-search-tv`. Query package details, source locations, and configured NixOS, Home Manager, and flake option indexes.
 ---
 
 # Nix Search

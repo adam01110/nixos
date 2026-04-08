@@ -31,7 +31,6 @@ in {
         listPlaylistsWithSong
         wikify
         betterGenres
-        lastfm
         copyLyrics
         playingSource
         sectionMarker

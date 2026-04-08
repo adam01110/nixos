@@ -8,6 +8,8 @@ _:
     dynamic-context-pruning.enable = true;
     changelog.enable = true;
     ignore.enable = true;
+    quotes.enable = true;
+    lazy-mcp.enable = true;
 
     notifier = {
       enable = true;

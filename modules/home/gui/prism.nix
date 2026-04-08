@@ -52,8 +52,7 @@ in {
       StatusBarVisible = true;
       ToolbarsLocked = false;
 
-      # Set the con console font.
-      ConsoleFont = osConfig.stylix.fonts.monospace.name;
+      # Set the console font.
       ConsoleFontSize = 11;
       ConsoleMaxLines = 100000;
       ConsoleOverflowStop = true;

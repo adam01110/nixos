@@ -39,71 +39,78 @@ in {
     # Rules for layers and overlays.
     layerrule = [
       # Noanim.
-      "match:namespace hyprpicker, no_anim on"
-      "match:namespace selection, no_anim on"
-      "match:namespace noctalia.+, no_anim on"
+      "match:namespace hyprpicker, tag +noanim"
+      "match:namespace selection, tag +noanim"
+      "match:namespace noctalia.+, tag +noanim"
 
-      "match:namespace noctalia-background-.*$, ignore_alpha 0.94"
-      "match:namespace noctalia-background-.*$, blur on"
-      "match:namespace noctalia-background-.*$, blur_popups on"
+      # Tag layers by namespace.
+      "match:namespace noctalia-background-.*$, tag +blur"
+      "match:namespace overzicht, tag +blur"
+
+      # Apply behaviors by tag.
+      "match:tag blur, ignore_alpha 0.94"
+      "match:tag blur, blur on"
+      "match:tag blur, blur_popups on"
+
+      "match:tag noanim, no_anim on"
     ];
 
     windowrule = [
       # Tag windows by application.
-      "tag +tile, match:class Aseprite"
+      "match:class Aseprite, tag +tile"
 
-      "tag +float, match:class BeeperTexts, match:title Settings"
-      "tag +size-beeper-settings, match:class BeeperTexts, match:title Settings"
-      "no_initial_focus on, match:class BeeperTexts"
+      "match:class BeeperTexts, match:title Settings, tag +float"
+      "match:class BeeperTexts, match:title Settings, tag +size-beeper-settings"
+      "match:class BeeperTexts, no_initial_focus on"
 
-      "tag +forceopacity, match:class com.mitchellh.ghostty"
+      "match:class com.mitchellh.ghostty, tag +forceopacity"
 
-      "tag +forceopacity, match:class org.pwmt.zathura"
+      "match:class org.pwmt.zathura, tag +forceopacity"
 
-      "tag +pseudotile, match:class com.mitchellh.ghostty, match:title Wiremix"
-      "tag +size-wiremix, match:class com.mitchellh.ghostty, match:title Wiremix"
+      "match:class com.mitchellh.ghostty, match:title Wiremix, tag +pseudotile"
+      "match:class com.mitchellh.ghostty, match:title Wiremix, tag +size-wiremix"
 
-      "tag +forceopacity, match:class equibop"
-      "tag +noblur, match:class equibop"
+      "match:class equibop, tag +forceopacity"
+      "match:class equibop, tag +noblur"
 
-      "tag +float, match:class file-.+"
-      "tag +size-file-export, match:class file-.+, match:title Export Image as .+"
+      "match:class file-.+, tag +float"
+      "match:class file-.+, match:title Export Image as .+, tag +size-file-export"
 
-      "tag +tile, match:class io.mrarm.mcpelauncher-ui-qt"
+      "match:class io.mrarm.mcpelauncher-ui-qt, tag +tile"
 
-      "tag +float, match:class me.iepure.devtoolbox"
-      "tag +center, match:class me.iepure.devtoolbox"
-      "tag +size-devtoolbox, match:class me.iepure.devtoolbox"
+      "match:class me.iepure.devtoolbox, tag +float"
+      "match:class me.iepure.devtoolbox, tag +center"
+      "match:class me.iepure.devtoolbox, tag +size-devtoolbox"
 
-      "tag +float, match:class org.freedesktop.impl.portal.desktop.kde"
+      "match:class org.freedesktop.impl.portal.desktop.kde, tag +float"
 
-      "tag +float, match:class org.gnome.Calculator"
-      "tag +center, match:class org.gnome.Calculator"
-      "tag +size-calculator, match:class org.gnome.Calculator"
+      "match:class org.gnome.Calculator, tag +float"
+      "match:class org.gnome.Calculator, tag +center"
+      "match:class org.gnome.Calculator, tag +size-calculator"
 
-      "tag +float, match:class org.gnome.Decibels"
-      "tag +center, match:class org.gnome.Decibels"
-      "tag +size-decibels, match:class org.gnome.Decibels"
+      "match:class org.gnome.Decibels, tag +float"
+      "match:class org.gnome.Decibels, tag +center"
+      "match:class org.gnome.Decibels, tag +size-decibels"
 
-      "tag +size-seahorse-key, match:class org.gnome.seahorse.Application, match:title .+ — Private key"
-      "tag +size-seahorse-item, match:class org.gnome.seahorse.Application, match:title Item Properties"
+      "match:class org.gnome.seahorse.Application, match:title .+ — Private key, tag +size-seahorse-key"
+      "match:class org.gnome.seahorse.Application, match:title Item Properties, tag +size-seahorse-item"
 
-      "tag +size-protonvpn, match:class .protonvpn-app-wrapped, match:title Proton VPN"
+      "match:class .protonvpn-app-wrapped, match:title Proton VPN, tag +size-protonvpn"
 
-      "tag +float, match:class steam, match:title Friends List"
-      "tag +float, match:class steam, match:title Steam Settings"
-      "tag +size-steam-friends, match:class steam, match:title Friends List"
+      "match:class steam, match:title Friends List, tag +float"
+      "match:class steam, match:title Steam Settings, tag +float"
+      "match:class steam, match:title Friends List, tag +size-steam-friends"
 
-      "tag +forceopacity, match:class steam_app_.*"
-      "tag +noblur, match:class steam_app_.+"
+      "match:class steam_app_.*, tag +forceopacity"
+      "match:class steam_app_.+, tag +noblur"
 
-      "tag +float, match:title Task Manager - .+"
-      "tag +size-task-manager, match:title Task Manager - .+"
+      "match:title Task Manager - .+, tag +float"
+      "match:title Task Manager - .+, tag +size-task-manager"
 
-      "tag +float, match:class zen(-beta)?, match:title Bitwarden"
-      "tag +float, match:title [Pp]icture[ -]in[ -][Pp]icture"
-      "tag +pin, match:title [Pp]icture[ -]in[ -][Pp]icture"
-      "tag +size-bitwarden, match:class zen(-beta)?, match:title Bitwarden"
+      "match:class zen(-beta)?, match:title Bitwarden, tag +float"
+      "match:title [Pp]icture[ -]in[ -][Pp]icture, tag +float"
+      "match:title [Pp]icture[ -]in[ -][Pp]icture, tag +pin"
+      "match:class zen(-beta)?, match:title Bitwarden, tag +size-bitwarden"
 
       # Apply behaviors by tag.
       "match:tag forceopacity, opacity 1 override 1 override"

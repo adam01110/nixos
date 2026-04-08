@@ -25,5 +25,6 @@ _:
     "super+ctrl+O=unbind"
     "super+ctrl+W=unbind"
     "super+ctrl+T=unbind"
+    "ctrl+down=unbind"
   ];
 }

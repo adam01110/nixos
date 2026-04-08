@@ -29,6 +29,8 @@ in {
           procps
           just
           less
+          jq
+          bash
           ;
       }
       # Reuse packages from home-manager modules to avoid duplicate package selections.
@@ -37,6 +39,7 @@ in {
         "bat"
         "man"
         "eza"
+        "opencode"
       ])
       # Pull packaged tools from the system config when home-manager does not own them.
       ++ (map (path: (getAttrFromPath (splitString "." path) osConfig).package) [

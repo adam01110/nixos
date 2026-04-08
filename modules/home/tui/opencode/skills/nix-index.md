@@ -1,6 +1,6 @@
 ---
 name: nix-index
-description: Locate which Nix package provides a command or file using `nix-locate` and the existing local database. Use when a command is missing or when you need the package that ships a file path like `bin/foo` or `lib/libbar.so`. Do not use this skill to build, refresh, inspect, or manage the nix-index database.
+description: Use this skill to locate which Nix package provides a command or file with `nix-locate` and the existing local database. Do not use it to build, refresh, inspect, or manage the `nix-index` database.
 ---
 
 # Nix Index

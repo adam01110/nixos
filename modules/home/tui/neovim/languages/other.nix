@@ -12,5 +12,6 @@ _: {
     json.enable = true;
     xml.enable = true;
     toml.enable = true;
+    java.enable = true;
   };
 }

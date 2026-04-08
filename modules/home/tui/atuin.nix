@@ -24,8 +24,12 @@ in {
       inline_height = 24;
       show_tabs = false;
 
-      dir = "${cacheHome}/atuin/logs";
-      level = logLevel;
+      keymap_mode = "vim-normal";
+
+      logs = {
+        dir = "${cacheHome}/atuin/logs";
+        level = logLevel;
+      };
 
       history_filter = [
         ''(^|[[:space:]])(export[[:space:]]+)?[A-Z_][A-Z0-9_]*(_TOKEN|_SECRET|_PASSWORD|_PASSWD|_API_KEY|_ACCESS_KEY|_SECRET_ACCESS_KEY)(="[^"]+"|=[^[:space:]]+)''

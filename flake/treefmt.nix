@@ -35,6 +35,8 @@
         stylua.enable = true;
 
         rumdl-format.enable = true;
+
+        keep-sorted.enable = true;
       };
     };
   };

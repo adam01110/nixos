@@ -1,6 +1,6 @@
 ---
 name: create-readme
-description: 'Create a README.md file for the project'
+description: Use this skill to create a concise, well-structured `README.md` file for the project. Review the repo first, then write clear GitHub-flavored documentation without unnecessary sections or filler.
 ---
 
 ## Role

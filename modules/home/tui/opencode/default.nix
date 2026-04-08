@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  mcpWrappers,
   pkgs,
   ...
 }:
@@ -20,7 +21,6 @@ let
 in {
   programs.opencode = {
     enable = true;
-    enableMcpIntegration = true;
 
     # Wrap opencode with mcp's, formatters, and lsp's.
     package = symlinkJoin {
@@ -34,8 +34,14 @@ in {
           --prefix PATH : ${makeBinPath (attrValues {
           inherit (pkgs.nur.repos.adam0) modular-mcp;
           inherit
+            (mcpWrappers)
+            context7McpWrapper
+            githubMcpServerWrapper
+            ;
+          inherit
             (pkgs)
             wl-clipboard
+            libnotify
             # Lsp's.
             lua-language-server
             bash-language-server
