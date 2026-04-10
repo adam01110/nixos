@@ -6,17 +6,7 @@
 
   perSystem = _: {
     treefmt = {
-      projectRootFile = "flake.nix";
-
-      # Keep sops and direnv files out of formatting and linting.
-      settings.global.excludes = [
-        # keep-sorted start
-        ".direnv/*"
-        ".sops.yaml"
-        "secrets/secrets.yaml"
-        # keep-sorted end
-      ];
-
+      # keep-sorted start block=yes newline_separated=yes
       programs = {
         # keep-sorted start
         alejandra.enable = true;
@@ -46,6 +36,18 @@
 
         keep-sorted.enable = true;
       };
+
+      projectRootFile = "flake.nix";
+
+      # Keep sops and direnv files out of formatting and linting.
+      settings.global.excludes = [
+        # keep-sorted start
+        ".direnv/*"
+        ".sops.yaml"
+        "secrets/secrets.yaml"
+        # keep-sorted end
+      ];
+      # keep-sorted end
     };
   };
 }

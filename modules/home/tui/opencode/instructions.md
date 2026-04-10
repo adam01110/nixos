@@ -29,6 +29,24 @@
 
 ## Tools
 
+### Use skills aggressively
+
+Default to loading a relevant skill before doing substantive work whenever a
+skill plausibly applies. Treat skills as the first-line workflow, not an
+optional enhancement.
+
+- Proactively check whether an available skill matches the task before using
+  ad-hoc shell commands, web research, or custom reasoning.
+- If a task clearly matches a known skill, load it immediately without waiting
+  for the user to ask.
+- If multiple skills may apply, load the most specific one first, then load an
+  additional skill if the task expands.
+- Do not skip a relevant skill just because the task looks small; still load it
+  when it changes the workflow, tool choice, or quality bar.
+
+Prefer a false positive over missing a useful skill. Only skip loading a skill
+when you are confident none of the available skills materially help.
+
 ### Always use the TODO tool
 
 Any time the user is planning, tracking progress, breaking down work, or

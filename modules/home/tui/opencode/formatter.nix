@@ -23,29 +23,63 @@ in {
     };
 
     fish_indent = {
-      command = [(getExe' pkgs.fish "fish_indent")];
+      command = [
+        (getExe' pkgs.fish "fish_indent")
+        "--write"
+        "$FILE"
+      ];
       extensions = [".fish"];
     };
 
-    biome = {
-      command = [(getExe pkgs.biome)];
+    # add to nvf?
+    ktlint = {
+      command = [
+        (getExe pkgs.ktlint)
+        "-F"
+        "$FILE"
+      ];
       extensions = [
-        ".yaml"
-        ".yml"
+        # keep-sorted start
+        ".kt"
+        ".kts"
+        # keep-sorted end
+      ];
+    };
+
+    biome = {
+      command = [
+        (getExe pkgs.biome)
+        "format"
+        "--write"
+        "$FILE"
+      ];
+      extensions = [
+        # keep-sorted start
+        ".css"
+        ".html"
         ".js"
         ".json"
         ".jsx"
-        ".md"
         ".ts"
         ".tsx"
-        ".css"
-        ".html"
+        ".yaml"
+        ".yml"
+        # keep-sorted end
       ];
     };
 
     ruff = {
-      command = [(getExe pkgs.ruff)];
-      extensions = [".py" ".pyi"];
+      command = [
+        (getExe pkgs.ruff)
+        "format"
+        "$FILE"
+      ];
+      extensions = [
+        # keep-sorted start
+        ".py"
+        ".pyi"
+        # keep-sorted end
+      ];
     };
 
     rustfmt = {
@@ -54,12 +88,50 @@ in {
     };
 
     shfmt = {
-      command = [(getExe pkgs.shfmt)];
-      extensions = [".sh" ".bash"];
+      command = [
+        (getExe pkgs.shfmt)
+        "--write"
+        "$FILE"
+      ];
+      extensions = [
+        # keep-sorted start
+        ".bash"
+        ".sh"
+        # keep-sorted end
+      ];
     };
 
     stylua = {
-      command = [(getExe pkgs.stylua) "--respect-ignores" "-"];
+      command = [
+        (getExe pkgs.stylua)
+        "--respect-ignores"
+        "$FILE"
+      ];
+      extensions = [".lua"];
+    };
+
+    rumdl = {
+      command = [
+        (getExe pkgs.rumdl)
+        "fmt"
+        "--fix"
+        "$FILE"
+      ];
+      extensions = [
+        # keep-sorted start
+        ".markdown"
+        ".md"
+        # keep-sorted end
+      ];
+    };
+
+    selene = {
+      command = [
+        (getExe pkgs.selene)
+        "--display-style"
+        "quiet"
+        "$FILE"
+      ];
       extensions = [".lua"];
     };
     # keep-sorted end

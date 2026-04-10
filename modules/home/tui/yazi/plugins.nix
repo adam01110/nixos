@@ -27,43 +27,52 @@ let
 in {
   programs.yazi = {
     # Drop Yazi's builtin fzf and zoxide helpers from the wrapped runtime.
-    optionalDeps =
+    package = pkgs.yazi.override {
+      optionalDeps =
+        attrValues {
+          inherit
+            (pkgs)
+            # keep-sorted start
+            _7zz
+            chafa
+            ffmpeg
+            imagemagick
+            jq
+            poppler-utils
+            resvg
+            # keep-sorted end
+            ;
+        }
+        # Reuse packages from home-manager modules to avoid duplicate package selections.
+        ++ (map (program: config.programs.${program}.package) [
+          # keep-sorted start
+          "fd"
+          "ripgrep"
+          # keep-sorted end
+        ]);
+    };
+
+    # Add runtime helpers for Yazi plugins.
+    extraPackages =
       attrValues {
         inherit
           (pkgs)
           # keep-sorted start
           _7zz
           chafa
-          ffmpeg
-          imagemagick
-          jq
-          poppler-utils
-          resvg
-          # keep-sorted end
-          ;
-      }
-      # Reuse packages from home-manager modules to avoid duplicate package selections.
-      ++ (map (program: config.programs.${program}.package) [
-        # keep-sorted start
-        "fd"
-        "ripgrep"
-        # keep-sorted end
-      ]);
-
-    # Add runtime helpers for yazi plugins..package = pkgs.yazi.override {
-    extraPackages =
-      attrValues {
-        inherit
-          (pkgs)
-          # keep-sorted start
           # spot
           coreutils
+          ffmpeg
           # preview-epub
           gnome-epub-thumbnailer
+          imagemagick
           # spot-image
           inkscape
+          jq
           # mediainfo & spot-audio
           mediainfo
+          poppler-utils
+          resvg
           # recycle-bin
           trash-cli
           # preview-cbz
@@ -84,7 +93,9 @@ in {
       ++ (map (program: config.programs.${program}.package) [
         # keep-sorted start
         "bat"
+        "fd"
         "git"
+        "ripgrep"
         "television"
         # keep-sorted end
       ])

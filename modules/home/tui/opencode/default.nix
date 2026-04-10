@@ -36,7 +36,7 @@ in {
   programs.opencode = {
     enable = true;
 
-    # Wrap opencode with mcp's, formatters, and lsp's.
+    # Wrap opencode with mcp's, and other dependencies.
     package = symlinkJoin {
       name = "opencode-wrapped";
       paths = [pkgs.nur.repos.adam0.opencode];
