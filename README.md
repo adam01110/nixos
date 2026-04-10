@@ -17,7 +17,7 @@
   [![Disko](https://img.shields.io/badge/Disko-managed%20storage-98971a?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/disko)
   [![Lanzaboote](https://img.shields.io/badge/Lanzaboote-secure%20boot-458588?style=flat-square&labelColor=504945&logo=nixos&logoColor=ebdbb2)](https://github.com/nix-community/lanzaboote)
 
-  [Overview](#overview) - [Hosts](#hosts) - [Usage](#usage) - [Secrets](#secrets)
+  [Overview](#overview) - [Hosts](#hosts) - [Usage](#usage) - [Secrets](#secrets) - [Customization](#Customization) - [Tooling](#Tooling)
 </div>
 
 This repository contains a personal NixOS setup built around `flake-parts`, `Home Manager`, and a heavily modular directory layout. It shares a common base across multiple machines, then layers host-specific hardware, service, and desktop overrides on top.
