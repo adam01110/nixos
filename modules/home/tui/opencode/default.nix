@@ -32,6 +32,7 @@ let
     opencodeEnv
   );
 in {
+  # keep-sorted start block=yes newline_separated=yes
   programs.opencode = {
     enable = true;
 
@@ -93,4 +94,5 @@ in {
       ];
     };
   };
+  # keep-sorted end
 }

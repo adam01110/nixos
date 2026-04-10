@@ -25,8 +25,7 @@ let
     ;
   inherit (pkgs.lib.attrsets) nameValuePair;
 in {
-  # Add runtime helpers for yazi plugins.
-  programs.yazi.package = pkgs.yazi.override {
+  programs.yazi = {
     # Drop Yazi's builtin fzf and zoxide helpers from the wrapped runtime.
     optionalDeps =
       attrValues {
@@ -51,6 +50,7 @@ in {
         # keep-sorted end
       ]);
 
+    # Add runtime helpers for yazi plugins..package = pkgs.yazi.override {
     extraPackages =
       attrValues {
         inherit
@@ -92,29 +92,29 @@ in {
       ++ (map (path: (getAttrFromPath (splitString "." path) osConfig).package) [
         "services.udisks2"
       ]);
+
+    plugins = let
+      mkPlugin = source: name: nameValuePair name source.${name};
+
+      # Plugins from nixpkgs.
+      nixpkgsPlugins = [
+        # keep-sorted start
+        "full-border"
+        "git"
+        "starship"
+        # keep-sorted end
+      ];
+
+      # Plugins from adam0's nur.
+      adam0Plugins = ["spot"];
+
+      # Plugins from xyenon's nur.
+      xyenonPlugins = ["types"];
+    in
+      listToAttrs (
+        (map (mkPlugin pkgs.yaziPlugins) nixpkgsPlugins)
+        ++ (map (mkPlugin pkgs.nur.repos.adam0.yaziPlugins) adam0Plugins)
+        ++ (map (mkPlugin pkgs.nur.repos.xyenon.yaziPlugins.yazi-rs) xyenonPlugins)
+      );
   };
-
-  programs.yazi.plugins = let
-    mkPlugin = source: name: nameValuePair name source.${name};
-
-    # Plugins from nixpkgs.
-    nixpkgsPlugins = [
-      # keep-sorted start
-      "full-border"
-      "git"
-      "starship"
-      # keep-sorted end
-    ];
-
-    # Plugins from adam0's nur.
-    adam0Plugins = ["spot"];
-
-    # Plugins from xyenon's nur.
-    xyenonPlugins = ["types"];
-  in
-    listToAttrs (
-      (map (mkPlugin pkgs.yaziPlugins) nixpkgsPlugins)
-      ++ (map (mkPlugin pkgs.nur.repos.adam0.yaziPlugins) adam0Plugins)
-      ++ (map (mkPlugin pkgs.nur.repos.xyenon.yaziPlugins.yazi-rs) xyenonPlugins)
-    );
 }

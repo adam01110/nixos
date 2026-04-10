@@ -4,14 +4,21 @@ _: {
     searchCase = "smart";
     options.wrap = false;
 
+    # keep-sorted start block=yes newline_separated=yes
+    # Discourage repeated movement spam.
+    binds.hardtime-nvim = {
+      enable = true;
+
+      setupOpts = {
+        showmode = false;
+        max_count = 2;
+      };
+    };
+
     clipboard = {
       enable = true;
       providers.wl-copy.enable = true;
       registers = "unnamedplus";
-    };
-
-    telescope = {
-      enable = true;
     };
 
     lsp = {
@@ -26,14 +33,9 @@ _: {
       };
     };
 
-    # Discourage repeated movement spam.
-    binds.hardtime-nvim = {
+    telescope = {
       enable = true;
-
-      setupOpts = {
-        showmode = false;
-        max_count = 2;
-      };
     };
+    # keep-sorted end
   };
 }

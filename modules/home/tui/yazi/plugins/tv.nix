@@ -1,21 +1,25 @@
 {pkgs, ...}: {
-  # Register the tv plugin source.
-  programs.yazi.plugins.tv = pkgs.nur.repos.adam0.yaziPlugins.tv;
-
-  # Replace Yazi's builtin jump pickers with television.
-  programs.yazi.keymap.mgr.prepend_keymap = [
+  programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    {
-      on = ["Z"];
-      run = "plugin tv dirs";
-      desc = "Jump to a directory via television";
-    }
+    # Replace Yazi's builtin jump pickers with television.
+    keymap.mgr.prepend_keymap = [
+      # keep-sorted start block=yes newline_separated=yes
+      {
+        on = ["Z"];
+        run = "plugin tv dirs";
+        desc = "Jump to a directory via television";
+      }
 
-    {
-      on = ["z"];
-      run = "plugin tv";
-      desc = "Jump to a file via television";
-    }
+      {
+        on = ["z"];
+        run = "plugin tv";
+        desc = "Jump to a file via television";
+      }
+      # keep-sorted end
+    ];
+
+    # Register the tv plugin source.
+    plugins.tv = pkgs.nur.repos.adam0.yaziPlugins.tv;
     # keep-sorted end
-  ];
+  };
 }

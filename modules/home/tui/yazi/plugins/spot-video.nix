@@ -1,12 +1,16 @@
 {pkgs, ...}: {
-  # Register the spot-video plugin source.
-  programs.yazi.plugins.spot-v = pkgs.nur.repos.adam0.yaziPlugins.spot-video;
+  programs.yazi = {
+    # keep-sorted start block=yes newline_separated=yes
+    # Register the spot-video plugin source.
+    plugins.spot-v = pkgs.nur.repos.adam0.yaziPlugins.spot-video;
 
-  # Spotters that render content for spot-video.
-  programs.yazi.settings.plugin.append_spotters = [
-    {
-      url = "video/*";
-      run = "spot-video";
-    }
-  ];
+    # Spotters that render content for spot-video.
+    settings.plugin.append_spotters = [
+      {
+        url = "video/*";
+        run = "spot-video";
+      }
+    ];
+    # keep-sorted end
+  };
 }

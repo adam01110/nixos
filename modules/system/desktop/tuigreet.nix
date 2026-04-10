@@ -20,16 +20,7 @@ let
 
   tomlFormat = pkgs.formats.toml {};
 in {
-  services.greetd = {
-    enable = true;
-
-    # Extra required tweaks for tty greeters with greetd, do not touch.
-    useTextGreeter = true;
-
-    # Start tuigreet.
-    settings.default_session.command = getExe pkgs.tuigreet;
-  };
-
+  # keep-sorted start block=yes newline_separated=yes
   environment = {
     etc."tuigreet/config.toml".source = let
       # keep-sorted start
@@ -87,4 +78,15 @@ in {
         };
       };
   };
+
+  services.greetd = {
+    enable = true;
+
+    # Extra required tweaks for tty greeters with greetd, do not touch.
+    useTextGreeter = true;
+
+    # Start tuigreet.
+    settings.default_session.command = getExe pkgs.tuigreet;
+  };
+  # keep-sorted end
 }

@@ -19,6 +19,7 @@ in {
 
   config.hardware.bluetooth = mkIf config.optServices.bluetooth.enable {
     enable = true;
+
     # Enable experimental features needed by some devices.
     settings.General.Experimental = true;
 

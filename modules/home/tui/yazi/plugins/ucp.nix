@@ -1,33 +1,37 @@
 {pkgs, ...}: {
-  # Register the ucp plugin source.
-  programs.yazi.plugins.ucp = pkgs.nur.repos.adam0.yaziPlugins.ucp;
-
-  # Add ucp clipboard bindings with notifications.
-  programs.yazi.keymap.mgr.prepend_keymap = [
+  programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    {
-      on = "p";
-      run = "plugin ucp paste notify";
-      desc = "Paste";
-    }
+    # Add ucp clipboard bindings with notifications.
+    keymap.mgr.prepend_keymap = [
+      # keep-sorted start block=yes newline_separated=yes
+      {
+        on = "p";
+        run = "plugin ucp paste notify";
+        desc = "Paste";
+      }
 
-    {
-      on = "p";
-      run = "plugin ucp paste";
-      desc = "Paste";
-    }
+      {
+        on = "p";
+        run = "plugin ucp paste";
+        desc = "Paste";
+      }
 
-    {
-      on = "y";
-      run = "plugin ucp copy notify";
-      desc = "Copy";
-    }
+      {
+        on = "y";
+        run = "plugin ucp copy notify";
+        desc = "Copy";
+      }
 
-    {
-      on = "y";
-      run = "plugin ucp copy";
-      desc = "Copy";
-    }
+      {
+        on = "y";
+        run = "plugin ucp copy";
+        desc = "Copy";
+      }
+      # keep-sorted end
+    ];
+
+    # Register the ucp plugin source.
+    plugins.ucp = pkgs.nur.repos.adam0.yaziPlugins.ucp;
     # keep-sorted end
-  ];
+  };
 }

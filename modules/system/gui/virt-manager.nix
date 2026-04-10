@@ -24,6 +24,10 @@ in {
     cfgVirtManager = config.optServices.virtManager.enable;
   in
     mkIf cfgVirtManager {
+      # keep-sorted start block=yes newline_separated=yes
+      # Enable virt-manager UI.
+      programs.virt-manager.enable = true;
+
       # Groups for libvirt access.
       users.users.${username}.extraGroups = [
         # keep-sorted start
@@ -31,9 +35,6 @@ in {
         "libvirtd"
         # keep-sorted end
       ];
-
-      # Enable virt-manager UI.
-      programs.virt-manager.enable = true;
 
       virtualisation.libvirtd = {
         # Configure libvirtd with qemu swtpm.
@@ -49,6 +50,7 @@ in {
         # Keep VMs off at boot.
         onBoot = "ignore";
       };
+      # keep-sorted end
 
       # Allow the default libvirt bridge and leave it unmanaged by NetworkManager.
       networking = let

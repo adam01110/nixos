@@ -23,6 +23,7 @@ in {
   options.hardware.roccat.enable = mkEnableOption "Enable the roccat libinput quirks";
 
   config = {
+    # keep-sorted start block=yes newline_separated=yes
     # Bootloader, kernel, and initrd configuration.
     boot = {
       # Use cachyos kernel for performance optimizations.
@@ -58,35 +59,6 @@ in {
       };
     };
 
-    # Firmware, polkit, rtkit and other core security niceties.
-    hardware.enableAllFirmware = true;
-
-    security = {
-      rtkit.enable = true;
-      polkit.enable = true;
-    };
-
-    programs = let
-      mkBinfmt = _: {
-        enable = true;
-        binfmt = true;
-      };
-    in
-      {
-        # Enable nix-ld to allow the use of dynamic libraries.
-        nix-ld.enable = true;
-      }
-      // genAttrs [
-        # keep-sorted start
-        "appimage"
-        "java"
-        # keep-sorted end
-      ]
-      mkBinfmt;
-
-    # Use nftables; individual services will add rules if needed.
-    networking.nftables.enable = true;
-
     environment = {
       # Optional libinput quirk for specific roccat mouse.
       etc."libinput/local-overrides.quirks" = let
@@ -114,5 +86,37 @@ in {
           ;
       };
     };
+
+    # Firmware, polkit, rtkit and other core security niceties.
+    hardware.enableAllFirmware = true;
+
+    # Use nftables; individual services will add rules if needed.
+    networking.nftables.enable = true;
+
+    security = {
+      # keep-sorted start
+      polkit.enable = true;
+      rtkit.enable = true;
+      # keep-sorted end
+    };
+    # keep-sorted end
+
+    programs = let
+      mkBinfmt = _: {
+        enable = true;
+        binfmt = true;
+      };
+    in
+      {
+        # Enable nix-ld to allow the use of dynamic libraries.
+        nix-ld.enable = true;
+      }
+      // genAttrs [
+        # keep-sorted start
+        "appimage"
+        "java"
+        # keep-sorted end
+      ]
+      mkBinfmt;
   };
 }

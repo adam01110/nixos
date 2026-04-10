@@ -9,6 +9,7 @@ in {
     enable = true;
     forceOverwriteSettings = true;
 
+    # keep-sorted start block=yes newline_separated=yes
     daemon = {
       enable = true;
       inherit logLevel;
@@ -28,13 +29,7 @@ in {
       style = "full";
       # keep-sorted end
 
-      keymap_mode = "vim-normal";
-
-      logs = {
-        level = logLevel;
-        dir = "${cacheHome}/atuin/logs";
-      };
-
+      # keep-sorted start block=yes newline_separated=yes
       history_filter = [
         # keep-sorted start
         ''(^|[[:space:]])(export[[:space:]]+)?[A-Z_][A-Z0-9_]*(_TOKEN|_SECRET|_PASSWORD|_PASSWD|_API_KEY|_ACCESS_KEY|_SECRET_ACCESS_KEY)(="[^"]+"|=[^[:space:]]+)''
@@ -43,9 +38,18 @@ in {
         # keep-sorted end
       ];
 
+      keymap_mode = "vim-normal";
+
+      logs = {
+        level = logLevel;
+        dir = "${cacheHome}/atuin/logs";
+      };
+      # keep-sorted end
+
       # TODO(adam0): set sync address when ready.
       # sync_address = "";
       sync_frequency = 600;
     };
+    # keep-sorted end
   };
 }

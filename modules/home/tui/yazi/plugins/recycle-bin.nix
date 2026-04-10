@@ -1,13 +1,17 @@
 {pkgs, ...}: {
-  # Register the recycle-bin plugin source.
-  programs.yazi.plugins.recycle-bin = pkgs.yaziPlugins.recycle-bin;
+  programs.yazi = {
+    # keep-sorted start block=yes newline_separated=yes
+    # Bind key to open the recycle-bin plugin menu.
+    keymap.mgr.prepend_keymap = [
+      {
+        on = ["R" "b"];
+        run = "plugin recycle-bin";
+        desc = "Open Recycle Bin menu";
+      }
+    ];
 
-  # Bind key to open the recycle-bin plugin menu.
-  programs.yazi.keymap.mgr.prepend_keymap = [
-    {
-      on = ["R" "b"];
-      run = "plugin recycle-bin";
-      desc = "Open Recycle Bin menu";
-    }
-  ];
+    # Register the recycle-bin plugin source.
+    plugins.recycle-bin = pkgs.yaziPlugins.recycle-bin;
+    # keep-sorted end
+  };
 }

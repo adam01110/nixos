@@ -4,15 +4,19 @@
   programs.nvf.settings.vim.lazy.plugins."satellite.nvim" = {
     package = pkgs.vimPlugins.satellite-nvim;
 
-    setupModule = "satellite";
+    # keep-sorted start block=yes newline_separated=yes
     event = [
       {
         event = "User";
         pattern = "LazyFile";
       }
     ];
+
+    setupModule = "satellite";
+
     setupOpts = {
       current_only = true;
     };
+    # keep-sorted end
   };
 }

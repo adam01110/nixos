@@ -18,13 +18,15 @@ in {
   config.programs.nh = {
     enable = true;
 
-    # Set flake root.
-    flake = "/home/${username}/Nixos";
-
+    # keep-sorted start block=yes newline_separated=yes
     # Enable automatic cleaning.
     clean = mkIf cfgNh.autoClean.enable {
       enable = true;
       extraArgs = "--keep-since 2d --keep 4";
     };
+
+    # Set flake root.
+    flake = "/home/${username}/Nixos";
+    # keep-sorted end
   };
 }

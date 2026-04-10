@@ -1,33 +1,37 @@
 {pkgs, ...}: {
-  # Register the smart-enter plugin source.
-  programs.yazi.plugins.smart-enter = pkgs.yaziPlugins.smart-enter;
-
-  # Use smart-enter bindings in manager mode.
-  programs.yazi.keymap.mgr.prepend_keymap = [
+  programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    {
-      on = "<Enter>";
-      run = "plugin smart-enter";
-      desc = "Enter the child directory, or open the file";
-    }
+    # Use smart-enter bindings in manager mode.
+    keymap.mgr.prepend_keymap = [
+      # keep-sorted start block=yes newline_separated=yes
+      {
+        on = "<Enter>";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
 
-    {
-      on = "<right>";
-      run = "plugin smart-enter";
-      desc = "Enter the child directory, or open the file";
-    }
+      {
+        on = "<right>";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
 
-    {
-      on = "L";
-      run = "plugin smart-enter";
-      desc = "Enter the child directory, or open the file";
-    }
+      {
+        on = "L";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
 
-    {
-      on = "l";
-      run = "plugin smart-enter";
-      desc = "Enter the child directory, or open the file";
-    }
+      {
+        on = "l";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
+      }
+      # keep-sorted end
+    ];
+
+    # Register the smart-enter plugin source.
+    plugins.smart-enter = pkgs.yaziPlugins.smart-enter;
     # keep-sorted end
-  ];
+  };
 }

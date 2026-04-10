@@ -14,6 +14,7 @@ in {
     utility.snacks-nvim.setupOpts.dashboard = {
       enable = true;
 
+      # keep-sorted start block=yes newline_separated=yes
       # Define dashboard shortcuts explicitly and omit the default Config entry.
       preset.keys = [
         # keep-sorted start block=yes
@@ -55,6 +56,7 @@ in {
         }
         # keep-sorted end
       ];
+
       sections = [
         # keep-sorted start block=yes
         # Render startup metrics based on loaded runtime plugins.
@@ -148,6 +150,7 @@ in {
         }
         # keep-sorted end
       ];
+      # keep-sorted end
     };
 
     # Capture startup timing early and finalize after UI attach.

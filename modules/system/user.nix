@@ -30,36 +30,7 @@ in {
   # Ensure the user account can be created with a password managed by sops-nix.
   sops.secrets.user_password.neededForUsers = true;
 
-  users = {
-    # Manage users declaratively, disables imperative changes via passwd/useradd.
-    mutableUsers = false;
-
-    users.${username} = {
-      # Hashed password file provided by sops-nix.
-      hashedPasswordFile = config.sops.secrets.user_password.path;
-
-      # Group memberships:
-      extraGroups = [
-        # keep-sorted start
-        "audio"
-        "wheel"
-        # keep-sorted end
-      ];
-
-      isNormalUser = true;
-      # Allow non-standard shells without /etc/shells checks.
-      ignoreShellProgramCheck = true;
-      description = fullName;
-      shell = pkgs.fish;
-    };
-  };
-
-  # Allow the user to perform privileged nix operations.
-  nix.settings = {
-    allowed-users = [username];
-    trusted-users = [username];
-  };
-
+  # keep-sorted start block=yes newline_separated=yes
   # Home manager setup.
   home-manager = {
     # Install home manager packages into the user's profile instead of the system profile.
@@ -111,4 +82,37 @@ in {
       };
     };
   };
+
+  # Allow the user to perform privileged nix operations.
+  nix.settings = {
+    # keep-sorted start
+    allowed-users = [username];
+    trusted-users = [username];
+    # keep-sorted end
+  };
+
+  users = {
+    # Manage users declaratively, disables imperative changes via passwd/useradd.
+    mutableUsers = false;
+
+    users.${username} = {
+      # Hashed password file provided by sops-nix.
+      hashedPasswordFile = config.sops.secrets.user_password.path;
+
+      # Group memberships:
+      extraGroups = [
+        # keep-sorted start
+        "audio"
+        "wheel"
+        # keep-sorted end
+      ];
+
+      isNormalUser = true;
+      # Allow non-standard shells without /etc/shells checks.
+      ignoreShellProgramCheck = true;
+      description = fullName;
+      shell = pkgs.fish;
+    };
+  };
+  # keep-sorted end
 }

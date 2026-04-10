@@ -1,51 +1,55 @@
 {pkgs, ...}: {
-  # Register the mediainfo plugin source.
-  programs.yazi.plugins.mediainfo = pkgs.yaziPlugins.mediainfo;
-
-  # Use mediainfo for media and related mime types.
-  programs.yazi.settings.plugin = {
+  programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    # Replace default magick/image/video preloaders with mediainfo.
-    prepend_preloaders = [
+    # Register the mediainfo plugin source.
+    plugins.mediainfo = pkgs.yaziPlugins.mediainfo;
+
+    # Use mediainfo for media and related mime types.
+    settings.plugin = {
       # keep-sorted start block=yes newline_separated=yes
-      # Cover adobe illustrator/postscript separately from image/adobe.photoshop.
-      {
-        mime = "application/postscript";
-        run = "mediainfo";
-      }
+      # Replace default magick/image/video preloaders with mediainfo.
+      prepend_preloaders = [
+        # keep-sorted start block=yes newline_separated=yes
+        # Cover adobe illustrator/postscript separately from image/adobe.photoshop.
+        {
+          mime = "application/postscript";
+          run = "mediainfo";
+        }
 
-      {
-        mime = "application/subrip";
-        run = "mediainfo";
-      }
+        {
+          mime = "application/subrip";
+          run = "mediainfo";
+        }
 
-      {
-        mime = "{audio,video,image}/*";
-        run = "mediainfo";
-      }
+        {
+          mime = "{audio,video,image}/*";
+          run = "mediainfo";
+        }
+        # keep-sorted end
+      ];
+
+      # Replace default magick/image/video previewers with mediainfo.
+      prepend_previewers = [
+        # keep-sorted start block=yes newline_separated=yes
+        # Cover adobe illustrator/postscript separately from image/adobe.photoshop.
+        {
+          mime = "application/postscript";
+          run = "mediainfo";
+        }
+
+        {
+          mime = "application/subrip";
+          run = "mediainfo";
+        }
+
+        {
+          mime = "{audio,video,image}/*";
+          run = "mediainfo";
+        }
+        # keep-sorted end
+      ];
       # keep-sorted end
-    ];
-
-    # Replace default magick/image/video previewers with mediainfo.
-    prepend_previewers = [
-      # keep-sorted start block=yes newline_separated=yes
-      # Cover adobe illustrator/postscript separately from image/adobe.photoshop.
-      {
-        mime = "application/postscript";
-        run = "mediainfo";
-      }
-
-      {
-        mime = "application/subrip";
-        run = "mediainfo";
-      }
-
-      {
-        mime = "{audio,video,image}/*";
-        run = "mediainfo";
-      }
-      # keep-sorted end
-    ];
+    };
     # keep-sorted end
   };
 }

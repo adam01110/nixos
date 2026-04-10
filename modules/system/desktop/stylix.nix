@@ -45,9 +45,10 @@
     fonts = let
       inherit (pkgs.nerd-fonts) jetbrains-mono;
     in {
-      serif = {
+      # keep-sorted start block=yes newline_separated=yes
+      monospace = {
         package = jetbrains-mono;
-        name = "JetBrainsMonoNL Nerd Font Propo";
+        name = "JetBrainsMonoNL Nerd Font Mono";
       };
 
       sansSerif = {
@@ -55,10 +56,11 @@
         name = "JetBrainsMonoNL Nerd Font Propo";
       };
 
-      monospace = {
+      serif = {
         package = jetbrains-mono;
-        name = "JetBrainsMonoNL Nerd Font Mono";
+        name = "JetBrainsMonoNL Nerd Font Propo";
       };
+      # keep-sorted end
     };
   };
 

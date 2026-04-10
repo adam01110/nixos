@@ -4,6 +4,38 @@ in {
   programs.nvf.settings.vim = let
     borderType = "single";
   in {
+    # keep-sorted start block=yes newline_separated=yes
+    # Keep Telescope border windows visible with themes that flatten border groups.
+    highlight = {
+      # keep-sorted start
+      TelescopeBorder.link = "FloatBorder";
+      TelescopePreviewBorder.link = "FloatBorder";
+      TelescopePromptBorder.link = "FloatBorder";
+      TelescopeResultsBorder.link = "FloatBorder";
+      # keep-sorted end
+    };
+
+    notify.nvim-notify = {
+      enable = true;
+
+      setupOpts = {
+        render = "default";
+        stages = "fade";
+
+        on_open = mkLuaInline ''
+          function(win)
+            vim.api.nvim_win_set_config(win, { border = ${borderType} })
+          end
+        '';
+      };
+    };
+
+    # Keep Telescope borders in explicit single-line style.
+    telescope.setupOpts.defaults = {
+      border = true;
+      borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
+    };
+
     ui = {
       borders = {
         enable = true;
@@ -22,6 +54,7 @@ in {
           # Keep using `nvim-notify` and avoid noice overwrite warnings.
           notify.enabled = false;
 
+          # keep-sorted start block=yes newline_separated=yes
           # Avoid hooking hover and markdown helpers that other plugins replace.
           lsp = {
             hover.enabled = false;
@@ -41,6 +74,7 @@ in {
             popupmenu.border.style = borderType;
             # keep-sorted end
           };
+          # keep-sorted end
         };
       };
     };
@@ -48,36 +82,6 @@ in {
     visuals = {
       nvim-web-devicons.enable = true;
     };
-
-    notify.nvim-notify = {
-      enable = true;
-
-      setupOpts = {
-        render = "default";
-        stages = "fade";
-
-        on_open = mkLuaInline ''
-          function(win)
-            vim.api.nvim_win_set_config(win, { border = ${borderType} })
-          end
-        '';
-      };
-    };
-
-    # Keep Telescope border windows visible with themes that flatten border groups.
-    highlight = {
-      # keep-sorted start
-      TelescopeBorder.link = "FloatBorder";
-      TelescopePreviewBorder.link = "FloatBorder";
-      TelescopePromptBorder.link = "FloatBorder";
-      TelescopeResultsBorder.link = "FloatBorder";
-      # keep-sorted end
-    };
-
-    # Keep Telescope borders in explicit single-line style.
-    telescope.setupOpts.defaults = {
-      border = true;
-      borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
-    };
+    # keep-sorted end
   };
 }

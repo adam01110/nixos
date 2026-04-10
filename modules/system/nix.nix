@@ -13,6 +13,7 @@
     templates.access_tokens.content = ''access-tokens = github.com=${config.sops.placeholder."nix_access_tokens/github"}'';
   };
 
+  # keep-sorted start block=yes newline_separated=yes
   nix = {
     settings = let
       substituters = [
@@ -81,4 +82,5 @@
     config.allowUnfree = true;
     overlays = import ../../overlays {inherit inputs lib;};
   };
+  # keep-sorted end
 }

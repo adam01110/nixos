@@ -4,6 +4,7 @@ let
   inherit (lib) mkForce;
   inherit (builtins) filter;
 in {
+  # keep-sorted start block=yes newline_separated=yes
   documentation = {
     doc.enable = mkForce false;
     info.enable = mkForce false;
@@ -11,12 +12,6 @@ in {
 
   # Drop the default package seed so profiles start empty.
   environment.defaultPackages = mkForce [];
-
-  services = {
-    # Disable speech stack.
-    orca.enable = mkForce false;
-    speechd.enable = mkForce false;
-  };
 
   # Slim xdg-desktop-portal-gtk globally to avoid duplicate user units.
   nixpkgs.overlays = [
@@ -31,4 +26,11 @@ in {
       });
     })
   ];
+
+  services = {
+    # Disable speech stack.
+    orca.enable = mkForce false;
+    speechd.enable = mkForce false;
+  };
+  # keep-sorted end
 }

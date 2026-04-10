@@ -23,6 +23,7 @@ let
 in
   # Only install when bluetooth is enabled.
   mkIf cfgBluetooth {
+    # keep-sorted start block=yes newline_separated=yes
     home.packages = [pkg];
 
     # Create desktop entry to allow launching via launcher.
@@ -46,4 +47,5 @@ in
         # keep-sorted end
       ];
     };
+    # keep-sorted end
   }

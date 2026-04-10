@@ -8,6 +8,12 @@
   inherit (builtins) attrValues;
   inherit (lib) mkAfter;
 in {
+  # keep-sorted start block=yes newline_separated=yes
+  systemd.user.services.xdg-desktop-portal = {
+    after = mkAfter ["graphical-session.target"];
+    wantedBy = ["graphical-session.target"];
+  };
+
   xdg = {
     portal = {
       # Enable xdg-desktop-portal services.
@@ -16,6 +22,7 @@ in {
       # Route `xdg-open` calls through the portal.
       xdgOpenUsePortal = true;
 
+      # keep-sorted start block=yes newline_separated=yes
       config = {
         # Defaults used by any desktop.
         common = {
@@ -60,11 +67,8 @@ in {
           # keep-sorted end
           ;
       };
+      # keep-sorted end
     };
   };
-
-  systemd.user.services.xdg-desktop-portal = {
-    after = mkAfter ["graphical-session.target"];
-    wantedBy = ["graphical-session.target"];
-  };
+  # keep-sorted end
 }

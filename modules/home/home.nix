@@ -7,8 +7,19 @@
     # keep-sorted end
     ;
 in {
+  # keep-sorted start block=yes newline_separated=yes
+  # Minimal dconf tweaks.
+  dconf.settings = {
+    # keep-sorted start
+    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    "org/gnome/desktop/interface".gtk-enable-primary-paste = false;
+    "org/gnome/desktop/wm/preferences".button-layout = "";
+    # keep-sorted end
+  };
+
   # User-level files and session environment.
   home = {
+    # keep-sorted start block=yes newline_separated=yes
     # Copy user avatar to ~/.face for display managers.
     file.".face".source = ../../face.png;
 
@@ -57,14 +68,7 @@ in {
       RUFF_CACHE_DIR = "${cacheHome}/ruff";
       # keep-sorted end
     };
-  };
-
-  # Minimal dconf tweaks.
-  dconf.settings = {
-    # keep-sorted start
-    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-    "org/gnome/desktop/interface".gtk-enable-primary-paste = false;
-    "org/gnome/desktop/wm/preferences".button-layout = "";
     # keep-sorted end
   };
+  # keep-sorted end
 }

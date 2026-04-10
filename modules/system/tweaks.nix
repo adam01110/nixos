@@ -23,18 +23,7 @@ in {
   options.optTweaks.rcuLazy.enable = mkEnableOption "Enable RCU lazy mode.";
 
   config = {
-    # Assorted low-level tweaks and helper tools.
-    environment.systemPackages = attrValues {
-      inherit
-        (pkgs)
-        # keep-sorted start
-        bash
-        coreutils
-        hdparm
-        # keep-sorted end
-        ;
-    };
-
+    # keep-sorted start block=yes newline_separated=yes
     # Kernel parameters aimed at low latency desktops.
     boot = {
       # Audio power management: disable power saving for continuous audio availability.
@@ -101,6 +90,42 @@ in {
         ++ optional config.optTweaks.rcuLazy.enable "rcutree.enable_rcu_lazy=1";
     };
 
+    # Assorted low-level tweaks and helper tools.
+    environment.systemPackages = attrValues {
+      inherit
+        (pkgs)
+        # keep-sorted start
+        bash
+        coreutils
+        hdparm
+        # keep-sorted end
+        ;
+    };
+
+    # Systemd limits and tmpfiles overrides.
+    systemd = {
+      tmpfiles.rules = [
+        "e /var/lib/systemd/coredump - - - 3d"
+
+        "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
+        "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"
+      ];
+
+      user.extraConfig = ''
+        [Manager]
+        DefaultLimitNOFILE=1024:1048576
+      '';
+
+      settings.Manager = {
+        # keep-sorted start
+        DefaultLimitNOFILE = "2048:2097152";
+        DefaultTimeoutStartSec = "15s";
+        DefaultTimeoutStopSec = "10s";
+        # keep-sorted end
+      };
+    };
+    # keep-sorted end
+
     # Udev rules for audio power saving and disk scheduler tuning.
     services.udev.extraRules = let
       # keep-sorted start
@@ -154,28 +179,5 @@ in {
 
       DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
     '';
-
-    # Systemd limits and tmpfiles overrides.
-    systemd = {
-      tmpfiles.rules = [
-        "e /var/lib/systemd/coredump - - - 3d"
-
-        "w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409"
-        "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"
-      ];
-
-      user.extraConfig = ''
-        [Manager]
-        DefaultLimitNOFILE=1024:1048576
-      '';
-
-      settings.Manager = {
-        # keep-sorted start
-        DefaultLimitNOFILE = "2048:2097152";
-        DefaultTimeoutStartSec = "15s";
-        DefaultTimeoutStopSec = "10s";
-        # keep-sorted end
-      };
-    };
   };
 }

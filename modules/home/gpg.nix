@@ -7,6 +7,10 @@
 }:
 # Gnupg and gpg-agent with ssh support and gnome pinentry.
 {
+  # keep-sorted start block=yes newline_separated=yes
+  # Supply gcr for the gnome pinentry integration.
+  home.packages = [pkgs.gcr];
+
   programs.gpg = {
     enable = true;
 
@@ -24,7 +28,5 @@
     # Use the gnome pinentry for passphrase prompts.
     pinentry.package = pkgs.pinentry-gnome3;
   };
-
-  # Supply gcr for the gnome pinentry integration.
-  home.packages = [pkgs.gcr];
+  # keep-sorted end
 }

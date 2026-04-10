@@ -24,6 +24,15 @@ in {
   };
 
   config = mkIf cfgPodman.enable {
+    # keep-sorted start block=yes newline_separated=yes
+    environment.systemPackages = [pkgs.podman-compose];
+
+    # Add user to the podman group.
+    users.users.${username}.extraGroups = ["podman"];
+
+    # Disable the podman compose warning about external command execution.
+    virtualisation.containers.containersConf.settings.engine.compose_warning_logs = false;
+
     virtualisation.podman = {
       # Enable podman service and tooling.
       enable = true;
@@ -42,13 +51,6 @@ in {
         ];
       };
     };
-
-    # Disable the podman compose warning about external command execution.
-    virtualisation.containers.containersConf.settings.engine.compose_warning_logs = false;
-
-    # Add user to the podman group.
-    users.users.${username}.extraGroups = ["podman"];
-
-    environment.systemPackages = [pkgs.podman-compose];
+    # keep-sorted end
   };
 }

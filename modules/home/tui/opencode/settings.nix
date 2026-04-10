@@ -2,6 +2,7 @@ _:
 # Tune opencode ui and permissions defaults.
 {
   programs.opencode.settings = {
+    # keep-sorted start block=yes newline_separated=yes
     autoupdate = false;
 
     tui = {
@@ -18,6 +19,7 @@ _:
       "target/**"
       # keep-sorted end
     ];
+    # keep-sorted end
 
     # keep-sorted start
     agent.explore.reasoningEffort = "medium";

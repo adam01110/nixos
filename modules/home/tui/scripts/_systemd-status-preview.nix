@@ -1,7 +1,6 @@
 {
   # keep-sorted start
   config,
-  lib,
   osConfig,
   pkgs,
   # keep-sorted end
@@ -10,25 +9,7 @@
 # Build a shared systemd status preview helper for terminal tools.
 let
   inherit (builtins) attrValues;
-  inherit
-    (lib)
-    # keep-sorted start
-    getExe
-    getExe'
-    # keep-sorted end
-    ;
   inherit (pkgs) writeShellApplication;
-
-  # keep-sorted start
-  basename = getExe' pkgs.coreutils "basename";
-  bat = getExe config.programs.bat.package;
-  gawk = getExe' pkgs.gawk "awk";
-  grep = getExe' pkgs.gnugrep "grep";
-  sed = getExe' pkgs.gnused "sed";
-  systemctl = getExe' osConfig.systemd.package "systemctl";
-  tail = getExe' pkgs.coreutils "tail";
-  wc = getExe' pkgs.coreutils "wc";
-  # keep-sorted end
 in
   writeShellApplication {
     name = "systemd-status-preview";
@@ -68,27 +49,27 @@ in
       scope=--system
 
       if [ "$mode" = "path" ]; then
-        unit="$(${basename} -- "$target")"
+        unit="$(basename -- "$target")"
 
-        if printf '%s\n' "$target" | ${grep} -q '/systemd/user/'; then
+        if printf '%s\n' "$target" | grep -q '/systemd/user/'; then
           scope=--user
         fi
       fi
 
-      status="$(SYSTEMD_COLORS=1 ${systemctl} "$scope" status "$unit" --no-pager --full --lines=50 2>/dev/null)"
+      status="$(SYSTEMD_COLORS=1 systemctl "$scope" status "$unit" --no-pager --full --lines=50 2>/dev/null)"
 
       if [ -z "$status" ]; then
         exit 0
       fi
 
-      sep="$(printf '%s\n' "$status" | ${gawk} '/^[[:space:]]*$/ { print NR; exit }')"
+      sep="$(printf '%s\n' "$status" | gawk '/^[[:space:]]*$/ { print NR; exit }')"
 
       if [ -n "$sep" ]; then
-        printf '%s\n' "$status" | ${sed} -n "1,$((sep - 1))p"
+        printf '%s\n' "$status" | sed -n "1,$((sep - 1))p"
 
-        if [ "$(printf '%s\n' "$status" | ${wc} -l)" -gt "$sep" ]; then
+        if [ "$(printf '%s\n' "$status" | wc -l)" -gt "$sep" ]; then
           printf '\n'
-          printf '%s\n' "$status" | ${tail} -n "+$((sep + 1))" | ${bat} --language=syslog --theme=ansi --style=plain --color=always
+          printf '%s\n' "$status" | tail -n "+$((sep + 1))" | bat --language=syslog --theme=ansi --style=plain --color=always
         fi
       else
         printf '%s\n' "$status"

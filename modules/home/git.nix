@@ -34,6 +34,7 @@ in {
     '';
   };
 
+  # keep-sorted start block=yes newline_separated=yes
   # Publish the public key alongside the private key path.
   home.file.".ssh/git.pub".text = gitPublicSshkey;
 
@@ -84,4 +85,5 @@ in {
       };
     };
   };
+  # keep-sorted end
 }

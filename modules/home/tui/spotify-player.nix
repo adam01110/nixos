@@ -9,6 +9,7 @@
 let
   inherit (lib) getExe;
 in {
+  # keep-sorted start block=yes newline_separated=yes
   programs.spotify-player = {
     enable = true;
     settings = {
@@ -52,4 +53,5 @@ in {
       # keep-sorted end
     ];
   };
+  # keep-sorted end
 }

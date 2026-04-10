@@ -1,30 +1,25 @@
 {
+  # keep-sorted start
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure opencode formatter commands by file extension.
 let
   inherit
     (lib)
+    # keep-sorted start
     getExe
     getExe'
+    # keep-sorted end
     ;
 in {
   programs.opencode.settings.formatter = {
+    # keep-sorted start block=yes newline_separated=yes
     alejandra = {
       command = [(getExe pkgs.alejandra) "$FILE"];
       extensions = [".nix"];
-    };
-
-    stylua = {
-      command = [(getExe pkgs.stylua) "--respect-ignores" "-"];
-      extensions = [".lua"];
-    };
-
-    shfmt = {
-      command = [(getExe pkgs.shfmt)];
-      extensions = [".sh" ".bash"];
     };
 
     fish_indent = {
@@ -57,5 +52,16 @@ in {
       command = [(getExe pkgs.rustfmt) "$FILE"];
       extensions = [".rs"];
     };
+
+    shfmt = {
+      command = [(getExe pkgs.shfmt)];
+      extensions = [".sh" ".bash"];
+    };
+
+    stylua = {
+      command = [(getExe pkgs.stylua) "--respect-ignores" "-"];
+      extensions = [".lua"];
+    };
+    # keep-sorted end
   };
 }

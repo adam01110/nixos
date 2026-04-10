@@ -1,12 +1,16 @@
 {pkgs, ...}: {
-  # Register the spot-image plugin source.
-  programs.yazi.plugins.spot-image = pkgs.nur.repos.adam0.yaziPlugins.spot-image;
+  programs.yazi = {
+    # keep-sorted start block=yes newline_separated=yes
+    # Register the spot-image plugin source.
+    plugins.spot-image = pkgs.nur.repos.adam0.yaziPlugins.spot-image;
 
-  # Spotters that render content for spot-image.
-  programs.yazi.settings.plugin.append_spotters = [
-    {
-      mime = "image/*";
-      run = "spot-image";
-    }
-  ];
+    # Spotters that render content for spot-image.
+    settings.plugin.append_spotters = [
+      {
+        mime = "image/*";
+        run = "spot-image";
+      }
+    ];
+    # keep-sorted end
+  };
 }
