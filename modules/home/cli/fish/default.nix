@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure fish shell defaults and shared tools.
@@ -10,10 +12,16 @@ let
 
   inherit
     (config.programs.eza)
+    # keep-sorted start
     extraOptions
     icons
+    # keep-sorted end
     ;
 in {
+  # keep-sorted start block=yes newline_separated=yes
+  # Tools used by many things.
+  home.packages = [pkgs.file];
+
   programs.fish = {
     enable = true;
 
@@ -26,10 +34,12 @@ in {
       set -U __done_min_cmd_duration 10000
 
       # Tune fzfish defaults to match the preferred preview and delete tools.
-      set -U fzfish_popup true
+      # keep-sorted start
       set -U fzfish_case_insensitive true
-      set -U fzfish_show_hidden true
+      set -U fzfish_popup true
       set -U fzfish_rm_cmd trash-put
+      set -U fzfish_show_hidden true
+      # keep-sorted end
 
       set -U fzfish_bat_opts --style=numbers
       set -U fzfish_eza_opts ${escapeShellArgs (
@@ -43,12 +53,12 @@ in {
 
     binds = {
       # Remove conflicting default bindings.
-      "alt-e".erase = true;
+      # keep-sorted start
       "alt-d".erase = true;
+      "alt-e".erase = true;
       "alt-l".erase = true;
+      # keep-sorted end
     };
   };
-
-  # Tools used by many things.
-  home.packages = [pkgs.file];
+  # keep-sorted end
 }

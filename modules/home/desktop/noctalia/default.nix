@@ -9,12 +9,12 @@ in {
     enable = true;
     systemd.enable = true;
 
+    # keep-sorted start block=yes newline_separated=yes
     # Enable calendar support in the flake-provided Noctalia build.
-    packageOverrides = {
-      calendarSupport = true;
-    };
+    packageOverrides.calendarSupport = true;
 
     # Use the current theming schema.
     settings.templates.enableUserTheming = false;
+    # keep-sorted end
   };
 }

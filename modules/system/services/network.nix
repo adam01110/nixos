@@ -1,15 +1,19 @@
 {
+  # keep-sorted start
   config,
   lib,
   vars,
+  # keep-sorted end
   ...
 }:
 # Networking: resolved + networkmanager, optional wi‑fi via iwd.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkEnableOption
     mkIf
+    # keep-sorted end
     ;
   inherit (vars) username;
 in {
@@ -22,10 +26,12 @@ in {
       hostname = config.networking.hostName;
     in {
       secrets = {
+        # keep-sorted start numeric=yes
         "dns/${hostname}/dns_1" = {};
         "dns/${hostname}/dns_2" = {};
         "dns/${hostname}/dns_3" = {};
         "dns/${hostname}/dns_4" = {};
+        # keep-sorted end
       };
 
       # Template for resolved.conf carrying dns servers from sops.
@@ -47,10 +53,12 @@ in {
         DNSOverTLS = "opportunistic";
 
         FallbackDNS = [
-          "1.1.1.1#cloudflare-dns.com"
+          # keep-sorted start
           "1.0.0.1#cloudflare-dns.com"
-          "2606:4700:4700::1111#cloudflare-dns.com"
+          "1.1.1.1#cloudflare-dns.com"
           "2606:4700:4700::1001#cloudflare-dns.com"
+          "2606:4700:4700::1111#cloudflare-dns.com"
+          # keep-sorted end
         ];
       };
     };
@@ -81,6 +89,7 @@ in {
       networkmanager = {
         enable = true;
         dns = "systemd-resolved";
+
         wifi = mkIf cfgWifi {
           backend = "iwd";
           scanRandMacAddress = true;

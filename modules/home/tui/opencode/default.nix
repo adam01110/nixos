@@ -1,8 +1,11 @@
 {
+  # keep-sorted start
   config,
   lib,
   mcpWrappers,
+  opencodeEnv,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure opencode integration, wrapper, and desktop entry.
@@ -10,14 +13,24 @@ let
   inherit (builtins) attrValues;
   inherit
     (lib)
+    # keep-sorted start
+    concatStringsSep
+    escapeShellArg
     getExe
     getExe'
     makeBinPath
+    mapAttrsToList
+    # keep-sorted end
     ;
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (pkgs) symlinkJoin;
 
   home = config.home.homeDirectory;
+  wrapEnvArgs = concatStringsSep " \\" (
+    mapAttrsToList
+    (name: value: "--set ${escapeShellArg name} ${escapeShellArg (toString value)}")
+    opencodeEnv
+  );
 in {
   programs.opencode = {
     enable = true;
@@ -28,38 +41,25 @@ in {
       paths = [pkgs.nur.repos.adam0.opencode];
       nativeBuildInputs = [pkgs.makeWrapper];
 
-      # Source plugin credentials before launching the wrapped binary.
+      # Set feature flags and prepend runtime tools before launching opencode.
       postBuild = ''
         wrapProgram $out/bin/opencode \
+          ${wrapEnvArgs} \
           --prefix PATH : ${makeBinPath (attrValues {
           inherit (pkgs.nur.repos.adam0) modular-mcp;
           inherit
             (mcpWrappers)
+            # keep-sorted start
             context7McpWrapper
             githubMcpServerWrapper
+            # keep-sorted end
             ;
           inherit
             (pkgs)
-            wl-clipboard
+            # keep-sorted start
             libnotify
-            # Lsp's.
-            lua-language-server
-            bash-language-server
-            yaml-language-server
-            vscode-json-languageserver
-            ty
-            oxlint
-            taplo
-            typescript-language-server
-            rust-analyzer
-            # Formatters.
-            alejandra
-            biome
-            fish
-            stylua
-            shfmt
-            ruff
-            rustfmt
+            wl-clipboard
+            # keep-sorted end
             ;
         })}
       '';
@@ -77,13 +77,19 @@ in {
     desktopEntries.opencode = {
       name = "Opencode";
       genericName = "AI Coding Assistant";
+
       exec = let
-        terminalCommand = getExe config.xdg.terminal-exec.package;
+        # keep-sorted start
         opencode = getExe' config.programs.opencode.package "opencode";
+        terminalCommand = getExe config.xdg.terminal-exec.package;
+        # keep-sorted end
       in "${terminalCommand} --title=Opencode ${opencode}";
+
       categories = [
+        # keep-sorted start
+        "ConsoleOnly"
         "Development"
-        "Utility"
+        # keep-sorted end
       ];
     };
   };

@@ -1,21 +1,22 @@
 {
+  # keep-sorted start
   inputs,
   lib,
+  # keep-sorted end
 }:
 # Overlays loaded from this directory.
 let
-  inherit
-    (builtins)
-    filter
-    ;
+  inherit (builtins) filter;
 
   importTree = inputs.import-tree.withLib lib;
   upstreamOverlays = import ./_inputs.nix {inherit inputs;};
 
   overlayArgs = {
     inherit
+      # keep-sorted start
       inputs
       lib
+      # keep-sorted end
       ;
   };
 

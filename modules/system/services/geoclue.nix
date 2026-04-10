@@ -8,9 +8,11 @@
     enableWifi = config.optServices.wifi.enable;
 
     # Disable radio/serial backends to avoid unnecessary hardware usage.
+    # keep-sorted start
+    enable3G = false;
     enableCDMA = false;
     enableModemGPS = false;
-    enable3G = false;
     enableNmea = false;
+    # keep-sorted end
   };
 }

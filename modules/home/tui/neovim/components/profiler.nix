@@ -5,12 +5,16 @@ _:
     utility.snacks-nvim.setupOpts.profiler = {
       autocmds = true;
 
-      filter_mod.default = false;
+      # keep-sorted start
       filter_fn.default = false;
+      filter_mod.default = false;
+      # keep-sorted end
 
       icons = {
-        require = " ";
+        # keep-sorted start
         file = " ";
+        require = " ";
+        # keep-sorted end
       };
     };
 

@@ -1,8 +1,12 @@
 {config, ...}:
 # Home manager hyprland configuration: plugins, quickshell, and extras.
 {
-  # Make home manager session variables available to uwsm.
-  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  # keep-sorted start block=yes newline_separated=yes
+  # Enable hyprcursor theme support.
+  home.pointerCursor.hyprcursor.enable = true;
+
+  # Enable hyprshot for screenshotting with hyprland.
+  programs.hyprshot.enable = true;
 
   # Enable hyprland.
   wayland.windowManager.hyprland = {
@@ -13,9 +17,7 @@
     portalPackage = null;
   };
 
-  # Enable hyprcursor theme support.
-  home.pointerCursor.hyprcursor.enable = true;
-
-  # Enable hyprshot for screenshotting with hyprland.
-  programs.hyprshot.enable = true;
+  # Make home manager session variables available to uwsm.
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  # keep-sorted end
 }

@@ -1,6 +1,11 @@
 {config, ...}: let
-  inherit (config.xdg) configHome;
-  inherit (config.xdg) cacheHome;
+  inherit
+    (config.xdg)
+    # keep-sorted start
+    cacheHome
+    configHome
+    # keep-sorted end
+    ;
 in {
   # User-level files and session environment.
   home = {
@@ -11,39 +16,55 @@ in {
 
     # Wayland-first environment, renderers, and toolkit hints.
     sessionVariables = {
+      # keep-sorted start
       MAGICK_OPENCL_DEVICE = "gpu";
       RUSTICL_ENABLE = "radeonsi";
+      # keep-sorted end
 
+      # keep-sorted start
       GDK_BACKEND = "wayland,x11,*";
-      GSK_RENDERER = "vulkan";
-      GTK_USE_PORTAL = 1;
       GDK_DEBUG = "portals";
       GDK_SCALE = 1;
+      GSK_RENDERER = "vulkan";
+      GTK_USE_PORTAL = 1;
+      # keep-sorted end
 
-      QT_QPA_PLATFORM = "wayland;xcb";
+      # keep-sorted start
       QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+      QT_QPA_PLATFORM = "wayland;xcb";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+      # keep-sorted end
 
-      SDL_VIDEODRIVER = "wayland";
+      # keep-sorted start
       CLUTTER_BACKEND = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      # keep-sorted end
 
+      # keep-sorted start
       PROTON_NO_WM_DECORATION = 1;
       WINE_NO_WM_DECORATION = 1;
+      # keep-sorted end
 
       NIXOS_OZONE_WL = 1;
 
+      # keep-sorted start
       APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
       APP2UNIT_TYPE = "service";
+      # keep-sorted end
 
+      # keep-sorted start
       BIOME_CONFIG_PATH = "${configHome}/biome/biome.json";
       RUFF_CACHE_DIR = "${cacheHome}/ruff";
+      # keep-sorted end
     };
   };
 
   # Minimal dconf tweaks.
   dconf.settings = {
-    "org/gnome/desktop/wm/preferences".button-layout = "";
-    "org/gnome/desktop/interface".gtk-enable-primary-paste = false;
+    # keep-sorted start
     "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    "org/gnome/desktop/interface".gtk-enable-primary-paste = false;
+    "org/gnome/desktop/wm/preferences".button-layout = "";
+    # keep-sorted end
   };
 }

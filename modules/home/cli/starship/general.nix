@@ -2,14 +2,17 @@ _:
 # Core prompt symbols and common modules.
 {
   programs.starship.settings = {
+    # keep-sorted start block=yes newline_separated=yes
     character = {
       format = "$symbol ";
-      success_symbol = "[➜](fg:green bold)";
+      # keep-sorted start
       error_symbol = "[➜](fg:red bold)";
-      vimcmd_symbol = "[](fg:green bold)";
+      success_symbol = "[➜](fg:green bold)";
       vimcmd_replace_one_symbol = "[](fg:magenta bold)";
       vimcmd_replace_symbol = "[](fg:magenta bold)";
+      vimcmd_symbol = "[](fg:green bold)";
       vimcmd_visual_symbol = "[](fg:yellow bold)";
+      # keep-sorted end
     };
 
     cmd_duration = {
@@ -23,9 +26,9 @@ _:
       style = "bg:base01 fg:blue bold";
       read_only = " ";
       read_only_style = "bg:base01 fg:red bold";
+      truncate_to_repo = true;
       truncation_length = 2;
       truncation_symbol = "…/";
-      truncate_to_repo = true;
     };
 
     direnv = {
@@ -61,16 +64,21 @@ _:
       style = "bg:base01 fg:base04 bold";
 
       symbols = let
-        linux = "";
+        # keep-sorted start
         apple = "";
+        linux = "";
         redhat = "󱄛";
+        # keep-sorted end
       in {
+        # keep-sorted start
+        Android = "";
         Linux = linux;
         NixOS = "󱄅";
-        Windows = "";
-        Android = "";
         Unknown = "";
+        Windows = "";
+        # keep-sorted end
 
+        # keep-sorted start
         AlmaLinux = "";
         Alpine = "";
         Arch = "";
@@ -87,24 +95,29 @@ _:
         Manjaro = "";
         Mint = "󰣭";
         Nobara = "";
-        openSUSE = "";
         PikaOS = linux;
         Pop = "";
         Raspbian = "";
-        Redhat = redhat;
         RedHatEnterprise = redhat;
+        Redhat = redhat;
         RockyLinux = "";
-        Solus = "";
         SUSE = "";
+        Solus = "";
         Ubuntu = "";
         Void = "";
         Zorin = "";
+        openSUSE = "";
+        # keep-sorted end
 
-        Macos = apple;
+        # keep-sorted start
         Ios = apple;
+        Macos = apple;
+        # keep-sorted end
 
+        # keep-sorted start
         FreeBSD = "";
         OpenBSD = "";
+        # keep-sorted end
       };
     };
 
@@ -118,13 +131,15 @@ _:
     shell = {
       disabled = false;
       format = "[$indicator]($style)";
+      # keep-sorted start
       bash_indicator = "";
-      fish_indicator = "";
-      zsh_indicator = "";
-      powershell_indicator = "󰨊";
       cmd_indicator = "";
+      fish_indicator = "";
       nu_indicator = "󰟆 ";
+      powershell_indicator = "󰨊";
       unknown_indicator = "";
+      zsh_indicator = "";
+      # keep-sorted end
       style = "bg:base01 fg:base04 bold";
     };
 
@@ -141,5 +156,6 @@ _:
       style_user = "bg:base01 fg:blue bold";
       show_always = true;
     };
+    # keep-sorted end
   };
 }

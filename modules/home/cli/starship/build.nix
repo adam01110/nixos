@@ -2,6 +2,7 @@ _:
 # Starship segments for build tooling versions.
 {
   programs.starship.settings = {
+    # keep-sorted start block=yes newline_separated=yes
     cmake = {
       format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
       symbol = "󰔶 ";
@@ -19,5 +20,6 @@ _:
       symbol = "⬢ ";
       style = "bg:base01 fg:blue bold";
     };
+    # keep-sorted end
   };
 }

@@ -8,11 +8,13 @@ _:
     colors = "always";
     icons = "always";
     extraOptions = [
+      # keep-sorted start
       "--all"
-      "--long"
       "--group-directories-first"
+      "--long"
       "--mounts"
       "--time-style=long-iso"
+      # keep-sorted end
     ];
   };
 }

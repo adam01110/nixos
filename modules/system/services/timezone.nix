@@ -1,16 +1,20 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Time zone configuration with optional automatic mode.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkIf
     mkMerge
     mkOption
     types
+    # keep-sorted end
     ;
 in {
   options.optServices.timezone = mkOption {

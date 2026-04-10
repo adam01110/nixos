@@ -5,12 +5,14 @@ let
   disabled = targets: genAttrs targets (_: {enable = false;});
 in {
   stylix.targets = disabled [
+    # keep-sorted start
     "blender"
     "gnome"
     "kde"
+    "nixcord"
     "obsidian"
     "vencord"
     "vesktop"
-    "nixcord"
+    # keep-sorted end
   ];
 }

@@ -1,15 +1,19 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Format hyprland monitor declarations.
 let
   inherit
     (lib)
+    # keep-sorted start
     mapAttrsToList
     mkOption
     types
+    # keep-sorted end
     ;
 in {
   options.hyprland.monitors = mkOption {

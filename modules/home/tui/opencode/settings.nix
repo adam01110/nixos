@@ -5,19 +5,23 @@ _:
     autoupdate = false;
 
     tui = {
-      diff_style = "stacked";
       scroll_acceleration.enabled = true;
+      diff_style = "stacked";
     };
 
     watcher.ignore = [
-      ".git/**"
+      # keep-sorted start
       ".direnv/**"
-      "node_modules/**"
+      ".git/**"
       "dist/**"
+      "node_modules/**"
       "target/**"
+      # keep-sorted end
     ];
 
-    agent.general.reasoningEffort = "medium";
+    # keep-sorted start
     agent.explore.reasoningEffort = "medium";
+    agent.general.reasoningEffort = "medium";
+    # keep-sorted end
   };
 }

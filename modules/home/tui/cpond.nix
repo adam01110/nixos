@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Install `cpond` and expose preferred defaults.

@@ -3,14 +3,7 @@
   programs.yazi.plugins.preview-epub = pkgs.nur.repos.adam0.yaziPlugins.preview-epub;
 
   programs.yazi.settings.plugin = {
-    # Previewers that render content for preview-epub.
-    prepend_previewers = [
-      {
-        mime = "";
-        run = "preview-epub";
-      }
-    ];
-
+    # keep-sorted start block=yes newline_separated=yes
     # Preloaders that render content for preview-epub.
     prepend_preloaders = [
       {
@@ -18,5 +11,14 @@
         run = "preview-epub";
       }
     ];
+
+    # Previewers that render content for preview-epub.
+    prepend_previewers = [
+      {
+        mime = "";
+        run = "preview-epub";
+      }
+    ];
+    # keep-sorted end
   };
 }

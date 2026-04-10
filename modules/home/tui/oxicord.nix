@@ -1,16 +1,15 @@
 {
+  # keep-sorted start
   config,
-  osConfig,
   lib,
+  osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure oxicord and expose a desktop launcher.
 let
-  inherit
-    (lib)
-    getExe
-    ;
+  inherit (lib) getExe;
 
   tomlFormat = pkgs.formats.toml {};
 
@@ -30,14 +29,21 @@ in {
     name = "Oxicord";
     genericName = "Terminal Discord Client";
     icon = "discord";
+
     exec = let
-      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted start
       oxicord = getExe oxicordPkg;
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted end
     in "${terminalCommand} --title=Oxicord ${oxicord}";
+
     categories = [
-      "Network"
+      # keep-sorted start
       "Chat"
-      "Utility"
+      "ConsoleOnly"
+      "InstantMessaging"
+      "Network"
+      # keep-sorted end
     ];
   };
 }

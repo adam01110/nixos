@@ -15,7 +15,9 @@ _:
   home.sessionVariables = let
     editor = "nvim";
   in {
+    # keep-sorted start
     EDITOR = editor;
     VISUAL = editor;
+    # keep-sorted end
   };
 }

@@ -2,6 +2,7 @@ _:
 # Per-language version modules for compilers and sdks.
 {
   programs.starship.settings = {
+    # keep-sorted start block=yes newline_separated=yes
     c = {
       format = "[ ](#00000000)[ ](bg:base01)[$symbol($version(-$name))]($style)[ ](bg:base01)";
       symbol = " ";
@@ -109,5 +110,6 @@ _:
       symbol = " ";
       style = "bg:base01 fg:yellow bold";
     };
+    # keep-sorted end
   };
 }

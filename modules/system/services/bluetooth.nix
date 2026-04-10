@@ -1,14 +1,18 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Optional bluetooth service, toggled per host.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkEnableOption
     mkIf
+    # keep-sorted end
     ;
 in {
   options.optServices.bluetooth.enable = mkEnableOption "Enable bluetooth services.";

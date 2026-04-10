@@ -1,15 +1,19 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Sched-ext scx userspace scheduler service.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkEnableOption
     mkIf
+    # keep-sorted end
     ;
 
   cfgScx = config.optServices.scx;

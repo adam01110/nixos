@@ -2,6 +2,7 @@
   # Discord rich presence via cord.nvim.
   programs.nvf.settings.vim.extraPlugins.cord = {
     package = pkgs.vimPlugins.cord-nvim;
+
     setup = ''
       local diagnostics = require("cord.plugins.diagnostics")
       diagnostics.config.scope = 0

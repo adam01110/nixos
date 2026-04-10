@@ -1,17 +1,21 @@
 {
+  # keep-sorted start
   config,
-  osConfig,
   lib,
+  osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Install terminal bluetooth manager when bluetooth is enabled.
 let
   inherit
     (lib)
+    # keep-sorted start
     getExe
     getExe'
     mkIf
+    # keep-sorted end
     ;
 
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
@@ -26,15 +30,20 @@ in
       name = "Bluetui";
       genericName = "Terminal Bluetooth Manager";
       icon = "bluetooth";
+
       exec = let
-        terminalCommand = getExe config.xdg.terminal-exec.package;
+        # keep-sorted start
         bluetui = getExe' pkg "bluetui";
+        terminalCommand = getExe config.xdg.terminal-exec.package;
+        # keep-sorted end
       in "${terminalCommand} --title=Bluetui ${bluetui}";
+
       categories = [
-        "Utility"
-        "System"
-        "Settings"
+        # keep-sorted start
+        "ConsoleOnly"
         "HardwareSettings"
+        "Settings"
+        # keep-sorted end
       ];
     };
   }

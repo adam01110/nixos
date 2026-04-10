@@ -1,6 +1,8 @@
 {
-  osConfig,
+  # keep-sorted start
   lib,
+  osConfig,
+  # keep-sorted end
   ...
 }: let
   inherit (lib) optional;
@@ -10,8 +12,7 @@
 in {
   # Control center tiles and shortcuts surfaced from the bar.
   programs.noctalia-shell.settings.controlCenter = {
-    position = "close_to_bar_button";
-
+    # keep-sorted start block=yes newline_separated=yes
     cards = [
       {
         id = "profile-card";
@@ -39,6 +40,8 @@ in {
       }
     ];
 
+    position = "close_to_bar_button";
+
     shortcuts = {
       left =
         [{id = "Network";}]
@@ -55,5 +58,6 @@ in {
         ]
         ++ (optional cfgWifi {id = "AirplaneMode";});
     };
+    # keep-sorted end
   };
 }

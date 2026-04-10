@@ -1,15 +1,19 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Tlp power management service with power saving features.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkEnableOption
-    mkIf
     mkForce
+    mkIf
+    # keep-sorted end
     ;
 
   cfgTlp = config.optServices.tlp.enable;

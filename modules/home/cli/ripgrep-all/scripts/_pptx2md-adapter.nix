@@ -1,26 +1,11 @@
-{
-  lib,
-  pkgs,
-}:
+{pkgs}:
 # Provide a pptx2md adapter for ripgrep-all stdin input.
 let
-  inherit (builtins) attrValues;
-  inherit
-    (lib)
-    getExe'
-    ;
   inherit (pkgs) writeShellApplication;
-
-  cat = getExe' pkgs.coreutils "cat";
 in
   writeShellApplication {
     name = "pptx2md.sh";
-    runtimeInputs = attrValues {
-      inherit
-        (pkgs)
-        coreutils
-        ;
-    };
+    runtimeInputs = [pkgs.coreutils];
     text = ''
       set -o errtrace -o errexit -o nounset -o pipefail
       [[ "''${TRACE:-0}" == "1" ]] && set -o xtrace
@@ -29,11 +14,11 @@ in
       IFS=$'\n\t'
       PS4='+\t '
 
-      error_handler() { ${cat} >&2 "Error: In ''${BASH_SOURCE[0]} Line ''${1} exited with Status ''${2}"; }
+      error_handler() { cat >&2 "Error: In ''${BASH_SOURCE[0]} Line ''${1} exited with Status ''${2}"; }
       trap 'error_handler ''${LINENO} $?' ERR
 
       if ! command -v pptx2md >/dev/null 2>&1; then
-        ${cat} >&2 "pptx2md is required in PATH for the pptx adapter."
+        cat >&2 "pptx2md is required in PATH for the pptx adapter."
         exit 127
       fi
 
@@ -51,7 +36,7 @@ in
         }
         trap cleanup_input EXIT
 
-        ${cat} > "$input_file"
+        cat > "$input_file"
 
         if [ $# -gt 1 ]; then
           args=("$@")
@@ -64,6 +49,6 @@ in
         pptx2md "$@" --output "$output_file" >/dev/null
       fi
 
-      ${cat} --squeeze-blank "$output_file"
+      cat --squeeze-blank "$output_file"
     '';
   }

@@ -1,8 +1,10 @@
 {
-  osConfig,
-  lib,
+  # keep-sorted start
   inputs,
+  lib,
+  osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Zen browser user chrome and content styling with nix-userstyles integration.
@@ -10,10 +12,13 @@ let
   inherit (builtins) readFile;
   inherit
     (lib)
+    # keep-sorted start
     filterAttrs
     hasPrefix
     mkAfter
+    # keep-sorted end
     ;
+
   inherit (pkgs.stdenv.hostPlatform) system;
 
   # Convert the stylix base16 scheme into a format accepted by nix-userstyles.
@@ -36,79 +41,65 @@ in {
 
         # Apply nix-userstyles themes.
         userStyles = [
+          # keep-sorted start
+
           "advent-of-code"
           "alternativeto"
           "anonymous-overflow"
           "arch-wiki"
-
           "brave-search"
           "bsky"
           "bstats"
-
           "chatgpt"
           "codeberg"
           "crates.io"
-
           "dev.to"
           "devdocs"
           "discord"
           "docs.deno.com"
           "docs.rs"
-
           "freedesktop"
-
           "ghostty.org"
           "github"
           "gmail"
           "google"
           "google-drive"
-
           "hacker-news"
           "home-manager-options-search"
-
           "indie-wiki-buddy"
-
           "lastfm"
           "linkedin"
           "lobste.rs"
-
           "mastodon"
           "mdbook"
           "mdn"
           "modrinth"
-
           "namemc"
-          "nitter"
           "neovim.io"
+          "nitter"
           "nixos-manual"
           "nixos-search"
           "npm"
-
           "planet-minecraft"
           "porkbun"
           "proton"
           "pypi"
-
           "react.dev"
           "reddit"
           "regex101"
           "rentry.co"
-
           "searchix"
           "shinigami-eyes"
           "spotify-web"
-
           "stack-overflow"
           "twitch"
-
           "web.dev"
           "wiki.nixos.org"
           "wikipedia"
           "wikiwand"
-
           "youtube"
-
           "zen-browser-docs"
+          # keep-sorted end
         ];
 
         # Remove rounded corners on sites and apply nix-userstyles themes.

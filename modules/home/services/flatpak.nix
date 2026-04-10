@@ -4,23 +4,31 @@ let
   home = config.home.homeDirectory;
 in {
   services.flatpak.overrides.global = {
+    # keep-sorted start block=yes newline_separated=yes
     # Add icons and dconf to the extra files.
     Context.filesystems = [
+      # keep-sorted start
       "${home}/.icons"
       "xdg-config/dconf:ro"
+      # keep-sorted end
     ];
 
     # Export gtk, gdk, and qt variables.
     Environment = {
+      # keep-sorted start
       GDK_BACKEND = "wayland,x11,*";
-      GSK_RENDERER = "vulkan";
-      GTK_USE_PORTAL = "1";
       GDK_DEBUG = "portals";
       GDK_SCALE = "1";
+      GSK_RENDERER = "vulkan";
+      GTK_USE_PORTAL = "1";
+      # keep-sorted end
 
-      QT_QPA_PLATFORM = "wayland;xcb";
+      # keep-sorted start
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+      QT_QPA_PLATFORM = "wayland;xcb";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      # keep-sorted end
     };
+    # keep-sorted end
   };
 }

@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Expose a gpu toggle for system monitor widgets.
@@ -14,14 +16,21 @@ in {
     # Reuse a shared 4s interval for slower sensors.
     generalInterval = 4000;
   in {
+    # keep-sorted start
     cpuPollingInterval = 1000;
-    memPollingInterval = generalInterval;
     diskPollingInterval = generalInterval;
+    memPollingInterval = generalInterval;
     networkPollingInterval = generalInterval;
+    # keep-sorted end
+
+    # keep-sorted start block=yes
     enableDgpuMonitoring = config.noctalia.enableGpu;
     externalMonitor = let
-      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted start
       btop = getExe config.programs.btop.package;
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted end
     in "${terminalCommand} --title=Btop ${btop}";
+    # keep-sorted end
   };
 }

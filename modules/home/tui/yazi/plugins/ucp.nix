@@ -4,25 +4,30 @@
 
   # Add ucp clipboard bindings with notifications.
   programs.yazi.keymap.mgr.prepend_keymap = [
-    {
-      on = "p";
-      run = "plugin ucp paste";
-      desc = "Paste";
-    }
-    {
-      on = "y";
-      run = "plugin ucp copy";
-      desc = "Copy";
-    }
+    # keep-sorted start block=yes newline_separated=yes
     {
       on = "p";
       run = "plugin ucp paste notify";
       desc = "Paste";
     }
+
+    {
+      on = "p";
+      run = "plugin ucp paste";
+      desc = "Paste";
+    }
+
     {
       on = "y";
       run = "plugin ucp copy notify";
       desc = "Copy";
     }
+
+    {
+      on = "y";
+      run = "plugin ucp copy";
+      desc = "Copy";
+    }
+    # keep-sorted end
   ];
 }

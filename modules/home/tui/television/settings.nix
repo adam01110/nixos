@@ -6,11 +6,15 @@ _:
     borderType = "plain";
   in {
     input_bar = {
-      prompt = "➜";
+      # keep-sorted start
       border_type = borderType;
+      prompt = "➜";
+      # keep-sorted end
     };
 
-    results_panel.border_type = borderType;
+    # keep-sorted start
     preview_panel.border_type = borderType;
+    results_panel.border_type = borderType;
+    # keep-sorted end
   };
 }

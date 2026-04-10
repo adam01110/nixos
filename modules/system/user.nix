@@ -1,22 +1,28 @@
 {
+  # keep-sorted start
   config,
+  inputs,
   lib,
   pkgs,
-  inputs,
   vars,
+  # keep-sorted end
   ...
 }:
 # User account and home manager setup.
 let
   inherit
     (lib)
+    # keep-sorted start
     getAttrFromPath
     splitString
+    # keep-sorted end
     ;
   inherit
     (vars)
-    username
+    # keep-sorted start
     fullName
+    username
+    # keep-sorted end
     ;
 
   import-tree = inputs.import-tree.withLib lib;
@@ -33,11 +39,11 @@ in {
       hashedPasswordFile = config.sops.secrets.user_password.path;
 
       # Group memberships:
-      # - `wheel`: administrative access via sudo.
-      # - `audio`: access to sound devices.
       extraGroups = [
-        "wheel"
+        # keep-sorted start
         "audio"
+        "wheel"
+        # keep-sorted end
       ];
 
       isNormalUser = true;
@@ -66,8 +72,10 @@ in {
     # Pass shared context (flake inputs and vars) to home manager modules.
     extraSpecialArgs = {
       inherit
+        # keep-sorted start
         inputs
         vars
+        # keep-sorted end
         ;
     };
 
@@ -75,16 +83,18 @@ in {
       # Home manager module sources from flake inputs.
       imports =
         (map (path: getAttrFromPath (splitString "." path) inputs) [
+          # keep-sorted start
           "nix-flatpak.homeManagerModules.nix-flatpak"
-          "sops-nix.homeManagerModules.sops"
-          "noctalia.homeModules.default"
-          "overzicht.homeModules.default"
           "nix-index-database.homeModules.nix-index"
-          "zen-browser.homeModules.beta"
           "nixcord.homeModules.nixcord"
+          "noctalia.homeModules.default"
           "nvf.homeManagerModules.default"
+          "overzicht.homeModules.default"
+          "sops-nix.homeManagerModules.sops"
           "spicetify-nix.homeManagerModules.spicetify"
           "zed-extensions.homeManagerModules.default"
+          "zen-browser.homeModules.beta"
+          # keep-sorted end
         ])
         ++ [
           pkgs.nur.repos.adam0.hmModules.opencode-plugins

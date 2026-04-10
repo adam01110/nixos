@@ -4,7 +4,6 @@ _: {
     enable = true;
 
     initLua = ./init.lua;
-
     shellWrapperName = "y";
   };
 }

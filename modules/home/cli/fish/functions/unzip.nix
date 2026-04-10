@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Define the fish `unzip` archive extraction helper.
@@ -8,8 +10,10 @@ let
   inherit (builtins) attrValues;
   inherit
     (lib)
+    # keep-sorted start
     getExe
     makeBinPath
+    # keep-sorted end
     ;
   inherit (pkgs.writers) writeFishBin;
 in {
@@ -25,8 +29,10 @@ in {
             (makeBinPath (attrValues {
               inherit
                 (pkgs)
+                # keep-sorted start
                 coreutils
                 unzip
+                # keep-sorted end
                 ;
             }))
           ];

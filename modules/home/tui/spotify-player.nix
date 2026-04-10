@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Configure spotify-player.
@@ -12,14 +14,18 @@ in {
     settings = {
       # Enable audio cache and normalization.
       device = {
+        # keep-sorted start
         audio_cache = true;
         normalization = true;
+        # keep-sorted end
       };
 
       # Use better nerd font icons.
-      play_icon = "";
-      pause_icon = "";
+      # keep-sorted start
       liked_icon = "";
+      pause_icon = "";
+      play_icon = "";
+      # keep-sorted end
     };
   };
 
@@ -28,15 +34,22 @@ in {
     name = "Spotify Player";
     genericName = "Music Player";
     icon = "spotify";
+
     exec = let
-      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted start
       spotify-player = getExe config.programs.spotify-player.package;
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted end
     in "${terminalCommand} --title=Spotify-player ${spotify-player}";
+
     categories = [
+      # keep-sorted start
       "Audio"
+      "AudioVideo"
+      "ConsoleOnly"
       "Music"
       "Player"
-      "AudioVideo"
+      # keep-sorted end
     ];
   };
 }

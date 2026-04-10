@@ -15,11 +15,13 @@ in {
     drivers = attrValues {
       inherit
         (pkgs)
+        # keep-sorted start
         foomatic-db-ppds
         foomatic-db-ppds-withNonfreeDb
         gutenprint
         gutenprint-bin
         splix
+        # keep-sorted end
         ;
     };
 

@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # System-wide configuration entry point for NixOS.
@@ -9,9 +11,12 @@ let
   inherit (builtins) attrValues;
   inherit
     (lib)
+    # keep-sorted start
+    genAttrs
     mkEnableOption
     mkForce
     mkIf
+    # keep-sorted end
     ;
 in {
   # Custom option gate for roccat kain 100 mouse hardware quirks.
@@ -61,22 +66,23 @@ in {
       polkit.enable = true;
     };
 
-    programs = {
-      # Enable nix-ld to allow the use of dynamic libraries.
-      nix-ld.enable = true;
-
-      # Enable support for appimages.
-      appimage = {
+    programs = let
+      mkBinfmt = _: {
         enable = true;
         binfmt = true;
       };
-
-      # Enable support for java applications.
-      java = {
-        enable = true;
-        binfmt = true;
-      };
-    };
+    in
+      {
+        # Enable nix-ld to allow the use of dynamic libraries.
+        nix-ld.enable = true;
+      }
+      // genAttrs [
+        # keep-sorted start
+        "appimage"
+        "java"
+        # keep-sorted end
+      ]
+      mkBinfmt;
 
     # Use nftables; individual services will add rules if needed.
     networking.nftables.enable = true;
@@ -101,8 +107,10 @@ in {
       systemPackages = attrValues {
         inherit
           (pkgs)
+          # keep-sorted start
           sbctl
           tpm2-tss
+          # keep-sorted end
           ;
       };
     };

@@ -4,11 +4,13 @@ let
   inherit (builtins) readDir;
   inherit
     (lib)
+    # keep-sorted start
     filterAttrs
     hasSuffix
     mapAttrs'
     nameValuePair
     removeSuffix
+    # keep-sorted end
     ;
 in {
   home.file =

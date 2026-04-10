@@ -1,25 +1,32 @@
 {osConfig, ...}:
 # Configure some stylix targets.
 let
-  sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
+  # keep-sorted start
   MonospaceFont = osConfig.stylix.fonts.monospace.name;
+  sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
+  # keep-sorted end
 in {
-  stylix.
-  targets = {
+  # keep-sorted start block=yes newline_separated=yes
+  programs = {
+    # keep-sorted start newline_separated=yes
+    prismlauncher.settings.Consolefont = MonospaceFont;
+
+    # Keep zathura fonts consistent.
+    zathura.options.font = sansSerifFont;
+    # keep-sorted end
+  };
+
+  stylix.targets = {
+    # keep-sorted start newline_separated=yes
     # Cava.
     cava.rainbow.enable = true;
 
-    # Zen-browser.
-    zen-browser.profileNames = ["default"];
-
     # Neovim.
     nvf.transparentBackground = true;
-  };
 
-  programs = {
-    # Keep zathura fonts consistent.
-    zathura.options.font = sansSerifFont;
-
-    prismlauncher.settings.Consolefont = MonospaceFont;
+    # Zen-browser.
+    zen-browser.profileNames = ["default"];
+    # keep-sorted end
   };
+  # keep-sorted end
 }

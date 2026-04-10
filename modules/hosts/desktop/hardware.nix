@@ -1,25 +1,32 @@
 {
+  # keep-sorted start
   config,
   modulesPath,
+  # keep-sorted end
   ...
 }:
 # Hardware profile for the desktop machine.
 {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
+  # keep-sorted start block=yes newline_separated=yes
   # Kernel modules for desktop hardware support.
   boot.initrd.availableKernelModules = [
-    "xhci_pci"
+    # keep-sorted start
     "ahci"
     "nvme"
-    "usb_storage"
-    "uas"
-    "usbhid"
     "sd_mod"
+    "uas"
+    "usb_storage"
+    "usbhid"
+    "xhci_pci"
+    # keep-sorted end
   ];
+
   # Enable intel virtualization support.
   boot.kernelModules = ["kvm-intel"];
 
   # Enable intel microcode updates when firmware is available.
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
+  # keep-sorted end
 }

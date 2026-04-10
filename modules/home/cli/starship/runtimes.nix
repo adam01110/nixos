@@ -2,6 +2,7 @@ _:
 # Display js runtime versions when active.
 {
   programs.starship.settings = {
+    # keep-sorted start block=yes newline_separated=yes
     bun = {
       format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
       symbol = " ";
@@ -20,5 +21,6 @@ _:
       style = "bg:base01 fg:green bold";
       not_capable_style = "bg:base01 fg:base08 bold";
     };
+    # keep-sorted end
   };
 }

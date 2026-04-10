@@ -1,29 +1,35 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure nvtop.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkOption
-    types
     optional
+    types
+    # keep-sorted end
     ;
 in {
   options.nvtop.types = mkOption {
     type = types.listOf (
       types.enum [
+        # keep-sorted start
         "amd"
-        "intel"
-        "nvidia"
-        "v3d"
-        "msm"
-        "panthor"
-        "panfrost"
         "apple"
+        "intel"
+        "msm"
+        "nvidia"
+        "panfrost"
+        "panthor"
+        "v3d"
+        # keep-sorted end
       ]
     );
     default = [];

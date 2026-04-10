@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Install wiremix.
@@ -17,16 +19,22 @@ in {
     name = "Wiremix";
     genericName = "Pipewire Volume Control";
     icon = "multimedia-volume-control";
+
     exec = let
+      # keep-sorted start
       terminalCommand = getExe config.xdg.terminal-exec.package;
       wiremix = getExe pkg;
+      # keep-sorted end
     in "${terminalCommand} --title=Wiremix ${wiremix}";
+
     categories = [
+      # keep-sorted start
       "Audio"
       "AudioVideo"
-      "System"
-      "Settings"
+      "ConsoleOnly"
       "Mixer"
+      "Settings"
+      # keep-sorted end
     ];
   };
 }

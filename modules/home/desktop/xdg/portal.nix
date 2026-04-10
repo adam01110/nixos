@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }: let
   inherit (lib) getExe;

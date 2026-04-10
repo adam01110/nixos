@@ -4,15 +4,18 @@
 
   # Replace Yazi's builtin jump pickers with television.
   programs.yazi.keymap.mgr.prepend_keymap = [
-    {
-      on = ["z"];
-      run = "plugin tv";
-      desc = "Jump to a file via television";
-    }
+    # keep-sorted start block=yes newline_separated=yes
     {
       on = ["Z"];
       run = "plugin tv dirs";
       desc = "Jump to a directory via television";
     }
+
+    {
+      on = ["z"];
+      run = "plugin tv";
+      desc = "Jump to a file via television";
+    }
+    # keep-sorted end
   ];
 }

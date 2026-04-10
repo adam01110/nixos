@@ -12,8 +12,8 @@ _:
     # Use a pre-provisioned age key file on disk.
     age = {
       sshKeyPaths = [];
-      keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = false;
+      keyFile = "/var/lib/sops-nix/key.txt";
     };
   };
 }

@@ -6,7 +6,9 @@ in {
   hyprlandPlugins =
     prev.hyprlandPlugins
     // {
-      inherit (inputs.hyprsplit.packages.${system}) hyprsplit;
+      # keep-sorted start
       inherit (inputs.hyprland-plugins.packages.${system}) hyprfocus;
+      inherit (inputs.hyprsplit.packages.${system}) hyprsplit;
+      # keep-sorted end
     };
 }

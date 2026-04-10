@@ -1,14 +1,18 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Optional openssh server, toggled per host.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkEnableOption
     mkIf
+    # keep-sorted end
     ;
 in {
   options.optServices.ssh.enable = mkEnableOption "Enable Ssh services.";

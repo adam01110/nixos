@@ -3,7 +3,7 @@ _:
 let
   inherit (builtins) listToAttrs;
 in {
-  home.sessionVariables = let
+  _module.args.opencodeEnv = let
     mkEnv = prefix: features:
       listToAttrs (
         map (n: {
@@ -14,15 +14,21 @@ in {
       );
 
     experimentalFeatures = [
-      "ICON_DISCOVERY"
+      # keep-sorted start
       "FILEWATCHER"
-      "LSP_TY"
+      "ICON_DISCOVERY"
       "LSP_TOOL"
-      "MARKDOWN"
+      "LSP_TY"
+      # keep-sorted end
     ];
 
     # Keep builtin lsp downloads disabled and rely on nix instead.
-    disabledFeatures = ["LSP_DOWNLOAD"];
+    disabledFeatures = [
+      # keep-sorted start
+      "AUTOCOMPACT"
+      "LSP_DOWNLOAD"
+      # keep-sorted end
+    ];
     enabledFeatures = ["EXA"];
   in
     mkEnv "OPENCODE_EXPERIMENTAL" experimentalFeatures

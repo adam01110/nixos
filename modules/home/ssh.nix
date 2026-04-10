@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   config,
   vars,
+  # keep-sorted end
   ...
 }:
 # Ssh client config with sops-injected host templates.

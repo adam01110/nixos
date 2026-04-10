@@ -5,6 +5,7 @@ let
   disabled = targets: genAttrs targets (_: {disabled = true;});
 in {
   programs.starship.settings = disabled [
+    # keep-sorted start
     "aws"
     "battery"
     "buf"
@@ -37,9 +38,9 @@ in {
     "pulumi"
     "purescript"
     "quarto"
-    "rlang"
     "raku"
     "red"
+    "rlang"
     "scala"
     "singularity"
     "solidity"
@@ -47,7 +48,8 @@ in {
     "terraform"
     "typst"
     "vagrant"
-    "vlang"
     "vcsh"
+    "vlang"
+    # keep-sorted end
   ];
 }

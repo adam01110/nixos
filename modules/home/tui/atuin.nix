@@ -15,26 +15,32 @@ in {
     };
 
     settings = {
-      update_check = false;
+      # keep-sorted start
       search-mode = "daemon-fuzzy";
+      update_check = false;
+      # keep-sorted end
 
-      style = "full";
+      # keep-sorted start
+      inline_height = 24;
       invert = true;
       show_help = false;
-      inline_height = 24;
       show_tabs = false;
+      style = "full";
+      # keep-sorted end
 
       keymap_mode = "vim-normal";
 
       logs = {
-        dir = "${cacheHome}/atuin/logs";
         level = logLevel;
+        dir = "${cacheHome}/atuin/logs";
       };
 
       history_filter = [
+        # keep-sorted start
         ''(^|[[:space:]])(export[[:space:]]+)?[A-Z_][A-Z0-9_]*(_TOKEN|_SECRET|_PASSWORD|_PASSWD|_API_KEY|_ACCESS_KEY|_SECRET_ACCESS_KEY)(="[^"]+"|=[^[:space:]]+)''
         ''(^|[[:space:]])--?(token|secret|password|passwd|api[-_]?key|access[-_]?key|client[-_]?secret)(=|[[:space:]]+)''
         ''(sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|glpat-[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16})''
+        # keep-sorted end
       ];
 
       # TODO(adam0): set sync address when ready.

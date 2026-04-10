@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure opencode lsp commands by extension.
@@ -8,24 +10,10 @@ let
   inherit (lib) getExe;
 in {
   programs.opencode.settings.lsp = {
-    nixd = {
-      command = [(getExe pkgs.nixd)];
-      extensions = [".nix"];
-    };
-
-    lua = {
-      command = [(getExe pkgs.lua-language-server)];
-      extensions = [".lua"];
-    };
-
+    # keep-sorted start block=yes newline_separated=yes
     bash = {
       command = [(getExe pkgs.bash-language-server) "start"];
       extensions = [".sh" ".bash"];
-    };
-
-    yaml-ls = {
-      command = [(getExe pkgs.yaml-language-server) "--stdio"];
-      extensions = [".yaml" ".yml"];
     };
 
     json = {
@@ -33,9 +21,14 @@ in {
       extensions = [".json" ".jsonc"];
     };
 
-    ty = {
-      command = [(getExe pkgs.ty)];
-      extensions = [".py" ".pyi"];
+    lua = {
+      command = [(getExe pkgs.lua-language-server)];
+      extensions = [".lua"];
+    };
+
+    nixd = {
+      command = [(getExe pkgs.nixd)];
+      extensions = [".nix"];
     };
 
     oxlint = {
@@ -43,9 +36,19 @@ in {
       extensions = [".ts" ".tsx" ".js" ".jsx"];
     };
 
+    rust = {
+      command = [(getExe pkgs.rust-analyzer)];
+      extensions = [".rs"];
+    };
+
     taplo = {
       command = [(getExe pkgs.taplo) "lsp" "stdio"];
       extensions = [".toml"];
+    };
+
+    ty = {
+      command = [(getExe pkgs.ty)];
+      extensions = [".py" ".pyi"];
     };
 
     typescript = {
@@ -53,9 +56,10 @@ in {
       extensions = [".ts" ".tsx" ".js" ".jsx"];
     };
 
-    rust = {
-      command = [(getExe pkgs.rust-analyzer)];
-      extensions = [".rs"];
+    yaml-ls = {
+      command = [(getExe pkgs.yaml-language-server) "--stdio"];
+      extensions = [".yaml" ".yml"];
     };
+    # keep-sorted end
   };
 }

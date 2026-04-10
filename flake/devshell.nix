@@ -9,8 +9,10 @@ _:
       packages = attrValues {
         inherit
           (pkgs)
+          # keep-sorted start
           sops
           tokei
+          # keep-sorted end
           ;
       };
     };

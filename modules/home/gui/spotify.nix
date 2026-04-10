@@ -1,6 +1,8 @@
 {
-  pkgs,
+  # keep-sorted start
   inputs,
+  pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure spicetify.
@@ -15,35 +17,42 @@ in {
     enable = true;
 
     # Turn on experimental features, use wayland, and apply wm patch.
+    # keep-sorted start
     experimentalFeatures = true;
-    windowManagerPatch = true;
     wayland = true;
+    windowManagerPatch = true;
+    # keep-sorted end
 
+    # keep-sorted start block=yes newline_separated=yes
     # Enable extensions.
     enabledExtensions = attrValues {
       # Extensions from spicetify-nix.
       inherit
         (spicePkgs.extensions)
-        keyboardShortcut
-        seekSong
-        fullAlbumDate
-        goToSong
-        listPlaylistsWithSong
-        wikify
+        # keep-sorted start
+        aiBandBlocker
         betterGenres
         copyLyrics
+        fullAlbumDate
+        goToSong
+        keyboardShortcut
+        listPlaylistsWithSong
         playingSource
-        sectionMarker
         queueTime
-        aiBandBlocker
+        sectionMarker
+        seekSong
+        wikify
+        # keep-sorted end
         ;
 
       # Extensions from adam0's nur.
       inherit
         (pkgs.nur.repos.adam0.spicetifyExtensions)
-        volumePercentage
+        # keep-sorted start
         moreLyrics
         playlistIcons
+        volumePercentage
+        # keep-sorted end
         ;
     };
 
@@ -51,10 +60,13 @@ in {
     enabledSnippets = attrValues {
       inherit
         (spicePkgs.snippets)
+        # keep-sorted start
         pointer
         removeTheArtistsAndCreditsSectionsFromTheSidebar
         smoothProgressBar
+        # keep-sorted end
         ;
     };
+    # keep-sorted end
   };
 }

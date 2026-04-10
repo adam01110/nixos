@@ -1,7 +1,9 @@
 {
-  pkgs,
-  osConfig,
+  # keep-sorted start
   inputs,
+  osConfig,
+  pkgs,
+  # keep-sorted end
   ...
 }:
 # Apply stylix overrides for spicetify.
@@ -11,6 +13,7 @@ let
 
   font = osConfig.stylix.fonts.monospace.name;
 in {
+  # keep-sorted start block=yes newline_separated=yes
   programs.spicetify = {
     theme = let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
@@ -73,26 +76,29 @@ in {
 
     colorScheme = "custom";
     customColorScheme = with colors; {
-      text = base05;
-      subtext = base05;
-      main = base00;
-      main-elevated = base02;
-      highlight = base02;
-      highlight-elevated = base03;
-      sidebar = base01;
-      player = base04;
-      card = base03;
-      shadow = base00;
-      selected-row = base04;
+      # keep-sorted start
       button = base04;
       button-active = base04;
       button-disabled = base03;
-      tab-active = base02;
+      card = base03;
+      equalizer = base0B;
+      highlight = base02;
+      highlight-elevated = base03;
+      main = base00;
+      main-elevated = base02;
+      misc = base02;
       notification = base02;
       notification-error = base08;
-      equalizer = base0B;
-      misc = base02;
+      player = base04;
+      selected-row = base04;
+      shadow = base00;
+      sidebar = base01;
+      subtext = base05;
+      tab-active = base02;
+      text = base05;
+      # keep-sorted end
 
+      # keep-sorted start
       accent = base0B;
       accent-active = base0B;
       accent-inactive = base00;
@@ -100,8 +106,10 @@ in {
       border-active = base0D;
       border-inactive = base01;
       header = base03;
+      # keep-sorted end
     };
   };
 
   stylix.targets.spicetify.enable = false;
+  # keep-sorted end
 }

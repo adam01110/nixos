@@ -8,11 +8,14 @@ _:
     # Blend Overzicht's built-in panel shadow with a light fullscreen dim backdrop.
     settings.effects = {
       enableBackdrop = true;
+
+      # keep-sorted start
       backdropOpacity = 0.18;
-      panelOpacity = 0.93;
-      workspaceOpacity = 1;
       emptyWorkspaceWallpaperOverlayOpacity = 0.12;
+      panelOpacity = 0.93;
       windowOverlayOpacity = 0.06;
+      workspaceOpacity = 1;
+      # keep-sorted end
     };
   };
 }

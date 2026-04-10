@@ -2,8 +2,11 @@ _:
 # Session menu entries and confirmation timing.
 {
   programs.noctalia-shell.settings.sessionMenu = {
+    # keep-sorted start
     countdownDuration = 8000;
     largeButtonsStyle = false;
+    # keep-sorted end
+
     powerOptions = [
       {
         action = "lock";
@@ -11,6 +14,7 @@ _:
         countdownEnabled = false;
         keybind = "1";
       }
+
       {
         action = "suspend";
         enabled = true;
@@ -18,6 +22,7 @@ _:
         command = "systemctl suspend";
         keybind = "2";
       }
+
       {
         action = "reboot";
         enabled = true;
@@ -25,12 +30,14 @@ _:
         command = "systemctl reboot";
         keybind = "3";
       }
+
       {
         action = "logout";
         enabled = true;
         countdownEnabled = true;
         keybind = "4";
       }
+
       {
         action = "shutdown";
         enabled = true;
@@ -38,11 +45,13 @@ _:
         command = "systemctl poweroff";
         keybind = "5";
       }
+
       {
         action = "hibernate";
         enabled = false;
         countdownEnabled = true;
       }
+
       {
         action = "rebootToUefi";
         enabled = true;

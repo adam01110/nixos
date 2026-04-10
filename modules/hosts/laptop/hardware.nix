@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   config,
   modulesPath,
+  # keep-sorted end
   ...
 }:
 # Hardware profile for the laptop.
@@ -9,18 +11,23 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # keep-sorted start block=yes newline_separated=yes
   # Kernel modules for laptop hardware support.
   boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
+    # keep-sorted start
     "nvme"
-    "usb_storage"
-    "sd_mod"
     "rtsx_pci_sdmmc"
+    "sd_mod"
+    "thunderbolt"
+    "usb_storage"
+    "xhci_pci"
+    # keep-sorted end
   ];
+
   # Enable intel virtualization support.
   boot.kernelModules = ["kvm-intel"];
 
   # Enable intel microcode updates when firmware is available.
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
+  # keep-sorted end
 }

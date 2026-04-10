@@ -2,23 +2,25 @@ _:
 # Integrations with external services and providers.
 {
   programs.nixcord.config.plugins = {
-    # keep-sorted start block=yes
-    Dragify.enable = true;
-    GitHubRepos.enable = true;
-    OpenInApp = {
+    # keep-sorted start block=yes newline_separated=yes
+    dragify.enable = true;
+
+    gitHubRepos.enable = true;
+
+    openInApp = {
       enable = true;
-      # keep-sorted start
-      itunes = false;
-      spotify = false;
-      tidal = false;
-      # keep-sorted end
     };
-    ReplaceGoogleSearch = {
+
+    replaceGoogleSearch = {
+      customEngineName = "Brave";
+      customEngineURL = "https://search.brave.com/search?q=";
       enable = true;
-      replacementEngine = "Brave";
+      replacementEngine = "custom";
     };
-    ReverseImageSearch.enable = true;
-    UnitConverter = {
+
+    reverseImageSearch.enable = true;
+
+    unitConverter = {
       enable = true;
       myUnits = "metric";
     };

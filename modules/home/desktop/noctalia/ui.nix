@@ -2,11 +2,13 @@ _:
 # Ui panel styling for noctalia shell.
 {
   programs.noctalia-shell.settings.ui = {
+    # keep-sorted start
+    boxBorderEnabled = true;
     fontDefaultScale = 0.8;
     fontFixedScale = 0.8;
-    panelsAttachedToBar = false;
     panelBackgroundOpacity = 0.95;
-    boxBorderEnabled = true;
+    panelsAttachedToBar = false;
     settingsPanelMode = "centered";
+    # keep-sorted end
   };
 }

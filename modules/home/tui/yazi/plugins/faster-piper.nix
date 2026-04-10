@@ -1,4 +1,14 @@
-{pkgs, ...}: let
+{
+  # keep-sorted start
+  config,
+  lib,
+  osConfig,
+  pkgs,
+  # keep-sorted end
+  ...
+}: let
+  inherit (lib) getExe;
+
   # Build repeated entries from URL patterns.
   mkEntries = run:
     map (url: {
@@ -11,25 +21,11 @@ in {
   # Register the faster-piper plugin source.
   programs.yazi.plugins.faster-piper = pkgs.nur.repos.adam0.yaziPlugins.faster-piper;
 
-  # Use faster-piper for markdown, archives, compressed text, and sqlite previews.
+  # Use faster-piper for markdown, archives, compressed text, sqlite, and systemd previews.
   programs.yazi.settings.plugin = {
-    # Previewers routed through faster-piper.
-    prepend_previewers =
-      # Markdown files.
-      mkEntries usePreloader ["*.md"]
-      ++
-      # Archive files.
-      mkEntries "${usePreloader} --format=url" ["*.tar*"]
-      ++
-      # Compressed text files.
-      mkEntries usePreloader ["*.txt.gz"]
-      ++
-      # SQLite database files.
-      mkEntries usePreloader ["*.db" "*.sqlite" "*.sqlite3"];
-
+    # keep-sorted start newline_separated=yes
     # Preloaders that render content for faster-piper.
     prepend_preloaders =
-      # Markdown files.
       mkEntries "${piper} CLICOLOR_FORCE=1 glow -w=$w -s=dark -- \"$1\"" ["*.md"]
       ++
       # Archive files.
@@ -39,6 +35,36 @@ in {
       mkEntries "${piper} gzip -dc \"$1\"" ["*.txt.gz"]
       ++
       # SQLite database files.
-      mkEntries ''${piper} sqlite3 -readonly "$1" ".schema --indent"'' ["*.db" "*.sqlite" "*.sqlite3"];
+      mkEntries ''${piper} sqlite3 -readonly "$1" ".schema --indent"'' ["*.db" "*.sqlite" "*.sqlite3"]
+      ++
+      # Systemd service files.
+      mkEntries ''${piper} ${getExe (import ../../scripts/_systemd-status-preview.nix {
+          inherit
+            # keep-sorted start
+            config
+            lib
+            osConfig
+            pkgs
+            # keep-sorted end
+            ;
+        })} --from-path "$1"'' ["*/systemd/*"];
+
+    # Previewers routed through faster-piper.
+    prepend_previewers =
+      mkEntries usePreloader ["*.md"]
+      ++
+      # Archive files.
+      mkEntries "${usePreloader} --format=url" ["*.tar*"]
+      ++
+      # Compressed text files.
+      mkEntries usePreloader ["*.txt.gz"]
+      ++
+      # SQLite database files.
+      mkEntries usePreloader ["*.db" "*.sqlite" "*.sqlite3"]
+      ++
+      # Systemd service files.
+      mkEntries usePreloader ["*/systemd/*"];
+
+    # keep-sorted end
   };
 }

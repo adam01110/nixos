@@ -5,15 +5,21 @@ _:
     enable = true;
 
     settings = {
+      # keep-sorted start block=yes newline_separated=yes
       general = {
-        bar_width = 1;
+        # keep-sorted start
         bar_spacing = 2;
+        bar_width = 1;
+        # keep-sorted end
       };
 
       smoothing = {
+        # keep-sorted start
         monstercat = 1;
         noise_reduction = 33;
+        # keep-sorted end
       };
+      # keep-sorted end
     };
   };
 }

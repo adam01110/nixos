@@ -1,82 +1,47 @@
 {
+  # keep-sorted start
   config,
-  osConfig,
   lib,
+  osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }: let
-  inherit (builtins) attrValues;
   inherit
     (lib)
+    # keep-sorted start
     getExe
     getExe'
+    # keep-sorted end
     ;
-  inherit (pkgs) writeShellApplication;
 
+  # keep-sorted start
   sudo = getExe osConfig.security.sudo-rs.package;
   systemctl = getExe' osConfig.systemd.package "systemctl";
+  # keep-sorted end
 in {
   programs.television.channels.units = {
-    metadata = {
-      name = "units";
-      description = "List and manage systemd services";
-      requirements = [
-        "systemctl"
-        "bat"
-        "sudo"
-      ];
-    };
-
-    source = {
-      command = [
-        "${systemctl} list-units --type=service --no-pager --no-legend --plain"
-        "${systemctl} list-units --type=service --all --no-pager --no-legend --plain"
-      ];
-      display = "{split: :0}";
-    };
-
-    # Preserve native systemd colors above the status/log separator line.
-    preview.command = "${getExe (writeShellApplication {
-      name = "tv-units-preview";
-      runtimeInputs =
-        attrValues {
-          inherit
-            (pkgs)
-            coreutils
-            gawk
-            ;
-        }
-        ++ [
-          config.programs.bat.package
-          osConfig.systemd.package
-        ];
-      text = ''
-        unit="$1"
-        status="$(SYSTEMD_COLORS=1 systemctl status "$unit" --no-pager --full --lines=50)"
-        sep="$(printf '%s\n' "$status" | awk '/^[[:space:]]*$/ { print NR; exit }')"
-
-        if [ -n "$sep" ]; then
-          printf '%s\n' "$status" | sed -n "1,$((sep - 1))p"
-
-          if [ "$(printf '%s\n' "$status" | wc -l)" -gt "$sep" ]; then
-            printf '\n'
-            printf '%s\n' "$status" | tail -n "+$((sep + 1))" | bat --language=syslog --theme=ansi --style=plain --color=always
-          fi
-        else
-          printf '%s\n' "$status"
-        fi
-      '';
-    })} '{split: :0}'";
-
-    keybindings = {
-      ctrl-s = "actions:start";
-      f2 = "actions:stop";
-      ctrl-r = "actions:restart";
-      ctrl-e = "actions:enable";
-      ctrl-d = "actions:disable";
-    };
-
+    # keep-sorted start block=yes newline_separated=yes
     actions = {
+      # keep-sorted start block=yes newline_separated=yes
+      disable = {
+        description = "Disable the selected service";
+        command = "${sudo} ${systemctl} disable '{split: :0}'";
+        mode = "execute";
+      };
+
+      enable = {
+        description = "Enable the selected service";
+        command = "${sudo} ${systemctl} enable '{split: :0}'";
+        mode = "execute";
+      };
+
+      restart = {
+        description = "Restart the selected service";
+        command = "${sudo} ${systemctl} restart '{split: :0}'";
+        mode = "execute";
+      };
+
       start = {
         description = "Start the selected service";
         command = "${sudo} ${systemctl} start '{split: :0}'";
@@ -88,24 +53,53 @@ in {
         command = "${sudo} ${systemctl} stop '{split: :0}'";
         mode = "execute";
       };
-
-      restart = {
-        description = "Restart the selected service";
-        command = "${sudo} ${systemctl} restart '{split: :0}'";
-        mode = "execute";
-      };
-
-      enable = {
-        description = "Enable the selected service";
-        command = "${sudo} ${systemctl} enable '{split: :0}'";
-        mode = "execute";
-      };
-
-      disable = {
-        description = "Disable the selected service";
-        command = "${sudo} ${systemctl} disable '{split: :0}'";
-        mode = "execute";
-      };
+      # keep-sorted end
     };
+
+    keybindings = {
+      # keep-sorted start
+      ctrl-d = "actions:disable";
+      ctrl-e = "actions:enable";
+      ctrl-r = "actions:restart";
+      ctrl-s = "actions:start";
+      f2 = "actions:stop";
+      # keep-sorted end
+    };
+
+    metadata = {
+      name = "units";
+      description = "List and manage systemd services";
+      requirements = [
+        # keep-sorted start
+        "bat"
+        "sudo"
+        "systemctl"
+        # keep-sorted end
+      ];
+    };
+
+    # Preserve native systemd colors above the status/log separator line.
+    preview.command = "${getExe (import ../../scripts/_systemd-status-preview.nix {
+      inherit
+        # keep-sorted start
+        config
+        lib
+        osConfig
+        pkgs
+        # keep-sorted end
+        ;
+    })} '{split: :0}'";
+
+    source = {
+      # keep-sorted start block=yes newline_separated=yes
+      command = [
+        "${systemctl} list-units --type=service --no-pager --no-legend --plain"
+        "${systemctl} list-units --type=service --all --no-pager --no-legend --plain"
+      ];
+
+      display = "{split: :0}";
+      # keep-sorted end
+    };
+    # keep-sorted end
   };
 }

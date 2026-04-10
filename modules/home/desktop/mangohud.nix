@@ -5,12 +5,14 @@ _:
     enable = true;
 
     settings = {
-      legacy_layout = false;
+      # keep-sorted start
       fps = true;
       frame_timing = true;
       horizontal = true;
       horizontal_stretch = 0;
+      legacy_layout = false;
       position = "top-left";
+      # keep-sorted end
     };
   };
 }

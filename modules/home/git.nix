@@ -1,17 +1,21 @@
 {
+  # keep-sorted start
   config,
   pkgs,
   vars,
+  # keep-sorted end
   ...
 }:
 # Git configuration with sops-managed email and libsecret credentials.
 let
   inherit
     (vars)
+    # keep-sorted start
     fullName
-    username
     gitPublicSshkey
     gitSigningKey
+    username
+    # keep-sorted end
     ;
 in {
   sops = {
@@ -51,8 +55,10 @@ in {
         };
 
         # Enable gpg signing.
+        # keep-sorted start
         commit.gpgsign = true;
         tag.gpgSign = true;
+        # keep-sorted end
 
         # Store https credentials via the desktop keyring (libsecret).
         credential.helper = "${gitPackage}/libexec/git-core/git-credential-libsecret";

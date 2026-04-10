@@ -14,22 +14,26 @@ _: {
         # Tune markview for icon-backed previews and table rendering.
         setupOpts = {
           preview = {
+            linewise_hybrid_mode = true;
+
             icon_provider = "devicons";
             filetypes = ["markdown"];
 
-            linewise_hybrid_mode = true;
-
             modes = [
+              # keep-sorted start
+              "V"
+              "i"
               "n"
               "no"
               "v"
-              "V"
-              "i"
+              # keep-sorted end
             ];
             hybrid_modes = [
+              # keep-sorted start
+              "V"
               "n"
               "v"
-              "V"
+              # keep-sorted end
             ];
           };
 
@@ -40,24 +44,30 @@ _: {
             use_virt_lines = true;
 
             tables.parts = {
+              # keep-sort start
               top = ["┌" "─" "┐" "┬"];
               bottom = ["└" "─" "┘" "┴"];
               overlap = ["├" "─" "┤" "┼"];
               align_left = "─";
               align_right = "─";
               align_center = ["─" "─"];
+              # keep-sort end
             };
 
             headings = {
+              # keep-sort start numeric=yes
               heading_1.icon = "󰎤 ";
               heading_2.icon = "󰎧 ";
               heading_3.icon = "󰎪 ";
               heading_4.icon = "󰎭 ";
               heading_5.icon = "󰎱 ";
               heading_6.icon = "󰎳 ";
+              # keep-sort end
 
+              # keep-sort start numeric=yes
               setext_1.icon = "󰎤 ";
               setext_2.icon = "󰎧 ";
+              # keep-sort end
             };
           };
         };
@@ -71,25 +81,6 @@ _: {
         mode = "n";
         action = "<CMD>Markview<CR>";
         desc = "Toggle `markview` globally";
-      }
-    ];
-
-    # Apply prose-friendly wrapping and auto-reflow for markdown buffers.
-    augroups = [{name = "MarkdownEditing";}];
-    autocmds = [
-      {
-        event = ["FileType"];
-        pattern = ["markdown"];
-        group = "MarkdownEditing";
-        desc = "Enable markdown wrapping at 120 columns without a guide line";
-        command = "setlocal wrap linebreak breakindent textwidth=120 colorcolumn= formatoptions+=ta formatexpr= formatprg=";
-      }
-      {
-        event = ["BufWritePre"];
-        pattern = ["*.md"];
-        group = "MarkdownEditing";
-        desc = "Reflow the full markdown buffer to 120 columns before save";
-        command = "setlocal formatexpr= formatprg= | keepjumps normal! gggqG";
       }
     ];
   };

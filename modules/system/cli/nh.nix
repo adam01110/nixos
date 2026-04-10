@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
   lib,
   vars,
+  # keep-sorted end
   ...
 }:
 # Configure nh.

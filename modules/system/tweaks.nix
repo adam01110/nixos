@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Low-level system tweaks for desktop responsiveness and performance.
@@ -9,10 +11,12 @@ let
   inherit (builtins) attrValues;
   inherit
     (lib)
+    # keep-sorted start
     getExe
     getExe'
     mkEnableOption
     optional
+    # keep-sorted end
     ;
 in {
   # Optional rcu lazy toggle to defer callback processing.
@@ -23,9 +27,11 @@ in {
     environment.systemPackages = attrValues {
       inherit
         (pkgs)
+        # keep-sorted start
         bash
-        hdparm
         coreutils
+        hdparm
+        # keep-sorted end
         ;
     };
 
@@ -46,30 +52,40 @@ in {
       # Memory and system tuning for desktop responsiveness.
       kernel.sysctl = {
         # Prefer compressed swap sooner to keep file cache and anonymous memory flexible.
+        # keep-sorted start
         "vm.swappiness" = 100;
         "vm.vfs_cache_pressure" = 50;
+        # keep-sorted end
 
         # Cap dirty data in bytes so writeback starts predictably across ram sizes.
-        "vm.dirty_bytes" = 268435456;
-        "vm.page-cluster" = 0;
+        # keep-sorted start
         "vm.dirty_background_bytes" = 67108864;
+        "vm.dirty_bytes" = 268435456;
         "vm.dirty_writeback_centisecs" = 1500;
+        "vm.page-cluster" = 0;
+        # keep-sorted end
 
         # Drop watchdog and console noise that can add scheduler jitter.
+        # keep-sorted start
         "kernel.nmi_watchdog" = 0;
-        "kernel.unprivileged_userns_clone" = 1;
         "kernel.printk" = "3 3 3 3";
+        "kernel.unprivileged_userns_clone" = 1;
+        # keep-sorted end
 
         # Keep kernel address exposure and kexec locked down despite the performance focus.
-        "kernel.kptr_restrict" = 2;
+        # keep-sorted start
         "kernel.kexec_load_disabled" = 1;
+        "kernel.kptr_restrict" = 2;
+        # keep-sorted end
 
         # Leave headroom for heavier desktop and gaming network bursts.
-        "net.core.netdev_max_backlog" = 4096;
+        # keep-sorted start
         "fs.file-max" = 2097152;
+        "net.core.netdev_max_backlog" = 4096;
         "net.ipv4.ip_forward" = 1;
         "net.ipv4.tcp_mtu_probing" = 1;
         "net.ipv4.tcp_tw_reuse" = 1;
+        # keep-sorted end
 
         # Remove the global rt throttle so audio workloads can hold cpu time when needed.
         "kernel.sched_rt_runtime_us" = -1;
@@ -87,12 +103,16 @@ in {
 
     # Udev rules for audio power saving and disk scheduler tuning.
     services.udev.extraRules = let
+      # keep-sorted start
       bash = getExe pkgs.bash;
       hdparm = getExe pkgs.hdparm;
+      # keep-sorted end
 
+      # keep-sorted start
       cat = getExe' pkgs.coreutils "cat";
       echo = getExe' pkgs.coreutils "echo";
       touch = getExe' pkgs.coreutils "touch";
+      # keep-sorted end
     in ''
       ACTION=="add", SUBSYSTEM=="sound", KERNEL=="card*", DRIVERS=="snd_hda_intel", TEST!="/run/udev/snd-hda-intel-powersave", \
           RUN+="${bash} -c '${touch} /run/udev/snd-hda-intel-powersave; \
@@ -150,9 +170,11 @@ in {
       '';
 
       settings.Manager = {
+        # keep-sorted start
         DefaultLimitNOFILE = "2048:2097152";
         DefaultTimeoutStartSec = "15s";
         DefaultTimeoutStopSec = "10s";
+        # keep-sorted end
       };
     };
   };

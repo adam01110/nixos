@@ -1,6 +1,8 @@
 {
-  lib,
+  # keep-sorted start
   equibopStylix,
+  lib,
+  # keep-sorted end
   ...
 }: let
   inherit (lib) mkEnableOption;
@@ -11,13 +13,21 @@ in
     options.equibop.camera.enable = mkEnableOption "Enable camera functionality for Equibop plugins.";
 
     config.programs.nixcord.config.plugins = {
-      # keep-sorted start block=yes
-      GreetStickerPicker.enable = true;
-      MentionAvatars.enable = true;
+      # keep-sorted start block=yes newline_separated=yes
+      FullVCPFP.enable = true;
+
+      USRBG = {
+        enable = true;
+        voiceBackground = true;
+      };
+
+      UserPFP.enable = true;
+
       accountPanelServerProfile = {
         enable = true;
         prioritizeServerProfile = true;
       };
+
       betterActivities = {
         enable = true;
         # keep-sort start
@@ -26,36 +36,56 @@ in
         removeGameActivityStatus = true;
         # keep-sort end
       };
+
       betterSettings = {
         enable = true;
         disableFade = false;
       };
+
       betterUploadButton.enable = true;
+
       cleanerChannelGroups.enable = true;
+
       clickableRoles.enable = true;
+
       customIdle = {
         enable = true;
         remainInIdle = false;
         idleTimeout = 5.0;
       };
+
       dearrow = {
         enable = true;
         replaceElements = 1;
       };
+
       decor.enable = true;
+
       fakeNitro = {
         enable = true;
         transformCompoundSentence = true;
       };
+
       fakeProfileThemes.enable = true;
-      fameActivityToggle.enable = true;
+
       fullSearchContext.enable = true;
+
       fullUserInChatbox.enable = true;
-      fullVCPFP.enable = true;
+
+      gameActivityToggle.enable = true;
+
       globalBadges.enable = true;
+
+      greetStickerPicker.enable = true;
+
+      mentionAvatars.enable = true;
+
       micLoopbackTester.enable = true;
+
       neverPausePreviews.enable = true;
+
       noNitroUpsell.enable = true;
+
       noPendingCount = {
         enable = true;
         # keep-sorted start
@@ -63,11 +93,15 @@ in
         hideMessageRequestsCount = false;
         # keep-sorted end
       };
+
       noUnblockToJump.enable = true;
+
       platformIndicators.enable = true;
+
       platformSpoofer.enable = true;
+
       previewMessage.enable = true;
-      questFocused.enable = true;
+
       questify = {
         enable = true;
         # keep-sorted start
@@ -86,31 +120,37 @@ in
         restyleQuestsUnclaimed = equibopStylix.questify.unclaimed;
         # keep-sorted end
       };
+
       readAllNotificationsButton.enable = true;
+
       roleColorEverywhere.enable = true;
+
       serverListIndicators = {
         enable = true;
         mode = 3;
       };
+
       showAllMessageButtons.enable = true;
+
       showBadgesInChat.enable = true;
+
       showHiddenThings = {
         enable = true;
-        showModView = false;
       };
+
       statusWhileActive.enable = true;
+
       themeAttributes.enable = true;
+
       title = {
         enable = true;
         title = "Equibop";
       };
+
       unlockedAvatarZoom.enable = true;
-      userPFP.enable = true;
+
       userVoiceShow.enable = true;
-      usrbg = {
-        enable = true;
-        voiceBackground = true;
-      };
+
       viewIcons.enable = true;
       # keep-sorted end
     };

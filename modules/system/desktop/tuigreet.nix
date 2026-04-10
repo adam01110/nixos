@@ -1,16 +1,20 @@
 {
+  # keep-sorted start
   config,
-  pkgs,
   lib,
+  pkgs,
   vars,
+  # keep-sorted end
   ...
 }:
 # Text-based greeter (greetd + tuigreet).
 let
   inherit
     (lib)
+    # keep-sorted start
     getExe
     getExe'
+    # keep-sorted end
     ;
   inherit (vars) username;
 
@@ -28,8 +32,10 @@ in {
 
   environment = {
     etc."tuigreet/config.toml".source = let
-      uwsm = getExe config.programs.uwsm.package;
+      # keep-sorted start
       hyprland = getExe' config.programs.hyprland.package "start-hyprland";
+      uwsm = getExe config.programs.uwsm.package;
+      # keep-sorted end
     in
       tomlFormat.generate "tuigreet-config.toml" {
         session = {
@@ -40,44 +46,45 @@ in {
 
         display = {
           show_time = true;
-          time_format = "%Y-%m-%d %H:%M:%S";
           greeting = "authentication required.";
+          time_format = "%Y-%m-%d %H:%M:%S";
         };
 
         remember = {
-          default_user = username;
           username = true;
+          default_user = username;
         };
 
         secret.mode = "characters";
 
         layout = {
-          window_padding = 1;
+          # keep-sorted start
           container_padding = 1;
           prompt_padding = 1;
+          window_padding = 1;
+          # keep-sorted end
         };
 
         power = {
+          use_setsid = false;
           shutdown = "systemctl poweroff";
           reboot = "systemctl reboot";
-          use_setsid = false;
         };
 
         theme = {
+          # keep-sorted start
+          action = "white";
           border = "blue";
+          button = "green";
+          container = "black";
+          greet = "white";
+          input = "white";
+          prompt = "blue";
           text = "white";
           time = "green";
-          container = "black";
           title = "white";
-          greet = "white";
-          prompt = "blue";
-          input = "white";
-          action = "white";
-          button = "green";
+          # keep-sorted end
         };
       };
   };
-
-  # Ensure tuigreet is present system-wide.
-  environment.systemPackages = [pkgs.tuigreet];
 }

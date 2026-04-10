@@ -1,43 +1,49 @@
 {osConfig, ...}:
 # Stylix colors for overzicht.
 let
-  inherit (builtins) mapAttrs;
-
-  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
+  # keep-sorted start
+  inherit (osConfig.lib.stylix) colors;
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
+  # keep-sorted end
 in {
   # Feed the shell palette through its module options.
   programs.overzicht = {
-    settings.appearance.font.family = {
-      main = sansSerifFont;
-      title = sansSerifFont;
-      expressive = sansSerifFont;
-    };
-
+    # keep-sorted start block=yes newline_separated=yes
     colors = with colors; {
-      primary = base08;
+      # keep-sorted start
+      background = base01;
+      inverseOnSurface = base06;
+      inverseSurface = base02;
+      onBackground = base05;
       onPrimary = base00;
-      primaryContainer = base01;
       onPrimaryContainer = base06;
       onSecondary = base00;
-      secondaryContainer = base01;
       onSecondaryContainer = base06;
-      onBackground = base05;
-      surface = base00;
-      surfaceContainerHigh = base01;
-      surfaceContainerHighest = base02;
-      surfaceVariant = base02;
-      background = base01;
-      secondary = base0B;
-      surfaceContainerLow = base00;
-      surfaceContainer = base0B;
       onSurface = base00;
       onSurfaceVariant = base07;
-      inverseSurface = base02;
-      inverseOnSurface = base06;
       outline = base06;
       outlineVariant = base03;
+      primary = base08;
+      primaryContainer = base01;
+      secondary = base0B;
+      secondaryContainer = base01;
       shadow = base00;
+      surface = base00;
+      surfaceContainer = base0B;
+      surfaceContainerHigh = base01;
+      surfaceContainerHighest = base02;
+      surfaceContainerLow = base00;
+      surfaceVariant = base02;
+      # keep-sorted end
     };
+
+    settings.appearance.font.family = {
+      # keep-sorted start
+      expressive = sansSerifFont;
+      main = sansSerifFont;
+      title = sansSerifFont;
+      # keep-sorted end
+    };
+    # keep-sorted end
   };
 }

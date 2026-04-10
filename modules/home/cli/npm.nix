@@ -3,24 +3,28 @@
 let
   inherit
     (config.xdg)
-    dataHome
-    configHome
-    stateHome
+    # keep-sorted start
     cacheHome
+    configHome
+    dataHome
+    stateHome
+    # keep-sorted end
     ;
 in {
   programs.npm = {
     enable = true;
 
-    # Dont install npm, ew.
+    # Dont install npm, eww.
     package = null;
 
     # Route npm paths to XDG paths instead of ~/.npm.
     settings = {
-      prefix = "${dataHome}/npm";
+      # keep-sorted start
       cache = "${cacheHome}/npm";
       init-module = "${configHome}/npm/config/npm-init.js";
       logs-dir = "${stateHome}/npm/logs";
+      prefix = "${dataHome}/npm";
+      # keep-sorted end
     };
   };
 }

@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
-  osConfig,
   lib,
+  osConfig,
+  # keep-sorted end
   ...
 }:
 # Noctalia top bar.
@@ -11,13 +13,15 @@ let
   cfgBluetooth = osConfig.optServices.bluetooth.enable;
 in {
   programs.noctalia-shell.settings.bar = {
+    # keep-sorted start
+    backgroundOpacity = 1;
     density = "compact";
     floating = false;
     outerCorners = false;
     position = "top";
     showCapsule = true;
     useSeparateOpacity = true;
-    backgroundOpacity = 1;
+    # keep-sorted end
 
     widgets = {
       left = [
@@ -32,7 +36,9 @@ in {
           showNetworkStats = false;
           showSwapUsage = true;
         }
+
         {id = "plugin:privacy-indicator";}
+
         {
           id = "LockKeys";
           capsLockIcon = "circle-dashed-letter-c";
@@ -42,6 +48,7 @@ in {
           showNumLock = false;
           showScrollLock = false;
         }
+
         {
           id = "ActiveWindow";
           colorizeIcons = false;
@@ -51,6 +58,7 @@ in {
           showIcon = true;
           useFixedWidth = false;
         }
+
         {
           id = "MediaMini";
           hideMode = "hidden";
@@ -88,16 +96,20 @@ in {
               "steam"
             ];
           }
+
           {
             id = "VPN";
             displayMode = "onhover";
           }
+
           {id = "NoctaliaPerformance";}
+
           {
             id = "Volume";
             displayMode = "onhover";
             middleClickCommand = wiremix;
           }
+
           {
             id = "Microphone";
             displayMode = "onhover";
@@ -107,14 +119,13 @@ in {
         ++ (optional cfgBluetooth {id = "Bluetooth";})
         ++ [
           {id = "Network";}
+
           {
             id = "Brightness";
             displayMode = "onhover";
           }
         ]
-        ++ [
-          {id = "KeepAwake";}
-        ]
+        ++ [{id = "KeepAwake";}]
         # Show the battery widget when enabled.
         ++ (optional config.noctalia.battery.enable {
           id = "Battery";
@@ -123,10 +134,12 @@ in {
         })
         ++ [
           {id = "plugin:github-feed";}
+
           {
             id = "NotificationHistory";
             showUnreadBadge = true;
           }
+
           {
             id = "Clock";
             formatHorizontal = "yyyy-MM-dd HH:mm";
@@ -135,6 +148,7 @@ in {
             useCustomFont = false;
             clockColor = "primary";
           }
+
           {
             id = "ControlCenter";
             colorizeSystemIcon = "tertiary";

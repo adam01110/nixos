@@ -1,7 +1,11 @@
 _: {
-  # Enable opentabletdriver.
-  hardware.opentabletdriver.enable = true;
+  hardware = {
+    # keep-sorted start newline_separated=yes
+    # Enable opentabletdriver.
+    opentabletdriver.enable = true;
 
-  # Required by opentabletdriver.
-  hardware.uinput.enable = true;
+    # Required by opentabletdriver.
+    uinput.enable = true;
+    # keep-sorted end
+  };
 }

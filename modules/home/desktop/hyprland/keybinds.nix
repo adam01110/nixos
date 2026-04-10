@@ -1,18 +1,22 @@
 {
+  # keep-sorted start
   config,
-  osConfig,
   lib,
+  osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Keybindings for hyprland including workspace, window, and media controls.
 let
   inherit
     (lib)
+    # keep-sorted start
     getExe
     getExe'
     mkEnableOption
     optionalString
+    # keep-sorted end
     ;
 
   inherit (config.xdg) configHome;
@@ -21,33 +25,46 @@ in {
 
   # Generate hyprland binding lists and helpers.
   config = {
+    # keep-sorted start block=yes newline_separated=yes
     # Allow focus cycling while a window is fullscreen.
     wayland.windowManager.hyprland.settings.binds.movefocus_cycles_fullscreen = true;
 
     # Keep keybinds in a separate file for parsing tools.
     xdg.configFile."hypr/keybinds.conf".text = let
+      # keep-sorted start
       gawk = getExe pkgs.gawk;
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
+      # keep-sorted end
 
-      overzicht = getExe config.programs.overzicht.package;
+      # keep-sorted start
       noctalia = "${getExe' config.programs.noctalia-shell.package "noctalia-shell"} ipc call";
+      overzicht = getExe config.programs.overzicht.package;
+      # keep-sorted end
 
+      # keep-sorted start
       equibop = getExe config.programs.nixcord.equibop.package;
       ghostty = "${getExe config.programs.ghostty.package} --initial-window=false +new-window";
       hyprpicker = getExe config.programs.hyprshot.package;
       hyprshot = getExe config.programs.hyprshot.package;
       steam = getExe osConfig.programs.steam.package;
-      zen-browser = getExe config.programs.zen-browser.package;
       yazi = getExe config.programs.yazi.package;
+      zen-browser = getExe config.programs.zen-browser.package;
+      # keep-sorted end
 
-      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted start
       app2unit = "${getExe config.programs.noctalia-shell.app2unit.package} --";
+      terminalCommand = getExe config.xdg.terminal-exec.package;
+      # keep-sorted end
 
+      # keep-sorted start
       cfgBrightness = config.hyprland.brightness.enable;
       screenshotDir = "${config.xdg.userDirs.pictures}/screenshot";
+      # keep-sorted end
 
+      # keep-sorted start
       zoomIn = "${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 1.1}')";
       zoomOut = "${hyprctl} -q keyword cursor:zoom_factor $(${hyprctl} getoption cursor:zoom_factor | ${gawk} '/^float.*/ {print $2 * 0.9}')";
+      # keep-sorted end
     in
       ''
         # 1. APPLICATIONS
@@ -203,5 +220,6 @@ in {
     wayland.windowManager.hyprland.extraConfig = ''
       source = ${configHome}/hypr/keybinds.conf
     '';
+    # keep-sorted end
   };
 }

@@ -13,7 +13,7 @@ let
 in {
   programs.opencode.settings.formatter = {
     alejandra = {
-      command = [(getExe pkgs.alejandra)];
+      command = [(getExe pkgs.alejandra) "$FILE"];
       extensions = [".nix"];
     };
 

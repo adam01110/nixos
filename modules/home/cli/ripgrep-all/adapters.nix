@@ -1,6 +1,8 @@
 {
-  pkgs,
+  # keep-sorted start
   lib,
+  pkgs,
+  # keep-sorted end
   ...
 }:
 # Wrap ripgrep-all with adapter runtime dependencies.
@@ -21,8 +23,10 @@ in {
           --prefix PATH : ${makeBinPath (attrValues {
           inherit
             (pkgs)
+            # keep-sorted start
             csvkit
             fastgron
+            # keep-sorted end
             ;
 
           inherit (pkgs.nur.repos.adam0) qq-jfryy;

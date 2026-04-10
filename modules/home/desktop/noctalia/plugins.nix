@@ -1,14 +1,18 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
   vars,
+  # keep-sorted end
   ...
 }: let
   inherit
     (builtins)
-    toJSON
+    # keep-sorted start
     attrValues
+    toJSON
+    # keep-sorted end
     ;
   inherit (lib) genAttrs;
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -17,6 +21,7 @@
   inherit (config.xdg) configHome;
   videosDir = config.xdg.userDirs.videos;
 in {
+  # keep-sorted start block=yes newline_separated=yes
   programs.noctalia-shell = {
     plugins = let
       noctaliaPluginsUrl = "https://github.com/noctalia-dev/noctalia-plugins";
@@ -38,51 +43,65 @@ in {
         };
       in
         genAttrs [
-          "screen-recorder"
-          "kaomoji-provider"
-          "unicode-picker"
-          "github-feed"
-          "privacy-indicator"
-          "keybind-cheatsheet"
+          # keep-sorted start
           "file-search"
+          "github-feed"
+          "kaomoji-provider"
+          "keybind-cheatsheet"
+          "privacy-indicator"
+          "screen-recorder"
+          "unicode-picker"
           "web-search"
           "zed-provider"
+          # keep-sorted end
         ]
         mkPlugin;
     };
 
-    pluginSettings = {
-      screen-recorder = {
-        directory = "${videosDir}/Recordings";
-        videoCodec = "hevc";
-        copyToClipboard = true;
-      };
-
-      keybind-cheatsheet = {
-        hyprlandConfigPath = "${configHome}/hypr/keybinds.conf";
-        columnCount = 4;
-      };
-
-      file-search.maxResults = 200;
-
-      web-search = {
-        search_engine = "Brave";
-        max_results = 5;
-      };
-    };
-
-    settings.plugins.autoUpdate = true;
-
+    # keep-sorted start block=yes newline_separated=yes
     # Package for screen-recorder plugin.
     packageOverrides.extraPackages = attrValues {
       inherit
         (pkgs)
+        # keep-sorted start
         # screen-recorder
         gpu-screen-recorder
         # zed-provider
         sqlite
+        # keep-sorted end
         ;
     };
+
+    pluginSettings = {
+      # keep-sorted start block=yes newline_separated=yes
+      file-search.maxResults = 200;
+
+      keybind-cheatsheet = {
+        # keep-sorted start
+        columnCount = 4;
+        hyprlandConfigPath = "${configHome}/hypr/keybinds.conf";
+        # keep-sorted end
+      };
+
+      screen-recorder = {
+        # keep-sorted start
+        copyToClipboard = true;
+        directory = "${videosDir}/Recordings";
+        videoCodec = "hevc";
+        # keep-sorted end
+      };
+
+      web-search = {
+        # keep-sorted start
+        max_results = 5;
+        search_engine = "Brave";
+        # keep-sorted end
+      };
+      # keep-sorted end
+    };
+
+    settings.plugins.autoUpdate = true;
+    # keep-sorted end
   };
 
   # The noctalia github feed plugin settings.
@@ -100,4 +119,5 @@ in {
   };
 
   xdg.configFile."noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
+  # keep-sorted end
 }

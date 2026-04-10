@@ -2,8 +2,10 @@ _:
 # Misc system applications enabled here.
 {
   programs = {
-    seahorse.enable = true;
+    # keep-sorted start
 
+    seahorse.enable = true;
     system-config-printer.enable = true;
+    # keep-sorted end
   };
 }

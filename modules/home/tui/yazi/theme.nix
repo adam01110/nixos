@@ -2,12 +2,14 @@ _:
 # Remove rounded corners.
 {
   programs.yazi.theme = {
+    # keep-sorted start block=yes newline_separated=yes
     indicator.padding = {
       open = "█";
       close = "█";
     };
 
     status = {
+      # keep-sorted start block=yes newline_separated=yes
       sep_left = {
         open = "";
         close = "";
@@ -17,9 +19,11 @@ _:
         open = "";
         close = "";
       };
+      # keep-sorted end
     };
 
     tabs = {
+      # keep-sorted start block=yes newline_separated=yes
       sep_inner = {
         open = "";
         close = "";
@@ -29,6 +33,8 @@ _:
         open = "";
         close = "";
       };
+      # keep-sorted end
     };
+    # keep-sorted end
   };
 }

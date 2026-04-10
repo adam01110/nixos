@@ -1,17 +1,21 @@
 {
+  # keep-sorted start
   config,
-  osConfig,
   lib,
+  osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Install terminal wifi manager when wifi is enabled.
 let
   inherit
     (lib)
+    # keep-sorted start
     getExe
     getExe'
     mkIf
+    # keep-sorted end
     ;
 
   cfgWifi = osConfig.optServices.wifi.enable;
@@ -26,13 +30,19 @@ in
       name = "Impala";
       genericName = "Terminal WiFi Manager";
       icon = "network-wireless";
+
       exec = let
-        terminalCommand = getExe config.xdg.terminal-exec.package;
+        # keep-sorted start
         impala = getExe' pkg "impala";
+        terminalCommand = getExe config.xdg.terminal-exec.package;
+        # keep-sorted end
       in "${terminalCommand} --title=Impala ${impala}";
+
       categories = [
+        # keep-sorted start
+        "ConsoleOnly"
         "Network"
-        "Utility"
+        # keep-sorted end
       ];
     };
   }

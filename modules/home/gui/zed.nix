@@ -5,6 +5,7 @@
   ...
 }:
 # Configure zed editor.
+# Im not going to fucking do it here, since i dont even want to keep using this editor but i dont have time to switch to neovim
 let
   inherit (builtins) attrValues;
   inherit

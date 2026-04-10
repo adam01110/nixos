@@ -11,6 +11,7 @@ let
   qq = getExe pkgs.nur.repos.adam0.qq-jfryy;
 in {
   programs.ripgrep-all.custom_adapters = [
+    # keep-sorted start block=yes newline_separated=yes
     # Convert JSON into line-oriented assignments for grep.
     {
       name = "json";
@@ -19,6 +20,19 @@ in {
       extensions = ["json"];
       mimetypes = ["application/json" "text/json"];
       binary = fastgron;
+      disabled_by_default = false;
+      match_only_by_mime = false;
+    }
+
+    # Convert JSONC into fastgron-style assignments through qq.
+    {
+      name = "jsonc";
+      version = 1;
+      description = "Transform Markup files into greppable assignments";
+      extensions = ["jsonc"];
+      mimetypes = ["application/jsonc" "text/jsonc"];
+      binary = qq;
+      args = ["--monochrome-output" "--output" "${fastgron}" "--input" "jsonc"];
       disabled_by_default = false;
       match_only_by_mime = false;
     }
@@ -35,6 +49,7 @@ in {
       disabled_by_default = false;
       match_only_by_mime = false;
     }
+
     # Convert XML into fastgron-style assignments through qq.
     {
       name = "xml";
@@ -47,6 +62,7 @@ in {
       disabled_by_default = false;
       match_only_by_mime = false;
     }
+
     # Convert YAML into fastgron-style assignments through qq.
     {
       name = "yaml";
@@ -59,17 +75,6 @@ in {
       disabled_by_default = false;
       match_only_by_mime = false;
     }
-    # Convert JSONC into fastgron-style assignments through qq.
-    {
-      name = "jsonc";
-      version = 1;
-      description = "Transform Markup files into greppable assignments";
-      extensions = ["jsonc"];
-      mimetypes = ["application/jsonc" "text/jsonc"];
-      binary = qq;
-      args = ["--monochrome-output" "--output" "${fastgron}" "--input" "jsonc"];
-      disabled_by_default = false;
-      match_only_by_mime = false;
-    }
+    # keep-sorted end
   ];
 }

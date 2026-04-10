@@ -6,10 +6,12 @@ _:
       id = "calendar-header-card";
       enabled = true;
     }
+
     {
       id = "weather-card";
       enabled = false;
     }
+
     {
       id = "calendar-month-card";
       enabled = true;

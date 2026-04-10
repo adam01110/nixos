@@ -1,26 +1,35 @@
 {
-  osConfig,
+  # keep-sorted start
   config,
   lib,
+  osConfig,
   vars,
+  # keep-sorted end
   ...
 }:
 # Calendar locale and weather location.
 let
   inherit
     (lib)
-    mkMerge
+    # keep-sorted start
+    mkForce
     mkIf
+    mkMerge
     mkOption
     types
-    mkForce
+    # keep-sorted end
     ;
   inherit (vars) noctaliaFirstDayOfWeek;
 
   cfgLocation = config.noctalia.location;
 in {
   options.noctalia.location = mkOption {
-    type = types.nullOr (types.enum ["autolocate" "sops"]);
+    type = types.nullOr (types.enum [
+      # keep-sorted start
+      "autolocate"
+      "sops"
+      # keep-sorted end
+    ]);
     default = "autolocate";
     description = ''
       Configure the Noctalia location source.
@@ -32,11 +41,13 @@ in {
   config = mkMerge [
     {
       programs.noctalia-shell.settings.location = {
+        # keep-sorted start
         analogClockInCalendar = true;
+        autoLocate = true;
         firstDayOfWeek = noctaliaFirstDayOfWeek;
         showCalendarWeather = false;
         showWeekNumberInCalendar = true;
-        autoLocate = true;
+        # keep-sorted end
       };
     }
 
@@ -47,8 +58,10 @@ in {
       mkIf (cfgLocation == "sops") {
         sops.secrets."noctalia/location/${hostname}" = {};
         programs.noctalia-shell = {
+          # keep-sorted start
           settings.location.autoLocate = mkForce false;
           systemd.locationFile = config.sops.secrets."noctalia/location/${hostname}".path;
+          # keep-sorted end
         };
       })
   ];

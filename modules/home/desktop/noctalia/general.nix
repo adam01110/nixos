@@ -7,40 +7,57 @@
 
     cfgTouch = config.hyprland.touch.enable;
   in {
+    # keep-sorted start
     animationSpeed = 2;
     dimmerOpacity = 0;
     iRadiusRatio = radius;
     lockOnSuspend = true;
     radiusRatio = radius;
+    reverseScroll = cfgTouch;
     scaleRatio = 0.8;
     shadowDirection = "center";
     shadowOffsetX = 0;
     shadowOffsetY = 0;
-    telemetryEnabled = false;
     showChangelogOnStartup = false;
-    reverseScroll = cfgTouch;
+    telemetryEnabled = false;
+    # keep-sorted end
 
+    # keep-sorted start
     clockStyle = "analog";
     lockScreenAnimations = true;
     lockScreenBlur = 0.2;
+    # keep-sorted end
 
     keybinds = {
+      # keep-sorted start block=yes newline_separated=yes
       keyDown = [
-        "Down"
+        # keep-sorted start
         "Ctrl+J"
+        "Down"
+        # keep-sorted end
       ];
+
       keyLeft = [
-        "Left"
+        # keep-sorted start
         "Ctrl+H"
+        "Left"
+        # keep-sorted end
       ];
+
       keyRight = [
-        "Right"
+        # keep-sorted start
         "Ctrl+L"
+        "Right"
+        # keep-sorted end
       ];
+
       keyUp = [
-        "Up"
+        # keep-sorted start
         "Ctrl+K"
+        "Up"
+        # keep-sorted end
       ];
+      # keep-sorted end
     };
   };
 }

@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }: let
   inherit (builtins) attrValues;
@@ -20,25 +22,31 @@ in {
           # Prefer the gtk portal if nothing else claims a method.
           default = ["gtk"];
 
-          # Use gnome-keyring for the secret portal backend.
-          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+          # keep-sorted start
 
           # Use termfilechooser for file picking.
           "org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+          # Use gnome-keyring for the secret portal backend.
+          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+          # keep-sorted end
         };
 
         # Desktop-specific overrides for hyprland.
         hyprland = {
           default = [
-            "hyprland"
+            # keep-sorted start
             "gtk"
+            "hyprland"
+            # keep-sorted end
           ];
 
-          # Use gnome-keyring for the secret portal backend.
-          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+          # keep-sorted start
 
           # Use termfilechooser for file picking.
           "org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
+          # Use gnome-keyring for the secret portal backend.
+          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+          # keep-sorted end
         };
       };
 
@@ -46,8 +54,10 @@ in {
       extraPortals = attrValues {
         inherit
           (pkgs)
+          # keep-sorted start
           xdg-desktop-portal-gtk
           xdg-desktop-portal-termfilechooser
+          # keep-sorted end
           ;
       };
     };

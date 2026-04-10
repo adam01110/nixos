@@ -4,38 +4,48 @@
 
   # Use mediainfo for media and related mime types.
   programs.yazi.settings.plugin = {
-    # Replace default magick/image/video previewers with mediainfo.
-    prepend_previewers = [
-      {
-        mime = "{audio,video,image}/*";
-        run = "mediainfo";
-      }
-      {
-        mime = "application/subrip";
-        run = "mediainfo";
-      }
-      # Cover adobe illustrator/postscript separately from image/adobe.photoshop.
-      {
-        mime = "application/postscript";
-        run = "mediainfo";
-      }
-    ];
-
+    # keep-sorted start block=yes newline_separated=yes
     # Replace default magick/image/video preloaders with mediainfo.
     prepend_preloaders = [
-      {
-        mime = "{audio,video,image}/*";
-        run = "mediainfo";
-      }
-      {
-        mime = "application/subrip";
-        run = "mediainfo";
-      }
+      # keep-sorted start block=yes newline_separated=yes
       # Cover adobe illustrator/postscript separately from image/adobe.photoshop.
       {
         mime = "application/postscript";
         run = "mediainfo";
       }
+
+      {
+        mime = "application/subrip";
+        run = "mediainfo";
+      }
+
+      {
+        mime = "{audio,video,image}/*";
+        run = "mediainfo";
+      }
+      # keep-sorted end
     ];
+
+    # Replace default magick/image/video previewers with mediainfo.
+    prepend_previewers = [
+      # keep-sorted start block=yes newline_separated=yes
+      # Cover adobe illustrator/postscript separately from image/adobe.photoshop.
+      {
+        mime = "application/postscript";
+        run = "mediainfo";
+      }
+
+      {
+        mime = "application/subrip";
+        run = "mediainfo";
+      }
+
+      {
+        mime = "{audio,video,image}/*";
+        run = "mediainfo";
+      }
+      # keep-sorted end
+    ];
+    # keep-sorted end
   };
 }

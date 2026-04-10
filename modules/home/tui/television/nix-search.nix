@@ -1,8 +1,10 @@
 {
+  # keep-sorted start
   inputs,
   lib,
   osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure nix-search-tv with curated builtin indexes and filtered custom option sources.
@@ -92,14 +94,12 @@ let
   # Keep only sources with stable namespaces.
   sources = {
     # Home Manager-backed sources.
-    nixcord = {
-      rawDoc = mkHomeManagerDoc inputs.nixcord.homeModules.nixcord;
-      prefixes = ["programs.nixcord"];
-    };
+    # keep-sorted start block=yes newline_separated=yes
     nix-flatpak = {
       rawDoc = mkHomeManagerDoc inputs.nix-flatpak.homeManagerModules.nix-flatpak;
       prefixes = ["services.flatpak"];
     };
+
     nix-index-database = {
       rawDoc = mkHomeManagerDoc inputs.nix-index-database.homeModules.nix-index;
       prefixes = [
@@ -107,60 +107,80 @@ let
         "programs.nix-index"
       ];
     };
+
+    nixcord = {
+      rawDoc = mkHomeManagerDoc inputs.nixcord.homeModules.nixcord;
+      prefixes = ["programs.nixcord"];
+    };
+
     noctalia = {
       rawDoc = mkHomeManagerDoc inputs.noctalia.homeModules.default;
       prefixes = ["programs.noctalia-shell"];
     };
+
     nvf = {
       rawDoc = mkHomeManagerDoc inputs.nvf.homeManagerModules.default;
       prefixes = ["programs.nvf"];
     };
+
     overzicht = {
       rawDoc = mkHomeManagerDoc inputs.overzicht.homeModules.default;
       prefixes = ["programs.overzicht"];
     };
-    spicetify-nix = {
-      rawDoc = mkHomeManagerDoc inputs.spicetify-nix.homeManagerModules.spicetify;
-      prefixes = ["programs.spicetify"];
-    };
+
     sops-nix-home-manager = {
       rawDoc = mkHomeManagerDoc inputs.sops-nix.homeManagerModules.sops;
       prefixes = ["sops"];
     };
+
+    spicetify-nix = {
+      rawDoc = mkHomeManagerDoc inputs.spicetify-nix.homeManagerModules.spicetify;
+      prefixes = ["programs.spicetify"];
+    };
+
     stylix-home-manager = {
       rawDoc = mkHomeManagerDoc inputs.stylix.homeModules.stylix;
       prefixes = ["stylix"];
     };
-    zen-browser = {
-      rawDoc = mkHomeManagerDoc inputs.zen-browser.homeModules.beta;
-      prefixes = ["programs.zen-browser"];
-    };
+
     zed-extensions = {
       rawDoc = mkHomeManagerDoc inputs.zed-extensions.homeManagerModules.default;
       prefixes = ["programs.zed-editor-extensions"];
     };
 
+    zen-browser = {
+      rawDoc = mkHomeManagerDoc inputs.zen-browser.homeModules.beta;
+      prefixes = ["programs.zen-browser"];
+    };
+    # keep-sorted end
+
     # NixOS-backed sources.
+    # keep-sorted start block=yes newline_separated=yes
     disko = {
       rawDoc = mkNixosDoc inputs.disko.nixosModules.disko;
       prefixes = ["disko"];
     };
+
     home-manager-nixos = {
       rawDoc = mkNixosDoc inputs.home-manager.nixosModules.home-manager;
       prefixes = ["home-manager"];
     };
+
     lanzaboote = {
       rawDoc = mkNixosDoc inputs.lanzaboote.nixosModules.lanzaboote;
       prefixes = ["boot.lanzaboote"];
     };
+
     sops-nix = {
       rawDoc = mkNixosDoc inputs.sops-nix.nixosModules.sops;
       prefixes = ["sops"];
     };
+
     stylix = {
       rawDoc = mkNixosDoc inputs.stylix.nixosModules.stylix;
       prefixes = ["stylix"];
     };
+    # keep-sorted end
   };
 
   optionsFile = mapAttrs (name: value: mkFilteredOptionsFile name value.rawDoc value.prefixes) sources;
@@ -172,18 +192,22 @@ in {
     settings = {
       # Keep builtin upstream indexes under `indexes`.
       indexes = [
-        "nixpkgs"
-        "nixos"
+        # keep-sorted start
         "home-manager"
-        "nur"
+        "nixos"
+        "nixpkgs"
         "noogle"
+        "nur"
+        # keep-sorted end
       ];
 
-      # Add custom docs sources through `options_file`; they are not valid `indexes` entries.
-      experimental.options_file = optionsFile;
+      # keep-sorted start
 
       # Disable the waiting message that never goes away.
       enable_waiting_message = true;
+      # Add custom docs sources through `options_file`; they are not valid `indexes` entries.
+      experimental.options_file = optionsFile;
+      # keep-sorted end
     };
   };
 }

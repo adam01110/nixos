@@ -3,13 +3,18 @@
 {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
+  # keep-sorted start block=yes newline_separated=yes
   # Kernel modules appropriate for generic vms.
   boot.initrd.availableKernelModules = [
+    # keep-sorted start
     "ahci"
-    "xhci_pci"
-    "virtio_pci"
     "sr_mod"
     "virtio_blk"
+    "virtio_pci"
+    "xhci_pci"
+    # keep-sorted end
   ];
+
   boot.kernelModules = ["kvm-intel"];
+  # keep-sorted end
 }

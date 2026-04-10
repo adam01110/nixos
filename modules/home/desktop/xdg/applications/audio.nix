@@ -12,18 +12,20 @@ in {
       names;
   in
     listToAttrs (mkEntries "audio" "org.gnome.Decibels.desktop" [
-      "x-ape"
-      "flac"
-      "x-vorbis+ogg"
-      "mp2"
-      "x-m4b"
-      "x-aiff"
-      "mp4"
-      "x-opus+ogg"
-      "mpeg"
-      "x-speex"
-      "x-wavpack"
+      # keep-sorted start
       "aac"
+      "flac"
+      "mp2"
+      "mp4"
+      "mpeg"
       "vnd.wave"
+      "x-aiff"
+      "x-ape"
+      "x-m4b"
+      "x-opus+ogg"
+      "x-speex"
+      "x-vorbis+ogg"
+      "x-wavpack"
+      # keep-sorted end
     ]);
 }

@@ -3,8 +3,10 @@
 let
   inherit
     (builtins)
+    # keep-sorted start
     attrValues
     mapAttrs
+    # keep-sorted end
     ;
 in {
   # Add extensions in nur.
@@ -15,26 +17,30 @@ in {
       inherit
         (pkgs.nur.repos.rycee.firefox-addons)
         # Content blocking.
-        ublock-origin
-        localcdn
-        sponsorblock
-        fastforwardteam
-        istilldontcareaboutcookies
+        # keep-sorted start
         consent-o-matic
         don-t-fuck-with-paste
+        fastforwardteam
+        istilldontcareaboutcookies
+        localcdn
+        sponsorblock
+        ublock-origin
+        # keep-sorted end
         # Annoyances.
-        shinigami-eyes
-        translate-web-pages
-        return-youtube-dislikes
-        dearrow
-        darkreader
+        # keep-sorted start
         bitwarden
-        wikiwand-wikipedia-modernized
-        violentmonkey
-        pronoundb
-        modrinthify
+        darkreader
+        dearrow
         indie-wiki-buddy
         libredirect
+        modrinthify
+        pronoundb
+        return-youtube-dislikes
+        shinigami-eyes
+        translate-web-pages
+        violentmonkey
+        wikiwand-wikipedia-modernized
+        # keep-sorted end
         ;
     };
   };

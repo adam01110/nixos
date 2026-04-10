@@ -1,6 +1,8 @@
 {
-  pkgs,
+  # keep-sorted start
   lib,
+  pkgs,
+  # keep-sorted end
   ...
 }: let
   inherit (lib) getExe;
@@ -8,22 +10,24 @@
   tldr = getExe pkgs.tlrc;
 in {
   programs.television.channels.tldr = {
+    # keep-sorted start block=yes newline_separated=yes
+    actions.open = {
+      description = "Open the selected TLDR page";
+      command = "${tldr} '{0}'";
+      mode = "execute";
+    };
+
+    keybindings.ctrl-e = "actions:open";
+
     metadata = {
       name = "tldr";
       description = "Browse and preview TLDR help pages for command-line tools";
       requirements = ["tldr"];
     };
 
-    source.command = "${tldr} --list";
-
     preview.command = "${tldr} '{0}' --color always";
 
-    keybindings.ctrl-e = "actions:open";
-
-    actions.open = {
-      description = "Open the selected TLDR page";
-      command = "${tldr} '{0}'";
-      mode = "execute";
-    };
+    source.command = "${tldr} --list";
+    # keep-sorted end
   };
 }

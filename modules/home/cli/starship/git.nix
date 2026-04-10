@@ -2,6 +2,7 @@ _:
 # Detailed git and fossil status sections.
 {
   programs.starship.settings = {
+    # keep-sorted start block=yes newline_separated=yes
     fossil_branch = {
       format = "[$symbol$branch]($style) ";
       symbol = " ";
@@ -25,13 +26,15 @@ _:
     git_state = {
       format = "[ $state( $progress_current/$progress_total)]($style)";
       style = "bg:base01 fg:yellow bold";
-      rebase = "rebasing";
-      merge = "merging";
-      revert = "reverting";
-      cherry_pick = "cherry-picking";
-      bisect = "bisecting";
+      # keep-sorted start
       am = "am";
       am_or_rebase = "am/rebase";
+      bisect = "bisecting";
+      cherry_pick = "cherry-picking";
+      merge = "merging";
+      rebase = "rebasing";
+      revert = "reverting";
+      # keep-sorted end
     };
 
     git_status = {
@@ -39,5 +42,6 @@ _:
       style = "bg:base01 fg:base08 bold";
       deleted = "";
     };
+    # keep-sorted end
   };
 }

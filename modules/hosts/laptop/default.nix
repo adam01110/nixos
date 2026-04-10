@@ -9,18 +9,26 @@ _:
   # Primary nvme disk for disko partitioning.
   disko.selectedDisk = "/dev/nvme0n1";
 
+  # keep-sorted start block=yes newline_separated=yes
+  # Enable laptop hardware support.
+  hardware.roccat.enable = true;
+
   # Laptop-specific optional services.
   optServices = {
+    # keep-sorted start
     bluetooth.enable = true;
     logind.lidSwitch = true;
-    tlp.enable = true;
-    timezone = "automatic-timezoned";
-    wifi.enable = true;
     scx.enable = true;
+    timezone = "automatic-timezoned";
+    tlp.enable = true;
+    wifi.enable = true;
+    # keep-sorted end
   };
 
   # Enable rcu lazy mode for better battery life.
   optTweaks.rcuLazy.enable = true;
+
+  powerManagement.powertop.enable = true;
 
   # Advanced power management for laptop battery optimization.
   services = {
@@ -28,49 +36,57 @@ _:
 
     tlp.settings = {
       # Cpu performance profiles: maximize performance on ac, conserve battery on bat.
+      # keep-sorted start
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      # keep-sorted end
 
       # Cpu frequency limits: allow full range on ac, cap at 30% on battery.
-      CPU_MIN_PERF_ON_AC = 0;
+      # keep-sorted start
       CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
       CPU_MAX_PERF_ON_BAT = 30;
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MIN_PERF_ON_BAT = 0;
+      # keep-sorted end
 
       # Disable cpu boost because it makes noise FOR SOME REASON ?!.
       CPU_BOOST_ON_AC = 0;
 
       # Platform power profiles: balanced on ac, low power on battery.
+      # keep-sorted start
       PLATFORM_PROFILE_ON_AC = "balanced";
       PLATFORM_PROFILE_ON_BAT = "low-power";
+      # keep-sorted end
 
       # Sleep modes.
+      # keep-sorted start
       MEM_SLEEP_ON_AC = "s2idle";
       MEM_SLEEP_ON_BAT = "s2idle";
+      # keep-sorted end
 
       # Storage device for power management.
       DISK_DEVICES = "nvme-Samsung_SSD_980_PRO_500GB_S5GYNX0W331360B";
 
       # Intel gpu frequency limits: high performance on ac, reduced on battery.
-      INTEL_GPU_MIN_FREQ_ON_AC = 100;
-      INTEL_GPU_MIN_FREQ_ON_BAT = 100;
-      INTEL_GPU_MAX_FREQ_ON_AC = 1300;
-      INTEL_GPU_MAX_FREQ_ON_BAT = 450;
+      # keep-sorted start
       INTEL_GPU_BOOST_FREQ_ON_AC = 1300;
       INTEL_GPU_BOOST_FREQ_ON_BAT = 700;
+      INTEL_GPU_MAX_FREQ_ON_AC = 1300;
+      INTEL_GPU_MAX_FREQ_ON_BAT = 450;
+      INTEL_GPU_MIN_FREQ_ON_AC = 100;
+      INTEL_GPU_MIN_FREQ_ON_BAT = 100;
+      # keep-sorted end
 
       # Disable unused amd gpu features since this is intel graphics.
-      RADEON_DPM_PERF_LEVEL_ON_AC = "";
-      RADEON_DPM_PERF_LEVEL_ON_BAT = "";
+      # keep-sorted start
       AMDGPU_ABM_LEVEL_ON_AC = "";
       AMDGPU_ABM_LEVEL_ON_BAT = "";
       PCIE_ASPM_ON_AC = "";
+      RADEON_DPM_PERF_LEVEL_ON_AC = "";
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "";
+      # keep-sorted end
     };
   };
-
-  powerManagement.powertop.enable = true;
-
-  # Enable laptop hardware support.
-  hardware.roccat.enable = true;
+  # keep-sorted end
 }

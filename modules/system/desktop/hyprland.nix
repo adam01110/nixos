@@ -1,6 +1,8 @@
 {
-  pkgs,
+  # keep-sorted start
   inputs,
+  pkgs,
+  # keep-sorted end
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;

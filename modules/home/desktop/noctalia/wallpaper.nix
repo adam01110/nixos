@@ -3,21 +3,25 @@
 in {
   # Wallpaper directory and rotation settings.
   programs.noctalia-shell.settings.wallpaper = {
+    # keep-sorted start block=yes
+    automationEnabled = true;
     directory = "${picturesDir}/Wallpapers";
+    hideWallpaperFilenames = true;
     overviewEnabled = true;
     panelPosition = "center";
     randomIntervalSec = 7200;
     setWallpaperOnAllMonitors = true;
+    showHiddenFiles = true;
+    skipStartupTransition = true;
     transitionType = [
-      "honeycomb"
-      "fade"
+      # keep-sorted start
       "disc"
+      "fade"
+      "honeycomb"
       "stripes"
       "wipe"
+      # keep-sorted end
     ];
-    skipStartupTransition = true;
-    showHiddenFiles = true;
-    hideWallpaperFilenames = true;
-    automationEnabled = true;
+    # keep-sorted end
   };
 }

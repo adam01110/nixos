@@ -2,6 +2,7 @@ _:
 # Show container context in the prompt.
 {
   programs.starship.settings = {
+    # keep-sorted start block=yes newline_separated=yes
     container = {
       format = "[ ](#00000000)[ ](bg:base01)[$symbol \\[$name\\]]($style)[ ](bg:base01)";
       symbol = " ";
@@ -13,5 +14,6 @@ _:
       symbol = "󰡨 ";
       style = "bg:base01 fg:blue bold";
     };
+    # keep-sorted end
   };
 }

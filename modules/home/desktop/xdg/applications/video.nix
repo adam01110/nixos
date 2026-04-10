@@ -12,30 +12,34 @@ in {
       names;
   in
     listToAttrs (
+      # keep-sorted start block=yes
       (mkEntries "video" "org.gnome.Showtime.desktop" [
-        "x-nsv"
-        "webm"
-        "mp2t"
-        "quicktime"
-        "x-anim"
-        "mpeg"
-        "x-ogm+ogg"
-        "vnd.rn-realvideo"
-        "3gpp2"
+        # keep-sorted start
         "3gpp"
-        "mp4"
+        "3gpp2"
         "dv"
-        "x-theora+ogg"
-        "x-flic"
+        "mp2t"
+        "mp4"
+        "mpeg"
+        "ogg"
+        "quicktime"
         "vnd.avi"
+        "vnd.mpegurl"
+        "vnd.rn-realvideo"
+        "vnd.vivo"
+        "webm"
+        "x-anim"
+        "x-flic"
         "x-flv"
         "x-matroska"
-        "vnd.vivo"
-        "ogg"
-        "vnd.mpegurl"
+        "x-nsv"
+        "x-ogm+ogg"
+        "x-theora+ogg"
+        # keep-sorted end
       ])
       ++ (mkEntries "application" "org.gnome.Showtime.desktop" [
         "vnd.ms-asf"
       ])
+      # keep-sorted end
     );
 }

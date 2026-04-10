@@ -1,28 +1,39 @@
 {
-  pkgs,
+  # keep-sorted start
   lib,
+  pkgs,
+  # keep-sorted end
   ...
 }:
 # Install zaread with a desktop entry.
 {
+  # keep-sorted start block=yes newline_separated=yes
   home.packages = [pkgs.zaread];
 
   xdg.desktopEntries.zaread = {
     name = "zaread";
     genericName = "document viewer";
     comment = "Open documents via zathura with format conversion.";
+
     exec = "${lib.getExe pkgs.zaread} %U";
     terminal = false;
+
     categories = [
+      # keep-sorted start
       "Office"
       "Viewer"
+      # keep-sorted end
     ];
 
     # Claim office and ebook formats that zaread converts before handing off to zathura.
     mimeType = [
+      # keep-sorted start
       "application/msword"
       "application/msword-template"
       "application/rtf"
+      "application/vnd.apple.keynote"
+      "application/vnd.apple.numbers"
+      "application/vnd.apple.pages"
       "application/vnd.ms-excel"
       "application/vnd.ms-excel.sheet.binary.macroEnabled.12"
       "application/vnd.ms-excel.sheet.macroEnabled.12"
@@ -60,15 +71,14 @@
       "application/vnd.sun.xml.impress"
       "application/vnd.sun.xml.writer"
       "application/vnd.sun.xml.writer.template"
-      "application/vnd.apple.keynote"
-      "application/vnd.apple.numbers"
-      "application/vnd.apple.pages"
       "application/x-hwp"
       "application/x-mobipocket-ebook"
       "text/csv"
       "text/markdown"
       "text/x-markdown"
       "text/x-typst"
+      # keep-sorted end
     ];
   };
+  # keep-sorted end
 }

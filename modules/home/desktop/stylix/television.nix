@@ -1,43 +1,51 @@
 {
+  # keep-sorted start
   osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }: let
-  inherit (builtins) mapAttrs;
-
   tomlFormat = pkgs.formats.toml {};
 
-  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
+  inherit (osConfig.lib.stylix) colors;
 in {
   xdg.configFile."television/themes/".source = with colors;
     tomlFormat.generate "television-stylix.toml" {
       # general
+      # keep-sorted start
       background = base00;
       border_fg = base04;
-      text_fg = base05;
       dimmed_text_fg = base04;
+      text_fg = base05;
+      # keep-sorted end
 
       # input
+      # keep-sorted start
       input_text_fg = base08;
       result_count_fg = base08;
+      # keep-sorted end
 
       # results
-      result_name_fg = base0D;
-      result_line_number_fg = base0A;
-      result_value_fg = base05;
-      selection_fg = base0B;
-      selection_bg = base01;
+      # keep-sorted start
       match_fg = base08;
+      result_line_number_fg = base0A;
+      result_name_fg = base0D;
+      result_value_fg = base05;
+      selection_bg = base01;
+      selection_fg = base0B;
+      # keep-sorted end
 
       # preview
       preview_title_fg = base0B;
 
       # modes
-      channel_mode_fg = base00;
-      channel_mode_bg = base0E;
-      remote_control_mode_fg = base00;
-      remote_control_mode_bg = base0C;
-      action_picker_mode_fg = base00;
+      # keep-sorted start
       action_picker_mode_bg = base0D;
+      action_picker_mode_fg = base00;
+      channel_mode_bg = base0E;
+      channel_mode_fg = base00;
+      remote_control_mode_bg = base0C;
+      remote_control_mode_fg = base00;
+      # keep-sorted end
     };
 }

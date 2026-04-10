@@ -2,41 +2,60 @@ _:
 # Social and community related plugins.
 {
   programs.nixcord.config.plugins = {
-    # keep-sorted start block=yes
-    BetterBlockedUsers.enable = true;
-    BetterInvites.enable = true;
-    ForceOwnerCrown.enable = true;
-    FriendsSince.enable = true;
-    FriendshipRanks.enable = true;
-    GuildTagSettings.enable = true;
-    ImplicitRelationships.enable = true;
-    InviteDefaults.enable = true;
-    MemberCount.enable = true;
-    MoreUserTags.enable = true;
+    # keep-sorted start block=yes newline_separated=yes
     MutualGroupDMs.enable = true;
-    NewGuildSettings = {
-      enable = true;
-      messages = 1;
-    };
-    PauseInvitesForever.enable = true;
-    RelationshipNotifier.enable = true;
+
     ReviewDB = {
       enable = true;
       hideBlockedUsers = false;
     };
-    ServerInfo.enable = true;
-    ShowConnections = {
+
+    betterBlockedUsers.enable = true;
+
+    betterInvites.enable = true;
+
+    forceOwnerCrown.enable = true;
+
+    friendsSince.enable = true;
+
+    friendshipRanks.enable = true;
+
+    implicitRelationships.enable = true;
+
+    inviteDefaults.enable = true;
+
+    memberCount.enable = true;
+
+    moreUserTags.enable = true;
+
+    newGuildSettings = {
+      enable = true;
+      messages = 1;
+    };
+
+    pauseInvitesForever.enable = true;
+
+    relationshipNotifier.enable = true;
+
+    serverInfo.enable = true;
+
+    showConnections = {
       enable = true;
       iconSpacing = 0;
     };
-    ShowHiddenChannels.enable = true;
-    ShowTimeoutDuration.enable = true;
-    SongSpotlight.enable = true;
-    SortFriends = {
+
+    showHiddenChannels.enable = true;
+
+    showTimeoutDuration.enable = true;
+
+    songSpotlight.enable = true;
+
+    sortFriends = {
       enable = true;
       showDates = true;
     };
-    WhoReacted.enable = true;
+
+    whoReacted.enable = true;
     # keep-sorted end
   };
 }

@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Configure lutris and integrate with steam packages.

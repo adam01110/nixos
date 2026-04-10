@@ -3,9 +3,11 @@
 in {
   # Propagate host wifi/bluetooth availability into noctalia menus.
   programs.noctalia-shell.settings.network = {
-    wifiEnabled = cfgWifi;
+    # keep-sorted start
     bluetoothAutoConnect = false;
     bluetoothHideUnnamedDevices = true;
     bluetoothRssiPollingEnabled = true;
+    wifiEnabled = cfgWifi;
+    # keep-sorted end
   };
 }

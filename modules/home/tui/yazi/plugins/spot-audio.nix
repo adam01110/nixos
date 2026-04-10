@@ -4,13 +4,16 @@
 
   # Spotters that render content for spot-audio.
   programs.yazi.settings.plugin.append_spotters = [
+    # keep-sorted start block=yes newline_separated=yes
     {
       mime = "audio/mpegurl";
       run = "code";
     }
+
     {
       url = "audio/*";
       run = "spot-audio";
     }
+    # keep-sorted end
   ];
 }

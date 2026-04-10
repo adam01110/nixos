@@ -3,8 +3,10 @@
 let
   inherit
     (vars)
+    # keep-sorted start
     defaultLocale
     regionalLocale
+    # keep-sorted end
     ;
 in {
   # Split message and collation locales from regional formatting defaults.
@@ -12,8 +14,10 @@ in {
     inherit defaultLocale;
     # Keep locale categories explicit so mixed language and regional settings stay consistent.
     extraLocaleSettings = {
-      LC_CTYPE = defaultLocale;
+      # keep-sorted start
       LC_ADDRESS = regionalLocale;
+      LC_COLLATE = defaultLocale;
+      LC_CTYPE = defaultLocale;
       LC_MEASUREMENT = regionalLocale;
       LC_MESSAGES = defaultLocale;
       LC_MONETARY = regionalLocale;
@@ -22,7 +26,7 @@ in {
       LC_PAPER = regionalLocale;
       LC_TELEPHONE = regionalLocale;
       LC_TIME = defaultLocale;
-      LC_COLLATE = defaultLocale;
+      # keep-sorted end
     };
   };
 }

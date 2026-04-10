@@ -16,13 +16,16 @@ let
     else throw "Input `${input}` does not expose `packages.${system}.${package}`.";
 
   packages = {
-    nix = {input = "determinate";};
-    oxicord = {input = "oxicord";};
+    # keep-sorted start block=yes newline_separated=yes
+    nix.input = "determinate";
+
+    oxicord.input = "oxicord";
 
     tuigreet = {
       input = "tuigreet";
       package = "tuigreet";
     };
+    # keep-sorted end
   };
 in
   builtins.mapAttrs (_name: fromInput) packages

@@ -5,8 +5,10 @@ in {
   environment.systemPackages = attrValues {
     inherit
       (pkgs)
+      # keep-sorted start
       lsfg-vk
       lsfg-vk-ui
+      # keep-sorted end
       ;
   };
 }

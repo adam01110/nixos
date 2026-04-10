@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   config,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Gnupg and gpg-agent with ssh support and gnome pinentry.

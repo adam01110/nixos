@@ -2,6 +2,7 @@ _:
 # Zen browser enterprise policies.
 {
   programs.zen-browser.policies = {
+    # keep-sorted start
     AutofillAddressEnabled = false;
     AutofillCreditCardEnabled = false;
     DisableAppUpdate = true;
@@ -17,15 +18,24 @@ _:
     DisableSetDesktopBackground = true;
     DisableTelemetry = true;
     DontCheckDefaultBrowser = true;
+    HttpsOnlyMode = true;
     NoDefaultBookmarks = true;
     OfferToSaveLogins = false;
-    PasswordManagerEnabled = false;
-    SkipTermsOfUse = true;
-    TranslateEnabled = false;
-    SearchSuggestEnabled = false;
-    HttpsOnlyMode = true;
     PDFjs.Enabled = false;
+    PasswordManagerEnabled = false;
+    SearchSuggestEnabled = false;
+    SkipTermsOfUse = true;
     StartDownloadsInTempDirectory = true;
+    TranslateEnabled = false;
+    # keep-sorted end
+
+    # keep-sorted start block=yes newline_separated=yes
+    EnableTrackingProtection = {
+      Value = true;
+      Locked = true;
+      Cryptomining = true;
+      Fingerprinting = true;
+    };
 
     GenerativeAI = {
       Enabled = false;
@@ -34,12 +44,6 @@ _:
       TabGroups = false;
       Locked = true;
     };
-
-    EnableTrackingProtection = {
-      Value = true;
-      Locked = true;
-      Cryptomining = true;
-      Fingerprinting = true;
-    };
+    # keep-sorted end
   };
 }

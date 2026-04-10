@@ -1,16 +1,20 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
   vars,
+  # keep-sorted end
   ...
 }:
 # Optional virt-manager install for libvirt management.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkEnableOption
     mkIf
+    # keep-sorted end
     ;
   inherit (vars) username;
 in {
@@ -22,8 +26,10 @@ in {
     mkIf cfgVirtManager {
       # Groups for libvirt access.
       users.users.${username}.extraGroups = [
-        "libvirtd"
+        # keep-sorted start
         "kvm"
+        "libvirtd"
+        # keep-sorted end
       ];
 
       # Enable virt-manager UI.
@@ -45,9 +51,13 @@ in {
       };
 
       # Allow the default libvirt bridge and leave it unmanaged by NetworkManager.
-      networking = {
-        firewall.trustedInterfaces = ["virbr0"];
-        networkmanager.unmanaged = ["virbr0"];
+      networking = let
+        interface = ["virbr0"];
+      in {
+        # keep-sorted start
+        firewall.trustedInterfaces = interface;
+        networkmanager.unmanaged = interface;
+        # keep-sorted end
       };
     };
 }

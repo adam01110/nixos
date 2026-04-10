@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   lib,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Define the fish `un7z` archive extraction helper.
@@ -8,8 +10,10 @@ let
   inherit (builtins) attrValues;
   inherit
     (lib)
+    # keep-sorted start
     getExe
     makeBinPath
+    # keep-sorted end
     ;
   inherit (pkgs.writers) writeFishBin;
 in {
@@ -25,8 +29,10 @@ in {
             (makeBinPath (attrValues {
               inherit
                 (pkgs)
-                coreutils
+                # keep-sorted start
                 _7zz
+                coreutils
+                # keep-sorted end
                 ;
             }))
           ];

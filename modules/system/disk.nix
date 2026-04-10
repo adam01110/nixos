@@ -1,14 +1,18 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }:
 # Disk layout using disko.
 let
   inherit
     (lib)
+    # keep-sorted start
     mkOption
     types
+    # keep-sorted end
     ;
 in {
   # Host option: which block device to partition and install to.

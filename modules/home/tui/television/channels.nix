@@ -1,8 +1,10 @@
 {
-  osConfig,
+  # keep-sorted start
   config,
   lib,
+  osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }:
 # Bundle television channel command dependencies.
@@ -10,8 +12,10 @@ let
   inherit (builtins) attrValues;
   inherit
     (lib)
-    splitString
+    # keep-sorted start
     getAttrFromPath
+    splitString
+    # keep-sorted end
     ;
 in {
   programs.television.package = pkgs.television.withPackages (
@@ -20,32 +24,38 @@ in {
       attrValues {
         inherit
           (pkgs)
-          tlrc
-          trash-cli
-          gnused
-          gawk
+          # keep-sorted start
+          bash
           coreutils
-          procs
-          procps
+          gawk
+          gnused
+          jq
           just
           less
-          jq
-          bash
+          procps
+          procs
+          tlrc
+          trash-cli
+          # keep-sorted end
           ;
       }
       # Reuse packages from home-manager modules to avoid duplicate package selections.
       ++ (map (program: config.programs.${program}.package) [
-        "zoxide"
+        # keep-sorted start
         "bat"
-        "man"
         "eza"
+        "man"
         "opencode"
+        "zoxide"
+        # keep-sorted end
       ])
       # Pull packaged tools from the system config when home-manager does not own them.
       ++ (map (path: (getAttrFromPath (splitString "." path) osConfig).package) [
+        # keep-sorted start
+        "security.sudo-rs"
         "services.flatpak"
         "systemd"
-        "security.sudo-rs"
+        # keep-sorted end
       ])
   );
 }

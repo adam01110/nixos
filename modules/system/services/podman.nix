@@ -1,18 +1,25 @@
 {
+  # keep-sorted start
   config,
   lib,
   pkgs,
   vars,
+  # keep-sorted end
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit
+    (lib)
+    # keep-sorted start
+    mkEnableOption
+    mkIf
+    # keep-sorted end
+    ;
   inherit (vars) username;
 
   cfgPodman = config.optServices.podman;
 in {
   options.optServices.podman = {
     enable = mkEnableOption "Enable podman services.";
-
     autoPrune.enable = mkEnableOption "Enable podman auto-prune.";
   };
 
@@ -20,7 +27,6 @@ in {
     virtualisation.podman = {
       # Enable podman service and tooling.
       enable = true;
-
       # Expose docker-compatible socket for tooling that expects dockerd.
       dockerSocket.enable = true;
 
@@ -29,8 +35,10 @@ in {
         enable = true;
 
         flags = [
+          # keep-sorted start
           "--all"
           "--force"
+          # keep-sorted end
         ];
       };
     };

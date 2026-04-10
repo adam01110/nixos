@@ -7,8 +7,10 @@ _:
   in {
     enable = true;
 
+    # keep-sorted start
     enableBashIntegration = enableShellIntegration;
     enableFishIntegration = enableShellIntegration;
     enableZshIntegration = enableShellIntegration;
+    # keep-sorted end
   };
 }

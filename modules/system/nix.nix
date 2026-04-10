@@ -1,7 +1,9 @@
 {
+  # keep-sorted start
   config,
   inputs,
   lib,
+  # keep-sorted end
   ...
 }:
 # Nix daemon settings, caches, and nixpkgs overlays.
@@ -14,18 +16,20 @@
   nix = {
     settings = let
       substituters = [
-        "https://nix-community.cachix.org"
-        "https://lanzaboote.cachix.org"
-        "https://mic92.cachix.org"
-        "https://numtide.cachix.org"
+        # keep-sorted start
+        "https://adam01110-nur.cachix.org/"
         "https://attic.xuyh0120.win/lantian"
         "https://cache.numtide.com"
-        "https://adam01110-nur.cachix.org/"
         "https://forkprince.cachix.org/"
+        "https://hyprland.cachix.org"
+        "https://install.determinate.systems"
+        "https://lanzaboote.cachix.org"
+        "https://mic92.cachix.org"
+        "https://nix-community.cachix.org"
+        "https://numtide.cachix.org"
         "https://nur-xyenon.cachix.org/"
         "https://nvf.cachix.org/"
-        "https://install.determinate.systems"
-        "https://hyprland.cachix.org"
+        # keep-sorted end
       ];
     in {
       # Add binary caches.
@@ -35,25 +39,29 @@
       trusted-substituters = substituters;
 
       trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        # keep-sorted start
+        "adam01110-nur.cachix.org-1:43B8awTREG19aQ20luDD9BkxijKG/Q7hf8voMzS1X9I="
+        "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+        "forkprince.cachix.org-1:9cN+fX492ZKlfd228xpYAC3T9gNKwS1sZvCqH8iAy1M="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         "lanzaboote.cachix.org-1:Nt9//zGmqkg1k5iu+B3bkj3OmHKjSw9pvf3faffLLNk="
         "mic92.cachix.org-1:gi8IhgiT3CYZnJsaW7fxznzTkMUOn1RY4GmXdT/nXYQ="
-        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
-        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-        "adam01110-nur.cachix.org-1:43B8awTREG19aQ20luDD9BkxijKG/Q7hf8voMzS1X9I="
-        "forkprince.cachix.org-1:9cN+fX492ZKlfd228xpYAC3T9gNKwS1sZvCqH8iAy1M="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
         "nur-xyenon.cachix.org-1:fZ3SGJ3E1p34JSG5j4etfF9+vjJGMZxe1dDBNliKx5U="
         "nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
-        "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        # keep-sorted end
       ];
 
       # Enable modern commands and flakes.
       experimental-features = [
-        "nix-command"
+        # keep-sorted start
         "flakes"
+        "nix-command"
         "pipe-operators"
+        # keep-sorted end
       ];
 
       # Enable determinate nix features.
@@ -71,7 +79,6 @@
   # Nixpkgs settings and overlays.
   nixpkgs = {
     config.allowUnfree = true;
-
     overlays = import ../../overlays {inherit inputs lib;};
   };
 }

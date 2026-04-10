@@ -3,6 +3,21 @@
 let
   inherit (builtins) attrValues;
 in {
+  # keep-sorted start block=yes newline_separated=yes
+  # Extra packages required by FzFish.
+  home.packages = attrValues {
+    inherit
+      (pkgs)
+      # FzFish
+      # keep-sorted start
+      hexyl
+      procs
+      timg
+      trash-cli
+      # keep-sorted end
+      ;
+  };
+
   programs.fish = {
     # Enable plugins.
     plugins = let
@@ -12,23 +27,14 @@ in {
       };
     in
       (map (mkPlugin pkgs.fishPlugins) [
+        # keep-sorted start
         "autopair"
         "done"
-        "fishbang"
         "fish-you-should-use"
+        "fishbang"
+        # keep-sorted end
       ])
       ++ [(mkPlugin pkgs.nur.repos.adam0.fishPlugins "fzfish")];
   };
-
-  # Extra packages required by FzFish.
-  home.packages = attrValues {
-    inherit
-      (pkgs)
-      # FzFish
-      timg
-      hexyl
-      procs
-      trash-cli
-      ;
-  };
+  # keep-sorted end
 }
