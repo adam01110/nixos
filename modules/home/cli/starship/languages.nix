@@ -1,115 +1,117 @@
-_:
+{flakeLib, ...}:
 # Per-language version modules for compilers and sdks.
-{
+let
+  inherit (flakeLib) starshipBase01Segment starshipBase01Style;
+in {
   programs.starship.settings = {
     # keep-sorted start block=yes newline_separated=yes
-    c = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version(-$name))]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:blue bold";
-    };
+    c =
+      starshipBase01Segment "$symbol($version(-$name))" "blue bold"
+      // {
+        symbol = " ";
+      };
 
-    cpp = {
-      disabled = false;
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version(-$name))]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:green bold";
-    };
+    cpp =
+      starshipBase01Segment "$symbol($version(-$name))" "green bold"
+      // {
+        disabled = false;
+        symbol = " ";
+      };
 
-    dart = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:blue bold";
-    };
+    dart =
+      starshipBase01Segment "$symbol($version)" "blue bold"
+      // {
+        symbol = " ";
+      };
 
-    dotnet = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)( $tfm)]($style)[ ](bg:base01)";
-      symbol = "󰪮 ";
-      style = "bg:base01 fg:blue bold";
-    };
+    dotnet =
+      starshipBase01Segment "$symbol($version)( $tfm)" "blue bold"
+      // {
+        symbol = "󰪮 ";
+      };
 
-    golang = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:cyan bold";
-      not_capable_style = "bg:base01 fg:base08 bold";
-    };
+    golang =
+      starshipBase01Segment "$symbol($version)" "cyan bold"
+      // {
+        symbol = " ";
+        not_capable_style = starshipBase01Style "base08 bold";
+      };
 
-    haskell = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󰲒 ";
-      style = "bg:base01 fg:magenta bold";
-    };
+    haskell =
+      starshipBase01Segment "$symbol($version)" "magenta bold"
+      // {
+        symbol = "󰲒 ";
+      };
 
-    haxe = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:base08 bold";
-    };
+    haxe =
+      starshipBase01Segment "$symbol($version)" "base08 bold"
+      // {
+        symbol = " ";
+      };
 
-    java = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󰅶 ";
-      style = "bg:base01 fg:base08 bold";
-    };
+    java =
+      starshipBase01Segment "$symbol($version)" "base08 bold"
+      // {
+        symbol = "󰅶 ";
+      };
 
-    kotlin = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󱈙 ";
-      style = "bg:base01 fg:base09 bold";
-    };
+    kotlin =
+      starshipBase01Segment "$symbol($version)" "base09 bold"
+      // {
+        symbol = "󱈙 ";
+      };
 
-    lua = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󰢱 ";
-      style = "bg:base01 fg:blue bold";
-    };
+    lua =
+      starshipBase01Segment "$symbol($version)" "blue bold"
+      // {
+        symbol = "󰢱 ";
+      };
 
-    perl = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:base09 bold";
-    };
+    perl =
+      starshipBase01Segment "$symbol($version)" "base09 bold"
+      // {
+        symbol = " ";
+      };
 
-    php = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:blue bold";
-    };
+    php =
+      starshipBase01Segment "$symbol($version)" "blue bold"
+      // {
+        symbol = " ";
+      };
 
-    python = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$pyenv_prefix($version)( \\($virtualenv\\))]($style)[ ](bg:base01)";
-      symbol = "󰌠 ";
-      style = "bg:base01 fg:yellow bold";
+    python =
+      starshipBase01Segment "$symbol$pyenv_prefix($version)( \\($virtualenv\\))" "yellow bold"
+      // {
+        symbol = "󰌠 ";
 
-      # Show the pyenv name with an uv prefix.
-      pyenv_version_name = true;
-      pyenv_prefix = "uv";
-    };
+        # Show the pyenv name with an uv prefix.
+        pyenv_version_name = true;
+        pyenv_prefix = "uv";
+      };
 
-    ruby = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:base08 bold";
-    };
+    ruby =
+      starshipBase01Segment "$symbol($version)" "base08 bold"
+      // {
+        symbol = " ";
+      };
 
-    rust = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󱘗 ";
-      style = "bg:base01 fg:base09 bold";
-    };
+    rust =
+      starshipBase01Segment "$symbol($version)" "base09 bold"
+      // {
+        symbol = "󱘗 ";
+      };
 
-    swift = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󰛥 ";
-      style = "bg:base01 fg:base09 bold";
-    };
+    swift =
+      starshipBase01Segment "$symbol($version)" "base09 bold"
+      // {
+        symbol = "󰛥 ";
+      };
 
-    zig = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:yellow bold";
-    };
+    zig =
+      starshipBase01Segment "$symbol($version)" "yellow bold"
+      // {
+        symbol = " ";
+      };
     # keep-sorted end
   };
 }

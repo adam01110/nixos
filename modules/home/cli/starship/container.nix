@@ -1,19 +1,21 @@
-_:
+{flakeLib, ...}:
 # Show container context in the prompt.
-{
+let
+  inherit (flakeLib) starshipBase01Segment;
+in {
   programs.starship.settings = {
     # keep-sorted start block=yes newline_separated=yes
-    container = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol \\[$name\\]]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:blue bold";
-    };
+    container =
+      starshipBase01Segment "$symbol \\[$name\\]" "blue bold"
+      // {
+        symbol = " ";
+      };
 
-    docker_context = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$context]($style)[ ](bg:base01)";
-      symbol = "󰡨 ";
-      style = "bg:base01 fg:blue bold";
-    };
+    docker_context =
+      starshipBase01Segment "$symbol$context" "blue bold"
+      // {
+        symbol = "󰡨 ";
+      };
     # keep-sorted end
   };
 }

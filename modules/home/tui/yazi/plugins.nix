@@ -1,7 +1,7 @@
 {
   # keep-sorted start
   config,
-  lib,
+  flakeLib,
   osConfig,
   pkgs,
   # keep-sorted end
@@ -16,13 +16,7 @@ let
     listToAttrs
     # keep-sorted end
     ;
-  inherit
-    (lib)
-    # keep-sorted start
-    getAttrFromPath
-    splitString
-    # keep-sorted end
-    ;
+  inherit (flakeLib) packagesByPath;
   inherit (pkgs.lib.attrsets) nameValuePair;
 in {
   programs.yazi = {
@@ -100,7 +94,7 @@ in {
         # keep-sorted end
       ])
       # Pull packaged tools from the system config when home-manager does not own them.
-      ++ (map (path: (getAttrFromPath (splitString "." path) osConfig).package) [
+      ++ (packagesByPath osConfig [
         "services.udisks2"
       ]);
 

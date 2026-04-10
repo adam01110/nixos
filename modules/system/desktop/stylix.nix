@@ -8,6 +8,14 @@
 
     # Tweaked default tinted gruvbox-dark colorscheme to use the lighter colors.
     base16Scheme = {
+      # keep-sorted start
+      author = "Adam0";
+      scheme = "Gruvbox Dark";
+      slug = "gruvbox-dark";
+      system = "base16";
+      variant = "dark";
+      # keep-sorted end
+
       base00 = "#282828";
       base01 = "#3c3836";
       base02 = "#504945";

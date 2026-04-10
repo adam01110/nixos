@@ -1,10 +1,9 @@
-{lib, ...}:
+{flakeLib, ...}:
 # Disable stylix integrations for selected applications.
 let
-  inherit (lib) genAttrs;
-  disabled = targets: genAttrs targets (_: {enable = false;});
+  inherit (flakeLib) stylixDisabledTargets;
 in {
-  stylix.targets = disabled [
+  stylix.targets = stylixDisabledTargets [
     # keep-sorted start
     "blender"
     "gnome"

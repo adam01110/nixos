@@ -6,9 +6,8 @@
 }:
 # Overlays loaded from this directory.
 let
-  inherit (builtins) filter;
-
-  importTree = inputs.import-tree.withLib lib;
+  flakeLib = import ../libs {inherit inputs lib;};
+  inherit (flakeLib) nixFilesInDir;
   upstreamOverlays = import ./_inputs.nix {inherit inputs;};
 
   overlayArgs = {
@@ -20,8 +19,15 @@ let
       ;
   };
 
-  overlayFiles = importTree.pipeTo (files: filter isOverlayFile files) ./.;
-  isOverlayFile = path: baseNameOf path != "default.nix";
+  overlayFiles = nixFilesInDir {
+    dir = ./.;
+    excludeNames = [
+      # keep-sorted start
+      "default.nix"
+      "external-pkgs.nix"
+      # keep-sorted end
+    ];
+  };
 
   mkOverlay = file: let
     overlayFn = import file;

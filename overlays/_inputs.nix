@@ -1,12 +1,12 @@
 {inputs}: let
-  inherit
-    (inputs.nixpkgs.lib)
-    getAttrFromPath
-    splitString
-    ;
+  flakeLib = import ../libs {
+    inherit inputs;
+    inherit (inputs.nixpkgs) lib;
+  };
+  inherit (flakeLib) attrsByPath;
 in
   # Upstream overlay inputs used by this config.
-  map (path: getAttrFromPath (splitString "." path) inputs) [
+  attrsByPath inputs [
     # keep-sorted start
     "millennium.overlays.default"
     "nix-cachyos-kernel.overlays.pinned"

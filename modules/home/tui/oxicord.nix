@@ -1,7 +1,7 @@
 {
   # keep-sorted start
   config,
-  lib,
+  flakeLib,
   osConfig,
   pkgs,
   # keep-sorted end
@@ -9,12 +9,13 @@
 }:
 # Configure oxicord and expose a desktop launcher.
 let
-  inherit (lib) getExe;
+  inherit (pkgs.lib) getExe;
+  inherit (flakeLib) stylixHexColor;
 
   tomlFormat = pkgs.formats.toml {};
 
   oxicordPkg = pkgs.oxicord;
-  accentColor = "#${osConfig.lib.stylix.colors.base0B}";
+  accentColor = stylixHexColor "base0B" osConfig;
 in {
   # keep-sorted start block=yes newline_separated=yes
   home.packages = [oxicordPkg];

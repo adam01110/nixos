@@ -1,6 +1,8 @@
-_:
+{flakeLib, ...}:
 # Core prompt symbols and common modules.
-{
+let
+  inherit (flakeLib) starshipBase01Segment starshipBase01Style;
+in {
   programs.starship.settings = {
     # keep-sorted start block=yes newline_separated=yes
     character = {
@@ -15,28 +17,29 @@ _:
       # keep-sorted end
     };
 
-    cmd_duration = {
-      format = "[ ](#00000000)[ ](bg:base01)[$duration]($style)[ ](bg:base01)";
-      style = "bg:base01 fg:yellow bold";
-      min_time = 500;
-    };
+    cmd_duration =
+      starshipBase01Segment "$duration" "yellow bold"
+      // {
+        min_time = 500;
+      };
 
-    directory = {
-      format = "[ ](#00000000)[ ](bg:base01)[$path]($style)[$read_only]($read_only_style)[ ](bg:base01)";
-      style = "bg:base01 fg:blue bold";
-      read_only = " ";
-      read_only_style = "bg:base01 fg:red bold";
-      truncate_to_repo = true;
-      truncation_length = 2;
-      truncation_symbol = "…/";
-    };
+    directory =
+      starshipBase01Segment "$path" "blue bold"
+      // {
+        format = "[ ](#00000000)[ ](bg:base01)[$path]($style)[$read_only]($read_only_style)[ ](bg:base01)";
+        read_only = " ";
+        read_only_style = starshipBase01Style "red bold";
+        truncate_to_repo = true;
+        truncation_length = 2;
+        truncation_symbol = "…/";
+      };
 
-    direnv = {
-      disabled = false;
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$loaded( \\($allowed\\))]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:base09";
-    };
+    direnv =
+      starshipBase01Segment "$symbol$loaded( \\($allowed\\))" "base09"
+      // {
+        disabled = false;
+        symbol = " ";
+      };
 
     hostname = {
       format = "[$ssh_symbol$hostname]($style)";
@@ -45,18 +48,18 @@ _:
       ssh_only = false;
     };
 
-    jobs = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$number]($style)[ ](bg:base01)";
-      symbol = "󱜯 ";
-      style = "bg:base01 fg:blue bold";
-    };
+    jobs =
+      starshipBase01Segment "$symbol$number" "blue bold"
+      // {
+        symbol = "󱜯 ";
+      };
 
-    nix_shell = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$state( \\($name\\))]($style)[ ](bg:base01)";
-      symbol = "󱄅 ";
-      style = "bg:base01 fg:blue bold";
-      heuristic = true;
-    };
+    nix_shell =
+      starshipBase01Segment "$symbol$state( \\($name\\))" "blue bold"
+      // {
+        symbol = "󱄅 ";
+        heuristic = true;
+      };
 
     os = {
       disabled = false;
@@ -121,12 +124,12 @@ _:
       };
     };
 
-    package = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$version]($style)[ ](bg:base01)";
-      symbol = "󰏗 ";
-      style = "bg:base01 fg:base09 bold";
-      display_private = true;
-    };
+    package =
+      starshipBase01Segment "$symbol$version" "base09 bold"
+      // {
+        symbol = "󰏗 ";
+        display_private = true;
+      };
 
     shell = {
       disabled = false;
@@ -143,12 +146,12 @@ _:
       style = "bg:base01 fg:base04 bold";
     };
 
-    sudo = {
-      disabled = false;
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol]($style)[ ](bg:base01)";
-      symbol = "";
-      style = "bg:base01 fg:yellow bold";
-    };
+    sudo =
+      starshipBase01Segment "$symbol" "yellow bold"
+      // {
+        disabled = false;
+        symbol = "";
+      };
 
     username = {
       format = "[$user]($style)";

@@ -1,18 +1,9 @@
-_:
+{flakeLib, ...}:
 # Set env vars for experimental features and disabled features.
 let
-  inherit (builtins) listToAttrs;
+  inherit (flakeLib) envFlags;
 in {
   _module.args.opencodeEnv = let
-    mkEnv = prefix: features:
-      listToAttrs (
-        map (n: {
-          name = "${prefix}_${n}";
-          value = 1;
-        })
-        features
-      );
-
     experimentalFeatures = [
       # keep-sorted start
       "FILEWATCHER"
@@ -31,7 +22,7 @@ in {
     ];
     enabledFeatures = ["EXA"];
   in
-    mkEnv "OPENCODE_EXPERIMENTAL" experimentalFeatures
-    // mkEnv "OPENCODE_DISABLE" disabledFeatures
-    // mkEnv "OPENCODE_ENABLE" enabledFeatures;
+    envFlags "OPENCODE_EXPERIMENTAL" experimentalFeatures
+    // envFlags "OPENCODE_DISABLE" disabledFeatures
+    // envFlags "OPENCODE_ENABLE" enabledFeatures;
 }

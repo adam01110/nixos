@@ -1,25 +1,27 @@
-_:
+{flakeLib, ...}:
 # Starship segments for build tooling versions.
-{
+let
+  inherit (flakeLib) starshipBase01Segment;
+in {
   programs.starship.settings = {
     # keep-sorted start block=yes newline_separated=yes
-    cmake = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󰔶 ";
-      style = "bg:base01 fg:red bold";
-    };
+    cmake =
+      starshipBase01Segment "$symbol($version)" "red bold"
+      // {
+        symbol = "󰔶 ";
+      };
 
-    gradle = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:cyan bold";
-    };
+    gradle =
+      starshipBase01Segment "$symbol($version)" "cyan bold"
+      // {
+        symbol = " ";
+      };
 
-    meson = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol$project]($style)[ ](bg:base01)";
-      symbol = "⬢ ";
-      style = "bg:base01 fg:blue bold";
-    };
+    meson =
+      starshipBase01Segment "$symbol$project" "blue bold"
+      // {
+        symbol = "⬢ ";
+      };
     # keep-sorted end
   };
 }

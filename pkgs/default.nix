@@ -5,21 +5,18 @@
 }:
 # Custom packages exported to pkgs.
 let
-  inherit
-    (builtins)
-    filter
-    listToAttrs
-    ;
+  inherit (builtins) listToAttrs;
   inherit (lib) removeSuffix;
   inherit (pkgs) callPackage;
-
-  # Import-tree with lib helpers for file discovery.
-  importTree = inputs.import-tree.withLib lib;
+  flakeLib = import ../libs {inherit inputs lib;};
+  inherit (flakeLib) nixFilesInDir;
 
   # Gather all package definition files under this directory.
-  packageFiles = importTree.pipeTo (files: filter isPackageFile files) ./.;
-  # Ignore default.nix so it only aggregates.
-  isPackageFile = path: baseNameOf path != "default.nix";
+  packageFiles = nixFilesInDir {
+    dir = ./.;
+    excludeNames = ["default.nix"];
+    excludePrefixes = ["scripts/"];
+  };
 
   # Map file path to attr set entry.
   mkPackage = file: let

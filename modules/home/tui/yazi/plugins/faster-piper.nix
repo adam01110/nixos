@@ -40,11 +40,10 @@ in {
         mkEntries ''${piper} sqlite3 -readonly "$1" ".schema --indent"'' ["*.db" "*.sqlite" "*.sqlite3"]
         ++
         # Systemd service files.
-        mkEntries ''${piper} ${getExe (import ../../scripts/_systemd-status-preview.nix {
+        mkEntries ''${piper} ${getExe (import ../../../../../pkgs/scripts/systemd-status-preview.nix {
             inherit
               # keep-sorted start
               config
-              lib
               osConfig
               pkgs
               # keep-sorted end

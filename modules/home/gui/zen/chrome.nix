@@ -1,7 +1,7 @@
 {
   # keep-sorted start
+  flakeLib,
   inputs,
-  lib,
   osConfig,
   pkgs,
   # keep-sorted end
@@ -10,19 +10,13 @@
 # Zen browser user chrome and content styling with nix-userstyles integration.
 let
   inherit (builtins) readFile;
-  inherit
-    (lib)
-    # keep-sorted start
-    filterAttrs
-    hasPrefix
-    mkAfter
-    # keep-sorted end
-    ;
+  inherit (pkgs.lib) mkAfter;
+  inherit (flakeLib) stylixPalette;
 
   inherit (pkgs.stdenv.hostPlatform) system;
 
   # Convert the stylix base16 scheme into a format accepted by nix-userstyles.
-  palette = filterAttrs (name: _: hasPrefix "base0" name) osConfig.lib.stylix.colors;
+  palette = stylixPalette osConfig;
 in {
   # Remove rounded corners in zen browser interface.
   programs.zen-browser.profiles.default = {

@@ -11,7 +11,7 @@ let
   inherit (pkgs) callPackage;
 in {
   programs.noctalia-shell.settings.hooks = let
-    performantMode = getExe (callPackage ../hyprland/scripts/_performant-mode.nix {});
+    performantMode = getExe (callPackage ../../../../pkgs/scripts/performant-mode.nix {});
   in {
     enabled = true;
 

@@ -1,26 +1,28 @@
-_:
+{flakeLib, ...}:
 # Display js runtime versions when active.
-{
+let
+  inherit (flakeLib) starshipBase01Segment starshipBase01Style;
+in {
   programs.starship.settings = {
     # keep-sorted start block=yes newline_separated=yes
-    bun = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:yellow bold";
-    };
+    bun =
+      starshipBase01Segment "$symbol($version)" "yellow bold"
+      // {
+        symbol = " ";
+      };
 
-    deno = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = " ";
-      style = "bg:base01 fg:green bold";
-    };
+    deno =
+      starshipBase01Segment "$symbol($version)" "green bold"
+      // {
+        symbol = " ";
+      };
 
-    nodejs = {
-      format = "[ ](#00000000)[ ](bg:base01)[$symbol($version)]($style)[ ](bg:base01)";
-      symbol = "󰎙 ";
-      style = "bg:base01 fg:green bold";
-      not_capable_style = "bg:base01 fg:base08 bold";
-    };
+    nodejs =
+      starshipBase01Segment "$symbol($version)" "green bold"
+      // {
+        symbol = "󰎙 ";
+        not_capable_style = starshipBase01Style "base08 bold";
+      };
     # keep-sorted end
   };
 }

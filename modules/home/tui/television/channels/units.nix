@@ -79,11 +79,10 @@ in {
     };
 
     # Preserve native systemd colors above the status/log separator line.
-    preview.command = "${getExe (import ../../scripts/_systemd-status-preview.nix {
+    preview.command = "${getExe (import ../../../../../pkgs/scripts/systemd-status-preview.nix {
       inherit
         # keep-sorted start
         config
-        lib
         osConfig
         pkgs
         # keep-sorted end

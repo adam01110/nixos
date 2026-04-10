@@ -1,10 +1,9 @@
-{lib, ...}:
+{flakeLib, ...}:
 # Disable unwanted modules to keep the prompt minimal.
 let
-  inherit (lib) genAttrs;
-  disabled = targets: genAttrs targets (_: {disabled = true;});
+  inherit (flakeLib) starshipDisabledModules;
 in {
-  programs.starship.settings = disabled [
+  programs.starship.settings = starshipDisabledModules [
     # keep-sorted start
     "aws"
     "battery"

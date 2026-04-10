@@ -1,7 +1,7 @@
 {
   # keep-sorted start
   config,
-  lib,
+  flakeLib,
   osConfig,
   pkgs,
   # keep-sorted end
@@ -10,13 +10,7 @@
 # Bundle television channel command dependencies.
 let
   inherit (builtins) attrValues;
-  inherit
-    (lib)
-    # keep-sorted start
-    getAttrFromPath
-    splitString
-    # keep-sorted end
-    ;
+  inherit (flakeLib) packagesByPath;
 in {
   programs.television.package = pkgs.television.withPackages (
     _:
@@ -50,7 +44,7 @@ in {
         # keep-sorted end
       ])
       # Pull packaged tools from the system config when home-manager does not own them.
-      ++ (map (path: (getAttrFromPath (splitString "." path) osConfig).package) [
+      ++ (packagesByPath osConfig [
         # keep-sorted start
         "security.sudo-rs"
         "services.flatpak"

@@ -1,10 +1,16 @@
-{osConfig, ...}:
+{
+  # keep-sorted start
+  flakeLib,
+  osConfig,
+  # keep-sorted end
+  ...
+}:
 # Stylix colors for overzicht.
 let
-  inherit (builtins) mapAttrs;
+  inherit (flakeLib) stylixHexColors;
 
   # keep-sorted start
-  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
+  colors = stylixHexColors osConfig;
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
   # keep-sorted end
 in {

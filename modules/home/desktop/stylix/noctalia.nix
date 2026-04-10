@@ -1,5 +1,6 @@
 {
   # keep-sorted start
+  flakeLib,
   lib,
   osConfig,
   # keep-sorted end
@@ -7,10 +8,10 @@
 }:
 # Stylix theme for noctalia-shell.
 let
-  inherit (builtins) mapAttrs;
   inherit (lib) mkForce;
+  inherit (flakeLib) stylixHexColors;
 
-  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
+  colors = stylixHexColors osConfig;
 in {
   programs.noctalia-shell = {
     # keep-sorted start block=yes newline_separated=yes

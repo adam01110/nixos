@@ -1,8 +1,14 @@
-{osConfig, ...}:
+{
+  # keep-sorted start
+  flakeLib,
+  osConfig,
+  # keep-sorted end
+  ...
+}:
 # Set stylix theme for eza.
 let
-  inherit (builtins) mapAttrs;
-  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
+  inherit (flakeLib) stylixHexColors;
+  colors = stylixHexColors osConfig;
 in {
   programs.eza.theme = with colors; {
     # keep-sorted start block=yes newline_separated=yes

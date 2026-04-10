@@ -1,8 +1,8 @@
 {
   # keep-sorted start
   config,
+  flakeLib,
   inputs,
-  lib,
   pkgs,
   vars,
   # keep-sorted end
@@ -10,13 +10,7 @@
 }:
 # User account and home manager setup.
 let
-  inherit
-    (lib)
-    # keep-sorted start
-    getAttrFromPath
-    splitString
-    # keep-sorted end
-    ;
+  inherit (flakeLib) attrsByPath importTree;
   inherit
     (vars)
     # keep-sorted start
@@ -24,8 +18,6 @@ let
     username
     # keep-sorted end
     ;
-
-  import-tree = inputs.import-tree.withLib lib;
 in {
   # Ensure the user account can be created with a password managed by sops-nix.
   sops.secrets.user_password.neededForUsers = true;
@@ -44,6 +36,7 @@ in {
     extraSpecialArgs = {
       inherit
         # keep-sorted start
+        flakeLib
         inputs
         vars
         # keep-sorted end
@@ -53,7 +46,7 @@ in {
     users.${username} = {
       # Home manager module sources from flake inputs.
       imports =
-        (map (path: getAttrFromPath (splitString "." path) inputs) [
+        attrsByPath inputs [
           # keep-sorted start
           "nix-flatpak.homeManagerModules.nix-flatpak"
           "nix-index-database.homeModules.nix-index"
@@ -66,10 +59,10 @@ in {
           "zed-extensions.homeManagerModules.default"
           "zen-browser.homeModules.beta"
           # keep-sorted end
-        ])
+        ]
         ++ [
           pkgs.nur.repos.adam0.hmModules.opencode-plugins
-          (import-tree ../home)
+          (importTree ../home)
         ];
 
       home = {

@@ -5,20 +5,16 @@
 }:
 # Nixos host definitions for flake-parts.
 let
-  inherit
-    (inputs.nixpkgs.lib)
-    # keep-sorted start
-    getAttrFromPath
-    splitString
-    # keep-sorted end
-    ;
+  flakeLib = import ../libs {
+    inherit inputs;
+    inherit (inputs.nixpkgs) lib;
+  };
+  inherit (flakeLib) attrsByPath importTree;
   vars = import ../vars.nix;
-
-  import-tree = inputs.import-tree.withLib inputs.nixpkgs.lib;
 
   # Shared module stack for every host configuration.
   commonModules =
-    (map (path: getAttrFromPath (splitString "." path) inputs) [
+    attrsByPath inputs [
       # keep-sorted start
       "disko.nixosModules.disko"
       "home-manager.nixosModules.home-manager"
@@ -27,8 +23,8 @@ let
       "sops-nix.nixosModules.sops"
       "stylix.nixosModules.stylix"
       # keep-sorted end
-    ])
-    ++ [(import-tree ../modules/system)];
+    ]
+    ++ [(importTree ../modules/system)];
 
   # Helper to build a host with shared args and modules.
   mkHost = name: system:
@@ -37,6 +33,7 @@ let
       specialArgs = {
         inherit
           # keep-sorted start
+          flakeLib
           inputs
           self
           vars
@@ -46,7 +43,7 @@ let
 
       modules =
         commonModules
-        ++ [(import-tree (../modules/hosts + "/${name}"))];
+        ++ [(importTree (../modules/hosts + "/${name}"))];
     };
 
   # Host map used to derive nixosConfigurations.
