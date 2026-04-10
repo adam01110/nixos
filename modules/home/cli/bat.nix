@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Configure bat and extras.
-{
+{pkgs, ...}: {
   # Enable bat with manuals.
   programs.bat = {
     enable = true;

@@ -10,7 +10,6 @@
       }
     ];
 
-    # Register the restore plugin source.
     plugins.restore = pkgs.yaziPlugins.restore;
     # keep-sorted end
   };

@@ -1,6 +1,4 @@
-_:
-# Helpers for mime application defaults.
-let
+_: let
   inherit (builtins) listToAttrs;
 in {
   # Build mime application entries for a desktop handler.

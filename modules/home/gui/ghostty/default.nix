@@ -2,9 +2,7 @@
   config,
   lib,
   ...
-}:
-# Configure ghostty settings.
-let
+}: let
   inherit (lib) getExe;
 in {
   # keep-sorted start block=yes newline_separated=yes

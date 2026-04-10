@@ -30,7 +30,6 @@
       # keep-sorted end
     ];
 
-    # Register the smart-enter plugin source.
     plugins.smart-enter = pkgs.yaziPlugins.smart-enter;
     # keep-sorted end
   };

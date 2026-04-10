@@ -5,9 +5,7 @@
   osConfig,
   # keep-sorted end
   ...
-}:
-# Noctalia top bar.
-let
+}: let
   inherit (lib) optional;
 
   cfgBluetooth = osConfig.optServices.bluetooth.enable;

@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Core prompt symbols and common modules.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) starshipBase01Segment starshipBase01Style;
 in {
   programs.starship.settings = {

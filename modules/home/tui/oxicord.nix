@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure oxicord and expose a desktop launcher.
-let
+}: let
   inherit (pkgs.lib) getExe;
   inherit (flakeLib) stylixHexColor;
 
@@ -22,7 +20,7 @@ in {
 
   xdg = {
     # keep-sorted start block=yes newline_separated=yes
-    # Generate a minimal oxicord configuration with changed values.
+    # Generate oxicord configuration.
     configFile."oxicord/config.toml".source = tomlFormat.generate "oxicord-config.toml" {
       ui.group_guilds = true;
       theme.accent_color = accentColor;

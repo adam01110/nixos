@@ -1,6 +1,4 @@
-_:
-# Extra cli tools for system-wide use.
-{
+_: {
   # Show per-process bandwidth usage from the tui.
   programs.bandwhich.enable = true;
 }

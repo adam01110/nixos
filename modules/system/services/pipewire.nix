@@ -1,6 +1,4 @@
-_:
-# Pipewire with wireplumber and legacy audio shims.
-{
+_: {
   services.pipewire = {
     enable = true;
     # keep-sorted start

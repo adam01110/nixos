@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    # Register the preview-cbz plugin source.
     plugins.preview-cbz = pkgs.nur.repos.adam0.yaziPlugins.preview-cbz;
 
     settings.plugin = {

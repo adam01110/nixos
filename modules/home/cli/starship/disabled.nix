@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Disable unwanted modules to keep the prompt minimal.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) starshipDisabledModules;
 in {
   programs.starship.settings = starshipDisabledModules [

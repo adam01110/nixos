@@ -1,6 +1,4 @@
-_:
-# Configure direnv for per-project environments.
-{
+_: {
   programs.direnv = {
     enable = true;
 

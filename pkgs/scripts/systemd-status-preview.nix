@@ -5,13 +5,12 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Build a shared systemd status preview helper for terminal tools.
-let
+}: let
   inherit (builtins) attrValues;
   inherit (pkgs) writeShellApplication;
 in
   writeShellApplication {
+    # Share one preview helper across tools that inspect systemd units.
     name = "systemd-status-preview";
     runtimeInputs =
       [

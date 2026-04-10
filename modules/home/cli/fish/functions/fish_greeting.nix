@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Fish greeting function.
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)

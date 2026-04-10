@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Install `kmon` and expose preferred defaults.
-let
+}: let
   inherit (lib) getExe;
   inherit (pkgs) kmon;
 in {

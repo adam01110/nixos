@@ -4,9 +4,7 @@
   osConfig,
   # keep-sorted end
   ...
-}:
-# Stylix colors for overzicht.
-let
+}: let
   inherit (flakeLib) stylixHexColors;
 
   # keep-sorted start
@@ -14,7 +12,7 @@ let
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
   # keep-sorted end
 in {
-  # Feed the shell palette through its module options.
+  # Feed the Stylix palette through Overzicht's module options.
   programs.overzicht = {
     # keep-sorted start block=yes newline_separated=yes
     colors = with colors; {

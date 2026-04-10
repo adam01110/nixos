@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Install `systeroid` and configure the application
-let
+{pkgs, ...}: let
   iniFormat = pkgs.formats.ini {};
 in {
   # keep-sorted start block=yes newline_separated=yes

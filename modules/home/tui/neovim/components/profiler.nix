@@ -1,6 +1,4 @@
-_:
-# Enable snacks.nvim profiler options and toggle keymap.
-{
+_: {
   programs.nvf.settings.vim = {
     # keep-sorted start block=yes newline_separated=yes
     keymaps = [

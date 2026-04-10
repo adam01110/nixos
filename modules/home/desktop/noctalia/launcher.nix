@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Launcher behavior and default terminal command configuration.
-let
+}: let
   inherit (lib) getExe;
 in {
   programs.noctalia-shell = {

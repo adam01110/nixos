@@ -1,6 +1,4 @@
-{osConfig, ...}:
-# Reuse the system’s sops settings in home manager.
-{
+{osConfig, ...}: {
   sops = {
     # keep-sorted start
     inherit (osConfig.sops) defaultSopsFile;

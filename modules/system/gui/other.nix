@@ -1,6 +1,4 @@
-_:
-# Misc system applications enabled here.
-{
+_: {
   programs = {
     # keep-sorted start
     seahorse.enable = true;

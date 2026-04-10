@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Default handlers for custom url protocols and schemes.
-let
+{flakeLib, ...}: let
   inherit
     (flakeLib)
     # keep-sorted start
@@ -9,6 +7,7 @@ let
     # keep-sorted end
     ;
 in {
+  # Register handlers for URL schemes.
   xdg.mimeApps.defaultApplications = mimeAppDefaults (
     # keep-sorted start block=yes
     (mimeAppEntries "x-scheme-handler" "zen-beta.desktop" [
@@ -20,6 +19,7 @@ in {
     ++ (mimeAppEntries "x-scheme-handler" "bitwarden.desktop" [
       "bitwarden"
     ])
+    # ZED
     ++ (mimeAppEntries "x-scheme-handler" "dev.zed.Zed.desktop" [
       "zed"
     ])

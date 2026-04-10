@@ -10,7 +10,6 @@
       }
     ];
 
-    # Register the smart-paste plugin source.
     plugins.smart-paste = pkgs.yaziPlugins.smart-paste;
     # keep-sorted end
   };

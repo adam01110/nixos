@@ -1,6 +1,4 @@
-_:
-# Configure sudo-rs and disable classic sudo.
-{
+_: {
   security = {
     sudo.enable = false;
 

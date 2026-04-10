@@ -1,6 +1,4 @@
-_:
-# Per-user stylix customization layered on top of system-wide stylix theming.
-{
+_: {
   stylix = {
     # keep-sorted start block=yes newline_separated=yes
     # Font sizes: consistent small sizing for information density.

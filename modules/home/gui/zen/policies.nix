@@ -1,6 +1,4 @@
-_:
-# Zen browser enterprise policies.
-{
+_: {
   programs.zen-browser.policies = {
     # keep-sorted start
     AutofillAddressEnabled = false;

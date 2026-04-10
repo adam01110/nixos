@@ -1,6 +1,3 @@
-_:
-# Xdg application mime type associations and default handlers.
-{
-  # Enable mime application database for file type associations.
+_: {
   xdg.mimeApps.enable = true;
 }

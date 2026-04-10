@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure nix-search-tv with curated builtin indexes and filtered custom option sources.
-let
+}: let
   inherit (builtins) toJSON;
   inherit (lib) mapAttrs;
   hmLib = import "${inputs.home-manager}/modules/lib/stdlib-extended.nix" lib;
@@ -143,6 +141,7 @@ let
       prefixes = ["stylix"];
     };
 
+    # ZED
     zed-extensions = {
       rawDoc = mkHomeManagerDoc inputs.zed-extensions.homeManagerModules.default;
       prefixes = ["programs.zed-editor-extensions"];

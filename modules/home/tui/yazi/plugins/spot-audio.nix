@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    # Register the spot-audio plugin source.
     plugins.spot-audio = pkgs.nur.repos.adam0.yaziPlugins.spot-audio;
 
     # Spotters that render content for spot-audio.

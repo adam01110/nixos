@@ -5,9 +5,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# Zen browser preference defaults and performance tuning.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

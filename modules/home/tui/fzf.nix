@@ -1,6 +1,4 @@
-_:
-# Configure fzf.
-{
+_: {
   programs.fzf = let
     enableShellIntegration = false;
   in {

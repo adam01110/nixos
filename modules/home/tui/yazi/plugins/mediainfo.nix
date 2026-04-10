@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    # Register the mediainfo plugin source.
     plugins.mediainfo = pkgs.yaziPlugins.mediainfo;
 
     # Use mediainfo for media and related mime types.

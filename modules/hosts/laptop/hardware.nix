@@ -4,9 +4,7 @@
   modulesPath,
   # keep-sorted end
   ...
-}:
-# Hardware profile for the laptop.
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];

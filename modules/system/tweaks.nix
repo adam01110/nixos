@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Low-level system tweaks for desktop responsiveness and performance.
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)

@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Gnupg and gpg-agent with ssh support and gnome pinentry.
-{
+}: {
   # keep-sorted start block=yes newline_separated=yes
   # Supply gcr for the gnome pinentry integration.
   home.packages = [pkgs.gcr];

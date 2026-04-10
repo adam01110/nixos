@@ -1,11 +1,6 @@
 {
-  # Flake entrypoint for this nixos + home manager setup.
-  # - Declares all external inputs (channels, overlays, and modules)
-  # - Defines common modules/args shared by hosts
-  # - Exposes `nixosconfigurations` for each machine.
   description = "Adam0's nixos configuration.";
 
-  # Inputs: upstream channels, overlays, and extra flakes used by this config.
   inputs = {
     # keep-sorted start block=yes newline_separated=yes
     determinate = {
@@ -184,6 +179,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # ZED
     zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
     zen-browser = {
@@ -198,7 +194,6 @@
     # keep-sorted end
   };
 
-  # Outputs: expose host configurations and pass through common arguments.
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;

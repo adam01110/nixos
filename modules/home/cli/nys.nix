@@ -1,6 +1,4 @@
-_:
-# Configure nix-your-shell prompts and monitoring.
-{
+_: {
   programs.nix-your-shell = {
     enable = true;
 

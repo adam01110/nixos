@@ -3,9 +3,7 @@
   inputs,
   lib,
   # keep-sorted end
-}:
-# Overlays loaded from this directory.
-let
+}: let
   flakeLib = import ../libs {inherit inputs lib;};
   inherit (flakeLib) nixFilesInDir;
   upstreamOverlays = import ./_inputs.nix {inherit inputs;};

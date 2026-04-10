@@ -1,6 +1,4 @@
-{vars, ...}:
-# Per-host home manager overrides for the laptop.
-let
+{vars, ...}: let
   inherit (vars) username;
 in {
   home-manager.users.${username} = {

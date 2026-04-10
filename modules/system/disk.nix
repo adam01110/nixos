@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Disk layout using disko.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

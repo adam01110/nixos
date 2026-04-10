@@ -1,6 +1,4 @@
-_:
-# Core equibop plugins and global toggles.
-{
+_: {
   programs.nixcord.config.plugins = {
     # keep-sorted start block=yes newline_separated=yes
     alwaysTrust.enable = true;

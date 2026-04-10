@@ -4,9 +4,7 @@
   osConfig,
   # keep-sorted end
   ...
-}:
-# Set stylix theme for eza.
-let
+}: let
   inherit (flakeLib) stylixHexColors;
   colors = stylixHexColors osConfig;
 in {

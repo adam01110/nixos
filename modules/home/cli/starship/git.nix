@@ -1,6 +1,4 @@
-_:
-# Detailed git and fossil status sections.
-{
+_: {
   programs.starship.settings = {
     # keep-sorted start block=yes newline_separated=yes
     fossil_branch = {

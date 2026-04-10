@@ -1,6 +1,4 @@
-_:
-# Default handlers for source code and text formats.
-{
+_: {
   # ZED
   xdg.mimeApps.defaultApplications = {
     # keep-sorted start

@@ -1,6 +1,4 @@
-_:
-# Configure neovim via nvf and set editor defaults.
-{
+_: {
   programs.nvf = {
     enable = true;
     enableManpages = true;

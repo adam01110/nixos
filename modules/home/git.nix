@@ -5,9 +5,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# Git configuration with sops-managed email and libsecret credentials.
-let
+}: let
   inherit
     (vars)
     # keep-sorted start
@@ -49,13 +47,11 @@ in {
       package = gitPackage;
 
       settings = {
-        # Identity.
         user = {
           name = fullName;
           signingkey = gitSigningKey;
         };
 
-        # Enable gpg signing.
         # keep-sorted start
         commit.gpgsign = true;
         tag.gpgSign = true;
@@ -69,7 +65,6 @@ in {
       includes = [{inherit (config.sops.templates."git-config") path;}];
     };
 
-    # Delta pager for nicer diffs.
     delta = {
       enable = true;
       enableGitIntegration = true;
@@ -78,7 +73,7 @@ in {
         true-color = "always";
         line-numbers = true;
 
-        # Hyperlink file paths to jump to locations in zed.
+        # Hyperlink file paths to jump to locations in Zed.
         hyperlinks = true;
         # ZED
         hyperlinks-file-link-format = "zed://file{path}:{line}";

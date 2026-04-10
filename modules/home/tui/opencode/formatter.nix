@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure opencode formatter commands by file extension.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start
@@ -31,7 +29,6 @@ in {
       extensions = [".fish"];
     };
 
-    # add to nvf?
     ktlint = {
       command = [
         (getExe pkgs.ktlint)

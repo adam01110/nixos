@@ -1,6 +1,4 @@
-_:
-# Configure cava audio visualizer.
-{
+_: {
   programs.cava = {
     enable = true;
 

@@ -1,8 +1,6 @@
-# Xdg desktop integration and mime type configuration module.
 _: {
-  # Manage xdg userdirs and auto-create missing paths.
+  # Create missing user dirs and export their session variables.
   xdg = {
-    # Enable xdg integration.
     enable = true;
 
     userDirs = {

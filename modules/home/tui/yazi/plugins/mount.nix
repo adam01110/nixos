@@ -10,7 +10,6 @@
       }
     ];
 
-    # Register the mount plugin source.
     plugins.mount = pkgs.yaziPlugins.mount;
     # keep-sorted end
   };

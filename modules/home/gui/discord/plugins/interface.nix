@@ -30,11 +30,11 @@ in
 
       betterActivities = {
         enable = true;
-        # keep-sort start
+        # keep-sorted start
         memberList = false;
-        renderGifs = false;
         removeGameActivityStatus = true;
-        # keep-sort end
+        renderGifs = false;
+        # keep-sorted end
       };
 
       betterSettings = {

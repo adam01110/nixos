@@ -5,9 +5,7 @@
   osConfig,
   # keep-sorted end
   ...
-}:
-# Stylix theme for noctalia-shell.
-let
+}: let
   inherit (lib) mkForce;
   inherit (flakeLib) stylixHexColors;
 

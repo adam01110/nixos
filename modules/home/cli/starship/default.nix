@@ -1,6 +1,3 @@
-_:
-# Assemble the Starship prompt configuration.
-{
-  # Enable Starship for the user profile.
+_: {
   programs.starship.enable = true;
 }

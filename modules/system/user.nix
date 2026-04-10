@@ -7,9 +7,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# User account and home manager setup.
-let
+}: let
   inherit (flakeLib) attrsByPath importTree;
   inherit
     (vars)
@@ -56,6 +54,7 @@ in {
           "overzicht.homeModules.default"
           "sops-nix.homeManagerModules.sops"
           "spicetify-nix.homeManagerModules.spicetify"
+          # ZED
           "zed-extensions.homeManagerModules.default"
           "zen-browser.homeModules.beta"
           # keep-sorted end
@@ -66,7 +65,6 @@ in {
         ];
 
       home = {
-        # Home-manager account identity.
         inherit username;
         homeDirectory = "/home/${username}";
 
@@ -92,7 +90,6 @@ in {
       # Hashed password file provided by sops-nix.
       hashedPasswordFile = config.sops.secrets.user_password.path;
 
-      # Group memberships:
       extraGroups = [
         # keep-sorted start
         "audio"

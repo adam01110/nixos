@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Optional bluetooth service, toggled per host.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

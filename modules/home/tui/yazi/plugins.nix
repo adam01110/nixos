@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Register plugins that do not have dedicated module files.
-let
+}: let
   inherit
     (builtins)
     # keep-sorted start
@@ -101,6 +99,7 @@ in {
     plugins = let
       mkPlugin = source: name: nameValuePair name source.${name};
 
+      # Keep plugins without dedicated modules together here.
       # Plugins from nixpkgs.
       nixpkgsPlugins = [
         # keep-sorted start

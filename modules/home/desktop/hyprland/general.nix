@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Define hyprland options for touch and monitor layout.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

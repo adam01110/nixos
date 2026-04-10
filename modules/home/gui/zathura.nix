@@ -1,6 +1,4 @@
-_:
-# Configure zathura pdf viewer options.
-{
+_: {
   programs.zathura = {
     enable = true;
 
@@ -9,7 +7,7 @@ _:
       # keep-sorted start
       recolor = true;
       recolor-keephue = true;
-      # keep-sorted ends
+      # keep-sorted end
 
       # keep-sorted start block=yes newline_separated=yes
       # Use the system clipboard for text selection.

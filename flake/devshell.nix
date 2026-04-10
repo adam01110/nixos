@@ -1,6 +1,4 @@
-_:
-# Dev shell for vim and sops tooling.
-{
+_: {
   perSystem = {pkgs, ...}: let
     inherit (builtins) attrValues;
     inherit (pkgs) mkShell;

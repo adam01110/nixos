@@ -6,15 +6,13 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Bundle television channel command dependencies.
-let
+}: let
   inherit (builtins) attrValues;
   inherit (flakeLib) packagesByPath;
 in {
   programs.television.package = pkgs.television.withPackages (
     _:
-    # Bundle standalone cli tools that channel commands shell out to.
+    # Bundle tools that channel commands shell out to.
       attrValues {
         inherit
           (pkgs)

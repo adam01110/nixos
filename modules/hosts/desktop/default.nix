@@ -1,6 +1,4 @@
-_:
-# Desktop host profile: optional services and hardware tweaks.
-{
+_: {
   # System version for state compatibility - do not modify.
   system.stateVersion = "25.05";
 

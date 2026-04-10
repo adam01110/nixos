@@ -1,6 +1,4 @@
-{modulesPath, ...}:
-# Hardware profile for qemu/kvm virtual machines.
-{
+{modulesPath, ...}: {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
   # keep-sorted start block=yes newline_separated=yes

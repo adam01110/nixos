@@ -1,7 +1,4 @@
-{inputs, ...}:
-# Treefmt-nix configuration for flake-parts.
-{
-  # import the treefmt flake-parts module.
+{inputs, ...}: {
   imports = [inputs.treefmt-nix.flakeModule];
 
   perSystem = _: {

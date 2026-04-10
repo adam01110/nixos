@@ -4,9 +4,7 @@
   modulesPath,
   # keep-sorted end
   ...
-}:
-# Hardware profile for the desktop machine.
-{
+}: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   # keep-sorted start block=yes newline_separated=yes

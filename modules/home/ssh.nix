@@ -4,9 +4,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# Ssh client config with sops-injected host templates.
-let
+}: let
   inherit (vars) username;
 in {
   sops = {

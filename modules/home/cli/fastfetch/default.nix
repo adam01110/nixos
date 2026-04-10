@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure fastfetch system information fetch program.
-let
+}: let
   inherit (builtins) fromJSON;
   inherit (lib) getExe;
   inherit (pkgs) writeShellApplication;

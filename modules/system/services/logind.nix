@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Logind configuration for power-related login manager settings.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

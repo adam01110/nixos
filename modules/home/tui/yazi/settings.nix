@@ -1,11 +1,8 @@
-_:
-# Configure yazi file manager and preview settings.
-let
+_: let
   # Memory allocation for image previews in megabytes.
   imageAllocMB = 1024;
 in {
   programs.yazi.settings = {
-    # Manager settings control file browser appearance and behavior.
     mgr = {
       ratio = [
         1
@@ -25,7 +22,6 @@ in {
       # keep-sorted end
     };
 
-    # Preview settings control file preview quality and dimensions.
     preview = {
       # keep-sorted start
       image_delay = 0;

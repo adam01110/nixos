@@ -1,5 +1,4 @@
 _: {
-  # Enable shared language support with formatting, Treesitter, and diagnostics.
   programs.nvf.settings.vim.languages = {
     # keep-sorted start
     enableExtraDiagnostics = true;

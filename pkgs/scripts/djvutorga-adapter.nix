@@ -1,6 +1,4 @@
-{pkgs}:
-# Provide a djvused adapter for ripgrep-all stdin input.
-let
+{pkgs}: let
   inherit (builtins) attrValues;
   inherit (pkgs) writeShellApplication;
 in

@@ -1,6 +1,4 @@
-{pkgs}:
-# Provide a pptx2md adapter for ripgrep-all stdin input.
-let
+{pkgs}: let
   inherit (pkgs) writeShellApplication;
 in
   writeShellApplication {

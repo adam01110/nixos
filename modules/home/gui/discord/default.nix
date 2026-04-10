@@ -3,9 +3,7 @@
   osConfig,
   pkgs,
   ...
-}:
-# Set up discord with nixcord and equibop.
-let
+}: let
   inherit (pkgs) replaceVars;
   inherit (config.xdg) configHome;
 in {

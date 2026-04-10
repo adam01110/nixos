@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Display js runtime versions when active.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) starshipBase01Segment starshipBase01Style;
 in {
   programs.starship.settings = {

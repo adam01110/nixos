@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure opencode lsp commands by extension.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start
@@ -77,7 +75,6 @@ in {
       extensions = [".nix"];
     };
 
-    # add to nvf?
     oxlint = {
       command = [(getExe pkgs.oxlint)];
       extensions = [

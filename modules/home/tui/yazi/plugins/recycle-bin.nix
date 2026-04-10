@@ -10,7 +10,6 @@
       }
     ];
 
-    # Register the recycle-bin plugin source.
     plugins.recycle-bin = pkgs.yaziPlugins.recycle-bin;
     # keep-sorted end
   };

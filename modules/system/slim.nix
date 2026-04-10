@@ -1,6 +1,4 @@
-{lib, ...}:
-# Trim down default packages and documentation to keep install small.
-let
+{lib, ...}: let
   inherit (lib) mkForce;
   inherit (builtins) filter;
 in {

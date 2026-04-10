@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# System stylix theme: colors, fonts, and cursor.
-{
+{pkgs, ...}: {
   stylix = {
     enable = true;
 
@@ -72,6 +70,6 @@
     };
   };
 
-  # Cjk font.
+  # CJK font.
   fonts.packages = [pkgs.noto-fonts-cjk-sans];
 }

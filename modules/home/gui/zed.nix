@@ -3,10 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-# Configure zed editor.
-# Im not going to fucking do it here, since i dont even want to keep using this editor but i dont have time to switch to neovim
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)
@@ -15,7 +12,7 @@ let
     getExe
     ;
 in {
-  # Vm option enables gpu acceleration for virtual machine environments.
+  # Allow manual virtio GPU acceleration in VMs.
   options.zed.isVm = mkEnableOption "Allow the usage of virtio gpu accel";
 
   config = {
@@ -115,7 +112,7 @@ in {
           };
 
           lsp = {
-            # Enable git integration for discord rpc.
+            # Include git activity in Discord presence.
             discord_presence.initialization_options.git_integration = true;
 
             # Enable tailwind css in typescript and javascript.

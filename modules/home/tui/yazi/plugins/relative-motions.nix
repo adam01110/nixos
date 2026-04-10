@@ -60,7 +60,6 @@
       # keep-sorted end
     ];
 
-    # Register the relative-motions plugin source.
     plugins.relative-motions = pkgs.yaziPlugins.relative-motions;
     # keep-sorted end
   };

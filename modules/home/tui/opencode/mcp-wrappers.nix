@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Build shared mcp wrappers with secret-backed credentials.
-let
+}: let
   inherit (lib) getExe;
   inherit (pkgs) writeShellApplication;
 

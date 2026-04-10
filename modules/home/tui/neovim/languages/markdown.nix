@@ -11,7 +11,6 @@ _: {
       }
     ];
 
-    # Enable Markdown support with rumdl and rich markview rendering.
     languages.markdown = {
       enable = true;
 

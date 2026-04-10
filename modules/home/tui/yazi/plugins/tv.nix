@@ -18,7 +18,6 @@
       # keep-sorted end
     ];
 
-    # Register the tv plugin source.
     plugins.tv = pkgs.nur.repos.adam0.yaziPlugins.tv;
     # keep-sorted end
   };

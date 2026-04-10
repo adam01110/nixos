@@ -2,13 +2,12 @@
   lib,
   osConfig,
   ...
-}:
-# Provide themed values to equibop plugins via module args.
-let
+}: let
   inherit (lib) fromHexString removePrefix;
   inherit (osConfig.lib.stylix) colors;
   colorToInt = color: fromHexString (removePrefix "#" color);
 in {
+  # Pass themed values to Equibop plugins through module arguments.
   _module.args.equibopStylix = {
     # keep-sorted start block=yes newline_separated=yes
     # Icon color for message fetch timer.

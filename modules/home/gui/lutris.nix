@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure lutris and integrate with steam packages.
-let
+}: let
   bluetoothEnabled = osConfig.optServices.bluetooth.enable;
   inherit (osConfig.programs) steam;
 in {

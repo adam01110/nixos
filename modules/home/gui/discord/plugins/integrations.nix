@@ -1,6 +1,4 @@
-_:
-# Integrations with external services and providers.
-{
+_: {
   programs.nixcord.config.plugins = {
     # keep-sorted start block=yes newline_separated=yes
     dragify.enable = true;

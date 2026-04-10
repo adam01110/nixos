@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Add custom adapters for additional file formats.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

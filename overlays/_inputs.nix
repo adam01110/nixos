@@ -5,11 +5,11 @@
   };
   inherit (flakeLib) attrsByPath;
 in
-  # Upstream overlay inputs used by this config.
   attrsByPath inputs [
     # keep-sorted start
     "millennium.overlays.default"
     "nix-cachyos-kernel.overlays.pinned"
+    # ZED
     "zed-extensions.overlays.default"
     # keep-sorted end
   ]

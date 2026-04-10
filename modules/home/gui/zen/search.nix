@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Zen browser search engine configuration.
-{
+{pkgs, ...}: {
   programs.zen-browser.profiles.default = {
     search = {
       force = true;

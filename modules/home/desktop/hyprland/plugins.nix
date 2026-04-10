@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Configure hyprland plugins.
-let
+{pkgs, ...}: let
   inherit (builtins) attrValues;
 in {
   wayland.windowManager.hyprland = {
@@ -28,7 +26,7 @@ in {
 
       # Split plugin workspace count.
       hyprsplit.num_workspaces = 8;
-      # keep-sorted ends
+      # keep-sorted end
     };
     # keep-sorted end
   };

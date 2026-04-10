@@ -1,6 +1,4 @@
-_:
-# Set the default XDG terminal handler.
-{
+_: {
   # Register Ghostty as the terminal for terminal-exec.
   xdg.terminal-exec = {
     enable = true;

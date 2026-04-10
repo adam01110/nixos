@@ -1,6 +1,4 @@
-{lib}:
-# Helpers for shared Starship module shapes.
-let
+{lib}: let
   inherit (lib) genAttrs;
 in {
   # keep-sorted start block=yes newline_separated=yes

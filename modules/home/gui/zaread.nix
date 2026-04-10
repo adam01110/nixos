@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Install zaread with a desktop entry.
-{
+}: {
   # keep-sorted start block=yes newline_separated=yes
   home.packages = [pkgs.zaread];
 

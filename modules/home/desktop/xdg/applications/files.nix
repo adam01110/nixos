@@ -1,6 +1,4 @@
-_:
-# Default handlers for directories and custom file associations.
-{
+_: {
   xdg.mimeApps.defaultApplications = {
     # keep-sorted start
     "application/x-modrinth-modpack+zip" = "org.prismlauncher.PrismLauncher.desktop";

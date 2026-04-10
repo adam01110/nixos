@@ -1,6 +1,4 @@
-{config, ...}:
-# Tune opencode ui and permissions defaults.
-let
+{config, ...}: let
   home = config.home.homeDirectory;
 in {
   programs.opencode.settings = {

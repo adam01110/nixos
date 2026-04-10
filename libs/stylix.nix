@@ -1,6 +1,4 @@
-{lib}:
-# Helpers for Stylix-derived values.
-let
+{lib}: let
   inherit (builtins) mapAttrs;
   inherit
     (lib)

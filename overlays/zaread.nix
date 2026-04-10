@@ -1,5 +1,3 @@
-_: _final: prev:
-# Expose local zaread package under pkgs.
-{
+_: _final: prev: {
   zaread = prev.callPackage ../pkgs/zaread.nix {};
 }

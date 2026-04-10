@@ -6,9 +6,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# Optional virt-manager install for libvirt management.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start
@@ -25,7 +23,6 @@ in {
   in
     mkIf cfgVirtManager {
       # keep-sorted start block=yes newline_separated=yes
-      # Enable virt-manager UI.
       programs.virt-manager.enable = true;
 
       # Groups for libvirt access.

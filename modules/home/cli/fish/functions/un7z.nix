@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Define the fish `un7z` archive extraction helper.
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)

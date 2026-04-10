@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Default handlers for document and ebook viewing.
-let
+{flakeLib, ...}: let
   inherit
     (flakeLib)
     # keep-sorted start

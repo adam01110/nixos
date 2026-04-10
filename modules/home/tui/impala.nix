@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Install terminal wifi manager when wifi is enabled.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start
@@ -21,7 +19,7 @@ let
   cfgWifi = osConfig.optServices.wifi.enable;
   pkg = pkgs.impala;
 in
-  # Only install when wifi is enabled to avoid unnecessary packages on desktops.
+  # Only install when wifi is enabled.
   mkIf cfgWifi {
     # keep-sorted start block=yes newline_separated=yes
     home.packages = [pkg];

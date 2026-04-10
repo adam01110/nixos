@@ -1,10 +1,8 @@
-{pkgs, ...}:
-# Configure tlrc output formatting and package installation.
-let
+{pkgs, ...}: let
   tomlFormat = pkgs.formats.toml {};
 in {
   xdg.configFile."tlrc/config.toml".source = tomlFormat.generate "tlrc-config.toml" {
-    # Disable the auto updating cache.
+    # Disable automatic cache updates.
     cache.auto_update = false;
 
     output = {

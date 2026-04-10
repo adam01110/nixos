@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Default handlers for archive and compressed formats.
-let
+{flakeLib, ...}: let
   inherit
     (flakeLib)
     # keep-sorted start

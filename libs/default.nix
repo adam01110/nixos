@@ -1,9 +1,7 @@
 {
   inputs,
   lib,
-}:
-# Shared helpers for this flake.
-let
+}: let
   inherit
     (builtins)
     # keep-sorted start

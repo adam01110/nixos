@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure spicetify.
-let
+}: let
   inherit (builtins) attrValues;
   inherit (pkgs.stdenv.hostPlatform) system;
 in {
@@ -56,7 +54,7 @@ in {
         ;
     };
 
-    # Enable css snippets.
+    # Enable CSS snippets.
     enabledSnippets = attrValues {
       inherit
         (spicePkgs.snippets)

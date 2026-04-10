@@ -1,6 +1,4 @@
-_:
-# Vm host profile: virtualized services and optional defaults.
-{
+_: {
   networking.hostName = "vm";
   # System version for state compatibility - do not modify.
   system.stateVersion = "25.05";

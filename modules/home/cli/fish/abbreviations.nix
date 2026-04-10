@@ -1,7 +1,4 @@
-_:
-# Configure some aliases for the fish shell.
-{
-  # Add shorthand abbreviation.
+_: {
   programs.fish.shellAbbrs = {
     # keep-sorted start
     ff = "fastfetch";

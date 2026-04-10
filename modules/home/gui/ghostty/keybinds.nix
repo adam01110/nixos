@@ -1,6 +1,4 @@
-_:
-# Unbind unneeded bindings.
-{
+_: {
   programs.ghostty.settings.keybind = [
     # keep-sorted start
     "alt+f4=unbind"

@@ -1,6 +1,4 @@
-{vars, ...}:
-# Locale defaults and category-specific regional overrides.
-let
+{vars, ...}: let
   inherit
     (vars)
     # keep-sorted start

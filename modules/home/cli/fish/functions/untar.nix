@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Define the fish `untar` archive extraction helper.
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)

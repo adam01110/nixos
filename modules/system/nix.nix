@@ -5,9 +5,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Nix daemon settings, caches, and nixpkgs overlays.
-{
+}: {
   sops = {
     secrets."nix_access_tokens/github" = {};
     templates.access_tokens.content = ''access-tokens = github.com=${config.sops.placeholder."nix_access_tokens/github"}'';

@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Disable stylix integrations for selected applications.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) stylixDisabledTargets;
 in {
   stylix.targets = stylixDisabledTargets [

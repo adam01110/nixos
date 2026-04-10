@@ -1,6 +1,4 @@
-_:
-# Enable miscellaneous desktop services in one place.
-{
+_: {
   services = {
     # keep-sorted start newline_separated=yes
     # Auto-tune kernel bpf settings for performance.

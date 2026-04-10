@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Time zone configuration with optional automatic mode.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

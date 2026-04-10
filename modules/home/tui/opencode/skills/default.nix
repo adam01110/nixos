@@ -1,6 +1,4 @@
-{lib, ...}:
-# Expose each repo-managed .md skill as .agents/skills/<name>/SKILL.md.
-let
+{lib, ...}: let
   inherit (builtins) readDir;
   inherit
     (lib)

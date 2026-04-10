@@ -1,6 +1,4 @@
-{config, ...}:
-# Plugins for media, calls, and voice features.
-let
+{config, ...}: let
   cfgCamera = config.equibop.camera.enable;
 in {
   programs.nixcord.config.plugins = {

@@ -1,6 +1,4 @@
-_:
-# Session menu entries and confirmation timing.
-{
+_: {
   programs.noctalia-shell.settings.sessionMenu = {
     # keep-sorted start
     countdownDuration = 8000;

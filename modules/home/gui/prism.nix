@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure Prism Launcher.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start
@@ -141,7 +139,7 @@ in {
       # Disable optional novelty feature flags.
       TheCat = false;
 
-      # Keep rendering defaults without forcing discrete GPU paths.\
+      # Keep rendering defaults without forcing discrete GPU paths.
       # keep-sorted start
       UseDiscreteGpu = false;
       UseNativeGLFW = true;

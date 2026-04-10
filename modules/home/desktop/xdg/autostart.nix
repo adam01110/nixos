@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Manage autostart desktop entries.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

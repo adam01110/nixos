@@ -4,16 +4,13 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Configure spotify-player.
-let
+}: let
   inherit (lib) getExe;
 in {
   # keep-sorted start block=yes newline_separated=yes
   programs.spotify-player = {
     enable = true;
     settings = {
-      # Enable audio cache and normalization.
       device = {
         # keep-sorted start
         audio_cache = true;

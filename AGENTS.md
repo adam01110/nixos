@@ -1,69 +1,35 @@
 # Comment Style Guide
 
-Goals: keep comments concise, consistent, and helpful for future maintainers of this NixOS + Home Manager configuration.
+For `.nix` files only. Not for prose docs, copied upstream option descriptions, or commit messages.
 
-## Scope
+## Rules
 
-- Applies to all `.nix` files in this repo.
-- Does not cover documentation prose or commit messages.
+- Keep comments short, local, ASCII, and indented to the code they describe.
+- Write sentence fragments in present tense and start with `#`.
+- Prefer standalone comments above code, not trailing comments.
+- Comment intent, rationale, constraints, non-obvious transformations, generated structure, or meaningful grouping.
+- Skip comments for self-explanatory assignments, simple `inherit` blocks unless a subgroup needs a label, obvious enable flags, boilerplate module structure, and syntax boundaries like `let`, `in`, `{}`, `with`, or lambda heads.
 
-## Quick Rules
+## Placement
 
-- Use full-sentence fragments in present tense, ending with a period.
-- Place comments on their own line directly above the code they describe; avoid trailing inline comments.
-- Indent the comment to the same level as the code.
-- Start with a single `#` and one space; use `# -` for short bullet lists.
-- Start comment text with a capital letter.
-- Describe purpose or rationale, not just restating the identifier.
-- Keep to ASCII; use backticks only for literal commands or identifiers.
-- Prefer one short line; only add sub-bullets when enumerating items.
-- Leave a blank line between the module argument set and the first top-level comment.
+- Put comments directly above the smallest useful binding, attrset, list, or expression.
+- Group comments directly above the grouped block.
+- Comments inside lists or attrsets are fine when labeling a subsection.
+- Do not put comments after `{ ... }:` or `_:` before `let`, or anywhere between a module or lambda head and `let`.
+- Do not use comments as spacers above `let`.
+- If a whole-block comment would otherwise go there, put it as the first meaningful line inside `in {`.
 
-## Patterns Seen in This Repo
+## Allowed Exceptions
 
-- File headers that summarize the file's role: `# Flake entrypoint for this nixos + home manager setup.`
-(flake.nix:2)
-- Section headers to group related blocks: `# Outputs: expose host configurations and pass through common
-arguments.` (flake.nix:111)
+- Preserve `keep-sorted` and similar tool-control comments.
+- Rare TODOs may use `# TODO(<owner or reason>): ...`.
+- Existing emphatic or humorous comments are fine if they still help readability.
+- Upstream-style package headings or labels are fine when preserving imported structure helps.
 
-- Bulleted explanations for lists:
+## Review Standard
 
-  ````text # Group memberships: # - wheel: administrative access via sudo. # - audio: access to sound devices. # -
-  networkmanager: control network connections. ``` (system/user.nix:26-29) ````
-
-- Rationale above templated or generated content: `# Template for resolved.conf carrying dns servers from sops.`
-(system/services/network.nix:30)
-- Short labels for config blocks: `# Set global flatpak overrides.` (home/services/flatpak.nix:6)
-
-## When to Comment
-
-- Add a comment when intent is not obvious from the name or when a setting is non-default, surprising, or has
-operational impact.
-- Prefer no comment for straightforward attribute assignments whose names are self-explanatory.
-- For TODOs, use `# TODO(<owner or reason>): ...` and keep them rare; update or remove after the action is done.
-
-## Anti-Patterns to Avoid
-
-- Restating the attribute name ("# enable wifi" above `wifi.enable = true;`).
-- Inline trailing comments that break readability, except for opaque literals (e.g., hashes) where adjacency helps.
-- Long paragraphs; if more than two lines are needed, consider a doc comment in a README instead.
-
-## Exceptions
-
-- Allow humorous comments and emphasis in modules (example: `# GET OUT OF MY $HOME!`).
-- Allow `# ZED` tags for editor-specific settings toggles.
-- Allow inline comments inside example blocks in option descriptions.
-- Allow package list headings copied from upstream (example: `# WINE`, `# PCSX2`).
-
-## Templates
-
-- Section header: `# <Short description>.`
-- Bulleted list:
-
-  ```text # <Topic>: # - <item 1>. # - <item 2>.```
-
-## Enforcement Tips
-
-- When adding new modules, copy a header pattern from an existing file (e.g., `home/services/flatpak.nix`) to
-keep tone consistent.
-- During reviews, prefer rewriting the comment to match these rules rather than deleting context outright.
+- Delete comments that only restate code.
+- Move misplaced file or block comments below `in {` in `let`-using files.
+- Keep comments attached to the exact code they explain.
+- Preserve required control comments.
+- Prefer deleting a weak comment over keeping noise.

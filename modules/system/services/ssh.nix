@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Optional openssh server, toggled per host.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

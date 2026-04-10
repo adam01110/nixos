@@ -1,6 +1,4 @@
-_:
-# Brightness slider tuning for noctalia shell.
-{
+_: {
   programs.noctalia-shell.settings.brightness = {
     # keep-sorted start
     enableDdcSupport = true;

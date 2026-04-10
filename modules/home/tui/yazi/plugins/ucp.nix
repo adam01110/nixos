@@ -30,7 +30,6 @@
       # keep-sorted end
     ];
 
-    # Register the ucp plugin source.
     plugins.ucp = pkgs.nur.repos.adam0.yaziPlugins.ucp;
     # keep-sorted end
   };

@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Starship segments for build tooling versions.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) starshipBase01Segment;
 in {
   programs.starship.settings = {

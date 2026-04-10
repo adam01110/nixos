@@ -20,7 +20,6 @@
 in {
   programs.yazi = {
     # keep-sorted start block=yes newline_separated=yes
-    # Register the faster-piper plugin source.
     plugins.faster-piper = pkgs.nur.repos.adam0.yaziPlugins.faster-piper;
 
     # Use faster-piper for markdown, archives, compressed text, sqlite, and systemd previews.

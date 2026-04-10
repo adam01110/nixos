@@ -1,5 +1,4 @@
 _: {
-  # Enable TypeScript support with Biome formatting and translated errors.
   programs.nvf.settings.vim.languages.ts = {
     enable = true;
     format.type = ["biome"];

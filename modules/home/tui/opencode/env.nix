@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Set env vars for experimental features and disabled features.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) envFlags;
 in {
   _module.args.opencodeEnv = let

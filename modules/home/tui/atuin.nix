@@ -1,6 +1,4 @@
-{config, ...}:
-# Configure atuin shell history.
-let
+{config, ...}: let
   inherit (config.xdg) cacheHome;
 in {
   programs.atuin = let

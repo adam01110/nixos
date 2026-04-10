@@ -5,11 +5,10 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Set the hyprcursor theme.
-let
+}: let
   inherit (lib) mkForce;
 in {
+  # Install and export the Hyprcursor theme selected by Stylix.
   home = {
     # keep-sorted start block=yes newline_separated=yes
     # Install the selected hyprcursor theme package.

@@ -1,6 +1,4 @@
-_:
-# Helpers for environment-variable attrsets.
-let
+_: let
   inherit (builtins) listToAttrs;
 in {
   # Build environment-variable attrs from a prefix and feature names.

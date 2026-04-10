@@ -1,6 +1,4 @@
-{vars, ...}:
-# Per-host home manager overrides for qemu/kvm virtual machines.
-let
+{vars, ...}: let
   inherit (vars) username;
 in {
   home-manager.users.${username} = {
@@ -13,6 +11,7 @@ in {
       vrr = 0;
     };
 
+    # ZED
     # Enable the use of emulated gpus in zed.
     zed.isVm = true;
 

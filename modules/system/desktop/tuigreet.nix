@@ -6,9 +6,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# Text-based greeter (greetd + tuigreet).
-let
+}: let
   inherit
     (lib)
     # keep-sorted start
@@ -22,6 +20,7 @@ let
 in {
   # keep-sorted start block=yes newline_separated=yes
   environment = {
+    # Generate tuigreet configuration .
     etc."tuigreet/config.toml".source = let
       # keep-sorted start
       hyprland = getExe' config.programs.hyprland.package "start-hyprland";
@@ -85,7 +84,6 @@ in {
     # Extra required tweaks for tty greeters with greetd, do not touch.
     useTextGreeter = true;
 
-    # Start tuigreet.
     settings.default_session.command = getExe pkgs.tuigreet;
   };
   # keep-sorted end

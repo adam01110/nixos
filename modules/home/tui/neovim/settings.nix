@@ -1,5 +1,4 @@
 _: {
-  # Configure editing behavior, clipboard integration, and LSP defaults.
   programs.nvf.settings.vim = {
     searchCase = "smart";
     options.wrap = false;

@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Enable cups printing service.
-let
+{pkgs, ...}: let
   inherit (builtins) attrValues;
 in {
   # keep-sorted start block=yes newline_separated=yes

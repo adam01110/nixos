@@ -1,6 +1,4 @@
-{inputs, ...}: final: prev:
-# Override selected Hyprland plugins from flake inputs.
-let
+{inputs, ...}: final: prev: let
   inherit (final.stdenv.hostPlatform) system;
 in {
   hyprlandPlugins =

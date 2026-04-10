@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Per-language version modules for compilers and sdks.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) starshipBase01Segment starshipBase01Style;
 in {
   programs.starship.settings = {

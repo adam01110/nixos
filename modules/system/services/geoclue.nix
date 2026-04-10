@@ -1,6 +1,4 @@
-{config, ...}:
-# Geoclue2 service using wifi positioning only.
-{
+{config, ...}: {
   services.geoclue2 = {
     enable = true;
 

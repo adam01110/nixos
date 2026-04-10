@@ -1,6 +1,4 @@
-{config, ...}:
-# Remove all rounded corners from gtk apps.
-{
+{config, ...}: {
   # Keep the pre-26.05 gtk4 theme default until home.stateVersion is bumped.
   gtk.gtk4.theme = config.gtk.theme;
 

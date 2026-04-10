@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Default handlers for image editing formats.
-let
+{flakeLib, ...}: let
   inherit
     (flakeLib)
     # keep-sorted start

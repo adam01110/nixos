@@ -4,14 +4,11 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Wrap ripgrep-all with adapter runtime dependencies.
-let
+}: let
   inherit (builtins) attrValues;
   inherit (lib) makeBinPath;
   inherit (pkgs) symlinkJoin;
 in {
-  # Configure ripgrep-all with wrapper-provided adapter dependencies.
   programs.ripgrep-all = {
     # Wrap rga for custom adapters.
     package = symlinkJoin {

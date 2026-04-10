@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Install `cpond` and expose preferred defaults.
-let
+}: let
   inherit (lib) getExe;
   inherit (pkgs.nur.repos.adam0) cpond;
 in {

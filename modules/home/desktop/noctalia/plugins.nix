@@ -52,6 +52,7 @@ in {
           "screen-recorder"
           "unicode-picker"
           "web-search"
+          # ZED
           "zed-provider"
           # keep-sorted end
         ]
@@ -59,13 +60,14 @@ in {
     };
 
     # keep-sorted start block=yes newline_separated=yes
-    # Package for screen-recorder plugin.
+    # Provide runtime tools used by bundled plugins.
     packageOverrides.extraPackages = attrValues {
       inherit
         (pkgs)
         # keep-sorted start
         # screen-recorder
         gpu-screen-recorder
+        # ZED
         # zed-provider
         sqlite
         # keep-sorted end
@@ -104,7 +106,7 @@ in {
     # keep-sorted end
   };
 
-  # The noctalia github feed plugin settings.
+  # Render github-feed settings from sops.
   sops = {
     secrets."noctalia/github_token" = {};
 

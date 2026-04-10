@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure fish shell defaults and shared tools.
-let
+}: let
   inherit (lib) escapeShellArgs;
 
   inherit

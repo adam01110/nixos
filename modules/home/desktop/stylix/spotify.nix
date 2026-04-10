@@ -5,15 +5,14 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Apply stylix overrides for spicetify.
-let
+}: let
   inherit (osConfig.lib.stylix) colors;
   inherit (pkgs.stdenv.hostPlatform) system;
 
   font = osConfig.stylix.fonts.monospace.name;
 in {
   # keep-sorted start block=yes newline_separated=yes
+  # Apply local Spicetify overrides on top of the Stylix palette.
   programs.spicetify = {
     theme = let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${system};

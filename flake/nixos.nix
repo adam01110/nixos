@@ -2,9 +2,7 @@
   inputs,
   self,
   ...
-}:
-# Nixos host definitions for flake-parts.
-let
+}: let
   flakeLib = import ../libs {
     inherit inputs;
     inherit (inputs.nixpkgs) lib;

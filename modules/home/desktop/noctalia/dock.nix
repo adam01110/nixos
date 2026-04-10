@@ -1,6 +1,4 @@
-_:
-# Dock appearance and placement rules for application launcher.
-{
+_: {
   programs.noctalia-shell.settings.dock = {
     # keep-sorted start
     backgroundOpacity = 0.95;

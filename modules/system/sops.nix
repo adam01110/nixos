@@ -1,6 +1,4 @@
-_:
-# Sops configuration for both system and home manager modules.
-{
+_: {
   sops = {
     # Keep the shared secret inventory in the repository copy.
     defaultSopsFile = ../../secrets/secrets.yaml;

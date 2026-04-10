@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Sched-ext scx userspace scheduler service.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

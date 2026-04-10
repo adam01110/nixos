@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Install additional utilities.
-let
+{pkgs, ...}: let
   inherit (builtins) attrValues;
 in {
   # keep-sorted start block=yes newline_separated=yes
@@ -19,13 +17,10 @@ in {
 
   programs = {
     # keep-sorted start newline_separated=yes
-    # Enable the nix-index-database integration with comma.
     nix-index-database.comma.enable = true;
 
-    # Enable nix-index for finding packages that provide commands.
     nix-index.enable = true;
 
-    # Enable ripgrep for fast recursive search.
     ripgrep.enable = true;
     # keep-sorted end
   };

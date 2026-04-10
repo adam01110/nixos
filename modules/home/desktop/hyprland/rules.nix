@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Define permissions, layer rules, and window rules.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Default handlers for video mime types.
-let
+{flakeLib, ...}: let
   inherit
     (flakeLib)
     # keep-sorted start

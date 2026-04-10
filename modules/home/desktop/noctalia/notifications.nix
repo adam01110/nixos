@@ -1,6 +1,4 @@
-_:
-# Notification bubble styling and durations.
-{
+_: {
   programs.noctalia-shell.settings.notifications = {
     # keep-sorted start
     criticalUrgencyDuration = 8;

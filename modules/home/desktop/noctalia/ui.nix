@@ -1,6 +1,4 @@
-_:
-# Ui panel styling for noctalia shell.
-{
+_: {
   programs.noctalia-shell.settings.ui = {
     # keep-sorted start
     boxBorderEnabled = true;

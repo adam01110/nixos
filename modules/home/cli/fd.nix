@@ -1,10 +1,7 @@
-_:
-# Configure fd.
-{
+_: {
   programs.fd = {
     enable = true;
 
-    # Enable hidden files and colored output.
     hidden = true;
     extraOptions = [
       # keep-sorted start

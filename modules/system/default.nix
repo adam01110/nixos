@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# System-wide configuration entry point for NixOS.
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)

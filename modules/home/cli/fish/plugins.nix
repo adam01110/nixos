@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Install fish plugins and their supporting tools.
-let
+{pkgs, ...}: let
   inherit (builtins) attrValues;
 in {
   # keep-sorted start block=yes newline_separated=yes
@@ -19,7 +17,6 @@ in {
   };
 
   programs.fish = {
-    # Enable plugins.
     plugins = let
       mkPlugin = source: pkg: {
         name = pkg;

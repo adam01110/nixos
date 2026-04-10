@@ -1,6 +1,4 @@
-{config, ...}:
-# Configure npm cli to use XDG base directories for globals and logs.
-let
+{config, ...}: let
   inherit
     (config.xdg)
     # keep-sorted start

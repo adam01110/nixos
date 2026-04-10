@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Install wiremix.
-let
+}: let
   inherit (lib) getExe;
 
   pkg = pkgs.wiremix;

@@ -1,6 +1,4 @@
-_:
-# Ntp servers for systemd-timesyncd.
-{
+_: {
   services.timesyncd.servers = [
     # keep-sorted start numeric=yes
     "server 0.pool.ntp.org"

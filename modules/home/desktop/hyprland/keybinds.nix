@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Keybindings for hyprland including workspace, window, and media controls.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

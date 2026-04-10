@@ -1,6 +1,4 @@
-_:
-# Configure zoxide.
-{
+_: {
   programs.zoxide = {
     enable = true;
 

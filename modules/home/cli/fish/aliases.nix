@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure some aliases for the fish shell.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

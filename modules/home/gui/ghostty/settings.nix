@@ -1,6 +1,4 @@
-_:
-# Set Ghostty terminal defaults.
-{
+_: {
   programs.ghostty.settings = {
     # Font settings.
     font-feature = "-calt, -liga, -dlig";

@@ -1,6 +1,4 @@
-{config, ...}:
-# Set global flatpak overrides.
-let
+{config, ...}: let
   home = config.home.homeDirectory;
 in {
   services.flatpak.overrides.global = {

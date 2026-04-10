@@ -1,9 +1,7 @@
-_:
-# Configure sober flatpak.
-let
+_: let
   pkg = "org.vinegarhq.Sober";
 in {
-  # Add flatpak packge.
+  # Install the flatpak and expose Discord IPC sockets.
   services.flatpak = {
     # keep-sorted start block=yes newline_separated=yes
     # Set flatpak overrides for discord rpc.

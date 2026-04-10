@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Zen browser user chrome and content styling with nix-userstyles integration.
-let
+}: let
   inherit (builtins) readFile;
   inherit (pkgs.lib) mkAfter;
   inherit (flakeLib) stylixPalette;

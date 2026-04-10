@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Tlp power management service with power saving features.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

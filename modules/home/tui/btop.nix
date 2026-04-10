@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure btop.
-let
+}: let
   inherit (lib) mkOption types;
 
   inherit (config.btop) gpuBackends;
@@ -50,7 +48,7 @@ in {
       # Disk filtering excludes system directories to focus on relevant storage.
       disks_filter = "exclude=/var/log /var/cache /var/tmp /home /srv /nix";
 
-      # Disable logging
+      # Disable logging.
       log_level = "DISABLED";
 
       # Disable rounded corners for consistent flat design.
@@ -59,7 +57,7 @@ in {
       # Update frequency of 1000ms balances responsiveness and performance.
       update_ms = 1000;
 
-      # Vim keys enable keyboard navigation similar to vim editor.
+      # Match vim-style navigation.
       vim_keys = true;
       # keep-sorted end
 

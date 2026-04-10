@@ -3,9 +3,7 @@
   inputs,
   lib,
   # keep-sorted end
-}:
-# Helpers for file discovery and import-tree traversal.
-let
+}: let
   inherit
     (builtins)
     # keep-sorted start

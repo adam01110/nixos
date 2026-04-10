@@ -7,9 +7,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure opencode integration, wrapper, and desktop entry.
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)

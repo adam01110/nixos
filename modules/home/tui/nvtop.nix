@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Configure nvtop.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

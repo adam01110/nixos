@@ -6,9 +6,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Install terminal bluetooth manager when bluetooth is enabled.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

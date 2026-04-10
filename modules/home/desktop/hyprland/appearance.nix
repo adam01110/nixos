@@ -1,6 +1,4 @@
-_:
-# Set hyprland appearance, gaps, decoration, and animations.
-{
+_: {
   wayland.windowManager.hyprland.settings = {
     # keep-sorted start block=yes newline_separated=yes
     # Map animation groups to specific curves and speeds.

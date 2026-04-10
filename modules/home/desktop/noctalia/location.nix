@@ -6,9 +6,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# Calendar locale and weather location.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start
@@ -23,6 +21,7 @@ let
 
   cfgLocation = config.noctalia.location;
 in {
+  # Control whether Noctalia reads weather data from autolocation or sops.
   options.noctalia.location = mkOption {
     type = types.nullOr (types.enum [
       # keep-sorted start

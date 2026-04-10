@@ -1,6 +1,4 @@
-{vars, ...}:
-# Configure onlyoffice desktop.
-let
+{vars, ...}: let
   inherit (vars) fullName;
 in {
   programs.onlyoffice = {

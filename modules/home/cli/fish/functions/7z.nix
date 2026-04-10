@@ -4,9 +4,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Fish archive creation helper for 7z files.
-let
+}: let
   inherit (builtins) attrValues;
   inherit
     (lib)

@@ -5,9 +5,7 @@
   pkgs,
   # keep-sorted end
   ...
-}:
-# Gui application and gui flatpak packages.
-let
+}: let
   inherit (builtins) attrValues;
   inherit (lib) optional;
 in {

@@ -1,6 +1,4 @@
-{pkgs, ...}:
-# Zen browser extensions configuration.
-let
+{pkgs, ...}: let
   inherit
     (builtins)
     # keep-sorted start

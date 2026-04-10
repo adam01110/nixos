@@ -1,6 +1,4 @@
-_:
-# Enable opencode plugins for agent behavior and notifications.
-{
+_: {
   programs.opencode.plugins = {
     # keep-sorted start
     cc-safety-net.enable = true;

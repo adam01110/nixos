@@ -1,6 +1,4 @@
-_:
-# Define card layout for the noctalia calendar widget.
-{
+_: {
   programs.noctalia-shell.settings.calendar.cards = [
     {
       id = "calendar-header-card";

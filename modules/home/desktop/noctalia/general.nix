@@ -1,6 +1,4 @@
-{config, ...}:
-# Noctalia shell visuals and behavior configuration.
-{
+{config, ...}: {
   programs.noctalia-shell.settings.general = let
     # Use sharp corners (no rounding) for consistent design.
     radius = 0;

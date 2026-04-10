@@ -1,6 +1,4 @@
-_:
-# Noctalia audio widget tuning and volume behavior.
-{
+_: {
   programs.noctalia-shell.settings.audio = {
     # keep-sorted start
     cavaFrameRate = 60;

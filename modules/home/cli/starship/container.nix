@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Show container context in the prompt.
-let
+{flakeLib, ...}: let
   inherit (flakeLib) starshipBase01Segment;
 in {
   programs.starship.settings = {

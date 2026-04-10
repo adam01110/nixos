@@ -1,6 +1,4 @@
-{osConfig, ...}:
-# Configure some stylix targets.
-let
+{osConfig, ...}: let
   # keep-sorted start
   MonospaceFont = osConfig.stylix.fonts.monospace.name;
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
@@ -18,13 +16,10 @@ in {
 
   stylix.targets = {
     # keep-sorted start newline_separated=yes
-    # Cava.
     cava.rainbow.enable = true;
 
-    # Neovim.
     nvf.transparentBackground = true;
 
-    # Zen-browser.
     zen-browser.profileNames = ["default"];
     # keep-sorted end
   };

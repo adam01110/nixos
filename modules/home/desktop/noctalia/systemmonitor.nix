@@ -4,11 +4,10 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Expose a gpu toggle for system monitor widgets.
-let
+}: let
   inherit (lib) mkEnableOption getExe;
 in {
+  # Expose a GPU toggle for Noctalia system monitor widgets.
   options.noctalia.enableGpu = mkEnableOption "Enable dGPU monitoring and GPU temperature widgets.";
 
   # Set polling for the system monitor.

@@ -2,9 +2,7 @@
   lib,
   pkgs,
   ...
-}:
-# Add custom adapters for additional file formats with fastgron.
-let
+}: let
   inherit (lib) getExe;
 
   fastgron = getExe pkgs.fastgron;

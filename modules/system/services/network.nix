@@ -5,9 +5,7 @@
   vars,
   # keep-sorted end
   ...
-}:
-# Networking: resolved + networkmanager, optional wi‑fi via iwd.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

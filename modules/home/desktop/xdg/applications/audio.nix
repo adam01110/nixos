@@ -1,6 +1,4 @@
-{flakeLib, ...}:
-# Default handlers for audio mime types.
-let
+{flakeLib, ...}: let
   inherit
     (flakeLib)
     # keep-sorted start

@@ -4,9 +4,7 @@
   lib,
   # keep-sorted end
   ...
-}:
-# Format hyprland monitor declarations.
-let
+}: let
   inherit
     (lib)
     # keep-sorted start

@@ -2,9 +2,7 @@
   equibopStylix,
   vars,
   ...
-}:
-# Plugins affecting chat, messages, and sharing.
-{
+}: {
   programs.nixcord.config.plugins = {
     # keep-sorted start block=yes newline_separated=yes
     ClearURLs.enable = true;
