@@ -1,8 +1,10 @@
 {osConfig, ...}:
 # Stylix colors for overzicht.
 let
+  inherit (builtins) mapAttrs;
+
   # keep-sorted start
-  inherit (osConfig.lib.stylix) colors;
+  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
   # keep-sorted end
 in {

@@ -1,7 +1,14 @@
-{config, ...}:
+{
+  config,
+  pkgs,
+  ...
+}:
 # Home manager hyprland configuration: plugins, quickshell, and extras.
 {
   # keep-sorted start block=yes newline_separated=yes
+  # Install hyprpicker for the color-pick keybind.
+  home.packages = [pkgs.hyprpicker];
+
   # Enable hyprcursor theme support.
   home.pointerCursor.hyprcursor.enable = true;
 

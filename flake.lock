@@ -1662,11 +1662,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775834521,
-        "narHash": "sha256-K3x1VlR1H3l0BKtJqxwEffZVEkmYBoOW+VlBAwMF38k=",
+        "lastModified": 1775840235,
+        "narHash": "sha256-LhU44ftGXgbM5buP7d21q9LGJTcy5eW5XrESo+Tokek=",
         "owner": "adam01110",
         "repo": "overzicht",
-        "rev": "7520ed624245de1b616a1ea4217037fd44980ac7",
+        "rev": "1dd0ff921583c3dc5332791ee05fb9b89105b50c",
         "type": "github"
       },
       "original": {

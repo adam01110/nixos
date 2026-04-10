@@ -44,7 +44,7 @@ in {
       # keep-sorted start
       equibop = getExe config.programs.nixcord.equibop.package;
       ghostty = "${getExe config.programs.ghostty.package} --initial-window=false +new-window";
-      hyprpicker = getExe config.programs.hyprshot.package;
+      hyprpicker = getExe pkgs.hyprpicker;
       hyprshot = getExe config.programs.hyprshot.package;
       steam = getExe osConfig.programs.steam.package;
       yazi = getExe config.programs.yazi.package;

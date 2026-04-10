@@ -1,8 +1,7 @@
 diff --git a/Commons/Settings.qml b/Commons/Settings.qml
-index 84f3399..33f1596 100644
 --- a/Commons/Settings.qml
 +++ b/Commons/Settings.qml
-@@ -29,7 +29,10 @@ Singleton {
+@@ -32,9 +32,12 @@
    readonly property string cacheDir: ensureTrailingSlash(Quickshell.env("NOCTALIA_CACHE_DIR") || (Quickshell.env("XDG_CACHE_HOME") || Quickshell.env("HOME") + "/.cache") + "/" + shellName + "/")
  
    readonly property string settingsFile: Quickshell.env("NOCTALIA_SETTINGS_FILE") || (configDir + "settings.json")
@@ -15,7 +14,7 @@ index 84f3399..33f1596 100644
  
    signal settingsLoaded
    signal settingsSaved
-@@ -81,6 +84,14 @@ Singleton {
+@@ -80,6 +83,18 @@
      }
    }
  
@@ -34,7 +33,7 @@ index 84f3399..33f1596 100644
    FileView {
      id: settingsFileView
      path: directoriesCreated ? settingsFile : undefined
-@@ -117,6 +128,8 @@ Singleton {
+@@ -116,6 +131,8 @@
          // Finally, update our local settings version
          adapter.settingsVersion = settingsVersion;
  
@@ -43,7 +42,7 @@ index 84f3399..33f1596 100644
          // Emit the signal
          root.isLoaded = true;
          root.settingsLoaded();
-@@ -143,6 +156,21 @@ Singleton {
+@@ -142,6 +159,21 @@
      }
    }
  

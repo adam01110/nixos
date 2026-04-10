@@ -5,9 +5,10 @@
   # keep-sorted end
   ...
 }: let
+  inherit (builtins) mapAttrs;
   tomlFormat = pkgs.formats.toml {};
 
-  inherit (osConfig.lib.stylix) colors;
+  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in {
   xdg.configFile."television/themes/".source = with colors;
     tomlFormat.generate "television-stylix.toml" {

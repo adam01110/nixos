@@ -27,7 +27,7 @@ in {
       grim = getExe pkgs.grim;
       hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
       hyprpicker = getExe pkgs.hyprpicker;
-      overzicht = getExe' config.programs.overzicht.package ".quickshell-wrapped";
+      quickshell = getExe' config.programs.quickshell.package ".quickshell-wrapped";
       xdg-desktop-portal-hyprland = getExe' osConfig.programs.hyprland.portalPackage ".xdg-desktop-portal-hyprland-wrapped";
       # keep-sorted end
     in [
@@ -39,7 +39,7 @@ in {
       "${escapeRegex equibop}, screencopy, allow"
       "${escapeRegex grim}, screencopy, allow"
       "${escapeRegex hyprpicker}, screencopy, allow"
-      "${escapeRegex overzicht}, screencopy, allow"
+      "${escapeRegex quickshell}, screencopy, allow"
       "${escapeRegex xdg-desktop-portal-hyprland}, screencopy, allow"
       # keep-sorted end
     ];

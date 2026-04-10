@@ -1,7 +1,8 @@
 {osConfig, ...}:
 # Set stylix theme for eza.
 let
-  inherit (osConfig.lib.stylix) colors;
+  inherit (builtins) mapAttrs;
+  colors = mapAttrs (_: value: "#${value}") osConfig.lib.stylix.colors;
 in {
   programs.eza.theme = with colors; {
     # keep-sorted start block=yes newline_separated=yes
