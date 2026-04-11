@@ -45,6 +45,7 @@ in {
         genAttrs [
           # keep-sorted start
           "file-search"
+          "giphy-search"
           "github-feed"
           "kaomoji-provider"
           "keybind-cheatsheet"
@@ -52,9 +53,9 @@ in {
           "screen-recorder"
           "unicode-picker"
           "web-search"
+          # keep-sorted end
           # ZED
           "zed-provider"
-          # keep-sorted end
         ]
         mkPlugin;
     };
@@ -108,18 +109,43 @@ in {
 
   # Render github-feed settings from sops.
   sops = {
-    secrets."noctalia/github_token" = {};
+    secrets = {
+      # keep-sorted start
+      "noctalia/giphy_key" = {};
+      "noctalia/github_token" = {};
+      # keep-sorted end
+    };
 
-    templates."noctalia-github-config".content = toJSON {
-      username = gitUsername;
-      token = config.sops.placeholder."noctalia/github_token";
-      refreshInterval = 2000;
-      maxEvents = 64;
-      enableSystemNotifications = true;
-      defaultTab = 1;
+    templates = let
+      sopsVal = config.sops.placeholder;
+    in {
+      # keep-sorted start block=yes newline_separated=yes
+      "noctalia-giphy-config".content = toJSON {
+        # keep-sorted start
+        api_key = sopsVal."noctalia/giphy_key";
+        rating = "r";
+        # keep-sorted end
+      };
+
+      "noctalia-github-config".content = toJSON {
+        # keep-sorted start
+        defaultTab = 1;
+        enableSystemNotifications = true;
+        maxEvents = 64;
+        refreshInterval = 2000;
+        token = sopsVal."noctalia/github_token";
+        username = gitUsername;
+        # keep-sorted end
+      };
+      # keep-sorted end
     };
   };
 
-  xdg.configFile."noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
+  xdg.configFile = {
+    # keep-sorted start
+    "noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
+    "noctalia/plugins/giphy-search/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-giphy-config".path;
+    # keep-sorted end
+  };
   # keep-sorted end
 }
