@@ -1,15 +1,12 @@
 {
   # keep-sorted start
-  flakeLib,
   lib,
   osConfig,
   # keep-sorted end
   ...
 }: let
   inherit (lib) mkForce;
-  inherit (flakeLib) stylixHexColors;
-
-  colors = stylixHexColors osConfig;
+  colors = osConfig.lib.stylix.colors.withHashtag;
 in {
   programs.noctalia-shell = {
     # keep-sorted start block=yes newline_separated=yes

@@ -143,8 +143,8 @@ in {
 
   xdg.configFile = {
     # keep-sorted start
-    "noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
     "noctalia/plugins/giphy-search/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-giphy-config".path;
+    "noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
     # keep-sorted end
   };
   # keep-sorted end

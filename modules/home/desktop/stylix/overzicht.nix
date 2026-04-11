@@ -1,14 +1,6 @@
-{
+{osConfig, ...}: let
   # keep-sorted start
-  flakeLib,
-  osConfig,
-  # keep-sorted end
-  ...
-}: let
-  inherit (flakeLib) stylixHexColors;
-
-  # keep-sorted start
-  colors = stylixHexColors osConfig;
+  colors = osConfig.lib.stylix.colors.withHashtag;
   sansSerifFont = osConfig.stylix.fonts.sansSerif.name;
   # keep-sorted end
 in {

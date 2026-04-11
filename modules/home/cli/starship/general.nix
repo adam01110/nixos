@@ -33,7 +33,7 @@ in {
       };
 
     direnv =
-      starshipBase01Segment "$symbol$loaded( \\($allowed\\))" "base09"
+      starshipBase01Segment "$symbol$loaded( \\($allowed\\))" "base09 bold"
       // {
         disabled = false;
         symbol = " ";

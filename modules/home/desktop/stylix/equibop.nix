@@ -1,11 +1,12 @@
 {
+  # keep-sorted start
   lib,
   osConfig,
+  # keep-sorted end
   ...
 }: let
-  inherit (lib) fromHexString removePrefix;
+  inherit (lib) fromHexString;
   inherit (osConfig.lib.stylix) colors;
-  colorToInt = color: fromHexString (removePrefix "#" color);
 in {
   # Pass themed values to Equibop plugins through module arguments.
   _module.args.equibopStylix = {
@@ -16,10 +17,10 @@ in {
     # Questify color assignments.
     questify = {
       # keep-sorted start
-      claimed = colorToInt colors.base0E;
-      expired = colorToInt colors.base00;
-      ignored = colorToInt colors.base08;
-      unclaimed = colorToInt colors.base0D;
+      claimed = fromHexString colors.base0E;
+      expired = fromHexString colors.base00;
+      ignored = fromHexString colors.base08;
+      unclaimed = fromHexString colors.base0D;
       # keep-sorted end
     };
     # keep-sorted end

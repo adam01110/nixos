@@ -1,19 +1,17 @@
 {
   # keep-sorted start
   config,
-  flakeLib,
   osConfig,
   pkgs,
   # keep-sorted end
   ...
 }: let
   inherit (pkgs.lib) getExe;
-  inherit (flakeLib) stylixHexColor;
 
   tomlFormat = pkgs.formats.toml {};
 
   oxicordPkg = pkgs.oxicord;
-  accentColor = stylixHexColor "base0B" osConfig;
+  accentColor = osConfig.lib.stylix.colors.withHashtag.base0B;
 in {
   # keep-sorted start block=yes newline_separated=yes
   home.packages = [oxicordPkg];

@@ -1,15 +1,13 @@
 {
   # keep-sorted start
-  flakeLib,
   osConfig,
   pkgs,
   # keep-sorted end
   ...
 }: let
-  inherit (flakeLib) stylixHexColors;
   tomlFormat = pkgs.formats.toml {};
 
-  colors = stylixHexColors osConfig;
+  colors = osConfig.lib.stylix.colors.withHashtag;
 in {
   xdg.configFile."television/themes/".source = with colors;
     tomlFormat.generate "television-stylix.toml" {

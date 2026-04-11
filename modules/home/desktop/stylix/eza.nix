@@ -1,12 +1,5 @@
-{
-  # keep-sorted start
-  flakeLib,
-  osConfig,
-  # keep-sorted end
-  ...
-}: let
-  inherit (flakeLib) stylixHexColors;
-  colors = stylixHexColors osConfig;
+{osConfig, ...}: let
+  colors = osConfig.lib.stylix.colors.withHashtag;
 in {
   programs.eza.theme = with colors; {
     # keep-sorted start block=yes newline_separated=yes

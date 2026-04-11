@@ -36,6 +36,8 @@ in {
         # keep-sorted start
         "bat"
         "eza"
+        "git"
+        "delta"
         "man"
         "opencode"
         "zoxide"
