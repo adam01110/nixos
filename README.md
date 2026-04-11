@@ -78,5 +78,5 @@ sops secrets/secrets.yaml
 
 ## Tooling
 
-- Formatting and linting are wired through `treefmt-nix` in `flake/treefmt.nix`.
+- Formatting and linting are wired through `treefmt` in `flake/treefmt.nix`.
 - The repository uses `import-tree` extensively to auto-discover modules, overlays, and local packages.
