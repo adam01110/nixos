@@ -292,6 +292,33 @@
         "type": "github"
       }
     },
+    "envfs": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773311733,
+        "narHash": "sha256-hj/6zS9ebF0IDqgc1Dne59nWx80nk6jn2gj8BzQUFIQ=",
+        "owner": "Mic92",
+        "repo": "envfs",
+        "rev": "8a2a7066df42fd13acfecdf495faa578d035fe42",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "ref": "1.2.0",
+        "repo": "envfs",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -1766,6 +1793,7 @@
       "inputs": {
         "determinate": "determinate",
         "disko": "disko",
+        "envfs": "envfs",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hyprland": "hyprland",

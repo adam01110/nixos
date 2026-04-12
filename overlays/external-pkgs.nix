@@ -15,6 +15,8 @@
 
   packages = {
     # keep-sorted start block=yes newline_separated=yes
+    envfs.input = "envfs";
+
     nix.input = "determinate";
 
     oxicord.input = "oxicord";
