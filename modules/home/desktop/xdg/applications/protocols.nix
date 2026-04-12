@@ -11,6 +11,7 @@ in {
   xdg.mimeApps.defaultApplications = mimeAppDefaults (
     # keep-sorted start block=yes
     (mimeAppEntries "x-scheme-handler" "zen-beta.desktop" [
+      "http"
       "https"
     ])
     ++ (mimeAppEntries "x-scheme-handler" "beepertexts.desktop" [

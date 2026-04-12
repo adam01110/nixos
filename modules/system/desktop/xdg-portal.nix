@@ -12,6 +12,9 @@ in {
   systemd.user.services.xdg-desktop-portal = {
     after = mkAfter ["graphical-session.target"];
     wantedBy = ["graphical-session.target"];
+
+    # Keep the portal on the session PATH imported into the user manager.
+    enableDefaultPath = false;
   };
 
   xdg = {
