@@ -115,6 +115,7 @@ in {
       no_sort = true;
       output = prRef;
       # keep-sorted end
+
     };
 
     ui.preview_panel.header = "#${prRef}";

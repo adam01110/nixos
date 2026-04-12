@@ -99,6 +99,7 @@ in {
       no_sort = true;
       output = issueRef;
       # keep-sorted end
+
     };
 
     ui.preview_panel.header = "#${issueRef}";
