@@ -80,3 +80,10 @@ sops secrets/secrets.yaml
 
 - Formatting and linting are wired through `treefmt` in `flake/treefmt.nix`.
 - The repository uses `import-tree` extensively to auto-discover modules, overlays, and local packages.
+
+## Licensing
+
+- This repository is mixed-license. The root `LICENSE` file contains the `AGPL-3.0-or-later` text intended for original work authored for this repository, unless a file says otherwise.
+- Files derived from Nixpkgs are kept under MIT-compatible treatment with upstream attribution preserved. See `pkgs/lutris.nix`, `pkgs/zaread.nix`, and `THIRD_PARTY_NOTICES.md`.
+- Adapter scripts adapted from `ripgrep-all` discussion posts are marked as adapted third-party material with provenance notices. They are not being confidently relabeled as `AGPL-3.0-or-later` without a clearer relicensing basis.
+- Other copied or vendored third-party material keeps its own attribution and should be reviewed under `THIRD_PARTY_NOTICES.md` rather than assumed to follow the repo default.

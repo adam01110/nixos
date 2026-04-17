@@ -23,7 +23,7 @@ in {
       description = "Uses djvused to extract plain text from DJVU files";
       extensions = ["djvu"];
       mimetypes = ["image/vnd.djvu"];
-      binary = getExe (callPackage ../../../../../pkgs/scripts/djvutorga-adapter.nix {});
+      binary = getExe (callPackage ../../../../../pkgs/scripts/ripgrep-all-adapters/djvutorga-adapter.nix {});
       disabled_by_default = false;
       match_only_by_mime = false;
     }
@@ -35,7 +35,7 @@ in {
       description = "Uses an adapter wrapper to convert PPTX files to markdown";
       extensions = ["pptx"];
       mimetypes = ["application/vnd.openxmlformats-officedocument.presentationml.presentation"];
-      binary = getExe (callPackage ../../../../../pkgs/scripts/pptx2md-adapter.nix {});
+      binary = getExe (callPackage ../../../../../pkgs/scripts/ripgrep-all-adapters/pptx2md-adapter.nix {});
       args = ["--disable-image" "--disable-wmf" "-"];
       disabled_by_default = false;
       match_only_by_mime = false;

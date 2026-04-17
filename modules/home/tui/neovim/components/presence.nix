@@ -1,37 +1,38 @@
-{pkgs, ...}: {
+_: {
   # Discord rich presence via cord.nvim.
-  programs.nvf.settings.vim.extraPlugins.cord = {
-    package = pkgs.vimPlugins.cord-nvim;
+  programs.nvf.settings.vim.presence.cord-nvim = {
+    enable = true;
 
-    setup = ''
-      local diagnostics = require("cord.plugins.diagnostics")
-      diagnostics.config.scope = 0
-      diagnostics.config.severity = { min = vim.diagnostic.severity.HINT }
-      diagnostics.config.override = true
+    setupOpts = {
+      # keep-sorted start block=yes newline_separated=yes
+      advanced.discord.reconnect.enabled = true;
 
-      local scoped_timestamps = require("cord.plugins.scoped_timestamps")
-      scoped_timestamps.config.scope = "workspace"
-      scoped_timestamps.config.pause = true
+      display = {
+        # keep-sorted start
+        flavor = "accent";
+        theme = "minecraft";
+        # keep-sorted end
+      };
 
-      require("cord").setup({
-        editor = {
-          tooltip = "Editing with Neovim",
-        },
-        display = {
-          flavor = "accent",
-        },
-        plugins = {
-          "cord.plugins.diagnostics",
-          "cord.plugins.scoped_timestamps",
-        },
-        advanced = {
-          discord = {
-            reconnect = {
-              enabled = true,
-            },
-          },
-        },
-      })
-    '';
+      editor.tooltip = "Editing with Neovim";
+
+      extensions = {
+        # keep-sorted start block=yes newline_separated=yes
+        diagnostics = {
+          # keep-sorted start
+          override = true;
+          scope = "buffer";
+          severity.min = 4;
+          # keep-sorted end
+        };
+
+        scoped_timestamps = {
+          scope = "workspace";
+          pause = true;
+        };
+        # keep-sorted end
+      };
+      # keep-sorted end
+    };
   };
 }

@@ -60,10 +60,15 @@ _: {
               # keep-sort end
             };
             # keep-sorted end
+
+            horizontal_rules = "presets.dashed";
           };
 
           preview = {
+            # keep-sorted start
+            enable = false;
             linewise_hybrid_mode = true;
+            # keep-sorted end
 
             icon_provider = "devicons";
             filetypes = ["markdown"];
@@ -80,7 +85,6 @@ _: {
             modes = [
               # keep-sorted start
               "V"
-              "i"
               "n"
               "no"
               "v"

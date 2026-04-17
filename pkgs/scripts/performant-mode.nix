@@ -1,3 +1,6 @@
+/*
+SPDX-License-Identifier: AGPL-3.0-or-later
+*/
 {pkgs}:
 # Wrap the performant mode toggle script with concrete runtime paths.
 pkgs.writeShellApplication {

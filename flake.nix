@@ -90,7 +90,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.5";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.6";
       inputs = {
         # keep-sorted start
         nixpkgs.follows = "nixpkgs";
@@ -121,7 +121,8 @@
     };
 
     nvf = {
-      url = "github:notashelf/nvf";
+      # url = "github:notashelf/nvf";
+      url = "github:adam01110/nvf?ref=personal";
       inputs = {
         # keep-sorted start
         flake-parts.follows = "flake-parts";

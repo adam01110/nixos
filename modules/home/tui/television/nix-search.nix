@@ -203,7 +203,7 @@ in {
       # keep-sorted start
 
       # Disable the waiting message that never goes away.
-      enable_waiting_message = true;
+      enable_waiting_message = false;
       # Add custom docs sources through `options_file`; they are not valid `indexes` entries.
       experimental.options_file = optionsFile;
       # keep-sorted end

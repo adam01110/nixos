@@ -81,7 +81,7 @@ in {
 
       keybind-cheatsheet = {
         # keep-sorted start
-        columnCount = 4;
+        columnCount = 3;
         hyprlandConfigPath = "${configHome}/hypr/keybinds.conf";
         # keep-sorted end
       };

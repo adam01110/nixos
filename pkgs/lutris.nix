@@ -1,3 +1,8 @@
+/*
+* Derived from Nixpkgs and modified in this repository.
+* Copyright (c) Nixpkgs contributors
+* SPDX-License-Identifier: MIT
+*/
 {
   lib,
   buildFHSEnv,

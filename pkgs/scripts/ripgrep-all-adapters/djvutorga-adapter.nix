@@ -1,3 +1,12 @@
+/*
+* Adapted from code posted in ripgrep-all GitHub Discussion #166.
+* Project: phiresky/ripgrep-all
+* Source: https://github.com/phiresky/ripgrep-all/discussions/166
+* Adapted and modified in this repository on 2026-04-13.
+* No SPDX identifier is asserted here pending confirmation that the
+* discussion-posted snippet was contributed under terms that permit
+* relicensing this adapted copy as AGPL-3.0-or-later.
+*/
 {pkgs}: let
   inherit (builtins) attrValues;
   inherit (pkgs) writeShellApplication;

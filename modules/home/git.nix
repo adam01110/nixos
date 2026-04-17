@@ -52,6 +52,8 @@ in {
           signingkey = gitSigningKey;
         };
 
+        init.defaultBranch = "main";
+
         # keep-sorted start
         commit.gpgsign = true;
         tag.gpgSign = true;
