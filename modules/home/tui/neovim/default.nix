@@ -1,4 +1,18 @@
-_: {
+{lib, ...}: let
+  inherit
+    (lib)
+    # keep-sorted start
+    mkOption
+    types
+    # keep-sorted end
+    ;
+in {
+  options.neovim.borderType = mkOption {
+    type = types.str;
+    default = "single";
+    description = "Border style for Neovim floating UI.";
+  };
+
   programs.nvf = {
     enable = true;
     enableManpages = true;

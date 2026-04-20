@@ -10,9 +10,9 @@ _: {
           # keep-sorted start
           add.text = "▎";
           change.text = "▎";
+          changedelete.text = "▎";
           delete.text = "";
           topdelete.text = "";
-          changedelete.text = "▎";
           untracked.text = "┆";
           # keep-sorted end
         };
@@ -21,9 +21,9 @@ _: {
           # keep-sorted start
           add.text = "▎";
           change.text = "▎";
+          changedelete.text = "▎";
           delete.text = "";
           topdelete.text = "";
-          changedelete.text = "▎";
           untracked.text = "┆";
           # keep-sorted end
         };
@@ -32,6 +32,6 @@ _: {
     };
 
     vim-fugitive.enable = true;
-    # keep-sortede end
+    # keep-sorted end
   };
 }

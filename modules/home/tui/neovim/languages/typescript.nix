@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.settings.vim.languages.ts = {
+  programs.nvf.settings.vim.languages.typescript = {
     enable = true;
     format.type = ["biome"];
 

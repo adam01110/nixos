@@ -1,8 +1,6 @@
-{lib, ...}: let
-  inherit (lib.generators) mkLuaInline;
-in {
+{config, ...}: {
   programs.nvf.settings.vim = let
-    borderType = "single";
+    inherit (config.neovim) borderType;
   in {
     # keep-sorted start block=yes newline_separated=yes
     # Keep Telescope border windows visible with themes that flatten border groups.
@@ -13,21 +11,6 @@ in {
       TelescopePromptBorder.link = "FloatBorder";
       TelescopeResultsBorder.link = "FloatBorder";
       # keep-sorted end
-    };
-
-    notify.nvim-notify = {
-      enable = true;
-
-      setupOpts = {
-        render = "default";
-        stages = "fade";
-
-        on_open = mkLuaInline ''
-          function(win)
-            vim.api.nvim_win_set_config(win, { border = ${borderType} })
-          end
-        '';
-      };
     };
 
     # Keep Telescope borders in explicit single-line style.
@@ -67,6 +50,8 @@ in {
             };
           };
 
+          presets.command_palette = true;
+
           views = {
             # keep-sorted start
             cmdline_popup.border.style = borderType;
@@ -74,8 +59,6 @@ in {
             popupmenu.border.style = borderType;
             # keep-sorted end
           };
-
-          presets.command_palette = true;
           # keep-sorted end
         };
       };

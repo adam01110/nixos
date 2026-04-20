@@ -4,10 +4,10 @@ _: {
 
     setupOpts = {
       # keep-sorted start
-      showmode = false;
+      disable_mouse = false;
       max_count = 4;
       restriction_mode = "hint";
-      disable_mouse = false;
+      showmode = false;
       # keep-sorted end
     };
   };
