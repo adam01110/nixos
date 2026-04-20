@@ -13,17 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    envfs = {
-      url = "github:Mic92/envfs?ref=1.2.0";
-      inputs = {
-        # keep-sorted start
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
-        # keep-sorted end
-      };
-    };
-
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {

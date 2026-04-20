@@ -74,6 +74,8 @@ in {
             popupmenu.border.style = borderType;
             # keep-sorted end
           };
+
+          presets.command_palette = true;
           # keep-sorted end
         };
       };
