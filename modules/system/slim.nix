@@ -1,11 +1,13 @@
 {lib, ...}: let
-  inherit (lib) mkForce;
   inherit (builtins) filter;
+  inherit (lib) mkForce;
 in {
   # keep-sorted start block=yes newline_separated=yes
   documentation = {
+    # keep-sorted start
     doc.enable = mkForce false;
     info.enable = mkForce false;
+    # keep-sorted end
   };
 
   # Drop the default package seed so profiles start empty.
@@ -27,8 +29,10 @@ in {
 
   services = {
     # Disable speech stack.
+    # keep-sorted start
     orca.enable = mkForce false;
     speechd.enable = mkForce false;
+    # keep-sorted end
   };
   # keep-sorted end
 }

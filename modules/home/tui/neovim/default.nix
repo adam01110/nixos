@@ -13,23 +13,25 @@ in {
     description = "Border style for Neovim floating UI.";
   };
 
-  programs.nvf = {
-    enable = true;
-    enableManpages = true;
+  config = {
+    programs.nvf = {
+      enable = true;
+      enableManpages = true;
 
-    settings.vim = {
-      enableLuaLoader = true;
-      utility.snacks-nvim.enable = true;
+      settings.vim = {
+        enableLuaLoader = true;
+        utility.snacks-nvim.enable = true;
+      };
     };
-  };
 
-  # Export editor vars for cli tools.
-  home.sessionVariables = let
-    editor = "nvim";
-  in {
-    # keep-sorted start
-    EDITOR = editor;
-    VISUAL = editor;
-    # keep-sorted end
+    # Export editor vars for cli tools.
+    home.sessionVariables = let
+      editor = "nvim";
+    in {
+      # keep-sorted start
+      EDITOR = editor;
+      VISUAL = editor;
+      # keep-sorted end
+    };
   };
 }

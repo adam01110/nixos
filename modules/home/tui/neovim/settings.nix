@@ -21,10 +21,6 @@ _: {
         setupOpts.handle_leading_whitespace = true;
       };
     };
-
-    telescope = {
-      enable = true;
-    };
     # keep-sorted end
   };
 }

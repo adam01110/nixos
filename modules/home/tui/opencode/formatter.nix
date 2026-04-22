@@ -43,24 +43,48 @@ in {
       ];
     };
 
-    biome = {
+    oxfmt = {
       command = [
-        (getExe pkgs.biome)
-        "format"
-        "--write"
+        (getExe pkgs.oxfmt)
         "$FILE"
       ];
       extensions = [
         # keep-sorted start
+        ".cjs"
         ".css"
+        ".hbs"
         ".html"
         ".js"
         ".json"
+        ".json5"
+        ".jsonc"
         ".jsx"
+        ".less"
+        ".mjs"
+        ".scss"
+        ".toml"
         ".ts"
         ".tsx"
         ".yaml"
         ".yml"
+        # keep-sorted end
+      ];
+    };
+
+    oxlint = {
+      command = [
+        (getExe pkgs.oxlint)
+        "--fix"
+        "$FILE"
+      ];
+      extensions = [
+        # keep-sorted start
+        ".cjs"
+        ".js"
+        ".jsx"
+        ".mjs"
+        ".ts"
+        ".tsx"
         # keep-sorted end
       ];
     };

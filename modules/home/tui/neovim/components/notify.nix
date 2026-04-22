@@ -11,7 +11,7 @@ in {
 
     setupOpts = {
       render = "default";
-      stages = "fade";
+      stages = "static";
 
       on_open = mkLuaInline ''
         function(win)

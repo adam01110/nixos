@@ -98,6 +98,7 @@ in {
         # keep-sorted start
         max_results = 5;
         search_engine = "Brave";
+        show_suggestions = false;
         # keep-sorted end
       };
       # keep-sorted end

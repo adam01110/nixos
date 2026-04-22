@@ -12,8 +12,6 @@
         statix.enable = true;
         # keep-sorted end
 
-        biome.enable = true;
-
         # keep-sorted start block=yes
         shellcheck = {
           enable = true;
@@ -23,27 +21,34 @@
         # keep-sorted end
 
         # keep-sorted start
-        yamlfmt.enable = true;
+        keep-sorted.enable = true;
+        oxfmt.enable = true;
+        rumdl-format.enable = true;
+        stylua.enable = true;
         yamllint.enable = true;
         # keep-sorted end
-
-        stylua.enable = true;
-
-        rumdl-format.enable = true;
-
-        keep-sorted.enable = true;
       };
 
       projectRootFile = "flake.nix";
 
-      # Keep sops and direnv files out of formatting and linting.
-      settings.global.excludes = [
-        # keep-sorted start
-        ".direnv/*"
-        ".sops.yaml"
-        "secrets/secrets.yaml"
+      settings = {
+        # keep-sorted start block=yes newline_separated=yes
+        # Keep markdown on rumdl-format.
+        formatter.oxfmt.excludes = [
+          "*.md"
+          "*.mdx"
+        ];
+
+        # Keep sops and direnv files out of formatting and linting.
+        global.excludes = [
+          # keep-sorted start
+          ".direnv/*"
+          ".sops.yaml"
+          "secrets/secrets.yaml"
+          # keep-sorted end
+        ];
         # keep-sorted end
-      ];
+      };
       # keep-sorted end
     };
   };

@@ -5,6 +5,6 @@ _: {
       format.type = ["biome"];
     };
 
-    tailwindcss-language-server.enable = true;
+    lsp.presets.tailwindcss-language-server.enable = true;
   };
 }

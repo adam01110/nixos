@@ -65,7 +65,7 @@ in {
     };
 
     # Set agent rules.
-    rules = ./instructions.md;
+    context = ./instructions.md;
   };
 
   xdg = {

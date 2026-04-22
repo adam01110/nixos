@@ -3,22 +3,6 @@
     inherit (config.neovim) borderType;
   in {
     # keep-sorted start block=yes newline_separated=yes
-    # Keep Telescope border windows visible with themes that flatten border groups.
-    highlight = {
-      # keep-sorted start
-      TelescopeBorder.link = "FloatBorder";
-      TelescopePreviewBorder.link = "FloatBorder";
-      TelescopePromptBorder.link = "FloatBorder";
-      TelescopeResultsBorder.link = "FloatBorder";
-      # keep-sorted end
-    };
-
-    # Keep Telescope borders in explicit single-line style.
-    telescope.setupOpts.defaults = {
-      border = true;
-      borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
-    };
-
     ui = {
       borders = {
         enable = true;

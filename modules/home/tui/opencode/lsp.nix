@@ -107,8 +107,8 @@ in {
       extensions = [".html"];
     };
 
-    taplo = {
-      command = [(getExe pkgs.taplo) "lsp" "stdio"];
+    tombi = {
+      command = [(getExe pkgs.tombi) "lsp"];
       extensions = [".toml"];
     };
 

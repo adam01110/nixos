@@ -55,7 +55,7 @@ nix-search-tv print --indexes stylix,stylix-home-manager
 Use cached data without refetching:
 
 ```bash
-nix-search-tv print --offline --indexes nixpkgs
+nix-search-tv print --indexes nixpkgs
 ```
 
 Search through package or option names:
@@ -94,12 +94,6 @@ nix-search-tv source --indexes nixpkgs firefox
 nix-search-tv source --indexes noctalia programs.noctalia-shell.settings.bar
 ```
 
-With offline mode:
-
-```bash
-nix-search-tv source --offline --indexes nixpkgs firefox
-```
-
 ### 4. Get Homepage
 
 Use `homepage` to get a package homepage URL:
@@ -108,19 +102,12 @@ Use `homepage` to get a package homepage URL:
 nix-search-tv homepage --indexes nixpkgs firefox
 ```
 
-With offline mode:
-
-```bash
-nix-search-tv homepage --offline --indexes nixpkgs firefox
-```
-
 ## Tips
 
 - First run downloads and indexes data. Later runs reuse the cache.
 - `print` prefixes entries with the source name, for example `stylix/ stylix.image`.
 - Some custom sources intentionally share namespaces, such as `stylix` and `stylix-home-manager`, so duplicate-looking option names can appear across sources.
 - Set `NO_COLOR=1` to disable ANSI colors in command output.
-- Use `--offline` when you want fast cached lookups.
 - Use `--json` with `preview` when the result will be parsed by tools.
 
 ## Agent Usage Patterns
@@ -128,22 +115,22 @@ nix-search-tv homepage --offline --indexes nixpkgs firefox
 ### Efficient cached lookup
 
 ```bash
-nix-search-tv preview --offline --indexes nixpkgs --json firefox | jq -r '.description'
+nix-search-tv preview --indexes nixpkgs --json firefox | jq -r '.description'
 ```
 
 ### Search and get source in one pipeline
 
 ```bash
-PACKAGE=$(nix-search-tv print --offline --indexes nixpkgs | grep -i neovim | head -1)
-nix-search-tv source --offline --indexes nixpkgs "$PACKAGE"
+PACKAGE=$(nix-search-tv print --indexes nixpkgs | grep -i neovim | head -1)
+nix-search-tv source --indexes nixpkgs "$PACKAGE"
 ```
 
 ### Inspect configured flake indexes
 
 ```bash
-nix-search-tv print --offline --indexes stylix
-nix-search-tv print --offline --indexes stylix-home-manager
-nix-search-tv preview --offline --indexes zen-browser enable
+nix-search-tv print --indexes stylix
+nix-search-tv print --indexes stylix-home-manager
+nix-search-tv preview --indexes zen-browser enable
 ```
 
 ## Troubleshooting
