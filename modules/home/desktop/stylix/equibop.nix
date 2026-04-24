@@ -14,6 +14,9 @@ in {
     # Icon color for message fetch timer.
     messageFetchTimerIcon = colors.base0B;
 
+    # Reuse the full Stylix palette in local Equibop theming.
+    palette = colors.withHashtag;
+
     # Questify color assignments.
     questify = {
       # keep-sorted start

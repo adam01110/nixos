@@ -91,6 +91,7 @@ in {
           (old.patches or [])
           ++ [
             # keep-sorted start
+            ./patches/noctalia-launcher-ipc.patch
             ./patches/noctalia-location-override.patch
             ./patches/noctalia-settings-fallback.patch
             # keep-sorted end

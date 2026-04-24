@@ -44,7 +44,7 @@ in {
           icon = " ";
           key = "s";
           desc = "Restore Session";
-          section = "session";
+          action = ":SessionManager load_session";
         }
         {
           icon = " ";

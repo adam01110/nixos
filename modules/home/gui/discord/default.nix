@@ -1,5 +1,6 @@
 {
   config,
+  equibopStylix,
   osConfig,
   pkgs,
   ...
@@ -61,8 +62,28 @@ in {
   # Add snippets stylesheet for additional styling.
   xdg.configFile."equibop/themes/snippets.css".source = ./themes/snippets.css;
 
-  # Install themed css with fonts from stylix.
+  # Install themed css with fonts and palette from Stylix.
   xdg.configFile."equibop/themes/system24.css".source = replaceVars ./themes/system24.css {
+    inherit
+      (equibopStylix.palette)
+      base00
+      base01
+      base02
+      base03
+      base04
+      base05
+      base06
+      base07
+      base08
+      base09
+      base0A
+      base0B
+      base0C
+      base0D
+      base0E
+      base0F
+      ;
+
     monospaceFont = osConfig.stylix.fonts.monospace.name;
   };
   # keep-sorted end

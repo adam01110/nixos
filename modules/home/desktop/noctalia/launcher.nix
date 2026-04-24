@@ -18,6 +18,7 @@ in {
       autoPasteClipboard = true;
       density = "comfortable";
       enableClipboardHistory = true;
+      enableSettingsSearch = false;
       overviewLayer = true;
       position = "center";
       showIconBackground = true;
