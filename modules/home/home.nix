@@ -27,7 +27,7 @@ in {
 
     # Wayland-first environment, renderers, and toolkit hints.
     sessionVariables = {
-      DO_NOT_TRACK = true;
+      DO_NOT_TRACK = "true";
 
       # keep-sorted start
       MAGICK_OPENCL_DEVICE = "gpu";

@@ -18,7 +18,13 @@
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (vars) gitUsername;
 
-  inherit (config.xdg) configHome;
+  inherit
+    (config.xdg)
+    # keep-sorted start
+    configHome
+    stateHome
+    # keep-sorted end
+    ;
   videosDir = config.xdg.userDirs.videos;
 in {
   # keep-sorted start block=yes newline_separated=yes
@@ -49,6 +55,7 @@ in {
           "github-feed"
           "kaomoji-provider"
           "keybind-cheatsheet"
+          "nvim-session-provider"
           "privacy-indicator"
           "screen-recorder"
           "unicode-picker"
@@ -85,6 +92,8 @@ in {
         hyprlandConfigPath = "${configHome}/hypr/keybinds.conf";
         # keep-sorted end
       };
+
+      nvim-session-provider.sessionDir = "${stateHome}/nvf/sessions";
 
       screen-recorder = {
         # keep-sorted start

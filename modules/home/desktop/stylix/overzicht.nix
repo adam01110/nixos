@@ -9,7 +9,7 @@ in {
     # keep-sorted start block=yes newline_separated=yes
     colors = with colors; {
       # keep-sorted start
-      background = base01;
+      background = base07;
       inverseOnSurface = base06;
       inverseSurface = base02;
       onBackground = base05;

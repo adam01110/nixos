@@ -1,16 +1,33 @@
-{lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit
     (lib)
     # keep-sorted start
+    concatStringsSep
     mkOption
     types
     # keep-sorted end
     ;
+
+  cfg = config.neovim;
 in {
-  options.neovim.borderType = mkOption {
-    type = types.str;
-    default = "single";
-    description = "Border style for Neovim floating UI.";
+  options.neovim = {
+    # keep-sorted start block=yes newline_separated=yes
+    borderType = mkOption {
+      type = types.str;
+      default = "single";
+      description = "Border style for Neovim floating UI.";
+    };
+
+    luaConfigPreSnippets = mkOption {
+      type = types.listOf types.lines;
+      default = [];
+      description = "Lua snippets concatenated into nvf's luaConfigPre.";
+    };
+    # keep-sorted end
   };
 
   config = {
@@ -20,7 +37,12 @@ in {
 
       settings.vim = {
         enableLuaLoader = true;
+        luaConfigPre = concatStringsSep "\n" cfg.luaConfigPreSnippets;
+
+        # keep-sorted start
+        statusline.lualine.enable = true;
         utility.snacks-nvim.enable = true;
+        # keep-sorted end
       };
     };
 

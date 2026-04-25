@@ -7,10 +7,12 @@ in {
     hosts."github.com".user = gitUsername;
 
     settings = {
-      telemetry = "disabled";
+      # keep-sorted start
       git_protocol = "ssh";
+      telemetry = "disabled";
+      # keep-sorted end
     };
   };
 
-  sessionVariables.GH_TELEMETRY = false;
+  home.sessionVariables.GH_TELEMETRY = "false";
 }

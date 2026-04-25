@@ -10,14 +10,24 @@
   inherit
     (builtins)
     # keep-sorted start
-    replaceStrings
     attrNames
     readFile
+    replaceStrings
     # keep-sorted end
     ;
 
   inherit (config.xdg) configHome;
+
+  themeVars = equibopStylix.palette // {monospaceFont = osConfig.stylix.fonts.monospace.name;};
+
+  system24Theme = pkgs.writeText "system24.css" (
+    replaceStrings
+    (map (name: "__${name}__") (attrNames themeVars))
+    (map (name: themeVars.${name}) (attrNames themeVars))
+    (readFile ./themes/system24.css)
+  );
 in {
+  # keep-sorted start block=yes newline_separated=yes
   programs.nixcord = {
     enable = true;
     discord.enable = false;
@@ -68,21 +78,10 @@ in {
     };
   };
 
-  # keep-sorted start block=yes newline_separated=yes
   # Add snippets stylesheet for additional styling.
   xdg.configFile."equibop/themes/snippets.css".source = ./themes/snippets.css;
 
   # Install themed css with fonts and palette from Stylix.
-  xdg.configFile."equibop/themes/system24.css".source = let
-    themeVars = equibopStylix.palette // {monospaceFont = osConfig.stylix.fonts.monospace.name;};
-
-    system24Theme = pkgs.writeText "system24.css" (
-      replaceStrings
-      (map (name: "__${name}__") (attrNames themeVars))
-      (map (name: themeVars.${name}) (attrNames themeVars))
-      (readFile ./themes/system24.css)
-    );
-  in
-    system24Theme;
+  xdg.configFile."equibop/themes/system24.css".source = system24Theme;
   # keep-sorted end
 }

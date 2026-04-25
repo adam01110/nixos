@@ -3,6 +3,15 @@ _: let
   imageAllocMB = 1024;
 in {
   programs.yazi.settings = {
+    # Control memory used by image previews.
+    tasks.image_alloc = imageAllocMB * 1024 * 1024;
+
+    # keep-sorted start
+    input.cursor_blink = false;
+    which.sort_translit = true;
+    # keep-sorted end
+
+    # keep-sorted start block=yes newline_separated=yes
     mgr = {
       ratio = [
         1
@@ -22,6 +31,22 @@ in {
       # keep-sorted end
     };
 
+    open.append_rules = [
+      {
+        url = "*";
+        use = "open";
+      }
+    ];
+
+    opener.open = [
+      {
+        desc = "Open";
+        for = "linux";
+        orphan = true;
+        run = "xdg-open %s1";
+      }
+    ];
+
     preview = {
       # keep-sorted start
       image_delay = 0;
@@ -34,13 +59,6 @@ in {
       max_width = 900;
       # keep-sorted end
     };
-
-    # Control memory used by image previews.
-    tasks.image_alloc = imageAllocMB * 1024 * 1024;
-
-    # keep-sorted start
-    input.cursor_blink = false;
-    which.sort_translit = true;
     # keep-sorted end
   };
 }

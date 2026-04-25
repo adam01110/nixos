@@ -4,8 +4,9 @@ _: {
     font-feature = "-calt, -liga, -dlig";
 
     # Cursor settings.
+    cursor-style = "block";
     cursor-style-blink = true;
-    shell-integration-features = "ssh-terminfo,ssh-env";
+    shell-integration-features = "no-cursor,ssh-terminfo,ssh-env";
 
     # Appearance settings.
     window-theme = "system";

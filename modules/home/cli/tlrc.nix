@@ -1,6 +1,9 @@
 {pkgs, ...}: let
   tomlFormat = pkgs.formats.toml {};
 in {
+  # keep-sorted start block=yes newline_separated=yes
+  home.packages = [pkgs.tlrc];
+
   xdg.configFile."tlrc/config.toml".source = tomlFormat.generate "tlrc-config.toml" {
     # Disable automatic cache updates.
     cache.auto_update = false;
@@ -28,6 +31,5 @@ in {
       };
     };
   };
-
-  home.packages = [pkgs.tlrc];
+  # keep-sorted end
 }
