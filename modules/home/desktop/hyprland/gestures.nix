@@ -34,8 +34,8 @@ in {
         # keep-sorted end
 
         # keep-sorted start
-        "3, pinchout, dispatcher, exec, ${overzicht} ipc call overview close"
         "3, pinchin, dispatcher, exec, ${overzicht} ipc call overview open"
+        "3, pinchout, dispatcher, exec, ${overzicht} ipc call overview close"
         # keep-sorted end
       ];
 

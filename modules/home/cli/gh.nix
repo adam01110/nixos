@@ -4,7 +4,13 @@ in {
   programs.gh = {
     enable = true;
 
-    settings.git_protocol = "ssh";
     hosts."github.com".user = gitUsername;
+
+    settings = {
+      telemetry = "disabled";
+      git_protocol = "ssh";
+    };
   };
+
+  sessionVariables.GH_TELEMETRY = false;
 }

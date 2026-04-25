@@ -1,11 +1,21 @@
 {
+  # keep-sorted start
   config,
   equibopStylix,
   osConfig,
   pkgs,
+  # keep-sorted end
   ...
 }: let
-  inherit (pkgs) replaceVars;
+  inherit
+    (builtins)
+    # keep-sorted start
+    replaceStrings
+    attrNames
+    readFile
+    # keep-sorted end
+    ;
+
   inherit (config.xdg) configHome;
 in {
   programs.nixcord = {
@@ -63,28 +73,16 @@ in {
   xdg.configFile."equibop/themes/snippets.css".source = ./themes/snippets.css;
 
   # Install themed css with fonts and palette from Stylix.
-  xdg.configFile."equibop/themes/system24.css".source = replaceVars ./themes/system24.css {
-    inherit
-      (equibopStylix.palette)
-      base00
-      base01
-      base02
-      base03
-      base04
-      base05
-      base06
-      base07
-      base08
-      base09
-      base0A
-      base0B
-      base0C
-      base0D
-      base0E
-      base0F
-      ;
+  xdg.configFile."equibop/themes/system24.css".source = let
+    themeVars = equibopStylix.palette // {monospaceFont = osConfig.stylix.fonts.monospace.name;};
 
-    monospaceFont = osConfig.stylix.fonts.monospace.name;
-  };
+    system24Theme = pkgs.writeText "system24.css" (
+      replaceStrings
+      (map (name: "__${name}__") (attrNames themeVars))
+      (map (name: themeVars.${name}) (attrNames themeVars))
+      (readFile ./themes/system24.css)
+    );
+  in
+    system24Theme;
   # keep-sorted end
 }

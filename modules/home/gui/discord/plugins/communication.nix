@@ -49,8 +49,6 @@
 
     gifPaste.enable = true;
 
-    holyNotes.enable = true;
-
     iLoveSpam.enable = true;
 
     imageFilename.enable = true;
