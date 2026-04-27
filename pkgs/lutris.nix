@@ -100,8 +100,8 @@ in
         ++ lib.optional steamSupport pkgs.steam
         ++ extraPkgs pkgs;
 
-    multiPkgs = pkgs:
-      with pkgs;
+    multiPkgs = pkgs: let
+      originalPkgs = with pkgs;
         [
           # Common
           libsndfile
@@ -194,6 +194,11 @@ in
         ++ xorgDeps pkgs
         ++ gstreamerDeps pkgs
         ++ extraLibraries pkgs;
+
+      # Keep Lutris building while upstream openldap checks fail here.
+      customLdap = pkgs.openldap.overrideAttrs (_: {doCheck = false;});
+    in
+      builtins.filter (p: (p.pname or "") != "openldap") originalPkgs ++ [customLdap];
 
     extraInstallCommands = ''
       mkdir -p $out/share

@@ -10,6 +10,10 @@
   inherit (builtins) toJSON;
   inherit (lib) mapAttrs;
   hmLib = import "${inputs.home-manager}/modules/lib/stdlib-extended.nix" lib;
+  allowDocUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "vscode-extension-ms-dotnettools-csharp"
+    ];
 
   hmBaseModules = import "${inputs.home-manager}/modules/modules.nix" {
     lib = hmLib;
@@ -23,6 +27,8 @@
       inherit (osConfig.system) stateVersion;
       username = "nix-search-tv";
     };
+
+    nixpkgs.config.allowUnfreePredicate = allowDocUnfreePredicate;
   };
 
   mkHomeManagerDoc = module: let
@@ -48,7 +54,10 @@
             lib.nixosSystem {
               inherit (pkgs.stdenv.hostPlatform) system;
               modules = [
-                {system.stateVersion = osConfig.system.stateVersion;}
+                {
+                  system.stateVersion = osConfig.system.stateVersion;
+                  nixpkgs.config.allowUnfreePredicate = allowDocUnfreePredicate;
+                }
                 module
               ];
 

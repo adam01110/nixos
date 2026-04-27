@@ -9,7 +9,7 @@ in {
     # keep-sorted start block=yes newline_separated=yes
     colors = with colors; {
       # keep-sorted start
-      background = base07;
+      background = base01;
       inverseOnSurface = base06;
       inverseSurface = base02;
       onBackground = base05;
@@ -18,7 +18,7 @@ in {
       onSecondary = base00;
       onSecondaryContainer = base06;
       onSurface = base00;
-      onSurfaceVariant = base07;
+      onSurfaceVariant = base02;
       outline = base06;
       outlineVariant = base03;
       primary = base08;
