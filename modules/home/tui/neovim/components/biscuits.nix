@@ -4,8 +4,8 @@ _: {
 
     setupOpts = {
       # keep-sorted start
-      prefix_string = "  ";
       cursor_line_only = true;
+      prefix_string = "  ";
       # keep-sorted end
     };
   };
