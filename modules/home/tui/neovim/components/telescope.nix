@@ -17,7 +17,7 @@
       extensions = [
         # keep-sorted start block=yes newline_separated=yes
         {
-          name = "fzf-native";
+          name = "fzf";
           packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
         }
 
@@ -25,7 +25,7 @@
           name = "ui-select";
           packages = [pkgs.vimPlugins.telescope-ui-select-nvim];
         }
-        # keep-sorted endV
+        # keep-sorted end
       ];
 
       setupOpts.defaults = {

@@ -18,8 +18,11 @@
         enable = true;
 
         setupOpts = {
-          # Keep using `nvim-notify` and avoid noice overwrite warnings.
+          # Keep using nvim-notify and avoid noice overwrite warnings.
           notify.enabled = false;
+
+          # Leave select-style confirms to telescope-ui-select.
+          messages.enabled = false;
 
           # keep-sorted start block=yes newline_separated=yes
           # Avoid hooking hover and markdown helpers that other plugins replace.
