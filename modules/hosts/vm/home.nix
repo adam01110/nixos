@@ -11,10 +11,6 @@ in {
       vrr = 0;
     };
 
-    # ZED
-    # Enable the use of emulated gpus in zed.
-    zed.isVm = true;
-
     # Browser memory allocation for vm environment.
     zen-browser.commit-space = 6683;
     # keep-sorted end

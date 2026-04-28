@@ -180,9 +180,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # ZED
-    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake?ref=beta";
       inputs = {

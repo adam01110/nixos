@@ -150,12 +150,6 @@
       prefixes = ["stylix"];
     };
 
-    # ZED
-    zed-extensions = {
-      rawDoc = mkHomeManagerDoc inputs.zed-extensions.homeManagerModules.default;
-      prefixes = ["programs.zed-editor-extensions"];
-    };
-
     zen-browser = {
       rawDoc = mkHomeManagerDoc inputs.zen-browser.homeModules.beta;
       prefixes = ["programs.zen-browser"];

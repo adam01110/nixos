@@ -21,9 +21,7 @@ in {
         bleachbit
         crosspipe
         decibels
-        devtoolbox
         gimp
-        gnome-calculator
         heroic
         krita
         loupe

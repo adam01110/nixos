@@ -75,10 +75,9 @@ in {
         true-color = "always";
         line-numbers = true;
 
-        # Hyperlink file paths to jump to locations in Zed.
+        # Let the desktop MIME handler open linked files.
         hyperlinks = true;
-        # ZED
-        hyperlinks-file-link-format = "zed://file{path}:{line}";
+        hyperlinks-file-link-format = "file://{path}#{line}";
       };
     };
   };

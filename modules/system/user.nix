@@ -54,8 +54,6 @@ in {
           "overzicht.homeModules.default"
           "sops-nix.homeManagerModules.sops"
           "spicetify-nix.homeManagerModules.spicetify"
-          # ZED
-          "zed-extensions.homeManagerModules.default"
           "zen-browser.homeModules.beta"
           # keep-sorted end
         ]

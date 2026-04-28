@@ -20,10 +20,6 @@ in {
     ++ (mimeAppEntries "x-scheme-handler" "bitwarden.desktop" [
       "bitwarden"
     ])
-    # ZED
-    ++ (mimeAppEntries "x-scheme-handler" "dev.zed.Zed.desktop" [
-      "zed"
-    ])
     ++ (mimeAppEntries "x-scheme-handler" "obsidian.desktop" [
       "obsidian"
     ])

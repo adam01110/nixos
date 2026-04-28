@@ -9,7 +9,5 @@ in
     # keep-sorted start
     "millennium.overlays.default"
     "nix-cachyos-kernel.overlays.pinned"
-    # ZED
-    "zed-extensions.overlays.default"
     # keep-sorted end
   ]

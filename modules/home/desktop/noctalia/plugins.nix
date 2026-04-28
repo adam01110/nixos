@@ -61,8 +61,6 @@ in {
           "unicode-picker"
           "web-search"
           # keep-sorted end
-          # ZED
-          "zed-provider"
         ]
         mkPlugin;
     };
@@ -75,9 +73,6 @@ in {
         # keep-sorted start
         # screen-recorder
         gpu-screen-recorder
-        # ZED
-        # zed-provider
-        sqlite
         # keep-sorted end
         ;
     };

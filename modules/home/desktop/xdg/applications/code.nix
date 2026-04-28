@@ -1,24 +1,23 @@
 _: {
-  # ZED
   xdg.mimeApps.defaultApplications = {
     # keep-sorted start
-    "application/sql" = "dev.zed.Zed.desktop";
-    "application/x-cmakecache" = "dev.zed.Zed.desktop";
-    "application/x-perl" = "dev.zed.Zed.desktop";
-    "application/x-php" = "dev.zed.Zed.desktop";
-    "application/x-shellscript" = "dev.zed.Zed.desktop";
-    "application/x-zerosize" = "dev.zed.Zed.desktop";
-    "application/xml" = "dev.zed.Zed.desktop";
-    "text/css" = "dev.zed.Zed.desktop";
-    "text/markdown" = "dev.zed.Zed.desktop";
-    "text/plain" = "dev.zed.Zed.desktop";
-    "text/tcl" = "dev.zed.Zed.desktop";
-    "text/x-csrc" = "dev.zed.Zed.desktop";
-    "text/x-makefile" = "dev.zed.Zed.desktop";
-    "text/x-moc" = "dev.zed.Zed.desktop";
-    "text/x-pascal" = "dev.zed.Zed.desktop";
-    "text/x-patch" = "dev.zed.Zed.desktop";
-    "text/x-python" = "dev.zed.Zed.desktop";
+    "application/sql" = "nvim.desktop";
+    "application/x-cmakecache" = "nvim.desktop";
+    "application/x-perl" = "nvim.desktop";
+    "application/x-php" = "nvim.desktop";
+    "application/x-shellscript" = "nvim.desktop";
+    "application/x-zerosize" = "nvim.desktop";
+    "application/xml" = "nvim.desktop";
+    "text/css" = "nvim.desktop";
+    "text/markdown" = "nvim.desktop";
+    "text/plain" = "nvim.desktop";
+    "text/tcl" = "nvim.desktop";
+    "text/x-csrc" = "nvim.desktop";
+    "text/x-makefile" = "nvim.desktop";
+    "text/x-moc" = "nvim.desktop";
+    "text/x-pascal" = "nvim.desktop";
+    "text/x-patch" = "nvim.desktop";
+    "text/x-python" = "nvim.desktop";
     # keep-sorted end
   };
 }

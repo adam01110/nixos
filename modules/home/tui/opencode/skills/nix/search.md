@@ -33,7 +33,6 @@ Configured custom option sources:
 - `spicetify-nix` for Spicetify Home Manager options.
 - `stylix` for Stylix NixOS options.
 - `stylix-home-manager` for Stylix Home Manager options.
-- `zed-extensions` for Zed extensions Home Manager options.
 - `zen-browser` for the Zen Browser Home Manager module.
 
 The repo wires builtin upstream indexes through `settings.indexes` and the custom sources above through `settings.experimental.options_file`.
