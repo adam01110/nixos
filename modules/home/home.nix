@@ -1,4 +1,10 @@
-{config, ...}: let
+{
+  # keep-sorted start
+  config,
+  self,
+  # keep-sorted end
+  ...
+}: let
   inherit
     (config.xdg)
     # keep-sorted start
@@ -21,7 +27,7 @@ in {
   home = {
     # keep-sorted start block=yes newline_separated=yes
     # Copy user avatar to ~/.face for display managers.
-    file.".face".source = ../../face.png;
+    file.".face".source = "${self}/face.png";
 
     preferXdgDirectories = true;
 

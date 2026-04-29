@@ -55,7 +55,7 @@ in {
         # keep-sorted start
         aboutConfig.showWarning = false;
         bookmarks.max_backups = 1;
-        download.always_ask_before_handling_new_types = true;
+        download.always_ask_before_handling_new_types = false;
         link.open_newwindow.restriction = 0;
         promo.focus.enabled = false;
         theme.dark-private-windows = false;
@@ -463,7 +463,6 @@ in {
         default = {
           # keep-sorted start
           desktop-notification = 2;
-          shortcuts = 2;
           xr = 2;
           # keep-sorted end
         };

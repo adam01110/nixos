@@ -8,7 +8,6 @@ in {
       (pkgs)
       # FzFish
       # keep-sorted start
-      hexyl
       procs
       timg
       trash-cli

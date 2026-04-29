@@ -3,13 +3,14 @@
   config,
   lib,
   pkgs,
+  self,
   # keep-sorted end
   ...
-}: let
-  inherit (builtins) attrValues;
+}:
+let
   inherit (lib) getExe;
-  inherit (pkgs) writeShellApplication;
-in {
+in
+{
   programs.television.channels.text = {
     # keep-sorted start block=yes newline_separated=yes
     actions.edit = {
@@ -25,37 +26,24 @@ in {
         # keep-sorted start
         "bat"
         "file"
-        "hexyl"
         "rg"
         # keep-sorted end
       ];
     };
 
     preview = {
-      command = "${getExe (writeShellApplication {
-        name = "tv-text-preview";
-        runtimeInputs =
-          [config.programs.bat.package]
-          ++ attrValues {
+      command = "${
+        getExe (
+          import "${self}/pkgs/scripts/text-preview.nix" {
             inherit
-              (pkgs)
               # keep-sorted start
-              file
-              hexyl
+              config
+              pkgs
               # keep-sorted end
               ;
-          };
-        text = ''
-          path="$1"
-          mime_info=$(file --brief --mime --dereference -- "$path")
-
-          if [ "''${mime_info##*charset=}" != "binary" ]; then
-            bat -n --color=always -- "$path" || hexyl --border=none -- "$path"
-          else
-            hexyl --border=none -- "$path"
-          fi
-        '';
-      })} '{strip_ansi|split:\\::0}'";
+          }
+        )
+      } '{strip_ansi|split:\\::0}'";
       offset = "{strip_ansi|split:\\::1}";
       env.BAT_THEME = "ansi";
     };

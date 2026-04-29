@@ -1,14 +1,11 @@
 {
   # keep-sorted start
   config,
-  flakeLib,
-  osConfig,
   pkgs,
   # keep-sorted end
   ...
 }: let
   inherit (builtins) attrValues;
-  inherit (flakeLib) packagesByPath;
 in {
   programs.television.package = pkgs.television.withPackages (
     _:
@@ -17,15 +14,7 @@ in {
         inherit
           (pkgs)
           # keep-sorted start
-          bash
-          coreutils
-          gawk
           gnused
-          jq
-          just
-          less
-          procps
-          procs
           tlrc
           trash-cli
           # keep-sorted end
@@ -36,19 +25,8 @@ in {
         # keep-sorted start
         "bat"
         "eza"
-        "gh"
-        "git"
         "man"
-        "opencode"
         "zoxide"
-        # keep-sorted end
-      ])
-      # Pull packaged tools from the system config when home-manager does not own them.
-      ++ (packagesByPath osConfig [
-        # keep-sorted start
-        "security.sudo-rs"
-        "services.flatpak"
-        "systemd"
         # keep-sorted end
       ])
   );

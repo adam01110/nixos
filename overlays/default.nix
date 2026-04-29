@@ -2,17 +2,33 @@
   # keep-sorted start
   inputs,
   lib,
+  self,
   # keep-sorted end
 }: let
-  flakeLib = import ../libs {inherit inputs lib;};
+  flakeLib = import "${self}/libs" {
+    inherit
+      # keep-sorted start
+      inputs
+      lib
+      # keep-sorted end
+      ;
+  };
   inherit (flakeLib) nixFilesInDir;
-  upstreamOverlays = import ./_inputs.nix {inherit inputs;};
+  upstreamOverlays = import ./_inputs.nix {
+    inherit
+      # keep-sorted start
+      inputs
+      self
+      # keep-sorted end
+      ;
+  };
 
   overlayArgs = {
     inherit
       # keep-sorted start
       inputs
       lib
+      self
       # keep-sorted end
       ;
   };

@@ -1,6 +1,7 @@
 _: {
   programs.nvf.settings.vim = {
     searchCase = "smart";
+
     options = {
       # keep-sorted start
       mouse = "a";
@@ -27,5 +28,8 @@ _: {
       };
     };
     # keep-sorted end
+
+    # Enable proper indentation across languages.
+    utility.guess-indent-nvim.enable = true;
   };
 }

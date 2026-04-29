@@ -1,5 +1,10 @@
-{inputs}: let
-  flakeLib = import ../libs {
+{
+  # keep-sorted start
+  inputs,
+  self,
+  # keep-sorted end
+}: let
+  flakeLib = import "${self}/libs" {
     inherit inputs;
     inherit (inputs.nixpkgs) lib;
   };

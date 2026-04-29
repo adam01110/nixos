@@ -4,6 +4,7 @@
   lib,
   osConfig,
   pkgs,
+  self,
   # keep-sorted end
   ...
 }: let
@@ -39,15 +40,19 @@ in {
         mkEntries ''${piper} sqlite3 -readonly "$1" ".schema --indent"'' ["*.db" "*.sqlite" "*.sqlite3"]
         ++
         # Systemd service files.
-        mkEntries ''${piper} ${getExe (import ../../../../../pkgs/scripts/systemd-status-preview.nix {
-            inherit
-              # keep-sorted start
-              config
-              osConfig
-              pkgs
-              # keep-sorted end
-              ;
-          })} --from-path "$1"'' ["*/systemd/*"];
+        mkEntries ''${piper} ${
+            getExe (
+              import "${self}/pkgs/scripts/systemd-status-preview.nix" {
+                inherit
+                  # keep-sorted start
+                  config
+                  osConfig
+                  pkgs
+                  # keep-sorted end
+                  ;
+              }
+            )
+          } --from-path "$1"'' ["*/systemd/*"];
 
       # Previewers routed through faster-piper.
       prepend_previewers =

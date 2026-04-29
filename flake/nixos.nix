@@ -1,14 +1,16 @@
 {
+  # keep-sorted start
   inputs,
   self,
+  # keep-sorted end
   ...
 }: let
-  flakeLib = import ../libs {
+  flakeLib = import "${self}/libs" {
     inherit inputs;
     inherit (inputs.nixpkgs) lib;
   };
   inherit (flakeLib) attrsByPath importTree;
-  vars = import ../vars.nix;
+  vars = import "${self}/vars.nix";
 
   # Shared module stack for every host configuration.
   commonModules =
@@ -22,7 +24,7 @@
       "stylix.nixosModules.stylix"
       # keep-sorted end
     ]
-    ++ [(importTree ../modules/system)];
+    ++ [(importTree "${self}/modules/system")];
 
   # Helper to build a host with shared args and modules.
   mkHost = name: system:
@@ -39,9 +41,7 @@
           ;
       };
 
-      modules =
-        commonModules
-        ++ [(importTree (../modules/hosts + "/${name}"))];
+      modules = commonModules ++ [(importTree "${self}/modules/hosts/${name}")];
     };
 
   # Host map used to derive nixosConfigurations.
@@ -53,7 +53,7 @@
     # keep-sorted end
   };
 in {
-  flake.nixosConfigurations =
-    inputs.nixpkgs.lib.genAttrs (builtins.attrNames hosts)
-    (name: mkHost name hosts.${name});
+  flake.nixosConfigurations = inputs.nixpkgs.lib.genAttrs (builtins.attrNames hosts) (
+    name: mkHost name hosts.${name}
+  );
 }

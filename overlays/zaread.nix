@@ -1,3 +1,3 @@
-_: _final: prev: {
-  zaread = prev.callPackage ../pkgs/zaread.nix {};
+{self, ...}: _final: prev: {
+  zaread = prev.callPackage "${self}/pkgs/zaread.nix" {};
 }

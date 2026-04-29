@@ -2,6 +2,7 @@
   # keep-sorted start
   lib,
   pkgs,
+  self,
   # keep-sorted end
   ...
 }: let
@@ -9,7 +10,7 @@
   inherit (pkgs) callPackage;
 in {
   programs.noctalia-shell.settings.hooks = let
-    performantMode = getExe (callPackage ../../../../pkgs/scripts/performant-mode.nix {});
+    performantMode = getExe (callPackage "${self}/pkgs/scripts/performant-mode.nix" {});
   in {
     enabled = true;
 

@@ -3,6 +3,7 @@
   config,
   inputs,
   lib,
+  self,
   # keep-sorted end
   ...
 }: {
@@ -74,13 +75,22 @@
     };
 
     # Load access tokens from the generated sops template.
-    extraOptions = ''!include ${config.sops.templates."access_tokens".path}'';
+    extraOptions = "!include ${config.sops.templates."access_tokens".path}";
   };
 
   # Nixpkgs settings and overlays.
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = import ../../overlays {inherit inputs lib;};
+
+    overlays = import "${self}/overlays" {
+      inherit
+        # keep-sorted start
+        inputs
+        lib
+        self
+        # keep-sorted end
+        ;
+    };
   };
   # keep-sorted end
 }

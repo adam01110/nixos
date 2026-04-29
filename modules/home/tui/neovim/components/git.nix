@@ -1,6 +1,8 @@
 _: {
   programs.nvf.settings.vim.git = {
     # keep-sorted start block=yes newline_separated=yes
+    git-conflict.enable = true;
+
     gitsigns = {
       enable = true;
 

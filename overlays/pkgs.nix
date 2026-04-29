@@ -2,14 +2,16 @@
   # keep-sorted start
   inputs,
   lib,
+  self,
   # keep-sorted end
   ...
 }: final: _prev:
-import ../pkgs {
+import "${self}/pkgs" {
   inherit
     # keep-sorted start
     inputs
     lib
+    self
     # keep-sorted end
     ;
 

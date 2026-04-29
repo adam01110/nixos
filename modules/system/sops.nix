@@ -1,7 +1,7 @@
-_: {
+{self, ...}: {
   sops = {
     # Keep the shared secret inventory in the repository copy.
-    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFile = "${self}/secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
 
     # Skip validation when secrets are unavailable at eval time.

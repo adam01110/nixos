@@ -1,15 +1,23 @@
-/*
-SPDX-License-Identifier: AGPL-3.0-or-later
-*/
+# SPDX-License-Identifier: AGPL-3.0-or-later
 {
+  # keep-sorted start
   inputs,
   lib,
   pkgs,
+  self,
+  # keep-sorted end
 }: let
   inherit (builtins) listToAttrs;
   inherit (lib) removeSuffix;
   inherit (pkgs) callPackage;
-  flakeLib = import ../libs {inherit inputs lib;};
+  flakeLib = import "${self}/libs" {
+    inherit
+      # keep-sorted start
+      inputs
+      lib
+      # keep-sorted end
+      ;
+  };
   inherit (flakeLib) nixFilesInDir;
 
   packageFiles = nixFilesInDir {

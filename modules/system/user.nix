@@ -4,6 +4,7 @@
   flakeLib,
   inputs,
   pkgs,
+  self,
   vars,
   # keep-sorted end
   ...
@@ -36,6 +37,7 @@ in {
         # keep-sorted start
         flakeLib
         inputs
+        self
         vars
         # keep-sorted end
         ;
@@ -59,7 +61,7 @@ in {
         ]
         ++ [
           pkgs.nur.repos.adam0.hmModules.opencode-plugins
-          (importTree ../home)
+          (importTree "${self}/modules/home")
         ];
 
       home = {
