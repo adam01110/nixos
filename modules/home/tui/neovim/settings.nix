@@ -1,7 +1,12 @@
 _: {
   programs.nvf.settings.vim = {
     searchCase = "smart";
-    options.wrap = false;
+    options = {
+      # keep-sorted start
+      mouse = "a";
+      wrap = false;
+      # keep-sorted end
+    };
 
     # keep-sorted start block=yes newline_separated=yes
     clipboard = {
