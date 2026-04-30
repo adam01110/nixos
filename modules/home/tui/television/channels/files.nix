@@ -6,13 +6,11 @@
   self,
   # keep-sorted end
   ...
-}:
-let
+}: let
   inherit (lib) getExe;
 
   fd = getExe config.programs.fd.package;
-in
-{
+in {
   programs.television.channels.files = {
     # keep-sorted start block=yes newline_separated=yes
     actions.edit = {

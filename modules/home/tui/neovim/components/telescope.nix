@@ -1,4 +1,19 @@
 {pkgs, ...}: {
+  neovim.luaConfigPreSnippets = [
+    # Install Telescope as the global vim.ui.select provider after UI startup.
+    ''
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "DeferredUIEnter",
+        once = true,
+        callback = function()
+          pcall(function()
+            require("telescope").load_extension("ui-select")
+          end)
+        end,
+      })
+    ''
+  ];
+
   programs.nvf.settings.vim = {
     # keep-sorted start block=yes newline_separated=yes
     highlight = {

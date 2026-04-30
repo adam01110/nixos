@@ -6,11 +6,9 @@
   self,
   # keep-sorted end
   ...
-}:
-let
+}: let
   inherit (lib) getExe;
-in
-{
+in {
   programs.television.channels.text = {
     # keep-sorted start block=yes newline_separated=yes
     actions.edit = {

@@ -10,16 +10,32 @@
   inherit (lib.generators) mkLuaInline;
 in {
   # keep-sorted start block=yes newline_separated=yes
-  # Capture startup timing early and finalize after UI attach.
+  # Capture dashboard metrics once so the footer can read cached values.
   neovim.luaConfigPreSnippets = [
-    # Track startup duration for the custom dashboard footer metrics.
+    # Cache startup timing and plugin counts after the UI attaches.
     ''
-      vim.g.snacks_start_ns = vim.uv.hrtime()
+      vim.g.snacks_dashboard_start_ns = vim.uv.hrtime()
 
-      vim.api.nvim_create_autocmd("UIEnter", {
-        once = true,
-        callback = function()
-          vim.g.snacks_start_ms = (vim.uv.hrtime() - vim.g.snacks_start_ns) / 1e6
+        vim.api.nvim_create_autocmd("UIEnter", {
+          once = true,
+          callback = function()
+            local start_plugins = vim.fn.globpath(vim.o.packpath, "pack/*/start/*", 0, 1)
+            local opt_plugins = vim.fn.globpath(vim.o.packpath, "pack/*/opt/*", 0, 1)
+            local loaded = 0
+
+            for _, path in ipairs(vim.api.nvim_list_runtime_paths()) do
+              if path:find("/pack/", 1, true)
+                and (path:find("/start/", 1, true) or path:find("/opt/", 1, true))
+              then
+                loaded = loaded + 1
+              end
+            end
+
+          vim.g.snacks_dashboard_metrics = {
+            loaded = loaded,
+            ms = (vim.uv.hrtime() - vim.g.snacks_dashboard_start_ns) / 1e6,
+            total = #start_plugins + #opt_plugins,
+          }
         end,
       })
     ''
@@ -97,88 +113,111 @@ in {
         end
       '';
 
-      # keep-sorted start block=yes newline_separated=yes
-      # Define dashboard shortcuts explicitly and omit the default Config entry.
-      preset.keys = [
-        {
-          icon = " ";
-          key = "f";
-          desc = "Find File";
-          action = ":lua Snacks.dashboard.pick('files')";
-          text = mkLuaInline ''
-            {
-              { " ", hl = "SnacksDashboardIcon" },
-              { "Find File", hl = "SnacksDashboardDesc", width = 50 },
-              { "f", hl = "SnacksDashboardKey" },
-            }
-          '';
-        }
-        {
-          icon = " ";
-          key = "n";
-          desc = "New File";
-          action = ":ene | startinsert";
-          text = mkLuaInline ''
-            {
-              { " ", hl = "SnacksDashboardIcon" },
-              { "New File", hl = "SnacksDashboardDesc", width = 50 },
-              { "n", hl = "SnacksDashboardKey" },
-            }
-          '';
-        }
-        {
-          icon = " ";
-          key = "g";
-          desc = "Find Text";
-          action = ":lua Snacks.dashboard.pick('live_grep')";
-          text = mkLuaInline ''
-            {
-              { " ", hl = "SnacksDashboardIcon" },
-              { "Find Text", hl = "SnacksDashboardDesc", width = 50 },
-              { "g", hl = "SnacksDashboardKey" },
-            }
-          '';
-        }
-        {
-          icon = " ";
-          key = "r";
-          desc = "Recent Files";
-          action = ":lua Snacks.dashboard.pick('oldfiles')";
-          text = mkLuaInline ''
-            {
-              { " ", hl = "SnacksDashboardIcon" },
-              { "Recent Files", hl = "SnacksDashboardDesc", width = 50 },
-              { "r", hl = "SnacksDashboardKey" },
-            }
-          '';
-        }
-        {
-          icon = " ";
-          key = "s";
-          desc = "Restore Session";
-          action = ":SessionManager load_session";
-          text = mkLuaInline ''
-            {
-              { " ", hl = "SnacksDashboardIcon" },
-              { "Restore Session", hl = "SnacksDashboardDesc", width = 50 },
-              { "s", hl = "SnacksDashboardKey" },
-            }
-          '';
-        }
-        {
-          icon = " ";
-          key = "q";
-          desc = "Quit";
-          action = ":qa";
-          text = mkLuaInline ''
-            {
-              { " ", hl = "SnacksDashboardIcon" },
-              { "Quit", hl = "SnacksDashboardDesc", width = 50 },
-              { "q", hl = "SnacksDashboardKey" },
-            }
-          '';
-        }
-      ];
+      preset = {
+        # Route dashboard pick actions through Telescope to keep the normal layout.
+        pick = mkLuaInline ''
+          function(cmd, opts)
+            local builtin = require("telescope.builtin")
+            local telescope_cmd = cmd == "files" and "find_files" or cmd
+            local telescope_opts = vim.tbl_deep_extend("force", {
+              layout_config = {
+                prompt_position = "top",
+              },
+              sorting_strategy = "ascending",
+            }, opts or {})
+
+            if builtin[telescope_cmd] then
+              return builtin[telescope_cmd](telescope_opts)
+            end
+
+            error("Unsupported dashboard picker: " .. tostring(cmd))
+          end
+        '';
+
+        # keep-sorted start block=yes newline_separated=yes
+        # Define dashboard shortcuts explicitly and omit the default Config entry.
+        keys = [
+          {
+            icon = " ";
+            key = "f";
+            desc = "Find File";
+            action = ":lua Snacks.dashboard.pick('files')";
+            text = mkLuaInline ''
+              {
+                { " ", hl = "SnacksDashboardIcon" },
+                { "Find File", hl = "SnacksDashboardDesc", width = 50 },
+                { "f", hl = "SnacksDashboardKey" },
+              }
+            '';
+          }
+          {
+            icon = " ";
+            key = "n";
+            desc = "New File";
+            action = ":ene | startinsert";
+            text = mkLuaInline ''
+              {
+                { " ", hl = "SnacksDashboardIcon" },
+                { "New File", hl = "SnacksDashboardDesc", width = 50 },
+                { "n", hl = "SnacksDashboardKey" },
+              }
+            '';
+          }
+          {
+            icon = " ";
+            key = "g";
+            desc = "Find Text";
+            action = ":lua Snacks.dashboard.pick('live_grep')";
+            text = mkLuaInline ''
+              {
+                { " ", hl = "SnacksDashboardIcon" },
+                { "Find Text", hl = "SnacksDashboardDesc", width = 50 },
+                { "g", hl = "SnacksDashboardKey" },
+              }
+            '';
+          }
+          {
+            icon = " ";
+            key = "r";
+            desc = "Recent Files";
+            action = ":lua Snacks.dashboard.pick('oldfiles')";
+            text = mkLuaInline ''
+              {
+                { " ", hl = "SnacksDashboardIcon" },
+                { "Recent Files", hl = "SnacksDashboardDesc", width = 50 },
+                { "r", hl = "SnacksDashboardKey" },
+              }
+            '';
+          }
+          {
+            icon = " ";
+            key = "s";
+            desc = "Restore Session";
+            action = ":SessionManager load_session";
+            text = mkLuaInline ''
+              {
+                { " ", hl = "SnacksDashboardIcon" },
+                { "Restore Session", hl = "SnacksDashboardDesc", width = 50 },
+                { "s", hl = "SnacksDashboardKey" },
+              }
+            '';
+          }
+          {
+            icon = " ";
+            key = "q";
+            desc = "Quit";
+            action = ":qa";
+            text = mkLuaInline ''
+              {
+                { " ", hl = "SnacksDashboardIcon" },
+                { "Quit", hl = "SnacksDashboardDesc", width = 50 },
+                { "q", hl = "SnacksDashboardKey" },
+              }
+            '';
+          }
+        ];
+
+      };
 
       sections = [
         {section = "header";}
@@ -189,6 +228,28 @@ in {
           height = 5;
           padding = [3 2];
         }
+        # Render startup metrics based on loaded runtime plugins.
+        (mkLuaInline ''
+          function()
+            local metrics = vim.g.snacks_dashboard_metrics or {}
+            local ms = metrics.ms
+            if not ms and vim.g.snacks_dashboard_start_ns then
+              ms = (vim.uv.hrtime() - vim.g.snacks_dashboard_start_ns) / 1e6
+            end
+
+            local loaded = metrics.loaded or 0
+            local total = metrics.total or 0
+            local text = {
+              { "󱐋 ", hl = "SnacksDashboardIcon" },
+              { "Neovim loaded ", hl = "SnacksDashboardFooter" },
+              { string.format("%d/%d", loaded, total), hl = "SnacksDashboardKey" },
+              { " plugins in ", hl = "SnacksDashboardFooter" },
+              { string.format("%.2f ms", ms or 0), hl = "SnacksDashboardKey" },
+            }
+
+            return { pane = 2, text = text, padding = 1 }
+          end
+        '')
         {
           section = "keys";
           gap = 1;
@@ -232,45 +293,10 @@ in {
             end
           '';
           cmd = "git status --short --branch --renames";
-          height = 5;
+          height = 8;
           padding = 1;
           indent = 3;
         }
-        # Render startup metrics based on loaded runtime plugins.
-        (mkLuaInline ''
-          function()
-            local ms = vim.g.snacks_start_ms
-            if not ms and vim.g.snacks_start_ns then
-              ms = (vim.uv.hrtime() - vim.g.snacks_start_ns) / 1e6
-            end
-
-            local packpath = vim.o.packpath
-            local start_plugins = vim.fn.globpath(packpath, "pack/*/start/*", 0, 1)
-            local opt_plugins = vim.fn.globpath(packpath, "pack/*/opt/*", 0, 1)
-            local total = #start_plugins + #opt_plugins
-
-            local loaded_start = 0
-            local loaded_opt = 0
-            for path in string.gmatch(vim.o.runtimepath, "([^,]+)") do
-              if path:match("/pack/.+/start/[^/]+$") then
-                loaded_start = loaded_start + 1
-              elseif path:match("/pack/.+/opt/[^/]+$") then
-                loaded_opt = loaded_opt + 1
-              end
-            end
-
-            local loaded = loaded_start + loaded_opt
-            local text = {
-              { "󱐋 ", hl = "SnacksDashboardIcon" },
-              { "Neovim loaded ", hl = "SnacksDashboardFooter" },
-              { string.format("%d/%d", loaded or 0, total or 0), hl = "SnacksDashboardKey" },
-              { " plugins in ", hl = "SnacksDashboardFooter" },
-              { string.format("%.2f ms", ms or 0), hl = "SnacksDashboardKey" },
-            }
-
-            return { text = text, padding = 1 }
-          end
-        '')
       ];
       # keep-sorted end
     };

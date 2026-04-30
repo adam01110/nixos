@@ -1,42 +1,54 @@
-{
-  # keep-sorted start
-  lib,
-  # keep-sorted end
-  ...
-}: let
-  inherit (lib.generators) mkLuaInline;
-in {
-  programs.nvf.settings.vim = {
-    # keep-sorted start block=yes newline_separated=yes
-    mini.hipatterns = {
-      enable = true;
+_: {
+  programs.nvf.settings.vim.ui.colorizer = {
+    enable = true;
 
-      setupOpts.highlighters = {
-        hex_color = mkLuaInline "require('mini.hipatterns').gen_highlighter.hex_color()";
+    setupOpts = {
+      always_update = true;
 
+      options = {
         # keep-sorted start block=yes newline_separated=yes
-        fixme = {
-          pattern = "%f[%w]()FIXME()%f[%W]";
-          group = "MiniHipatternsFixme";
+        display = {
+          mode = "virtualtext";
+          virtualtext.position = "before";
         };
 
-        hack = {
-          pattern = "%f[%w]()HACK()%f[%W]";
-          group = "MiniHipatternsHack";
-        };
+        parsers = {
+          # keep-sorted start
+          css = true;
+          css_color.enable = true;
+          css_fn = true;
+          css_var.enable = true;
+          css_var_rgb.enable = true;
+          hsl.enable = true;
+          hsluv.enable = true;
+          hwb.enable = true;
+          lab.enable = true;
+          lch.enable = true;
+          oklch.enable = true;
+          rgb.enable = true;
+          sass.enable = true;
+          xcolor.enable = true;
+          xterm.enable = true;
+          # keep-sorted end
 
-        note = {
-          pattern = "%f[%w]()NOTE()%f[%W]";
-          group = "MiniHipatternsNote";
-        };
+          # keep-sorted start block=yes newline_separated=yes
+          hex = {
+            rrggbbaa = true;
+            hash_aarrggbb = true;
+            aarrggbb = true;
+            no_hash = true;
+          };
 
-        todo = {
-          pattern = "%f[%w]()TODO()%f[%W]";
-          group = "MiniHipatternsTodo";
+          tailwind = {
+            enable = true;
+            lsp.enable = true;
+
+            update_names = true;
+          };
+          # keep-sorted end
         };
         # keep-sorted end
       };
     };
-    # keep-sorted end
   };
 }
