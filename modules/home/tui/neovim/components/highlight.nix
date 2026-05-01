@@ -3,13 +3,21 @@ _: {
     enable = true;
 
     setupOpts = {
-      always_update = true;
+      filetypes = {
+        "*" = {};
+        "!snacks_dashboard" = {};
+      };
 
-      options = {
+      "options" = {
+        always_update = true;
+
         # keep-sorted start block=yes newline_separated=yes
         display = {
           mode = "virtualtext";
-          virtualtext.position = "before";
+          virtualtext = {
+            char = "";
+            position = "before";
+          };
         };
 
         parsers = {

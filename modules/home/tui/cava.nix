@@ -11,6 +11,9 @@ _: {
         # keep-sorted end
       };
 
+      # Use pulseaudio as input as pipewire doesnt work on pc?
+      input.method = "pulse";
+
       smoothing = {
         # keep-sorted start
         monstercat = 1;

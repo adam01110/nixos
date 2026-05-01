@@ -1,4 +1,11 @@
-{lib, ...}: let
+{
+  # keep-sorted start
+  lib,
+  osConfig,
+  # keep-sorted end
+  ...
+}: let
+  colors = osConfig.lib.stylix.colors.withHashtag;
   inherit (lib.generators) mkLuaInline;
 in {
   # keep-sorted start block=yes newline_separated=yes
@@ -28,8 +35,11 @@ in {
       # keep-sorted end
 
       # keep-sorted start
-      buffers_color.active = "lualine_a_normal";
-      icons_enabled = true;
+      buffers_color.active = {
+        bg = colors.base0D;
+        fg = colors.base00;
+        icons_enabled = true;
+      };
       # keep-sorted end
 
       symbols = {

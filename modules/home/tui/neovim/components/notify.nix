@@ -1,6 +1,8 @@
 {
+  # keep-sorted start
   config,
   lib,
+  # keep-sorted end
   ...
 }: let
   inherit (lib.generators) mkLuaInline;

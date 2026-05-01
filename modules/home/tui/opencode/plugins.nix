@@ -9,9 +9,23 @@ _: {
     unmoji.enable = true;
     # keep-sorted end
 
+    # keep-sorted start block=yes newline_separated=yes
     notifier = {
       enable = true;
       settings.sound = false;
     };
+
+    quota = {
+      enable = true;
+      sidebar.enable = true;
+
+      settings = {
+        # keep-sorted start
+        enableToast = false;
+        formatStyle = "allWindows";
+        # keep-sorted end
+      };
+    };
+    # keep-sorted end
   };
 }

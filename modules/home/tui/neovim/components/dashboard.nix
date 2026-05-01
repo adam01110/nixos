@@ -1,6 +1,7 @@
 {
   # keep-sorted start
   lib,
+  osConfig,
   pkgs,
   # keep-sorted end
   ...
@@ -8,6 +9,8 @@
   inherit (builtins) attrValues;
   inherit (lib) getExe;
   inherit (lib.generators) mkLuaInline;
+
+  colors = osConfig.lib.stylix.colors.withHashtag;
 in {
   # keep-sorted start block=yes newline_separated=yes
   # Capture dashboard metrics once so the footer can read cached values.
@@ -45,8 +48,8 @@ in {
 
       local function apply_dashboard_highlights()
         vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { link = "Function" })
-        vim.api.nvim_set_hl(0, "SnacksDashboardFileIcon", { link = "Function" })
-        vim.api.nvim_set_hl(0, "SnacksDashboardDirIcon", { link = "Function" })
+        vim.api.nvim_set_hl(0, "SnacksDashboardFileIcon", { fg = "${colors.base0E}" })
+        vim.api.nvim_set_hl(0, "SnacksDashboardDirIcon", { fg = "${colors.base0E}" })
       end
 
       apply_dashboard_highlights()
@@ -216,17 +219,15 @@ in {
             '';
           }
         ];
-
+        # keep-sorted end
       };
 
       sections = [
         {section = "header";}
         {
-          pane = 2;
-          section = "terminal";
-          cmd = "${getExe pkgs.dwt1-shell-color-scripts} -e square";
-          height = 5;
-          padding = [3 2];
+          section = "keys";
+          gap = 1;
+          padding = 1;
         }
         # Render startup metrics based on loaded runtime plugins.
         (mkLuaInline ''
@@ -247,13 +248,23 @@ in {
               { string.format("%.2f ms", ms or 0), hl = "SnacksDashboardKey" },
             }
 
-            return { pane = 2, text = text, padding = 1 }
+            return { pane = 1, text = text, padding = 1 }
           end
         '')
         {
-          section = "keys";
-          gap = 1;
+          pane = 1;
+          icon = "";
+          title = "Recent Files";
+          section = "recent_files";
+          indent = 2;
           padding = 1;
+        }
+        {
+          pane = 2;
+          section = "terminal";
+          cmd = "${getExe pkgs.dwt1-shell-color-scripts} -e square";
+          height = 5;
+          padding = [3 2];
         }
         {
           pane = 2;
@@ -268,11 +279,18 @@ in {
         }
         {
           pane = 2;
-          icon = "";
-          title = "Recent Files";
-          section = "recent_files";
-          indent = 2;
+          icon = "";
+          title = "Git Status";
+          section = "terminal";
+          enabled = mkLuaInline ''
+            function()
+              return Snacks.git.get_root() ~= nil
+            end
+          '';
+          cmd = "git -c color.status=always status --short --branch --renames | awk 'NR <= 6 { print; seen = 1 } END { if (!seen) print \"No git changes\" }'";
+          height = 6;
           padding = 1;
+          indent = 3;
         }
         {
           pane = 2;
@@ -282,23 +300,7 @@ in {
           indent = 2;
           padding = 1;
         }
-        {
-          pane = 1;
-          icon = "";
-          title = "Git Status";
-          section = "terminal";
-          enabled = mkLuaInline ''
-            function()
-              return Snacks.git.get_root() ~= nil
-            end
-          '';
-          cmd = "git status --short --branch --renames";
-          height = 8;
-          padding = 1;
-          indent = 3;
-        }
       ];
-      # keep-sorted end
     };
 
     # Provide CLI tools consumed by dashboard terminal sections.

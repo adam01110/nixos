@@ -1,4 +1,12 @@
-{pkgs, ...}: {
+{
+  # keep-sorted start
+  osConfig,
+  pkgs,
+  # keep-sorted end
+  ...
+}: let
+  colors = osConfig.lib.stylix.colors.withHashtag;
+in {
   neovim.luaConfigPreSnippets = [
     # Install Telescope as the global vim.ui.select provider after UI startup.
     ''
@@ -18,11 +26,22 @@
     # keep-sorted start block=yes newline_separated=yes
     highlight = {
       # keep-sorted start
-      TelescopeBorder.link = "FloatBorder";
-      TelescopePreviewBorder.link = "FloatBorder";
-      TelescopePromptBorder.link = "FloatBorder";
-      TelescopeResultsBorder.link = "FloatBorder";
+      TelescopeBorder.fg = colors.base04;
+      TelescopePreviewBorder.fg = colors.base04;
+      TelescopePromptBorder.fg = colors.base04;
+      TelescopeResultsBorder.fg = colors.base04;
+      TelescopeResultsTitle.bg = colors.base0E;
+      TelescopeResultsTitle.fg = colors.base00;
       # keep-sorted end
+    };
+
+    lazy.plugins."telescope-all-recent.nvim" = {
+      event = {
+        event = "User";
+        pattern = "DeferredUIEnter";
+      };
+      package = pkgs.telescope-all-recent-nvim;
+      setupModule = "telescope-all-recent";
     };
 
     # Keep Telescope borders in explicit single-line style.
