@@ -12,6 +12,7 @@
     # keep-sorted start
     attrNames
     readFile
+    
     replaceStrings
     # keep-sorted end
     ;
@@ -36,6 +37,13 @@ in {
       enable = true;
 
       configDir = "${configHome}/equibop";
+
+      package =
+        pkgs.equibop
+        // {
+          # Nixcord still passes electron, but nixpkgs now hardcodes electron_40.
+          override = args: pkgs.equibop.override (removeAttrs args ["electron"]);
+        };
 
       settings = {
         # keep-sorted start

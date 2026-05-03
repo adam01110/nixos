@@ -18,7 +18,6 @@ in {
     # Cache startup timing and plugin counts after the UI attaches.
     ''
       vim.g.snacks_dashboard_start_ns = vim.uv.hrtime()
-
         vim.api.nvim_create_autocmd("UIEnter", {
           once = true,
           callback = function()
@@ -45,7 +44,6 @@ in {
 
     # Keep dashboard labels and file/project icons on the requested colors.
     ''
-
       local function apply_dashboard_highlights()
         vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { link = "Function" })
         vim.api.nvim_set_hl(0, "SnacksDashboardFileIcon", { fg = "${colors.base0E}" })

@@ -35,7 +35,6 @@ in {
         if isAttrs value
         then flattenSettings key value
         else {${key} = value;});
-
   in
     flattenSettings "" {
       # keep-sorted start
@@ -258,6 +257,7 @@ in {
 
       extensions = {
         # keep-sorted start
+        autoDisableScopes = 0;
         enabledScopes = 7;
         postDownloadThirdPartyPrompt = false;
         # keep-sorted end

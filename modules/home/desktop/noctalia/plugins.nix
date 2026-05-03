@@ -81,6 +81,10 @@ in {
       # keep-sorted start block=yes newline_separated=yes
       file-search.maxResults = 200;
 
+      giphy-search = mkOutOfStoreSymlink config.sops.templates."noctalia-giphy-config".path;
+
+      github-feed = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
+
       keybind-cheatsheet = {
         # keep-sorted start
         columnCount = 3;
@@ -146,11 +150,5 @@ in {
     };
   };
 
-  xdg.configFile = {
-    # keep-sorted start
-    "noctalia/plugins/giphy-search/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-giphy-config".path;
-    "noctalia/plugins/github-feed/settings.json".source = mkOutOfStoreSymlink config.sops.templates."noctalia-github-config".path;
-    # keep-sorted end
-  };
   # keep-sorted end
 }

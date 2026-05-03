@@ -14,5 +14,5 @@ in {
     };
   };
 
-  home.sessionVariables.GH_TELEMETRY = "false";
+  home.sessionVariables.GH_TELEMETRY = false;
 }

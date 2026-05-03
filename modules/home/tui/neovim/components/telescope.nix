@@ -20,6 +20,26 @@ in {
         end,
       })
     ''
+
+    # Override all devicon highlight groups to use base0E as foreground.
+    ''
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("NixosTelescopeDevicons", { clear = true }),
+        callback = function()
+          vim.defer_fn(function()
+            local ok, devicons = pcall(require, "nvim-web-devicons")
+            if not ok then return end
+            local icons = devicons.get_icons()
+            for _, data in pairs(icons) do
+              if data.name then
+                vim.api.nvim_set_hl(0, "DevIcon" .. data.name, { fg = "${colors.base0E}" })
+              end
+            end
+            vim.api.nvim_set_hl(0, "DevIconDefault", { fg = "${colors.base0E}" })
+          end, 0)
+        end,
+      })
+    ''
   ];
 
   programs.nvf.settings.vim = {
@@ -27,9 +47,15 @@ in {
     highlight = {
       # keep-sorted start
       TelescopeBorder.fg = colors.base04;
+      TelescopeNormal.bg = colors.base00;
       TelescopePreviewBorder.fg = colors.base04;
+      TelescopePreviewNormal.bg = colors.base00;
       TelescopePromptBorder.fg = colors.base04;
+      TelescopePromptCounter.bg = colors.base00;
+      TelescopePromptNormal.bg = colors.base00;
+      TelescopePromptPrefix.bg = colors.base00;
       TelescopeResultsBorder.fg = colors.base04;
+      TelescopeResultsNormal.bg = colors.base00;
       TelescopeResultsTitle.bg = colors.base0E;
       TelescopeResultsTitle.fg = colors.base00;
       # keep-sorted end
@@ -65,6 +91,7 @@ in {
       setupOpts.defaults = {
         border = true;
         borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
+        selection_caret = ">";
       };
     };
     # keep-sorted end

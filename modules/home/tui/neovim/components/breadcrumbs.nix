@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.settings.vim = {
-    visuals.dropbar-nvim.enable = true;
+  programs.nvf.settings.vim.visuals.dropbar-nvim = {
+    enable = true;
   };
 }

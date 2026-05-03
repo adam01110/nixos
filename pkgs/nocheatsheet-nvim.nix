@@ -6,13 +6,13 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "noCheatSheet.nvim";
-  version = "0-unstable-2026-05-01";
+  version = "0-unstable-2026-05-03";
 
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "noCheatSheet.nvim";
-    rev = "3d3f7a63128cd5d9d15f874997f3ab2728ed3dc5";
-    hash = "sha256-svFBEYbc8pYPk1ee/eG/dKowE3UKg4lKYMr7Forvux0=";
+    rev = "643a015f8e68d4decfdb2d110769e214e4df6fd1";
+    hash = "sha256-QnSsvSBWWGIWoGiVoprrC1EfO114lE5hJItVNmvkvfY=";
   };
 
   meta = {
