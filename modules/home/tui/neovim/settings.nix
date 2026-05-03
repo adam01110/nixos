@@ -4,10 +4,14 @@ _: {
 
     options = {
       # keep-sorted start
+      cursorlineopt = "both";
       mouse = "a";
       wrap = false;
       # keep-sorted end
     };
+
+    # Enable proper indentation across languages.
+    utility.guess-indent-nvim.enable = true;
 
     # keep-sorted start block=yes newline_separated=yes
     clipboard = {
@@ -28,8 +32,5 @@ _: {
       };
     };
     # keep-sorted end
-
-    # Enable proper indentation across languages.
-    utility.guess-indent-nvim.enable = true;
   };
 }

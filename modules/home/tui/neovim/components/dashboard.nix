@@ -98,7 +98,31 @@ in {
     ''
   ];
 
+  # keep-sorted end
+
   programs.nvf.settings.vim = {
+    # keep-sorted start block=yes newline_separated=yes
+    # Provide CLI tools consumed by dashboard terminal sections.
+    extraPackages = attrValues {
+      inherit
+        (pkgs)
+        # keep-sorted start
+        dwt1-shell-color-scripts
+        gh-notify
+        # keep-sorted end
+        ;
+    };
+
+    # Global shortcut to reopen the startup dashboard at any time.
+    keymaps = [
+      {
+        key = "<leader>d";
+        mode = "n";
+        action = "<cmd>lua Snacks.dashboard()<cr>";
+        desc = "Open dashboard";
+      }
+    ];
+
     utility.snacks-nvim.setupOpts.dashboard = {
       enable = true;
 
@@ -301,16 +325,6 @@ in {
       ];
     };
 
-    # Provide CLI tools consumed by dashboard terminal sections.
-    extraPackages = attrValues {
-      inherit
-        (pkgs)
-        # keep-sorted start
-        dwt1-shell-color-scripts
-        gh-notify
-        # keep-sorted end
-        ;
-    };
   };
   # keep-sorted end
 }

@@ -11,8 +11,8 @@ vimUtils.buildVimPlugin {
   src = fetchFromGitHub {
     owner = "adam01110";
     repo = "noCheatSheet.nvim";
-    rev = "643a015f8e68d4decfdb2d110769e214e4df6fd1";
-    hash = "sha256-QnSsvSBWWGIWoGiVoprrC1EfO114lE5hJItVNmvkvfY=";
+    rev = "c5365c0ebf1ca8d2ec47be99706926b8e0c2947d";
+    hash = "sha256-aQJ/Dk8DoWtK8q7arD7MA1jSe/3l2n02h6CD78lLSvI=";
   };
 
   meta = {

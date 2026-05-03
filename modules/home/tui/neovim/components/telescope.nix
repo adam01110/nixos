@@ -21,25 +21,7 @@ in {
       })
     ''
 
-    # Override all devicon highlight groups to use base0E as foreground.
-    ''
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("NixosTelescopeDevicons", { clear = true }),
-        callback = function()
-          vim.defer_fn(function()
-            local ok, devicons = pcall(require, "nvim-web-devicons")
-            if not ok then return end
-            local icons = devicons.get_icons()
-            for _, data in pairs(icons) do
-              if data.name then
-                vim.api.nvim_set_hl(0, "DevIcon" .. data.name, { fg = "${colors.base0E}" })
-              end
-            end
-            vim.api.nvim_set_hl(0, "DevIconDefault", { fg = "${colors.base0E}" })
-          end, 0)
-        end,
-      })
-    ''
+    ''pcall(function() require("nvim-web-devicons").setup({color_icons = false}) end)''
   ];
 
   programs.nvf.settings.vim = {
@@ -91,7 +73,7 @@ in {
       setupOpts.defaults = {
         border = true;
         borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
-        selection_caret = ">";
+        selection_caret = "> ";
       };
     };
     # keep-sorted end

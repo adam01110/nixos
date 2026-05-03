@@ -35,6 +35,7 @@ in {
         if isAttrs value
         then flattenSettings key value
         else {${key} = value;});
+
   in
     flattenSettings "" {
       # keep-sorted start
