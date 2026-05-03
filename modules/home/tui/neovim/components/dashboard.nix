@@ -59,41 +59,59 @@ in {
 
     # Adjust local UI behavior while the Snacks dashboard buffer is active.
     ''
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "snacks_dashboard",
-        callback = function()
-          vim.opt_local.scrolloff = 0
-          vim.b.snacks_scroll = false
+      local function configure_dashboard_ui()
+        if vim.bo.filetype ~= "snacks_dashboard" then
+          return
+        end
 
-          if vim.g.dashboard_saved_mouse == nil then
-            vim.g.dashboard_saved_mouse = vim.go.mouse
+        vim.opt_local.scrolloff = 0
+        vim.b.snacks_scroll = false
+
+        if vim.g.dashboard_saved_mouse == nil then
+          vim.g.dashboard_saved_mouse = vim.go.mouse
+        end
+
+        vim.go.mouse = ""
+
+        local group = vim.api.nvim_create_augroup("dashboard_mouse_restore", { clear = true })
+        local function restore_mouse()
+          local saved_mouse = vim.g.dashboard_saved_mouse
+          if vim.bo.filetype == "snacks_dashboard" or saved_mouse == nil then
+            return
           end
 
-          vim.go.mouse = ""
+          vim.go.mouse = saved_mouse
+          vim.g.dashboard_saved_mouse = nil
+          pcall(vim.api.nvim_del_augroup_by_id, group)
+        end
 
-          local group = vim.api.nvim_create_augroup("dashboard_mouse_restore", { clear = true })
-          local function restore_mouse()
-            local saved_mouse = vim.g.dashboard_saved_mouse
-            if vim.bo.filetype == "snacks_dashboard" or saved_mouse == nil then
-              return
-            end
+        vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+          group = group,
+          callback = restore_mouse,
+        })
 
-            vim.go.mouse = saved_mouse
-            vim.g.dashboard_saved_mouse = nil
-            pcall(vim.api.nvim_del_augroup_by_id, group)
-          end
+        vim.schedule(function()
+          vim.o.laststatus = 3
+          vim.o.showtabline = 2
+          require("lualine").refresh({ force = true, place = { "statusline", "tabline" } })
+        end)
+      end
 
-          vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
-            group = group,
-            callback = restore_mouse,
-          })
+      function _G.open_snacks_dashboard()
+        local buf = vim.api.nvim_get_current_buf()
+        if vim.bo[buf].filetype ~= "snacks_dashboard" then
+          buf = vim.api.nvim_create_buf(false, true)
+        end
 
-          vim.schedule(function()
-            vim.o.laststatus = 3
-            vim.o.showtabline = 2
-            require("lualine").refresh({ force = true, place = { "statusline", "tabline" } })
-          end)
-        end,
+        return Snacks.dashboard.open({
+          buf = buf,
+          win = vim.api.nvim_get_current_win(),
+        })
+      end
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "SnacksDashboardOpened",
+        callback = configure_dashboard_ui,
       })
     ''
   ];
@@ -118,7 +136,7 @@ in {
       {
         key = "<leader>d";
         mode = "n";
-        action = "<cmd>lua Snacks.dashboard()<cr>";
+        action = "<cmd>lua _G.open_snacks_dashboard()<cr>";
         desc = "Open dashboard";
       }
     ];
@@ -304,12 +322,24 @@ in {
           icon = "";
           title = "Git Status";
           section = "terminal";
-          enabled = mkLuaInline ''
-            function()
-              return Snacks.git.get_root() ~= nil
-            end
-          '';
-          cmd = "git -c color.status=always status --short --branch --renames | awk 'NR <= 6 { print; seen = 1 } END { if (!seen) print \"No git changes\" }'";
+          cmd = getExe (pkgs.writeShellApplication {
+            name = "dashboard-git-status";
+            runtimeInputs = attrValues {
+              inherit
+                (pkgs)
+                gawk
+                git
+                ;
+            };
+            text = ''
+              if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+                git -c color.status=always status --short --branch --renames \
+                  | awk 'NR <= 6 { print; seen = 1 } END { if (!seen) print "No git changes" }'
+              else
+                printf '\n\n\n\n\n\n'
+              fi
+            '';
+          });
           height = 6;
           padding = 1;
           indent = 3;

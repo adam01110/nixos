@@ -1,3 +1,6 @@
 _: {
-  programs.nvf.settings.vim.utility.snacks-nvim.setupOpts.scroll.enable = true;
+  programs.nvf.settings.vim.visuals.neoscroll-nvim = {
+    enable = true;
+    setupOpts.duration_multiplier = 0.5;
+  };
 }

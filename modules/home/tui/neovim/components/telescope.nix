@@ -20,8 +20,6 @@ in {
         end,
       })
     ''
-
-    ''pcall(function() require("nvim-web-devicons").setup({color_icons = false}) end)''
   ];
 
   programs.nvf.settings.vim = {
@@ -42,6 +40,15 @@ in {
       TelescopeResultsTitle.fg = colors.base00;
       # keep-sorted end
     };
+
+    keymaps = [
+      {
+        key = "<leader>fn";
+        mode = "n";
+        action = "<cmd>Telescope notify<cr>";
+        desc = "Open notifications";
+      }
+    ];
 
     lazy.plugins."telescope-all-recent.nvim" = {
       event = {
@@ -73,7 +80,8 @@ in {
       setupOpts.defaults = {
         border = true;
         borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
-        selection_caret = "> ";
+        color_devicons = true;
+        selection_caret = "➜ ";
       };
     };
     # keep-sorted end
