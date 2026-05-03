@@ -51,12 +51,13 @@ in {
     ];
 
     lazy.plugins."telescope-all-recent.nvim" = {
+      package = pkgs.telescope-all-recent-nvim;
+      setupModule = "telescope-all-recent";
+
       event = {
         event = "User";
         pattern = "DeferredUIEnter";
       };
-      package = pkgs.telescope-all-recent-nvim;
-      setupModule = "telescope-all-recent";
     };
 
     # Keep Telescope borders in explicit single-line style.
@@ -78,10 +79,14 @@ in {
       ];
 
       setupOpts.defaults = {
+        # keep-sorted start
         border = true;
         borderchars = ["─" "│" "─" "│" "┌" "┐" "┘" "└"];
         color_devicons = true;
+        layout_config.horizontal.prompt_position = "top";
         selection_caret = "➜ ";
+        sorting_strategy = "ascending";
+        # keep-sorted end
       };
     };
     # keep-sorted end

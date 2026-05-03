@@ -160,20 +160,8 @@ in {
         # Route dashboard pick actions through Telescope to keep the normal layout.
         pick = mkLuaInline ''
           function(cmd, opts)
-            local builtin = require("telescope.builtin")
-            local telescope_cmd = cmd == "files" and "find_files" or cmd
-            local telescope_opts = vim.tbl_deep_extend("force", {
-              layout_config = {
-                prompt_position = "top",
-              },
-              sorting_strategy = "ascending",
-            }, opts or {})
-
-            if builtin[telescope_cmd] then
-              return builtin[telescope_cmd](telescope_opts)
-            end
-
-            error("Unsupported dashboard picker: " .. tostring(cmd))
+            cmd = cmd == "files" and "find_files" or cmd
+            return require("telescope.builtin")[cmd](opts or {})
           end
         '';
 

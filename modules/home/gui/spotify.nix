@@ -61,7 +61,6 @@ in {
         # keep-sorted start
         pointer
         removeTheArtistsAndCreditsSectionsFromTheSidebar
-        smoothProgressBar
         # keep-sorted end
         ;
     };

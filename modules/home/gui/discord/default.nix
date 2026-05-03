@@ -12,7 +12,6 @@
     # keep-sorted start
     attrNames
     readFile
-    
     replaceStrings
     # keep-sorted end
     ;

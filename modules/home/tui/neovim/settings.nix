@@ -25,7 +25,6 @@ in {
     lsp = {
       enable = true;
       formatOnSave = true;
-      lspSignature.enable = true;
 
       # Support embedded code blocks in mixed-language buffers.
       otter-nvim = {
