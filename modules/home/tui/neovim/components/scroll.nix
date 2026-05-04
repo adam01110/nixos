@@ -1,6 +1,10 @@
 _: {
-  programs.nvf.settings.vim.visuals.neoscroll-nvim = {
+  programs.nvf.settings.vim.utility.snacks-nvim.setupOpts.scroll = {
     enable = true;
-    setupOpts.duration_multiplier = 0.5;
+
+    # keep-sorted start
+    animate.duration.total = 100;
+    animate_repeat.duration.total = 25;
+    # keep-sorted end
   };
 }
